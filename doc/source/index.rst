@@ -15,6 +15,7 @@ Contents:
    installation
    usage
    contributing
+   review-guidelines
 
 Indices and tables
 ==================
