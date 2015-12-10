@@ -115,7 +115,8 @@ class CallBacksManagerTestCase(base.BaseTestCase):
             callback_1, resources.PORT, events.BEFORE_CREATE)
         self.assertNotIn(callback_id_1, self.manager._index)
         self.assertNotIn(callback_id_1,
-            self.manager._callbacks[resources.PORT][events.BEFORE_CREATE])
+                         self.manager._callbacks[resources.PORT]
+                                                [events.BEFORE_CREATE])
 
     def test_unsubscribe_by_resource(self):
         self.manager.subscribe(
