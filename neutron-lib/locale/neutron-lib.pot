@@ -1,0 +1,358 @@
+# Translations template for neutron-lib.
+# Copyright (C) 2015 ORGANIZATION
+# This file is distributed under the same license as the neutron-lib
+# project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: neutron-lib 0.0.1.dev14\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2015-12-15 01:45-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.1.1\n"
+
+#: neutron_lib/exceptions.py:33 neutron_lib/tests/test_exceptions.py:44
+#: neutron_lib/tests/test_exceptions.py:49
+#: neutron_lib/tests/test_exceptions.py:54
+msgid "An unknown exception occurred."
+msgstr ""
+
+#: neutron_lib/exceptions.py:58
+#, python-format
+msgid "Bad %(resource)s request: %(msg)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:70 neutron_lib/tests/test_exceptions.py:74
+msgid "Not authorized."
+msgstr ""
+
+#: neutron_lib/exceptions.py:74 neutron_lib/tests/test_exceptions.py:79
+#: neutron_lib/tests/test_exceptions.py:222
+msgid "The service is unavailable."
+msgstr ""
+
+#: neutron_lib/exceptions.py:78
+#, python-format
+msgid "User does not have admin privileges: %(reason)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:82
+#, python-format
+msgid "Object %(id)s not found."
+msgstr ""
+
+#: neutron_lib/exceptions.py:86
+#, python-format
+msgid "Network %(net_id)s could not be found."
+msgstr ""
+
+#: neutron_lib/exceptions.py:90
+#, python-format
+msgid "Subnet %(subnet_id)s could not be found."
+msgstr ""
+
+#: neutron_lib/exceptions.py:94
+#, python-format
+msgid "Port %(port_id)s could not be found."
+msgstr ""
+
+#: neutron_lib/exceptions.py:98
+#, python-format
+msgid "Port %(port_id)s could not be found on network %(net_id)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:103 neutron_lib/tests/test_exceptions.py:120
+msgid "The resource is in use."
+msgstr ""
+
+#: neutron_lib/exceptions.py:107
+#, python-format
+msgid ""
+"Unable to complete operation on network %(net_id)s. There are one or more"
+" ports still in use on the network."
+msgstr ""
+
+#: neutron_lib/exceptions.py:112
+#, python-format
+msgid "Unable to complete operation on subnet %(subnet_id)s: %(reason)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:117
+msgid "One or more ports have an IP allocation from this subnet"
+msgstr ""
+
+#: neutron_lib/exceptions.py:123
+#, python-format
+msgid ""
+"Unable to complete operation on subnet pool %(subnet_pool_id)s. "
+"%(reason)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:128
+msgid "Two or more concurrent subnets allocated"
+msgstr ""
+
+#: neutron_lib/exceptions.py:133
+#, python-format
+msgid ""
+"Unable to complete operation on port %(port_id)s for network %(net_id)s. "
+"Port already has an attached device %(device_id)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:139
+#, python-format
+msgid "Port %(port_id)s cannot be deleted directly via the port API: %(reason)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:144
+#, python-format
+msgid ""
+"Unable to complete operation on port %(port_id)s, port is already bound, "
+"port type: %(vif_type)s, old_mac %(old_mac)s, new_mac %(new_mac)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:150
+#, python-format
+msgid ""
+"Unable to complete operation for network %(net_id)s. The mac address "
+"%(mac)s is in use."
+msgstr ""
+
+#: neutron_lib/exceptions.py:155
+#, python-format
+msgid ""
+"IP address %(ip_address)s is not a valid IP for any of the subnets on the"
+" specified network."
+msgstr ""
+
+#: neutron_lib/exceptions.py:160
+#, python-format
+msgid "IP address %(ip_address)s is not a valid IP for the specified subnet."
+msgstr ""
+
+#: neutron_lib/exceptions.py:165
+#, python-format
+msgid ""
+"Unable to complete operation for network %(net_id)s. The IP address "
+"%(ip_address)s is in use."
+msgstr ""
+
+#: neutron_lib/exceptions.py:170
+#, python-format
+msgid ""
+"Unable to create the network. The VLAN %(vlan_id)s on physical network "
+"%(physical_network)s is in use."
+msgstr ""
+
+#: neutron_lib/exceptions.py:176
+#, python-format
+msgid "Unable to create the network. The tunnel ID %(tunnel_id)s is in use."
+msgstr ""
+
+#: neutron_lib/exceptions.py:185 neutron_lib/tests/test_exceptions.py:227
+msgid ""
+"Unable to create the network. No tenant network is available for "
+"allocation."
+msgstr ""
+
+#: neutron_lib/exceptions.py:190
+#, python-format
+msgid ""
+"Subnet on port %(port_id)s does not match the requested subnet "
+"%(subnet_id)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:201
+#, python-format
+msgid "Invalid input for operation: %(error_message)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:205
+#, python-format
+msgid "No more IP addresses available on network %(net_id)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:209
+#, python-format
+msgid "Creation failed. %(dev_name)s already exists."
+msgstr ""
+
+#: neutron_lib/exceptions.py:213
+#, python-format
+msgid "Quota exceeded for resources: %(overs)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:217
+#, python-format
+msgid "Invalid content type %(content_type)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:221
+#, python-format
+msgid "Unable to find any IP address on external network %(net_id)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:226 neutron_lib/tests/test_exceptions.py:282
+msgid "More than one external network exists."
+msgstr ""
+
+#: neutron_lib/exceptions.py:230
+#, python-format
+msgid "An invalid value was provided for %(opt_name)s: %(opt_value)s."
+msgstr ""
+
+#: neutron_lib/exceptions.py:235
+#, python-format
+msgid "Invalid network tunnel range: '%(tunnel_range)s' - %(error)s."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:59
+#: neutron_lib/tests/test_exceptions.py:66
+msgid "Bad A request: B."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:84
+msgid "User does not have admin privileges: hoser."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:90
+msgid "Object fallout tato not found."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:96
+msgid "Network spam could not be found."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:102
+msgid "Subnet root could not be found."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:108
+msgid "Port harbor could not be found."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:114
+msgid "Port serial could not be found on network USB."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:125
+msgid ""
+"Unable to complete operation on network foo. There are one or more ports "
+"still in use on the network."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:132
+msgid "Unable to complete operation on subnet garbage: not full."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:138
+msgid ""
+"Unable to complete operation on subnet garbage: One or more ports have an"
+" IP allocation from this subnet."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:145
+msgid "Unable to complete operation on subnet pool ymca. because."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:151
+msgid ""
+"Unable to complete operation on subnet pool ymca. Two or more concurrent "
+"subnets allocated."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:158
+msgid ""
+"Unable to complete operation on port a for network c. Port already has an"
+" attached device b."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:165
+msgid "Port harbor cannot be deleted directly via the port API: docking."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:172
+msgid ""
+"Unable to complete operation on port bigmac, port is already bound, port "
+"type: ketchup, old_mac onions, new_mac salt."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:181
+msgid ""
+"Unable to complete operation for network nutters. The mac address grill "
+"is in use."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:188
+msgid ""
+"IP address shazam! is not a valid IP for any of the subnets on the "
+"specified network."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:195
+msgid "IP address 300.400.500.600 is not a valid IP for the specified subnet."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:202
+msgid ""
+"Unable to complete operation for network boredom. The IP address "
+"crazytown is in use."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:209
+msgid ""
+"Unable to create the network. The VLAN virtual on physical network phys "
+"is in use."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:216
+msgid "Unable to create the network. The tunnel ID sewer is in use."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:233
+msgid "Subnet on port porter does not match the requested subnet submit."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:246
+msgid "Invalid input for operation: warp core breach."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:252
+msgid "No more IP addresses available on network nuke."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:258
+msgid "Creation failed. hal9000 already exists."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:264
+msgid "Quota exceeded for resources: tube socks."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:270
+msgid "Invalid content type porn."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:276
+msgid "Unable to find any IP address on external network darpanet."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:287
+msgid "An invalid value was provided for which muppet: big bird."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:293
+msgid "Invalid network tunnel range: 'rats' - present."
+msgstr ""
+
+#: neutron_lib/tests/test_exceptions.py:299
+msgid "Invalid network tunnel range: '3:4' - present."
+msgstr ""
+
