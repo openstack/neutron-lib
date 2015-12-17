@@ -32,6 +32,8 @@ Neutron Lib Internals
 .. toctree::
    :maxdepth: 3
 
+   api_converters
+   api_validators
    callbacks
 
 
