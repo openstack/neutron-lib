@@ -32,9 +32,7 @@ Neutron Lib Internals
 .. toctree::
    :maxdepth: 3
 
-.. todo::
-
-   Add callbacks
+   callbacks
 
 
 Module Reference

@@ -6,4 +6,5 @@ pbr>=1.6
 Babel>=1.3
 
 oslo.i18n>=1.5.0 # Apache-2.0
+oslo.log>=1.12.0 # Apache-2.0
 oslo.utils>=2.8.0 # Apache-2.0
