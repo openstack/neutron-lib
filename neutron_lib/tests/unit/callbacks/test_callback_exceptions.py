@@ -22,13 +22,13 @@ Tests for `neutron_lib.callback.exceptions` module.
 import functools
 
 import neutron_lib._callbacks.exceptions as ex
-from neutron_lib.tests import test_exceptions as base
+from neutron_lib.tests.unit import test_exceptions
 
 
-class TestCallbackExceptions(base.TestExceptions):
+class TestCallbackExceptions(test_exceptions.TestExceptions):
 
     def _check_exception(self, exc_class, expected_msg, **kwargs):
-        raise_exc_class = functools.partial(base._raise, exc_class)
+        raise_exc_class = functools.partial(test_exceptions._raise, exc_class)
         e = self.assertRaises(exc_class, raise_exc_class, **kwargs)
         self.assertEqual(expected_msg, str(e))
 

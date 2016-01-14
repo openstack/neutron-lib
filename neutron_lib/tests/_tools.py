@@ -13,9 +13,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-# Note: _safe_sort_key came from neutron/common/utils.py. For neutron-lib
-# it is only used for testing, so is placed here.
 import collections
+import fixtures
+import warnings
 
 
 def _safe_sort_key(value):
@@ -36,3 +36,17 @@ class UnorderedList(list):
 
     def __neq__(self, other):
         return not self == other
+
+
+class WarningsFixture(fixtures.Fixture):
+    """Filters out warnings during test runs."""
+
+    warning_types = (
+        DeprecationWarning, PendingDeprecationWarning, ImportWarning
+    )
+
+    def _setUp(self):
+        self.addCleanup(warnings.resetwarnings)
+        for wtype in self.warning_types:
+            warnings.filterwarnings(
+                "always", category=wtype, module='^neutron_lib\\.')

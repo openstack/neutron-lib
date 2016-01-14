@@ -17,11 +17,11 @@ import testtools
 
 from neutron_lib.api import converters
 from neutron_lib import exceptions as n_exc
-from neutron_lib.tests import base
-from neutron_lib.tests import tools
+from neutron_lib.tests import _base as base
+from neutron_lib.tests import _tools as tools
 
 
-class TestConvertToBoolean(base.TestCase):
+class TestConvertToBoolean(base.BaseTestCase):
 
     def test_convert_to_boolean_bool(self):
         self.assertIs(converters.convert_to_boolean(True), True)
@@ -50,7 +50,7 @@ class TestConvertToBoolean(base.TestCase):
         self.assertIs(converters.convert_to_boolean_if_not_none(1), True)
 
 
-class TestConvertToInt(base.TestCase):
+class TestConvertToInt(base.BaseTestCase):
 
     def test_convert_to_int_int(self):
         self.assertEqual(-1, converters.convert_to_int(-1))
@@ -88,7 +88,7 @@ class TestConvertToInt(base.TestCase):
                 value, converters.convert_none_to_empty_list(value))
 
 
-class TestConvertToFloat(base.TestCase):
+class TestConvertToFloat(base.BaseTestCase):
     # NOTE: the routine being tested here is a plugin-specific extension
     # module. As the plugin split proceed towards its second phase this
     # test should either be remove, or the validation routine moved into
@@ -117,7 +117,7 @@ class TestConvertToFloat(base.TestCase):
         self.assertIsNone(converters.convert_to_positive_float_or_none(None))
 
 
-class TestConvertKvp(base.TestCase):
+class TestConvertKvp(base.BaseTestCase):
 
     def test_convert_kvp_list_to_dict_succeeds_for_missing_values(self):
         result = converters.convert_kvp_list_to_dict(['True'])
@@ -150,7 +150,7 @@ class TestConvertKvp(base.TestCase):
         self.assertEqual(['a', 'a=a'], result)
 
 
-class TestConvertToList(base.TestCase):
+class TestConvertToList(base.BaseTestCase):
 
     def test_convert_to_empty_list(self):
         for item in (None, [], (), {}):

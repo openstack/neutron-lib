@@ -40,6 +40,7 @@ Programming HowTos and Tutorials
     :maxdepth: 3
 
     readme
+    conventions
     installation
     usage
     review-guidelines

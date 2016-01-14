@@ -21,14 +21,14 @@ from neutron_lib.api import converters
 from neutron_lib.api import validators
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
-from neutron_lib.tests import base
+from neutron_lib.tests import _base as base
 
 
 def dummy_validator(data, valid_values=None):
     pass
 
 
-class TestAttributeValidation(base.TestCase):
+class TestAttributeValidation(base.BaseTestCase):
 
     def _construct_dict_and_constraints(self):
         """Constructs a test dictionary and a definition of constraints.

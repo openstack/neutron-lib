@@ -23,14 +23,14 @@ import functools
 
 from neutron_lib._i18n import _
 import neutron_lib.exceptions as ne
-from neutron_lib.tests import base
+from neutron_lib.tests import _base as base
 
 
 def _raise(exc_class, **kwargs):
     raise exc_class(**kwargs)
 
 
-class TestExceptions(base.TestCase):
+class TestExceptions(base.BaseTestCase):
 
     def _check_nexc(self, exc_class, expected_msg, **kwargs):
         raise_exc_class = functools.partial(_raise, exc_class)

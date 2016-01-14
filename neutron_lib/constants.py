@@ -136,6 +136,9 @@ IPV6_PD_POOL_ID = 'prefix_delegation'
 # Device names start with "tap"
 TAP_DEVICE_PREFIX = 'tap'
 
+# Linux interface max length
+DEVICE_NAME_MAX_LEN = 15
+
 # Time format
 ISO8601_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 
