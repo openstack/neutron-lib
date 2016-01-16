@@ -129,8 +129,22 @@ ICMPV6_ALLOWED_TYPES = [130, 131, 132, 135, 136]
 ICMPV6_TYPE_RA = 134
 ICMPV6_TYPE_NA = 136
 
+# Human-readable ID to which the subnetpool ID should be set to
+# indicate that IPv6 Prefix Delegation is enabled for a given subnetpool
+IPV6_PD_POOL_ID = 'prefix_delegation'
+
 # Device names start with "tap"
 TAP_DEVICE_PREFIX = 'tap'
 
 # Time format
 ISO8601_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
+
+#############################
+# Attribute related constants
+#############################
+ATTR_NOT_SPECIFIED = object()
+
+HEX_ELEM = '[0-9A-Fa-f]'
+UUID_PATTERN = '-'.join([HEX_ELEM + '{8}', HEX_ELEM + '{4}',
+                         HEX_ELEM + '{4}', HEX_ELEM + '{4}',
+                         HEX_ELEM + '{12}'])
