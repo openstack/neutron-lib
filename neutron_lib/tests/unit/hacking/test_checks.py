@@ -88,3 +88,11 @@ class HackingTestCase(base.BaseTestCase):
 
         self.assertEqual(0, len(list(checks.no_mutable_default_args(
             "defined, undefined = [], {}"))))
+
+    def test_check_neutron_namespace_imports(self):
+        f = checks.check_neutron_namespace_imports
+        self.assertLinePasses(f, 'from neutron_lib import constants')
+        self.assertLinePasses(f, 'import neutron_lib.constants')
+        self.assertLineFails(f, 'from neutron.common import rpc')
+        self.assertLineFails(f, 'from neutron import context')
+        self.assertLineFails(f, 'import neutron.common.config')

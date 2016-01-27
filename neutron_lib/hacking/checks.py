@@ -14,9 +14,6 @@
 
 import re
 
-# TODO(dougwig)
-# add a rule for not importing neutron directly; most will have to ignore
-
 # Guidelines for writing new hacking checks
 #
 #  - Use only for Neutron specific tests. OpenStack general tests
@@ -31,9 +28,9 @@ import re
 
 mutable_default_args = re.compile(r"^\s*def .+\((.+=\{\}|.+=\[\])")
 
-oslo_namespace_imports_dot = re.compile(r"import[\s]+oslo[.][^\s]+")
-oslo_namespace_imports_from_dot = re.compile(r"from[\s]+oslo[.]")
-oslo_namespace_imports_from_root = re.compile(r"from[\s]+oslo[\s]+import[\s]+")
+namespace_imports_dot = re.compile(r"import[\s]+([\w]+)[.][^\s]+")
+namespace_imports_from_dot = re.compile(r"from[\s]+([\w]+)[.]")
+namespace_imports_from_root = re.compile(r"from[\s]+([\w]+)[\s]+import[\s]+")
 contextlib_nested = re.compile(r"^with (contextlib\.)?nested\(")
 
 
@@ -59,22 +56,38 @@ def use_jsonutils(logical_line, filename):
                 yield (pos, msg % {'fun': f[:-1]})
 
 
-def check_oslo_namespace_imports(logical_line):
-    if re.match(oslo_namespace_imports_from_dot, logical_line):
-        msg = ("N523: '%s' must be used instead of '%s'.") % (
-            logical_line.replace('oslo.', 'oslo_'),
+def _check_imports(regex, submatch, logical_line):
+    m = re.match(regex, logical_line)
+    if m and m.group(1) == submatch:
+        return True
+
+
+def _check_namespace_imports(failure_code, namespace, new_ns, logical_line):
+    if _check_imports(namespace_imports_from_dot, namespace, logical_line):
+        msg = ("%s: '%s' must be used instead of '%s'.") % (
+            failure_code,
+            logical_line.replace('%s.' % namespace, new_ns),
             logical_line)
-        yield(0, msg)
-    elif re.match(oslo_namespace_imports_from_root, logical_line):
-        msg = ("N523: '%s' must be used instead of '%s'.") % (
-            logical_line.replace('from oslo import ', 'import oslo_'),
+        return (0, msg)
+    elif _check_imports(namespace_imports_from_root, namespace, logical_line):
+        msg = ("%s: '%s' must be used instead of '%s'.") % (
+            failure_code,
+            logical_line.replace(
+                'from %s import ' % namespace, 'import %s' % new_ns),
             logical_line)
-        yield(0, msg)
-    elif re.match(oslo_namespace_imports_dot, logical_line):
-        msg = ("N523: '%s' must be used instead of '%s'.") % (
+        return (0, msg)
+    elif _check_imports(namespace_imports_dot, namespace, logical_line):
+        msg = ("%s: '%s' must be used instead of '%s'.") % (
+            failure_code,
             logical_line.replace('import', 'from').replace('.', ' import '),
             logical_line)
-        yield(0, msg)
+        return (0, msg)
+
+
+def check_oslo_namespace_imports(logical_line):
+    x = _check_namespace_imports('N523', 'oslo', 'oslo_', logical_line)
+    if x is not None:
+        yield x
 
 
 def check_no_contextlib_nested(logical_line, filename):
@@ -112,6 +125,15 @@ def no_mutable_default_args(logical_line):
         yield (0, msg)
 
 
+# Chances are that most projects will need to put an ignore on this rule
+# until they can fully migrate to the lib.
+
+def check_neutron_namespace_imports(line):
+    x = _check_namespace_imports('N530', 'neutron', 'neutron_lib', line)
+    if x is not None:
+        yield x
+
+
 def factory(register):
     register(use_jsonutils)
     register(check_oslo_namespace_imports)
@@ -120,3 +142,4 @@ def factory(register):
     register(check_no_basestring)
     register(check_python3_no_iteritems)
     register(no_mutable_default_args)
+    register(check_neutron_namespace_imports)

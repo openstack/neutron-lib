@@ -15,3 +15,4 @@ Neutron Specific Commandments
 - [N526] Python 3: do not use basestring.
 - [N527] Python 3: do not use dict.iteritems.
 - [N529] Method's default argument shouldn't be mutable
+- [N530] No importing of neutron; should be ignored in neutron itself
