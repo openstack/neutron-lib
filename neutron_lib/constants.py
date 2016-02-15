@@ -99,6 +99,7 @@ AGENT_TYPE_LOADBALANCER = 'Loadbalancer agent'
 AGENT_TYPE_METERING = 'Metering agent'
 AGENT_TYPE_METADATA = 'Metadata agent'
 AGENT_TYPE_NIC_SWITCH = 'NIC Switch agent'
+AGENT_TYPE_MACVTAP = 'Macvtap agent'
 L2_AGENT_TOPIC = 'N/A'
 
 PORT_BINDING_EXT_ALIAS = 'binding'
@@ -192,6 +193,9 @@ IPV6_PD_POOL_ID = 'prefix_delegation'
 
 # Device names start with "tap"
 TAP_DEVICE_PREFIX = 'tap'
+
+# Device names start with "macvtap"
+MACVTAP_DEVICE_PREFIX = 'macvtap'
 
 # Linux interface max length
 DEVICE_NAME_MAX_LEN = 15
