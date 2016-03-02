@@ -62,26 +62,32 @@ def _check_imports(regex, submatch, logical_line):
         return True
 
 
-def _check_namespace_imports(failure_code, namespace, new_ns, logical_line):
+def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
+                             message_override=None):
+    if message_override is not None:
+        msg_o = "%s: %s" % (failure_code, message_override)
+    else:
+        msg_o = None
+
     if _check_imports(namespace_imports_from_dot, namespace, logical_line):
         msg = ("%s: '%s' must be used instead of '%s'.") % (
             failure_code,
             logical_line.replace('%s.' % namespace, new_ns),
             logical_line)
-        return (0, msg)
+        return (0, msg_o or msg)
     elif _check_imports(namespace_imports_from_root, namespace, logical_line):
         msg = ("%s: '%s' must be used instead of '%s'.") % (
             failure_code,
             logical_line.replace(
                 'from %s import ' % namespace, 'import %s' % new_ns),
             logical_line)
-        return (0, msg)
+        return (0, msg_o or msg)
     elif _check_imports(namespace_imports_dot, namespace, logical_line):
         msg = ("%s: '%s' must be used instead of '%s'.") % (
             failure_code,
             logical_line.replace('import', 'from').replace('.', ' import '),
             logical_line)
-        return (0, msg)
+        return (0, msg_o or msg)
 
 
 def check_oslo_namespace_imports(logical_line):
@@ -128,8 +134,10 @@ def no_mutable_default_args(logical_line):
 # Chances are that most projects will need to put an ignore on this rule
 # until they can fully migrate to the lib.
 
-def check_neutron_namespace_imports(line):
-    x = _check_namespace_imports('N530', 'neutron', 'neutron_lib', line)
+def check_neutron_namespace_imports(logical_line):
+    x = _check_namespace_imports(
+        'N530', 'neutron', 'neutron_lib.', logical_line,
+        message_override="direct neutron imports not allowed")
     if x is not None:
         yield x
 
