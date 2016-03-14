@@ -212,3 +212,14 @@ HEX_ELEM = '[0-9A-Fa-f]'
 UUID_PATTERN = '-'.join([HEX_ELEM + '{8}', HEX_ELEM + '{4}',
                          HEX_ELEM + '{4}', HEX_ELEM + '{4}',
                          HEX_ELEM + '{12}'])
+
+
+##########################
+# Device related constants
+##########################
+# vhost-user device names start with "vhu"
+VHOST_USER_DEVICE_PREFIX = 'vhu'
+# The vswitch side of a veth pair for a nova iptables filter setup
+VETH_DEVICE_PREFIX = 'qvo'
+# prefix for SNAT interface in DVR
+SNAT_INT_DEV_PREFIX = 'sg-'
