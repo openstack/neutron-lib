@@ -240,3 +240,11 @@ class NetworkTunnelRangeError(NeutronException):
         if isinstance(kwargs['tunnel_range'], tuple):
             kwargs['tunnel_range'] = "%d:%d" % kwargs['tunnel_range']
         super(NetworkTunnelRangeError, self).__init__(**kwargs)
+
+
+class PolicyInitError(NeutronException):
+    message = _("Failed to initialize policy %(policy)s because %(reason)s.")
+
+
+class PolicyCheckError(NeutronException):
+    message = _("Failed to check policy %(policy)s because %(reason)s.")
