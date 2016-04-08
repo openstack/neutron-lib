@@ -47,10 +47,6 @@ def fake_use_fatal_exceptions(*args):
     return True
 
 
-def fake_consume_in_threads(self):
-    return []
-
-
 def get_rand_name(max_length=None, prefix='test'):
     """Return a random string.
 
