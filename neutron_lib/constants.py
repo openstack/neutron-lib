@@ -94,7 +94,6 @@ DHCP_RESPONSE_PORT = 68
 
 FLOODING_ENTRY = ('00:00:00:00:00:00', '0.0.0.0')
 
-AGENT_TYPE_COLLECTION = 'Collection Agent'
 AGENT_TYPE_DHCP = 'DHCP agent'
 AGENT_TYPE_OVS = 'Open vSwitch agent'
 AGENT_TYPE_LINUXBRIDGE = 'Linux bridge agent'
