@@ -125,6 +125,9 @@ PROTO_NAME_IGMP = 'igmp'
 PROTO_NAME_IPV6_ENCAP = 'ipv6-encap'
 PROTO_NAME_IPV6_FRAG = 'ipv6-frag'
 PROTO_NAME_IPV6_ICMP = 'ipv6-icmp'
+# For backward-compatibility of security group rule API, we keep the old value
+# for IPv6 ICMP. It should be clean up in the future.
+PROTO_NAME_IPV6_ICMP_LEGACY = 'icmpv6'
 PROTO_NAME_IPV6_NONXT = 'ipv6-nonxt'
 PROTO_NAME_IPV6_OPTS = 'ipv6-opts'
 PROTO_NAME_IPV6_ROUTE = 'ipv6-route'
@@ -169,6 +172,8 @@ IP_PROTOCOL_MAP = {PROTO_NAME_AH: PROTO_NUM_AH,
                    PROTO_NAME_IPV6_ENCAP: PROTO_NUM_IPV6_ENCAP,
                    PROTO_NAME_IPV6_FRAG: PROTO_NUM_IPV6_FRAG,
                    PROTO_NAME_IPV6_ICMP: PROTO_NUM_IPV6_ICMP,
+                   # For backward-compatibility of security group rule API
+                   PROTO_NAME_IPV6_ICMP_LEGACY: PROTO_NUM_IPV6_ICMP,
                    PROTO_NAME_IPV6_NONXT: PROTO_NUM_IPV6_NONXT,
                    PROTO_NAME_IPV6_OPTS: PROTO_NUM_IPV6_OPTS,
                    PROTO_NAME_IPV6_ROUTE: PROTO_NUM_IPV6_ROUTE,
