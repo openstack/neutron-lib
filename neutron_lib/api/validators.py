@@ -450,6 +450,13 @@ def validate_dict(data, key_specs=None):
         if msg:
             return msg
 
+    # Check whether unexpected keys are supplied in data
+    unexpected_keys = [key for key in data if key not in key_specs]
+    if unexpected_keys:
+        msg = _("Unexpected keys supplied: %s") % ', '.join(unexpected_keys)
+        LOG.debug(msg)
+        return msg
+
     # Perform validation and conversion of all values
     # according to the specifications.
     for key, key_validator in [(k, v) for k, v in six.iteritems(key_specs)

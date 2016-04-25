@@ -770,6 +770,13 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_dict(dictionary, constraints)
         self.assertIsNotNone(msg)
 
+    def test_validate_dict_unexpected_keys(self):
+        dictionary, constraints = self._construct_dict_and_constraints()
+
+        dictionary['unexpected_key'] = 'val'
+        msg = validators.validate_dict(dictionary, constraints)
+        self.assertIn('Unexpected keys supplied:', msg)
+
     def test_validate_dict_convert_boolean(self):
         dictionary, constraints = self._construct_dict_and_constraints()
 
