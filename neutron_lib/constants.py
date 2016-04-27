@@ -186,15 +186,47 @@ IP_PROTOCOL_MAP = {PROTO_NAME_AH: PROTO_NUM_AH,
                    PROTO_NAME_UDPLITE: PROTO_NUM_UDPLITE,
                    PROTO_NAME_VRRP: PROTO_NUM_VRRP}
 
-# List of ICMPv6 types that should be allowed by default:
-# Multicast Listener Query (130),
-# Multicast Listener Report (131),
-# Multicast Listener Done (132),
-# Neighbor Solicitation (135),
-# Neighbor Advertisement (136)
-ICMPV6_ALLOWED_TYPES = [130, 131, 132, 135, 136]
+# ICMPv6 types:
+# Destination Unreachable (1)
+ICMPV6_TYPE_DEST_UNREACH = 1
+# Packet Too Big (2)
+ICMPV6_TYPE_PKT_TOOBIG = 2
+# Time Exceeded (3)
+ICMPV6_TYPE_TIME_EXCEED = 3
+# Parameter Problem (4)
+ICMPV6_TYPE_PARAMPROB = 4
+# Echo Request (128)
+ICMPV6_TYPE_ECHO_REQUEST = 128
+# Echo Reply (129)
+ICMPV6_TYPE_ECHO_REPLY = 129
+# Multicast Listener Query (130)
+ICMPV6_TYPE_MLD_QUERY = 130
+# Multicast Listener Report (131)
+ICMPV6_TYPE_MLD_REPORT = 131
+# Multicast Listener Done (132)
+ICMPV6_TYPE_MLD_DONE = 132
+# Router Solicitation (133)
+ICMPV6_TYPE_RS = 133
+# Router Advertisement (134)
 ICMPV6_TYPE_RA = 134
+# Neighbor Solicitation (135)
+ICMPV6_TYPE_NS = 135
+# Neighbor Advertisement (136)
 ICMPV6_TYPE_NA = 136
+# Multicast Listener v2 Report (143)
+ICMPV6_TYPE_MLD2_REPORT = 143
+
+# List of ICMPv6 types that should be allowed by default:
+ICMPV6_ALLOWED_TYPES = [ICMPV6_TYPE_MLD_QUERY,
+                        ICMPV6_TYPE_MLD_REPORT,
+                        ICMPV6_TYPE_MLD_DONE,
+                        ICMPV6_TYPE_NS,
+                        ICMPV6_TYPE_NA]
+# List of ICMPv6 types that should be allowed from the unspecified address for
+# Duplicate Address Detection:
+ICMPV6_ALLOWED_UNSPEC_ADDR_TYPES = [ICMPV6_TYPE_MLD_REPORT,
+                                    ICMPV6_TYPE_NS,
+                                    ICMPV6_TYPE_MLD2_REPORT]
 
 # Human-readable ID to which the subnetpool ID should be set to
 # indicate that IPv6 Prefix Delegation is enabled for a given subnetpool
