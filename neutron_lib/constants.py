@@ -244,10 +244,16 @@ DEVICE_NAME_MAX_LEN = 15
 # Time format
 ISO8601_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 
+
 #############################
 # Attribute related constants
 #############################
-ATTR_NOT_SPECIFIED = object()
+class _Sentinel(object):
+    def __deepcopy__(self, memo):
+        # always return the same object because this is essentially a constant
+        return self
+
+ATTR_NOT_SPECIFIED = _Sentinel()
 
 HEX_ELEM = '[0-9A-Fa-f]'
 UUID_PATTERN = '-'.join([HEX_ELEM + '{8}', HEX_ELEM + '{4}',
