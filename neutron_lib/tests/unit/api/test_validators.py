@@ -838,3 +838,66 @@ class TestAttributeValidation(base.BaseTestCase):
         for value in (0, 1, '2', True, False):
             msg = validators.validate_non_negative(value)
             self.assertIsNone(msg)
+
+    def test_validate_subports_invalid_body(self):
+        self.assertIsNotNone(validators.validate_subports(None))
+
+    def test_validate_subports_invalid_subport_object(self):
+        self.assertIsNotNone(validators.validate_subports(['foo_port']))
+
+    def test_validate_subports_invalid_port_uuid(self):
+        body = [{'port_id': 'foo_port'}]
+        self.assertIsNotNone(validators.validate_subports(body))
+
+    def test_validate_subports_invalid_missing_port_id(self):
+        body = [{'poort_id': 'foo_port'}]
+        self.assertIsNotNone(validators.validate_subports(body))
+
+    def test_validate_subports_invalid_duplicate_port_ids(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000'},
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000'}
+        ]
+        self.assertIsNotNone(validators.validate_subports(body))
+
+    def test_validate_subports_invalid_incomplete_segmentation_details(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '3'}
+        ]
+        self.assertIsNotNone(validators.validate_subports(body))
+
+    def test_validate_subports_invalid_unknown_paramenter(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '3', 'segmeNAtion_type': 'vlan'}
+        ]
+        self.assertIsNotNone(validators.validate_subports(body))
+
+    def test_validate_subports_invalid_duplicate_segmentation_id(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '3', 'segmentation_type': 'vlan'},
+            {'port_id': '11111111-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '3', 'segmentation_type': 'vlan'}
+        ]
+        self.assertIsNotNone(validators.validate_subports(body))
+
+    def test_validate_subports_valid_empty_body(self):
+        self.assertIsNone(validators.validate_subports([]))
+
+    def test_validate_subports_valid_suports_with_segmentation_details(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '3', 'segmentation_type': 'vlan'},
+            {'port_id': '11111111-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '5', 'segmentation_type': 'vlan'}
+        ]
+        self.assertIsNone(validators.validate_subports(body))
+
+    def test_validate_subports_valid_subports(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000'},
+            {'port_id': '11111111-ffff-ffff-ffff-000000000000'},
+        ]
+        self.assertIsNone(validators.validate_subports(body))
