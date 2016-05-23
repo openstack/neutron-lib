@@ -13,16 +13,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import collections
 import fixtures
 import warnings
 
-
-def _safe_sort_key(value):
-    """Return value hash or build one for dictionaries."""
-    if isinstance(value, collections.Mapping):
-        return sorted(value.items())
-    return value
+from neutron_lib.utils import helpers
 
 
 class UnorderedList(list):
@@ -31,8 +25,8 @@ class UnorderedList(list):
     def __eq__(self, other):
         if not isinstance(other, list):
             return False
-        return (sorted(self, key=_safe_sort_key) ==
-                sorted(other, key=_safe_sort_key))
+        return (sorted(self, key=helpers.safe_sort_key) ==
+                sorted(other, key=helpers.safe_sort_key))
 
     def __neq__(self, other):
         return not self == other
