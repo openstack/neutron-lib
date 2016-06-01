@@ -10,9 +10,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import debtcollector
 import re
 
 import functools
+import inspect
 import netaddr
 from oslo_log import log as logging
 from oslo_utils import uuidutils
@@ -572,6 +574,31 @@ validators = {'type:dict': validate_dict,
               'type:list_of_unique_strings': validate_list_of_unique_strings}
 
 
+# TODO(boden): update removal_version once naming determined
+debtcollector.deprecate('validators',
+                        message='accessors replacing direct variable',
+                        version='newton',
+                        removal_version='P release',
+                        stacklevel=4)
+
+
+def _to_validation_type(validation_type):
+    return (validation_type
+            if validation_type.startswith('type:')
+            else 'type:' + validation_type)
+
+
+def get_validator(validation_type, default=None):
+    """Get a registered validator by type.
+
+    :param validation_type: The type to retrieve the validator for.
+    :param default: A default value to return if the validator is
+    not registered.
+    :return: The validator if registered, otherwise the default value.
+    """
+    return validators.get(_to_validation_type(validation_type), default)
+
+
 def add_validator(validation_type, validator):
     """Dynamically add a validator.
 
@@ -579,8 +606,12 @@ def add_validator(validation_type, validator):
     than directly modifying the data structure. The clients can NOT modify
     existing validators.
     """
-    key = 'type:' + validation_type
+    key = _to_validation_type(validation_type)
     if key in validators:
-        msg = _("Validator type %s is already defined") % validation_type
-        raise KeyError(msg)
+        # NOTE(boden): imp.load_source() forces module reinitialization that
+        # can lead to validator redefinition from the same call site
+        if inspect.getsource(validator) != inspect.getsource(validators[key]):
+            msg = _("Validator type %s is already defined") % validation_type
+            raise KeyError(msg)
+        return
     validators[key] = validator
