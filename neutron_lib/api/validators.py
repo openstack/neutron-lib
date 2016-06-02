@@ -532,5 +532,6 @@ def add_validator(validation_type, validator):
     """
     key = 'type:' + validation_type
     if key in validators:
-        raise KeyError("Validator type %s is already defined", validation_type)
+        msg = _("Validator type %s is already defined") % validation_type
+        raise KeyError(msg)
     validators[key] = validator
