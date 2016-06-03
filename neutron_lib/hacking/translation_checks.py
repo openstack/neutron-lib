@@ -75,3 +75,18 @@ def no_translate_debug_logs(logical_line, filename):
     for hint in _all_hints:
         if logical_line.startswith("LOG.debug(%s(" % hint):
             yield(0, "N533 Don't translate debug level logs")
+
+
+def check_raised_localized_exceptions(logical_line, filename):
+    # NOTE(boden): tox.ini doesn't permit per check exclusion
+    if "/tests/" in filename:
+        return
+
+    logical_line = logical_line.strip()
+    raised_search = re.compile(
+        r"raise (?:\w*)\((.*)\)").match(logical_line)
+    if raised_search:
+        exception_msg = raised_search.groups()[0]
+        if exception_msg.startswith("\"") or exception_msg.startswith("\'"):
+            msg = "N534: Untranslated exception message."
+            yield (logical_line.index(exception_msg), msg)
