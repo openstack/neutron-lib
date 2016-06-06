@@ -16,3 +16,6 @@ Neutron Specific Commandments
 - [N527] Python 3: do not use dict.iteritems.
 - [N529] Method's default argument shouldn't be mutable
 - [N530] No importing of neutron; should be ignored in neutron itself
+- [N531] Validate that LOG messages, except debug ones, have translations
+- [N532] Validate that LOG.warning is used instead of LOG.warn. The latter is deprecated.
+- [N533] Validate that debug level logs are not translated
