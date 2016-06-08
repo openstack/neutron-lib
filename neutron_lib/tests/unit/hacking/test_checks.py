@@ -37,15 +37,18 @@ class HackingTestCase(base.BaseTestCase):
                 list(checks.use_jsonutils("json.%s(" % method,
                                           "./neutron/common/rpc.py")))
 
-            self.assertEqual(0,
+            self.assertEqual(
+                0,
                 len(list(checks.use_jsonutils("jsonx.%s(" % method,
                                               "./neutron/common/rpc.py"))))
 
-            self.assertEqual(0,
+            self.assertEqual(
+                0,
                 len(list(checks.use_jsonutils("json.%sx(" % method,
                                               "./neutron/common/rpc.py"))))
 
-            self.assertEqual(0,
+            self.assertEqual(
+                0,
                 len(list(checks.use_jsonutils(
                     "json.%s" % method,
                     "./neutron/plugins/ml2/drivers/openvswitch/agent/xenapi/"
@@ -68,7 +71,8 @@ class HackingTestCase(base.BaseTestCase):
         self.assertLinePasses(f, 'e = six.moves.range(1337)')
 
     def test_no_basestring(self):
-        self.assertEqual(1,
+        self.assertEqual(
+            1,
             len(list(checks.check_no_basestring("isinstance(x, basestring)"))))
 
     def test_check_python3_iteritems(self):

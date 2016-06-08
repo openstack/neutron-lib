@@ -529,7 +529,7 @@ def validate_subports(data, valid_values=None):
         if segmentation_id in segmentation_ids:
             msg = _("Segmentation ID '%(seg_id)s' for '%(subport)s' is not "
                     "unique") % {"seg_id": segmentation_id,
-                    "subport": subport["port_id"]}
+                                 "subport": subport["port_id"]}
             LOG.debug(msg)
             return msg
         if segmentation_id:
