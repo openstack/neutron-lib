@@ -121,7 +121,11 @@ def check_no_basestring(logical_line):
 
 def check_python3_no_iteritems(logical_line):
     if re.search(r".*\.iteritems\(\)", logical_line):
-        msg = ("N527: Use six.iteritems() instead of dict.iteritems().")
+        msg = ("N527: Use dict.items() instead of dict.iteritems() to be "
+               "compatible with both Python 2 and Python 3. In Python 2, "
+               "dict.items() may be inefficient for very large dictionaries. "
+               "If you can prove that you need the optimization of an "
+               "iterator for Python 2, then you can use six.iteritems(dict).")
         yield(0, msg)
 
 
