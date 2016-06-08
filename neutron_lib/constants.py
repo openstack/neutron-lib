@@ -246,15 +246,18 @@ DEVICE_NAME_MAX_LEN = 15
 ISO8601_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 
 
+class Sentinel(object):
+    """A constant object that does not change even when copied."""
+    def __deepcopy__(self, memo):
+        # Always return the same object because this is essentially a constant.
+        return self
+
+
 #############################
 # Attribute related constants
 #############################
-class _Sentinel(object):
-    def __deepcopy__(self, memo):
-        # always return the same object because this is essentially a constant
-        return self
 
-ATTR_NOT_SPECIFIED = _Sentinel()
+ATTR_NOT_SPECIFIED = Sentinel()
 
 HEX_ELEM = '[0-9A-Fa-f]'
 UUID_PATTERN = '-'.join([HEX_ELEM + '{8}', HEX_ELEM + '{4}',

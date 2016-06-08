@@ -12,17 +12,16 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-"""
-test_neutron_lib
-----------------------------------
+import copy
 
-Tests for `neutron_lib` module.
-"""
+from neutron_lib import constants
 
 from neutron_lib.tests import _base as base
 
 
-class TestNeutron_lib(base.BaseTestCase):
+class TestNeutronLib(base.BaseTestCase):
 
-    def test_something(self):
-        pass
+    def test_sentinel_constant(self):
+        foo = constants.Sentinel()
+        bar = copy.deepcopy(foo)
+        self.assertEqual(id(foo), id(bar))
