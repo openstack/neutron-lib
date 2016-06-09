@@ -28,7 +28,7 @@ should go into standard neutron instead of this lib (or your repo):
   and we are not going to force releases quickly because you tried to put
   it here. Those items will need to be addressed in some other manner
   (in the case of the Port object, it'll be via an auto-magic container
-   object that mimics it.)
+  object that mimics it.)
 
 * It is something common, but you need it now. Put it in the repo that needs
   it, get your stuff working. Then consider making it available in the lib,
