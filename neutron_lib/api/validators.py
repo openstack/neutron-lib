@@ -488,6 +488,54 @@ def validate_non_negative(data, valid_values=None):
         return msg
 
 
+def validate_subports(data, valid_values=None):
+    if not isinstance(data, list):
+        msg = _("Invalid data format for subports: '%s'") % data
+        LOG.debug(msg)
+        return msg
+
+    subport_ids = set()
+    segmentation_ids = set()
+    for subport in data:
+        if not isinstance(subport, dict):
+            msg = _("Invalid data format for subport: '%s'") % subport
+            LOG.debug(msg)
+            return msg
+
+        # Expect a non duplicated and valid port_id for the subport
+        if 'port_id' not in subport:
+            msg = _("A valid port UUID must be specified")
+            LOG.debug(msg)
+            return msg
+        elif validate_uuid(subport["port_id"]):
+            msg = _("Invalid UUID for subport: '%s'") % subport["port_id"]
+            return msg
+        elif subport["port_id"] in subport_ids:
+            msg = _("Non unique UUID for subport: '%s'") % subport["port_id"]
+            return msg
+        subport_ids.add(subport["port_id"])
+
+        # Validate that both segmentation id and segmentation type are
+        # specified, and that the client does not duplicate segmentation
+        # ids
+        segmentation_id = subport.get("segmentation_id")
+        segmentation_type = subport.get("segmentation_type")
+        if (not segmentation_id or not segmentation_type) and len(subport) > 1:
+            msg = _("Invalid subport details '%s': missing segmentation "
+                    "information. Must specify both segmentation_id and "
+                    "segmentation_type") % subport
+            LOG.debug(msg)
+            return msg
+        if segmentation_id in segmentation_ids:
+            msg = _("Segmentation ID '%(seg_id)s' for '%(subport)s' is not "
+                    "unique") % {"seg_id": segmentation_id,
+                    "subport": subport["port_id"]}
+            LOG.debug(msg)
+            return msg
+        if segmentation_id:
+            segmentation_ids.add(segmentation_id)
+
+
 # Dictionary that maintains a list of validation functions
 validators = {'type:dict': validate_dict,
               'type:dict_or_none': validate_dict_or_none,
@@ -515,6 +563,7 @@ validators = {'type:dict': validate_dict,
               'type:subnet_or_none': validate_subnet_or_none,
               'type:subnetpool_id': validate_subnetpool_id,
               'type:subnetpool_id_or_none': validate_subnetpool_id_or_none,
+              'type:subports': validate_subports,
               'type:uuid': validate_uuid,
               'type:uuid_or_none': validate_uuid_or_none,
               'type:uuid_list': validate_uuid_list,
