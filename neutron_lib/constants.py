@@ -108,6 +108,11 @@ AGENT_TYPE_NIC_SWITCH = 'NIC Switch agent'
 AGENT_TYPE_MACVTAP = 'Macvtap agent'
 L2_AGENT_TOPIC = 'N/A'
 
+L3_AGENT_MODE_DVR = 'dvr'
+L3_AGENT_MODE_DVR_SNAT = 'dvr_snat'
+L3_AGENT_MODE_LEGACY = 'legacy'
+L3_AGENT_MODE = 'agent_mode'
+
 PORT_BINDING_EXT_ALIAS = 'binding'
 L3_AGENT_SCHEDULER_EXT_ALIAS = 'l3_agent_scheduler'
 DHCP_AGENT_SCHEDULER_EXT_ALIAS = 'dhcp_agent_scheduler'
