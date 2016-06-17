@@ -19,12 +19,12 @@ from neutron_lib.tests import _base as base
 
 class HackingTestCase(base.BaseTestCase):
 
-    def assertLinePasses(self, func, line):
+    def assertLinePasses(self, func, *args):
         with testtools.ExpectedException(StopIteration):
-            next(func(line))
+            next(func(*args))
 
-    def assertLineFails(self, func, line):
-        self.assertIsInstance(next(func(line)), tuple)
+    def assertLineFails(self, func, *args):
+        self.assertIsInstance(next(func(*args)), tuple)
 
     def test_use_jsonutils(self):
         def __get_msg(fun):
@@ -149,3 +149,19 @@ class HackingTestCase(base.BaseTestCase):
         bad = "LOG.warn(_LW('i am deprecated!'))"
         self.assertEqual(
             1, len(list(tc.check_log_warn_deprecated(bad, 'f'))))
+
+    def test_check_localized_exception_messages(self):
+        f = tc.check_raised_localized_exceptions
+        self.assertLineFails(f, "     raise KeyError('Error text')", '')
+        self.assertLineFails(f, ' raise KeyError("Error text")', '')
+        self.assertLinePasses(f, ' raise KeyError(_("Error text"))', '')
+        self.assertLinePasses(f, ' raise KeyError(_ERR("Error text"))', '')
+        self.assertLinePasses(f, " raise KeyError(translated_msg)", '')
+        self.assertLinePasses(f, '# raise KeyError("Not translated")', '')
+        self.assertLinePasses(f, 'print("raise KeyError("Not '
+                                 'translated")")', '')
+
+    def test_check_localized_exception_message_skip_tests(self):
+        f = tc.check_raised_localized_exceptions
+        self.assertLinePasses(f, "raise KeyError('Error text')",
+                              'neutron_lib/tests/unit/mytest.py')

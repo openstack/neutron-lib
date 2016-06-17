@@ -160,3 +160,4 @@ def factory(register):
     register(translation_checks.validate_log_translations)
     register(translation_checks.no_translate_debug_logs)
     register(translation_checks.check_log_warn_deprecated)
+    register(translation_checks.check_raised_localized_exceptions)
