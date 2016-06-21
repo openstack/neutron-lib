@@ -35,6 +35,10 @@ When reviewing neutron-lib changes, please be aware:
   for an example. Please Use oslo's debtcollector library,
   example: http://docs.openstack.org/developer/debtcollector/
 
-The above implies that if you add something, we are stuck with that interface
-for a long time, so be careful.
+  The above implies that if you add something, we are stuck with that interface
+  for a long time, so be careful.
 
+* Any code that imports/uses the following python modules should not be
+  moved into neutron-lib:
+
+  - eventlet
