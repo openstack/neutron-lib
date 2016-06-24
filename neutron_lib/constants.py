@@ -245,6 +245,11 @@ DEVICE_NAME_MAX_LEN = 15
 # Time format
 ISO8601_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
 
+DHCPV6_STATEFUL = 'dhcpv6-stateful'
+DHCPV6_STATELESS = 'dhcpv6-stateless'
+IPV6_SLAAC = 'slaac'
+IPV6_MODES = [DHCPV6_STATEFUL, DHCPV6_STATELESS, IPV6_SLAAC]
+
 
 class Sentinel(object):
     """A constant object that does not change even when copied."""
