@@ -50,16 +50,38 @@ class TestAttributeValidation(base.BaseTestCase):
 
         return dictionary, constraints
 
+    def test_type_prefixing(self):
+        validators.add_validator('type:prefixed_type', dummy_validator)
+        validators.add_validator('unprefixed_type', dummy_validator)
+        self.assertEqual(dummy_validator,
+                         validators.get_validator('type:prefixed_type'))
+        self.assertEqual(dummy_validator,
+                         validators.get_validator('prefixed_type'))
+        self.assertEqual(dummy_validator,
+                         validators.get_validator('type:unprefixed_type'))
+        self.assertEqual(dummy_validator,
+                         validators.get_validator('unprefixed_type'))
+
     def test_adding_validator(self):
         validators.add_validator('new_type', dummy_validator)
         self.assertIn('type:new_type', validators.validators)
         self.assertEqual(dummy_validator,
                          validators.validators['type:new_type'])
 
+    def test_get_validator_default(self):
+        self.assertEqual(dummy_validator,
+                         validators.get_validator('nope',
+                                                  default=dummy_validator))
+
     def test_fail_adding_duplicate_validator(self):
         self.assertRaises(KeyError,
                           validators.add_validator,
-                          'dict', dummy_validator)
+                          'dict', lambda x: x)
+
+    def test_success_adding_duplicate_validator(self):
+        validators.add_validator('dummy', dummy_validator)
+        validators.add_validator('dummy', dummy_validator)
+        self.assertEqual(dummy_validator, validators.get_validator('dummy'))
 
     def test_is_attr_set(self):
         data = constants.ATTR_NOT_SPECIFIED
