@@ -26,6 +26,11 @@ class HackingTestCase(base.BaseTestCase):
     def assertLineFails(self, func, *args):
         self.assertIsInstance(next(func(*args)), tuple)
 
+    def test_factory(self):
+        def check_callable(fn):
+            self.assertTrue(hasattr(fn, '__call__'))
+        self.assertIsNone(checks.factory(check_callable))
+
     def test_use_jsonutils(self):
         def __get_msg(fun):
             msg = ("N521: jsonutils.%(fun)s must be used instead of "
@@ -63,6 +68,13 @@ class HackingTestCase(base.BaseTestCase):
         self.assertLineFails(f, 'from oslo import messaging')
         self.assertLineFails(f, 'import oslo.messaging')
 
+    def test_check_contextlib_nested(self):
+        f = checks.check_no_contextlib_nested
+        self.assertLineFails(f, 'with contextlib.nested():', '')
+        self.assertLineFails(f, '    with contextlib.nested():', '')
+        self.assertLinePasses(f, '# with contextlib.nested():', '')
+        self.assertLinePasses(f, 'print("with contextlib.nested():")', '')
+
     def test_check_python3_xrange(self):
         f = checks.check_python3_xrange
         self.assertLineFails(f, 'a = xrange(1000)')
@@ -72,9 +84,9 @@ class HackingTestCase(base.BaseTestCase):
         self.assertLinePasses(f, 'e = six.moves.range(1337)')
 
     def test_no_basestring(self):
-        self.assertEqual(
-            1,
-            len(list(checks.check_no_basestring("isinstance(x, basestring)"))))
+        f = checks.check_no_basestring
+        self.assertLineFails(f, 'isinstance(x, basestring)')
+        self.assertLinePasses(f, 'isinstance(x, BaseString)')
 
     def test_check_python3_iteritems(self):
         f = checks.check_python3_no_iteritems
@@ -147,8 +159,10 @@ class HackingTestCase(base.BaseTestCase):
 
     def test_check_log_warn_deprecated(self):
         bad = "LOG.warn(_LW('i am deprecated!'))"
-        self.assertEqual(
-            1, len(list(tc.check_log_warn_deprecated(bad, 'f'))))
+        good = "LOG.warning(_LW('zlatan is the best'))"
+        f = tc.check_log_warn_deprecated
+        self.assertLineFails(f, bad, '')
+        self.assertLinePasses(f, good, '')
 
     def test_check_localized_exception_messages(self):
         f = tc.check_raised_localized_exceptions

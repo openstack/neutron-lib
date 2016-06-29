@@ -33,7 +33,7 @@ mutable_default_args = re.compile(r"^\s*def .+\((.+=\{\}|.+=\[\])")
 namespace_imports_dot = re.compile(r"import[\s]+([\w]+)[.][^\s]+")
 namespace_imports_from_dot = re.compile(r"from[\s]+([\w]+)[.]")
 namespace_imports_from_root = re.compile(r"from[\s]+([\w]+)[\s]+import[\s]+")
-contextlib_nested = re.compile(r"^with (contextlib\.)?nested\(")
+contextlib_nested = re.compile(r"^\s*with (contextlib\.)?nested\(")
 
 
 def use_jsonutils(logical_line, filename):
