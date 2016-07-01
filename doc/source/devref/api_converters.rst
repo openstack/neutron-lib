@@ -24,7 +24,7 @@
 API Converters
 ==============
 
-Defintions for REST API attributes, can include conversion methods
+Definitions for REST API attributes, can include conversion methods
 to help normalize user input or transform the input into a form that
 can be used.
 
