@@ -51,6 +51,6 @@ class TestCallbackExceptions(test_exceptions.TestExceptions):
             errors=[1, 2, 3])
 
     def test_notification_error(self):
-        '''Test that correct message is create for this error class.'''
+        '''Test that correct message is created for this error class.'''
         error = ex.NotificationError('abc', 'boom')
         self.assertEqual('Callback abc failed with "boom"', str(error))
