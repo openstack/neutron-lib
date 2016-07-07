@@ -912,6 +912,15 @@ class TestAttributeValidation(base.BaseTestCase):
         ]
         self.assertIsNotNone(validators.validate_subports(body))
 
+    def test_validate_subports_valid_unique_segmentation_id(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '3', 'segmentation_type': 'vlan'},
+            {'port_id': '11111111-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '3', 'segmentation_type': 'vxlan'}
+        ]
+        self.assertIsNone(validators.validate_subports(body))
+
     def test_validate_subports_valid_empty_body(self):
         self.assertIsNone(validators.validate_subports([]))
 
