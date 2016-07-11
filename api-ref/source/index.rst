@@ -3,7 +3,7 @@ Networking Service APIs
 =======================
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    v2/index
    v2-ext/index
