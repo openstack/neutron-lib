@@ -15,6 +15,13 @@ When reviewing neutron-lib changes, please be aware:
     are uninteresting, but any code or interface should have a unit test.
   - Is there a corresponding Depends-On review in neutron removing
     this code, and adding backwards compatibility shims for Mitaka?
+  - Do the public APIs have their parameters and return values documented
+    using reStructuredText docstring format (see below)?
+
+* Public APIs should be documented using `reST style docstrings <https://www.python.org/dev/peps/pep-0287/>`_
+  that include an overview as well as parameter and return documentation.
+  The format of docstrings can be found in the `OpenStack developer hacking docs <http://docs.openstack.org/developer/hacking/#docstrings>`_.
+  Note that public API documentation is a bonus, not a requirement.
 
 * Public classes and methods must not be destructively changed without
   following the full OpenStack deprecation path.
