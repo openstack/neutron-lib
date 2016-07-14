@@ -10,6 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import collections
 import debtcollector
 import re
 
@@ -499,15 +500,16 @@ def validate_non_negative(data, valid_values=None):
 
 def validate_subports(data, valid_values=None):
     if not isinstance(data, list):
-        msg = _("Invalid data format for subports: '%s'") % data
+        msg = _("Invalid data format for subports: '%s' is not a list") % data
         LOG.debug(msg)
         return msg
 
     subport_ids = set()
-    segmentation_ids = set()
+    segmentations = collections.defaultdict(set)
     for subport in data:
         if not isinstance(subport, dict):
-            msg = _("Invalid data format for subport: '%s'") % subport
+            msg = _("Invalid data format for subport: "
+                    "'%s' is not a dict") % subport
             LOG.debug(msg)
             return msg
 
@@ -535,14 +537,14 @@ def validate_subports(data, valid_values=None):
                     "segmentation_type") % subport
             LOG.debug(msg)
             return msg
-        if segmentation_id in segmentation_ids:
+        if segmentation_id in segmentations.get(segmentation_type, []):
             msg = _("Segmentation ID '%(seg_id)s' for '%(subport)s' is not "
                     "unique") % {"seg_id": segmentation_id,
                                  "subport": subport["port_id"]}
             LOG.debug(msg)
             return msg
         if segmentation_id:
-            segmentation_ids.add(segmentation_id)
+            segmentations[segmentation_type].add(segmentation_id)
 
 
 # Dictionary that maintains a list of validation functions
