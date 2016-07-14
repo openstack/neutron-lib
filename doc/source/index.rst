@@ -45,6 +45,7 @@ Programming HowTos and Tutorials
     usage
     review-guidelines
     contributing
+    releasing
 
 
 Developer Docs
