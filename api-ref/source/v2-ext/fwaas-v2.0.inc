@@ -1,4 +1,8 @@
 .. -*- rst -*-
+.. needs:method_verification
+.. needs:parameter_verification
+.. needs:example_verification
+.. needs:body_verification
 
 =======================================================================
 FWaaS v2.0 (CURRENT) (fw, firewalls, firewall_policies, firewall_rules)

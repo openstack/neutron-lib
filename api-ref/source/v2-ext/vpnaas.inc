@@ -1,4 +1,8 @@
 .. -*- rst -*-
+.. needs:method_verification
+.. needs:parameter_verification
+.. needs:example_verification
+.. needs:body_verification
 
 ============================================================================================================
 VPNaaS 2.0 (CURRENT) (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-groups, ipsec-site-connections)
