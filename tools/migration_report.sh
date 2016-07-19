@@ -14,6 +14,8 @@ else
     your_project="$1"
 fi
 
+command -v bc >/dev/null 2>&1 || { echo "I require bc but it's not installed.  Aborting." >&2; exit 1; }
+
 total_imports=$(egrep -R -w "^(import|from)" --exclude-dir=".*tox" $your_project  | wc -l)
 neutron_imports=$(count_imports neutron $your_project)
 lib_imports=$(count_imports neutron_lib $your_project)
