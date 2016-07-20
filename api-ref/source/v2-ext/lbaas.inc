@@ -42,7 +42,8 @@ List members
 Lists members.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -76,7 +77,7 @@ Create a load balancer member
 
 Creates a load balancer member.
 
-Error response codes:201,400,401,413,503,500,
+Error response codes: 201,400,401,413,503,500
 
 Request
 -------
@@ -130,7 +131,8 @@ that contains the load balancer and all provisioning and operating
 statuses for its children.
 
 Normal response codes: 200
-Error response codes:403,401,413,503,500,
+
+Error response codes: 403,401,413,503,500
 
 Request
 -------
@@ -169,7 +171,8 @@ code.
 Example: Show listener details
 
 Normal response codes: 200
-Error response codes:404,403,500,401,413,503,409,
+
+Error response codes: 404,403,500,401,413,503,409
 
 Request
 -------
@@ -221,7 +224,8 @@ the listener is attached does not have an ``ACTIVE`` provisioning
 status.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -288,7 +292,7 @@ attached does not have an ``ACTIVE`` provisioning status.
 
 Example: Delete a listener
 
-Error response codes:204,400,409,401,413,503,500,
+Error response codes: 204,400,409,401,413,503,500
 
 Request
 -------
@@ -308,7 +312,8 @@ the HTTP ``Forbidden (403)`` response code.
 Example: Show health monitor details
 
 Normal response codes: 200
-Error response codes:404,403,500,401,413,503,409,
+
+Error response codes: 404,403,500,401,413,503,409
 
 Request
 -------
@@ -353,7 +358,8 @@ unsupported attribute, the service returns the HTTP ``Immutable
 (422)`` response code.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -414,7 +420,7 @@ does not have an ``ACTIVE`` provisioning status.
 
 Example: Delete a health monitor
 
-Error response codes:204,400,409,401,413,503,500,
+Error response codes: 204,400,409,401,413,503,500
 
 Request
 -------
@@ -427,7 +433,8 @@ Show member details
 Shows details for a member.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -466,7 +473,8 @@ Update member
 Updates a load balancer member.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -514,7 +522,7 @@ Delete member
 
 Deletes a load balancer member.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -541,7 +549,8 @@ If this operation succeeds, it returns a pool element.
 Example: Show pool member details
 
 Normal response codes: 200
-Error response codes:404,403,500,401,413,503,409,
+
+Error response codes: 404,403,500,401,413,503,409
 
 Request
 -------
@@ -587,7 +596,8 @@ Note: You cannot update a member if the attached load balancer does
 not have an ``ACTIVE`` provisioning status.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -642,7 +652,7 @@ have an ``ACTIVE`` provisioning status.
 
 Example: Remove a member from a pool
 
-Error response codes:204,400,409,401,413,503,500,
+Error response codes: 204,400,409,401,413,503,500
 
 Request
 -------
@@ -694,7 +704,7 @@ their own to create members for other tenants.
 To update a member, the load balancer must have an ``ACTIVE``
 provisioning status.
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------
@@ -745,7 +755,8 @@ The list might be empty.
 Example: List pool members
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -785,7 +796,8 @@ belong to your tenant account, the service returns the HTTP
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
-Error response codes:404,403,500,401,413,503,409,
+
+Error response codes: 404,403,500,401,413,503,409
 
 Request
 -------
@@ -832,7 +844,8 @@ This operation returns the updated load balancer object with the
 ``ACTIVE``, ``PENDING_UPDATE``, or ``ERROR`` provisioning status.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -887,7 +900,7 @@ cannot recover it.
 
 Example: Delete a load balancer
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -900,7 +913,8 @@ Show VIP details
 Shows details for a VIP.
 
 Normal response codes: 200
-Error response codes:404,403,500,401,413,503,409,
+
+Error response codes: 404,403,500,401,413,503,409
 
 Request
 -------
@@ -945,7 +959,8 @@ Update VIP
 Updates a load balancer VIP.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -1002,7 +1017,7 @@ Delete VIP
 
 Deletes a load balancer VIP.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -1021,7 +1036,8 @@ Lists all load balancers for the tenant account.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:404,500,401,503,
+
+Error response codes: 404,500,401,503
 
 Request
 -------
@@ -1135,7 +1151,7 @@ provider will result in a conflict error.
 
 Example: Create a load balancer
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------
@@ -1183,7 +1199,7 @@ Associate health monitor with pool
 
 Associates a health monitor with a pool.
 
-Error response codes:201,400,401,413,503,500,
+Error response codes: 201,400,401,413,503,500
 
 Request
 -------
@@ -1224,7 +1240,8 @@ If this operation succeeds, it returns a ``pool`` element.
 Example: Show pool details
 
 Normal response codes: 200
-Error response codes:404,403,500,401,413,503,409,
+
+Error response codes: 404,403,500,401,413,503,409
 
 Request
 -------
@@ -1275,7 +1292,8 @@ Note: You cannot update a pool if the load balancer to which it is
 attached does not have an ``ACTIVE`` provisioning status.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -1333,7 +1351,7 @@ configuration data. You cannot recover it.
 You cannot delete a pool if the load balancer to which it is
 attached does not have an ``ACTIVE`` provisioning status.
 
-Error response codes:204,400,409,401,413,503,500,
+Error response codes: 204,400,409,401,413,503,500
 
 Request
 -------
@@ -1398,7 +1416,7 @@ their own to create health monitors for other tenants.
 To update a health monitor, the load balancer to which to attach
 must have an ``ACTIVE`` provisioning status.
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------
@@ -1453,7 +1471,8 @@ your tenant account.
 This operation returns a list, which might be empty.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -1548,7 +1567,7 @@ their own to create listeners for other tenants.
 To update a listener, the load balancer to which to attach must
 have an ``ACTIVE`` provisioning status.
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------
@@ -1608,7 +1627,8 @@ The list might be empty.
 Example: List listeners
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -1693,7 +1713,7 @@ their own to create pools for other tenants.
 To update a pool, the load balancer to which to attach must have an
 ``ACTIVE`` provisioning status.
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------
@@ -1748,7 +1768,8 @@ The list might be empty.
 Example: List pools
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -1785,7 +1806,7 @@ Disassociate health monitor from pool
 
 Disassociates a health monitor from a pool.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -1803,7 +1824,8 @@ Show health monitor details
 Shows details for a health monitor.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -1844,7 +1866,8 @@ Update health monitor
 Updates a load balancer health monitor.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -1898,7 +1921,7 @@ Delete health monitor
 
 Deletes a load balancer health monitor.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -1915,7 +1938,8 @@ List pools
 Lists pools.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -1955,7 +1979,7 @@ Create a load balancer pool
 
 Creates a load balancer pool.
 
-Error response codes:201,400,401,413,503,500,
+Error response codes: 201,400,401,413,503,500
 
 Request
 -------
@@ -2007,7 +2031,8 @@ List health monitors
 Lists health monitors.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -2043,7 +2068,7 @@ Create a load balancer health monitor
 
 Creates a load balancer health monitor.
 
-Error response codes:201,400,401,413,503,500,
+Error response codes: 201,400,401,413,503,500
 
 Request
 -------
@@ -2095,7 +2120,8 @@ Lists VIPs.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -2135,7 +2161,7 @@ Create a load balancer VIP
 
 Creates a load balancer VIP.
 
-Error response codes:201,400,404,500,401,413,503,409,
+Error response codes: 201,400,404,500,401,413,503,409
 
 Request
 -------
@@ -2191,7 +2217,8 @@ Show pool details
 Shows details for a pool.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -2236,7 +2263,8 @@ Update pool
 Updates a load balancer pool.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -2291,7 +2319,7 @@ Delete pool
 
 Deletes a load balancer pool.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------

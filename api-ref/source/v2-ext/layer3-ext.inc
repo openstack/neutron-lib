@@ -42,7 +42,8 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 -specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -127,7 +128,7 @@ Error codes:
   - The internal OpenStack Networking port and fixed IP address are
     already associated with another floating IP.
 
-Error response codes:201,404,409,401,400,
+Error response codes: 201,404,409,401,400
 
 Request
 -------
@@ -217,7 +218,8 @@ After you run this operation, the operation sets:
 - The ``device_owner`` attribute to ``network:router_interface``.
 
 Normal response codes: 200
-Error response codes:404,409,401,400,
+
+Error response codes: 404,409,401,400
 
 Request
 -------
@@ -283,7 +285,8 @@ This example deletes an interface from a router:
    PUT /v2.0/routers/{router_id}/remove_router_interface Accept: application/json
 
 Normal response codes: 200
-Error response codes:404,409,401,400,
+
+Error response codes: 404,409,401,400
 
 Request
 -------
@@ -341,7 +344,8 @@ format. This example also filters the result by the
    Accept: application/json
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -394,7 +398,8 @@ Depending on the request body that you submit, this request
 associates a port with or disassociates a port from a floating IP.
 
 Normal response codes: 200
-Error response codes:404,409,401,400,
+
+Error response codes: 404,409,401,400
 
 Request
 -------
@@ -445,7 +450,7 @@ This example deletes a floating IP:
 
    DELETE /v2.0/floatingips/{floatingip_id} Accept: application/json
 
-Error response codes:404,204,401,
+Error response codes: 404,204,401
 
 Request
 -------
@@ -474,7 +479,8 @@ specs/specs/api/networking_general_api_information.html#filtering-
 and-column-selection>`__.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -529,7 +535,8 @@ This example updates the external gateway information for a router:
    PUT /v2.0/routers/{router_id} Accept: application/json
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -594,7 +601,7 @@ This example deletes a router:
 
    DELETE /v2.0/routers/{router_id} Accept: application/json
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -627,7 +634,8 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 -specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -685,7 +693,7 @@ follows:
       }
    }
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------

@@ -24,7 +24,8 @@ Show network details (provider network)
 Shows details for a network.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -69,7 +70,8 @@ Update network (provider network)
 Updates a network.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -129,7 +131,7 @@ Delete network (provider network)
 
 Deletes a network.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -146,7 +148,8 @@ List networks (provider network)
 Lists networks that are accessible to the tenant who submits the request.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -186,7 +189,7 @@ Create network (provider network)
 
 Creates a network.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------

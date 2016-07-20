@@ -37,7 +37,8 @@ Show details for a network with multiple segments
 Shows details for a network with multiple segments.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -81,7 +82,8 @@ List networks with multiple segment mappings
 Lists networks that are accessible to the tenant who submits the request. Networks with multiple segments include the ``segments`` list in the response.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -120,7 +122,7 @@ Create network with multiple segment mappings
 
 Creates a network with multiple segment mappings.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------

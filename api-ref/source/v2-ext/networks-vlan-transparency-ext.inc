@@ -28,7 +28,8 @@ Show VLAN-transparent network details
 Shows details for a VLAN-transparent network.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -69,7 +70,8 @@ List networks with VLAN transparency attribute
 Lists networks. The response shows the VLAN transparency attribute.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -105,7 +107,7 @@ Create VLAN-transparent network
 
 Creates a VLAN-transparent network.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------

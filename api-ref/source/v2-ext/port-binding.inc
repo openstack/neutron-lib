@@ -14,7 +14,6 @@ Show port details (port binding)
 Shows details for a port.
 
 Normal response codes: 200
-Error response codes:
 
 Request
 -------
@@ -37,7 +36,8 @@ Update port (port binding)
 Updates a port.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -65,7 +65,7 @@ Delete port (port binding)
 
 Deletes a port.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -82,7 +82,8 @@ List ports (port binding)
 Lists ports to which the tenant has access.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -100,7 +101,7 @@ Create port (port binding)
 
 Creates a port on a network.
 
-Error response codes:201,403,401,400,
+Error response codes: 201,403,401,400
 
 Request
 -------

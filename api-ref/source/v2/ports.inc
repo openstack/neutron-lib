@@ -14,7 +14,8 @@ Show port details
 Shows details for a port.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -81,7 +82,8 @@ valid, the operation fails and the existing security groups are not
 removed from the port.
 
 Normal response codes: 200
-Error response codes:404,403,401,400,409,
+
+Error response codes: 404,403,401,400,409
 
 Request
 -------
@@ -154,7 +156,7 @@ Deletes a port.
 Any IP addresses that are associated with the port are returned to
 the respective subnets allocation pools.
 
-Error response codes:404,403,204,401,
+Error response codes: 404,403,204,401
 
 Request
 -------
@@ -179,7 +181,8 @@ see `Filtering and Column Selection <https://wiki.openstack.org/wik
 i/Neutron/APIv2-specification#Filtering_and_Column_Selection>`_.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -227,7 +230,7 @@ Creates a port on a network.
 To define the network in which to create the port, specify the
 ``network_id`` attribute in the request body.
 
-Error response codes:201,404,403,401,400,503,
+Error response codes: 201,404,403,401,400,503
 
 Request
 -------
@@ -292,7 +295,7 @@ Creates multiple ports in a single request. Specify a list of ports in the reque
 
 Guarantees the atomic completion of the bulk operation.
 
-Error response codes:201,404,403,401,400,503,409,
+Error response codes: 201,404,403,401,400,503,409
 
 Request
 -------

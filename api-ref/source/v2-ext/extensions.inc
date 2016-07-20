@@ -21,7 +21,8 @@ The response shows the extension name and its alias. To show
 details for an extension, you specify the alias.
 
 Normal response codes: 200
-Error response codes:203,
+
+Error response codes: 203
 
 Request
 -------
@@ -52,7 +53,8 @@ Show extension details
 Shows details for an extension, by alias.
 
 Normal response codes: 200
-Error response codes:203,
+
+Error response codes: 203
 
 Request
 -------

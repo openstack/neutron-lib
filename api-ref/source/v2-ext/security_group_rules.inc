@@ -18,7 +18,8 @@ The response body contains the following information about the
 security group rule:
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -53,7 +54,7 @@ Delete security group rule
 
 Deletes a rule from an OpenStack Networking security group.
 
-Error response codes:404,204,401,
+Error response codes: 404,204,401
 
 Request
 -------
@@ -68,7 +69,8 @@ Lists a summary of all OpenStack Networking security group rules that the tenant
 The list provides the UUID for each security group rule.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -103,7 +105,7 @@ Create security group rule
 
 Creates an OpenStack Networking security group rule.
 
-Error response codes:201,404,409,401,400,
+Error response codes: 201,404,409,401,400
 
 Request
 -------

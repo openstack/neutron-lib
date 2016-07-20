@@ -17,7 +17,8 @@ Lists all L3 metering labels that belong to the tenant.
 The list shows the UUID for each metering label.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -47,7 +48,7 @@ Create metering label
 
 Creates an L3 metering label.
 
-Error response codes:201,403,401,400,
+Error response codes: 201,403,401,400
 
 Request
 -------
@@ -87,7 +88,8 @@ Shows details for a metering label.
 The response body shows the description, name, and UUID.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -117,7 +119,7 @@ Delete metering label
 
 Deletes an L3 metering label.
 
-Error response codes:404,204,401,
+Error response codes: 404,204,401
 
 Request
 -------
@@ -132,7 +134,8 @@ Lists a summary of all L3 metering label rules that belong to the tenant.
 The list shows the UUID for each metering label rule.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -162,7 +165,7 @@ Create metering label rule
 
 Creates an L3 metering label rule.
 
-Error response codes:201,404,403,401,400,409,
+Error response codes: 201,404,403,401,400,409
 
 Request
 -------
@@ -215,7 +218,8 @@ rule:
   is associated.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -233,7 +237,7 @@ Delete metering label rule
 
 Deletes an L3 metering label rule.
 
-Error response codes:404,204,401,
+Error response codes: 404,204,401
 
 Request
 -------

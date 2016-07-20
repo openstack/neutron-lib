@@ -18,7 +18,8 @@ The response contains the description, name, UUID, and security
 group rules that are associated with the security group and tenant.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -63,7 +64,8 @@ Update security group
 Updates a security group.
 
 Normal response codes: 200
-Error response codes:413,405,404,403,401,400,503,
+
+Error response codes: 413,405,404,403,401,400,503
 
 Request
 -------
@@ -111,7 +113,7 @@ associated with the security group.
 This operation does not require a request body. This operation does
 not return a response body.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -131,7 +133,8 @@ The list shows the UUID for and the rules that are associated with
 each security group.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -172,7 +175,7 @@ Creates an OpenStack Networking security group.
 This operation creates a security group with default security group
 rules for the IPv4 and IPv6 ether types.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
