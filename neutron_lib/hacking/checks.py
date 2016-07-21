@@ -14,6 +14,8 @@
 
 import re
 
+from debtcollector import removals
+
 from neutron_lib.hacking import translation_checks
 
 # Guidelines for writing new hacking checks
@@ -92,6 +94,7 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
         return (0, msg_o or msg)
 
 
+@removals.remove(removal_version='P release')
 def check_oslo_namespace_imports(logical_line):
     x = _check_namespace_imports('N523', 'oslo', 'oslo_', logical_line)
     if x is not None:
@@ -150,7 +153,6 @@ def check_neutron_namespace_imports(logical_line):
 
 def factory(register):
     register(use_jsonutils)
-    register(check_oslo_namespace_imports)
     register(check_no_contextlib_nested)
     register(check_python3_xrange)
     register(check_no_basestring)
