@@ -181,6 +181,30 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_boolean("fasle")
         self.assertEqual("'fasle' is not a valid boolean value", msg)
 
+    def test_validate_integer(self):
+        msg = validators.validate_integer(1)
+        self.assertIsNone(msg)
+        msg = validators.validate_integer(0.1)
+        self.assertEqual("'0.1' is not an integer", msg)
+        msg = validators.validate_integer("1")
+        self.assertIsNone(msg)
+        msg = validators.validate_integer("0.1")
+        self.assertEqual("'0.1' is not an integer", msg)
+        msg = validators.validate_integer(True)
+        self.assertEqual("'True' is not an integer:boolean", msg)
+        msg = validators.validate_integer(False)
+        self.assertEqual("'False' is not an integer:boolean", msg)
+        msg = validators.validate_integer(float('Inf'))
+        self.assertEqual("'inf' is not an integer", msg)
+        msg = validators.validate_integer(None)
+        self.assertEqual("'None' is not an integer", msg)
+
+    def test_validate_integer_values(self):
+        msg = validators.validate_integer(2, [2, 3, 4, 5])
+        self.assertIsNone(msg)
+        msg = validators.validate_integer(1, [2, 3, 4, 5])
+        self.assertEqual("'1' is not in [2, 3, 4, 5]", msg)
+
     def test_validate_no_whitespace(self):
         data = 'no_white_space'
         result = validators.validate_no_whitespace(data)

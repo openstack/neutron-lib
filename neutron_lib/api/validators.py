@@ -141,6 +141,40 @@ def validate_boolean(data, valid_values=None):
         return msg
 
 
+def validate_integer(data, valid_values=None):
+    """This function validates if the data is an integer.
+
+    It checks both number or string provided to validate it's an
+    integer and returns a message with the error if it's not
+
+    :param data: The string or number to validate as integer
+    :param valid_values: values to limit the 'data' to
+    :return: Message if not an integer.
+    """
+
+    if valid_values is not None:
+        msg = validate_values(data=data, valid_values=valid_values)
+        if msg:
+            return msg
+
+    msg = _("'%s' is not an integer") % data
+    try:
+        fl_n = float(data)
+        int_n = int(data)
+    except (ValueError, TypeError, OverflowError):
+        LOG.debug(msg)
+        return msg
+
+    # Fail test if non equal or boolean
+    if fl_n != int_n:
+        LOG.debug(msg)
+        return msg
+    elif isinstance(data, bool):
+        msg = _("'%s' is not an integer:boolean") % data
+        LOG.debug(msg)
+        return msg
+
+
 def validate_range(data, valid_values=None):
     """Check that integer value is within a range provided.
 
@@ -580,6 +614,7 @@ validators = {'type:dict': validate_dict,
               'type:uuid_list': validate_uuid_list,
               'type:values': validate_values,
               'type:boolean': validate_boolean,
+              'type:integer': validate_integer,
               'type:list_of_unique_strings': validate_list_of_unique_strings}
 
 
