@@ -10,18 +10,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib._callbacks import manager
+from neutron_lib.callbacks import manager
 
 
 # TODO(armax): consider adding locking
-CALLBACK_MANAGER = None
+_CALLBACK_MANAGER = None
 
 
 def _get_callback_manager():
-    global CALLBACK_MANAGER
-    if CALLBACK_MANAGER is None:
-        CALLBACK_MANAGER = manager.CallbacksManager()
-    return CALLBACK_MANAGER
+    global _CALLBACK_MANAGER
+    if _CALLBACK_MANAGER is None:
+        _CALLBACK_MANAGER = manager.CallbacksManager()
+    return _CALLBACK_MANAGER
 
 
 def subscribe(callback, resource, event):
@@ -40,8 +40,14 @@ def unsubscribe_all(callback):
     _get_callback_manager().unsubscribe_all(callback)
 
 
+# NOTE(boden): This method is deprecated in favor of publish() and will be
+# removed in Queens, but not deprecation message to reduce log flooding
 def notify(resource, event, trigger, **kwargs):
     _get_callback_manager().notify(resource, event, trigger, **kwargs)
+
+
+def publish(resource, event, trigger, payload=None):
+    _get_callback_manager().publish(resource, event, trigger, payload=payload)
 
 
 def clear():

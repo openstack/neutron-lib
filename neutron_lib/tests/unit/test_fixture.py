@@ -14,6 +14,7 @@ import mock
 
 from oslotest import base
 
+from neutron_lib.callbacks import registry
 from neutron_lib import fixture
 from neutron_lib.plugins import directory
 
@@ -29,3 +30,16 @@ class PluginDirectoryFixtureTestCase(base.BaseTestCase):
     def test_fixture(self):
         directory.add_plugin('foo', 'foo')
         self.assertTrue(self.directory.add_plugin.called)
+
+
+class CallbackRegistryFixtureTestCase(base.BaseTestCase):
+
+    def setUp(self):
+        super(CallbackRegistryFixtureTestCase, self).setUp()
+        self.manager = mock.Mock()
+        self.useFixture(fixture.CallbackRegistryFixture(
+            callback_manager=self.manager))
+
+    def test_fixture(self):
+        registry.notify('a', 'b', self)
+        self.assertTrue(self.manager.notify.called)

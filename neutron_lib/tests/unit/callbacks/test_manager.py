@@ -17,10 +17,10 @@ import mock
 from oslo_db import exception as db_exc
 from oslotest import base
 
-from neutron_lib._callbacks import events
-from neutron_lib._callbacks import exceptions
-from neutron_lib._callbacks import manager
-from neutron_lib._callbacks import resources
+from neutron_lib.callbacks import events
+from neutron_lib.callbacks import exceptions
+from neutron_lib.callbacks import manager
+from neutron_lib.callbacks import resources
 
 
 class ObjectWithCallback(object):
@@ -54,6 +54,10 @@ def callback_raise_retriable(*args, **kwargs):
     raise db_exc.DBDeadlock()
 
 
+def callback_3(resource, event, trigger, payload):
+    callback_3.counter += 1
+
+
 class CallBacksManagerTestCase(base.BaseTestCase):
 
     def setUp(self):
@@ -61,6 +65,7 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.manager = manager.CallbacksManager()
         callback_1.counter = 0
         callback_2.counter = 0
+        callback_3.counter = 0
 
     def test_subscribe(self):
         self.manager.subscribe(
@@ -261,7 +266,7 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.assertEqual(0, len(self.manager._callbacks))
         self.assertEqual(0, len(self.manager._index))
 
-    @mock.patch("neutron_lib._callbacks.manager.LOG")
+    @mock.patch("neutron_lib.callbacks.manager.LOG")
     def test__notify_loop_skip_log_errors(self, _logger):
         self.manager.subscribe(
             callback_raise, resources.PORT, events.BEFORE_CREATE)
@@ -289,3 +294,29 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.assertEqual(1, a.counter)
         self.assertEqual(1, b.counter)
         self.assertEqual(1, c.counter)
+
+    def test_publish_invalid_payload(self):
+        self.assertRaises(exceptions.Invalid, self.manager.publish,
+                          resources.PORT, events.AFTER_DELETE, self,
+                          payload=object())
+
+    def test_publish_empty_payload(self):
+        notify_payload = []
+
+        def _memo(resource, event, trigger, payload=None):
+            notify_payload.append(payload)
+
+        self.manager.subscribe(_memo, 'x', 'y')
+        self.manager.publish('x', 'y', self)
+        self.assertIsNone(notify_payload[0])
+
+    def test_publish_payload(self):
+        notify_payload = []
+
+        def _memo(resource, event, trigger, payload=None):
+            notify_payload.append(payload)
+
+        self.manager.subscribe(_memo, 'x', 'y')
+        payload = events.EventPayload(object())
+        self.manager.publish('x', 'y', self, payload=payload)
+        self.assertEqual(payload, notify_payload[0])

@@ -15,9 +15,9 @@ import collections
 from oslo_log import log as logging
 from oslo_utils import reflection
 
-from neutron_lib._callbacks import events
-from neutron_lib._callbacks import exceptions
 from neutron_lib._i18n import _LE
+from neutron_lib.callbacks import events
+from neutron_lib.callbacks import exceptions
 from neutron_lib.db import utils as db_utils
 
 LOG = logging.getLogger(__name__)
@@ -107,15 +107,43 @@ class CallbacksManager(object):
                     del self._callbacks[resource][event][callback_id]
             del self._index[callback_id]
 
+    def publish(self, resource, event, trigger, payload=None):
+        """Notify all subscribed callback(s) with a payload.
+
+        Dispatch the resource's event to the subscribed callbacks.
+
+        :param resource: The resource for the event.
+        :param event: The event.
+        :param trigger: The trigger. A reference to the sender of the event.
+        :param payload: The optional event object to send to subscribers. If
+        passed this must be an instance of BaseEvent.
+        :raises Invalid, CallbackFailure: The Invalid exception is raised if
+        the payload object is not an instance of BaseEvent. CallbackFailure
+        is raise if the underlying callback has errors.
+        """
+        kwargs = {}
+        if payload:
+            if not isinstance(payload, events.EventPayload):
+                raise exceptions.Invalid(element='event payload',
+                                         value=type(payload))
+            kwargs['payload'] = payload
+        return self.notify(resource, event, trigger, **kwargs)
+
+    # NOTE(boden): We plan to deprecate the usage of this method and **kwargs
+    # as the payload in Queens, but no warning here to avoid log flooding
     @db_utils.reraise_as_retryrequest
     def notify(self, resource, event, trigger, **kwargs):
         """Notify all subscribed callback(s).
 
         Dispatch the resource's event to the subscribed callbacks.
 
-        :param resource: the resource.
-        :param event: the event.
-        :param trigger: the trigger. A reference to the sender of the event.
+        :param resource: The resource for the event.
+        :param event: The event.
+        :param trigger: The trigger. A reference to the sender of the event.
+        :param kwargs: (deprecated) Unstructured key/value pairs to invoke
+        the callback with. Using event objects with publish() is preferred.
+        :raises CallbackFailure: CallbackFailure is raised if the underlying
+        callback has errors.
         """
         errors = self._notify_loop(resource, event, trigger, **kwargs)
         if errors:
