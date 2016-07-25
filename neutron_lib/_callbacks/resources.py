@@ -11,13 +11,21 @@
 #    under the License.
 
 # String literals representing core resources.
+AGENT = 'agent'
+EXTERNAL_NETWORK = 'external_network'
+FLOATING_IP = 'floating_ip'
+NETWORK = 'network'
+NETWORKS = 'networks'
 PORT = 'port'
+PORTS = 'ports'
 PROCESS = 'process'
 ROUTER = 'router'
 ROUTER_GATEWAY = 'router_gateway'
 ROUTER_INTERFACE = 'router_interface'
 SECURITY_GROUP = 'security_group'
 SECURITY_GROUP_RULE = 'security_group_rule'
+SEGMENT = 'segment'
 SUBNET = 'subnet'
+SUBNETS = 'subnets'
 SUBNET_GATEWAY = 'subnet_gateway'
 SUBNETPOOL_ADDRESS_SCOPE = 'subnetpool_address_scope'

@@ -18,6 +18,7 @@ from oslo_utils import reflection
 from neutron_lib._callbacks import events
 from neutron_lib._callbacks import exceptions
 from neutron_lib._i18n import _LE
+from neutron_lib.db import utils as db_utils
 
 LOG = logging.getLogger(__name__)
 
@@ -106,6 +107,7 @@ class CallbacksManager(object):
                     del self._callbacks[resource][event][callback_id]
             del self._index[callback_id]
 
+    @db_utils.reraise_as_retryrequest
     def notify(self, resource, event, trigger, **kwargs):
         """Notify all subscribed callback(s).
 
@@ -138,7 +140,7 @@ class CallbacksManager(object):
                   {'resource': resource, 'event': event})
 
         errors = []
-        callbacks = self._callbacks[resource].get(event, {}).items()
+        callbacks = list(self._callbacks[resource].get(event, {}).items())
         # TODO(armax): consider using a GreenPile
         for callback_id, callback in callbacks:
             try:
