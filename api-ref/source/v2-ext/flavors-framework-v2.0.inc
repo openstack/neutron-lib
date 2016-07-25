@@ -1,4 +1,8 @@
 .. -*- rst -*-
+.. needs:method_verification
+.. needs:parameter_verification
+.. needs:example_verification
+.. needs:body_verification
 
 =====================================================================
 Networking Flavors Framework v2.0 (CURRENT) (flavor, service_profile)
