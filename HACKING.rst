@@ -21,3 +21,4 @@ Neutron Library Specific Commandments
 - [N533] Validate that debug level logs are not translated
 - [N534] Exception messages should be translated
 - [N535] Usage of Python eventlet module not allowed
+- [N536] String interpolation should be delayed at logging calls.
