@@ -20,6 +20,7 @@ Networking API v2.0 extensions
 .. include:: extraroute.inc
 .. include:: metering-labels-ext.inc
 .. include:: flavors-framework-v2.0.inc
-.. include:: lbaas.inc
+.. include:: lbaas-v2.inc
+.. include:: lbaas-v1.inc
 .. include:: fwaas-v2.0.inc
 .. include:: vpnaas.inc
