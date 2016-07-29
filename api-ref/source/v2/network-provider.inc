@@ -36,7 +36,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - network_id: network_id
+   - network_id: network_id_3
 
 Response Parameters
 -------------------
@@ -94,7 +94,7 @@ Request
    - port_security_enabled: port_security_enabled
    - provider:segmentation_id: provider:segmentation_id
    - name: name
-   - network_id: network_id
+   - network_id: network_id_3
 
 Request Example
 ---------------
@@ -142,7 +142,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - network_id: network_id
+   - network_id: network_id_3
 
 List networks (provider network)
 ================================

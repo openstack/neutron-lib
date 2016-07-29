@@ -38,7 +38,7 @@ Response Parameters
    - subnetpool: subnetpool
    - quotas: quotas
    - security_group_rule: security_group_rule
-   - security_group: security_group
+   - security_group: security_group_2
    - router: router
    - rbac_policy: rbac_policy
    - port: port
@@ -78,7 +78,7 @@ Response Parameters
    - subnetpool: subnetpool
    - quota: quota
    - security_group_rule: security_group_rule
-   - security_group: security_group
+   - security_group: security_group_2
    - router: router
    - rbac_policy: rbac_policy
    - port: port
@@ -111,7 +111,7 @@ Request
    - subnetpool: subnetpool
    - quota: quota
    - security_group_rule: security_group_rule
-   - security_group: security_group
+   - security_group: security_group_2
    - router: router
    - rbac_policy: rbac_policy
    - port: port
@@ -134,7 +134,7 @@ Response Parameters
    - subnetpool: subnetpool
    - quota: quota
    - security_group_rule: security_group_rule
-   - security_group: security_group
+   - security_group: security_group_2
    - router: router
    - rbac_policy: rbac_policy
    - port: port

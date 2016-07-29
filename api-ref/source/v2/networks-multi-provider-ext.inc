@@ -49,7 +49,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - network_id: network_id
+   - network_id: network_id_3
 
 Response Parameters
 -------------------
