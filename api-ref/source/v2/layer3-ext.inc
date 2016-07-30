@@ -70,7 +70,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/floating-ips-list-response.json
+.. literalinclude:: samples/routers/floating-ips-list-response.json
    :language: javascript
 
 Create floating IP
@@ -149,7 +149,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/routers/floatingip-create-request.json
+.. literalinclude:: samples/routers/floatingip-create-request.json
    :language: javascript
 
 Response Parameters
@@ -237,7 +237,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/routers/router-add-interface-request.json
+.. literalinclude:: samples/routers/router-add-interface-request.json
    :language: javascript
 
 Response Parameters
@@ -253,7 +253,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/router-add-interface-response.json
+.. literalinclude:: samples/routers/router-add-interface-response.json
    :language: javascript
 
 Delete interface from router
@@ -304,7 +304,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/routers/router-remove-interface-request.json
+.. literalinclude:: samples/routers/router-remove-interface-request.json
    :language: javascript
 
 Response Parameters
@@ -320,7 +320,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/router-remove-interface-response.json
+.. literalinclude:: samples/routers/router-remove-interface-response.json
    :language: javascript
 
 Show floating IP details
@@ -376,7 +376,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/floatingip-show-response.json
+.. literalinclude:: samples/routers/floatingip-show-response.json
    :language: javascript
 
 Update floating IP
@@ -417,7 +417,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/routers/floatingip-disassociate-request.json
+.. literalinclude:: samples/routers/floatingip-disassociate-request.json
    :language: javascript
 
 Response Parameters
@@ -438,7 +438,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/floatingip-disassociate-response.json
+.. literalinclude:: samples/routers/floatingip-disassociate-response.json
    :language: javascript
 
 Delete floating IP
@@ -516,7 +516,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/router-show-response.json
+.. literalinclude:: samples/routers/router-show-response.json
    :language: javascript
 
 Update router
@@ -558,7 +558,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/routers/router-update-request.json
+.. literalinclude:: samples/routers/router-update-request.json
    :language: javascript
 
 Response Parameters
@@ -584,7 +584,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/router-update-response.json
+.. literalinclude:: samples/routers/router-update-response.json
    :language: javascript
 
 Delete router
@@ -667,7 +667,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/routers-list-response.json
+.. literalinclude:: samples/routers/routers-list-response.json
    :language: javascript
 
 Create router
@@ -714,7 +714,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/routers/router-create-request.json
+.. literalinclude:: samples/routers/router-create-request.json
    :language: javascript
 
 Response Parameters

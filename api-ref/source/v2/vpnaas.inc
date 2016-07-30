@@ -79,7 +79,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/ikepolicy-create-request.json
+.. literalinclude:: samples/vpn/ikepolicy-create-request.json
    :language: javascript
 
 Response Parameters
@@ -138,7 +138,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ikepolicies-list-response.json
+.. literalinclude:: samples/vpn/ikepolicies-list-response.json
    :language: javascript
 
 Create IPSec connection
@@ -182,7 +182,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/ipsec-site-connection-create-request.json
+.. literalinclude:: samples/vpn/ipsec-site-connection-create-request.json
    :language: javascript
 
 Response Parameters
@@ -261,7 +261,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ipsec-site-connections-list-response.json
+.. literalinclude:: samples/vpn/ipsec-site-connections-list-response.json
    :language: javascript
 
 Show IPSec connection
@@ -315,7 +315,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ipsec-site-connection-show-response.json
+.. literalinclude:: samples/vpn/ipsec-site-connection-show-response.json
    :language: javascript
 
 Update IPSec connection
@@ -355,7 +355,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/ipsec-site-connection-update-request.json
+.. literalinclude:: samples/vpn/ipsec-site-connection-update-request.json
    :language: javascript
 
 Response Parameters
@@ -391,7 +391,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ipsec-site-connection-update-response.json
+.. literalinclude:: samples/vpn/ipsec-site-connection-update-response.json
    :language: javascript
 
 Remove IPSec connection
@@ -436,7 +436,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/vpn-endpoint-group-create-request.json
+.. literalinclude:: samples/vpn/vpn-endpoint-group-create-request.json
    :language: javascript
 
 Response Parameters
@@ -480,7 +480,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/vpn-endpoint-groups-list-response.json
+.. literalinclude:: samples/vpn/vpn-endpoint-groups-list-response.json
    :language: javascript
 
 List VPN services
@@ -519,7 +519,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/vpnservices-list-response.json
+.. literalinclude:: samples/vpn/vpnservices-list-response.json
    :language: javascript
 
 Create VPN service
@@ -550,7 +550,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/vpnservice-create-request.json
+.. literalinclude:: samples/vpn/vpnservice-create-request.json
    :language: javascript
 
 Response Parameters
@@ -612,7 +612,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/vpnservice-show-response.json
+.. literalinclude:: samples/vpn/vpnservice-show-response.json
    :language: javascript
 
 Update VPN service
@@ -643,7 +643,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/vpnservice-update-request.json
+.. literalinclude:: samples/vpn/vpnservice-update-request.json
    :language: javascript
 
 Response Parameters
@@ -666,7 +666,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/vpnservice-update-response.json
+.. literalinclude:: samples/vpn/vpnservice-update-response.json
    :language: javascript
 
 Remove VPN service
@@ -728,7 +728,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ikepolicy-show-response.json
+.. literalinclude:: samples/vpn/ikepolicy-show-response.json
    :language: javascript
 
 Update IKE policy
@@ -763,7 +763,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/ikepolicy-update-request.json
+.. literalinclude:: samples/vpn/ikepolicy-update-request.json
    :language: javascript
 
 Response Parameters
@@ -789,7 +789,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ikepolicy-update-response.json
+.. literalinclude:: samples/vpn/ikepolicy-update-response.json
    :language: javascript
 
 Remove IKE policy
@@ -849,7 +849,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ipsecpolicy-show-response.json
+.. literalinclude:: samples/vpn/ipsecpolicy-show-response.json
    :language: javascript
 
 Update IPSec policy
@@ -884,7 +884,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/ipsecpolicy-update-request.json
+.. literalinclude:: samples/vpn/ipsecpolicy-update-request.json
    :language: javascript
 
 Response Parameters
@@ -910,7 +910,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ipsecpolicy-update-response.json
+.. literalinclude:: samples/vpn/ipsecpolicy-update-response.json
    :language: javascript
 
 Remove IPSec policy
@@ -962,7 +962,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/vpn-endpoint-group-show-response.json
+.. literalinclude:: samples/vpn/vpn-endpoint-group-show-response.json
    :language: javascript
 
 Update VPN endpoint group
@@ -988,7 +988,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/vpn-endpoint-group-update-request.json
+.. literalinclude:: samples/vpn/vpn-endpoint-group-update-request.json
    :language: javascript
 
 Response Parameters
@@ -1006,7 +1006,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/vpn-endpoint-group-update-response.json
+.. literalinclude:: samples/vpn/vpn-endpoint-group-update-response.json
    :language: javascript
 
 Remove VPN endpoint group
@@ -1059,7 +1059,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/vpn/ipsecpolicy-create-request.json
+.. literalinclude:: samples/vpn/ipsecpolicy-create-request.json
    :language: javascript
 
 Response Parameters
@@ -1118,6 +1118,6 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/vpn/ipsecpolicies-list-response.json
+.. literalinclude:: samples/vpn/ipsecpolicies-list-response.json
    :language: javascript
 

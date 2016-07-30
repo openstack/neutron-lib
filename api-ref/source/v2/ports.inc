@@ -58,7 +58,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/ports/port-show-response.json
+.. literalinclude:: samples/ports/port-show-response.json
    :language: javascript
 
 Update port
@@ -114,7 +114,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/ports/port-update-request.json
+.. literalinclude:: samples/ports/port-update-request.json
    :language: javascript
 
 Response Parameters
@@ -147,7 +147,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/ports/port-update-response.json
+.. literalinclude:: samples/ports/port-update-response.json
    :language: javascript
 
 Delete port
@@ -221,7 +221,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/ports/ports-list-response.json
+.. literalinclude:: samples/ports/ports-list-response.json
    :language: javascript
 
 Create port
@@ -260,7 +260,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/ports/port-create-request.json
+.. literalinclude:: samples/ports/port-create-request.json
    :language: javascript
 
 Response Parameters
@@ -325,7 +325,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/ports/ports-bulk-create-request.json
+.. literalinclude:: samples/ports/ports-bulk-create-request.json
    :language: javascript
 
 Response Parameters

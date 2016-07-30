@@ -56,7 +56,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/routers/router-update-request.json
+.. literalinclude:: samples/routers/router-update-request.json
    :language: javascript
 
 Response Parameters
@@ -78,6 +78,6 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/routers/router-update-response.json
+.. literalinclude:: samples/routers/router-update-response.json
    :language: javascript
 

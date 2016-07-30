@@ -63,7 +63,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/network-show-response.json
+.. literalinclude:: samples/networks/network-show-response.json
    :language: javascript
 
 Update network
@@ -93,7 +93,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/networks/network-update-request.json
+.. literalinclude:: samples/networks/network-update-request.json
    :language: javascript
 
 Response Parameters
@@ -118,7 +118,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/network-update-response.json
+.. literalinclude:: samples/networks/network-update-response.json
    :language: javascript
 
 Delete network
@@ -184,7 +184,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/networks-list-response.json
+.. literalinclude:: samples/networks/networks-list-response.json
    :language: javascript
 
 Create network
@@ -206,7 +206,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/networks/network-create-request.json
+.. literalinclude:: samples/networks/network-create-request.json
    :language: javascript
 
 Response Parameters
@@ -258,7 +258,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/networks/networks-bulk-create-request.json
+.. literalinclude:: samples/networks/networks-bulk-create-request.json
    :language: javascript
 
 Response Parameters

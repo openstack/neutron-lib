@@ -69,7 +69,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/flavors/service-profile-show-response.json
+.. literalinclude:: samples/flavors/service-profile-show-response.json
    :language: javascript
 
 Update service profile
@@ -97,7 +97,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/flavors/service-profile-update-request.json
+.. literalinclude:: samples/flavors/service-profile-update-request.json
    :language: javascript
 
 Response Parameters
@@ -115,7 +115,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/flavors/service-profile-update-response.json
+.. literalinclude:: samples/flavors/service-profile-update-response.json
    :language: javascript
 
 Delete service profile
@@ -171,7 +171,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/flavors/service-profiles-list-response.json
+.. literalinclude:: samples/flavors/service-profiles-list-response.json
    :language: javascript
 
 Create service profile
@@ -217,7 +217,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/flavors/service-profile-create-request.json
+.. literalinclude:: samples/flavors/service-profile-create-request.json
    :language: javascript
 
 Response Parameters
@@ -274,7 +274,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/flavors/flavors-list-response.json
+.. literalinclude:: samples/flavors/flavors-list-response.json
    :language: javascript
 
 Create flavor
@@ -327,7 +327,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/flavors/flavor-create-request.json
+.. literalinclude:: samples/flavors/flavor-create-request.json
    :language: javascript
 
 Response Parameters
@@ -368,7 +368,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/flavors/flavor-associate-request.json
+.. literalinclude:: samples/flavors/flavor-associate-request.json
    :language: javascript
 
 Response Parameters
@@ -418,7 +418,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/flavors/flavor-show-response.json
+.. literalinclude:: samples/flavors/flavor-show-response.json
    :language: javascript
 
 Update flavor
@@ -449,7 +449,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/flavors/flavor-update-request.json
+.. literalinclude:: samples/flavors/flavor-update-request.json
    :language: javascript
 
 Response Parameters
@@ -468,7 +468,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/flavors/flavor-update-response.json
+.. literalinclude:: samples/flavors/flavor-update-response.json
    :language: javascript
 
 Delete flavor

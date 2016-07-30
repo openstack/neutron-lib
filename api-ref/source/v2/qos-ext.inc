@@ -43,7 +43,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/bandwidth_limit_rule-show-response.json
+.. literalinclude:: samples/qos/bandwidth_limit_rule-show-response.json
    :language: javascript
 
 Update bandwidth limit rule
@@ -75,7 +75,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/qos/bandwidth_limit_rule-update-request.json
+.. literalinclude:: samples/qos/bandwidth_limit_rule-update-request.json
    :language: javascript
 
 Response Parameters
@@ -92,7 +92,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/bandwidth_limit_rule-update-response.json
+.. literalinclude:: samples/qos/bandwidth_limit_rule-update-response.json
    :language: javascript
 
 Delete bandwidth limit rule
@@ -149,7 +149,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/policies-list-response.json
+.. literalinclude:: samples/qos/policies-list-response.json
    :language: javascript
 
 Create QoS policy
@@ -187,7 +187,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/qos/policy-create-request.json
+.. literalinclude:: samples/qos/policy-create-request.json
    :language: javascript
 
 Response Parameters
@@ -233,7 +233,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/dscp_marking_rule-show-response.json
+.. literalinclude:: samples/qos/dscp_marking_rule-show-response.json
    :language: javascript
 
 Update DSCP marking rule
@@ -262,7 +262,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/qos/dscp_marking_rule-update-request.json
+.. literalinclude:: samples/qos/dscp_marking_rule-update-request.json
    :language: javascript
 
 Response Parameters
@@ -278,7 +278,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/dscp_marking_rule-update-response.json
+.. literalinclude:: samples/qos/dscp_marking_rule-update-response.json
    :language: javascript
 
 Delete DSCP marking rule
@@ -330,7 +330,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/dscp_marking_rules-list-response.json
+.. literalinclude:: samples/qos/dscp_marking_rules-list-response.json
    :language: javascript
 
 Create DSCP marking rule
@@ -354,7 +354,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/qos/dscp_marking_rule-create-request.json
+.. literalinclude:: samples/qos/dscp_marking_rule-create-request.json
    :language: javascript
 
 Response Parameters
@@ -406,7 +406,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/policy-show-response.json
+.. literalinclude:: samples/qos/policy-show-response.json
    :language: javascript
 
 Update QoS policy
@@ -439,7 +439,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/qos/policy-update-request.json
+.. literalinclude:: samples/qos/policy-update-request.json
    :language: javascript
 
 Response Parameters
@@ -457,7 +457,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/policy-update-response.json
+.. literalinclude:: samples/qos/policy-update-response.json
    :language: javascript
 
 Delete QoS policy
@@ -510,7 +510,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/qos/bandwidth_limit_rules-list-response.json
+.. literalinclude:: samples/qos/bandwidth_limit_rules-list-response.json
    :language: javascript
 
 Create bandwidth limit rule
@@ -535,7 +535,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/qos/bandwidth_limit_rule-create-request.json
+.. literalinclude:: samples/qos/bandwidth_limit_rule-create-request.json
    :language: javascript
 
 Response Parameters

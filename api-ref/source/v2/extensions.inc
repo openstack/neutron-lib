@@ -46,7 +46,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/extensions/extensions-list-response.json
+.. literalinclude:: samples/extensions/extensions-list-response.json
    :language: javascript
 
 Show extension details
@@ -82,6 +82,6 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/extensions/extension-show-response.json
+.. literalinclude:: samples/extensions/extension-show-response.json
    :language: javascript
 

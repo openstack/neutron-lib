@@ -34,7 +34,7 @@ Request
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/subnets/subnets-list-response.json
+.. literalinclude:: samples/subnets/subnets-list-response.json
    :language: javascript
 
 Create subnet
@@ -82,7 +82,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/subnets/subnet-create-request.json
+.. literalinclude:: samples/subnets/subnet-create-request.json
    :language: javascript
 
 Bulk create subnet
@@ -105,7 +105,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/subnets/subnets-create-bulk-request.json
+.. literalinclude:: samples/subnets/subnets-create-bulk-request.json
    :language: javascript
 
 Show subnet details
@@ -131,7 +131,7 @@ Request
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/subnets/subnet-show-response.json
+.. literalinclude:: samples/subnets/subnet-show-response.json
    :language: javascript
 
 Update subnet
@@ -159,13 +159,13 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/subnets/subnet-update-request.json
+.. literalinclude:: samples/subnets/subnet-update-request.json
    :language: javascript
 
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/subnets/subnet-update-response.json
+.. literalinclude:: samples/subnets/subnet-update-response.json
    :language: javascript
 
 Delete subnet

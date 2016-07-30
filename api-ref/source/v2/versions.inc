@@ -36,7 +36,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/version-show-response.json
+.. literalinclude:: samples/networks/version-show-response.json
    :language: javascript
 
 List API versions
@@ -58,5 +58,5 @@ Request
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/versions-list-response.json
+.. literalinclude:: samples/networks/versions-list-response.json
    :language: javascript

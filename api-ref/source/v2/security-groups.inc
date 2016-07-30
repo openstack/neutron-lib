@@ -57,7 +57,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/security-groups/security-group-show-response.json
+.. literalinclude:: samples/security-groups/security-group-show-response.json
    :language: javascript
 
 Update security group
@@ -83,7 +83,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/security-groups/security-group-update-request.json
+.. literalinclude:: samples/security-groups/security-group-update-request.json
    :language: javascript
 
 Response Parameters
@@ -100,7 +100,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/security-groups/security-group-update-response.json
+.. literalinclude:: samples/security-groups/security-group-update-response.json
    :language: javascript
 
 Delete security group
@@ -166,7 +166,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/security-groups/security-groups-list-response.json
+.. literalinclude:: samples/security-groups/security-groups-list-response.json
    :language: javascript
 
 Create security group
@@ -194,7 +194,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/security-groups/security-group-create-request.json
+.. literalinclude:: samples/security-groups/security-group-create-request.json
    :language: javascript
 
 Response Parameters

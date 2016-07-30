@@ -50,7 +50,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/network-ip-availability/network-ip-availability-show.json
+.. literalinclude:: samples/network-ip-availability/network-ip-availability-show.json
    :language: javascript
 
 List Network IP Availability
@@ -87,6 +87,6 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/network-ip-availability/network-ip-availability-list.json
+.. literalinclude:: samples/network-ip-availability/network-ip-availability-list.json
    :language: javascript
 

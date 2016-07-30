@@ -54,7 +54,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/subnets/subnetpool-show-response.json
+.. literalinclude:: samples/subnets/subnetpool-show-response.json
    :language: javascript
 
 Update subnet pool
@@ -87,7 +87,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/subnets/subnetpool-update-request.json
+.. literalinclude:: samples/subnets/subnetpool-update-request.json
    :language: javascript
 
 Response Parameters
@@ -113,7 +113,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/subnets/subnetpool-update-response.json
+.. literalinclude:: samples/subnets/subnetpool-update-response.json
    :language: javascript
 
 Delete subnet pool
@@ -176,7 +176,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/subnets/subnetpools-list-response.json
+.. literalinclude:: samples/subnets/subnetpools-list-response.json
    :language: javascript
 
 Create subnet pool
@@ -207,7 +207,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/subnets/subnetpool-create-request.json
+.. literalinclude:: samples/subnets/subnetpool-create-request.json
    :language: javascript
 
 Response Parameters

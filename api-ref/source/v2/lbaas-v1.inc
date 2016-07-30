@@ -78,7 +78,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/pools-list-response.json
+.. literalinclude:: samples/lbaas/pools-list-response.json
    :language: javascript
 
 Create a load balancer pool
@@ -107,7 +107,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/pool-create-request.json
+.. literalinclude:: samples/lbaas/pool-create-request.json
    :language: javascript
 
 Response Parameters
@@ -174,7 +174,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/pool-show-response.json
+.. literalinclude:: samples/lbaas/pool-show-response.json
    :language: javascript
 
 Update pool
@@ -202,7 +202,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/pool-update-request.json
+.. literalinclude:: samples/lbaas/pool-update-request.json
    :language: javascript
 
 Response Parameters
@@ -230,7 +230,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/pool-update-response.json
+.. literalinclude:: samples/lbaas/pool-update-response.json
    :language: javascript
 
 Delete pool
@@ -291,7 +291,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/vips-list-response.json
+.. literalinclude:: samples/lbaas/vips-list-response.json
    :language: javascript
 
 Create a load balancer VIP
@@ -324,7 +324,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/vip-create-request.json
+.. literalinclude:: samples/lbaas/vip-create-request.json
    :language: javascript
 
 Response Parameters
@@ -391,7 +391,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/vip-show-response.json
+.. literalinclude:: samples/lbaas/vip-show-response.json
    :language: javascript
 
 Update VIP
@@ -421,7 +421,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/vip-update-request.json
+.. literalinclude:: samples/lbaas/vip-update-request.json
    :language: javascript
 
 Response Parameters
@@ -449,7 +449,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/vip-update-response.json
+.. literalinclude:: samples/lbaas/vip-update-response.json
    :language: javascript
 
 Delete VIP
@@ -502,7 +502,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/members-list-response.json
+.. literalinclude:: samples/lbaas/members-list-response.json
    :language: javascript
 
 Create a load balancer member
@@ -530,7 +530,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/member-create-request.json
+.. literalinclude:: samples/lbaas/member-create-request.json
    :language: javascript
 
 Response Parameters
@@ -585,7 +585,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/member-show-response.json
+.. literalinclude:: samples/lbaas/member-show-response.json
    :language: javascript
 
 Update member
@@ -612,7 +612,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/member-update-request.json
+.. literalinclude:: samples/lbaas/member-update-request.json
    :language: javascript
 
 Response Parameters
@@ -634,7 +634,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/member-update-response.json
+.. literalinclude:: samples/lbaas/member-update-response.json
    :language: javascript
 
 Delete member
@@ -689,7 +689,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/healthmonitors-list-response.json
+.. literalinclude:: samples/lbaas/healthmonitors-list-response.json
    :language: javascript
 
 Create a load balancer health monitor
@@ -720,7 +720,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/healthmonitor-create-request.json
+.. literalinclude:: samples/lbaas/healthmonitor-create-request.json
    :language: javascript
 
 Response Parameters
@@ -779,7 +779,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/healthmonitor-show-response.json
+.. literalinclude:: samples/lbaas/healthmonitor-show-response.json
    :language: javascript
 
 Update health monitor
@@ -810,7 +810,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/healthmonitor-update-request.json
+.. literalinclude:: samples/lbaas/healthmonitor-update-request.json
    :language: javascript
 
 Response Parameters
@@ -834,7 +834,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/lbaas/healthmonitor-update-response.json
+.. literalinclude:: samples/lbaas/healthmonitor-update-response.json
    :language: javascript
 
 Delete health monitor
@@ -874,7 +874,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/lbaas/healthmonitor-associate-request.json
+.. literalinclude:: samples/lbaas/healthmonitor-associate-request.json
    :language: javascript
 
 Response Parameters
