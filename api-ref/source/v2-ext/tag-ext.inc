@@ -19,7 +19,8 @@ Replace all tags
 Replaces all tags on the resource.
 
 Normal response codes: 200
-Error response codes:404,401,400,503,500,
+
+Error response codes: 404,401,400,503,500
 
 Request
 -------
@@ -56,7 +57,7 @@ Remove all tags
 
 Removes all tags on the resource.
 
-Error response codes:500,404,204,401,503,
+Error response codes: 500,404,204,401,503
 
 Request
 -------
@@ -73,7 +74,7 @@ Confirm a tag
 
 Confirms a given tag is set on the resource.
 
-Error response codes:500,404,204,401,503,
+Error response codes: 500,404,204,401,503
 
 Request
 -------
@@ -91,7 +92,7 @@ Add a tag
 
 Adds a tag on the resource.
 
-Error response codes:201,404,500,401,503,
+Error response codes: 201,404,500,401,503
 
 Request
 -------
@@ -109,7 +110,7 @@ Remove a tag
 
 Removes a tag on the resource.
 
-Error response codes:500,404,204,401,503,
+Error response codes: 500,404,204,401,503
 
 Request
 -------

@@ -53,7 +53,8 @@ firewall_rule_id set in ``insert_before`` or ``insert_after``. If
 firewall_rule_id is inserted at the top of the policy.
 
 Normal response codes: 200
-Error response codes:404,409,401,400,
+
+Error response codes: 404,409,401,400
 
 Request
 -------
@@ -103,7 +104,8 @@ object does not belong to the tenant account, this call returns the
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -140,7 +142,8 @@ Update firewall policy
 Updates a firewall policy.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -182,7 +185,7 @@ Delete firewall policy
 
 Deletes a firewall policy.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -201,7 +204,8 @@ Lists all firewall policies.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -233,7 +237,7 @@ Create firewall policy
 
 Creates a firewall policy.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -280,7 +284,8 @@ object does not belong to the tenant account, this call returns the
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -325,7 +330,8 @@ Update firewall rule
 Updates a firewall rule.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -387,7 +393,7 @@ Delete firewall rule
 
 Deletes a firewall rule.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -408,7 +414,8 @@ does not belong to the tenant account, this call returns the
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -449,7 +456,8 @@ To update a service, the service status cannot be a ``PENDING_*``
 status.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -498,7 +506,7 @@ Delete firewall
 
 Deletes a firewall.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -517,7 +525,8 @@ Lists all firewall rules.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -557,7 +566,7 @@ Create firewall rule
 
 Creates a firewall rule.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -615,7 +624,8 @@ Lists all firewalls.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -653,7 +663,7 @@ The firewall must be associated with a firewall policy.
 If ``admin_state_up`` is ``false``, the firewall would block all
 traffic.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -696,7 +706,8 @@ Remove rule from firewall policy
 Remove firewall rule from a policy.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------

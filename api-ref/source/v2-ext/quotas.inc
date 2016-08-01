@@ -21,7 +21,8 @@ List quotas for tenants with non-default quota values
 Lists quotas for tenants who have non-default quota values.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -56,7 +57,8 @@ List quotas for a tenant
 Lists quotas for a tenant.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -95,7 +97,8 @@ Update quota for a tenant
 Updates quotas for a tenant. Use when non-default quotas are desired.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -149,7 +152,7 @@ Reset quota for a tenant
 
 Resets quotas to default values for a tenant.
 
-Error response codes:404,403,204,401,
+Error response codes: 404,403,204,401
 
 Request
 -------

@@ -18,7 +18,8 @@ List service providers
 Lists service providers and their associated service types.
 
 Normal response codes: 200
-Error response codes:404,409,401,400,
+
+Error response codes: 404,409,401,400
 
 Request
 -------

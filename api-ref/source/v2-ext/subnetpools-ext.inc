@@ -21,7 +21,8 @@ Shows information for a subnet pool.
 Use the ``fields`` query parameter to filter the results.
 
 Normal response codes: 200
-Error response codes:404,401,
+
+Error response codes: 404,401
 
 Request
 -------
@@ -64,7 +65,8 @@ Update subnet pool
 Updates a subnet pool.
 
 Normal response codes: 200
-Error response codes:404,403,401,400,
+
+Error response codes: 404,403,401,400
 
 Request
 -------
@@ -124,7 +126,7 @@ Deletes a subnet pool.
 The operation fails if any subnets allocated from the subnet pool
 are still in use.
 
-Error response codes:404,204,401,
+Error response codes: 404,204,401
 
 Request
 -------
@@ -145,7 +147,8 @@ the tenant submitting the request, unless the request is submitted
 by a user with administrative rights.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -183,7 +186,7 @@ Create subnet pool
 
 Creates a subnet pool.
 
-Error response codes:201,404,403,401,400,
+Error response codes: 201,404,403,401,400
 
 Request
 -------

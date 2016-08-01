@@ -18,7 +18,8 @@ Show bandwidth limit rule details
 Shows details for a bandwidth limit rule for a QoS policy.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -56,7 +57,8 @@ If the request is valid, the service returns the ``Accepted (202)``
 response code.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -100,7 +102,7 @@ Delete bandwidth limit rule
 
 Deletes a bandwidth limit rule for a QoS policy.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -120,7 +122,8 @@ Lists all QoS policies that are associated with your tenant account.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -167,7 +170,7 @@ Users with an administrative role can create policies on behalf of
 other tenants by specifying a tenant UUID that is different than
 their own.
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------
@@ -207,7 +210,8 @@ Show DSCP marking rule details
 Shows details for a DSCP marking rule for a QoS policy.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -243,7 +247,8 @@ If the request is valid, the service returns the ``Accepted (202)``
 response code.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -283,7 +288,7 @@ Delete DSCP marking rule
 
 Deletes a DSCP marking rule for a QoS policy.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -302,7 +307,8 @@ Lists all DSCP marking rules for a QoS policy.
 The list may be empty.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -334,7 +340,7 @@ Create DSCP marking rule
 
 Creates a DSCP marking rule for a QoS policy.
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------
@@ -369,7 +375,8 @@ Show QoS policy details
 Shows details for a QoS policy.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -413,7 +420,8 @@ If the request is valid, the service returns the ``Accepted (202)``
 response code.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400,401,413,503,500
 
 Request
 -------
@@ -459,7 +467,7 @@ Delete QoS policy
 
 Deletes a QoS policy.
 
-Error response codes:204,400,401,413,503,500,
+Error response codes: 204,400,401,413,503,500
 
 Request
 -------
@@ -478,7 +486,8 @@ Lists all bandwidth limit rules for a QoS policy.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 500,401,503
 
 Request
 -------
@@ -511,7 +520,7 @@ Create bandwidth limit rule
 
 Creates a bandwidth limit rule for a QoS policy.
 
-Error response codes:201,404,409,401,413,503,500,
+Error response codes: 201,404,409,401,413,503,500
 
 Request
 -------

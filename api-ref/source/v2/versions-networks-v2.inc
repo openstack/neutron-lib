@@ -18,7 +18,8 @@ Show API v2 details
 Shows details for Networking API v2.0.
 
 Normal response codes: 200
-Error response codes:203,
+
+Error response codes: 203
 
 Request
 -------
@@ -46,7 +47,8 @@ List API versions
 Lists information about all Networking API versions.
 
 Normal response codes: 200
-Error response codes:300,
+
+Error response codes: 300
 
 Request
 -------

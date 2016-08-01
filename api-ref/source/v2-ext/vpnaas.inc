@@ -56,7 +56,7 @@ The IKE policy is used for phases one and two negotiation of the
 VPN connection. You can specify both the authentication and
 encryption algorithms for connections.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -110,7 +110,8 @@ List IKE policies
 Lists IKE policies.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -147,7 +148,7 @@ Create IPSec connection
 
 Creates a site-to-site IPSec connection for a service.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -222,7 +223,8 @@ List IPSec connections
 Lists all IPSec connections.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -270,7 +272,8 @@ Show IPSec connection
 Shows details for an IPSec connection.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -323,7 +326,8 @@ Update IPSec connection
 Updates connection settings for an IPSec connection.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -397,7 +401,7 @@ Remove IPSec connection
 
 Removes an IPSec connection.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -416,7 +420,7 @@ Creates a VPN endpoint group.
 The endpoint group contains one or more endpoints of a specific
 type that you can use to create a VPN connections.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -455,7 +459,8 @@ List VPN endpoint groups
 Lists VPN endpoint groups.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -488,7 +493,8 @@ Lists all VPN services.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -526,7 +532,7 @@ Creates a VPN service.
 The service is associated with a router. After you create the
 service, it can contain multiple VPN connections.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -576,7 +582,8 @@ object does not belong to the tenant account for the user, the
 operation returns the ``Forbidden (403)`` response code.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -619,7 +626,8 @@ Updates the attributes of a VPN service. You cannot update a
 service with a ``PENDING_*`` status.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -670,7 +678,7 @@ Removes a VPN service.
 
 If the service has connections, the request is rejected.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -687,7 +695,8 @@ Show IKE policy details
 Shows details for an IKE policy.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -730,7 +739,8 @@ Update IKE policy
 Updates policy settings in an IKE policy.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -789,7 +799,7 @@ Remove IKE policy
 
 Removes an IKE policy.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -806,7 +816,8 @@ Show IPSec policy
 Shows details for an IPSec policy.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -849,7 +860,8 @@ Update IPSec policy
 Updates policy settings in an IPSec policy.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -908,7 +920,7 @@ Remove IPSec policy
 
 Removes an IPSec policy.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -925,7 +937,8 @@ Show VPN endpoint group
 Shows details for a VPN endpoint group.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -960,7 +973,8 @@ Update VPN endpoint group
 Updates settings for a VPN endpoint group.
 
 Normal response codes: 200
-Error response codes:404,401,400,
+
+Error response codes: 404,401,400
 
 Request
 -------
@@ -1002,7 +1016,7 @@ Remove VPN endpoint group
 
 Removes a VPN endpoint group.
 
-Error response codes:409,404,204,401,
+Error response codes: 409,404,204,401
 
 Request
 -------
@@ -1022,7 +1036,7 @@ The IPsec policy specifies the authentication and encryption
 algorithms and encapsulation mode to use for the established VPN
 connection.
 
-Error response codes:201,401,400,
+Error response codes: 201,401,400
 
 Request
 -------
@@ -1076,7 +1090,8 @@ List IPSec policies
 Lists all IPSec policies.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------

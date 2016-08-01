@@ -21,7 +21,7 @@ Disassociate a flavor.
 
 Disassociate a flavor from a service profile.
 
-Error response codes:404,403,204,401,
+Error response codes: 404,403,204,401
 
 Request
 -------
@@ -44,7 +44,8 @@ tenant account, the service returns the HTTP ``Forbidden (403)``
 response code.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -79,7 +80,7 @@ Update service profile
 Updates a service profile.
 
 Normal response codes: 200
-Error response codes:404,403,401,400,
+Error response codes: 404,403,401,400
 
 Request
 -------
@@ -128,7 +129,7 @@ Attempting to delete a service profile that is currently associated
 with a flavor will return a ``Conflict 409`` with a response body
 containing an in use message.
 
-Error response codes:409,404,403,204,401,
+Error response codes: 409,404,403,204,401
 
 Request
 -------
@@ -149,7 +150,8 @@ The list can be empty.
 Standard query parameters are supported on the URI.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -199,7 +201,7 @@ data that is not valid, the service returns the HTTP ``Bad Request
 response body. Validation errors require that you correct the error
 and submit the request again.
 
-Error response codes:201,403,401,400,
+Error response codes: 201,403,401,400
 
 Request
 -------
@@ -250,7 +252,8 @@ configuration has allow_sorting = true, ``sort_key`` and
 'desc'.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
@@ -308,7 +311,7 @@ data that is not valid, the service returns the HTTP ``Bad Request
 response body. Validation errors require that you correct the error
 and submit the request again.
 
-Error response codes:201,403,401,400,
+Error response codes: 201,403,401,400
 
 Request
 -------
@@ -351,7 +354,7 @@ A flavor can be associated with more than one profile.
 
 Will return ``409 Conflict`` if association already exists.
 
-Error response codes:201,404,403,401,400,409,
+Error response codes: 201,404,403,401,400,409
 
 Request
 -------
@@ -389,7 +392,8 @@ tenant account, the service returns the HTTP ``Forbidden (403)``
 response code.
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 404,403,401
 
 Request
 -------
@@ -428,7 +432,8 @@ The service_type cannot be updated as there may be associated
 service profiles and consumers depending on the value.
 
 Normal response codes: 200
-Error response codes:404,403,401,400,
+
+Error response codes: 404,403,401,400
 
 Request
 -------
@@ -473,7 +478,7 @@ Delete flavor
 
 Deletes a flavor.
 
-Error response codes:404,403,204,401,
+Error response codes: 404,403,204,401
 
 Request
 -------

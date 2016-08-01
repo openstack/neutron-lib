@@ -37,7 +37,8 @@ for subnets that are used by one or more routes, it responds with a
 ``Conflict (409)`` response code.
 
 Normal response codes: 200
-Error response codes:404,409,401,400,
+
+Error response codes: 404,409,401,400
 
 Request
 -------

@@ -20,7 +20,8 @@ Show Network IP Availability
 Shows network IP availability details for a network.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
@@ -60,7 +61,8 @@ List Network IP Availability
 Lists network IP availability of all networks.
 
 Normal response codes: 200
-Error response codes:403,401,
+
+Error response codes: 403,401
 
 Request
 -------
