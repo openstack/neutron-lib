@@ -43,9 +43,13 @@ _log_translation_hint = re.compile(
              for level, hint in _all_log_levels.items()))
 
 
-def validate_log_translations(logical_line, physical_line, filename):
+def _translation_is_not_expected(filename):
     # Do not do these validations on tests
-    if "/tests/" in filename:
+    return any(pat in filename for pat in ["/tests/", "rally-jobs/plugins/"])
+
+
+def validate_log_translations(logical_line, physical_line, filename):
+    if _translation_is_not_expected(filename):
         return
 
     if pep8.noqa(physical_line):
@@ -78,8 +82,7 @@ def no_translate_debug_logs(logical_line, filename):
 
 
 def check_raised_localized_exceptions(logical_line, filename):
-    # NOTE(boden): tox.ini doesn't permit per check exclusion
-    if "/tests/" in filename:
+    if _translation_is_not_expected(filename):
         return
 
     logical_line = logical_line.strip()
