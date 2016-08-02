@@ -255,3 +255,18 @@ class HackingTestCase(base.BaseTestCase):
             checks._ProxyHackingChecks.parse_options(opts)
             # make sure all registered checks are not ignored
             self.assertEqual([], list(opts.ignore))
+
+    def test_check_eventlet_imports(self):
+        f = checks.check_no_eventlet_imports
+        self.assertLineFails(f, "import eventlet")
+        self.assertLineFails(f, "import eventlet.timeout")
+        self.assertLineFails(f, "from eventlet import timeout")
+        self.assertLineFails(f, "from eventlet.timeout import Timeout")
+        self.assertLineFails(f, "from eventlet.timeout import (Timeout, X)")
+        self.assertLinePasses(f, "import is.not.eventlet")
+        self.assertLinePasses(f, "from is.not.eventlet")
+        self.assertLinePasses(f, "from mymod import eventlet")
+        self.assertLinePasses(f, "from mymod.eventlet import amod")
+        self.assertLinePasses(f, 'print("eventlet not here")')
+        self.assertLinePasses(f, 'print("eventlet.timeout")')
+        self.assertLinePasses(f, "from mymod.timeout import (eventlet, X)")

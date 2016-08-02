@@ -5,8 +5,8 @@ neutron-lib Style Commandments
   http://docs.openstack.org/developer/hacking/
 - Step 2: Read on
 
-Neutron Specific Commandments
------------------------------
+Neutron Library Specific Commandments
+-------------------------------------
 
 - [N521] Validate that jsonutils module is used instead of json
 - [N523] DEPRECATED. Enforce namespace-less imports for oslo libraries
@@ -20,3 +20,4 @@ Neutron Specific Commandments
 - [N532] Validate that LOG.warning is used instead of LOG.warn. The latter is deprecated.
 - [N533] Validate that debug level logs are not translated
 - [N534] Exception messages should be translated
+- [N535] Usage of Python eventlet module not allowed
