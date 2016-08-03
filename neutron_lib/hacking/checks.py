@@ -177,6 +177,15 @@ def check_neutron_namespace_imports(logical_line):
         yield x
 
 
+@core.flake8ext
+@core.off_by_default
+def check_no_eventlet_imports(logical_line):
+    """N535 - Usage of Python eventlet module not allowed."""
+    if re.match(r'(import|from)\s+[(]?eventlet', logical_line):
+        msg = 'N535: Usage of Python eventlet module not allowed'
+        yield logical_line.index('eventlet'), msg
+
+
 ALL_CHECKS = set([use_jsonutils,
                   check_no_contextlib_nested,
                   check_python3_xrange,
@@ -187,9 +196,12 @@ ALL_CHECKS = set([use_jsonutils,
                   translation_checks.validate_log_translations,
                   translation_checks.no_translate_debug_logs,
                   translation_checks.check_log_warn_deprecated,
-                  translation_checks.check_raised_localized_exceptions])
-ADOPTER_CHECKS = ALL_CHECKS
+                  translation_checks.check_raised_localized_exceptions,
+                  check_no_eventlet_imports])
+
 _LIB_PROJECT_CHECKS = ALL_CHECKS
+
+ADOPTER_CHECKS = ALL_CHECKS - set([check_no_eventlet_imports])
 
 
 def _get_pep8_checks():
