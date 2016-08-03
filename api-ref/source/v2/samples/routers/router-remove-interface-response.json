@@ -1,6 +1,10 @@
 {
-    "id": "8604a0de-7f6b-409a-a47c-a1cc7bc77b2e",
-    "tenant_id": "2f245a7b-796b-4f26-9cf9-9e82d248fda7",
-    "port_id": "3a44f4e5-1694-493a-a1fb-393881c673a4",
-    "subnet_id": "a2f1f29d-571b-4533-907f-5803ab96ead1"
+    "id": "915a14a6-867b-4af7-83d1-70efceb146f9",
+    "network_id": "91c013e2-d65a-474e-9177-c3e1799ca726",
+    "port_id": "a5b7d209-dc02-4c46-a51f-805eadd3de64",
+    "subnet_id": "4e5fe97c-82bc-432e-87d8-06d7e157dffa",
+    "subnet_ids": [
+        "4e5fe97c-82bc-432e-87d8-06d7e157dffa"
+    ],
+    "tenant_id": "0bd18306d801447bb457a46252d82d13"
 }
