@@ -57,3 +57,10 @@ class TestCallbackRegistryDispatching(base.BaseTestCase):
     def test_clear(self):
         registry.clear()
         registry.CALLBACK_MANAGER.clear.assert_called_with()
+
+    def test_get_callback_manager(self):
+        with mock.patch.object(registry.manager,
+                               'CallbacksManager') as mock_mgr:
+            registry.CALLBACK_MANAGER = None
+            registry._get_callback_manager()
+            mock_mgr.assert_called_once_with()

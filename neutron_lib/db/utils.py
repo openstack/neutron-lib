@@ -10,10 +10,15 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import six
+
 from neutron_lib import exceptions as n_exc
 from sqlalchemy.orm import properties
 
 from neutron_lib._i18n import _
+from oslo_db import exception as db_exc
+from oslo_utils import excutils
+from sqlalchemy.orm import exc
 
 
 def get_and_validate_sort_keys(sorts, model):
@@ -51,3 +56,46 @@ def get_sort_dirs(sorts, page_reverse=False):
     if page_reverse:
         return ['desc' if s[1] else 'asc' for s in sorts]
     return ['asc' if s[1] else 'desc' for s in sorts]
+
+
+def _is_nested_instance(exception, etypes):
+    """Check if exception or its inner excepts are an instance of etypes."""
+    return (isinstance(exception, etypes) or
+            isinstance(exception, n_exc.MultipleExceptions) and
+            any(_is_nested_instance(i, etypes)
+                for i in exception.inner_exceptions))
+
+
+def is_retriable(exception):
+    """Determine if the said exception is retriable.
+
+    :param exception: The exception to check.
+    :return: True if 'exception' is retriable, otherwise False.
+    """
+    if _is_nested_instance(exception,
+                           (db_exc.DBDeadlock, exc.StaleDataError,
+                            db_exc.DBConnectionError,
+                            db_exc.DBDuplicateEntry, db_exc.RetryRequest)):
+        return True
+    # Look for savepoints mangled by deadlocks. See bug/1590298 for details.
+    return (_is_nested_instance(exception, db_exc.DBError) and
+            '1305' in str(exception))
+
+
+def reraise_as_retryrequest(function):
+    """Wrap the said function with a RetryRequest upon error.
+
+    :param function: The function to wrap/decorate.
+    :return: The 'function' wrapped in a try block that will reraise any
+    Exception's as a RetryRequest.
+    """
+    @six.wraps(function)
+    def _wrapped(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except Exception as e:
+            with excutils.save_and_reraise_exception() as ctx:
+                if is_retriable(e):
+                    ctx.reraise = False
+                    raise db_exc.RetryRequest(e)
+    return _wrapped
