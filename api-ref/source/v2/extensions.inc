@@ -40,7 +40,7 @@ Response Parameters
    - description: description
    - links: links
    - alias: alias
-   - extension: extension
+   - extensions: extensions
    - name: name
 
 Response Example
