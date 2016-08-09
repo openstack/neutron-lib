@@ -29,6 +29,8 @@ Networking API v2.0
 .. include:: network-ip-availability.inc
 .. include:: qos.inc
 .. include:: metering.inc
+.. include:: trunk.inc
+.. include:: trunk-details.inc
 .. include:: lbaas-v2.inc
 .. include:: lbaas-v1.inc
 .. include:: fwaas.inc

@@ -1,0 +1,9 @@
+{
+    "sub_ports": [
+        {
+            "segmentation_id": 44,
+            "port_id": "4b4c691b-086d-43d2-8a65-5487e9434155",
+            "segmentation_type": "vlan"
+        }
+    ]
+}

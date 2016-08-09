@@ -111,6 +111,8 @@ attribute in responses, check that the ``project-id`` API extension is enabled
 (see Extensions_).
 
 
+.. _filtering:
+
 Filtering and column selection
 ==============================
 

@@ -1,0 +1,18 @@
+{
+    "trunks": [
+        {
+            "status": "DOWN",
+            "sub_ports": [],
+            "name": "test",
+            "admin_state_up": true,
+            "project_id": "313be01bd0744cea86643c711c57012b",
+            "tenant_id": "313be01bd0744cea86643c711c57012b",
+            "created_at": "2016-10-05T20:11:16Z",
+            "updated_at": "2016-10-05T20:11:16Z",
+            "revision_number": 1,
+            "port_id": "8027c4da-772f-4e43-bfbf-023b4a4e63de",
+            "id": "ee98bdb4-a817-43af-943f-4318bff98f51",
+            "description": ""
+        }
+    ]
+}
