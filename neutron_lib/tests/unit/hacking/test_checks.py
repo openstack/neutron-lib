@@ -10,11 +10,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import contextlib
-import math
-
-import mock
-import pep8
 import testtools
 
 from neutron_lib.hacking import checks
@@ -184,89 +179,3 @@ class HackingTestCase(base.BaseTestCase):
         f = tc.check_raised_localized_exceptions
         self.assertLinePasses(f, "raise KeyError('Error text')",
                               'neutron_lib/tests/unit/mytest.py')
-
-    @contextlib.contextmanager
-    def _mocked_style_guide_checks(self, pep_checks):
-        # chunk checks into 3 sub-lists so that each type of check returns
-        # approximately 1/3 of the checks
-        list_size = int(math.ceil(float(len(pep_checks)) / 3.0))
-        chunks = [pep_checks[i:i + list_size]
-                  for i in range(0, len(pep_checks), list_size)]
-        indexed = [[], [], []]
-        for i in range(3):
-            for c in range(len(chunks[i])):
-                indexed[i].append([chunks[i][c].__name__, chunks[i][c]])
-
-        # each type of check returns about 1/3 of the pep checks
-        check_dict = {
-            'physical_line': indexed[0],
-            'logical_line': indexed[1],
-            'tree': indexed[2]
-        }
-        try:
-            class _MockSG(object):
-                def get_checks(self, check_type):
-                    return check_dict[check_type]
-
-            mock_sg = mock.patch.object(checks.pep8, 'StyleGuide', new=_MockSG)
-            mock_sg.start()
-            yield mock_sg
-        finally:
-            mock_sg.stop()
-
-    def _test_register_checks(self, to_register, factory):
-        for check in to_register:
-            setattr(check, 'off_by_default', True)
-        with self._mocked_style_guide_checks(to_register):
-            reg = []
-            factory(reg.append)
-            for check in to_register:
-                self.assertIn(check, reg)
-                self.assertFalse(getattr(check, 'off_by_default', True))
-
-    def test_latest_adopter_hacking_checks(self):
-        self._test_register_checks(list(checks.ADOPTER_CHECKS),
-                                   checks.latest_adopter_hacking_checks)
-
-    def test_neutron_lib_project_hacking_checks(self):
-        self._test_register_checks(list(checks._LIB_PROJECT_CHECKS),
-                                   checks._neutron_lib_project_hacking_checks)
-
-    def test_hacking_check_proxy(self):
-
-        class _MockOpts(object):
-            def __init__(self, ignore):
-                self.ignore = ignore or []
-
-        all_checks = list(checks.ALL_CHECKS)
-        with self._mocked_style_guide_checks(all_checks):
-            reg = []
-            all_codes = set([])
-            for codes in [pep8.ERRORCODE_REGEX.findall(f.__doc__ or '')
-                          for f in all_checks]:
-                for code in codes:
-                    all_codes.add(code)
-
-            self.assertTrue(len(all_codes) > 0)
-            opts = _MockOpts(all_codes)
-
-            checks._register_and_enable_checks(reg.append, all_checks)
-
-            checks._ProxyHackingChecks.parse_options(opts)
-            # make sure all registered checks are not ignored
-            self.assertEqual([], list(opts.ignore))
-
-    def test_check_eventlet_imports(self):
-        f = checks.check_no_eventlet_imports
-        self.assertLineFails(f, "import eventlet")
-        self.assertLineFails(f, "import eventlet.timeout")
-        self.assertLineFails(f, "from eventlet import timeout")
-        self.assertLineFails(f, "from eventlet.timeout import Timeout")
-        self.assertLineFails(f, "from eventlet.timeout import (Timeout, X)")
-        self.assertLinePasses(f, "import is.not.eventlet")
-        self.assertLinePasses(f, "from is.not.eventlet")
-        self.assertLinePasses(f, "from mymod import eventlet")
-        self.assertLinePasses(f, "from mymod.eventlet import amod")
-        self.assertLinePasses(f, 'print("eventlet not here")')
-        self.assertLinePasses(f, 'print("eventlet.timeout")')
-        self.assertLinePasses(f, "from mymod.timeout import (eventlet, X)")

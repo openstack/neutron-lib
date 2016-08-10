@@ -14,9 +14,7 @@
 
 import re
 
-from hacking import core
 import pep8
-
 
 _all_log_levels = {
     'critical': '_LC',
@@ -50,11 +48,7 @@ def _translation_is_not_expected(filename):
     return any(pat in filename for pat in ["/tests/", "rally-jobs/plugins/"])
 
 
-@core.flake8ext
-@core.off_by_default
 def validate_log_translations(logical_line, physical_line, filename):
-    """N531 - Log messages require translation hints."""
-    # Do not do these validations on tests
     if _translation_is_not_expected(filename):
         return
 
@@ -66,21 +60,14 @@ def validate_log_translations(logical_line, physical_line, filename):
         yield (0, msg)
 
 
-@core.flake8ext
-@core.off_by_default
 def check_log_warn_deprecated(logical_line, filename):
-    """N532 - Use LOG.warning due to compatibility with py3."""
     msg = "N532: Use LOG.warning due to compatibility with py3"
     if _log_warn.match(logical_line):
         yield (0, msg)
 
 
-@core.flake8ext
-@core.off_by_default
 def no_translate_debug_logs(logical_line, filename):
-    """N533 - Don't translate debug level logs.
-
-    Check for 'LOG.debug(_(' and 'LOG.debug(_Lx('
+    """Check for 'LOG.debug(_(' and 'LOG.debug(_Lx('
 
     As per our translation policy,
     https://wiki.openstack.org/wiki/LoggingStandards#Log_Translation
@@ -94,11 +81,7 @@ def no_translate_debug_logs(logical_line, filename):
             yield(0, "N533 Don't translate debug level logs")
 
 
-@core.flake8ext
-@core.off_by_default
 def check_raised_localized_exceptions(logical_line, filename):
-    """N534 - Untranslated exception message."""
-    # NOTE(boden): tox.ini doesn't permit per check exclusion
     if _translation_is_not_expected(filename):
         return
 
