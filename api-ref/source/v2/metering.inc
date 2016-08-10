@@ -42,7 +42,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: samples/metering-labels/metering-labels-list-response.json
+.. literalinclude:: samples/metering/metering-labels-list-response.json
    :language: javascript
 
 Create metering label
@@ -67,7 +67,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: samples/metering-labels/metering-label-create-request.json
+.. literalinclude:: samples/metering/metering-label-create-request.json
    :language: javascript
 
 Response Parameters
@@ -113,7 +113,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: samples/metering-labels/metering-label-show-response.json
+.. literalinclude:: samples/metering/metering-label-show-response.json
    :language: javascript
 
 Delete metering label
@@ -159,7 +159,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: samples/metering-labels/metering-label-rules-list-response.json
+.. literalinclude:: samples/metering/metering-label-rules-list-response.json
    :language: javascript
 
 Create metering label rule
@@ -185,7 +185,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: samples/metering-labels/metering-label-rule-create-request.json
+.. literalinclude:: samples/metering/metering-label-rule-create-request.json
    :language: javascript
 
 Response Parameters
@@ -231,7 +231,7 @@ Request
 Response Example
 ----------------
 
-.. literalinclude:: samples/metering-labels/metering-label-rule-show-response.json
+.. literalinclude:: samples/metering/metering-label-rule-show-response.json
    :language: javascript
 
 Delete metering label rule
