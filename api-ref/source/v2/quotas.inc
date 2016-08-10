@@ -46,7 +46,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/quotas/quotas-list-response.json
+.. literalinclude:: samples/quotas/quotas-list-response.json
    :language: javascript
 
 List quotas for a tenant
@@ -86,7 +86,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/quotas/quotas-list-for-tenant-response.json
+.. literalinclude:: samples/quotas/quotas-list-for-tenant-response.json
    :language: javascript
 
 Update quota for a tenant
@@ -120,7 +120,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/quotas/quotas-update-request.json
+.. literalinclude:: samples/quotas/quotas-update-request.json
    :language: javascript
 
 Response Parameters
@@ -142,7 +142,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/quotas/quotas-update-response.json
+.. literalinclude:: samples/quotas/quotas-update-response.json
    :language: javascript
 
 Reset quota for a tenant

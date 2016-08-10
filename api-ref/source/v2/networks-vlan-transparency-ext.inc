@@ -63,7 +63,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/network-vlan-transparent-show-response.json
+.. literalinclude:: samples/networks/network-vlan-transparent-show-response.json
    :language: javascript
 
 List networks with VLAN transparency attribute
@@ -101,7 +101,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/networks-vlan-transparent-list-response.json
+.. literalinclude:: samples/networks/networks-vlan-transparent-list-response.json
    :language: javascript
 
 Create VLAN-transparent network
@@ -130,7 +130,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/networks/network-vlan-transparent-create-request.json
+.. literalinclude:: samples/networks/network-vlan-transparent-create-request.json
    :language: javascript
 
 Response Parameters

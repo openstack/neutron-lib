@@ -37,5 +37,5 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/service-type-response.json
+.. literalinclude:: samples/service-type-response.json
    :language: javascript

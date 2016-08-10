@@ -75,7 +75,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/networks-multi-show-response.json
+.. literalinclude:: samples/networks/networks-multi-show-response.json
    :language: javascript
 
 List networks with multiple segment mappings
@@ -116,7 +116,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/networks/networks-multi-list-response.json
+.. literalinclude:: samples/networks/networks-multi-list-response.json
    :language: javascript
 
 Create network with multiple segment mappings
@@ -148,7 +148,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/networks/network-multi-create-request.json
+.. literalinclude:: samples/networks/network-multi-create-request.json
    :language: javascript
 
 Response Parameters

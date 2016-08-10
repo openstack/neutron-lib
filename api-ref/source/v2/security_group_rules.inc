@@ -48,7 +48,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/security-groups/security-group-rule-show-response.json
+.. literalinclude:: samples/security-groups/security-group-rule-show-response.json
    :language: javascript
 
 Delete security group rule
@@ -99,7 +99,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/security-groups/security-group-rules-list-response.json
+.. literalinclude:: samples/security-groups/security-group-rules-list-response.json
    :language: javascript
 
 Create security group rule
@@ -129,7 +129,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/security-groups/security-group-rule-create-request.json
+.. literalinclude:: samples/security-groups/security-group-rule-create-request.json
    :language: javascript
 
 Response Parameters

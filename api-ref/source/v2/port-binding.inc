@@ -29,7 +29,7 @@ Request
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/ports/port-bind-show-response.json
+.. literalinclude:: samples/ports/port-bind-show-response.json
    :language: javascript
 
 Update port (port binding)
@@ -53,13 +53,13 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/ports/port-create-request.json
+.. literalinclude:: samples/ports/port-create-request.json
    :language: javascript
 
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/ports/port-bind-create-update-response.json
+.. literalinclude:: samples/ports/port-bind-create-update-response.json
    :language: javascript
 
 Delete port (port binding)
@@ -95,7 +95,7 @@ Request
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/ports/ports-list-response.json
+.. literalinclude:: samples/ports/ports-list-response.json
    :language: javascript
 
 Create port (port binding)
@@ -113,6 +113,6 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/ports/port-create-request.json
+.. literalinclude:: samples/ports/port-create-request.json
    :language: javascript
 

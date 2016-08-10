@@ -69,7 +69,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-insert-rule-request.json
+.. literalinclude:: samples/firewalls/firewall-policy-insert-rule-request.json
    :language: javascript
 
 Response Parameters
@@ -89,7 +89,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-insert-rule-response.json
+.. literalinclude:: samples/firewalls/firewall-policy-insert-rule-response.json
    :language: javascript
 
 Show firewall policy details
@@ -131,7 +131,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-show-response.json
+.. literalinclude:: samples/firewalls/firewall-policy-show-response.json
    :language: javascript
 
 Update firewall policy
@@ -155,7 +155,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-update-request.json
+.. literalinclude:: samples/firewalls/firewall-policy-update-request.json
    :language: javascript
 
 Response Parameters
@@ -175,7 +175,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-update-response.json
+.. literalinclude:: samples/firewalls/firewall-policy-update-response.json
    :language: javascript
 
 Delete firewall policy
@@ -227,7 +227,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policies-list-response.json
+.. literalinclude:: samples/firewalls/firewall-policies-list-response.json
    :language: javascript
 
 Create firewall policy
@@ -255,7 +255,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-create-request.json
+.. literalinclude:: samples/firewalls/firewall-policy-create-request.json
    :language: javascript
 
 Response Parameters
@@ -319,7 +319,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-rule-show-response.json
+.. literalinclude:: samples/firewalls/firewall-rule-show-response.json
    :language: javascript
 
 Update firewall rule
@@ -355,7 +355,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-rule-update-request.json
+.. literalinclude:: samples/firewalls/firewall-rule-update-request.json
    :language: javascript
 
 Response Parameters
@@ -383,7 +383,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-rule-update-response.json
+.. literalinclude:: samples/firewalls/firewall-rule-update-response.json
    :language: javascript
 
 Delete firewall rule
@@ -442,7 +442,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-show-response.json
+.. literalinclude:: samples/firewalls/firewall-show-response.json
    :language: javascript
 
 Update firewall
@@ -475,7 +475,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-update-request.json
+.. literalinclude:: samples/firewalls/firewall-update-request.json
    :language: javascript
 
 Response Parameters
@@ -496,7 +496,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-update-response.json
+.. literalinclude:: samples/firewalls/firewall-update-response.json
    :language: javascript
 
 Delete firewall
@@ -556,7 +556,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-rules-list-response.json
+.. literalinclude:: samples/firewalls/firewall-rules-list-response.json
    :language: javascript
 
 Create firewall rule
@@ -589,7 +589,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-rule-create-request.json
+.. literalinclude:: samples/firewalls/firewall-rule-create-request.json
    :language: javascript
 
 Response Parameters
@@ -648,7 +648,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewalls-list-response.json
+.. literalinclude:: samples/firewalls/firewalls-list-response.json
    :language: javascript
 
 Create firewall
@@ -680,7 +680,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-create-request.json
+.. literalinclude:: samples/firewalls/firewall-create-request.json
    :language: javascript
 
 Response Parameters
@@ -720,7 +720,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-remove-rule-request.json
+.. literalinclude:: samples/firewalls/firewall-policy-remove-rule-request.json
    :language: javascript
 
 Response Parameters
@@ -740,6 +740,6 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: ../samples/firewalls/firewall-policy-remove-rule-response.json
+.. literalinclude:: samples/firewalls/firewall-policy-remove-rule-response.json
    :language: javascript
 
