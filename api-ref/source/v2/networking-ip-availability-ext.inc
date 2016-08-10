@@ -28,7 +28,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - network_id: network_id
+   - network_id: network_id_3
 
 Response Parameters
 -------------------
@@ -37,7 +37,7 @@ Response Parameters
 
    - used_ips: used_ips
    - subnet_ip_availability: subnet_ip_availability
-   - network_id: network_id
+   - network_id: network_id_3
    - tenant_id: tenant_id
    - total_ips: total_ips
    - network_ip_availability: network_ip_availability
@@ -74,7 +74,7 @@ Response Parameters
 
    - used_ips: used_ips
    - subnet_ip_availability: subnet_ip_availability
-   - network_id: network_id
+   - network_id: network_id_3
    - tenant_id: tenant_id
    - total_ips: total_ips
    - subnet_id: subnet_id
