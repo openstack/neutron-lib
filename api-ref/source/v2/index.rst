@@ -18,7 +18,6 @@ Networking API v2.0
 .. include:: subnetpools.inc
 .. include:: routers.inc
 .. include:: floatingips.inc
-.. include:: extraroute.inc
 .. include:: security-groups.inc
 .. include:: security-group-rules.inc
 .. include:: quotas.inc
