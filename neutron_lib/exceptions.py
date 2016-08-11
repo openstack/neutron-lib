@@ -99,6 +99,10 @@ class PortNotFoundOnNetwork(NotFound):
                 "on network %(net_id)s.")
 
 
+class DeviceNotFoundError(NotFound):
+    message = _("Device '%(device_name)s' does not exist.")
+
+
 class InUse(NeutronException):
     message = _("The resource is in use.")
 
