@@ -11,7 +11,6 @@
 #    under the License.
 
 import collections
-import debtcollector
 import re
 
 import functools
@@ -616,14 +615,6 @@ validators = {'type:dict': validate_dict,
               'type:boolean': validate_boolean,
               'type:integer': validate_integer,
               'type:list_of_unique_strings': validate_list_of_unique_strings}
-
-
-# TODO(boden): update removal_version once naming determined
-debtcollector.deprecate('validators',
-                        message='accessors replacing direct variable',
-                        version='newton',
-                        removal_version='P release',
-                        stacklevel=4)
 
 
 def _to_validation_type(validation_type):
