@@ -25,3 +25,7 @@ class TestNeutronLib(base.BaseTestCase):
         foo = constants.Sentinel()
         bar = copy.deepcopy(foo)
         self.assertEqual(id(foo), id(bar))
+
+    def test_sentinel_copy(self):
+        singleton = constants.Sentinel()
+        self.assertEqual(copy.deepcopy(singleton), copy.copy(singleton))
