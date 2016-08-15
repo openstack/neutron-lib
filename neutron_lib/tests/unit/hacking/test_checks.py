@@ -10,6 +10,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import re
+
 import testtools
 
 from neutron_lib.hacking import checks
@@ -179,3 +181,35 @@ class HackingTestCase(base.BaseTestCase):
         f = tc.check_raised_localized_exceptions
         self.assertLinePasses(f, "raise KeyError('Error text')",
                               'neutron_lib/tests/unit/mytest.py')
+
+    def test_check_delayed_string_interpolation(self):
+        dummy_noqa = re.search('a', 'a')
+        f = tc.check_delayed_string_interpolation
+
+        # In 'logical_line', Contents of strings replaced with
+        # "xxx" of same length.
+        self.assertLineFails(f, 'LOG.error(_LE("xxxxxxxxxxxxxxx") % value)',
+                             'neutron_lib/db/utils.py', None)
+        self.assertLineFails(f, "LOG.warning(msg % 'xxxxx')",
+                             'neutron_lib/db/utils.py', None)
+        self.assertLineFails(f, "LOG.info(_LI('xxxxxxxxxxxxxxxxxxxxxxxxx"
+                                "xxxxxxxxx') % {'xx': v1, 'xx': v2})",
+                             'neutron_lib/db/utils.py', None)
+
+        self.assertLinePasses(
+            f, 'LOG.error(_LE("xxxxxxxxxxxxxxxxxx"), value)',
+            'neutron_lib/db/utils.py', None)
+        self.assertLinePasses(f, "LOG.warning(msg, 'xxxxx')",
+                              'neutron_lib/db/utils.py', None)
+        self.assertLinePasses(f, "LOG.info(_LI('xxxxxxxxxxxxxxxxxxxxxxxx"
+                                 "xxxxxxxxx'), {'xx': v1, 'xx': v2})",
+                              'neutron_lib/db/utils.py', None)
+
+        # check a file in neutron_lib/tests
+        self.assertLinePasses(f, 'LOG.error(_LE("xxxxxxxxxxxxxxx") % value)',
+                              'neutron_lib/tests/unit/test_neutron_lib.py',
+                              None)
+        # check code including 'noqa'
+        self.assertLinePasses(f, 'LOG.error(_LE("xxxxxxxxxxxxxxx") % value)',
+                              'neutron_lib/db/utils.py',
+                              dummy_noqa)

@@ -171,3 +171,4 @@ def factory(register):
     register(translation_checks.no_translate_debug_logs)
     register(translation_checks.check_log_warn_deprecated)
     register(translation_checks.check_raised_localized_exceptions)
+    register(translation_checks.check_delayed_string_interpolation)
