@@ -258,6 +258,10 @@ class Sentinel(object):
         # Always return the same object because this is essentially a constant.
         return self
 
+    def __copy__(self):
+        # called via copy.copy(x)
+        return self
+
 
 #############################
 # Attribute related constants
