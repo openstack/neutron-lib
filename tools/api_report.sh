@@ -79,15 +79,15 @@ if [[ ${TAG_RELEASE} == '' ]]; then
 fi
 
 
-${PYIR_PATH} --report ${PACKAGE} > "${TMPDIR}/${PACKAGE}.master.json.txt"
+${PYIR_PATH} generate --blacklist '.*\/tests\/.*','.*\._(\w+)' ${PACKAGE} > "${TMPDIR}/${PACKAGE}.master.json.txt"
 
 install_project
-${PYIR_PATH} --report ${TMPDIR}/${PROJECT}/${PACKAGE} > "${TMPDIR}/${PACKAGE}.${TAG_RELEASE}.json.txt"
+${PYIR_PATH} generate --blacklist '.*\/tests\/.*','.*\._(\w+)' ${TMPDIR}/${PROJECT}/${PACKAGE} > "${TMPDIR}/${PACKAGE}.${TAG_RELEASE}.json.txt"
 
 
 echo "==========================================================="
 echo "Changes between current commit and release tag ${TAG_RELEASE}"
 echo "==========================================================="
 
-${PYIR_PATH} --diff "${TMPDIR}/${PACKAGE}.master.json.txt" "${TMPDIR}/${PACKAGE}.${TAG_RELEASE}.json.txt"
+${PYIR_PATH} diff "${TMPDIR}/${PACKAGE}.master.json.txt" "${TMPDIR}/${PACKAGE}.${TAG_RELEASE}.json.txt"
 
