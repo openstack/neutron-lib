@@ -1256,7 +1256,13 @@ expected_codes_1:
   type: string
 extension:
   description: |
-    A list of ``extension`` object.
+    An ``extension`` object.
+  in: body
+  required: true
+  type: object
+extensions:
+  description: |
+    A list of ``extension`` objects.
   in: body
   required: true
   type: object
