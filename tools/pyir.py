@@ -102,7 +102,6 @@ class _PyIREmptyMock_(object):
     def __rtrudiv__(self, o):
         return o
 
-
     def __add__(self, o):
         return o
 
@@ -159,6 +158,21 @@ _MOCK_CLASS_NAME = '_PyIREmptyMock_'
 _MOCK_IMPORT_CLASS_NAME = '_PyIREmptyImport_'
 
 UNKNOWN_VAL = 'PYIR UNKNOWN VALUE'
+_BLACKLIST = [re.compile(".*\.%s" % _MOCK_CLASS_NAME),
+              re.compile(".*\.%s" % _MOCK_IMPORT_CLASS_NAME)]
+
+
+def blacklist_filter(value):
+    for pattern in _BLACKLIST:
+        if pattern.match(value):
+            return False
+    return True
+
+
+def add_blacklist_from_csv_str(csv_str):
+    global _BLACKLIST
+    _BLACKLIST.extend([re.compile(p)
+                       for p in split_on_token(csv_str, ',')])
 
 
 def for_tokens(the_str, tokens, callback):
@@ -167,7 +181,7 @@ def for_tokens(the_str, tokens, callback):
     index = 0
 
     def _compare_tokens(idx):
-        hits =[]
+        hits = []
         for token in tokens:
             if the_str[idx:].startswith(token):
                 hits.append(token)
@@ -194,6 +208,21 @@ def token_indexes(the_str, tokens):
 
     for_tokens(the_str, tokens, _count)
     return indexes
+
+
+def split_on_token(the_str, token):
+    indexes = token_indexes(the_str, [token])
+    if not indexes:
+        return [the_str]
+
+    strs = []
+    indexes.insert(0, None)
+    for start, end in zip(indexes, indexes[1:] + [None]):
+        start = 0 if start is None else start + 1
+        if end is None:
+            end = len(the_str)
+        strs.append(the_str[start:end])
+    return strs
 
 
 def count_tokens(the_str, tokens):
@@ -241,15 +270,14 @@ def parent_path(file_path):
 
 
 def is_py_file(file_path):
-    # TODO(boden): user specified filters
-    return (not path.basename(file_path).startswith('_') and
+    file_path = file_path if filter(blacklist_filter, [file_path]) else None
+    return (file_path and
             path.isfile(file_path) and
             file_path.endswith('.py'))
 
 
 def is_py_dir(dir_path):
-    dir_name = path.basename(dir_path)
-    if dir_name.startswith('_') or dir_name == 'tests':
+    if not filter(blacklist_filter, [dir_path]):
         return False
 
     if path.isdir(dir_path):
@@ -261,6 +289,9 @@ def is_py_dir(dir_path):
 
 
 def is_py_package_dir(dir_path):
+    if not filter(blacklist_filter, [dir_path]):
+        return False
+
     if path.isdir(dir_path):
         return '__init__.py' in os.listdir(dir_path)
     return False
@@ -656,7 +687,7 @@ class ImportParser(object):
         return self
 
 
-class PyLineTokens:
+class PyLineTokens(object):
     COMMENT = '#'
     BACKSLASH = '\\'
     DECORATOR = '@'
@@ -779,7 +810,12 @@ class RemoveDocStrings(AbstractPerFileFilter):
     _COMMENT = '"""'
 
     def _comment_count(self, py_line):
-        return py_line.logical.count(RemoveDocStrings._COMMENT)
+        return count_tokens(py_line.logical, RemoveDocStrings._COMMENT)
+
+    def _safe_delete_line(self, py_line, py_file):
+        if py_line.logical.endswith((',', ')',)):
+            return
+        py_file.del_line(py_line)
 
     def _filter(self, py_line, py_file):
         in_comment = False
@@ -876,6 +912,7 @@ class MergeMultiLineImports(AbstractMultiLineCollector):
         super(MergeMultiLineImports, self).filter(py_line, py_file)
         py_line.logical = remove_brackets(py_line.logical)
 
+
 class MergeMultiLineClass(AbstractMultiLineCollector):
 
     def mark(self, py_line):
@@ -916,7 +953,7 @@ class MockParentClass(AbstractFilter):
         m = MockParentClass._PARENT_RE.match(py_line.logical)
         if m:
             py_line.logical = py_line.logical.replace(
-                    "(%s):" % m.group(1), "(%s):" % _MOCK_CLASS_NAME)
+                "(%s):" % m.group(1), "(%s):" % _MOCK_CLASS_NAME)
 
 
 class MockImports(AbstractFilter):
@@ -934,8 +971,19 @@ class MockImports(AbstractFilter):
         py_line.logical = remove_brackets(py_line.logical)
         self._parser.parse(py_line.logical)
 
+        if '*' in self._parser.names:
+            inferred_names = []
+            for module in self._parser.modules:
+                if not module.startswith('.'):
+                    inferred_names.extend(module.split('.'))
+            self._parser.names = inferred_names
+
+        if not self._parser.names:
+            py_line.comment_out()
+            return
+
         py_line.logical = ', '.join(self._parser.names) + ' = ' + ', '.join(
-                [_MOCK_IMPORT_CLASS_NAME + '()' for n in self._parser.names])
+            [_MOCK_IMPORT_CLASS_NAME + '()' for n in self._parser.names])
 
         if '_' in self._parser.names:
             # TODO(boden): one off
@@ -1031,7 +1079,7 @@ class APISignature(object):
         return "%s(%s)" % (signature_dict['qualified_name'], arg_str.strip())
 
     def _build_variable_signature(self, signature_dict):
-        val = ('PYIR UNKNOWN VALUE'
+        val = (UNKNOWN_VAL
                if signature_dict['member_value'] is None
                else signature_dict['member_value'])
         return "%s = %s" % (signature_dict['qualified_name'], val)
@@ -1069,7 +1117,6 @@ class ModuleParser(object):
         if not paths:
             return inits, mods
 
-        # TODO(boden): configurable filtering
         for py_path in paths:
             if is_py_file(py_path):
                 if path.basename(py_path) == '__init__.py':
@@ -1078,8 +1125,8 @@ class ModuleParser(object):
                     mods.append(py_path)
             elif is_py_dir(py_path) and recurse:
                 c_inits, c_mods = self._collect_paths(
-                        [path.join(py_path, c) for c in os.listdir(py_path)],
-                        recurse=recurse)
+                    [path.join(py_path, c) for c in os.listdir(py_path)],
+                    recurse=recurse)
                 inits.extend(c_inits)
                 mods.extend(c_mods)
         return inits, mods
@@ -1139,9 +1186,7 @@ class ModuleParser(object):
             for member_name, member in inspect.getmembers(
                     module, _member_filter):
 
-                # TODO(boden): pluggable filtering
-                if member_name.startswith('_'):
-                    # private member
+                if member_name.startswith('__') and member_name.endswith('__'):
                     continue
 
                 fqn = self._fully_qualified_name(module, member_name)
@@ -1166,10 +1211,10 @@ class ModuleParser(object):
 
     def parse_paths(self, py_paths, recurse=True):
         init_paths, mod_paths = self._collect_paths(
-                py_paths, recurse=recurse)
+            py_paths, recurse=recurse)
         init_mods, pkg_mods, failed_mods = self.load_modules(
-                init_paths, mod_paths)
-        self.parse_modules(init_paths)
+            init_paths, mod_paths)
+        self.parse_modules(init_mods)
         self.parse_modules(pkg_mods)
 
 
@@ -1178,17 +1223,21 @@ class APIReport(object):
     def __init__(self, abort_on_load_failure=False):
         self._api = {}
         self._parser = ModuleParser(
-                [self], abort_on_load_failure=abort_on_load_failure)
+            [self], abort_on_load_failure=abort_on_load_failure)
 
     def _add(self, event):
+
         if is_mock_import(event.member):
             return
         uuid = str(event.qualified_name)
         if uuid in self._api:
+            # TODO(boden): configurable bail on duplicate flag
             sys.stderr.write("Duplicate API signature: %s" % uuid)
-            #raise KeyError("Duplicate API signature: %s" %
-            #               uuid)
             return
+
+        if not filter(blacklist_filter, [uuid]):
+            return
+
         self._api[uuid] = event.to_dict()
 
     def parse_method(self, event):
@@ -1237,6 +1286,9 @@ class APIReport(object):
         old_api = APIReport.from_json_file(old_api)
         return new_api.api_diff(old_api)
 
+    def get_filtered_signatures(self):
+        return filter(blacklist_filter, self.get_signatures())
+
     def get_signatures(self):
         return sorted([APISignature.get_signature(s)
                        for s in self._api.values()])
@@ -1273,9 +1325,30 @@ class APIReport(object):
         }
 
 
-class CLI(argparse.ArgumentParser):
+@six.add_metaclass(abc.ABCMeta)
+class AbstractCommand(object):
 
-    _ACTIONS = ['report', 'diff']
+    @abc.abstractmethod
+    def get_parser(self):
+        pass
+
+    @abc.abstractmethod
+    def run(self, args):
+        pass
+
+
+def _add_blacklist_opt(parser):
+    parser.add_argument(
+        '--blacklist',
+        help='One or more regular expressions used to filter out '
+             'API paths from the report. File path segments, module '
+             'names, class names, etc. are all subject to filtering. '
+             'Multiple regexes can be specified using a comma in the '
+             '--blacklist argument.')
+
+
+class GenerateReportCommand(AbstractCommand):
+
     PY_LINE_FILTERS = [RemoveDocStrings(),
                        RemoveCommentLines(),
                        StripTrailingComments(),
@@ -1290,60 +1363,88 @@ class CLI(argparse.ArgumentParser):
                        MockImports()]
 
     def __init__(self):
-        super(CLI, self).__init__(
-            prog='pyir',
-            description='Python API report tooling.',
-            add_help=True)
+        self._parser = argparse.ArgumentParser(
+            prog='generate',
+            description='Generate an interface report for python '
+                        'source. The paths given can be a python '
+                        'package or project directory, or a single '
+                        'python source file. The program replaces '
+                        'your imports with mocks, so no dependencies '
+                        'are needed in the python env.')
+        _add_blacklist_opt(self._parser)
+        self._parser.add_argument(
+            '--debug',
+            help='Exit parsing on failure to load a module and '
+                 'leave temp staging dir intact..',
+            action='store_const',
+            const=True)
+        self._parser.add_argument('PATH', nargs='+', metavar='PATH')
 
-        self.add_argument('--report',
-                          help='Generate an interface report for python '
-                               'source. The paths given can be a python '
-                               'package or project directory, or a single '
-                               'python source file. The program replaces '
-                               'your imports with mocks, so no dependencies '
-                               'are needed in the python env.',
-                          nargs='+',
-                          metavar='PATH')
-        self.add_argument('--diff',
-                          help='Given a new and old JSON interface report '
-                               'files, calculate the changes between new '
-                               'and old and echo them to STDOUT.',
-                          nargs=2,
-                          metavar=('NEW_REPORT_FILE', 'OLD_REPORT_FILE'))
-        self.add_argument('--unchanged',
-                          help='Used with --changes to specify that unchanged '
-                               'public APIs should be reported in addition to '
-                               'new and removed.',
-                          action='store_const',
-                          const=True),
-        self.add_argument('--debug',
-                          help='Exit parsing on failure to load a module and '
-                               'leave temp staging dir intact..',
-                          action='store_const',
-                          const=True)
+    def get_parser(self):
+        return self._parser
 
-        self.options = None
-        self.args = None
-        self._parse()
-        if not self.action:
-            raise RuntimeError("No options specified")
-        self.run()
+    def run(self, args):
+        if args.blacklist:
+            add_blacklist_from_csv_str(args.blacklist)
 
-    def run(self):
-        action = getattr(self, self.action)
-        action()
-
-    def report(self):
-        files = PyFiles(self.options.report)
+        files = PyFiles(args.PATH)
         with files.tmp_tree(delete_on_exit=(
-                not self.options.debug)) as tmp_root:
-            PyFiles.filter_all_py_files(tmp_root, CLI.PY_LINE_FILTERS)
-            report = APIReport(abort_on_load_failure=self.options.debug)
+                not args.debug)) as tmp_root:
+            PyFiles.filter_all_py_files(
+                tmp_root, GenerateReportCommand.PY_LINE_FILTERS)
+            report = APIReport(abort_on_load_failure=args.debug)
             for child in os.listdir(tmp_root):
                 child_path = path.join(tmp_root, child)
                 report.parse_api_paths([child_path])
 
         print("%s" % report.to_json())
+
+
+class PrintReportCommand(AbstractCommand):
+
+    def __init__(self):
+        self._parser = argparse.ArgumentParser(
+            prog='print',
+            description='Given a JSON API file, print the API signatures '
+                        'to STDOUT.')
+        _add_blacklist_opt(self._parser)
+        self._parser.add_argument('REPORT_FILE',
+                                  help='Path to JSON report file.')
+
+    def get_parser(self):
+        return self._parser
+
+    def run(self, args):
+        if args.blacklist:
+            add_blacklist_from_csv_str(args.blacklist)
+        report = APIReport.from_json_file(args.REPORT_FILE)
+        for signature in report.get_filtered_signatures():
+            print(signature)
+
+
+class DiffReportCommand(AbstractCommand):
+
+    def __init__(self):
+        self._parser = argparse.ArgumentParser(
+            prog='diff',
+            description='Given a new and old JSON interface report '
+                        'files, calculate the changes between new '
+                        'and old and echo them to STDOUT.')
+        _add_blacklist_opt(self._parser)
+        self._parser.add_argument(
+            '--unchanged',
+            help='Used with --diff to specify that unchanged '
+                 'public APIs should be reported in addition to '
+                 'new and removed.',
+            action='store_const',
+            const=True)
+        self._parser.add_argument('NEW_REPORT_FILE',
+                                  help='Path to new report file.')
+        self._parser.add_argument('OLD_REPORT_FILE',
+                                  help='Path to old report file.')
+
+    def get_parser(self):
+        return self._parser
 
     def _print_row(self, heading, content_list):
         print(heading)
@@ -1352,45 +1453,58 @@ class CLI(argparse.ArgumentParser):
             print(str(content))
         print("-----------------------------------------------------\n")
 
-    def diff(self):
-        if len(self.options.diff) != 2:
-            raise Exception("Invalid usage. Try: --help")
+    def run(self, args):
+        if args.blacklist:
+            add_blacklist_from_csv_str(args.blacklist)
 
         api_diff = APIReport.api_diff_files(
-                self.options.diff[0], self.options.diff[1])
+            args.NEW_REPORT_FILE, args.OLD_REPORT_FILE)
 
         self._print_row("New API Signatures",
-                        api_diff['new'].get_signatures())
+                        api_diff['new'].get_filtered_signatures())
         self._print_row("Removed API Signatures",
-                        api_diff['removed'].get_signatures())
+                        api_diff['removed'].get_filtered_signatures())
 
-        new_sigs = api_diff['new_changed'].get_signatures()
-        old_sigs = api_diff['old_changed'].get_signatures()
+        new_sigs = api_diff['new_changed'].get_filtered_signatures()
+        old_sigs = api_diff['old_changed'].get_filtered_signatures()
         self._print_row("Changed API Signatures",
                         ["%s [is now] %s" %
                          (old_sigs[i], new_sigs[i])
                          for i in range(len(new_sigs))])
 
-        if self.options.unchanged:
+        if args.unchanged:
             self._print_row("Unchanged API Signatures",
-                            api_diff['unchanged'].get_signatures())
+                            api_diff['unchanged'].get_filtered_signatures())
 
-    @property
-    def show_unchanged(self):
-        return getattr(self.options, 'unchanged', False)
 
-    def _parse(self):
-        self.options, self.args = self.parse_known_args()
+class CLI(object):
 
-    @property
-    def action(self):
-        for action in CLI._ACTIONS:
-            if getattr(self.options, action, None):
-                return action
+    def __init__(self, commands):
+        self._commands = {c.get_parser().prog: c for c in commands}
+        self.parser = argparse.ArgumentParser(
+            prog='pyir',
+            description='Python API report tooling.',
+            usage="pyir <%s> [args]" % "|".join(self._commands.keys()),
+            add_help=True)
+        self.parser.add_argument(
+            'command',
+            help='The command to run. Known commands: '
+                 '%s . Try \'pyir <command> --help\' for more info '
+                 'on a specific command. ' % ", ".join(self._commands.keys()))
+
+        args = self.parser.parse_args(sys.argv[1:2])
+        if args.command not in self._commands.keys():
+            print("Unknown command: %s" % args.command)
+            self.parser.print_help()
+            exit(1)
+
+        cmd = self._commands[args.command]
+        cmd.get_parser().prog = self.parser.prog + ' ' + cmd.get_parser().prog
+        cmd.run(cmd.get_parser().parse_args(sys.argv[2:]))
 
 
 def main():
-    CLI()
+    CLI([DiffReportCommand(), GenerateReportCommand(), PrintReportCommand()])
 
 if __name__ == '__main__':
     main()
