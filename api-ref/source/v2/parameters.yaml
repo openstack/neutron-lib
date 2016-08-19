@@ -3046,6 +3046,42 @@ remote_ip_prefix_2:
   in: body
   required: true
   type: string
+resource-collection:
+  description: |
+    Collection name of the resource.
+  in: body
+  required: true
+  type: string
+resource-href:
+  description: |
+    Link to the resource.
+  in: body
+  required: true
+  type: string
+resource-links:
+  description: |
+    List of links related to the resource. Each link is a dict with 'href' and 'rel'.
+  in: body
+  required: true
+  type: array
+resource-name:
+  description: |
+    Name of the the resource.
+  in: body
+  required: true
+  type: string
+resource-rel:
+  description: |
+    Relationship between link and the resource.
+  in: body
+  required: true
+  type: string
+resources:
+  description: |
+    List of resource objects.
+  in: body
+  required: true
+  type: array
 route_mode:
   description: |
     The route mode. A valid value is ``static``,
@@ -4223,6 +4259,42 @@ value_1:
   in: body
   required: true
   type: integer
+version-href:
+  description: |
+    Link to the API.
+  in: body
+  required: true
+  type: string
+version-id:
+  description: |
+    Version of the API.
+  in: body
+  required: true
+  type: string
+version-links:
+  description: |
+    List of version links. Each link is a dict with 'href' and 'rel'.
+  in: body
+  required: true
+  type: array
+version-rel:
+  description: |
+    Relationship of link with the version.
+  in: body
+  required: true
+  type: string
+version-status:
+  description: |
+    Status of the API, which can be ``CURRENT``, ``STABLE`` or ``DEPRECATED``.
+  in: body
+  required: true
+  type: string
+versions:
+  description: |
+    List of versions.
+  in: body
+  required: true
+  type: array
 vip:
   description: |
     A ``vip`` object.

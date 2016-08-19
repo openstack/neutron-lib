@@ -1,8 +1,5 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
 .. needs:example_verification
-.. needs:body_verification
 
 ============
 API versions
@@ -10,16 +7,14 @@ API versions
 
 Lists information for all Networking API versions.
 
-Show API v2 details
-===================
+List API versions
+=================
 
-.. rest_method::  GET /v2.0
+.. rest_method::  GET /
 
-Shows details for Networking API v2.0.
+Lists information about all Networking API versions.
 
 Normal response codes: 200
-
-Error response codes: 203
 
 Request
 -------
@@ -31,32 +26,49 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - location: location
+   - versions: versions
+   - status: version-status
+   - id: version-id
+   - links: version-links
+   - href: version-href
+   - rel: version-rel
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/networks/version-show-response.json
+.. literalinclude:: samples/networks/versions-list-response.json
    :language: javascript
 
-List API versions
-=================
+Show API v2 details
+===================
 
-.. rest_method::  GET /
+.. rest_method::  GET /v2.0/
 
-Lists information about all Networking API versions.
+Shows details for Networking API v2.0.
 
 Normal response codes: 200
 
-Error response codes: 300
+Error response codes: 401
 
 Request
 -------
 
 .. .. rest_parameters:: parameters.yaml
 
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - resources: resources
+   - name: resource-name
+   - collection: resource-collection
+   - links: resource-links
+   - href: resource-href
+   - rel: resource-rel
+
 Response Example
 ----------------
 
-.. literalinclude:: samples/networks/versions-list-response.json
+.. literalinclude:: samples/networks/version-show-response.json
    :language: javascript
