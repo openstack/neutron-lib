@@ -10,10 +10,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import netaddr
 from oslo_utils import strutils
 import six
 
 from neutron_lib._i18n import _
+from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
 
 
@@ -162,3 +164,21 @@ def convert_to_list(data):
         return list(data)
     else:
         return [data]
+
+
+def convert_ip_to_canonical_format(value):
+    """IP Address is validated and then converted to canonical format.
+
+    :param value: The IP Address which needs to be checked.
+    :returns: - None if 'value' is None,
+              - 'value' if 'value' is IPv4 address,
+              - 'value' if 'value' is not an IP Address
+              - canonical IPv6 address if 'value' is IPv6 address.
+    """
+    try:
+        ip = netaddr.IPAddress(value)
+        if ip.version == constants.IP_VERSION_6:
+            return six.text_type(ip.format(dialect=netaddr.ipv6_compact))
+    except netaddr.core.AddrFormatError:
+        pass
+    return value

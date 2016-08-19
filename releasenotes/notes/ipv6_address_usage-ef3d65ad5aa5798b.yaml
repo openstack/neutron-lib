@@ -1,0 +1,6 @@
+---
+features:
+     - |
+       A converter ``convert_ip_to_canonical_format`` has been added to
+       neutron-lib which allows IPv6 addresses to be stored and
+       displayed in canonical format.

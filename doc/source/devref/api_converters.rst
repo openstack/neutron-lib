@@ -84,3 +84,14 @@ Test The Validator
 Do the right thing, and make sure you've created a unit test for any
 converter that you add to verify that it works as expected.
 
+IPv6 canonical address formatter
+--------------------------------
+
+There are several ways to display an IPv6 address, which can lead to a lot
+of confusion for users, engineers and operators alike. To reduce the impact
+of the multifaceted style of writing an IPv6 address, it is proposed that
+the IPv6 address in Neutron should be saved in the canonical format.
+
+If a user passes an IPv6 address, it will be saved in the canonical format.
+
+The full document is found at : http://tools.ietf.org/html/rfc5952
