@@ -24,8 +24,11 @@ from sqlalchemy.orm import exc
 def get_and_validate_sort_keys(sorts, model):
     """Extract sort keys from sorts and ensure they are valid for the model.
 
-    :param sorts: list of (key, direction) tuples
-    :param model: sqlalchemy ORM model class
+    :param sorts: A list of (key, direction) tuples.
+    :param model: A sqlalchemy ORM model class.
+    :returns: A list of the extracted sort keys.
+    :raises BadRequest: If a sort key attribute references another resource
+    and cannot be used in the sort.
     """
 
     sort_keys = [s[0] for s in sorts]
@@ -50,8 +53,9 @@ def get_and_validate_sort_keys(sorts, model):
 def get_sort_dirs(sorts, page_reverse=False):
     """Extract sort directions from sorts, possibly reversed.
 
-    :param sorts: list of (key, direction) tuples
-    :param page_reverse: True if sort direction is reversed
+    :param sorts: A list of (key, direction) tuples.
+    :param page_reverse: True if sort direction is reversed.
+    :returns: The list of extracted sort directions optionally reversed.
     """
     if page_reverse:
         return ['desc' if s[1] else 'asc' for s in sorts]
@@ -70,7 +74,7 @@ def is_retriable(exception):
     """Determine if the said exception is retriable.
 
     :param exception: The exception to check.
-    :return: True if 'exception' is retriable, otherwise False.
+    :returns: True if 'exception' is retriable, otherwise False.
     """
     if _is_nested_instance(exception,
                            (db_exc.DBDeadlock, exc.StaleDataError,
@@ -86,8 +90,9 @@ def reraise_as_retryrequest(function):
     """Wrap the said function with a RetryRequest upon error.
 
     :param function: The function to wrap/decorate.
-    :return: The 'function' wrapped in a try block that will reraise any
+    :returns: The 'function' wrapped in a try block that will reraise any
     Exception's as a RetryRequest.
+    :raises RetryRequest: If the wrapped function raises retriable exception.
     """
     @six.wraps(function)
     def _wrapped(*args, **kwargs):
