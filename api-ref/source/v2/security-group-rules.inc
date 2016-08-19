@@ -1,5 +1,7 @@
 .. -*- rst -*-
 
+.. _security_group_rules:
+
 ===========================================
 Security group rules (security-group-rules)
 ===========================================
