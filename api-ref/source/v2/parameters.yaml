@@ -1,12 +1,6 @@
 # variables in header
 
 # variables in path
-alias_1:
-  description: |
-    The alias of an extension.
-  in: path
-  required: false
-  type: string
 connection_id:
   description: |
     The UUID of the IPSec site-to-site connection.
@@ -18,6 +12,12 @@ endpoint_group_id:
     The UUID of the VPN endpoint group.
   in: path
   required: false
+  type: string
+extensions-alias-path:
+  description: |
+    The alias of an extension.
+  in: path
+  required: true
   type: string
 firewall_id:
   description: |
@@ -1297,12 +1297,44 @@ extension:
   in: body
   required: true
   type: object
+extension-alias-body:
+  description: |
+    The alias for the extension. For example "quotas" or
+    "security-group".
+  in: body
+  required: true
+  type: string
+extension-description:
+  description: |
+    The human-readable description for the resource.
+  in: body
+  required: true
+  type: string
+extension-links:
+  description: |
+     List of links related to the extension.
+  in: body
+  required: true
+  type: array
+extension-name:
+  description: |
+    Human-readable name of the resource.
+  in: body
+  required: true
+  type: string
+extension-updated:
+  description: |
+    The date and timestamp when the extension was
+    last updated.
+  in: body
+  required: true
+  type: string
 extensions:
   description: |
     A list of ``extension`` objects.
   in: body
   required: true
-  type: object
+  type: array
 external_v4_ip:
   description: |
     Read-only external (public) IPv4 address that is
