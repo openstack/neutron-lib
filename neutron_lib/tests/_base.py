@@ -176,6 +176,24 @@ class BaseTestCase(testtools.TestCase):
         self.addOnException(self.check_for_systemexit)
         self.orig_pid = os.getpid()
 
+    def get_new_temp_dir(self):
+        """Create a new temporary directory.
+
+        :returns fixtures.TempDir
+        """
+        return self.useFixture(fixtures.TempDir())
+
+    def get_default_temp_dir(self):
+        """Create a default temporary directory.
+
+        Returns the same directory during the whole test case.
+
+        :returns fixtures.TempDir
+        """
+        if not hasattr(self, '_temp_dir'):
+            self._temp_dir = self.get_new_temp_dir()
+        return self._temp_dir
+
     def check_for_systemexit(self, exc_info):
         if isinstance(exc_info[1], SystemExit):
             if os.getpid() != self.orig_pid:
