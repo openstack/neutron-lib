@@ -32,6 +32,12 @@ def _create_facade_lazily():
     return _FACADE
 
 
+def get_engine():
+    """Helper method to grab engine."""
+    facade = _create_facade_lazily()
+    return facade.get_engine()
+
+
 def get_session(autocommit=True, expire_on_commit=False, use_slave=False):
     """Helper method to grab session."""
     facade = _create_facade_lazily()
