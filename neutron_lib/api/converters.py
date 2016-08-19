@@ -17,6 +17,14 @@ from neutron_lib import exceptions as n_exc
 
 
 def convert_to_boolean(data):
+    """Convert a data value into a python bool.
+
+    :param data: The data value to convert to a python bool. This function
+    supports string types, bools, and ints for conversion of representation
+    to python bool.
+    :returns: The bool value of 'data' if it can be coerced.
+    :raises InvalidInput: If the value can't be coerced to a python bool.
+    """
     if isinstance(data, six.string_types):
         val = data.lower()
         if val == "true" or val == "1":
@@ -35,11 +43,24 @@ def convert_to_boolean(data):
 
 
 def convert_to_boolean_if_not_none(data):
+    """Uses convert_to_boolean() on the data if the data is not None.
+
+    :param data: The data value to convert.
+    :returns: The 'data' returned from convert_to_boolean() if 'data' is not
+    None. None is returned if data is None.
+    """
     if data is not None:
         return convert_to_boolean(data)
 
 
 def convert_to_int(data):
+    """Convert a data value to a python int.
+
+    :param data: The data value to convert to a python int via python's
+    built-in int() constructor.
+    :returns: The int value of the data.
+    :raises InvalidInput: If the value can't be converted to an int.
+    """
     try:
         return int(data)
     except (ValueError, TypeError):
@@ -48,12 +69,27 @@ def convert_to_int(data):
 
 
 def convert_to_int_if_not_none(data):
+    """Uses convert_to_int() on the data if the data is not None.
+
+    :param data: The data value to convert.
+    :returns: The 'data' returned from convert_to_int() if 'data' is not None.
+    None is returned if data is None.
+    """
     if data is not None:
         return convert_to_int(data)
     return data
 
 
 def convert_to_positive_float_or_none(val):
+    """Converts a value to a python float if the value is positive.
+
+    :param val: The value to convert to a positive python float.
+    :returns: The value as a python float. If the val is None, None is
+    returned.
+    :raises ValueError, InvalidInput: A ValueError is raised if the 'val'
+    is a float, but is negative. InvalidInput is raised if 'val' can't be
+    converted to a python float.
+    """
     # NOTE(salv-orlando): This conversion function is currently used by
     # a vendor specific extension only at the moment  It is used for
     # port's RXTX factor in neutron.plugins.vmware.extensions.qos.
@@ -74,8 +110,9 @@ def convert_to_positive_float_or_none(val):
 def convert_kvp_str_to_list(data):
     """Convert a value of the form 'key=value' to ['key', 'value'].
 
-    :raises: n_exc.InvalidInput if any of the strings are malformed
-                                (e.g. do not contain a key).
+    :param data: The string to parse for a key value pair.
+    :returns: A list where element 0 is the key and element 1 is the value.
+    :raises InvalidInput: If 'data' is not a key value string.
     """
     kvp = [x.strip() for x in data.split('=', 1)]
     if len(kvp) == 2 and kvp[0]:
@@ -87,9 +124,10 @@ def convert_kvp_str_to_list(data):
 def convert_kvp_list_to_dict(kvp_list):
     """Convert a list of 'key=value' strings to a dict.
 
-    :raises: n_exc.InvalidInput if any of the strings are malformed
-                                (e.g. do not contain a key) or if any
-                                of the keys appear more than once.
+    :param kvp_list: A list of key value pair strings. For more info on the
+    format see; convert_kvp_str_to_list().
+    :returns: A dict who's key value pairs are populated by parsing 'kvp_list'.
+    :raises InvalidInput: If any of the key value strings are malformed.
     """
     if kvp_list == ['True']:
         # No values were provided (i.e. '--flag-name')
@@ -103,14 +141,30 @@ def convert_kvp_list_to_dict(kvp_list):
 
 
 def convert_none_to_empty_list(value):
+    """Convert value to an empty list if it's None.
+
+    :param value: The value to convert.
+    :returns: An empty list of 'value' is None, otherwise 'value'.
+    """
     return [] if value is None else value
 
 
 def convert_none_to_empty_dict(value):
+    """Convert the value to an empty dict if it's None.
+
+    :param value: The value to convert.
+    :returns: An empty dict if 'value' is None, otherwise 'value'.
+    """
     return {} if value is None else value
 
 
 def convert_to_list(data):
+    """Convert a value into a list.
+
+    :param data: The value to convert.
+    :return: A new list wrapped around 'data' whereupon the list is empty
+    if 'data' is None.
+    """
     if data is None:
         return []
     elif hasattr(data, '__iter__') and not isinstance(data, six.string_types):
