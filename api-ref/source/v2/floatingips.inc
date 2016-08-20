@@ -42,16 +42,16 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - router_id: router_id
-   - status: status
+   - floatingips: floatingips
+   - id: floatingip-id
+   - router_id: floatingip-router_id
+   - status: floatingip-status
    - tenant_id: project_id
    - project_id: project_id
    - floating_network_id: floating_network_id
-   - fixed_ip_address: fixed_ip_address
+   - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
-   - port_id: port_id
-   - id: id
-   - floatingips: floatingips
+   - port_id: floatingip-port_id
 
 Response Example
 ----------------
@@ -129,9 +129,9 @@ Request
    - tenant_id: project_id
    - project_id: project_id
    - floating_network_id: floating_network_id
-   - fixed_ip_address: fixed_ip_address
-   - floating_ip_address: floating_ip_address
-   - port_id: port_id
+   - fixed_ip_address: floatingip-fixed_ip_address-request
+   - floating_ip_address: floating_ip_address-request
+   - port_id: floatingip-port_id-post-request
 
 Request Example
 ---------------
@@ -144,16 +144,16 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - router_id: router_id
-   - status: status
    - floatingip: floatingip
+   - router_id: floatingip-router_id
+   - status: floatingip-status
    - tenant_id: project_id
    - project_id: project_id
    - floating_network_id: floating_network_id
-   - fixed_ip_address: fixed_ip_address
+   - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
-   - port_id: port_id
-   - id: id
+   - port_id: floatingip-port_id
+   - id: floatingip-id
 
 Show floating IP details
 ========================
@@ -187,23 +187,23 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - floatingip_id: floatingip_id
+   - floatingip_id: floatingip-id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - router_id: router_id
-   - status: status
+   - router_id: floatingip-router_id
+   - status: floatingip-status
    - floatingip: floatingip
    - tenant_id: project_id
    - project_id: project_id
    - floating_network_id: floating_network_id
-   - fixed_ip_address: fixed_ip_address
+   - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
-   - port_id: port_id
-   - id: id
+   - port_id: floatingip-port_id
+   - id: floatingip-id
 
 Response Example
 ----------------
@@ -241,9 +241,10 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - port_id: port_id
+   - floatingip_id: floatingip-id-path
    - floatingip: floatingip
-   - floatingip_id: floatingip_id
+   - port_id: floatingip-port_id-put-request
+   - fixed_ip_address: floatingip-fixed_ip_address-request
 
 Request Example
 ---------------
@@ -256,16 +257,16 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - router_id: router_id
-   - status: status
    - floatingip: floatingip
+   - router_id: floatingip-router_id
+   - status: floatingip-status
    - tenant_id: project_id
    - project_id: project_id
    - floating_network_id: floating_network_id
-   - fixed_ip_address: fixed_ip_address
+   - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
-   - port_id: port_id
-   - id: id
+   - port_id: floatingip-port_id
+   - id: floatingip-id
 
 Response Example
 ----------------
@@ -293,4 +294,4 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - floatingip_id: floatingip_id
+   - floatingip_id: floatingip-id-path
