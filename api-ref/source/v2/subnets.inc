@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 =======
 Subnets
@@ -24,12 +20,50 @@ user has administrative role. You can control which attributes
 are returned by using the fields query parameter. You can filter
 results by using query string parameters.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 Normal response codes: 200
 
 Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - subnets: subnets-obj
+   - id: subnet-id-body
+   - tenant_id: project_id
+   - project_id: project_id
+   - name: subnet-name
+   - enable_dhcp: subnet-enable_dhcp
+   - network_id: subnet-network_id
+   - dns_nameservers: subnet-dns_nameservers
+   - allocation_pools: subnet-allocation_pools
+   - host_routes: subnet-host_routes
+   - ip_version: subnet-ip_version
+   - gateway_ip: subnet-gateway_ip
+   - cidr: cidr
+   - created_at: subnet-created_at
+   - description: subnet-description
+   - ipv6_address_mode: subnet-ipv6_address_mode
+   - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - revision_number: subnet-revision_number
+   - segment_id: subnet-segment_id
+   - service_types: subnet-service_types
+   - subnetpool_id: subnet-subnetpool_id
+   - updated_at: subnet-updated_at
 
 Response Example
 ----------------
@@ -80,17 +114,71 @@ subnets must be associated with segments or none of them can be.
 Neutron enforces this invariant. Currently, routed networks are
 only supported for provider networks.
 
-Error response codes: 201,404,403,401,400,409
+Normal response codes: 201
+
+Error response codes: 404, 403, 401, 400, 409
 
 Request
 -------
 
-.. .. rest_parameters:: parameters.yaml
+.. rest_parameters:: parameters.yaml
+
+   - subnet: subnet-obj
+   - tenant_id: project_id-request
+   - project_id: project_id-request
+   - name: subnet-name-request
+   - enable_dhcp: subnet-enable_dhcp-request
+   - network_id: subnet-network_id
+   - dns_nameservers: subnet-dns_nameservers-request
+   - allocation_pools: subnet-allocation_pools-request
+   - host_routes: subnet-host_routes-request
+   - ip_version: subnet-ip_version
+   - gateway_ip: subnet-gateway_ip-request
+   - cidr: cidr
+   - description: description-request
+   - ipv6_address_mode: subnet-ipv6_address_mode-request
+   - ipv6_ra_mode: subnet-ipv6_ra_mode-request
+   - segment_id: subnet-segment_id-request
+   - subnetpool_id: subnet-subnetpool_id-request
 
 Request Example
 ---------------
 
 .. literalinclude:: samples/subnets/subnet-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - subnet: subnet-obj
+   - id: subnet-id-body
+   - tenant_id: project_id
+   - project_id: project_id
+   - name: subnet-name
+   - enable_dhcp: subnet-enable_dhcp
+   - network_id: subnet-network_id
+   - dns_nameservers: subnet-dns_nameservers
+   - allocation_pools: subnet-allocation_pools
+   - host_routes: subnet-host_routes
+   - ip_version: subnet-ip_version
+   - gateway_ip: subnet-gateway_ip
+   - cidr: cidr
+   - created_at: subnet-created_at
+   - description: subnet-description
+   - ipv6_address_mode: subnet-ipv6_address_mode
+   - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - revision_number: subnet-revision_number
+   - service_types: subnet-service_types
+   - subnetpool_id: subnet-subnetpool_id
+   - segment_id: subnet-segment_id
+   - updated_at: subnet-updated_at
+
+Response Example
+----------------
+
+.. literalinclude:: samples/subnets/subnet-create-response.json
    :language: javascript
 
 Bulk create subnet
@@ -103,17 +191,71 @@ Creates multiple subnets in a single request. Specify a list of subnets in the r
 The bulk create operation is always atomic. Either all or no
 subnets in the request body are created.
 
-Error response codes: 201,404,403,401,400,409
+Normal response codes: 201
+
+Error response codes: 404, 403, 401, 400, 409
 
 Request
 -------
 
-.. .. rest_parameters:: parameters.yaml
+.. rest_parameters:: parameters.yaml
+
+   - subnets: subnets-obj
+   - tenant_id: project_id-request
+   - project_id: project_id-request
+   - name: subnet-name-request
+   - enable_dhcp: subnet-enable_dhcp-request
+   - network_id: subnet-network_id
+   - dns_nameservers: subnet-dns_nameservers-request
+   - allocation_pools: subnet-allocation_pools-request
+   - host_routes: subnet-host_routes-request
+   - ip_version: subnet-ip_version
+   - gateway_ip: subnet-gateway_ip-request
+   - cidr: cidr
+   - description: description-request
+   - ipv6_address_mode: subnet-ipv6_address_mode-request
+   - ipv6_ra_mode: subnet-ipv6_ra_mode-request
+   - segment_id: subnet-segment_id-request
+   - subnetpool_id: subnet-subnetpool_id-request
 
 Request Example
 ---------------
 
 .. literalinclude:: samples/subnets/subnets-create-bulk-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - subnets: subnets-obj
+   - id: subnet-id-body
+   - tenant_id: project_id
+   - project_id: project_id
+   - name: subnet-name
+   - enable_dhcp: subnet-enable_dhcp
+   - network_id: subnet-network_id
+   - dns_nameservers: subnet-dns_nameservers
+   - allocation_pools: subnet-allocation_pools
+   - host_routes: subnet-host_routes
+   - ip_version: subnet-ip_version
+   - gateway_ip: subnet-gateway_ip
+   - cidr: cidr
+   - created_at: subnet-created_at
+   - description: subnet-description
+   - ipv6_address_mode: subnet-ipv6_address_mode
+   - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - revision_number: subnet-revision_number
+   - segment_id: subnet-segment_id
+   - service_types: subnet-service_types
+   - subnetpool_id: subnet-subnetpool_id
+   - updated_at: subnet-updated_at
+
+Response Example
+----------------
+
+.. literalinclude:: samples/subnets/subnets-create-bulk-response.json
    :language: javascript
 
 Show subnet details
@@ -134,7 +276,35 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet_id: subnet_id
+   - subnet_id: subnet_id-path
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - subnet: subnet-obj
+   - id: subnet-id-body
+   - tenant_id: project_id
+   - project_id: project_id
+   - created_at: subnet-created_at
+   - name: subnet-name
+   - enable_dhcp: subnet-enable_dhcp
+   - network_id: subnet-network_id
+   - dns_nameservers: subnet-dns_nameservers
+   - allocation_pools: subnet-allocation_pools
+   - host_routes: subnet-host_routes
+   - ip_version: subnet-ip_version
+   - gateway_ip: subnet-gateway_ip
+   - cidr: cidr
+   - updated_at: subnet-updated_at
+   - description: subnet-description
+   - ipv6_address_mode: subnet-ipv6_address_mode
+   - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - revision_number: subnet-revision_number
+   - segment_id: subnet-segment_id
+   - service_types: subnet-service_types
+   - subnetpool_id: subnet-subnetpool_id
 
 Response Example
 ----------------
@@ -162,13 +332,47 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet_id: subnet_id
+   - subnet_id: subnet_id-path
+   - name: subnet-name-update-request
+   - enable_dhcp: subnet-enable_dhcp-request
+   - dns_nameservers: subnet-dns_nameservers-request
+   - allocation_pools: subnet-allocation_pools-request
+   - host_routes: subnet-host_routes-request
+   - gateway_ip: subnet-gateway_ip-request
 
 Request Example
 ---------------
 
 .. literalinclude:: samples/subnets/subnet-update-request.json
    :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - subnet: subnet-obj
+   - id: subnet-id-body
+   - tenant_id: project_id
+   - project_id: project_id
+   - name: subnet-name
+   - enable_dhcp: subnet-enable_dhcp
+   - network_id: subnet-network_id
+   - dns_nameservers: subnet-dns_nameservers
+   - allocation_pools: subnet-allocation_pools
+   - host_routes: subnet-host_routes
+   - ip_version: subnet-ip_version
+   - gateway_ip: subnet-gateway_ip
+   - cidr: cidr
+   - created_at: subnet-created_at
+   - description: subnet-description
+   - ipv6_address_mode: subnet-ipv6_address_mode
+   - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - revision_number: subnet-revision_number
+   - segment_id: subnet-segment_id
+   - service_types: subnet-service_types
+   - subnetpool_id: subnet-subnetpool_id
+   - updated_at: subnet-updated_at
 
 Response Example
 ----------------
@@ -185,12 +389,19 @@ Deletes a subnet.
 
 The operation fails if subnet IP addresses are still allocated.
 
-Error response codes: 409,404,204,401
+Normal response codes: 204
+
+Error response codes: 404, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet_id: subnet_id
+   - subnet_id: subnet_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
