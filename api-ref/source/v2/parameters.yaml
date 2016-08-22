@@ -1,15 +1,15 @@
 # variables in header
 
 # variables in path
-connection_id:
+connection_id-path:
   description: |
-    The UUID of the IPSec site-to-site connection.
+    The ID of the IPSec site-to-site connection.
   in: path
   required: false
   type: string
-endpoint_group_id:
+endpoint_group_id-path:
   description: |
-    The UUID of the VPN endpoint group.
+    The ID of the VPN endpoint group.
   in: path
   required: false
   type: string
@@ -79,15 +79,15 @@ health_monitor_id-path:
   in: path
   required: true
   type: string
-ikepolicy_id_1:
+ikepolicy_id-path:
   description: |
-    The UUID of the IKE policy.
+    The ID of the IKE policy.
   in: path
-  required: false
+  required: true
   type: string
-ipsecpolicy_id_1:
+ipsecpolicy_id-path:
   description: |
-    The UUID of the IPSec policy.
+    The ID of the IPSec policy.
   in: path
   required: false
   type: string
@@ -229,12 +229,6 @@ segment_id-path:
   in: path
   required: true
   type: string
-service_id:
-  description: |
-    The UUID of the VPN service.
-  in: path
-  required: false
-  type: string
 subnet_id-path:
   description: |
     The ID of the subnet.
@@ -265,7 +259,12 @@ vip_id_1:
   in: path
   required: false
   type: string
-
+vpnservice_id-path:
+  description: |
+    The ID of the VPN service.
+  in: path
+  required: false
+  type: string
 # variables in query
 fields:
   description: |
@@ -303,26 +302,10 @@ action-response:
   in: body
   required: true
   type: string
-action_1:
-  description: |
-    The dead peer detection (DPD) action. A valid
-    value is ``clear``, ``hold``, ``restart``, ``disabled``, or
-    ``restart-by-peer``. Default value is ``hold``.
-  in: body
-  required: false
-  type: string
 action_2:
   description: |
     The action that the API performs on traffic that
     matches the firewall rule. Value is ``allow`` or ``deny``.
-  in: body
-  required: true
-  type: string
-action_3:
-  description: |
-    The dead peer detection (DPD) action. A valid
-    value is ``clear``, ``hold``, ``restart``, ``disabled``, or
-    ``restart-by-peer``. Default value is ``hold``.
   in: body
   required: true
   type: string
@@ -618,40 +601,12 @@ auth_algorithm:
   in: body
   required: false
   type: string
-auth_algorithm_1:
-  description: |
-    The authentication algorithm. A valid value is
-    ``sha1``, which is the default.
-  in: body
-  required: false
-  type: string
-auth_algorithm_2:
-  description: |
-    The authentication hash algorithm. A valid value
-    is ``sha1``, which is the default.
-  in: body
-  required: true
-  type: string
-auth_algorithm_3:
-  description: |
-    The authentication algorithm. A valid value is
-    ``sha1``, which is the default.
-  in: body
-  required: true
-  type: string
 auth_mode:
   description: |
     The authentication mode. A valid value is
     ``psk``, which is the default.
   in: body
   required: false
-  type: string
-auth_mode_1:
-  description: |
-    The authentication mode. A valid value is
-    ``psk``, which is the default.
-  in: body
-  required: true
   type: string
 availability_zone_hints:
   description: |
@@ -689,6 +644,12 @@ cidr:
     The CIDR of the subnet.
   in: body
   required: true
+  type: string
+connection_id-body-response:
+  description: |
+    The ID of the IPSec site-to-site connection.
+  in: body
+  required: false
   type: string
 connection_limit:
   description: |
@@ -1190,13 +1151,6 @@ dpd:
   in: body
   required: false
   type: object
-dpd_1:
-  description: |
-    A dictionary with dead peer detection (DPD)
-    protocol controls.
-  in: body
-  required: true
-  type: object
 driver:
   description: |
     Provider driver to use for this profile. Example:
@@ -1328,13 +1282,6 @@ encapsulation_mode:
   in: body
   required: false
   type: string
-encapsulation_mode_1:
-  description: |
-    The encapsulation mode. A valid value is
-    ``tunnel`` or ``transport``. Default is ``tunnel``.
-  in: body
-  required: true
-  type: string
 encryption_algorithm:
   description: |
     The encryption algorithm. A valid value is
@@ -1343,11 +1290,9 @@ encryption_algorithm:
   in: body
   required: false
   type: string
-encryption_algorithm_1:
+endpoint_group_id-body-response:
   description: |
-    The encryption algorithm. A valid value is
-    ``3des``, ``aes-128``, ``aes-192``, ``aes-256``, and so on.
-    Default is ``aes-128``.
+    The ID of the VPN endpoint group.
   in: body
   required: true
   type: string
@@ -1355,13 +1300,6 @@ endpoints:
   description: |
     List of endpoints of the same type, for the
     endpoint group. The values will depend on type.
-  in: body
-  required: true
-  type: array
-endpoints_1:
-  description: |
-    A list of endpoints of the same type for the
-    endpoint group. Theses values depend on the type.
   in: body
   required: true
   type: array
@@ -2292,18 +2230,6 @@ id_1:
   in: body
   required: true
   type: string
-id_10:
-  description: |
-    The UUID for the IPSec policy.
-  in: body
-  required: true
-  type: string
-id_11:
-  description: |
-    The UUID for the IPSec connection.
-  in: body
-  required: true
-  type: string
 id_12:
   description: |
     The UUID of the listener.
@@ -2370,18 +2296,6 @@ id_22:
   in: body
   required: true
   type: string
-id_23:
-  description: |
-    The UUID for the VPN endpoint group.
-  in: body
-  required: true
-  type: string
-id_24:
-  description: |
-    The UUID for the VPN service.
-  in: body
-  required: true
-  type: string
 id_25:
   description: |
     The UUID of network.
@@ -2443,16 +2357,9 @@ ike_version:
   in: body
   required: false
   type: string
-ike_version_1:
-  description: |
-    The IKE version. A valid value is ``v1`` or
-    ``v2``. Default is ``v1``.
-  in: body
-  required: true
-  type: string
 ikepolicies:
   description: |
-    A list of IKE policy objects.
+    A list of ``ikepolicy`` objects.
   in: body
   required: true
   type: array
@@ -2462,9 +2369,15 @@ ikepolicy:
   in: body
   required: true
   type: object
-ikepolicy_id:
+ikepolicy_id-body-request:
   description: |
-    The UUID of the IKE policy.
+    The ID of the IKE policy.
+  in: body
+  required: false
+  type: string
+ikepolicy_id-body-response:
+  description: |
+    The ID of the IKE policy.
   in: body
   required: true
   type: string
@@ -2488,15 +2401,6 @@ initiator:
     ``bi-directional``.
   in: body
   required: false
-  type: string
-initiator_1:
-  description: |
-    Indicates whether this VPN can only respond to
-    connections or both respond to and initiate connections. A valid
-    value is ``response- only`` or ``bi-directional``. Default is
-    ``bi-directional``.
-  in: body
-  required: true
   type: string
 insert_after:
   description: |
@@ -2571,6 +2475,14 @@ ipsec_site_connection:
   in: body
   required: true
   type: object
+ipsec_site_connection-action:
+  description: |
+    The dead peer detection (DPD) action. A valid
+    value is ``clear``, ``hold``, ``restart``, ``disabled``, or
+    ``restart-by-peer``. Default value is ``hold``.
+  in: body
+  required: true
+  type: string
 ipsec_site_connection-status:
   description: |
     Indicates whether the IPSec connection is
@@ -2580,9 +2492,17 @@ ipsec_site_connection-status:
   in: body
   required: true
   type: string
+ipsec_site_connection-timeout:
+  description: |
+    The dead peer detection (DPD) timeout in seconds.
+    A valid value is a positive integer that is greater than the DPD
+    ``interval`` value. Default is 120.
+  in: body
+  required: true
+  type: integer
 ipsecpolicies:
   description: |
-    A list of IPSec policy objects.
+    A list of ``ipsecpolicy`` objects.
   in: body
   required: true
   type: array
@@ -2592,9 +2512,15 @@ ipsecpolicy:
   in: body
   required: true
   type: object
-ipsecpolicy_id:
+ipsecpolicy_id-body-request:
   description: |
-    The UUID of the IPSec policy.
+    The ID of the IPSec policy.
+  in: body
+  required: false
+  type: string
+ipsecpolicy_id-body-response:
+  description: |
+    The ID of the IPSec policy.
   in: body
   required: true
   type: string
@@ -2628,22 +2554,6 @@ lifetime:
     and default value is 3600.
   in: body
   required: false
-  type: object
-lifetime_1:
-  description: |
-    The lifetime of the security association. The
-    lifetime consists of a unit and integer value. You can omit either
-    the unit or value portion of the lifetime.
-  in: body
-  required: false
-  type: object
-lifetime_2:
-  description: |
-    The lifetime of the security association. The
-    lifetime consists of a unit and integer value. You can omit either
-    the unit or value portion of the lifetime.
-  in: body
-  required: true
   type: object
 links:
   description: |
@@ -2720,22 +2630,13 @@ loadbalancers:
   type: array
 local_ep_group_id:
   description: |
-    The UUID for the endpoint group that contains
+    The ID for the endpoint group that contains
     private subnets for the local side of the connection. Yo must
     specify this parameter with the ``peer_ep_group_id`` parameter
     unless in backward- compatible mode where ``peer_cidrs`` is
     provided with a ``subnet_id`` for the VPN service.
   in: body
   required: false
-  type: string
-local_ep_group_id_1:
-  description: |
-    The UUID for the endpoint group that contains
-    private subnets for the local side of the connection. This value
-    is present with the ``peer_ep_group_id`` parameter unless in
-    backward-compatible mode, where ``peer_cidrs`` is shown.
-  in: body
-  required: true
   type: string
 local_id:
   description: |
@@ -3375,13 +3276,6 @@ peer_address:
   in: body
   required: true
   type: string
-peer_address_1:
-  description: |
-    The peer gateway public IPv4 address, IPv6
-    address, or FQDN.
-  in: body
-  required: true
-  type: string
 peer_cidrs:
   description: |
     (Deprecated) Unique list of valid peer private
@@ -3389,16 +3283,9 @@ peer_cidrs:
   in: body
   required: false
   type: array
-peer_cidrs_1:
-  description: |
-    (Deprecated) Unique list of valid peer private
-    CIDRs in the form < net_address > / < prefix > .
-  in: body
-  required: true
-  type: array
 peer_ep_group_id:
   description: |
-    The UUID for the endpoint group that contains
+    The ID for the endpoint group that contains
     private CIDRs in the form < net_address > / < prefix > for the
     peer side of the connection. You must specify this parameter with
     the ``local_ep_group_id`` parameter unless in backward-compatible
@@ -3407,30 +3294,12 @@ peer_ep_group_id:
   in: body
   required: false
   type: string
-peer_ep_group_id_1:
-  description: |
-    The UUID for the endpoint group that contains
-    private CIDRs in the form < net_address > / < prefix > for the
-    peer side of the connection. This value is present with the
-    ``local_ep_group_id`` parameter unless in backward-compatible
-    mode, where ``peer_cidrs`` is shown.
-  in: body
-  required: true
-  type: string
 peer_id:
   description: |
     The peer router identity for authentication. A
     valid value is an IPv4 address, IPv6 address, e-mail address, key
     ID, or FQDN. Typically, this value matches the ``peer_address``
     value.
-  in: body
-  required: true
-  type: string
-peer_id_1:
-  description: |
-    The peer router identity for authentication. Can
-    be an IPv4 address, IPv6 address, e-mail address, key ID, or FQDN.
-    Typically, this value matches the ``peer_address`` value.
   in: body
   required: true
   type: string
@@ -3442,27 +3311,12 @@ pfs:
   in: body
   required: false
   type: string
-pfs_1:
-  description: |
-    Perfect forward secrecy (PFS). A valid value is
-    ``Group2``, ``Group5``, ``Group14``, and so on. Default is
-    ``Group5``.
-  in: body
-  required: true
-  type: string
 phase1_negotiation_mode:
   description: |
     The IKE mode. A valid value is ``main``, which is
     the default.
   in: body
   required: false
-  type: string
-phase1_negotiation_mode_1:
-  description: |
-    The IKE mode. A valid value is ``main``, which is
-    the default.
-  in: body
-  required: true
   type: string
 policies:
   description: |
@@ -5238,30 +5092,6 @@ timeout:
   in: body
   required: true
   type: integer
-timeout_1:
-  description: |
-    The dead peer detection (DPD) timeout in seconds.
-    A valid value is a positive integer that is greater than the DPD
-    ``interval`` value. Default is 120.
-  in: body
-  required: false
-  type: integer
-timeout_2:
-  description: |
-    The dead peer detection (DPD) timeout, in
-    seconds. A valid value is a positive integer that is greater than
-    the DPD ``interval`` value. Default is 120.
-  in: body
-  required: true
-  type: integer
-timeout_3:
-  description: |
-    The maximum time, in seconds, that a monitor
-    waits to connect before it times out. This value must be less than
-    the delay value.
-  in: body
-  required: false
-  type: integer
 total_ips:
   description: |
     The total number of IP addresses in a network.
@@ -5274,13 +5104,6 @@ transform_protocol:
     ``AH``, or ``AH- ESP``. Default is ``ESP``.
   in: body
   required: false
-  type: string
-transform_protocol_1:
-  description: |
-    The transform protocol. A valid value is ``ESP``,
-    ``AH``, or ``AH- ESP``. Default is ``ESP``.
-  in: body
-  required: true
   type: string
 trunk-status:
   description: |
@@ -5339,15 +5162,6 @@ units:
     Default unit is seconds and default value is 3600.
   in: body
   required: false
-  type: string
-units_1:
-  description: |
-    The units for the lifetime of the security
-    association. The lifetime consists of a unit and integer value.
-    You can omit either the unit or value portion of the lifetime.
-    Default unit is seconds and default value is 3600.
-  in: body
-  required: true
   type: string
 updated:
   description: |
@@ -5533,9 +5347,15 @@ vpnservice-status:
   in: body
   required: true
   type: string
-vpnservice_id:
+vpnservice_id-body-request:
   description: |
-    The UUID of the VPN service.
+    The ID of the VPN service.
+  in: body
+  required: false
+  type: string
+vpnservice_id-body-response:
+  description: |
+    The ID of the VPN service.
   in: body
   required: true
   type: string
