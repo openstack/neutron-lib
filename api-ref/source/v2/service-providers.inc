@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 =================
 Service providers
@@ -17,22 +13,32 @@ List service providers
 
 Lists service providers and their associated service types.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 Normal response codes: 200
 
-Error response codes: 404,409,401,400
+Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - default: default
-   - service_type: service_type
    - service_providers: service_providers
+   - service_type: service_type
    - name: name
+   - default: default
 
 Response Example
 ----------------
