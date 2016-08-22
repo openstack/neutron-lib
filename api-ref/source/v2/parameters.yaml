@@ -97,6 +97,18 @@ member_id-path:
   in: path
   required: true
   type: string
+metering_label-id-path:
+  description: |
+    The ID of the metering label.
+  in: path
+  required: true
+  type: string
+metering_label_rule-id-path:
+  description: |
+    The ID of the metering label rule.
+  in: path
+  required: true
+  type: string
 network_id_1:
   description: |
     The ID of the network.
@@ -2318,19 +2330,45 @@ metering_label:
   in: body
   required: true
   type: object
-metering_label_id:
+metering_label-id:
   description: |
-    The metering label UUID to associate with this
+    The ID of the metering label.
+  in: body
+  required: true
+  type: string
+metering_label-id-response-body:
+  description: |
+    The metering label ID to associate with this
     metering rule.
   in: body
   required: true
   type: string
+metering_label-shared:
+  description: |
+    Indicates whether this metering label is shared
+    across all projects.
+  in: body
+  required: true
+  type: boolean
+metering_label-shared-request:
+  description: |
+    Indicates whether this metering label is shared
+    across all projects.
+  in: body
+  required: true
+  type: boolean
 metering_label_rule:
   description: |
     A ``metering_label_rule`` object.
   in: body
   required: true
   type: object
+metering_label_rule-id:
+  description: |
+    The ID of the metering label rule.
+  in: body
+  required: true
+  type: string
 metering_label_rules:
   description: |
     A list of ``metering_label_rule`` objects.
@@ -3929,13 +3967,6 @@ shared_13:
   in: body
   required: false
   type: boolean
-shared_2:
-  description: |
-    Indicates whether this metering label is shared
-    across all projects.
-  in: body
-  required: false
-  type: boolean
 shared_3:
   description: |
     Admin-only. Indicates whether this network is
@@ -3969,13 +4000,6 @@ shared_7:
     Indicates whether this firewall rule is shared
     with other projects. Other projects can use a shared rule in
     firewall policies that this project does not own.
-  in: body
-  required: true
-  type: boolean
-shared_8:
-  description: |
-    Indicates whether this metering label is shared
-    across all projects.
   in: body
   required: true
   type: boolean
