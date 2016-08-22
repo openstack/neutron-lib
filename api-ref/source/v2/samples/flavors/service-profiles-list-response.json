@@ -5,14 +5,14 @@
             "enabled": true,
             "driver": "neutron_lbaas.drivers.octavia.driver.OctaviaDriver",
             "description": "",
-            "metainfo": ""
+            "metainfo": "{}"
         },
         {
             "id": "684322c5-703a-48a2-8138-34b99942a7ef",
             "enabled": true,
             "driver": "neutron_lbaas.drivers.octavia.driver.OctaviaDriver",
             "description": "",
-            "metainfo": ""
+            "metainfo": "{}"
         }
     ]
 }
