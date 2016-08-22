@@ -39,6 +39,14 @@ contextlib_nested = re.compile(r"^\s*with (contextlib\.)?nested\(")
 
 
 def use_jsonutils(logical_line, filename):
+    """N521 - jsonutils must be used instead of json.
+
+    :param logical_line: The logical line to check.
+    :param filename: The file name where the logical line exists.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     msg = "N521: jsonutils.%(fun)s must be used instead of json.%(fun)s"
 
     # Some files in the tree are not meant to be run from inside Neutron
@@ -96,12 +104,28 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
 
 @removals.remove(removal_version='P release')
 def check_oslo_namespace_imports(logical_line):
+    """N523 - Import oslo_ rather than oslo.
+
+    :param logical_line: The logical line to check.
+    :param filename: The file name where the logical line exists.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     x = _check_namespace_imports('N523', 'oslo', 'oslo_', logical_line)
     if x is not None:
         yield x
 
 
 def check_no_contextlib_nested(logical_line, filename):
+    """N524 - Use of contextlib.nested is deprecated.
+
+    :param logical_line: The logical line to check.
+    :param filename: The file name where the logical line exists.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     msg = ("N524: contextlib.nested is deprecated. With Python 2.7 and later "
            "the with-statement supports multiple nested objects. See https://"
            "docs.python.org/2/library/contextlib.html#contextlib.nested for "
@@ -112,12 +136,26 @@ def check_no_contextlib_nested(logical_line, filename):
 
 
 def check_python3_xrange(logical_line):
+    """N525 - Do not use xrange.
+
+    :param logical_line: The logical line to check.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     if re.search(r"\bxrange\s*\(", logical_line):
         yield(0, "N525: Do not use xrange. Use range, or six.moves.range for "
                  "large loops.")
 
 
 def check_no_basestring(logical_line):
+    """N526 - basestring is not Python3-compatible.
+
+    :param logical_line: The logical line to check.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     if re.search(r"\bbasestring\b", logical_line):
         msg = ("N526: basestring is not Python3-compatible, use "
                "six.string_types instead.")
@@ -125,6 +163,13 @@ def check_no_basestring(logical_line):
 
 
 def check_python3_no_iteritems(logical_line):
+    """N527 - Use dict.items() instead of dict.iteritems().
+
+    :param logical_line: The logical line to check.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     if re.search(r".*\.iteritems\(\)", logical_line):
         msg = ("N527: Use dict.items() instead of dict.iteritems() to be "
                "compatible with both Python 2 and Python 3. In Python 2, "
@@ -135,6 +180,13 @@ def check_python3_no_iteritems(logical_line):
 
 
 def no_mutable_default_args(logical_line):
+    """N529 - Method's default argument shouldn't be mutable.
+
+    :param logical_line: The logical line to check.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     msg = "N529: Method's default argument shouldn't be mutable!"
     if mutable_default_args.match(logical_line):
         yield (0, msg)
@@ -144,6 +196,13 @@ def no_mutable_default_args(logical_line):
 # until they can fully migrate to the lib.
 
 def check_neutron_namespace_imports(logical_line):
+    """N530 - Direct neutron imports not allowed.
+
+    :param logical_line: The logical line to check.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     x = _check_namespace_imports(
         'N530', 'neutron', 'neutron_lib.', logical_line,
         message_override="direct neutron imports not allowed")
@@ -152,7 +211,13 @@ def check_neutron_namespace_imports(logical_line):
 
 
 def check_no_eventlet_imports(logical_line):
-    """N535 - Usage of Python eventlet module not allowed."""
+    """N535 - Usage of Python eventlet module not allowed.
+
+    :param logical_line: The logical line to check.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
     if re.match(r'(import|from)\s+[(]?eventlet', logical_line):
         msg = 'N535: Usage of Python eventlet module not allowed'
         yield logical_line.index('eventlet'), msg
