@@ -139,12 +139,6 @@ network_id-path:
   in: path
   required: true
   type: string
-policy_id:
-  description: |
-    The UUID of the policy.
-  in: path
-  required: false
-  type: string
 pool_id-path:
   description: |
     The ID for the pool.
@@ -175,6 +169,18 @@ project_id-path:
   in: path
   required: true
   type: string
+qos-policy-id-path:
+  description: |
+    The ID of the QoS policy.
+  in: path
+  required: true
+  type: string
+qos-rule_id:
+  description: |
+    The ID of the QoS rule.
+  in: path
+  required: true
+  type: string
 resource_id:
   description: |
     The ID of resource which the tag is set on.
@@ -192,12 +198,6 @@ router_id:
     The ID of the router.
   in: path
   required: true
-  type: string
-rule_id:
-  description: |
-    The UUID of the rule.
-  in: path
-  required: false
   type: string
 security_group-id-path:
   description: |
@@ -1230,6 +1230,12 @@ dscp_mark:
     The DSCP mark value.
   in: body
   required: false
+  type: integer
+dscp_mark-response:
+  description: |
+    The DSCP mark value.
+  in: body
+  required: true
   type: integer
 dscp_marking_rule:
   description: |
@@ -2387,12 +2393,6 @@ id_17:
   in: body
   required: true
   type: string
-id_18:
-  description: |
-    The generated UUID of the QoS policy.
-  in: body
-  required: true
-  type: string
 id_19:
   description: |
     The UUID for the pool.
@@ -2852,27 +2852,27 @@ mac_address-request-put:
   type: string
 max_burst_kbps:
   description: |
-    The burst over the maximum KBPS value. Default is
-    ``0``
+    The maximum burst size (in kilobits). Default is ``0``.
   in: body
   required: false
   type: integer
-max_burst_kbps_1:
+max_burst_kbps-response:
   description: |
-    The burst over the maximum KBPS value.
+    The maximum burst size (in kilobits).
   in: body
   required: true
   type: integer
 max_kbps:
   description: |
-    The maximum KBPS value. If you specify this
-    value, must be greater than 0. Default is ``null``.
+    The maximum KBPS (kilobits per second) value. If you specify this
+    value, must be greater than 0 otherwise max_kbps will have no value.
   in: body
   required: false
   type: integer
-max_kbps_1:
+max_kbps-response:
   description: |
-    The maximum KBPS value.
+    The maximum KBPS (kilobits per second) value. If you specify this
+    value, must be greater than 0 otherwise max_kbps will have no value.
   in: body
   required: true
   type: integer
@@ -3579,13 +3579,6 @@ policy:
   in: body
   required: true
   type: object
-policy_id_1:
-  description: |
-    The UUID of the QoS policy that is associated
-    with the rule.
-  in: body
-  required: true
-  type: string
 pool:
   description: |
     A ``pool`` object.
@@ -3966,7 +3959,51 @@ psk:
   in: body
   required: true
   type: string
+qos-rules:
+  description: |
+    A set of zero or more policy rules.
+  in: body
+  required: true
+  type: array
+qos-shared:
+  description: |
+    Indicates whether this policy is shared across
+    all projects.
+  in: body
+  required: true
+  type: boolean
+qos-shared-request:
+  description: |
+    Set to ``true`` to share this policy with other
+    projects. Default is ``false``.
+  in: body
+  required: false
+  type: boolean
+qos_bandwidth_limit_rule-id:
+  description: |
+    The ID of the QoS Bandwidth limit rule.
+  in: body
+  required: true
+  type: string
+qos_dscp_marking_rule-id:
+  description: |
+    The ID of the QoS DSCP marking rule.
+  in: body
+  required: true
+  type: string
+qos_policy-name:
+  description: |
+      Human-readable name of the resource.
+  in: body
+  required: false
+  type: string
 qos_policy_id:
+  description: |
+    The ID of the QoS policy.
+  in: body
+  required: true
+  type: string
+qos_policy_id-body:
   description: |
     The ID of the QoS policy.
   in: body
@@ -4419,12 +4456,6 @@ routers:
   in: body
   required: true
   type: array
-rules:
-  description: |
-    A set of zero or more policy rules.
-  in: body
-  required: false
-  type: array
 security_group:
   description: |
     A ``security_group`` object.
@@ -4623,13 +4654,6 @@ shared-response:
   in: body
   required: true
   type: boolean
-shared_10:
-  description: |
-    Indicates whether this policy is shared across
-    all projects.
-  in: body
-  required: true
-  type: boolean
 shared_11:
   description: |
     Indicates whether this subnet pool is shared
@@ -4659,13 +4683,6 @@ shared_3:
     shared across all projects.
   in: body
   required: true
-  type: boolean
-shared_4:
-  description: |
-    Set to ``true`` to share this policy with other
-    projects.  Default is ``false``.
-  in: body
-  required: false
   type: boolean
 shared_5:
   description: |

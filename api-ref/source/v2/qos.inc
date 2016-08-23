@@ -1,118 +1,10 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 ==================
 QoS policies (qos)
 ==================
 
 Lists, creates, shows information for, and updates QoS policies.
-
-Show bandwidth limit rule details
-=================================
-
-.. rest_method::  GET /v2.0/qos/policies/{policy_id}/bandwidth_limit_rules/{rule_id}
-
-Shows details for a bandwidth limit rule for a QoS policy.
-
-Normal response codes: 200
-
-Error response codes: 401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - rule_id: rule_id
-   - policy_id: policy_id
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - bandwidth_limit_rule: bandwidth_limit_rule
-   - max_kbps: max_kbps
-   - id: id
-   - max_burst_kbps: max_burst_kbps
-   - policy_id: policy_id
-
-Response Example
-----------------
-
-.. literalinclude:: samples/qos/bandwidth_limit_rule-show-response.json
-   :language: javascript
-
-Update bandwidth limit rule
-===========================
-
-.. rest_method::  PUT /v2.0/qos/policies/{policy_id}/bandwidth_limit_rules/{rule_id}
-
-Updates a bandwidth limit rule for a QoS policy.
-
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
-Normal response codes: 200
-
-Error response codes: 400, 401, 413
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bandwidth_limit_rule: bandwidth_limit_rule
-   - max_kbps: max_kbps
-   - max_burst_kbps: max_burst_kbps
-   - policy_id: policy_id
-   - rule_id: rule_id
-   - policy_id: policy_id
-
-Request Example
----------------
-
-.. literalinclude:: samples/qos/bandwidth_limit_rule-update-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - bandwidth_limit_rule: bandwidth_limit_rule
-   - max_kbps: max_kbps
-   - id: id
-   - max_burst_kbps: max_burst_kbps
-   - policy_id: policy_id
-
-Response Example
-----------------
-
-.. literalinclude:: samples/qos/bandwidth_limit_rule-update-response.json
-   :language: javascript
-
-Delete bandwidth limit rule
-===========================
-
-.. rest_method::  DELETE /v2.0/qos/policies/{policy_id}/bandwidth_limit_rules/{rule_id}
-
-Deletes a bandwidth limit rule for a QoS policy.
-
-Normal response codes: 204
-
-Error response codes: 400, 401, 413
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - rule_id: rule_id
-   - policy_id: policy_id
 
 List QoS policies
 =================
@@ -123,6 +15,12 @@ Lists all QoS policies associated with your project.
 
 The list might be empty.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 Normal response codes: 200
 
 Error response codes: 401
@@ -130,19 +28,22 @@ Error response codes: 401
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - policies: policies
    - description: description
-   - policy_id: policy_id
    - tenant_id: project_id
    - project_id: project_id
-   - policies: policies
-   - shared: shared
-   - id: id
-   - rules: rules
+   - shared: qos-shared
+   - id: qos_policy_id
+   - rules: qos-rules
    - name: name
 
 Response Example
@@ -162,8 +63,8 @@ Creates a QoS policy by using the configuration that you define in
 the request object. A response object is returned. The object
 contains a unique ID.
 
-If the caller is not an administrative user, this call returns the
-HTTP ``Forbidden (403)`` response code.
+By the default policy configuration, if the caller is not an administrative
+user, this call returns the HTTP ``Forbidden (403)`` response code.
 
 Users with an administrative role can create policies on behalf of
 other projects by specifying a project ID that is different than
@@ -171,20 +72,19 @@ their own.
 
 Normal response codes: 201
 
-Error response codes: 401, 404, 409, 413
+Error response codes: 401, 403, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
    - policy: policy
-   - shared: shared
-   - type: type
-   - name: name
+   - description: description-request
+   - tenant_id: project_id-request
+   - project_id: project_id-request
+   - shared: qos-shared-request
+   - name: qos_policy-name
 
 Request Example
 ---------------
@@ -197,185 +97,20 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - policy: policy
    - description: description
    - tenant_id: project_id
    - project_id: project_id
-   - policy: policy
-   - shared: shared
-   - id: id
+   - shared: qos-shared
+   - rules: qos-rules
+   - id: qos_policy_id
    - name: name
 
-Show DSCP marking rule details
-==============================
-
-.. rest_method::  GET /v2.0/qos/policies/{policy_id}/dscp_marking_rules/{dscp_rule_id}
-
-Shows details for a DSCP marking rule for a QoS policy.
-
-Normal response codes: 200
-
-Error response codes: 401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - dscp_rule_id: dscp_rule_id
-   - policy_id: policy_id
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - dscp_marking_rule: dscp_marking_rule
-   - dscp_mark: dscp_mark
-   - id: id
-   - policy_id: policy_id
-
 Response Example
 ----------------
 
-.. literalinclude:: samples/qos/dscp_marking_rule-show-response.json
+.. literalinclude:: samples/qos/policy-create-response.json
    :language: javascript
-
-Update DSCP marking rule
-========================
-
-.. rest_method::  PUT /v2.0/qos/policies/{policy_id}/dscp_marking_rules/{dscp_rule_id}
-
-Updates a DSCP marking rule for a QoS policy.
-
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
-Normal response codes: 200
-
-Error response codes: 400, 401, 413
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - dscp_marking_rule: dscp_marking_rule
-   - dscp_mark: dscp_mark
-   - policy_id: policy_id
-   - dscp_rule_id: dscp_rule_id
-
-Request Example
----------------
-
-.. literalinclude:: samples/qos/dscp_marking_rule-update-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - dscp_marking_rule: dscp_marking_rule
-   - dscp_mark: dscp_mark
-   - id: id
-   - policy_id: policy_id
-
-Response Example
-----------------
-
-.. literalinclude:: samples/qos/dscp_marking_rule-update-response.json
-   :language: javascript
-
-Delete DSCP marking rule
-========================
-
-.. rest_method::  DELETE /v2.0/qos/policies/{policy_id}/dscp_marking_rules/{dscp_rule_id}
-
-Deletes a DSCP marking rule for a QoS policy.
-
-Normal response codes: 204
-
-Error response codes: 400, 401, 413
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - policy_id: policy_id
-   - dscp_rule_id: dscp_rule_id
-
-List DSCP marking rules for QoS policy
-======================================
-
-.. rest_method::  GET /v2.0/qos/policies/{policy_id}/dscp_marking_rules
-
-Lists all DSCP marking rules for a QoS policy.
-
-The list may be empty.
-
-Normal response codes: 200
-
-Error response codes: 401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - policy_id: policy_id
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - dscp_marking_rules: dscp_marking_rules
-   - dscp_mark: dscp_mark
-   - id: id
-   - policy_id: policy_id
-
-Response Example
-----------------
-
-.. literalinclude:: samples/qos/dscp_marking_rules-list-response.json
-   :language: javascript
-
-Create DSCP marking rule
-========================
-
-.. rest_method::  POST /v2.0/qos/policies/{policy_id}/dscp_marking_rules
-
-Creates a DSCP marking rule for a QoS policy.
-
-Normal response codes: 201
-
-Error response codes: 401, 404, 409, 413
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - dscp_marking_rule: dscp_marking_rule
-   - dscp_mark: dscp_mark
-   - policy_id: policy_id
-
-Request Example
----------------
-
-.. literalinclude:: samples/qos/dscp_marking_rule-create-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - dscp_marking_rule: dscp_marking_rule
-   - dscp_mark: dscp_mark
-   - id: id
-   - policy_id: policy_id
 
 Show QoS policy details
 =======================
@@ -386,28 +121,27 @@ Shows details for a QoS policy.
 
 Normal response codes: 200
 
-Error response codes: 401
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - policy_id: policy_id
+   - policy_id: qos-policy-id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - policy: policy
    - description: description
-   - policy_id: policy_id
    - tenant_id: project_id
    - project_id: project_id
-   - policy: policy
-   - shared: shared
-   - rules: rules
-   - id: id
+   - shared: qos-shared
+   - rules: qos-rules
+   - id: qos_policy_id
    - name: name
 
 Response Example
@@ -426,23 +160,20 @@ Updates a QoS policy.
 If the request is valid, the service returns the ``Accepted (202)``
 response code.
 
-Normal response codes: 200
+Normal response codes: 202
 
-Error response codes: 400, 401, 413
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
+   - policy_id: qos-policy-id-path
    - policy: policy
-   - shared: shared
-   - type: type
-   - name: name
-   - policy_id: policy_id
+   - description: description-request
+   - shared: qos-shared-request
+   - name: qos_policy-name
 
 Request Example
 ---------------
@@ -455,12 +186,13 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - policy: policy
    - description: description
    - tenant_id: project_id
    - project_id: project_id
-   - policy: policy
-   - shared: shared
-   - id: id
+   - shared: qos-shared
+   - id: qos_policy_id
+   - rules: qos-rules
    - name: name
 
 Response Example
@@ -478,14 +210,19 @@ Deletes a QoS policy.
 
 Normal response codes: 204
 
-Error response codes: 400, 401, 413
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - policy_id: policy_id
+   - policy_id: qos-policy-id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 List bandwidth limit rules for QoS policy
 =========================================
@@ -498,25 +235,24 @@ The list might be empty.
 
 Normal response codes: 200
 
-Error response codes: 401
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - policy_id: policy_id
+   - policy_id: qos-policy-id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - max_kbps: max_kbps
    - bandwidth_limit_rules: bandwidth_limit_rules
-   - id: id
-   - max_burst_kbps: max_burst_kbps
-   - policy_id: policy_id
+   - max_kbps: max_kbps-response
+   - id: qos_bandwidth_limit_rule-id
+   - max_burst_kbps: max_burst_kbps-response
 
 Response Example
 ----------------
@@ -533,17 +269,17 @@ Creates a bandwidth limit rule for a QoS policy.
 
 Normal response codes: 201
 
-Error response codes: 401, 404, 409, 413
+Error response codes: 400, 401, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - policy_id: qos-policy-id-path
    - bandwidth_limit_rule: bandwidth_limit_rule
    - max_kbps: max_kbps
    - max_burst_kbps: max_burst_kbps
-   - policy_id: policy_id
 
 Request Example
 ---------------
@@ -557,8 +293,298 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - bandwidth_limit_rule: bandwidth_limit_rule
+   - max_kbps: max_kbps-response
+   - id: qos_bandwidth_limit_rule-id
+   - max_burst_kbps: max_burst_kbps-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/bandwidth_limit_rule-create-response.json
+   :language: javascript
+
+Show bandwidth limit rule details
+=================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/bandwidth_limit_rules/{rule_id}
+
+Shows details for a bandwidth limit rule for a QoS policy.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - bandwidth_limit_rule: bandwidth_limit_rule
+   - max_kbps: max_kbps-response
+   - id: qos_bandwidth_limit_rule-id
+   - max_burst_kbps: max_burst_kbps-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/bandwidth_limit_rule-show-response.json
+   :language: javascript
+
+Update bandwidth limit rule
+===========================
+
+.. rest_method::  PUT /v2.0/qos/policies/{policy_id}/bandwidth_limit_rules/{rule_id}
+
+Updates a bandwidth limit rule for a QoS policy.
+
+If the request is valid, the service returns the ``Accepted (202)``
+response code.
+
+Normal response codes: 202
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+   - bandwidth_limit_rule: bandwidth_limit_rule
    - max_kbps: max_kbps
-   - id: id
    - max_burst_kbps: max_burst_kbps
-   - policy_id: policy_id
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/bandwidth_limit_rule-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - bandwidth_limit_rule: bandwidth_limit_rule
+   - max_kbps: max_kbps-response
+   - id: qos_bandwidth_limit_rule-id
+   - max_burst_kbps: max_burst_kbps-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/bandwidth_limit_rule-update-response.json
+   :language: javascript
+
+Delete bandwidth limit rule
+===========================
+
+.. rest_method::  DELETE /v2.0/qos/policies/{policy_id}/bandwidth_limit_rules/{rule_id}
+
+Deletes a bandwidth limit rule for a QoS policy.
+
+Normal response codes: 204
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
+List DSCP marking rules for QoS policy
+======================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/dscp_marking_rules
+
+Lists all DSCP marking rules for a QoS policy.
+
+The list may be empty.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - dscp_marking_rules: dscp_marking_rules
+   - dscp_mark: dscp_mark-response
+   - id: qos_dscp_marking_rule-id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/dscp_marking_rules-list-response.json
+   :language: javascript
+
+Create DSCP marking rule
+========================
+
+.. rest_method::  POST /v2.0/qos/policies/{policy_id}/dscp_marking_rules
+
+Creates a DSCP marking rule for a QoS policy.
+
+Normal response codes: 201
+
+Error response codes: 400, 401, 404, 409
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - dscp_marking_rule: dscp_marking_rule
+   - dscp_mark: dscp_mark
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/dscp_marking_rule-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - dscp_marking_rule: dscp_marking_rule
+   - dscp_mark: dscp_mark-response
+   - id: qos_dscp_marking_rule-id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/dscp_marking_rule-create-response.json
+   :language: javascript
+
+Show DSCP marking rule details
+==============================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/dscp_marking_rules/{dscp_rule_id}
+
+Shows details for a DSCP marking rule for a QoS policy.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - dscp_rule_id: dscp_rule_id
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - dscp_marking_rule: dscp_marking_rule
+   - dscp_mark: dscp_mark
+   - id: qos_dscp_marking_rule-id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/dscp_marking_rule-show-response.json
+   :language: javascript
+
+Update DSCP marking rule
+========================
+
+.. rest_method::  PUT /v2.0/qos/policies/{policy_id}/dscp_marking_rules/{dscp_rule_id}
+
+Updates a DSCP marking rule for a QoS policy.
+
+If the request is valid, the service returns the ``Accepted (202)``
+response code.
+
+Normal response codes: 202
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - dscp_rule_id: dscp_rule_id
+   - dscp_marking_rule: dscp_marking_rule
+   - dscp_mark: dscp_mark
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/dscp_marking_rule-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - dscp_marking_rule: dscp_marking_rule
+   - dscp_mark: dscp_mark-response
+   - id: qos_dscp_marking_rule-id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/dscp_marking_rule-update-response.json
+   :language: javascript
+
+Delete DSCP marking rule
+========================
+
+.. rest_method::  DELETE /v2.0/qos/policies/{policy_id}/dscp_marking_rules/{dscp_rule_id}
+
+Deletes a DSCP marking rule for a QoS policy.
+
+Normal response codes: 204
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - dscp_rule_id: dscp_rule_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
