@@ -20,6 +20,14 @@ _ADVSVC_CTX_POLICY = 'context_is_advsvc'
 
 
 def reset():
+    """Reset the global enforcer.
+
+    Resets the global enforcer thereby deleting any rules and state associated
+    with it. Subsequent calls to this modules API will trigger a
+    re-initialization of the global enforcer as necessary.
+
+    :returns: None.
+    """
     global _ENFORCER
     if _ENFORCER:
         _ENFORCER.clear()
@@ -27,7 +35,17 @@ def reset():
 
 
 def init(conf=cfg.CONF, policy_file=None):
-    """Init an instance of the Enforcer class."""
+    """Initialize the global enforcer if not already initialized.
+
+    Initialize the global enforcer (and load its rules) if not already
+    initialized; otherwise this is a no-op.
+
+    :param conf: The configuration to initialize the global enforcer with.
+    Defaults to oslo_config.cfg.CONF.
+    :param policy_file: The policy file to initialize the global enforcer
+    with.
+    :returns: None.
+    """
 
     global _ENFORCER
     if not _ENFORCER:
@@ -36,13 +54,25 @@ def init(conf=cfg.CONF, policy_file=None):
 
 
 def refresh(policy_file=None):
-    """Reset policy and init a new instance of Enforcer."""
+    """Reset the global enforcer and re-initialize it.
+
+    Reset the global policy and re-initialize it optionally using the said
+    policy file.
+
+    :param policy_file: The policy file to initialize the global enforcer with.
+    :returns: None.
+    """
     reset()
     init(policy_file=policy_file)
 
 
 def check_is_admin(context):
-    """Verify context has admin rights according to policy settings."""
+    """Verify context has admin rights according to the global policy settings.
+
+    :param context: The context object.
+    :returns: True if the context has admin rights (as per the global
+    enforcer) and False otherwise.
+    """
     init()
     # the target is user-self
     credentials = context.to_dict()
@@ -52,7 +82,12 @@ def check_is_admin(context):
 
 
 def check_is_advsvc(context):
-    """Verify context has advsvc rights according to policy settings."""
+    """Verify context has advsvc rights according to global policy settings.
+
+    :param context: The context object.
+    :returns: True if the context has advsvc rights (as per the global
+    enforcer) and False otherwise.
+    """
     init()
     # the target is user-self
     credentials = context.to_dict()
