@@ -19,7 +19,13 @@ import tempfile
 
 
 def ensure_dir(dir_path):
-    """Ensure a directory with 755 permissions mode."""
+    """Ensure a directory with 755 permissions mode.
+
+    :param dir_path: The directory path to ensure.
+    :returns: None.
+    :raises OSError: If the underlying call to makedirs raises an OSError
+    other than EEXIST.
+    """
     try:
         os.makedirs(dir_path, 0o755)
     except OSError as e:
@@ -35,6 +41,11 @@ def replace_file(file_name, data, file_mode=0o644):
     atomic, the file is unlikely to be corrupted by competing writes.
 
     We create the tempfile on the same device to ensure that it can be renamed.
+
+    :param file_name: Path to the file to replace.
+    :param data: The data to write to the file.
+    :param file_mode: The mode to use for the replaced file.
+    :returns: None.
     """
 
     base_dir = os.path.dirname(os.path.abspath(file_name))
