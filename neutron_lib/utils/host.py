@@ -15,6 +15,11 @@ import multiprocessing
 
 
 def cpu_count():
+    """Get the system CPU count.
+
+    :returns: The number of CPUs on the system as an int. If there's an issue
+    fetching the CPU count on the system, a default value of 1 is returned.
+    """
     try:
         return multiprocessing.cpu_count()
     except NotImplementedError:
