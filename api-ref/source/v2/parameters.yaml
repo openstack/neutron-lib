@@ -55,6 +55,12 @@ health_monitor_id:
   in: path
   required: false
   type: string
+health_monitor_id-path:
+  description: |
+    The ID for the health monitor.
+  in: path
+  required: true
+  type: string
 ikepolicy_id_1:
   description: |
     The UUID of the IKE policy.
@@ -67,11 +73,29 @@ ipsecpolicy_id_1:
   in: path
   required: false
   type: string
+listener-id-path:
+  description: |
+    The ID of the listener.
+  in: path
+  required: true
+  type: string
+loadbalancer-id-path:
+  description: |
+    The ID of the load balancer.
+  in: path
+  required: true
+  type: string
 member_id:
   description: |
     The UUID for the member.
   in: path
   required: false
+  type: string
+member_id-path:
+  description: |
+    The ID for the member.
+  in: path
+  required: true
   type: string
 network_id_1:
   description: |
@@ -96,6 +120,18 @@ pool_id:
     The UUID for the pool.
   in: path
   required: false
+  type: string
+pool_id-path:
+  description: |
+    The ID for the pool.
+  in: path
+  required: true
+  type: string
+pool_id-request:
+  description: |
+    The ID for the pool.
+  in: path
+  required: truee
   type: string
 port_id:
   description: |
@@ -622,12 +658,13 @@ connection_limit:
   in: body
   required: false
   type: integer
-connection_limit_1:
+connection_limit-response:
   description: |
     The maximum number of connections allowed for the
-    VIP. Value is ``-1`` if the limit is not set.
+    VIP. Value is ``-1`` if the limit is not set. Default
+    is infinite.
   in: body
-  required: false
+  required: true
   type: integer
 connection_limit_2:
   description: |
@@ -672,14 +709,14 @@ default:
   type: boolean
 default_pool_id:
   description: |
-    The UUID of default pool. Must have compatible
+    The ID of default pool. Must have compatible
     protocol with listener.
   in: body
   required: false
   type: string
-default_pool_id_1:
+default_pool_id-response:
   description: |
-    The UUID of default pool. Must have compatible
+    The ID of default pool. Must have compatible
     protocol with listener.
   in: body
   required: true
@@ -743,7 +780,7 @@ default_tls_container_ref:
   in: body
   required: false
   type: string
-default_tls_container_ref_1:
+default_tls_container_ref-response:
   description: |
     A reference to a container of TLS secrets.
   in: body
@@ -1284,12 +1321,14 @@ expected_codes:
   in: body
   required: false
   type: string
-expected_codes_1:
+expected_codes-response:
   description: |
-    Expected HTTP codes for a passing HTTP(S)
-    monitor.
+    The list of HTTP status codes expected in
+    response from the member to declare it healthy. Specify one of the
+    following values:  - A single value, such as 200.  - A list, such
+    as 200, 202.  - A range, such as 200-204.
   in: body
-  required: false
+  required: true
   type: string
 extension:
   description: |
@@ -1486,6 +1525,18 @@ flavor:
   in: body
   required: true
   type: object
+flavor-id-request:
+  description: |
+    The ID of the flavor.
+  in: body
+  required: false
+  type: string
+flavor-id-response:
+  description: |
+    The ID of the flavor.
+  in: body
+  required: true
+  type: string
 flavor_1:
   description: |
     The UUID of a flavor.
@@ -1549,7 +1600,20 @@ health_monitors:
     List of health monitors that are associated with
     the pool.
   in: body
-  required: false
+  required: true
+  type: array
+health_monitors-id:
+  description: |
+    The ID of the associated health monitor.
+  in: body
+  required: true
+  type: string
+health_monitors-response:
+  description: |
+    List of health monitors that are associated with
+    the pool.
+  in: body
+  required: true
   type: array
 health_monitors_1:
   description: |
@@ -1557,12 +1621,6 @@ health_monitors_1:
   in: body
   required: true
   type: array
-health_monitors_2:
-  description: |
-    The UUID for the associated health monitor.
-  in: body
-  required: true
-  type: string
 health_monitors_status:
   description: |
     The statuses of the health monitors that are
@@ -1616,12 +1674,6 @@ id_11:
 id_12:
   description: |
     The UUID of the listener.
-  in: body
-  required: true
-  type: string
-id_13:
-  description: |
-    The UUID for the load balancer.
   in: body
   required: true
   type: string
@@ -1919,17 +1971,6 @@ lb_method:
   in: body
   required: true
   type: string
-lb_method_1:
-  description: |
-    The load-balancer algorithm, which is round-robin
-    (``ROUND_ROBIN``), least-connections (``LEAST_CONNECTIONS``),
-    source IP (``SOURCE_IP``), and so on, that is used to distribute
-    traffic to the pool members. This value, which must be supported,
-    is dependent on the load-balancer provider. The round-robin
-    algorithm must be supported.
-  in: body
-  required: false
-  type: string
 lifetime:
   description: |
     The lifetime of the security association. The
@@ -1967,9 +2008,15 @@ listener:
   in: body
   required: true
   type: object
+listener-id-response:
+  description: |
+    The ID of the listener.
+  in: body
+  required: true
+  type: string
 listener_id:
   description: |
-    The UUID of the listener.
+    The ID of the listener.
   in: body
   required: false
   type: string
@@ -1979,9 +2026,9 @@ listeners:
   in: body
   required: true
   type: array
-listeners_1:
+listeners-response:
   description: |
-    A ``listeners`` object.
+    A list of ``listeners`` objects.
   in: body
   required: true
   type: array
@@ -1991,11 +2038,23 @@ loadbalancer:
   in: body
   required: true
   type: object
-loadbalancer_id:
+loadbalancer-id:
   description: |
-    The UUID of the load balancer.
+    The ID of the load balancer.
   in: body
   required: true
+  type: string
+loadbalancer-provider:
+  description: |
+    Provider name of the load balancer service.
+  in: body
+  required: true
+  type: string
+loadbalancer-provider-request:
+  description: |
+    Provider name of the load balancer service.
+  in: body
+  required: false
   type: string
 loadbalancers:
   description: |
@@ -2106,6 +2165,22 @@ member:
   in: body
   required: true
   type: object
+member-id-response:
+  description: |
+    The ID of the member.
+  in: body
+  required: true
+  type: string
+member-weight:
+  description: |
+    The weight of a member determines the portion of
+    requests or connections it services compared to the other members
+    of the pool. A value of 0 means the member does not participate in
+    load- balancing but still accepts persistent connections. A valid
+    value is from 0 to 256.
+  in: body
+  required: true
+  type: integer
 members:
   description: |
     The list of members that belong to the pool.
@@ -2719,29 +2794,22 @@ pool:
   in: body
   required: true
   type: object
-pool_id_1:
+pool-id-response:
   description: |
-    The UUID of the pool to which the member belongs.
+    The ID of the pool.
   in: body
   required: true
   type: string
-pool_id_2:
+pool-subnet_id:
   description: |
-    The UUID of the pool with which the VIP is
-    associated.
+    The subnet on which the members of the pool will be located.
   in: body
   required: true
   type: string
-pool_id_3:
+pool-subnet_id-request:
   description: |
-    The UUID of the pool to which the member belongs.
-  in: body
-  required: false
-  type: string
-pool_id_4:
-  description: |
-    The UUID of the pool with which the VIP is
-    associated.
+    If you omit this parameter, LBaaS uses the
+    ``vip_subnet_id`` parameter value for the subnet UUID.
   in: body
   required: false
   type: string
@@ -2752,7 +2820,7 @@ pools:
   in: body
   required: true
   type: array
-pools_1:
+pools-obj:
   description: |
     A list of ``pool`` objects.
   in: body
@@ -2915,7 +2983,7 @@ protocol:
   in: body
   required: false
   type: string
-protocol_1:
+protocol-response:
   description: |
     The protocol to load balance. A valid value is
     ``HTTP``, ``HTTPS``, ``TCP``, or ``TERMINATED_HTTPS``.
@@ -2964,19 +3032,11 @@ protocol_port:
   in: body
   required: true
   type: integer
-protocol_port_1:
+protocol_port-request:
   description: |
-    The port where the application is hosted.
+    The TCP or UDP port on which to listen.
   in: body
-  required: true
-  type: integer
-protocol_port_2:
-  description: |
-    The port on which to listen to client traffic
-    that is associated with the virtual IP (VIP) address. A valid
-    value is from 0 to 65535.
-  in: body
-  required: true
+  required: false
   type: integer
 provider:
   description: |
@@ -3740,7 +3800,7 @@ sni_container_refs:
   in: body
   required: false
   type: array
-sni_container_refs_1:
+sni_container_refs-response:
   description: |
     A list of references to TLS secrets.
   in: body
@@ -3848,6 +3908,12 @@ status_9:
 status_description:
   description: |
     Human-readable description of the status.
+  in: body
+  required: true
+  type: string
+statuses-response:
+  description: |
+    List of load balancer statuses.
   in: body
   required: true
   type: string
@@ -4155,6 +4221,281 @@ tenant_id:
   in: body
   required: true
   type: string
+tenant_id-request:
+  description: |
+    The ID of the tenant who owns the resource.
+    Only administrative users can specify a tenant ID other than their own.
+    You cannot change this value through authorization policies.
+  in: body
+  required: false
+  type: string
+tenant_id_1:
+  description: |
+    The UUID of the tenant.
+  in: body
+  required: true
+  type: string
+tenant_id_10:
+  description: |
+    The UUID of the tenant who owns the load
+    balancer. Only administrative users can specify a tenant UUID
+    other than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_11:
+  description: |
+    The UUID of the tenant who owns the member. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: true
+  type: string
+tenant_id_12:
+  description: |
+    The UUID of the tenant who owns the member. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: false
+  type: string
+tenant_id_13:
+  description: |
+    The tenant UUID for the metering label.
+  in: body
+  required: true
+  type: string
+tenant_id_14:
+  description: |
+    The UUID of the tenant who owns the network. Only
+    administrative users can specify a tenant UUID other than their
+    own. You cannot change this value through authorization policies.
+  in: body
+  required: false
+  type: string
+tenant_id_15:
+  description: |
+    The tenant UUID of QoS policy owner. Only
+    administrative users can specify a tenant UUID other than their
+    own. You cannot change this value through authorization policies.
+  in: body
+  required: false
+  type: string
+tenant_id_16:
+  description: |
+    The UUID of the tenant who owns the pool. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: false
+  type: string
+tenant_id_17:
+  description: |
+    The UUID of the tenant who owns the security
+    group rule. Only administrative users can specify a tenant UUID
+    other than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_18:
+  description: |
+    The UUID of the tenant who owns the security
+    group. Only administrative users can specify a tenant UUID other
+    than their own.
+  in: body
+  required: false
+  type: string
+tenant_id_19:
+  description: |
+    The UUID of the tenant who owns the subnet pool.
+    Only administrative users can specify a tenant UUID other than
+    their own. You cannot change this value through authorization
+    policies.
+  in: body
+  required: false
+  type: string
+tenant_id_2:
+  description: |
+    The UUID of the tenant who owns the network. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: true
+  type: string
+tenant_id_20:
+  description: |
+    The UUID of the tenant who owns the VIP. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: false
+  type: string
+tenant_id_21:
+  description: |
+    Owner of the VPN endpoint group. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: true
+  type: string
+tenant_id_22:
+  description: |
+    Owner of the VPN service. Only administrative
+    users can specify a tenant UUID other than their own.
+  in: body
+  required: false
+  type: string
+tenant_id_23:
+  description: |
+    The UUID of the tenant who owns the firewall
+    policy.
+  in: body
+  required: true
+  type: string
+tenant_id_24:
+  description: |
+    The UUID of the tenant who owns the firewall
+    rule.
+  in: body
+  required: true
+  type: string
+tenant_id_25:
+  description: |
+    The UUID of the tenant who owns the health
+    monitor. Only administrative users can specify a tenant UUID other
+    than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_26:
+  description: |
+    The owner of the VPN service. Only administrative
+    users can specify a tenant UUID other than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_27:
+  description: |
+    Owner of the VPN service. Only administrative
+    users can specify a tenant UUID other than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_28:
+  description: |
+    The UUID of the tenant who owns the VIP. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: true
+  type: string
+tenant_id_29:
+  description: |
+    The UUID of the tenant who owns the network.
+  in: body
+  required: true
+  type: string
+tenant_id_3:
+  description: |
+    The owner of the firewall service. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: true
+  type: string
+tenant_id_30:
+  description: |
+    The UUID of tenant or project.
+  in: body
+  required: true
+  type: string
+tenant_id_31:
+  description: |
+    The UUID of the tenant who owns the QoS policy.
+  in: body
+  required: true
+  type: string
+tenant_id_32:
+  description: |
+    The UUID of the tenant who owns the pool. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: true
+  type: string
+tenant_id_34:
+  description: |
+    The UUID of the tenant who owns the subnet pool.
+  in: body
+  required: true
+  type: string
+tenant_id_35:
+  description: |
+    The UUID of the tenant.
+  in: body
+  required: true
+  type: string
+tenant_id_36:
+  description: |
+    The owner of the firewall policy. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: false
+  type: string
+tenant_id_37:
+  description: |
+    The UUID of the tenant who owns the firewall
+    rule. Only administrative users can specify a tenant UUID other
+    than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_4:
+  description: |
+    The UUID of the tenant. Only administrative users
+    can specify a tenant UUID other than their own.
+  in: body
+  required: false
+  type: string
+tenant_id_5:
+  description: |
+    The UUID of the tenant who owns the health
+    monitor. Only administrative users can specify a tenant UUID other
+    than their own.
+  in: body
+  required: false
+  type: string
+tenant_id_6:
+  description: |
+    The owner of the IKE policy. Only administrative
+    users can specify a tenant UUID other than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_7:
+  description: |
+    Owner of the IPSec policy. Only administrative
+    users can specify a tenant UUID other than their own.
+  in: body
+  required: true
+  type: string
+tenant_id_8:
+  description: |
+    Owner of the IPSec connection. Only
+    administrative users can specify a tenant UUID other than their
+    own.
+  in: body
+  required: true
+  type: string
+tenant_id_9:
+  description: |
+    The UUID of the tenant who owns the listener.
+    Only administrative users can specify a tenant UUID other than
+    their own.
+  in: body
+  required: true
+  type: string
 timeout:
   description: |
     The maximum time, in seconds, that a monitor
@@ -4313,15 +4654,7 @@ url_path:
   in: body
   required: false
   type: string
-url_path_1:
-  description: |
-    The HTTP path of the request sent by the monitor
-    to test the health of a member. A string value that must begin
-    with the forward slash (/).
-  in: body
-  required: false
-  type: string
-url_path_2:
+url_path-response:
   description: |
     The HTTP path of the request sent by the monitor
     to test the health of a member. Must be a string that begins with
@@ -4398,21 +4731,21 @@ vip:
   type: object
 vip_address:
   description: |
-    The IP address of the VIP.
-  format: ipv4
-  in: body
-  required: false
-  type: string
-vip_address_1:
-  description: |
-    The IP address of the VIP.
+    The IP address of the VIP .
   format: ipv4
   in: body
   required: true
   type: string
+vip_address-request:
+  description: |
+    The IP address of the VIP .
+  format: ipv4
+  in: body
+  required: false
+  type: string
 vip_id:
   description: |
-    The UUID of the virtual IP (VIP) address.
+    The ID of the virtual IP (VIP) address.
   in: body
   required: true
   type: string
@@ -4481,14 +4814,4 @@ weight_1:
     value is from 0 to 256.
   in: body
   required: false
-  type: integer
-weight_2:
-  description: |
-    The weight of a member determines the portion of
-    requests or connections it services compared to the other members
-    of the pool. A value of 0 means the member does not participate in
-    load- balancing but still accepts persistent connections. A valid
-    value is from 0 to 256.
-  in: body
-  required: true
   type: integer
