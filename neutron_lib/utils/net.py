@@ -15,4 +15,8 @@ import socket
 
 
 def get_hostname():
+    """Get the hostname of the system.
+
+    :returns: The hostname of the system.
+    """
     return socket.gethostname()
