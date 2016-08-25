@@ -231,9 +231,11 @@ def factory(register):
     register(check_python3_no_iteritems)
     register(no_mutable_default_args)
     register(check_neutron_namespace_imports)
-    register(check_no_eventlet_imports)
+    # TODO(boden) - uncomment this after 0.4.0 ships
+    # register(check_no_eventlet_imports)
     register(translation_checks.validate_log_translations)
     register(translation_checks.no_translate_debug_logs)
     register(translation_checks.check_log_warn_deprecated)
     register(translation_checks.check_raised_localized_exceptions)
-    register(translation_checks.check_delayed_string_interpolation)
+    # TODO(boden) - uncomment this after 0.4.0 ships
+    # register(translation_checks.check_delayed_string_interpolation)
