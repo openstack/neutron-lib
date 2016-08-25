@@ -82,7 +82,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Compute API Reference'
+project = u'Networking API Reference'
 copyright = u'2010-present, OpenStack Foundation'
 
 # The version info for the project you're documenting, acts as replacement for
