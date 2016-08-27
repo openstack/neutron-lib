@@ -58,53 +58,28 @@ from deployment to deployment.
 Request and response formats
 ============================
 
-The Networking API v2.0 supports both JSON and XML data serialization request
-and response formats.
+The Networking API v2.0 supports JSON data serialization request and response
+formats only.
 
 Request format
 --------------
 
-Use the ``Content-Type`` request header to specify the request format.  This
-header is required for operations that have a request body.
-
-The syntax for the ``Content-Type`` header is:
-
-.. code::
-
-    Content-Type: application/FORMAT
-
-Where *FORMAT* is either ``json`` or ``xml``.
+The Networking API v2.0 only accepts requests with the JSON data serialization
+format. The ``Content-Type`` header is ignored.
 
 Response format
 ---------------
 
-Use one of the following methods to specify the response format:
-
-``Accept`` header
-    The syntax for the ``Accept`` header is:
-
-    .. code::
-
-        Accept: application/FORMAT
-
-    Where *FORMAT* is either ``json`` or ``xml``. The default format is
-    ``json``.
+The Networking API v2.0 always responds with the JSON data serialization
+format. The ``Accept`` header is ignored.
 
 Query extension
-    Add an ``.xml`` or ``.json`` extension to the request URI. For example, the
-    ``.xml`` extension in the following list networks URI request specifies
-    that the response body is to be returned in XML format:
+    A ``.json`` extension can be added to the request URI. For example, the
+    ``.json`` extension in the following requests are equivalent:
 
-    **GET** *publicURL*/networks.xml
+    - **GET** *publicURL*/networks
 
-If you do not specify a response format, JSON is the default.
-
-If the ``Accept`` header and the query extension specify conflicting formats,
-the format specified in the query extension takes precedence.  For example, if
-the query extension is ``.xml`` and the ``Accept`` header specifies
-``application/json``, the response is returned in XML format.
-
-You can serialize a response in a different format from the request format.
+    - **GET** *publicURL*/networks.json
 
 Filtering and column selection
 ==============================
@@ -283,56 +258,6 @@ To determine if pagination is supported, a user can check whether the
     }
 
 
-
-**Example Network collection, first page: XML request**
-
-.. code::
-
-    GET /v2.0/networks.xml?limit=2 HTTP/1.1
-    Host: 127.0.0.1:9696
-    Content-Type: application/xml
-    Accept: application/xml
-
-
-
-**Example Network collection, first page: XML response**
-
-.. code::
-
-    <?xml version="1.0" ?>
-    <networks xmlns="http://openstack.org/neutron/api/v2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:provider="http://docs.openstack.org/ext/provider/api/v1.0" xmlns:neutron="http://openstack.org/neutron/api/v2.0" xmlns:router="http://docs.openstack.org/ext/neutron/router/api/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <network>
-                    <status>ACTIVE</status>
-                    <subnets neutron:type="list"/>
-                    <name>net3</name>
-                    <provider:physical_network>physnet1</provider:physical_network>
-                    <admin_state_up neutron:type="bool">True</admin_state_up>
-                    <tenant_id>20bd52ff3e1b40039c312395b04683cf</tenant_id>
-                    <provider:network_type>vlan</provider:network_type>
-                    <router:external neutron:type="bool">False</router:external>
-                    <shared neutron:type="bool">False</shared>
-                    <id>396f12f8-521e-4b91-8e21-2e003500433a</id>
-                    <provider:segmentation_id neutron:type="long">1002</provider:segmentation_id>
-            </network>
-            <network>
-                    <status>ACTIVE</status>
-                    <subnets neutron:type="list"/>
-                    <name>net2</name>
-                    <provider:physical_network>physnet1</provider:physical_network>
-                    <admin_state_up neutron:type="bool">True</admin_state_up>
-                    <tenant_id>20bd52ff3e1b40039c312395b04683cf</tenant_id>
-                    <provider:network_type>vlan</provider:network_type>
-                    <router:external neutron:type="bool">False</router:external>
-                    <shared neutron:type="bool">False</shared>
-                    <id>71c1e68c-171a-4aa2-aca5-50ea153a3718</id>
-                    <provider:segmentation_id neutron:type="long">1001</provider:segmentation_id>
-            </network>
-            <atom:link href="http://127.0.0.1:9696/v2.0/networks.xml?limit=2&amp;marker=71c1e68c-171a-4aa2-aca5-50ea153a3718" rel="next"/>
-            <atom:link href="http://127.0.0.1:9696/v2.0/networks.xml?limit=2&amp;marker=396f12f8-521e-4b91-8e21-2e003500433a&amp;page_reverse=True" rel="previous"/>
-    </networks>
-
-
-
 The last page won't show the "next" links
 
 **Example Network collection, last page: JSON request**
@@ -373,42 +298,6 @@ The last page won't show the "next" links
             }
         ]
     }
-
-
-
-**Example Network collection, last page: XML request**
-
-.. code::
-
-    GET /v2.0/networks.xml?limit=2&marker=71c1e68c-171a-4aa2-aca5-50ea153a3718 HTTP/1.1
-    Host: 127.0.0.1:9696
-    Content-Type: application/xml
-    Accept: application/xml
-
-
-
-**Example Network collection, last page: XML response**
-
-.. code::
-
-    <?xml version="1.0" ?>
-    <networks xmlns="http://openstack.org/neutron/api/v2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:provider="http://docs.openstack.org/ext/provider/api/v1.0" xmlns:neutron="http://openstack.org/neutron/api/v2.0" xmlns:router="http://docs.openstack.org/ext/neutron/router/api/v1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <network>
-                    <status>ACTIVE</status>
-                    <subnets neutron:type="list"/>
-                    <name>net1</name>
-                    <provider:physical_network>physnet1</provider:physical_network>
-                    <admin_state_up neutron:type="bool">True</admin_state_up>
-                    <tenant_id>c05140b3dc7c4555afff9fab6b58edc2</tenant_id>
-                    <provider:network_type>vlan</provider:network_type>
-                    <router:external neutron:type="bool">False</router:external>
-                    <shared neutron:type="bool">False</shared>
-                    <id>b3680498-03da-4691-896f-ef9ee1d856a7</id>
-                    <provider:segmentation_id neutron:type="long">1000</provider:segmentation_id>
-            </network>
-            <atom:link href="http://127.0.0.1:9696/v2.0/networks.xml?limit=2&amp;marker=b3680498-03da-4691-896f-ef9ee1d856a7&amp;page_reverse=True" rel="previous"/>
-    </networks>
-
 
 
 Sorting
