@@ -6,6 +6,7 @@ Networking API v2.0
 
 .. rest_expand_all::
 
+.. include:: intro.inc
 .. include:: versions.inc
 .. include:: extensions.inc
 .. include:: networks.inc
