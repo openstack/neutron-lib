@@ -59,7 +59,7 @@ dictionary would look like the following:
 Using Validators
 ----------------
 
-In client code, the valdiator can be used in a REST API by using the
+In client code, the validator can be used in a REST API by using the
 dictionary key for the validator. For example:
 
 ::
@@ -90,7 +90,7 @@ could have a validator defined as follows:
                   'validate': {'type:values': [4, 6]},
                   'is_visible': True},
 
-Here, the valdiate_values() method will take the list of values as the
+Here, the validate_values() method will take the list of values as the
 allowable values that can be specified for this attribute.
 
 Test The Validator
