@@ -5,10 +5,10 @@
 .. needs:body_verification
 
 =======================================================================
-FWaaS v2.0 (CURRENT) (fw, firewalls, firewall_policies, firewall_rules)
+FWaaS v1.0 (CURRENT) (fw, firewalls, firewall_policies, firewall_rules)
 =======================================================================
 
-Use the Firewall-as-a-Service (FWaaS) v2.0 extension to deploy
+Use the Firewall-as-a-Service (FWaaS) v1.0 extension to deploy
 firewalls to protect your networks.
 
 The FWaaS extension enables you to:
