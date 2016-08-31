@@ -1,12 +1,6 @@
-.. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
-
-=======================================================================
-FWaaS v1.0 (CURRENT) (fw, firewalls, firewall_policies, firewall_rules)
-=======================================================================
+==========================================================================
+FWaaS v1.0 (DEPRECATED) (fw, firewalls, firewall_policies, firewall_rules)
+==========================================================================
 
 Use the Firewall-as-a-Service (FWaaS) v1.0 extension to deploy
 firewalls to protect your networks.
@@ -39,37 +33,80 @@ This extension introduces these resources:
   IP addresses. These attributes define match criteria and an
   action to take, such as allow or deny, on matched data traffic.
 
-Insert rule into a firewall policy
-==================================
+List firewall policies
+======================
 
-.. rest_method::  PUT /v2.0/fw/firewall_policies/{firewall_policy_id}/insert_rule
+.. rest_method::  GET /v2.0/fw/firewall_policies
 
-Insert firewall rule into a policy.
+Lists all firewall policies.
 
-A firewall_rule_id is inserted relative to the position of the
-firewall_rule_id set in ``insert_before`` or ``insert_after``. If
-``insert_before`` is set, ``insert_after`` is ignored. If both
-``insert_before`` and ``insert_after`` are not set, the new
-firewall_rule_id is inserted at the top of the policy.
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
 
-Error response codes: 404,409,401,400
+Error response codes: 401, 403
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - insert_after: insert_after
-   - firewall_rule_id: firewall_rule_id
-   - insert_before: insert_before
-   - firewall_policy_id: firewall_policy_id
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - tenant_id: project_id-body
+   - firewall_policies: firewall_policies
+   - audited: audited
+   - description: description
+   - firewall_rules: firewall_rules
+   - id: firewall_policy_id-body
+   - name: name
+   - shared: shared-response
+   - tenant_id: project_id-body
+
+Response Example
+----------------
+
+.. literalinclude:: samples/firewalls/firewall-policies-list-response.json
+   :language: javascript
+
+Create firewall policy
+======================
+
+.. rest_method::  POST /v2.0/fw/firewall_policies
+
+Creates a firewall policy.
+
+Normal response codes: 201
+
+Error response codes: 400, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - firewall_policy: firewall_policy
+   - firewall_rules_id: firewall_rules_id
+   - name: name
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - shared: shared
+   - audited: audited
+   - description: description-request
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/firewalls/firewall-policy-insert-rule-request.json
+.. literalinclude:: samples/firewalls/firewall-policy-create-request.json
    :language: javascript
 
 Response Parameters
@@ -77,21 +114,15 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - firewall_policy: firewall_policy
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: project_id
-   - project_id: project_id
-   - firewall_list: firewall_list
+   - tenant_id: project_id-body
+   - project_id: project_id-body
    - audited: audited
-   - shared: shared
-   - id: id
+   - shared: shared-response
+   - id: firewall_policy_id-body
    - description: description
-
-Response Example
-----------------
-
-.. literalinclude:: samples/firewalls/firewall-policy-insert-rule-response.json
-   :language: javascript
 
 Show firewall policy details
 ============================
@@ -106,14 +137,14 @@ object does not belong to the project, this call returns the
 
 Normal response codes: 200
 
-Error response codes: 404,403,401
+Error response codes: 401, 403, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - firewall_policy_id: firewall_policy_id
+   - firewall_policy_id: firewall_policy_id-path
 
 Response Parameters
 -------------------
@@ -121,14 +152,14 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall_policy: firewall_policy
-   - name: name
-   - firewall_rules: firewall_rules
-   - tenant_id: project_id
-   - project_id: project_id
+   - tenant_id: project_id-body
+   - project_id: project_id-body
    - audited: audited
-   - shared: shared
-   - id: id
    - description: description
+   - firewall_rules: firewall_rules
+   - id: firewall_policy_id-body
+   - name: name
+   - shared: shared-response
 
 Response Example
 ----------------
@@ -145,14 +176,19 @@ Updates a firewall policy.
 
 Normal response codes: 200
 
-Error response codes: 404,401,400
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - firewall_policy_id: firewall_policy_id
+   - firewall_policy_id: firewall_policy_id-path
+   - firewall_rule: firewall_rule
+   - shared: shared
+   - audited: audited
+   - description: description-request
+   - name: name
 
 Request Example
 ---------------
@@ -166,14 +202,14 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall_policy: firewall_policy
-   - name: name
-   - firewall_rules: firewall_rules
-   - tenant_id: project_id
-   - project_id: project_id
+   - project_id: project_id-body
    - audited: audited
-   - shared: shared
-   - id: id
    - description: description
+   - firewall_rules: firewall_rules
+   - id: firewall_policy_id-body
+   - name: name
+   - shared: shared-response
+   - tenant_id: project_id-body
 
 Response Example
 ----------------
@@ -188,27 +224,134 @@ Delete firewall policy
 
 Deletes a firewall policy.
 
-Error response codes: 409,404,204,401
+Normal response codes: 204
+
+Error response codes: 401, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - firewall_policy_id: firewall_policy_id
+   - firewall_policy_id: firewall_policy_id-path
 
-List firewall policies
-======================
+Response
+--------
 
-.. rest_method::  GET /v2.0/fw/firewall_policies
+There is no body content for the response of a successful DELETE request.
 
-Lists all firewall policies.
+Insert rule into a firewall policy
+==================================
+
+.. rest_method::  PUT /v2.0/fw/firewall_policies/{firewall_policy_id}/insert_rule
+
+Insert firewall rule into a policy.
+
+A firewall_rule_id is inserted relative to the position of the
+firewall_rule_id set in ``insert_before`` or ``insert_after``. If
+``insert_before`` is set, ``insert_after`` is ignored. If both
+``insert_before`` and ``insert_after`` are not set, the new
+firewall_rule_id is inserted at the top of the policy.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 409
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - firewall_policy_id: firewall_policy_id-path
+   - firewall_rule_id: firewall_rule_id-body
+   - insert_after: insert_after
+   - insert_before: insert_before
+
+Request Example
+---------------
+
+.. literalinclude:: samples/firewalls/firewall-policy-insert-rule-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - audited: audited
+   - description: description
+   - firewall_list: firewall_list
+   - firewall_rules: firewall_rules
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - id: firewall_policy_id-body
+   - name: name
+   - shared: shared-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/firewalls/firewall-policy-insert-rule-response.json
+   :language: javascript
+
+Remove rule from firewall policy
+================================
+
+.. rest_method::  PUT /v2.0/fw/firewall_policies/{firewall_policy_id}/remove_rule
+
+Remove firewall rule from a policy.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - firewall_policy_id: firewall_policy_id-path
+   - firewall_rule_id: firewall_rule_id-body
+
+Request Example
+---------------
+
+.. literalinclude:: samples/firewalls/firewall-policy-remove-rule-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - audited: audited
+   - description: description
+   - firewall_list: firewall_list
+   - firewall_rules: firewall_rules
+   - id: firewall_id-body
+   - name: name
+   - shared: shared-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/firewalls/firewall-policy-remove-rule-response.json
+   :language: javascript
+
+List firewall rules
+===================
+
+.. rest_method::  GET /v2.0/fw/firewall_rules
+
+Lists all firewall rules.
 
 The list might be empty.
 
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 401, 403
 
 Request
 -------
@@ -218,49 +361,65 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - name: name
-   - firewall_rules: firewall_rules
-   - tenant_id: project_id
-   - project_id: project_id
-   - audited: audited
-   - firewall_policies: firewall_policies
-   - shared: shared
-   - id: id
+   - firewall_rule: firewall_rule
+   - action: action-response
    - description: description
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - destination_ip_address: destination_ip_address-response
+   - destination_port: destination_port-response
+   - enabled: enabled-response
+   - firewall_policy_id: firewall_policy_id-body
+   - id: firewall_id-body
+   - ip_version: ip_version-response
+   - name: name
+   - position: position
+   - protocol: protocol-response
+   - shared: shared-response
+   - source_ip_address: source_ip_address
+   - source_port: source_port-response
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/firewalls/firewall-policies-list-response.json
+.. literalinclude:: samples/firewalls/firewall-rules-list-response.json
    :language: javascript
 
-Create firewall policy
-======================
+Create firewall rule
+====================
 
-.. rest_method::  POST /v2.0/fw/firewall_policies
+.. rest_method::  POST /v2.0/fw/firewall_rules
 
-Creates a firewall policy.
+Creates a firewall rule.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 400, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - firewall_rules_id: firewall_rules_id
-   - firewall_policy: firewall_policy
+   - firewall_rule: firewall_rule
+   - action: action
+   - destination_port: destination_port
+   - enabled: enabled
+   - description: description-request
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - enabled: enabled
    - name: name
-   - tenant_id: project_id
-   - project_id: project_id
+   - protocol: protocol
+   - ip_version: ip_version
+   - destination_ip_address: destination_ip_address
+   - source_port: source_port
    - shared: shared
-   - audited: audited
-   - description: description
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/firewalls/firewall-policy-create-request.json
+.. literalinclude:: samples/firewalls/firewall-rule-create-request.json
    :language: javascript
 
 Response Parameters
@@ -268,15 +427,29 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - firewall_policy: firewall_policy
-   - name: name
-   - firewall_rules: firewall_rules
-   - tenant_id: project_id
-   - project_id: project_id
-   - audited: audited
-   - shared: shared
-   - id: id
+   - firewall_rule: firewall_rule
+   - action: action-response
    - description: description
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - destination_ip_address: destination_ip_address-response
+   - destination_port: destination_port-response
+   - enabled: enabled-response
+   - firewall_policy_id: firewall_policy_id-body
+   - id: firewall_id-body
+   - ip_version: ip_version-response
+   - name: name
+   - position: position
+   - protocol: protocol-response
+   - shared: shared-response
+   - source_ip_address: source_ip_address
+   - source_port: source_port-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/firewalls/firewall-rule-create-response.json
+   :language: javascript
 
 Show firewall rule details
 ==========================
@@ -291,7 +464,7 @@ object does not belong to the project, this call returns the
 
 Normal response codes: 200
 
-Error response codes: 404,403,401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -306,22 +479,22 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall_rule: firewall_rule
+   - action: action-response
    - description: description
-   - source_ip_address: source_ip_address
-   - tenant_id: project_id
-   - project_id: project_id
-   - enabled: enabled
-   - protocol: protocol
-   - source_port: source_port
-   - ip_version: ip_version
-   - destination_ip_address: destination_ip_address
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - destination_ip_address: destination_ip_address-response
+   - destination_port: destination_port-response
+   - enabled: enabled-response
    - firewall_policy_id: firewall_policy_id
-   - shared: shared
-   - action: action
-   - position: position
-   - destination_port: destination_port
-   - id: id
+   - id: firewall_rule_id-body
+   - ip_version: ip_version-response
    - name: name
+   - position: position
+   - protocol: protocol-response
+   - shared: shared-response
+   - source_ip_address: source_ip_address
+   - source_port: source_port-response
 
 Response Example
 ----------------
@@ -338,27 +511,27 @@ Updates a firewall rule.
 
 Normal response codes: 200
 
-Error response codes: 404,401,400
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - firewall_rule_id: firewall_rule_id
    - firewall_rule: firewall_rule
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
+   - shared: shared
+   - description: description-request
+   - tenant_id: project_id-body
+   - project_id: project_id-body
    - enabled: enabled
    - ip_version: ip_version
    - destination_ip_address: destination_ip_address
    - source_port: source_port
-   - shared: shared
    - action: action
    - protocol: protocol
    - destination_port: destination_port
    - name: name
-   - firewall_rule_id: firewall_rule_id
 
 Request Example
 ---------------
@@ -372,22 +545,27 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall_rule: firewall_rule
+   - action: action-response
    - description: description
    - source_ip_address: source_ip_address
-   - tenant_id: project_id
-   - project_id: project_id
+   - tenant_id: project_id-body
+   - project_id: project_id-body
    - enabled: enabled
    - protocol: protocol
    - source_port: source_port
    - ip_version: ip_version
-   - destination_ip_address: destination_ip_address
+   - destination_ip_address: destination_ip_address-response
+   - destination_port: destination_port-response
+   - enabled: enabled-response
    - firewall_policy_id: firewall_policy_id
-   - shared: shared
-   - action: action
-   - position: position
-   - destination_port: destination_port
-   - id: id
+   - id: firewall_rule_id-body
+   - ip_version: ip_version-response
    - name: name
+   - position: position
+   - protocol: protocol-response
+   - shared: shared-response
+   - source_ip_address: source_ip_address
+   - source_port: source_port-response
 
 Response Example
 ----------------
@@ -402,7 +580,9 @@ Delete firewall rule
 
 Deletes a firewall rule.
 
-Error response codes: 409,404,204,401
+Normal response codes: 204
+
+Error response codes: 401, 404, 409
 
 Request
 -------
@@ -411,222 +591,10 @@ Request
 
    - firewall_rule_id: firewall_rule_id
 
-Show firewall details
-=====================
+Response
+--------
 
-.. rest_method::  GET /v2.0/fw/firewalls/{firewall_id}
-
-Shows details for a firewall.
-
-If the user is not an administrative user and the firewall object
-does not belong to the project, this call returns the
-``Forbidden (403)`` response code.
-
-Normal response codes: 200
-
-Error response codes: 404,403,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - firewall_id: firewall_id
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - status: status
-   - router_ids: router_ids
-   - description: description
-   - admin_state_up: admin_state_up
-   - firewall: firewall
-   - tenant_id: project_id
-   - project_id: project_id
-   - firewall_policy_id: firewall_policy_id
-   - id: id
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/firewalls/firewall-show-response.json
-   :language: javascript
-
-Update firewall
-===============
-
-.. rest_method::  PUT /v2.0/fw/firewalls/{firewall_id}
-
-Updates a firewall.
-
-To update a service, the service status cannot be a ``PENDING_*``
-status.
-
-Normal response codes: 200
-
-Error response codes: 404,401,400
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - router_ids: router_ids
-   - description: description
-   - admin_state_up: admin_state_up
-   - firewall: firewall
-   - firewall_policy_id: firewall_policy_id
-   - name: name
-   - firewall_id: firewall_id
-
-Request Example
----------------
-
-.. literalinclude:: samples/firewalls/firewall-update-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - status: status
-   - router_ids: router_ids
-   - description: description
-   - admin_state_up: admin_state_up
-   - firewall: firewall
-   - tenant_id: project_id
-   - project_id: project_id
-   - firewall_policy_id: firewall_policy_id
-   - id: id
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/firewalls/firewall-update-response.json
-   :language: javascript
-
-Delete firewall
-===============
-
-.. rest_method::  DELETE /v2.0/fw/firewalls/{firewall_id}
-
-Deletes a firewall.
-
-Error response codes: 409,404,204,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - firewall_id: firewall_id
-
-List firewall rules
-===================
-
-.. rest_method::  GET /v2.0/fw/firewall_rules
-
-Lists all firewall rules.
-
-The list might be empty.
-
-Normal response codes: 200
-
-Error response codes: 403,401
-
-Request
--------
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - protocol: protocol
-   - description: description
-   - source_ip_address: source_ip_address
-   - tenant_id: project_id
-   - project_id: project_id
-   - enabled: enabled
-   - id: id
-   - ip_version: ip_version
-   - destination_ip_address: destination_ip_address
-   - firewall_policy_id: firewall_policy_id
-   - shared: shared
-   - action: action
-   - position: position
-   - destination_port: destination_port
-   - source_port: source_port
-   - firewalls: firewalls
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/firewalls/firewall-rules-list-response.json
-   :language: javascript
-
-Create firewall rule
-====================
-
-.. rest_method::  POST /v2.0/fw/firewall_rules
-
-Creates a firewall rule.
-
-Error response codes: 201,401,400
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - firewall_rule: firewall_rule
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - enabled: enabled
-   - ip_version: ip_version
-   - destination_ip_address: destination_ip_address
-   - source_port: source_port
-   - shared: shared
-   - action: action
-   - protocol: protocol
-   - destination_port: destination_port
-   - name: name
-
-Request Example
----------------
-
-.. literalinclude:: samples/firewalls/firewall-rule-create-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - firewall_rule: firewall_rule
-   - description: description
-   - source_ip_address: source_ip_address
-   - tenant_id: project_id
-   - project_id: project_id
-   - enabled: enabled
-   - protocol: protocol
-   - source_port: source_port
-   - ip_version: ip_version
-   - destination_ip_address: destination_ip_address
-   - firewall_policy_id: firewall_policy_id
-   - shared: shared
-   - action: action
-   - position: position
-   - destination_port: destination_port
-   - id: id
-   - name: name
+There is no body content for the response of a successful DELETE request.
 
 List firewalls
 ==============
@@ -639,7 +607,7 @@ The list might be empty.
 
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 401, 403
 
 Request
 -------
@@ -649,16 +617,15 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - router_ids: router_ids
-   - description: description
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - firewall_policy_id: firewall_policy_id
    - firewalls: firewalls
-   - id: id
+   - admin_state_up: admin_state_up
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - description: description
+   - firewall_policy_id: firewall_policy_id-body
+   - id: firewall_id-body
    - name: name
+   - status: status
 
 Response Example
 ----------------
@@ -678,19 +645,21 @@ The firewall must be associated with a firewall policy.
 If ``admin_state_up`` is ``false``, the firewall would block all
 traffic.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 400, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - router_ids: router_ids
-   - description: description
-   - admin_state_up: admin_state_up
    - firewall: firewall
-   - firewall_policy_id: firewall_policy_id
+   - admin_state_up: admin_state_up
+   - firewall_policy_id: firewall_policy_id-body
+   - description: description-request
    - name: name
+   - router_ids: router_ids
 
 Request Example
 ---------------
@@ -703,40 +672,99 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - router_ids: router_ids
-   - description: description
-   - admin_state_up: admin_state_up
    - firewall: firewall
-   - tenant_id: project_id
-   - project_id: project_id
-   - firewall_policy_id: firewall_policy_id
-   - id: id
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - admin_state_up: admin_state_up
+   - description: description
+   - firewall_policy_id: firewall_policy_id-body
+   - id: firewall_id-body
    - name: name
+   - status: status
+   - router_ids: router_ids-response
 
-Remove rule from firewall policy
-================================
+Response Example
+----------------
 
-.. rest_method::  PUT /v2.0/fw/firewall_policies/{firewall_policy_id}/remove_rule
+.. literalinclude:: samples/firewalls/firewall-create-response.json
+   :language: javascript
 
-Remove firewall rule from a policy.
+Show firewall details
+=====================
+
+.. rest_method::  GET /v2.0/fw/firewalls/{firewall_id}
+
+Shows details for a firewall.
+
+If the user is not an administrative user and the firewall object
+does not belong to the project, this call returns the
+``Forbidden (403)`` response code.
 
 Normal response codes: 200
 
-Error response codes: 404,401,400
+Error response codes: 401, 403, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - firewall_rule_id: firewall_rule_id
+   - firewall_id: firewall_id
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - firewall: firewall
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - admin_state_up: admin_state_up
+   - description: description
+   - status: status
    - firewall_policy_id: firewall_policy_id
+   - id: firewall_rule_id-body
+   - name: name
+   - status: status
+   - router_ids: router_ids-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/firewalls/firewall-show-response.json
+   :language: javascript
+
+Update firewall
+===============
+
+.. rest_method::  PUT /v2.0/fw/firewalls/{firewall_id}
+
+Updates a firewall.
+
+To update a service, the service status cannot be a ``PENDING_*``
+status.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - firewall_id: firewall_id
+   - firewall: firewall
+   - admin_state_up: admin_state_up
+   - description: description-request
+   - firewall_policy_id: firewall_policy_id-body
+   - name: name
+   - router_ids: router_ids
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/firewalls/firewall-policy-remove-rule-request.json
+.. literalinclude:: samples/firewalls/firewall-update-request.json
    :language: javascript
 
 Response Parameters
@@ -744,19 +772,43 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - name: name
-   - firewall_rules: firewall_rules
-   - tenant_id: project_id
-   - project_id: project_id
-   - firewall_list: firewall_list
-   - audited: audited
-   - shared: shared
-   - id: id
+   - firewall: firewall
+   - tenant_id: project_id-body
+   - project_id: project_id-body
+   - admin_state_up: admin_state_up
    - description: description
+   - status: status
+   - firewall_policy_id: firewall_policy_id-body
+   - id: firewall_id-body
+   - name: name
+   - status: status
+   - router_ids: router_ids-response
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/firewalls/firewall-policy-remove-rule-response.json
+.. literalinclude:: samples/firewalls/firewall-update-response.json
    :language: javascript
 
+Delete firewall
+===============
+
+.. rest_method::  DELETE /v2.0/fw/firewalls/{firewall_id}
+
+Deletes a firewall.
+
+Normal response codes: 204
+
+Error response codes: 401, 404, 409
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - firewall_id: firewall_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
