@@ -649,14 +649,15 @@ _validate_uuid_list = functools.partial(_validate_list_of_items,
 
 
 # NOTE(boden): subbed out for docstring comments.
-def validate_uuid_list(data):
+def validate_uuid_list(data, valid_values=None):
     """Validate data is a list of UUID like values.
 
     :param data: The data to validate.
+    :param valid_values: Not used!
     :returns: None if data is an iterable that contains valid UUID values,
     otherwise a message is returned indicating why validation failed.
     """
-    return _validate_uuid_list(data)
+    return _validate_uuid_list(data, valid_values)
 
 
 def _validate_dict_item(key, key_validator, data):
