@@ -8,8 +8,8 @@
 Quotas extension (quotas)
 =========================
 
-Lists quotas for tenants who have non-default quota values, and
-lists, updates, and resets quotas for a tenant.
+Lists default quotas, current quotas for tenants who have non-default quota
+values, and shows, updates, and resets quotas for a tenant.
 
 A quota value of ``-1`` means that quota has no limit.
 
@@ -22,7 +22,7 @@ Lists quotas for tenants who have non-default quota values.
 
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 401, 403
 
 Request
 -------
@@ -32,16 +32,16 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet: subnet
-   - network: network
-   - floatingip: floatingip
-   - subnetpool: subnetpool
+   - subnet: quota-subnet
+   - network: quota-network
+   - floatingip: quota-floatingip
+   - subnetpool: quota-subnetpool
    - quotas: quotas
-   - security_group_rule: security_group_rule
-   - security_group: security_group_2
-   - router: router
-   - rbac_policy: rbac_policy
-   - port: port
+   - security_group_rule: quota-security_group_rule
+   - security_group: quota-security_group
+   - router: quota-router
+   - rbac_policy: quota-rbac_policy
+   - port: quota-port
 
 Response Example
 ----------------
@@ -58,30 +58,30 @@ Lists quotas for a tenant.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401
+Error response codes: 401, 403, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: tenant_id
+   - tenant_id: tenant_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet: subnet
-   - network: network
-   - floatingip: floatingip
-   - subnetpool: subnetpool
-   - quota: quota
-   - security_group_rule: security_group_rule
-   - security_group: security_group_2
-   - router: router
-   - rbac_policy: rbac_policy
-   - port: port
+   - subnet: quota-subnet
+   - network: quota-network
+   - floatingip: quota-floatingip
+   - subnetpool: quota-subnetpool
+   - quotas: quotas
+   - security_group_rule: quota-security_group_rule
+   - security_group: quota-security_group
+   - router: quota-router
+   - rbac_policy: quota-rbac_policy
+   - port: quota-port
 
 Response Example
 ----------------
@@ -98,23 +98,23 @@ Updates quotas for a tenant. Use when non-default quotas are desired.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401
+Error response codes: 401, 403, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet: subnet
-   - network: network
-   - floatingip: floatingip
-   - subnetpool: subnetpool
-   - quota: quota
-   - security_group_rule: security_group_rule
-   - security_group: security_group_2
-   - router: router
-   - rbac_policy: rbac_policy
-   - port: port
+   - subnet: quota-subnet
+   - network: quota-network
+   - floatingip: quota-floatingip
+   - subnetpool: quota-subnetpool
+   - quotas: quotas
+   - security_group_rule: quota-security_group_rule
+   - security_group: quota-security_group
+   - router: quota-router
+   - rbac_policy: quota-rbac_policy
+   - port: quota-port
    - tenant_id: tenant_id
 
 Request Example
@@ -128,16 +128,17 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet: subnet
-   - network: network
-   - floatingip: floatingip
-   - subnetpool: subnetpool
-   - quota: quota
-   - security_group_rule: security_group_rule
-   - security_group: security_group_2
-   - router: router
-   - rbac_policy: rbac_policy
-   - port: port
+   - subnet: quota-subnet
+   - network: quota-network
+   - floatingip: quota-floatingip
+   - subnetpool: quota-subnetpool
+   - quotas: quotas
+   - security_group_rule: quota-security_group_rule
+   - security_group: quota-security_group
+   - router: quota-router
+   - rbac_policy: quota-rbac_policy
+   - port: quota-port
+   - tenant_id: tenant_id
 
 Response Example
 ----------------
@@ -152,12 +153,51 @@ Reset quota for a tenant
 
 Resets quotas to default values for a tenant.
 
-Error response codes: 404,403,204,401
+Error response codes: 204, 401, 403, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: tenant_id
+   - tenant_id: tenant_id-path
 
+List default quotas for a tenant
+================================
+
+.. rest_method::  GET /v2.0/quotas/{tenant_id}/default
+
+Lists default quotas for a tenant.
+
+Normal response codes: 200
+
+Error response codes: 401, 403, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - tenant_id: tenant_id-path
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - quota: quota
+   - floatingip: quota-floatingip
+   - network: quota-network
+   - port: quota-port
+   - rbac_policy: quota-rbac_policy
+   - router: quota-router
+   - security_group: quota-security_group
+   - security_group_rule: quota-security_group_rule
+   - subnet: quota-subnet
+   - subnetpool: quota-subnetpool
+
+Response Example
+----------------
+
+.. literalinclude:: samples/quotas/quotas-list-for-tenant-response.json
+   :language: javascript
