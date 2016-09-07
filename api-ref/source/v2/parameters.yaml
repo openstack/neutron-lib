@@ -1953,6 +1953,16 @@ local_ep_group_id_1:
   in: body
   required: true
   type: string
+local_id:
+  description: |
+    An ID to be used instead of the external IP address for a virtual
+    router used in traffic between instances on different networks in
+    east-west traffic. Most often, local ID would be domain name, email
+    address, etc. If this is not configured then the external IP address
+    will be used as the ID.
+  in: body
+  required: false
+  type: string
 location:
   description: |
     Full URL to a service or server.

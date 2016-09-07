@@ -178,6 +178,7 @@ Request
    - dpd: dpd
    - timeout: timeout
    - action: action
+   - local_id: local_id
 
 Request Example
 ---------------
@@ -214,6 +215,7 @@ Response Parameters
    - dpd: dpd
    - timeout: timeout
    - action: action
+   - local_id: local_id
 
 List IPSec connections
 ======================
@@ -257,6 +259,7 @@ Response Parameters
    - dpd: dpd
    - timeout: timeout
    - action: action
+   - local_id: local_id
 
 Response Example
 ----------------
@@ -311,6 +314,7 @@ Response Parameters
    - dpd: dpd
    - timeout: timeout
    - action: action
+   - local_id: local_id
 
 Response Example
 ----------------
@@ -351,6 +355,7 @@ Request
    - peer_id: peer_id
    - name: name
    - connection_id: connection_id
+   - local_id: local_id
 
 Request Example
 ---------------
@@ -387,6 +392,7 @@ Response Parameters
    - dpd: dpd
    - timeout: timeout
    - action: action
+   - local_id: local_id
 
 Response Example
 ----------------
