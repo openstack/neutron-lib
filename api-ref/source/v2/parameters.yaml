@@ -1099,7 +1099,7 @@ dscp_marking_rule:
     A ``dscp_marking_rule`` object.
   in: body
   required: true
-  type: dict
+  type: object
 dscp_marking_rules:
   description: |
     A list of ``dscp_marking_rule`` objects.
@@ -2481,7 +2481,7 @@ network_ip_availability:
     A ``network_ip_availability`` object.
   in: body
   required: true
-  type: dict
+  type: object
 network_name:
   description: |
     The name of the network.
@@ -3145,7 +3145,7 @@ router-external_gateway_info:
     Otherwise, this would be ``null``.
   in: body
   required: true
-  type: dict
+  type: object
 router-external_gateway_info-request:
   description: |
     The external gateway information of the router.
@@ -3154,7 +3154,7 @@ router-external_gateway_info-request:
     Otherwise, this would be ``null``.
   in: body
   required: false
-  type: dict
+  type: object
 router-ha:
   description: |
     ``true`` indicates a highly-available router.
