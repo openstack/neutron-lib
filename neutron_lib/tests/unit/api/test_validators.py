@@ -738,6 +738,21 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_uuid('00000000-ffff-ffff-ffff-000000000000')
         self.assertIsNone(msg)
 
+    def test_validate_uuid_list(self):
+        bad_uuid_list = ['00000000-ffff-ffff-ffff-000000000000',
+                         '00000000-ffff-ffff-ffff-000000000001',
+                         '123']
+        msg = validators.validate_uuid_list(bad_uuid_list,
+                                            valid_values='parameter not used')
+        error = "'%s' is not a valid UUID" % bad_uuid_list[2]
+        self.assertEqual(error, msg)
+
+        good_uuid_list = ['00000000-ffff-ffff-ffff-000000000000',
+                          '00000000-ffff-ffff-ffff-000000000001']
+        msg = validators.validate_uuid_list(good_uuid_list,
+                                            valid_values='parameter not used')
+        self.assertIsNone(msg)
+
     def test__validate_list_of_items(self):
         # check not a list
         items = [None,
