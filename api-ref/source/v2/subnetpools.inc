@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 ====================================
 Subnet pools extension (subnetpools)
@@ -18,11 +14,14 @@ Show subnet pool
 
 Shows information for a subnet pool.
 
-Use the ``fields`` query parameter to filter the results.
+Use the ``fields`` query parameter to control which fields are returned in the response body.
+Additionally, you can filter results by using query string parameters.
+For information, see `Filtering and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
 
-Error response codes: 404,401
+Error response codes: 404, 401
 
 Request
 -------
@@ -30,18 +29,20 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - subnetpool_id: subnetpool_id
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - subnetpool: subnetpool
+   - id: subnetpool_id_body
    - name: name
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
    - created_at: created_at
-   - subnetpool: subnetpool
    - updated_at: updated_at
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
@@ -49,8 +50,10 @@ Response Parameters
    - ip_version: ip_version
    - shared: shared
    - default_prefixlen: default_prefixlen
-   - id: id
    - max_prefixlen: max_prefixlen
+   - description: subnetpool_description_response
+   - is_default: subnetpool_is_default
+   - revision_number: subnetpool_revision_number
 
 Response Example
 ----------------
@@ -67,24 +70,25 @@ Updates a subnet pool.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401,400
+Error response codes: 404, 403, 401, 400
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - subnetpool_id: subnetpool_id
+   - subnetpool: subnetpool
    - name: name
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
-   - subnetpool: subnetpool
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
    - address_scope_id: address_scope_id
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
-   - subnetpool_id: subnetpool_id
+   - description: subnetpool_description_request
 
 Request Example
 ---------------
@@ -97,12 +101,13 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - subnetpool: subnetpool
+   - id: subnetpool_id_body
    - name: name
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
    - created_at: created_at
-   - subnetpool: subnetpool
    - updated_at: updated_at
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
@@ -110,8 +115,10 @@ Response Parameters
    - ip_version: ip_version
    - shared: shared
    - default_prefixlen: default_prefixlen
-   - id: id
    - max_prefixlen: max_prefixlen
+   - description: subnetpool_description_response
+   - is_default: subnetpool_is_default
+   - revision_number: subnetpool_revision_number
 
 Response Example
 ----------------
@@ -129,7 +136,9 @@ Deletes a subnet pool.
 The operation fails if any subnets allocated from the subnet pool
 are still in use.
 
-Error response codes: 404,204,401
+Normal response codes: 204
+
+Error response codes: 404, 401
 
 Request
 -------
@@ -137,6 +146,11 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - subnetpool_id: subnetpool_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 List subnet pools
 =================
@@ -149,6 +163,11 @@ Default policy settings return only the subnet pools owned by
 the project of the user submitting the request, unless the
 user has administrative role.
 
+Use the ``fields`` query parameter to control which fields are returned in the response body.
+Additionally, you can filter results by using query string parameters.
+For information, see `Filtering and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 Normal response codes: 200
 
 Error response codes: 401
@@ -156,11 +175,17 @@ Error response codes: 401
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - subnetpools: subnetpools
+   - id: subnetpool_id_body
    - name: name
    - default_quota: default_quota
    - tenant_id: project_id
@@ -173,9 +198,10 @@ Response Parameters
    - ip_version: ip_version
    - shared: shared
    - default_prefixlen: default_prefixlen
-   - subnetpools: subnetpools
-   - id: id
    - max_prefixlen: max_prefixlen
+   - description: subnetpool_description_response
+   - is_default: subnetpool_is_default
+   - revision_number: subnetpool_revision_number
 
 Response Example
 ----------------
@@ -190,24 +216,27 @@ Create subnet pool
 
 Creates a subnet pool.
 
-Error response codes: 201,404,403,401,400
+Normal response codes: 201
+
+Error response codes: 404, 403, 401, 400
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - subnetpool: subnetpool
    - name: name
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
-   - subnetpool: subnetpool
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
    - address_scope_id: address_scope_id
    - shared: shared
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
+   - description: subnetpool_description_request
 
 Request Example
 ---------------
@@ -220,12 +249,13 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - subnetpool: subnetpool
+   - id: subnetpool_id_body
    - name: name
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
    - created_at: created_at
-   - subnetpool: subnetpool
    - updated_at: updated_at
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
@@ -233,5 +263,7 @@ Response Parameters
    - ip_version: ip_version
    - shared: shared
    - default_prefixlen: default_prefixlen
-   - id: id
    - max_prefixlen: max_prefixlen
+   - description: subnetpool_description_response
+   - is_default: subnetpool_is_default
+   - revision_number: subnetpool_revision_number

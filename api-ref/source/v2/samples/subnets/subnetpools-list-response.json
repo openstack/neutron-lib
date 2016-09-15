@@ -16,7 +16,9 @@
                 "2001:db8::/63"
             ],
             "ip_version": 6,
-            "shared": false
+            "shared": false,
+            "description": "",
+            "revision_number": 2
         },
         {
             "min_prefixlen": "24",
@@ -34,7 +36,9 @@
                 "192.168.0.0/16"
             ],
             "ip_version": 4,
-            "shared": false
+            "shared": false,
+            "description": "",
+            "revision_number": 2
         }
     ]
 }

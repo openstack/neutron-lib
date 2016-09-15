@@ -17,6 +17,8 @@
         ],
         "updated_at": "2016-03-08T20:19:41",
         "ip_version": 6,
-        "shared": false
+        "shared": false,
+        "description": "",
+        "revision_number": 2
     }
 }
