@@ -9,7 +9,7 @@ LBaaS 2.0 (STABLE)
 ==================
 
 The Load-Balancer-as-a-Service (LBaaS) version 2.0 extension pairs with the
-Networking 2.0 API to enable OpenStack tenants to manage load balancers for
+Networking 2.0 API to enable OpenStack projects to manage load balancers for
 their VMs. With this extension you can load- balance client traffic from one
 network to application services, such as VMs, on the same network.
 
@@ -43,7 +43,7 @@ List load balancers
 
 .. rest_method::  GET /v2.0/lbaas/loadbalancers
 
-Lists all load balancers for the tenant account.
+Lists all load balancers for the project.
 
 The list might be empty.
 
@@ -62,7 +62,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - loadbalancers: loadbalancers
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provisioning_status: provisioning_status
    - listeners: listeners
    - vip_address: vip_address
@@ -111,16 +112,16 @@ You can configure all documented features of the load balancer at
 creation time by specifying the additional elements or attributes
 in the request.
 
-Administrative users can specify a tenant ID that is different than
-their own to create load balancers for other tenants.
+Administrative users can specify a project ID that is different than
+their own to create load balancers for other projects.
 
 **Example: Create a load balancer**
 
-- ``tenant_id``. Admin only. Required to create a load balancer for
-  another tenant.
+- ``project_id``. Admin only. Required to create a load balancer for
+  another project.
 
 - ``vip_subnet_id``. The network on which to allocate the VIP
-  address for the load balancer. A tenant can only create load
+  address for the load balancer. A project can only create load
   balancer VIPs on networks that the policy authorizes, such as her
   own networks or shared or provider networks.
 
@@ -143,8 +144,8 @@ You can configure all documented features of the load balancer at
 creation time by specifying the additional elements or attributes
 in the request.
 
-Administrative users can specify a tenant ID that is different than
-their own to create load balancers for other tenants.
+Administrative users can specify a project ID that is different than
+their own to create load balancers for other projects.
 
 If you own the subnet where you want to create the load balancer
 VIP, you can specify a ``vip_address`` attribute. If you omit the
@@ -172,7 +173,8 @@ Request
 
    - description: description
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - vip_address: vip_address
    - provider: provider
    - vip_subnet_id: vip_subnet_id
@@ -192,7 +194,8 @@ Response Parameters
 
    - description: description
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provisioning_status: provisioning_status
    - listeners: listeners
    - vip_address: vip_address
@@ -213,7 +216,7 @@ Shows details for a load balancer.
 
 This operation returns a load balancer object, by ID. If you are
 not an administrative user and the load balancer object does not
-belong to your tenant account, the service returns the HTTP
+belong to your project, the service returns the HTTP
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
@@ -230,7 +233,8 @@ Response Parameters
 
    - description: description
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provisioning_status: provisioning_status
    - listeners: listeners
    - vip_address: vip_address
@@ -291,7 +295,8 @@ Response Parameters
 
    - description: description
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provisioning_status: provisioning_status
    - listeners: listeners
    - vip_address: vip_address
@@ -314,7 +319,7 @@ Remove load balancer
 
 .. rest_method::  DELETE /v2.0/lbaas/loadbalancers/{loadbalancer_id}
 
-Removes a load balancer and its associated configuration from the tenant account.
+Removes a load balancer and its associated configuration from the project.
 
 The API immediately purges any and all configuration data. You
 cannot recover it.
@@ -335,7 +340,7 @@ Shows the status tree for a load balancer.
 
 This operation returns a status tree for a load balancer object, by
 load balancer ID. If you are not an administrative user and the
-load balancer object does not belong to the tenant account, the API
+load balancer object does not belong to the project, the API
 returns the ``Forbidden (403)`` response code.
 
 If the operation succeeds, the returned element is a status tree
@@ -378,7 +383,7 @@ List listeners
 Lists all listeners.
 
 This operation lists all listeners that are associated with your
-tenant account.
+project.
 
 The list might be empty.
 
@@ -402,7 +407,8 @@ Response Parameters
    - default_tls_container_ref: default_tls_container_ref
    - admin_state_up: admin_state_up
    - loadbalancers: loadbalancers
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - sni_container_refs: sni_container_refs
    - connection_limit: connection_limit
    - listeners: listeners
@@ -430,11 +436,11 @@ returned. The object contains a unique identifier.
 
 At a minimum, you must specify these listener attributes:
 
-- ``tenant_id``. Admin only. Required to create a listener for
-  another tenant.
+- ``project_id``. Admin only. Required to create a listener for
+  another project.
 
 - ``loadbalancer_id``. The load balancer on which to provision this
-  listener. A tenant can only create listeners on load balancers
+  listener. A project can only create listeners on load balancers
   that the policy authorizes. For example, her own load balancers.
 
 - ``description``. The load balancer description.
@@ -476,8 +482,8 @@ You can configure all documented features of the listener at
 creation time by specifying the additional elements or attributes
 in the request.
 
-Administrative users can specify a tenant ID that is different than
-their own to create listeners for other tenants.
+Administrative users can specify a project ID that is different than
+their own to create listeners for other projects.
 
 To update a listener, the load balancer to which to attach must
 have an ``ACTIVE`` provisioning status.
@@ -494,7 +500,8 @@ Request
    - description: description
    - default_tls_container_ref: default_tls_container_ref
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - sni_container_refs: sni_container_refs
    - connection_limit: connection_limit
    - listener: listener
@@ -519,7 +526,8 @@ Response Parameters
    - default_tls_container_ref: default_tls_container_ref
    - admin_state_up: admin_state_up
    - loadbalancers: loadbalancers
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - sni_container_refs: sni_container_refs
    - connection_limit: connection_limit
    - listener: listener
@@ -559,7 +567,8 @@ Response Parameters
    - default_tls_container_ref: default_tls_container_ref
    - admin_state_up: admin_state_up
    - loadbalancers: loadbalancers
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - sni_container_refs: sni_container_refs
    - connection_limit: connection_limit
    - listener: listener
@@ -584,7 +593,7 @@ This operation updates the attributes of a listener. Upon
 successful validation of the request, the service returns the HTTP
 ``Accepted (202)`` response code.
 
-Note: You cannot update the ``listener_id``, ``tenant_id``,
+Note: You cannot update the ``listener_id``, ``project_id``,
 ``loadbalancer_id``, ``loadbalancers``, ``default_pool_id``,
 ``protocol``, and ``protocol_port`` attributes. Attempting to
 update an immutable attribute results in the HTTP ``Immutable
@@ -608,7 +617,8 @@ Request
    - description: description
    - default_tls_container_ref: default_tls_container_ref
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - sni_container_refs: sni_container_refs
    - connection_limit: connection_limit
    - listener: listener
@@ -633,7 +643,8 @@ Response Parameters
    - default_tls_container_ref: default_tls_container_ref
    - admin_state_up: admin_state_up
    - loadbalancers: loadbalancers
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - sni_container_refs: sni_container_refs
    - connection_limit: connection_limit
    - listener: listener
@@ -655,7 +666,7 @@ Remove listener
 Removes a listener.
 
 This operation removes a listener and its associated configuration
-from the tenant account. The API immediately purges any and all
+from the project. The API immediately purges any and all
 configuration data. You cannot recover it.
 
 You cannot delete a listener if the load balancer to which it is
@@ -675,7 +686,7 @@ List pools
 
 .. rest_method::  GET /v2.0/lbaas/pools
 
-Lists all pools that are associated with your tenant account.
+Lists all pools that are associated with your project.
 
 The list might be empty.
 
@@ -699,7 +710,8 @@ Response Parameters
    - description: description
    - health_monitors: health_monitors
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - vip_id: vip_id
    - members: members
@@ -727,8 +739,8 @@ response object, which contains a unique ID.
 
 At a minimum, you must specify these pool attributes:
 
-- ``tenant_id``. Admin only. Required to create a pool for another
-  tenant.
+- ``project_id``. Admin only. Required to create a pool for another
+  project.
 
 - ``protocol``. The protocol for which this pool and its members
   listen. A valid value is ``TCP``, ``HTTP``, or ``HTTPS``.
@@ -762,8 +774,8 @@ and submit the request again.
 Users can configure all documented features at creation time by
 providing the additional elements or attributes in the request.
 
-Administrative users can specify a tenant ID that is different than
-their own to create pools for other tenants.
+Administrative users can specify a project ID that is different than
+their own to create pools for other projects.
 
 To update a pool, the load balancer to which to attach must have an
 ``ACTIVE`` provisioning status.
@@ -780,7 +792,8 @@ Request
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - listener_id: listener_id
    - name: name
 
@@ -802,7 +815,8 @@ Response Parameters
    - vip_id: vip_id
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - session_persistence: session_persistence
    - healthmonitor_id: healthmonitor_id
    - health_monitors_status: health_monitors_status
@@ -820,7 +834,7 @@ Shows details for a pool.
 
 This operation shows details for a pool, by ID. If you are not an
 administrative user and the pool object does not belong to your
-tenant account, the call returns the HTTP ``Forbidden (403)``
+project, the call returns the HTTP ``Forbidden (403)``
 response code.
 
 If this operation succeeds, it returns a ``pool`` element.
@@ -845,7 +859,8 @@ Response Parameters
    - description: description
    - health_monitors: health_monitors
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - vip_id: vip_id
    - members: members
@@ -870,7 +885,7 @@ This operation updates the attributes of a pool. Upon successful
 validation of the request, the service returns the HTTP ``Accepted
 (202)`` response code.
 
-Note: You cannot update the pool UUID, ``tenant_id``,
+Note: You cannot update the pool UUID, ``project_id``,
 ``listener_id``, ``listeners``, ``health_monitor_id``,
 ``protocol``, and ``members`` immutable attributes. If you try to
 update any of these attributes, the service returns the HTTP
@@ -911,7 +926,8 @@ Response Parameters
    - description: description
    - health_monitors: health_monitors
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - vip_id: vip_id
    - members: members
@@ -933,7 +949,7 @@ Remove pool
 Removes a pool.
 
 This operation removes a pool and its associated configuration from
-the tenant account. The API immediately purges any and all
+the project. The API immediately purges any and all
 configuration data. You cannot recover it.
 
 You cannot delete a pool if the load balancer to which it is
@@ -954,7 +970,7 @@ List pool members
 Lists members of a pool.
 
 Lists all members that are associated with a pool that is
-associated with your tenant account. The list of members includes
+associated with your project. The list of members includes
 only members that belong to the pool object identified by
 ``pool_id``.
 
@@ -978,7 +994,8 @@ Response Parameters
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - members: members
    - address: address
@@ -1005,8 +1022,8 @@ returns a response object, which contains a unique ID.
 
 At a minimum, you must specify these pool attributes:
 
-- ``tenant_id``. Admin only. Required to create a pool for another
-  tenant.
+- ``project_id``. Admin only. Required to create a pool for another
+  project.
 
 - ``address``. The IP address of the member to receive traffic from
   the load balancer.
@@ -1032,8 +1049,8 @@ correct the error and submit the request again.
 To configure all documented member features at creation time,
 specify additional elements or attributes in the request.
 
-Administrative users can specify a tenant ID that is different than
-their own to create members for other tenants.
+Administrative users can specify a project ID that is different than
+their own to create members for other projects.
 
 To update a member, the load balancer must have an ``ACTIVE``
 provisioning status.
@@ -1048,7 +1065,8 @@ Request
    - member: member
    - subnet_id: subnet_id
    - protocol_port: protocol_port
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - address: address
 
 Request Example
@@ -1066,7 +1084,8 @@ Response Parameters
    - weight: weight
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - member: member
    - address: address
    - protocol_port: protocol_port
@@ -1082,7 +1101,7 @@ Shows details for a pool member.
 This operation returns a member object identified by ``member_id``
 that belongs to a pool object identified by ``pool_id``. If you are
 not an administrative user and the pool or member object does not
-belong to your tenant account, the service returns the HTTP
+belong to your project, the service returns the HTTP
 ``Forbidden (403)`` response code.
 
 If this operation succeeds, it returns a pool element.
@@ -1105,7 +1124,8 @@ Response Parameters
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - member: member
    - address: address
@@ -1128,7 +1148,7 @@ Updates attributes for a pool member.
 Upon successful validation of the request, the service returns the
 HTTP ``OK (200)`` response code.
 
-Note: You cannot update the member UUID, ``tenant_id``,
+Note: You cannot update the member UUID, ``project_id``,
 ``address``, ``protocol_port``, and ``subnet_id`` attributes. If
 you attempt to update any of these attributes, the service returns
 the HTTP ``Immutable (422)`` response code.
@@ -1165,7 +1185,8 @@ Response Parameters
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - member: member
    - address: address
@@ -1183,7 +1204,7 @@ Remove member from pool
 
 .. rest_method::  DELETE /v2.0/lbaas/pools/{pool_id}/members/{member_id}
 
-Removes a member from a pool and its associated configuration from the tenant account.
+Removes a member from a pool and its associated configuration from the project.
 
 The API immediately purges any and all configuration data. You
 cannot recover it.
@@ -1208,7 +1229,7 @@ List health monitors
 Lists health monitors.
 
 This operation lists all health monitors that are associated with
-your tenant account.
+your project.
 
 This operation returns a list, which might be empty.
 
@@ -1225,7 +1246,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitors: health_monitors
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -1257,8 +1279,8 @@ returns a response object. The object contains a unique identifier.
 
 At a minimum, you must specify these health monitor attributes:
 
-- ``tenant_id``. Admin only. Required to create a health monitor for
-  another tenant.
+- ``project_id``. Admin only. Required to create a health monitor for
+  another project.
 
 - ``type``. The type of health monitor. A valid value is ``TCP``,
   ``HTTP``, or ``HTTPS``.
@@ -1297,8 +1319,8 @@ You can configure all documented features of the health monitor at
 creation time by specifying the additional elements or attributes
 in the request.
 
-Administrative users can specify a tenant ID that is different than
-their own to create health monitors for other tenants.
+Administrative users can specify a project ID that is different than
+their own to create health monitors for other projects.
 
 To update a health monitor, the load balancer to which to attach
 must have an ``ACTIVE`` provisioning status.
@@ -1311,7 +1333,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -1333,7 +1356,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -1354,7 +1378,7 @@ Shows details for a health monitor.
 
 This operation returns a health monitor object, by health monitor
 ID. If you are not an administrative user and the health monitor
-object does not belong to your tenant account, the service returns
+object does not belong to your project, the service returns
 the HTTP ``Forbidden (403)`` response code.
 
 Example: Show health monitor details
@@ -1372,7 +1396,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -1400,7 +1425,7 @@ Updates a health monitor.
 Upon successful validation of the request, the service returns the
 HTTP ``Accepted (202)`` response code.
 
-Note: The health monitor UUID, ``tenant_id``, ``pool_id``, and type
+Note: The health monitor UUID, ``project_id``, ``pool_id``, and type
 are immutable attributes and cannot be updated. If you specify an
 unsupported attribute, the service returns the HTTP ``Immutable
 (422)`` response code.
@@ -1435,7 +1460,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -1458,7 +1484,7 @@ Remove health monitor
 
 .. rest_method::  DELETE /v2.0/lbaas/health_monitors/{health_monitor_id}
 
-Removes a health monitor and its associated configuration from the tenant account.
+Removes a health monitor and its associated configuration from the project.
 
 The API immediately purges any and all configuration data. You
 cannot recover it.

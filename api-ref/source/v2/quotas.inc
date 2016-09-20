@@ -8,17 +8,17 @@
 Quotas extension (quotas)
 =========================
 
-Lists default quotas, current quotas for tenants who have non-default quota
-values, and shows, updates, and resets quotas for a tenant.
+Lists default quotas, current quotas for projects with non-default quota
+values, and shows, updates, and resets quotas for a project.
 
 A quota value of ``-1`` means that quota has no limit.
 
-List quotas for tenants with non-default quota values
-=====================================================
+List quotas for projects with non-default quota values
+======================================================
 
 .. rest_method::  GET /v2.0/quotas
 
-Lists quotas for tenants who have non-default quota values.
+Lists quotas for projects with non-default quota values.
 
 Normal response codes: 200
 
@@ -49,12 +49,12 @@ Response Example
 .. literalinclude:: samples/quotas/quotas-list-response.json
    :language: javascript
 
-List quotas for a tenant
-========================
+List quotas for a project
+=========================
 
-.. rest_method::  GET /v2.0/quotas/{tenant_id}
+.. rest_method::  GET /v2.0/quotas/{project_id}
 
-Lists quotas for a tenant.
+Lists quotas for a project.
 
 Normal response codes: 200
 
@@ -65,7 +65,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: tenant_id-path
+   - tenant_id: project_id-path
+   - project_id: project_id-path
 
 Response Parameters
 -------------------
@@ -86,15 +87,15 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: samples/quotas/quotas-list-for-tenant-response.json
+.. literalinclude:: samples/quotas/quotas-list-for-project-response.json
    :language: javascript
 
-Update quota for a tenant
-=========================
+Update quota for a project
+==========================
 
-.. rest_method::  PUT /v2.0/quotas/{tenant_id}
+.. rest_method::  PUT /v2.0/quotas/{project_id}
 
-Updates quotas for a tenant. Use when non-default quotas are desired.
+Updates quotas for a project. Use when non-default quotas are desired.
 
 Normal response codes: 200
 
@@ -115,7 +116,8 @@ Request
    - router: quota-router
    - rbac_policy: quota-rbac_policy
    - port: quota-port
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
 
 Request Example
 ---------------
@@ -138,7 +140,8 @@ Response Parameters
    - router: quota-router
    - rbac_policy: quota-rbac_policy
    - port: quota-port
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
 
 Response Example
 ----------------
@@ -146,12 +149,12 @@ Response Example
 .. literalinclude:: samples/quotas/quotas-update-response.json
    :language: javascript
 
-Reset quota for a tenant
-========================
+Reset quota for a project
+=========================
 
-.. rest_method::  DELETE /v2.0/quotas/{tenant_id}
+.. rest_method::  DELETE /v2.0/quotas/{project_id}
 
-Resets quotas to default values for a tenant.
+Resets quotas to default values for a project.
 
 Error response codes: 204, 401, 403, 404
 
@@ -160,14 +163,15 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: tenant_id-path
+   - tenant_id: project_id-path
+   - project_id: project_id-path
 
-List default quotas for a tenant
-================================
+List default quotas for a project
+=================================
 
-.. rest_method::  GET /v2.0/quotas/{tenant_id}/default
+.. rest_method::  GET /v2.0/quotas/{project_id}/default
 
-Lists default quotas for a tenant.
+Lists default quotas for a project.
 
 Normal response codes: 200
 
@@ -178,7 +182,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: tenant_id-path
+   - tenant_id: project_id-path
+   - project_id: project_id-path
 
 Response Parameters
 -------------------
@@ -199,5 +204,5 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: samples/quotas/quotas-list-for-tenant-response.json
+.. literalinclude:: samples/quotas/quotas-list-for-project-response.json
    :language: javascript

@@ -7,6 +7,7 @@
         "port_id": "ce705c24-c1ef-408a-bda3-7bbd946164ab",
         "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
         "status": "ACTIVE",
+        "project_id": "4969c491a3c74ee4af974e6d800c62de",
         "tenant_id": "4969c491a3c74ee4af974e6d800c62de"
     }
 }

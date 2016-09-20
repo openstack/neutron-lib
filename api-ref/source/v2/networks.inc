@@ -50,7 +50,8 @@ Response Parameters
    - availability_zones: availability_zones
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - updated_at: updated_at
    - changed_at: changed_at
    - mtu: mtu
@@ -107,7 +108,8 @@ Response Parameters
    - availability_zones: availability_zones
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mtu: mtu
    - qos_policy_id: qos_policy_id
    - subnets: subnets
@@ -142,7 +144,7 @@ List networks
 
 .. rest_method::  GET /v2.0/networks
 
-Lists networks to which the tenant has access.
+Lists networks to which the user has access.
 
 Use the ``fields`` query parameter to filter the response. For
 information, see `Filtering and Column Selection <https://wiki.open
@@ -173,7 +175,8 @@ Response Parameters
    - availability_zones: availability_zones
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - networks: networks
    - mtu: mtu
    - subnets: subnets
@@ -195,7 +198,7 @@ Create network
 Creates a network.
 
 A request body is optional. An administrative user can specify
-another tenant UUID, which is the tenant who owns the network, in
+another project ID, which is the project that owns the network, in
 the request body.
 
 Error response codes: 201,401,400
@@ -220,7 +223,8 @@ Response Parameters
    - availability_zones: availability_zones
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mtu: mtu
    - qos_policy_id: qos_policy_id
    - subnets: subnets
@@ -250,7 +254,8 @@ Request
    - router:external: router:external
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - port_security_enabled: port_security_enabled
    - shared: shared
    - networks: networks
@@ -271,7 +276,8 @@ Response Parameters
    - subnets: subnets
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mtu: mtu
    - shared: shared
    - id: id

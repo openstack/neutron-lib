@@ -9,14 +9,14 @@ VPNaaS 2.0 (CURRENT) (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-gro
 ============================================================================================================
 
 The Virtual-Private-Network-as-a-Service (VPNaaS) extension enables
-OpenStack tenants to extend private networks across the public
+OpenStack projects to extend private networks across the public
 telecommunication infrastructure.
 
 This initial implementation of the VPNaaS extension provides:
 
 - Site-to-site VPN that connects two private networks.
 
-- Multiple VPN connections per tenant.
+- Multiple VPN connections per project.
 
 - IKEv1 policy support with 3des, aes-128, aes-256, or aes-192
   encryption.
@@ -65,7 +65,8 @@ Request
 
    - ikepolicy: ikepolicy
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - name: name
    - encryption_algorithm: encryption_algorithm
@@ -90,7 +91,8 @@ Response Parameters
    - ikepolicy: ikepolicy
    - ikepolicies: ikepolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - name: name
    - encryption_algorithm: encryption_algorithm
@@ -123,7 +125,8 @@ Response Parameters
 
    - ikepolicies: ikepolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - name: name
    - encryption_algorithm: encryption_algorithm
@@ -171,7 +174,8 @@ Request
    - peer_cidrs: peer_cidrs
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - interval: interval
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
@@ -207,7 +211,8 @@ Response Parameters
    - peer_cidrs: peer_cidrs
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - interval: interval
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
@@ -250,7 +255,8 @@ Response Parameters
    - peer_cidrs: peer_cidrs
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - interval: interval
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
@@ -304,7 +310,8 @@ Response Parameters
    - peer_cidrs: peer_cidrs
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - interval: interval
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
@@ -380,7 +387,8 @@ Response Parameters
    - peer_cidrs: peer_cidrs
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - interval: interval
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
@@ -427,7 +435,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - endpoints: endpoints
    - type: type
    - description: description
@@ -445,7 +454,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - endpoints: endpoints
    - type: type
    - id: id
@@ -471,7 +481,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - endpoints: endpoints
    - type: type
    - id: id
@@ -510,7 +521,8 @@ Response Parameters
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - external_v4_ip: external_v4_ip
    - vpnservices: vpnservices
    - id: id
@@ -543,7 +555,8 @@ Request
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - vpnservice: vpnservice
    - name: name
 
@@ -564,7 +577,8 @@ Response Parameters
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - external_v4_ip: external_v4_ip
    - vpnservice: vpnservice
    - id: id
@@ -577,8 +591,8 @@ Show VPN service details
 
 Shows details for a VPN service.
 
-If the user is not an administrative user and the VPN service
-object does not belong to the tenant account for the user, the
+If the user does not have administrative role and the VPN service
+object does not belong to the user's project, the
 operation returns the ``Forbidden (403)`` response code.
 
 Normal response codes: 200
@@ -603,7 +617,8 @@ Response Parameters
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - external_v4_ip: external_v4_ip
    - vpnservice: vpnservice
    - id: id
@@ -657,7 +672,8 @@ Response Parameters
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - external_v4_ip: external_v4_ip
    - vpnservice: vpnservice
    - id: id
@@ -713,7 +729,8 @@ Response Parameters
    - ikepolicy: ikepolicy
    - ikepolicies: ikepolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - name: name
    - encryption_algorithm: encryption_algorithm
@@ -774,7 +791,8 @@ Response Parameters
    - ikepolicy: ikepolicy
    - ikepolicies: ikepolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - name: name
    - encryption_algorithm: encryption_algorithm
@@ -833,7 +851,8 @@ Response Parameters
 
    - ipsecpolicies: ipsecpolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - ipsecpolicy: ipsecpolicy
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
@@ -894,7 +913,8 @@ Response Parameters
 
    - ipsecpolicies: ipsecpolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - ipsecpolicy: ipsecpolicy
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
@@ -953,7 +973,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - endpoints: endpoints
    - type: type
    - id: id
@@ -997,7 +1018,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - endpoints: endpoints
    - type: type
    - id: id
@@ -1044,7 +1066,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - ipsecpolicy: ipsecpolicy
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
@@ -1069,7 +1092,8 @@ Response Parameters
 
    - ipsecpolicies: ipsecpolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - ipsecpolicy: ipsecpolicy
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
@@ -1103,7 +1127,8 @@ Response Parameters
 
    - ipsecpolicies: ipsecpolicies
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
    - encryption_algorithm: encryption_algorithm

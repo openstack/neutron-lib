@@ -50,7 +50,8 @@ Response Parameters
    - name: name
    - provider:physical_network: provider:physical_network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provider:segmentation_id: provider:segmentation_id
    - mtu: mtu
    - shared: shared
@@ -88,7 +89,8 @@ Request
    - network: network
    - provider:physical_network: provider:physical_network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provider:network_type: provider:network_type
    - shared: shared
    - port_security_enabled: port_security_enabled
@@ -113,7 +115,8 @@ Response Parameters
    - network: network
    - provider:physical_network: provider:physical_network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provider:segmentation_id: provider:segmentation_id
    - mtu: mtu
    - shared: shared
@@ -149,7 +152,7 @@ List networks (provider network)
 
 .. rest_method::  GET /v2.0/networks
 
-Lists networks that are accessible to the tenant who submits the request.
+Lists networks that are accessible to the user who submits the request.
 
 Normal response codes: 200
 
@@ -170,7 +173,8 @@ Response Parameters
    - name: name
    - provider:physical_network: provider:physical_network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - networks: networks
    - mtu: mtu
    - shared: shared
@@ -204,7 +208,8 @@ Request
    - network: network
    - provider:physical_network: provider:physical_network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provider:network_type: provider:network_type
    - shared: shared
    - port_security_enabled: port_security_enabled
@@ -228,7 +233,8 @@ Response Parameters
    - network: network
    - provider:physical_network: provider:physical_network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - provider:segmentation_id: provider:segmentation_id
    - mtu: mtu
    - shared: shared

@@ -52,7 +52,8 @@ Response Parameters
    - subnets: subnets
    - network: network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mtu: mtu
    - shared: shared
    - vlan_transparent: vlan_transparent
@@ -90,7 +91,8 @@ Response Parameters
    - subnets: subnets
    - name: name
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mtu: mtu
    - vlan_transparent: vlan_transparent
    - shared: shared
@@ -121,7 +123,8 @@ Request
    - router:external: router:external
    - network: network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - shared: shared
    - vlan_transparent: vlan_transparent
    - port_security_enabled: port_security_enabled
@@ -143,7 +146,8 @@ Response Parameters
    - subnets: subnets
    - network: network
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mtu: mtu
    - shared: shared
    - vlan_transparent: vlan_transparent

@@ -38,7 +38,8 @@ Response Parameters
    - used_ips: used_ips
    - subnet_ip_availability: subnet_ip_availability
    - network_id: network_id_3
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - total_ips: total_ips
    - network_ip_availability: network_ip_availability
    - subnet_id: subnet_id
@@ -75,7 +76,8 @@ Response Parameters
    - used_ips: used_ips
    - subnet_ip_availability: subnet_ip_availability
    - network_id: network_id_3
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - total_ips: total_ips
    - subnet_id: subnet_id
    - subnet_name: subnet_name

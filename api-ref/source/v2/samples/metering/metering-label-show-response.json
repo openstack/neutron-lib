@@ -1,5 +1,6 @@
 {
     "metering_label": {
+        "project_id": "45345b0ee1ea477fac0f541b2cb79cd4",
         "tenant_id": "45345b0ee1ea477fac0f541b2cb79cd4",
         "description": "label1 description",
         "name": "label1",

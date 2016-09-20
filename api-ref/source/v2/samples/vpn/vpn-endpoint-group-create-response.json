@@ -1,6 +1,7 @@
 {
     "endpoint_group": {
         "description": "",
+        "project_id": "4ad57e7ce0b24fca8f12b9834d91079d",
         "tenant_id": "4ad57e7ce0b24fca8f12b9834d91079d",
         "endpoints": [
             "10.2.0.0/24",

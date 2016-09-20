@@ -35,11 +35,14 @@ Networking service must provide an authentication token in **X-Auth-Token**
 request header. You obtain the token by authenticating to the Keystone
 endpoint.
 
-When Keystone is enabled, the ``tenant_id`` attribute is not required in create
-requests because the tenant ID is derived from the authentication token.
+When Keystone is enabled, the ``project_id`` attribute is not required in create
+requests because the project ID is derived from the authentication token.
+
+NOTE: Currently the Networking API accepts the deprecated ``tenant_id``
+attribute for the project ID for backward compatibility.
 
 The default authorization settings allow only administrative users to create
-resources on behalf of a different tenant.
+resources on behalf of a different project.
 
 OpenStack Networking uses information received from Keystone to authorize user
 requests. OpenStack Networking handles the following types of authorization
@@ -67,6 +70,20 @@ Request format
 The Networking API v2.0 only accepts requests with the JSON data serialization
 format. The ``Content-Type`` header is ignored.
 
+Tenant and project attributes in requests
+-----------------------------------------
+
+Starting with the Newton release of the Networking service, the Networking API
+accepts the ``project_id`` attribute in addition to the ``tenant_id`` attribute
+in requests. The ``tenant_id`` attribute is accepted for backward compatibility.
+If both the ``project_id`` and the ``tenant_id`` attribute are provided in the
+same request, their values must be identical.
+
+To determine whether a Networking API v2.0 endpoint supports the ``project_id``
+attribute in requests, check that the ``project-id`` API extension is enabled
+(see Extensions_).
+
+
 Response format
 ---------------
 
@@ -80,6 +97,19 @@ Query extension
     - **GET** *publicURL*/networks
 
     - **GET** *publicURL*/networks.json
+
+Tenant and project attributes in responses
+------------------------------------------
+
+Starting with the Newton release of the Networking service, the Networking API
+returns a ``project_id`` attribute in responses, while still returning a
+``tenant_id`` attribute for backward compatibility. The values will always be
+identical.
+
+To determine whether a Networking API v2.0 endpoint returns the ``project_id``
+attribute in responses, check that the ``project-id`` API extension is enabled
+(see Extensions_).
+
 
 Filtering and column selection
 ==============================
@@ -230,6 +260,7 @@ To determine if pagination is supported, a user can check whether the
                 "status": "ACTIVE",
                 "subnets": [],
                 "tenant_id": "20bd52ff3e1b40039c312395b04683cf"
+                "project_id": "20bd52ff3e1b40039c312395b04683cf"
             },
             {
                 "admin_state_up": true,
@@ -243,6 +274,7 @@ To determine if pagination is supported, a user can check whether the
                 "status": "ACTIVE",
                 "subnets": [],
                 "tenant_id": "20bd52ff3e1b40039c312395b04683cf"
+                "project_id": "20bd52ff3e1b40039c312395b04683cf"
             }
         ],
         "networks_links": [
@@ -289,6 +321,7 @@ The last page won't show the "next" links
                 "status": "ACTIVE",
                 "subnets": [],
                 "tenant_id": "c05140b3dc7c4555afff9fab6b58edc2"
+                "project_id": "c05140b3dc7c4555afff9fab6b58edc2"
             }
         ],
         "networks_links": [
@@ -320,6 +353,9 @@ the background.
 
 To determine if sorting is supported, a user can check whether the 'sorting'
 extension API is available.
+
+
+.. _Extensions:
 
 Extensions
 ==========

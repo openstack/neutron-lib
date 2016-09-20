@@ -14,6 +14,7 @@
                 "remote_group_id": null,
                 "remote_ip_prefix": null,
                 "security_group_id": "2076db17-a522-4506-91de-c6dd8e837028",
+                "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                 "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
             },
             {
@@ -26,9 +27,11 @@
                 "remote_group_id": null,
                 "remote_ip_prefix": null,
                 "security_group_id": "2076db17-a522-4506-91de-c6dd8e837028",
+                "project_id": "e4f50856753b4dc6afee5fa6b9b6c550"
                 "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
             }
         ],
+        "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
         "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
     }
 }

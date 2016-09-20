@@ -2,6 +2,7 @@
     "loadbalancer": {
         "description": "simple lb",
         "admin_state_up": true,
+        "project_id": "1a3e005cf9ce40308c900bcb08e5320c",
         "tenant_id": "1a3e005cf9ce40308c900bcb08e5320c",
         "provisioning_status": "ACTIVE",
         "listeners": [],

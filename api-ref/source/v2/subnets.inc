@@ -16,11 +16,11 @@ List subnets
 
 .. rest_method::  GET /v2.0/subnets
 
-Lists subnets to which the tenant has access.
+Lists subnets that the project has access to.
 
-Default policy settings returns exclusively subnets owned by the
-tenant submitting the request, unless the request is submitted by a
-user with administrative rights. You can control which attributes
+Default policy settings return only subnets owned by the
+project of the user submitting the request, unless the
+user has administrative role. You can control which attributes
 are returned by using the fields query parameter. You can filter
 results by using query string parameters.
 

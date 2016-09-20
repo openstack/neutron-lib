@@ -115,6 +115,18 @@ profile_id:
   in: path
   required: false
   type: string
+project_id:
+  description: |
+    The ID of the project.
+  in: path
+  required: true
+  type: string
+project_id-path:
+  description: |
+    The ID of the project.
+  in: path
+  required: true
+  type: string
 resource_id:
   description: |
     The UUID of resource which the tag is set on.
@@ -168,12 +180,6 @@ tag:
     The name for the tag.
   in: path
   required: false
-  type: string
-tenant_id-path:
-  description: |
-    The ID of the tenant.
-  in: path
-  required: true
   type: string
 vip_id_1:
   description: |
@@ -671,37 +677,37 @@ default_prefixlen_1:
   type: integer
 default_quota:
   description: |
-    A per-tenant quota on the prefix space that can
-    be allocated from the subnet pool for tenant subnets. Default is
+    A per-project quota on the prefix space that can
+    be allocated from the subnet pool for project subnets. Default is
     no quota is enforced on allocations from the subnet pool. For IPv4
     subnet pools, ``default_quota`` is measured in units of /32. For
     IPv6 subnet pools, ``default_quota`` is measured units of /64. All
-    tenants that use the subnet pool have the same prefix quota
+    projects that use the subnet pool have the same prefix quota
     applied.
   in: body
   required: false
   type: integer
 default_quota_1:
   description: |
-    A per-tenant quota on the prefix space that can
-    be allocated from the subnet pool for tenant subnets. For IPv4
+    A per-project quota on the prefix space that can
+    be allocated from the subnet pool for project subnets. For IPv4
     subnet pools, ``default_quota`` is measured in units of /32. For
     IPv6 subnet pools, ``default_quota`` is measured units of /64. All
-    tenants that use the subnet pool have the same prefix quota
+    projects that use the subnet pool have the same prefix quota
     applied.
   in: body
   required: true
   type: integer
 default_quota_2:
   description: |
-    A per-tenant quota on the prefix space that can
-    be allocated from the subnet pool for tenant subnets. Default is
+    A per-project quota on the prefix space that can
+    be allocated from the subnet pool for project subnets. Default is
     no quota is enforced on allocations from the subnet pool. For IPv4
     subnet pools, ``default_quota`` is measured in units of /32. For
     IPv6 subnet pools, ``default_quota`` is measured units of /64. All
-    tenants that use the subnet pool have the same prefix quota
+    projects that use the subnet pool have the same prefix quota
     applied.  Updating this parameter has no effect on existing subnet
-    allocations. The existing subnet allocations for each tenant are
+    allocations. The existing subnet allocations for each project are
     counted against the updated prefix space quota.
   in: body
   required: false
@@ -2795,6 +2801,14 @@ prefixes_2:
   in: body
   required: true
   type: array
+project_id-request:
+  description: |
+    The ID of the project that owns the resource.
+    Only administrative users can specify a project ID other than their own.
+    You cannot change this value through authorization policies.
+  in: body
+  required: false
+  type: string
 protocol:
   description: |
     The IP protocol. Valid value is ``icmp``,
@@ -2939,59 +2953,59 @@ quota:
 quota-floatingip:
   description: |
     The number of floating IP addresses allowed for
-    each tenant.  A value of ``-1`` means no limit.
+    each project.  A value of ``-1`` means no limit.
   in: body
   required: true
   type: integer
 quota-network:
   description: |
-    The number of networks allowed for each tenant.
+    The number of networks allowed for each project.
   in: body
   required: true
   type: integer
 quota-port:
   description: |
-    The number of ports allowed for each tenant.
+    The number of ports allowed for each project.
   in: body
   required: true
   type: integer
 quota-rbac_policy:
   description: |
     The number of role-based access control (RBAC)
-    policies for each tenant.
+    policies for each project.
   in: body
   required: true
   type: integer
 quota-router:
   description: |
-    The number of routers allowed for each tenant.
+    The number of routers allowed for each project.
   in: body
   required: true
   type: integer
 quota-security_group:
   description: |
     The number of security groups allowed for each
-    tenant.
+    project.
   in: body
   required: true
   type: integer
 quota-security_group_rule:
   description: |
     The number of security group rules allowed for
-    each tenant.
+    each project.
   in: body
   required: true
   type: integer
 quota-subnet:
   description: |
-    The number of subnets allowed for each tenant.
+    The number of subnets allowed for each project.
   in: body
   required: true
   type: integer
 quota-subnetpool:
   description: |
     The number of subnet pools allowed for each
-    tenant.
+    project.
   in: body
   required: true
   type: integer
@@ -3257,6 +3271,12 @@ router-port_id-request:
   in: body
   required: false
   type: string
+router-project_id-interface:
+  description: |
+    The ID of the project who owns the router interface.
+  in: body
+  required: true
+  type: string
 router-routes:
   description: |
     The extra routes configuration for L3 router.
@@ -3294,12 +3314,6 @@ router-subnet_ids:
   in: body
   required: true
   type: array
-router-tenant_id-interface:
-  description: |
-    The ID of the tenant who owns the router interface.
-  in: body
-  required: true
-  type: string
 router:external:
   description: |
     Indicates whether this network is externally
@@ -3500,14 +3514,14 @@ session_persistence_3:
 shared:
   description: |
     Admin-only. Indicates whether this network is
-    shared across all tenants.
+    shared across all projects.
   in: body
   required: false
   type: boolean
 shared_1:
   description: |
     Indicates whether this network is shared across
-    all tenants. By default, only administrative users can change this
+    all projects. By default, only administrative users can change this
     value.
   in: body
   required: true
@@ -3515,29 +3529,29 @@ shared_1:
 shared_10:
   description: |
     Indicates whether this policy is shared across
-    all tenants.
+    all projects.
   in: body
   required: true
   type: boolean
 shared_11:
   description: |
     Indicates whether this subnet pool is shared
-    across all tenants.
+    across all projects.
   in: body
   required: true
   type: boolean
 shared_12:
   description: |
     Set to ``true`` to make this firewall policy
-    visible to other tenants. Default is ``false``.
+    visible to other projects. Default is ``false``.
   in: body
   required: false
   type: boolean
 shared_13:
   description: |
     Set to ``true`` to share this firewall rule with
-    other tenants. Other tenants can use a shared rule in firewall
-    policies that this tenant does not own. Valid value is ``true`` or
+    other projects. Other projects can use a shared rule in firewall
+    policies that this project does not own. Valid value is ``true`` or
     ``false``. Default is ``false``.
   in: body
   required: false
@@ -3545,57 +3559,57 @@ shared_13:
 shared_2:
   description: |
     Indicates whether this metering label is shared
-    across all tenants.
+    across all projects.
   in: body
   required: false
   type: boolean
 shared_3:
   description: |
     Admin-only. Indicates whether this network is
-    shared across all tenants.
+    shared across all projects.
   in: body
   required: false
   type: boolean
 shared_4:
   description: |
     Set to ``true`` to share this policy with other
-    tenants.  Default is ``false``.
+    projects.  Default is ``false``.
   in: body
   required: false
   type: boolean
 shared_5:
   description: |
     Admin-only. Indicates whether this subnet pool is
-    shared across all tenants.
+    shared across all projects.
   in: body
   required: false
   type: boolean
 shared_6:
   description: |
     Indicates whether the firewall policy is shared
-    across all tenants.
+    across all projects.
   in: body
   required: true
   type: boolean
 shared_7:
   description: |
     Indicates whether this firewall rule is shared
-    with other tenants. Other tenants can use a shared rule in
-    firewall policies that this tenant does not own.
+    with other projects. Other projects can use a shared rule in
+    firewall policies that this project does not own.
   in: body
   required: true
   type: boolean
 shared_8:
   description: |
     Indicates whether this metering label is shared
-    across all tenants.
+    across all projects.
   in: body
   required: true
   type: boolean
 shared_9:
   description: |
     Indicates whether this network is shared across
-    all tenants.
+    all projects.
   in: body
   required: true
   type: boolean
@@ -3734,15 +3748,15 @@ subnet_id_1:
   type: string
 subnet_id_3:
   description: |
-    (Deprecated) The subnet where the tenant wants
-    the VPN service.
+    (Deprecated) The subnet where the VPN service should
+    be provided.
   in: body
   required: false
   type: string
 subnet_id_4:
   description: |
-    (Deprecated) The subnet where the tenant wants
-    the VPN service.
+    (Deprecated) The subnet where the VPN service should
+    be provided.
   in: body
   required: true
   type: string
@@ -3806,282 +3820,7 @@ tags:
   type: array
 tenant_id:
   description: |
-    The ID of the tenant who owns the resource.
-  in: body
-  required: true
-  type: string
-tenant_id-request:
-  description: |
-    The ID of the tenant who owns the resource.
-    Only administrative users can specify a tenant UUID other than their own.
-    You cannot change this value through authorization policies.
-  in: body
-  required: false
-  type: string
-tenant_id_1:
-  description: |
-    The UUID of the tenant.
-  in: body
-  required: true
-  type: string
-tenant_id_10:
-  description: |
-    The UUID of the tenant who owns the load
-    balancer. Only administrative users can specify a tenant UUID
-    other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_11:
-  description: |
-    The UUID of the tenant who owns the member. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_12:
-  description: |
-    The UUID of the tenant who owns the member. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_13:
-  description: |
-    The tenant UUID for the metering label.
-  in: body
-  required: true
-  type: string
-tenant_id_14:
-  description: |
-    The UUID of the tenant who owns the network. Only
-    administrative users can specify a tenant UUID other than their
-    own. You cannot change this value through authorization policies.
-  in: body
-  required: false
-  type: string
-tenant_id_15:
-  description: |
-    The tenant UUID of QoS policy owner. Only
-    administrative users can specify a tenant UUID other than their
-    own. You cannot change this value through authorization policies.
-  in: body
-  required: false
-  type: string
-tenant_id_16:
-  description: |
-    The UUID of the tenant who owns the pool. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_17:
-  description: |
-    The UUID of the tenant who owns the security
-    group rule. Only administrative users can specify a tenant UUID
-    other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_18:
-  description: |
-    The UUID of the tenant who owns the security
-    group. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_19:
-  description: |
-    The UUID of the tenant who owns the subnet pool.
-    Only administrative users can specify a tenant UUID other than
-    their own. You cannot change this value through authorization
-    policies.
-  in: body
-  required: false
-  type: string
-tenant_id_2:
-  description: |
-    The UUID of the tenant who owns the network. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_20:
-  description: |
-    The UUID of the tenant who owns the VIP. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_21:
-  description: |
-    Owner of the VPN endpoint group. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_22:
-  description: |
-    Owner of the VPN service. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_23:
-  description: |
-    The UUID of the tenant who owns the firewall
-    policy.
-  in: body
-  required: true
-  type: string
-tenant_id_24:
-  description: |
-    The UUID of the tenant who owns the firewall
-    rule.
-  in: body
-  required: true
-  type: string
-tenant_id_25:
-  description: |
-    The UUID of the tenant who owns the health
-    monitor. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_26:
-  description: |
-    The owner of the VPN service. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_27:
-  description: |
-    Owner of the VPN service. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_28:
-  description: |
-    The UUID of the tenant who owns the VIP. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_29:
-  description: |
-    The UUID of the tenant who owns the network.
-  in: body
-  required: true
-  type: string
-tenant_id_3:
-  description: |
-    The owner of the firewall service. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_30:
-  description: |
-    The UUID of tenant or project.
-  in: body
-  required: true
-  type: string
-tenant_id_31:
-  description: |
-    The UUID of the tenant who owns the QoS policy.
-  in: body
-  required: true
-  type: string
-tenant_id_32:
-  description: |
-    The UUID of the tenant who owns the pool. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_34:
-  description: |
-    The UUID of the tenant who owns the subnet pool.
-  in: body
-  required: true
-  type: string
-tenant_id_35:
-  description: |
-    The UUID of the tenant.
-  in: body
-  required: true
-  type: string
-tenant_id_36:
-  description: |
-    The owner of the firewall policy. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_37:
-  description: |
-    The UUID of the tenant who owns the firewall
-    rule. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_4:
-  description: |
-    The UUID of the tenant. Only administrative users
-    can specify a tenant UUID other than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_5:
-  description: |
-    The UUID of the tenant who owns the health
-    monitor. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_6:
-  description: |
-    The owner of the IKE policy. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_7:
-  description: |
-    Owner of the IPSec policy. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_8:
-  description: |
-    Owner of the IPSec connection. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_9:
-  description: |
-    The UUID of the tenant who owns the listener.
-    Only administrative users can specify a tenant UUID other than
-    their own.
+    The ID of the project that owns the resource.
   in: body
   required: true
   type: string

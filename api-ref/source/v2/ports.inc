@@ -47,7 +47,8 @@ Response Parameters
    - port: port
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - port_security_enabled: port_security_enabled
    - fixed_ips: fixed_ips
@@ -103,7 +104,8 @@ Request
    - opt_name: opt_name
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - ip_address: ip_address
    - port: port
@@ -136,7 +138,8 @@ Response Parameters
    - port: port
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - port_security_enabled: port_security_enabled
    - fixed_ips: fixed_ips
@@ -174,10 +177,10 @@ List ports
 
 .. rest_method::  GET /v2.0/ports
 
-Lists ports to which the tenant has access.
+Lists ports to which the user has access.
 
 Default policy settings return only those ports that are owned by
-the tenant who submits the request, unless the request is submitted
+the project of the user who submits the request, unless the request is submitted
 by a user with administrative rights. Users can control which
 attributes are returned by using the fields query parameter. You
 can use query parameters to filter the response.For information,
@@ -210,7 +213,8 @@ Response Parameters
    - ports: ports
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - port_security_enabled: port_security_enabled
    - fixed_ips: fixed_ips
@@ -250,7 +254,8 @@ Request
    - opt_name: opt_name
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - ip_address: ip_address
    - port: port
@@ -282,7 +287,8 @@ Response Parameters
    - port: port
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - port_security_enabled: port_security_enabled
    - fixed_ips: fixed_ips
@@ -315,7 +321,8 @@ Request
    - opt_name: opt_name
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - ip_address: ip_address
    - ports: ports
@@ -347,7 +354,8 @@ Response Parameters
    - ports: ports
    - subnet_id: subnet_id
    - device_owner: device_owner
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - mac_address: mac_address
    - port_security_enabled: port_security_enabled
    - fixed_ips: fixed_ips

@@ -17,6 +17,7 @@
             "name": "pool1",
             "admin_state_up": true,
             "subnet_id": "aa547115-d710-4d6d-bb2c-b038d9c2704b",
+            "project_id": "eabfefa3fd1740a88a47ad98e132d238",
             "tenant_id": "eabfefa3fd1740a88a47ad98e132d238",
             "health_monitors_status": [
                 {

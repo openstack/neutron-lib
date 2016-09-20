@@ -8,6 +8,7 @@
         "name": "my-subnet-pool",
         "default_quota": null,
         "is_default": false,
+        "project_id": "9fadcee8aa7c40cdb2114fff7d569c08",
         "tenant_id": "9fadcee8aa7c40cdb2114fff7d569c08",
         "created_at": "2016-03-08T20:19:41",
         "prefixes": [

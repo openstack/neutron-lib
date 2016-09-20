@@ -19,7 +19,7 @@ Show security group
 Shows details for a security group.
 
 The response contains the description, name, UUID, and security
-group rules that are associated with the security group and tenant.
+group rules that are associated with the security group and project.
 
 Normal response codes: 200
 
@@ -47,7 +47,8 @@ Response Parameters
    - port_range_max: port_range_max
    - security_group_rules: security_group_rules
    - security_group_id: security_group_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - security_group: security_group
@@ -92,7 +93,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - security_group: security_group
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - description: description
    - name: name
    - id: id
@@ -131,7 +133,8 @@ List security groups
 
 .. rest_method::  GET /v2.0/security-groups
 
-Lists OpenStack Networking security groups to which the tenant has access.
+Lists OpenStack Networking security groups that the project has access
+to.
 
 The list shows the UUID for and the rules that are associated with
 each security group.
@@ -156,7 +159,8 @@ Response Parameters
    - port_range_max: port_range_max
    - security_group_rules: security_group_rules
    - security_group_id: security_group_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - id: id
@@ -187,7 +191,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - security_group: security_group
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - description: description
    - name: name
 
@@ -210,7 +215,8 @@ Response Parameters
    - port_range_max: port_range_max
    - security_group_rules: security_group_rules
    - security_group_id: security_group_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - security_group: security_group

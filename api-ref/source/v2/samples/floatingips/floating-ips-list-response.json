@@ -2,6 +2,7 @@
     "floatingips": [
         {
             "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
+            "project_id": "4969c491a3c74ee4af974e6d800c62de",
             "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
             "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",
             "fixed_ip_address": "10.0.0.3",
@@ -12,6 +13,7 @@
         },
         {
             "router_id": null,
+            "project_id": "4969c491a3c74ee4af974e6d800c62de",
             "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
             "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",
             "fixed_ip_address": null,

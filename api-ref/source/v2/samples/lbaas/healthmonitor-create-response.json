@@ -1,6 +1,7 @@
 {
     "health_monitor": {
         "admin_state_up": true,
+        "project_id": "eabfefa3fd1740a88a47ad98e132d238",
         "tenant_id": "eabfefa3fd1740a88a47ad98e132d238",
         "delay": 1,
         "expected_codes": "200,201,202",

@@ -38,9 +38,8 @@ Show service profile details
 
 Shows details for a service profile.
 
-This operation returns a service profile object by ID. If you are
-not an administrative user and the object is not visible to your
-tenant account, the service returns the HTTP ``Forbidden (403)``
+This operation returns a service profile object by ID. If the object is not
+visible by policy, the service returns the HTTP ``Forbidden (403)``
 response code.
 
 Normal response codes: 200
@@ -143,7 +142,7 @@ List service profiles
 
 .. rest_method::  GET /v2.0/service_profiles
 
-Lists all service profiles visible for the tenant account.
+Lists all service profiles visible to the project.
 
 The list can be empty.
 
@@ -237,7 +236,7 @@ List flavors
 
 .. rest_method::  GET /v2.0/flavors
 
-Lists all flavors visible for the tenant account.
+Lists all flavors visible to the project.
 
 The list can be empty.
 
@@ -386,9 +385,8 @@ Show flavor details
 
 Shows details for a flavor.
 
-This operation returns a flavor object by ID. If you are not an
-administrative user and the flavor object is not visible to your
-tenant account, the service returns the HTTP ``Forbidden (403)``
+This operation returns a flavor object by ID. If the flavor object is not
+visible by policy, the service returns the HTTP ``Forbidden (403)``
 response code.
 
 Normal response codes: 200

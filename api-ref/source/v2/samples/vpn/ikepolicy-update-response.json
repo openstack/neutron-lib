@@ -1,6 +1,7 @@
 {
     "ikepolicy": {
         "name": "ikepolicy1",
+        "project_id": "ccb81365fe36411a9011e90491fe1330",
         "tenant_id": "ccb81365fe36411a9011e90491fe1330",
         "auth_algorithm": "sha1",
         "encryption_algorithm": "aes-256",

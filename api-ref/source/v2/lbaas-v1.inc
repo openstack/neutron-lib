@@ -9,7 +9,7 @@ LBaaS 1.0 (DEPRECATED)
 ======================
 
 The Load-Balancer-as-a-Service (LBaaS) v1.0 extension pairs with
-the Networking v2.0 API to enable OpenStack tenants to manage load
+the Networking v2.0 API to enable OpenStack projects to manage load
 balancers for their VMs. With this extension, you can load-balance
 client traffic from one network to application services, such as
 VMs, on the same network.
@@ -69,7 +69,8 @@ Response Parameters
    - description: description
    - health_monitors: health_monitors
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - vip_id: vip_id
    - health_monitors_status: health_monitors_status
@@ -105,7 +106,8 @@ Request
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool: pool
    - name: name
 
@@ -126,7 +128,8 @@ Response Parameters
    - description: description
    - health_monitors: health_monitors
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - vip_id: vip_id
    - health_monitors_status: health_monitors_status
@@ -165,7 +168,8 @@ Response Parameters
    - description: description
    - health_monitors: health_monitors
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - vip_id: vip_id
    - health_monitors_status: health_monitors_status
@@ -221,7 +225,8 @@ Response Parameters
    - description: description
    - health_monitors: health_monitors
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - vip_id: vip_id
    - health_monitors_status: health_monitors_status
@@ -282,7 +287,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - connection_limit: connection_limit
    - pool_id: pool_id
    - session_persistence: session_persistence
@@ -317,7 +323,8 @@ Request
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - connection_limit: connection_limit
    - pool_id: pool_id
    - session_persistence: session_persistence
@@ -343,7 +350,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - connection_limit: connection_limit
    - pool_id: pool_id
    - session_persistence: session_persistence
@@ -382,7 +390,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - connection_limit: connection_limit
    - pool_id: pool_id
    - session_persistence: session_persistence
@@ -440,7 +449,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - connection_limit: connection_limit
    - pool_id: pool_id
    - session_persistence: session_persistence
@@ -497,7 +507,8 @@ Response Parameters
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - members: members
    - address: address
@@ -526,7 +537,8 @@ Request
 
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - member: member
    - address: address
@@ -547,7 +559,8 @@ Response Parameters
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - member: member
    - address: address
@@ -580,7 +593,8 @@ Response Parameters
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - member: member
    - address: address
@@ -629,7 +643,8 @@ Response Parameters
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - pool_id: pool_id
    - member: member
    - address: address
@@ -679,7 +694,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitors: health_monitors
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -712,7 +728,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -734,7 +751,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -769,7 +787,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -824,7 +843,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes

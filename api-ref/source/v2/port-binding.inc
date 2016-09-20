@@ -83,7 +83,7 @@ List ports (port binding)
 
 .. rest_method::  GET /v2.0/ports
 
-Lists ports to which the tenant has access.
+Lists ports to which the user has access.
 
 Normal response codes: 200
 

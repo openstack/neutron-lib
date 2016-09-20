@@ -6,6 +6,7 @@
         "allowed_address_pairs": [],
         "admin_state_up": true,
         "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7",
+        "project_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
         "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
         "binding:vif_details": {},
         "binding:vnic_type": "normal",

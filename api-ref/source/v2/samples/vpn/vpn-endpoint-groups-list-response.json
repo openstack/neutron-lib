@@ -2,6 +2,7 @@
     "endpoint_groups": [
         {
             "description": "",
+            "project_id": "4ad57e7ce0b24fca8f12b9834d91079d",
             "tenant_id": "4ad57e7ce0b24fca8f12b9834d91079d",
             "endpoints": [
                 "a3da778c-adfb-46db-88b3-d2ce53290a89"
@@ -12,6 +13,7 @@
         },
         {
             "description": "",
+            "project_id": "4ad57e7ce0b24fca8f12b9834d91079d",
             "tenant_id": "4ad57e7ce0b24fca8f12b9834d91079d",
             "endpoints": [
                 "10.2.0.0/24",

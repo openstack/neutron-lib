@@ -1,6 +1,7 @@
 {
     "metering_labels": [
         {
+            "project_id": "45345b0ee1ea477fac0f541b2cb79cd4",
             "tenant_id": "45345b0ee1ea477fac0f541b2cb79cd4",
             "description": "label1 description",
             "name": "label1",
@@ -8,6 +9,7 @@
             "shared": false
         },
         {
+            "project_id": "45345b0ee1ea477fac0f541b2cb79cd4",
             "tenant_id": "45345b0ee1ea477fac0f541b2cb79cd4",
             "description": "label2 description",
             "name": "label2",

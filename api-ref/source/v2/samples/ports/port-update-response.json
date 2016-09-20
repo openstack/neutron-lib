@@ -20,6 +20,7 @@
         "name": "test-for-port-update",
         "admin_state_up": true,
         "network_id": "883fc383-5ea1-4c8b-8916-e1ddb0a9f365",
+        "project_id": "522eda8d23124b25bf03fe44f1986b74",
         "tenant_id": "522eda8d23124b25bf03fe44f1986b74",
         "binding:vif_details": {},
         "binding:vnic_type": "normal",

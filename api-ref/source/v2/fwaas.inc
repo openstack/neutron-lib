@@ -13,7 +13,7 @@ firewalls to protect your networks.
 
 The FWaaS extension enables you to:
 
-- Apply firewall rules on traffic entering and leaving tenant
+- Apply firewall rules on traffic entering and leaving project
   networks.
 
 - Apply TCP, UDP, ICMP, or protocol-agnostic rules.
@@ -25,14 +25,14 @@ The FWaaS extension enables you to:
 
 This extension introduces these resources:
 
-- ``firewall``. A logical firewall resource that a tenant can
+- ``firewall``. A logical firewall resource that a project can
   instantiate and manage. A firewall can have one firewall policy.
 
 - ``firewall_policy``. An ordered collection of firewall rules. You
-  can share a firewall policy across tenants. You can include a
+  can share a firewall policy across projects. You can include a
   firewall policy as part of an audit workflow so that an
   authorized relevant entity can audit the firewall policy. This
-  entity can differ from the tenant who created, or the tenants
+  entity can differ from the user who created, or the projects
   that use, the firewall policy.
 
 - ``firewall_rule``. A collection of attributes, such as ports and
@@ -79,7 +79,8 @@ Response Parameters
 
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - firewall_list: firewall_list
    - audited: audited
    - shared: shared
@@ -100,7 +101,7 @@ Show firewall policy details
 Shows details for a firewall policy.
 
 If the user is not an administrative user and the firewall policy
-object does not belong to the tenant account, this call returns the
+object does not belong to the project, this call returns the
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
@@ -122,7 +123,8 @@ Response Parameters
    - firewall_policy: firewall_policy
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - audited: audited
    - shared: shared
    - id: id
@@ -166,7 +168,8 @@ Response Parameters
    - firewall_policy: firewall_policy
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - audited: audited
    - shared: shared
    - id: id
@@ -217,7 +220,8 @@ Response Parameters
 
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - audited: audited
    - firewall_policies: firewall_policies
    - shared: shared
@@ -247,7 +251,8 @@ Request
    - firewall_rules_id: firewall_rules_id
    - firewall_policy: firewall_policy
    - name: name
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - shared: shared
    - audited: audited
    - description: description
@@ -266,7 +271,8 @@ Response Parameters
    - firewall_policy: firewall_policy
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - audited: audited
    - shared: shared
    - id: id
@@ -280,7 +286,7 @@ Show firewall rule details
 Shows details for a firewall rule.
 
 If the user is not an administrative user and the firewall rule
-object does not belong to the tenant account, this call returns the
+object does not belong to the project, this call returns the
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
@@ -302,7 +308,8 @@ Response Parameters
    - firewall_rule: firewall_rule
    - description: description
    - source_ip_address: source_ip_address
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - enabled: enabled
    - protocol: protocol
    - source_port: source_port
@@ -340,7 +347,8 @@ Request
 
    - firewall_rule: firewall_rule
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - enabled: enabled
    - ip_version: ip_version
    - destination_ip_address: destination_ip_address
@@ -366,7 +374,8 @@ Response Parameters
    - firewall_rule: firewall_rule
    - description: description
    - source_ip_address: source_ip_address
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - enabled: enabled
    - protocol: protocol
    - source_port: source_port
@@ -410,7 +419,7 @@ Show firewall details
 Shows details for a firewall.
 
 If the user is not an administrative user and the firewall object
-does not belong to the tenant account, this call returns the
+does not belong to the project, this call returns the
 ``Forbidden (403)`` response code.
 
 Normal response codes: 200
@@ -434,7 +443,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - firewall: firewall
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - firewall_policy_id: firewall_policy_id
    - id: id
    - name: name
@@ -488,7 +498,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - firewall: firewall
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - firewall_policy_id: firewall_policy_id
    - id: id
    - name: name
@@ -539,7 +550,8 @@ Response Parameters
    - protocol: protocol
    - description: description
    - source_ip_address: source_ip_address
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - enabled: enabled
    - id: id
    - ip_version: ip_version
@@ -575,7 +587,8 @@ Request
 
    - firewall_rule: firewall_rule
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - enabled: enabled
    - ip_version: ip_version
    - destination_ip_address: destination_ip_address
@@ -600,7 +613,8 @@ Response Parameters
    - firewall_rule: firewall_rule
    - description: description
    - source_ip_address: source_ip_address
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - enabled: enabled
    - protocol: protocol
    - source_port: source_port
@@ -639,7 +653,8 @@ Response Parameters
    - router_ids: router_ids
    - description: description
    - admin_state_up: admin_state_up
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - firewall_policy_id: firewall_policy_id
    - firewalls: firewalls
    - id: id
@@ -693,7 +708,8 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - firewall: firewall
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - firewall_policy_id: firewall_policy_id
    - id: id
    - name: name
@@ -730,7 +746,8 @@ Response Parameters
 
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - firewall_list: firewall_list
    - audited: audited
    - shared: shared

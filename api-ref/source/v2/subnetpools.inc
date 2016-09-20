@@ -38,7 +38,8 @@ Response Parameters
 
    - name: name
    - default_quota: default_quota
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - created_at: created_at
    - subnetpool: subnetpool
    - updated_at: updated_at
@@ -75,7 +76,8 @@ Request
 
    - name: name
    - default_quota: default_quota
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - subnetpool: subnetpool
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
@@ -97,7 +99,8 @@ Response Parameters
 
    - name: name
    - default_quota: default_quota
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - created_at: created_at
    - subnetpool: subnetpool
    - updated_at: updated_at
@@ -140,11 +143,11 @@ List subnet pools
 
 .. rest_method::  GET /v2.0/subnetpools
 
-Lists subnet pools to which the tenant has access.
+Lists subnet pools that the project has access to.
 
-Default policy settings returns exclusively subnet pools owned by
-the tenant submitting the request, unless the request is submitted
-by a user with administrative rights.
+Default policy settings return only the subnet pools owned by
+the project of the user submitting the request, unless the
+user has administrative role.
 
 Normal response codes: 200
 
@@ -160,7 +163,8 @@ Response Parameters
 
    - name: name
    - default_quota: default_quota
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - created_at: created_at
    - updated_at: updated_at
    - prefixes: prefixes
@@ -195,7 +199,8 @@ Request
 
    - name: name
    - default_quota: default_quota
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - subnetpool: subnetpool
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
@@ -217,7 +222,8 @@ Response Parameters
 
    - name: name
    - default_quota: default_quota
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - created_at: created_at
    - subnetpool: subnetpool
    - updated_at: updated_at

@@ -5,6 +5,7 @@
         "name": "net1",
         "admin_state_up": true,
         "vlan_transparent": true,
+        "project_id": "5831268f-1f52-49a7-88d5-bc0d7a74d523",
         "tenant_id": "5831268f-1f52-49a7-88d5-bc0d7a74d523",
         "router:external": false,
         "shared": false,

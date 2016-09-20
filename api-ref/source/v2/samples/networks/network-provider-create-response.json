@@ -6,6 +6,7 @@
         "name": "net1",
         "provider:physical_network": "8bab8453-1bc9-45af-8c70-f83aa9b50453",
         "admin_state_up": true,
+        "project_id": "9bacb3c5d39d41a79512987f338cf177",
         "tenant_id": "9bacb3c5d39d41a79512987f338cf177",
         "router:external": false,
         "provider:network_type": "vlan",

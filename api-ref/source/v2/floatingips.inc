@@ -13,11 +13,10 @@ List floating IPs
 
 .. rest_method::  GET /v2.0/floatingips
 
-Lists floating IPs that are accessible to the tenant who submits the request.
+Lists floating IPs visible to the user.
 
-Default policy settings return only those floating IPs that are
-owned by the tenant who submits the request, unless an admin user
-submits the request.
+Default policy settings return only the floating IPs owned by the user's
+project, unless the user has admin role.
 
 This example request lists floating IPs in JSON format:
 
@@ -45,7 +44,8 @@ Response Parameters
 
    - router_id: router_id
    - status: status
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - floating_network_id: floating_network_id
    - fixed_ip_address: fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -126,7 +126,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - floatingip: floatingip
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - floating_network_id: floating_network_id
    - fixed_ip_address: fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -146,7 +147,8 @@ Response Parameters
    - router_id: router_id
    - status: status
    - floatingip: floatingip
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - floating_network_id: floating_network_id
    - fixed_ip_address: fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -195,7 +197,8 @@ Response Parameters
    - router_id: router_id
    - status: status
    - floatingip: floatingip
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - floating_network_id: floating_network_id
    - fixed_ip_address: fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -256,7 +259,8 @@ Response Parameters
    - router_id: router_id
    - status: status
    - floatingip: floatingip
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - floating_network_id: floating_network_id
    - fixed_ip_address: fixed_ip_address
    - floating_ip_address: floating_ip_address

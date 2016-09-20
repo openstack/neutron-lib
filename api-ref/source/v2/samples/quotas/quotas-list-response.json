@@ -4,6 +4,7 @@
             "subnet": 10,
             "network": 15,
             "floatingip": 50,
+            "project_id": "bab7d5c60cd041a0a36f7c4b6e1dd978",
             "tenant_id": "bab7d5c60cd041a0a36f7c4b6e1dd978",
             "subnetpool": -1,
             "security_group_rule": 100,

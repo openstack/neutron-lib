@@ -12,6 +12,7 @@
         "provider:physical_network": null,
         "router:external": false,
         "admin_state_up": true,
+        "project_id": "4fd44f30292945e481c7b8a0c8908869",
         "tenant_id": "4fd44f30292945e481c7b8a0c8908869",
         "provider:network_type": "local",
         "mtu": 0,

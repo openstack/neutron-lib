@@ -40,7 +40,8 @@ Response Parameters
    - port_range_max: port_range_max
    - security_group_id: security_group_id
    - security_group_rule: security_group_rule
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - id: id
@@ -68,7 +69,8 @@ List security group rules
 
 .. rest_method::  GET /v2.0/security-group-rules
 
-Lists a summary of all OpenStack Networking security group rules that the tenant can access.
+Lists a summary of all OpenStack Networking security group rules that
+the project has access to.
 
 The list provides the UUID for each security group rule.
 
@@ -91,7 +93,8 @@ Response Parameters
    - port_range_max: port_range_max
    - security_group_rules: security_group_rules
    - security_group_id: security_group_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - id: id
@@ -144,7 +147,8 @@ Response Parameters
    - port_range_max: port_range_max
    - security_group_id: security_group_id
    - security_group_rule: security_group_rule
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - id: id

@@ -45,7 +45,8 @@ Response Parameters
 
    - routers: routers
    - id: router-id-body
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - name: name
    - description: description
    - admin_state_up: admin_state_up
@@ -95,7 +96,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - router: router
-   - tenant_id: tenant_id-request
+   - tenant_id: project_id-request
+   - project_id: project_id-request
    - name: name-request
    - description: description-request
    - admin_state_up: admin_state_up-request
@@ -120,7 +122,8 @@ Response Parameters
 
    - router: router
    - id: router-id-body
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - name: name
    - description: description
    - admin_state_up: admin_state_up
@@ -175,7 +178,8 @@ Response Parameters
 
    - router: router
    - id: router-id-body
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - name: name
    - description: description
    - admin_state_up: admin_state_up
@@ -239,7 +243,8 @@ Response Parameters
 
    - router: router
    - id: router-id-body
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - name: name
    - description: description
    - admin_state_up: admin_state_up
@@ -373,7 +378,8 @@ Response Parameters
    - id: router-id-body
    - subnet_id: router-subnet_id
    - subnet_ids: router-subnet_ids
-   - tenant_id: router-tenant_id-interface
+   - tenant_id: router-project_id-interface
+   - project_id: router-project_id-interface
    - port_id: router-port_id
    - network_id: router-network_id-interface
 
@@ -446,7 +452,8 @@ Response Parameters
    - id: router-id-body
    - subnet_id: router-subnet_id
    - subnet_ids: router-subnet_ids
-   - tenant_id: router-tenant_id-interface
+   - tenant_id: router-project_id-interface
+   - project_id: router-project_id-interface
    - port_id: router-port_id
    - network_id: router-network_id-interface
 

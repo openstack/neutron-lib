@@ -4,6 +4,7 @@
         "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
         "fixed_ip_address": "10.0.0.4",
         "floating_ip_address": "172.24.4.228",
+        "project_id": "4969c491a3c74ee4af974e6d800c62de",
         "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
         "status": "ACTIVE",
         "port_id": "fc861431-0e6c-4842-a0ed-e2363f9bc3a8",

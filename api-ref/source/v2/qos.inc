@@ -117,7 +117,7 @@ List QoS policies
 
 .. rest_method::  GET /v2.0/qos/policies
 
-Lists all QoS policies that are associated with your tenant account.
+Lists all QoS policies associated with your project.
 
 The list might be empty.
 
@@ -137,7 +137,8 @@ Response Parameters
    - bandwidth_limit_rules: bandwidth_limit_rules
    - description: description
    - policy_id: policy_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - dscp_marking_rules: dscp_marking_rules
    - policies: policies
    - shared: shared
@@ -167,7 +168,7 @@ If the caller is not an administrative user, this call returns the
 HTTP ``Forbidden (403)`` response code.
 
 Users with an administrative role can create policies on behalf of
-other tenants by specifying a tenant UUID that is different than
+other projects by specifying a project ID that is different than
 their own.
 
 Error response codes: 201,404,409,401,413,503,500
@@ -178,7 +179,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - policy: policy
    - shared: shared
    - type: type
@@ -196,7 +198,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - policy: policy
    - shared: shared
    - id: id
@@ -394,7 +397,8 @@ Response Parameters
    - bandwidth_limit_rules: bandwidth_limit_rules
    - description: description
    - policy_id: policy_id
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - dscp_marking_rules: dscp_marking_rules
    - policy: policy
    - shared: shared
@@ -429,7 +433,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - policy: policy
    - shared: shared
    - type: type
@@ -448,7 +453,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - policy: policy
    - shared: shared
    - id: id

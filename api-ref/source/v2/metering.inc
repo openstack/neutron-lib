@@ -16,7 +16,7 @@ List metering labels
 
 .. rest_method::  GET /v2.0/metering/metering-labels
 
-Lists all L3 metering labels that belong to the tenant.
+Lists all L3 metering labels that belong to the project.
 
 The list shows the UUID for each metering label.
 
@@ -33,7 +33,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - metering_labels: metering_labels
    - shared: shared
    - id: id
@@ -76,7 +77,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - metering_label: metering_label
    - shared: shared
    - id: id
@@ -104,7 +106,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - description: description
-   - tenant_id: tenant_id
+   - tenant_id: project_id
+   - project_id: project_id
    - metering_label: metering_label
    - shared: shared
    - id: id
@@ -133,7 +136,7 @@ List metering label rules
 
 .. rest_method::  GET /v2.0/metering/metering-label-rules
 
-Lists a summary of all L3 metering label rules that belong to the tenant.
+Lists a summary of all L3 metering label rules that belong to the project.
 
 The list shows the UUID for each metering label rule.
 
