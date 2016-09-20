@@ -18,6 +18,11 @@ Use this extension to create and manage virtual IP addresses
 (VIPs), pools, members of a pool, health monitors, and view status
 of a resource.
 
+.. note::
+
+    LBaaS 1.0 support was removed in Newton release. It's no longer available
+    in any installations starting from this release.
+
 **Load balancer statuses**
 
 +----------------+--------------------------------------------------------------------+
