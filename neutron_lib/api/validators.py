@@ -93,19 +93,50 @@ def _validate_list_of_items(item_validator, data, *args, **kwargs):
             return msg
 
 
-def validate_values(data, valid_values=None):
-    """Validate a data value based on a list of valid values.
+def validate_values(data, valid_values=None, valid_values_display=None):
+    """Validate that the provided 'data' is within 'valid_values'.
 
-    :param data: The data value to validate.
-    :param valid_values: A list (or sequence) of valid values data can be.
-    :returns: None if data is in valid_values, otherwise a human readable
-    message as to why the value is invalid.
+    :param data: The data to check within valid_values.
+    :param valid_values: A collection of values that 'data' must be in to be
+        valid. The collection can be any type that supports the 'in' operation.
+    :param valid_values_display: A string to display that describes the valid
+        values. This string is only displayed when an invalid value is
+        encountered.
+        If no string is provided, the string "valid_values" will be used.
+    :returns: The message to return if data not in valid_values.
+    :raises: TypeError if the values for 'data' or 'valid_values' are not
+        compatible for comparison or doesn't have __contains__.
+        If TypeError is raised this is considered a programming error and the
+        inputs (data) and (valid_values) must be checked so this is never
+        raised on validation.
     """
-    if data not in valid_values:
-        msg = (_("'%(data)s' is not in %(valid_values)s") %
-               {'data': data, 'valid_values': valid_values})
-        LOG.debug(msg)
-        return msg
+
+    # If valid_values is not specified we don't check against it.
+    if valid_values is None:
+        return
+
+    # Check if we can use 'in' to find membership of data in valid_values
+    contains = getattr(valid_values, "__contains__", None)
+    if callable(contains):
+        try:
+            if data not in valid_values:
+                valid_values_display = valid_values_display or 'valid_values'
+                msg = (_("%(data)s is not in %(valid_values)s") %
+                       {'data': data, 'valid_values': valid_values_display})
+                LOG.debug(msg)
+                return msg
+        except TypeError:
+                # This is a programming error
+                msg = (_("'data' of type '%(typedata)s' and 'valid_values'"
+                         "of type '%(typevalues)s' are not "
+                         "compatible for comparison") %
+                       {'typedata': type(data),
+                        'typevalues': type(valid_values)})
+                raise TypeError(msg)
+    else:
+        # This is a programming error
+        msg = (_("'valid_values' does not support membership operations"))
+        raise TypeError(msg)
 
 
 def validate_not_empty_string_or_none(data, max_len=None):
