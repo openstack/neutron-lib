@@ -64,6 +64,8 @@ Request
    - metering_label: metering_label
    - description: description
    - name: name
+   - tenant_id: project_id
+   - project_id: project_id
 
 Request Example
 ---------------
