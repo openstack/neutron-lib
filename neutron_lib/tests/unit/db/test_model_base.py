@@ -56,6 +56,6 @@ class TestModelBase(db_base.SqlTestCase):
         self.assertEqual('project', foo.tenant_id)
 
     def test_tenant_id_attribute(self):
-        foo = TestTable(project_id='project')
-        self.assertEqual('project', foo.project_id)
-        self.assertEqual('project', foo.tenant_id)
+        foo = TestTable(tenant_id='tenant')
+        self.assertEqual('tenant', foo.project_id)
+        self.assertEqual('tenant', foo.tenant_id)
