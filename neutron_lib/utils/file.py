@@ -17,7 +17,13 @@ import errno
 import os
 import tempfile
 
+from debtcollector import removals
 
+
+@removals.remove(
+    message="use ensure_tree(path, 0o755) from oslo_utils.fileutils",
+    version="Ocata",
+    removal_version="Queens")
 def ensure_dir(dir_path):
     """Ensure a directory with 755 permissions mode.
 
