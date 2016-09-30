@@ -10,6 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from oslo_utils import strutils
 import six
 
 from neutron_lib._i18n import _
@@ -25,21 +26,11 @@ def convert_to_boolean(data):
     :returns: The bool value of 'data' if it can be coerced.
     :raises InvalidInput: If the value can't be coerced to a python bool.
     """
-    if isinstance(data, six.string_types):
-        val = data.lower()
-        if val == "true" or val == "1":
-            return True
-        if val == "false" or val == "0":
-            return False
-    elif isinstance(data, bool):
-        return data
-    elif isinstance(data, int):
-        if data == 0:
-            return False
-        elif data == 1:
-            return True
-    msg = _("'%s' cannot be converted to boolean") % data
-    raise n_exc.InvalidInput(error_message=msg)
+    try:
+        return strutils.bool_from_string(data, strict=True)
+    except ValueError:
+        msg = _("'%s' cannot be converted to boolean") % data
+        raise n_exc.InvalidInput(error_message=msg)
 
 
 def convert_to_boolean_if_not_none(data):
