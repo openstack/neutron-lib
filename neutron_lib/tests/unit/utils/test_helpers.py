@@ -69,6 +69,11 @@ class TestParseMappings(base.BaseTestCase):
                          self.parse(['key:val1', 'key:val2', 'key:val2'],
                                     unique_keys=False))
 
+    def test_parse_mappings_succeeds_for_nonuniq_key_duplicate_value(self):
+        self.assertEqual({'key': ['val']},
+                         self.parse(['key:val', 'key:val', 'key:val'],
+                                    unique_keys=False))
+
 
 class TestCompareElements(base.BaseTestCase):
 
