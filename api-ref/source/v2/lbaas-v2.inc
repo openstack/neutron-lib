@@ -162,6 +162,12 @@ load balancer. You can set this attribute to any service provider
 with a ``LOADBALANCER`` service type. Setting both a flavor and a
 provider will result in a conflict error.
 
+Finally, ``vip_network_id`` can be used in place of
+``vip_subnet_id``. When this option is used, the VIP port is
+created on the given network using the default behavior. If
+assigned multiple fixed IPs, an IPv4 addresses is chosen as the
+VIP in preference to IPv6 addresses.
+
 Example: Create a load balancer
 
 Error response codes: 201,404,409,401,413,503,500
@@ -206,6 +212,7 @@ Response Parameters
    - id: id
    - loadbalancer: loadbalancer
    - name: name
+   - vip_network_id: vip_network_id
 
 Show load balancer details
 ==========================
