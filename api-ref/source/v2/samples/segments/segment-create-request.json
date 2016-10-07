@@ -1,0 +1,8 @@
+{
+    "segment": {
+        "network_id": "5c0cb560-4089-41dd-be29-469907a23b49",
+        "segmentation_id": 2000,
+        "network_type": "vlan",
+        "physical_network": "segment-1"
+    }
+}

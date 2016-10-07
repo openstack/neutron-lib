@@ -10,6 +10,7 @@ Networking API v2.0
 .. include:: versions.inc
 .. include:: extensions.inc
 .. include:: networks.inc
+.. include:: segments.inc
 .. include:: network-provider.inc
 .. include:: networks-multi-provider-ext.inc
 .. include:: networks-vlan-transparency-ext.inc

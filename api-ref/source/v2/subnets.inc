@@ -72,6 +72,14 @@ to create subnets that support IPv6 configurations, such as
 stateless address autoconfiguration (SLAAC), DHCPv6 stateful, and
 DHCPv6 stateless configurations.
 
+A subnet can optionally be associated with a network segment when
+it is created by specifying the ``segment_id`` of a valid segment
+on the specified network. A network with subnets associated in this
+way is called a routed network. On any given network, all of the
+subnets must be associated with segments or none of them can be.
+Neutron enforces this invariant. Currently, routed networks are
+only supported for provider networks.
+
 Error response codes: 201,404,403,401,400,409
 
 Request
@@ -141,9 +149,9 @@ Update subnet
 
 Updates a subnet.
 
-Some attributes, such as IP version (ip_version), and CIDR (cidr)
-cannot be updated. Attempting to update these attributes results in
-a ``400 Bad Request`` error.
+Some attributes, such as IP version (ip_version), CIDR (cidr), and
+segment (segment_id) cannot be updated. Attempting to update these
+attributes results in a ``400 Bad Request`` error.
 
 Normal response codes: 200
 
