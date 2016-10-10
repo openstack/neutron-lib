@@ -114,6 +114,12 @@ class TestExceptions(base.BaseTestCase):
             _("Port serial could not be found on network USB."),
             port_id="serial", net_id="USB")
 
+    def test_device_not_found_error(self):
+        self._check_nexc(
+            ne.DeviceNotFoundError,
+            _("Device 'device' does not exist."),
+            device_name="device")
+
     def test_in_use(self):
         self._check_nexc(
             ne.InUse,
@@ -298,3 +304,15 @@ class TestExceptions(base.BaseTestCase):
             ne.NetworkTunnelRangeError,
             _("Invalid network tunnel range: '3:4' - present."),
             tunnel_range=(3, 4), error='present')
+
+    def test_policy_init_error(self):
+        self._check_nexc(
+            ne.PolicyInitError,
+            _("Failed to initialize policy policy because reason."),
+            policy='policy', reason='reason')
+
+    def test_policy_check_error(self):
+        self._check_nexc(
+            ne.PolicyCheckError,
+            _("Failed to check policy policy because reason."),
+            policy='policy', reason='reason')
