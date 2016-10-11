@@ -94,17 +94,65 @@ class TestAttributeValidation(base.BaseTestCase):
         self.assertIs(validators.is_attr_set(data), True)
 
     def test_validate_values(self):
+        # Check that validation is not performed if valid_values is not set
+        msg = validators.validate_values(4)
+        self.assertIsNone(msg)
+
+        # Check that value is within valid_values
         msg = validators.validate_values(4, [4, 6])
         self.assertIsNone(msg)
 
+        # Check that value is within valid_values
         msg = validators.validate_values(4, (4, 6))
         self.assertIsNone(msg)
 
-        msg = validators.validate_values(7, [4, 6])
-        self.assertEqual("'7' is not in [4, 6]", msg)
+        # Check that value is within valid_values with strings
+        msg = validators.validate_values("1", ["2", "1", "4", "5"])
+        self.assertIsNone(msg)
 
-        msg = validators.validate_values(7, (4, 6))
-        self.assertEqual("'7' is not in (4, 6)", msg)
+        # Check that value is not compatible for comparision
+        response = "'valid_values' does not support membership operations"
+        self.assertRaisesRegex(TypeError, response,
+                               validators.validate_values, data=None,
+                               valid_values=True)
+
+    def test_validate_values_display(self):
+        # Check that value is NOT within valid_values and report values
+        msg = validators.validate_values(7, [4, 6],
+                                         valid_values_display="[4, 6]")
+        self.assertEqual("7 is not in [4, 6]", msg)
+
+        # Check that value is NOT within valid_values and report values
+        msg = validators.validate_values(7, (4, 6),
+                                         valid_values_display="(4, 6)")
+        self.assertEqual("7 is not in (4, 6)", msg)
+
+        # Check values with a range function showing a custom string
+        msg = validators.validate_values(8, range(8),
+                                         valid_values_display="[0..7]")
+        self.assertEqual("8 is not in [0..7]", msg)
+
+        # Check that value is not within valid_values and custom string
+        msg = validators.validate_values(1, [2, 3, 4, 5],
+                                         valid_values_display="[2, 3, 4, 5]")
+        self.assertEqual("1 is not in [2, 3, 4, 5]", msg)
+
+        # Check that value is not within valid_values and custom string
+        msg = validators.validate_values("1", ["2", "3", "4", "5"],
+                                         valid_values_display="'valid_values"
+                                         "_to_show'")
+        self.assertEqual("1 is not in 'valid_values_to_show'", msg)
+
+        # Check that value is not comparable to valid_values and got Exception
+        data = 1
+        valid_values = '[2, 3, 4, 5]'
+        response = "'data' of type '%s' and 'valid_values'of type" \
+                   " '%s' are not compatible for comparison" % (
+                       type(data), type(valid_values))
+        self.assertRaisesRegex(TypeError, response,
+                               validators.validate_values, data,
+                               valid_values,
+                               valid_values_display="[2, 3, 4, 5]")
 
     def test_validate_not_empty_string(self):
         msg = validators.validate_not_empty_string('    ', None)
@@ -203,7 +251,7 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_integer(2, [2, 3, 4, 5])
         self.assertIsNone(msg)
         msg = validators.validate_integer(1, [2, 3, 4, 5])
-        self.assertEqual("'1' is not in [2, 3, 4, 5]", msg)
+        self.assertEqual("1 is not in valid_values", msg)
 
     def test_validate_no_whitespace(self):
         data = 'no_white_space'
