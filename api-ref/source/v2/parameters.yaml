@@ -3336,15 +3336,13 @@ router-subnet_ids:
   type: array
 router:external:
   description: |
-    Indicates whether this network is externally
-    accessible.
+    Indicates whether this network can provide floating IPs via a router.
   in: body
   required: false
   type: boolean
 router:external_1:
   description: |
-    Indicates whether this network is externally
-    accessible.
+    Indicates whether this network can provide floating IPs via a router.
   in: body
   required: true
   type: boolean
