@@ -30,6 +30,7 @@ import testtools
 from neutron_lib._i18n import _
 from neutron_lib import constants
 from neutron_lib import exceptions
+from neutron_lib.plugins import directory
 
 from neutron_lib.tests import _post_mortem_debug as post_mortem_debug
 from neutron_lib.tests import _tools as tools
@@ -117,6 +118,7 @@ class BaseTestCase(testtools.TestCase):
 
     def setUp(self):
         super(BaseTestCase, self).setUp()
+        self.setup_test_directory_instance()
 
         # Enabling 'use_fatal_exceptions' allows us to catch string
         # substitution format errors in exception messages.
@@ -181,6 +183,12 @@ class BaseTestCase(testtools.TestCase):
 
         self.addOnException(self.check_for_systemexit)
         self.orig_pid = os.getpid()
+
+    def setup_test_directory_instance(self):
+        """Give a private copy of the directory to each test."""
+        self._plugin_directory = directory._PluginDirectory()
+        mock.patch.object(directory, '_get_plugin_directory',
+                          return_value=self._plugin_directory).start()
 
     def get_new_temp_dir(self):
         """Create a new temporary directory.

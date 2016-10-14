@@ -284,3 +284,13 @@ VHOST_USER_DEVICE_PREFIX = 'vhu'
 VETH_DEVICE_PREFIX = 'qvo'
 # prefix for SNAT interface in DVR
 SNAT_INT_DEV_PREFIX = 'sg-'
+
+
+##########################
+# Plugin related constants
+##########################
+# Plugin constants that are universally used across all neutron repos.
+# The alias for the core plugin.
+CORE = 'CORE'
+# The alias for the L3 plugin.
+L3 = 'L3_ROUTER_NAT'
