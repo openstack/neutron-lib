@@ -157,6 +157,12 @@ security_group_id_2:
   in: path
   required: false
   type: string
+segment_id-path:
+  description: |
+    The UUID of the segment.
+  in: path
+  required: true
+  type: string
 service_id:
   description: |
     The UUID of the VPN service.
@@ -2150,6 +2156,12 @@ name-request:
   in: body
   required: false
   type: string
+name-segment:
+  description: |
+    Human-readable name of the segment.
+  in: body
+  required: false
+  type: string
 name_1:
   description: |
     A symbolic name for the port.
@@ -2465,6 +2477,14 @@ network_ip_availability:
 network_name:
   description: |
     The name of the network.
+  in: body
+  required: true
+  type: string
+network_type:
+  description: |
+    The type of physical network that maps to this
+    network resource. For example, ``flat``, ``vlan``, ``vxlan``, or
+    ``gre``.
   in: body
   required: true
   type: string
@@ -3423,6 +3443,12 @@ security_groups_2:
   in: body
   required: true
   type: array
+segment_id:
+  description: |
+    The UUID of the segment.
+  in: body
+  required: true
+  type: string
 segments:
   description: |
     A list of provider ``segment`` objects.

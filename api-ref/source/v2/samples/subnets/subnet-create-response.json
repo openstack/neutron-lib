@@ -3,6 +3,7 @@
         "name": "",
         "enable_dhcp": true,
         "network_id": "d32019d3-bc6e-4319-9c1d-6722fc136a22",
+        "segment_id": null,
         "project_id": "4fd44f30292945e481c7b8a0c8908869",
         "tenant_id": "4fd44f30292945e481c7b8a0c8908869",
         "dns_nameservers": [],

@@ -1,0 +1,22 @@
+{
+  "segments": [
+    {
+      "name": null,
+      "network_id": "5c0cb560-4089-41dd-be29-469907a23b49",
+      "segmentation_id": 2000,
+      "network_type": "vlan",
+      "physical_network": "segment-1",
+      "id": "57fe85e4-ca2f-4192-b3cd-d5c249d7a21f",
+      "description": null
+    },
+    {
+      "name": null,
+      "network_id": "5c0cb560-4089-41dd-be29-469907a23b49",
+      "segmentation_id": 2000,
+      "network_type": "vlan",
+      "physical_network": "segment-2",
+      "id": "f1364c3a-4fc1-4206-b2dc-3254bc25cbfc",
+      "description": null
+    }
+  ]
+}
