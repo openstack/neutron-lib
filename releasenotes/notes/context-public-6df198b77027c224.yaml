@@ -1,0 +1,12 @@
+---
+features:
+  - |
+    The ``context`` module has been made public. For example:
+
+    .. code-block:: python
+
+       from neutron_lib import context
+
+       ctx = context.get_admin_context()
+
+    For more examples, see: https://review.openstack.org/#/c/388157/
