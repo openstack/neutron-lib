@@ -4084,12 +4084,21 @@ vip_id:
   in: body
   required: true
   type: string
+vip_network_id:
+  description: |
+    The ID of the network on which to allocate
+    the virtual IP (VIP) address. This option is
+    required if no vip_subnet_id is given.
+  in: body
+  required: false
+  type: string
 vip_subnet_id:
   description: |
-    The UUID of the subnet on which to allocate the
-    virtual IP (VIP) address.
+    The ID of the subnet on which to allocate the
+    virtual IP (VIP) address. This option is required
+    if no vip_network_id is given.
   in: body
-  required: true
+  required: false
   type: string
 vips:
   description: |
