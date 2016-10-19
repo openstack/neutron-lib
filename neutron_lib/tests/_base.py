@@ -29,6 +29,7 @@ import testtools
 
 from neutron_lib._i18n import _
 from neutron_lib import constants
+from neutron_lib import exceptions
 
 from neutron_lib.tests import _post_mortem_debug as post_mortem_debug
 from neutron_lib.tests import _tools as tools
@@ -116,6 +117,11 @@ class BaseTestCase(testtools.TestCase):
 
     def setUp(self):
         super(BaseTestCase, self).setUp()
+
+        # Enabling 'use_fatal_exceptions' allows us to catch string
+        # substitution format errors in exception messages.
+        mock.patch.object(exceptions.NeutronException, 'use_fatal_exceptions',
+                          return_value=True).start()
 
         # Update the default QueuePool parameters. These can be tweaked by the
         # conf variables - max_pool_size, max_overflow and pool_timeout
