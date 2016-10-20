@@ -10,9 +10,12 @@ When reviewing neutron-lib changes, please be aware:
   - Is all of the code shared? Don't move neutron-only code.
   - Is the interface good, or does it need to be refactored?
   - Does it need new tests, specifically around the interface? We want
-    100% unit coverage on this library, so if neutron does not yet have
-    a test, it needs to be added. Note that tests on things like constants
-    are uninteresting, but any code or interface should have a unit test.
+    a global unit coverage greater than 90%, and a per-module coverage
+    greater than 80%. If neutron does not yet have a test, it needs to
+    be added. Note that tests on things like constants are uninteresting,
+    but any code or interface should have a unit test, if you cannot
+    tell for sure that it is not going to be traversed in some alternative
+    way (e.g. tempest/functional coverage).
   - Is there a corresponding Depends-On review in neutron removing
     this code, and adding backwards compatibility shims for Mitaka?
   - Do the public APIs have their parameters and return values documented
