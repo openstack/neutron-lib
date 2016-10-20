@@ -36,7 +36,6 @@ class TestExceptions(base.BaseTestCase):
         raise_exc_class = functools.partial(_raise, exc_class)
         e = self.assertRaises(exc_class, raise_exc_class, **kwargs)
         self.assertEqual(expected_msg, str(e))
-        self.assertFalse(e.use_fatal_exceptions())
 
     def test_base(self):
         self._check_nexc(
@@ -64,7 +63,7 @@ class TestExceptions(base.BaseTestCase):
             self._check_nexc(
                 ne.BadRequest,
                 _('Bad A request: B.'),
-                bad_resource='A', bad_msg='B')
+                resource='A', msg='B')
         except AttributeError:
             pass
 
