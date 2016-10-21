@@ -187,6 +187,12 @@ tag:
   in: path
   required: false
   type: string
+trunk_id:
+  description: |
+    The ID of the trunk.
+  in: path
+  required: true
+  type: string
 vip_id_1:
   description: |
     The UUID for the VIP.
@@ -482,6 +488,13 @@ admin_state_up_9:
   in: body
   required: false
   type: boolean
+admin_state_up_trunk:
+  description: |
+    The administrative state of the trunk, which
+    is up (``true``) or down (``false``).
+  in: body
+  required: false
+  type: boolean
 alias:
   description: |
     The alias for the extension. For example,
@@ -639,6 +652,12 @@ created_at:
 created_at_1:
   description: |
     Time at which subnetpool has been created.
+  in: body
+  required: true
+  type: string
+created_at_resource:
+  description: |
+    Time at which the resource has been created (in UTC ISO8601 format).
   in: body
   required: true
   type: string
@@ -982,6 +1001,12 @@ description_9:
     The description for the metering label.
   in: body
   required: false
+  type: string
+description_resource:
+  description: |
+    The description for the resource.
+  in: body
+  required: true
   type: string
 destination_ip_address:
   description: |
@@ -1697,6 +1722,12 @@ id_8:
 id_9:
   description: |
     The UUID for the IKE policy.
+  in: body
+  required: true
+  type: string
+id_resource:
+  description: |
+    The ID for the resource.
   in: body
   required: true
   type: string
@@ -2438,6 +2469,12 @@ name_9:
   in: body
   required: true
   type: string
+name_resource:
+  description: |
+    The name of the resource.
+  in: body
+  required: false
+  type: string
 network:
   description: |
     A ``network`` object.
@@ -2712,6 +2749,12 @@ port_id_2:
 port_id_4:
   description: |
     The UUID of the port.
+  in: body
+  required: true
+  type: string
+port_id_subport:
+  description: |
+    The ID of the subport.
   in: body
   required: true
   type: string
@@ -3116,6 +3159,12 @@ resources:
   in: body
   required: true
   type: array
+revision_number:
+  description: |
+    The revision number of the resource.
+  in: body
+  required: true
+  type: integer
 route_mode:
   description: |
     The route mode. A valid value is ``static``,
@@ -3447,6 +3496,18 @@ segment_id:
   in: body
   required: true
   type: string
+segmentation_id:
+  description: |
+    The segmentation ID for the subport.
+  in: body
+  required: false
+  type: integer
+segmentation_type:
+  description: |
+    The segmentation type for the subport.
+  in: body
+  required: false
+  type: string
 segments:
   description: |
     A list of provider ``segment`` objects.
@@ -3754,6 +3815,12 @@ status_description:
   in: body
   required: true
   type: string
+sub_ports:
+  description: |
+    A list of ports associated with the trunk.
+  in: body
+  required: true
+  type: array
 subnet_id:
   description: |
     If you specify only a subnet UUID, OpenStack
@@ -3900,6 +3967,25 @@ transform_protocol_1:
   in: body
   required: true
   type: string
+trunk_details:
+  description: |
+    The details about the trunk.
+  in: body
+  required: false
+  type: dict
+trunk_port_id:
+  description: |
+    The ID of the parent port.
+  in: body
+  required: true
+  type: string
+trunk_status:
+  description: |
+    The status for the trunk. Possible values are  ``ACTIVE``,
+    ``DOWN``, ``BUILD``, ``DEGRADED``, and ``ERROR``.
+  in: body
+  required: true
+  type: string
 type:
   description: |
     The type of probe sent by the load balancer to
@@ -3970,6 +4056,12 @@ updated_at_1:
 updated_at_2:
   description: |
     Time at which subnetpool has been updated.
+  in: body
+  required: true
+  type: string
+updated_at_resource:
+  description: |
+    Time at which the resource has been updated (in UTC ISO8601 format).
   in: body
   required: true
   type: string

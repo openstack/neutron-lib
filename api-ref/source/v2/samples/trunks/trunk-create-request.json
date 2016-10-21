@@ -1,0 +1,7 @@
+{
+    "trunk": {
+        "port_id": "8027c4da-772f-4e43-bfbf-023b4a4e63de",
+        "name": "test",
+        "admin_state_up": true
+    }
+}

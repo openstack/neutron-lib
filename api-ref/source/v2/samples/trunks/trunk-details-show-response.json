@@ -1,0 +1,43 @@
+{
+    "port": {
+        "status": "DOWN",
+        "created_at": "2016-10-05T20:05:14Z",
+        "description": "",
+        "admin_state_up": true,
+        "network_id": "1cf9e069-365f-4a78-8784-616bc12c4c5a",
+        "project_id": "313be01bd0744cea86643c711c57012b",
+        "tenant_id": "313be01bd0744cea86643c711c57012b",
+        "extra_dhcp_opts": [],
+        "updated_at": "2016-10-05T20:05:14Z",
+        "name": "test",
+        "device_owner": "",
+        "trunk_details": {
+            "trunk_id": "8905d084-010c-46e8-a863-f21cb4441ab1",
+            "sub_ports": [
+               {
+                   "segmentation_id": 33,
+                   "port_id": "70df9f3e-b409-4761-8304-ce029b2079f5",
+                   "segmentation_type": "vlan",
+                   "mac_address": "fa:16:3e:86:9b:dc"
+               },
+               {
+                   "segmentation_id": 44,
+                   "port_id": "4b4c691b-086d-43d2-8a65-5487e9434155",
+                   "segmentation_type": "vlan",
+                   "mac_address": "fa:16:3e:fe:29:97"
+               }
+           ]
+       },
+       "revision_number": 5,
+       "mac_address": "fa:16:3e:5c:e9:a3",
+       "fixed_ips": [
+           {
+               "subnet_id": "76a059c0-b189-479f-882c-5e8bd464ea49",
+               "ip_address": "40.0.0.3"
+           }
+       ],
+       "id": "8027c4da-772f-4e43-bfbf-023b4a4e63de",
+       "security_groups": ["da88a249-12ac-4221-9565-c406b6feeb48"],
+       "device_id": ""
+    }
+}

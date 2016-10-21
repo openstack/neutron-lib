@@ -1,0 +1,22 @@
+{
+    "trunk": {
+        "status": "DOWN",
+        "sub_ports": [
+            {
+                 "segmentation_type": "vlan",
+                 "port_id": "4b4c691b-086d-43d2-8a65-5487e9434155",
+                 "segmentation_id": 44
+            }
+        ],
+        "name": "foo",
+        "admin_state_up": true,
+        "project_id": "145a14e4a64b49bf98baad8945dbd4f1",
+        "tenant_id": "145a14e4a64b49bf98baad8945dbd4f1",
+        "created_at": "2016-10-05T22:31:37Z",
+        "updated_at": "2016-10-05T23:28:17Z",
+        "revision_number": 9,
+        "port_id": "8027c4da-772f-4e43-bfbf-023b4a4e63de",
+        "id": "114a26b1-d124-4835-bb4f-021d3d886023",
+        "description": ""
+    }
+}
