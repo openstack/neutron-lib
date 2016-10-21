@@ -1,0 +1,4 @@
+---
+features:
+  - The ExtensionDescriptor class moved from neutron.api.extensions to
+    neutron_lib.api.extensions.
