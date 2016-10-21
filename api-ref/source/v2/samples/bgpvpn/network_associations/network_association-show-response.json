@@ -1,0 +1,9 @@
+{
+    "network_association":
+       {
+          "id": "1b09fd12-c769-4be7-9c26-dececa474acf",
+          "network_id": "a4f2b8df-cb42-4893-a333-d0b5c36ade17",
+          "tenant_id": "b7549121395844bea941bb92feb3fad9",
+          "project_id": "b7549121395844bea941bb92feb3fad9"
+       }
+}

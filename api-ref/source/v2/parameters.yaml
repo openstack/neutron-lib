@@ -1,6 +1,24 @@
  # variables in header
 
 # variables in path
+bgpvpn-id-path:
+  description: |
+      The ID of the BGP VPN.
+  in: path
+  required: true
+  type: string
+bgpvpn-network_association_id-path:
+  description: |
+      The ID of an association between a network and a BGP VPN.
+  in: path
+  required: true
+  type: string
+bgpvpn-router_association_id-path:
+  description: |
+      The ID of an association between a router and a BGP VPN.
+  in: path
+  required: true
+  type: string
 connection_id-path:
   description: |
     The ID of the IPSec site-to-site connection.
@@ -602,6 +620,180 @@ bandwidth_limit_rules:
   description: |
     A list of bandwidth limit rules associated with
     the QoS policy.
+  in: body
+  required: true
+  type: array
+bgpvpn:
+  description: |
+    A ``bgpvpn`` object represents an MPLS network with which Neutron routers
+    and/or networks may be associated
+  in: body
+  required: true
+  type: object
+bgpvpn-export_targets:
+  description: |
+      Additional Route Targets that will be used for export.
+  in: body
+  required: false
+  type: array
+bgpvpn-export_targets-required:
+  description: |
+      Additional Route Targets that will be used for export.
+  in: body
+  required: true
+  type: array
+bgpvpn-id-body:
+  description: |
+      The ID of the BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-import_targets:
+  description: |
+      Additional Route Targets that will be imported.
+  in: body
+  required: false
+  type: array
+bgpvpn-import_targets-required:
+  description: |
+      Additional Route Targets that will be imported.
+  in: body
+  required: true
+  type: array
+bgpvpn-name:
+  description: |
+      The user meaningful name of the BGP VPN.
+  in: body
+  required: false
+  type: string
+bgpvpn-name-required:
+  description: |
+      The user meaningful name of the BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-network_association:
+  description: |
+    A ``network_association`` object represents the binding of an MPLS network
+    to a Neutron network.
+  in: body
+  required: true
+  type: object
+bgpvpn-network_association_id:
+  description: |
+      The ID of an association between a network and a BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-network_associations:
+  description: |
+    A list of ``network_association`` objects which represent bindings
+    of MPLS networks to Neutron networks.
+  in: body
+  required: true
+  type: object
+bgpvpn-network_id:
+  description: |
+        The ID of a Neutron network with which to associate the BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-networks:
+  description: |
+       This read-only list of network IDs reflects the associations defined by Network association API resources.
+  in: body
+  required: false
+  type: array
+bgpvpn-networks-required:
+  description: |
+       This read-only list of network IDs reflects the associations defined by Network association API resources.
+  in: body
+  required: true
+  type: array
+bgpvpn-route_distinguishers:
+  description: |
+      List of route distinguisher strings. If this parameter is specified, one of these RDs will be used to advertise VPN routes.
+  in: body
+  required: false
+  type: array
+bgpvpn-route_distinguishers-required:
+  description: |
+      List of route distinguisher strings. If this parameter is specified, one of these RDs will be used to advertise VPN routes.
+  in: body
+  required: true
+  type: array
+bgpvpn-route_targets:
+  description: |
+      Route Targets that will be both imported and used for export.
+  in: body
+  required: false
+  type: array
+bgpvpn-route_targets-required:
+  description: |
+      Route Targets that will be both imported and used for export.
+  in: body
+  required: true
+  type: array
+bgpvpn-router_association:
+  description: |
+    A ``router_association`` object represents the binding of an MPLS network
+    to a Neutron router.
+  in: body
+  required: true
+  type: object
+bgpvpn-router_association_id:
+  description: |
+      The ID of an association between a router and a BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-router_associations:
+  description: |
+    A list of ``router_association`` objects which represent bindings
+    of MPLS networks to Neutron routers.
+  in: body
+  required: true
+  type: object
+bgpvpn-router_id:
+  description: |
+      The ID of a Neutron router with which to associate the BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-routers:
+  description: |
+      This read-only list of router IDs reflects the associations defined by Router association API resources.
+  in: body
+  required: false
+  type: array
+bgpvpn-routers-required:
+  description: |
+      This read-only list of router IDs reflects the associations defined by Router association API resources.
+  in: body
+  required: true
+  type: array
+bgpvpn-type:
+  description: |
+      Selection of the type of VPN and the technology behind it. Allowed
+      values are ``l2`` or ``l3``. The default is l3. ``l2`` indicates a Layer
+      2 (i.e. bridged) attachment and ``l3`` indicates a Layer 3 (i.e.
+      routed) attachment.
+  in: body
+  required: false
+  type: string
+bgpvpn-type-required:
+  description: |
+      Selection of the type of VPN and the technology behind it. Allowed
+      values are ``l2`` or ``l3``. The default is l3. ``l2`` indicates a Layer
+      2 (i.e. bridged) attachment and ``l3`` indicates a Layer 3 (i.e.
+      routed) attachment.
+  in: body
+  required: true
+  type: string
+bgpvpns:
+  description: |
+    A list of ``bgpvpn`` objects. Each ``bgpvpn`` object represents an
+    MPLS network with which Neutron routers and/or networks may be associated
   in: body
   required: true
   type: array
@@ -3818,13 +4010,13 @@ project_id:
   type: string
 project_id-body-optional:
   description: |
-    The ID of the project.
+    The ID of the project that owns the resource.
   in: body
   required: false
   type: string
 project_id-body-required:
   description: |
-    The ID of the project.
+    The ID of the project that owns the resource.
   in: body
   required: true
   type: string

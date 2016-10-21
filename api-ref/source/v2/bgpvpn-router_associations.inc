@@ -1,0 +1,159 @@
+.. -*- rst -*-
+
+===================
+Router Associations
+===================
+
+Associating a BGPVPN to a Router can be done only for BGPVPN of type L3. The
+semantic is that all Subnets bound to the Router will be interconnected with
+the BGPVPN.
+
+A said Router can be associated with multiple BGPVPNs.
+
+Associating or disassociating a BGPVPN to a Router is done by manipulating a
+Router association API resource as a sub-resource of the BGPVPN resource:
+
+List Router Associations
+=========================
+
+.. rest_method::  GET /v2.0/bgpvpn/bgpvpns/{bgpvpn_id}/router_associations
+
+Lists router associations for a given BGP VPN.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 403, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - bgpvpn_id: bgpvpn-id-path
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_associations: bgpvpn-router_associations
+   - id: bgpvpn-router_association_id
+   - router_id: bgpvpn-router_id
+   - tenant_id: project_id
+   - project_id: project_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/bgpvpn/router_associations/router_association-list-response.json
+   :language: javascript
+
+Create Router Association
+==========================
+
+.. rest_method::  POST /v2.0/bgpvpn/bgpvpns/{bgpvpn_id}/router_associations
+
+Creates a router association for a given BGP VPN
+
+Normal response codes: 201
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - bgpvpn_id: bgpvpn-id-path
+   - router_association: bgpvpn-router_association
+   - router_id: bgpvpn-router_id
+
+Request Example
+---------------
+
+.. literalinclude:: samples/bgpvpn/router_associations/router_association-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_association: bgpvpn-router_association
+   - id: bgpvpn-router_association_id
+   - router_id: bgpvpn-router_id
+   - tenant_id: project_id
+   - project_id: project_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/bgpvpn/router_associations/router_association-create-response.json
+   :language: javascript
+
+Show Router Association details
+================================
+
+.. rest_method::  GET /v2.0/bgpvpn/bgpvpns/{bgpvpn_id}/router_associations/{router_association_id}
+
+Shows details for a router association.
+
+Normal response codes: 200
+
+Error response codes: 401, 403, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - bgpvpn_id: bgpvpn-id-path
+   - router_association_id: bgpvpn-router_association_id-path
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_association: bgpvpn-router_association
+   - id: bgpvpn-router_association_id
+   - router_id: bgpvpn-router_id
+   - tenant_id: project_id
+   - project_id: project_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/bgpvpn/router_associations/router_association-show-response.json
+   :language: javascript
+
+Delete Router Association
+==========================
+
+.. rest_method::  DELETE /v2.0/bgpvpn/bgpvpns/{bgpvpn_id}/router_associations/{router_association_id}
+
+Deletes a router association.
+
+Normal response codes: 202
+
+Error response codes: 400, 401, 403, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - bgpvpn_id: bgpvpn-id-path
+   - router_association_id: bgpvpn-router_association_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.

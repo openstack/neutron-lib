@@ -1,0 +1,8 @@
+{
+    "bgpvpn": {
+       "name": "foo",
+       "route_targets": ["64512:1444"],
+       "export_targets": [],
+       "import_targets": []
+    }
+}
