@@ -1,0 +1,5 @@
+---
+other:
+  - Provide API definition framework for Neutron Stadium APIs to
+    be consolidated into neutron-lib. For more details see review
+    https://review.openstack.org/#/c/353131/.
