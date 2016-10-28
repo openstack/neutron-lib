@@ -1,0 +1,4 @@
+---
+features:
+  - The ``get_random_mac`` utility function from ``neutron.common.utils`` is
+    now in ``neutron_lib.utils.net`` with the same name, ``get_random_mac``.
