@@ -36,6 +36,7 @@ Layer 3 Networking
 Security
 ########
 .. include:: fwaas.inc
+.. include:: fwaas-v2.inc
 .. include:: security-group-rules.inc
 .. include:: security-groups.inc
 .. include:: vpnaas.inc

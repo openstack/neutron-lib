@@ -1,0 +1,7 @@
+{
+    "firewall_group": {
+        "admin_state_up": false,
+        "egress_firewall_policy_id": "14c9d3c1-b472-44f9-8226-30dc4ffd454c"
+        "ingress_firewall_policy_id": "c69933c1-b472-44f9-8226-30dc4ffd454c"
+    }
+}

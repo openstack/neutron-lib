@@ -1,0 +1,12 @@
+{
+  "audited": false,
+  "description": "",
+  "firewall_rules": [
+    "acbdfead-eca2-4456-838c-8b531e47b9c7"
+  ],
+  "id": "c9e15d6e-b6ba-4ef4-8715-985d1f100467",
+  "name": "policy2"
+  "public": false,
+  "project_id": "95573613ec554b4b8df9f2679c64557b",
+  "tenant_id": "95573613ec554b4b8df9f2679c64557b",
+}

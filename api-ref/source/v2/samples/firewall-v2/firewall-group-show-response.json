@@ -1,0 +1,14 @@
+{
+    "firewall_group": {
+        "admin_state_up": true,
+        "description": "",
+        "egress_firewall_policy_id": null,
+        "id": "07411bda-0147-418b-af05-c8665630d937",
+        "ingress_firewall_policy_id": null,
+        "name": "",
+        "project_id": "96108b04417b416e9b9bc788c11c42c9",
+        "public": false,
+        "status": "INACTIVE",
+        "tenant_id": "96108b04417b416e9b9bc788c11c42c9"
+    }
+}

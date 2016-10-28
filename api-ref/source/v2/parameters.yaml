@@ -19,6 +19,12 @@ extensions-alias-path:
   in: path
   required: true
   type: string
+firewall_group_id-path-required:
+  description: |
+    The ID of the firewall group.
+  in: path
+  required: true
+  type: string
 firewall_id:
   description: |
     The ID of the firewall.
@@ -31,7 +37,19 @@ firewall_policy_id-path:
   in: path
   required: true
   type: string
+firewall_policy_id-path-required:
+  description: |
+    The ID of the firewall policy.
+  in: path
+  required: true
+  type: string
 firewall_rule_id:
+  description: |
+    The ID for the firewall rule.
+  in: path
+  required: true
+  type: string
+firewall_rule_id-path-required:
   description: |
     The ID for the firewall rule.
   in: path
@@ -830,19 +848,19 @@ delay_2:
   type: integer
 description:
   description: |
-    The human-readable description for the resource.
+    A human-readable description for the resource.
   in: body
   required: true
   type: string
 description-request:
   description: |
-    The human-readable description for the resource.
+    A human-readable description for the resource.
   in: body
   required: false
   type: string
 description_1:
   description: |
-    Human readable description for the firewall rule.
+    A human-readable description for the firewall rule.
     The maximum length is 1024 characters. No default.
   in: body
   required: false
@@ -855,7 +873,7 @@ description_10:
   type: string
 description_11:
   description: |
-    Human-readable description for the pool.
+    A human-readable description for the pool.
   in: body
   required: false
   type: string
@@ -867,33 +885,33 @@ description_12:
   type: string
 description_13:
   description: |
-    Human-readable description for the service
+    A human-readable description for the service
     profile.
   in: body
   required: false
   type: string
 description_14:
   description: |
-    Human-readable description for the VIP.
+    A human-readable description for the VIP.
   in: body
   required: false
   type: string
 description_15:
   description: |
-    Human-readable description for the VPN endpoint
+    A human-readable description for the VPN endpoint
     group.
   in: body
   required: false
   type: string
 description_16:
   description: |
-    Human-readable description for the VPN service.
+    A human-readable description for the VPN service.
   in: body
   required: false
   type: string
 description_17:
   description: |
-    The human-readable description for the firewall
+    A human-readable description for the firewall
     policy.
   in: body
   required: true
@@ -906,39 +924,39 @@ description_18:
   type: string
 description_19:
   description: |
-    Human readable description for the firewall rule.
+    A human-readable description for the firewall rule.
   in: body
   required: true
   type: string
 description_2:
   description: |
-    Human-readable description for the firewall
+    A human-readable description for the firewall
     service.
   in: body
   required: false
   type: string
 description_20:
   description: |
-    The human-readable description for the firewall
+    A human-readable description for the firewall
     service.
   in: body
   required: true
   type: string
 description_21:
   description: |
-    Human-readable description for the flavor.
+    A human-readable description for the flavor.
   in: body
   required: true
   type: string
 description_22:
   description: |
-    Human-readable description for the IKE policy.
+    A human-readable description for the IKE policy.
   in: body
   required: true
   type: string
 description_23:
   description: |
-    Human-readable description for the IPSec
+    A human-readable description for the IPSec
     connection.
   in: body
   required: true
@@ -981,33 +999,33 @@ description_29:
   type: string
 description_3:
   description: |
-    Human-readable description for the flavor.
+    A human-readable description for the flavor.
   in: body
   required: false
   type: string
 description_30:
   description: |
-    Human-readable description for the service
+    A human-readable description for the service
     profile.
   in: body
   required: true
   type: string
 description_31:
   description: |
-    Human-readable description for the VIP.
+    A human-readable description for the VIP.
   in: body
   required: true
   type: string
 description_32:
   description: |
-    Human-readable description for the VPN endpoint
+    A human-readable description for the VPN endpoint
     group.
   in: body
   required: true
   type: string
 description_33:
   description: |
-    Human-readable description for the VPN service.
+    A human-readable description for the VPN service.
   in: body
   required: true
   type: string
@@ -1025,19 +1043,19 @@ description_35:
   type: string
 description_4:
   description: |
-    Human-readable description for the IKE policy.
+    A human-readable description for the IKE policy.
   in: body
   required: false
   type: string
 description_5:
   description: |
-    Human-readable description for the IPSec policy.
+    A human-readable description for the IPSec policy.
   in: body
   required: true
   type: string
 description_6:
   description: |
-    Human-readable description for the IPSec
+    A human-readable description for the IPSec
     connection.
   in: body
   required: false
@@ -1217,6 +1235,18 @@ dscp_marking_rules:
   in: body
   required: true
   type: array
+egress_firewall_policy_id-body-optional:
+  description: |
+    The ID of the egress firewall policy for the firewall group.
+  in: body
+  required: false
+  type: string
+egress_firewall_policy_id-body-required:
+  description: |
+    The ID of the egress firewall policy for the firewall group.
+  in: body
+  required: true
+  type: string
 enabled:
   description: |
     Set to ``false`` to disable this rule in the
@@ -1225,6 +1255,13 @@ enabled:
     value is ``true`` or ``false``. Default is ``true``.
   in: body
   required: false
+  type: boolean
+enabled-body-required:
+  description: |
+    Indicates whether this resource is enabled or
+    disabled.
+  in: body
+  required: true
   type: boolean
 enabled-response:
   description: |
@@ -1457,6 +1494,118 @@ firewall-status:
   in: body
   required: true
   type: string
+firewall_audited-body-required:
+  description: |
+    Each time that the firewall policy or its
+    associated rules are changed, the API sets this attribute to
+    ``false``. To audit the policy, explicitly set this attribute to
+    ``true``.
+  in: body
+  required: true
+  type: boolean
+firewall_group_admin_state_up-body-optional:
+  description: |
+    The administrative state of the firewall group, which
+    is up (``true``) or down (``false``). Default is ``true``.
+  in: body
+  required: false
+  type: boolean
+firewall_group_admin_state_up-body-required:
+  description: |
+    The administrative state of the firewall group, which
+    is up (``true``) or down (``false``). Default is ``true``.
+  in: body
+  required: true
+  type: boolean
+firewall_group_description-body-optional:
+  description: |
+    A human-readable description of the firewall group.
+  in: body
+  required: false
+  type: object
+firewall_group_description-body-required:
+  description: |
+    A human-readable description of the firewall group.
+  in: body
+  required: true
+  type: object
+firewall_group_id-body-required:
+  description: |
+    The ID of the firewall group.
+  in: body
+  required: true
+  type: string
+firewall_group_list-body-required:
+  description: |
+    A list of the IDs of firewall groups associated with
+    the firewall policy.
+  in: body
+  required: true
+  type: array
+firewall_group_name-body-optional:
+  description: |
+    A human-readable name for the firewall group.
+  in: body
+  required: false
+  type: string
+firewall_group_name-body-required:
+  description: |
+    A human-readable name for the firewall group.
+  in: body
+  required: true
+  type: string
+firewall_group_object:
+  description: |
+    A ``firewall_group`` object.
+  in: body
+  required: true
+  type: object
+firewall_group_ports-body-optional:
+  description: |
+    A list of the IDs of the ports associated with the firewall group.
+  in: body
+  required: false
+  type: array
+firewall_group_ports-body-required:
+  description: |
+    A list of the IDs of the ports associated with the firewall group.
+  in: body
+  required: true
+  type: array
+firewall_group_shared-body-optional:
+  description: |
+    Indicates whether this firewall group is shared across all projects.
+  in: body
+  required: false
+  type: boolean
+firewall_group_shared-body-required:
+  description: |
+    Indicates whether this firewall group is shared across all projects.
+  in: body
+  required: true
+  type: boolean
+firewall_group_status-body-optional:
+  description: |
+    The status of the firewall group. Valid values are ``ACTIVE``,
+    ``INACTIVE``, ``ERROR``, ``PENDING_UPDATE``, or
+    ``PENDING_DELETE``.
+  in: body
+  required: false
+  type: string
+firewall_group_status-body-required:
+  description: |
+    The status of the firewall group. Valid values are ``ACTIVE``,
+    ``INACTIVE``, ``ERROR``, ``PENDING_UPDATE``, or
+    ``PENDING_DELETE``.
+  in: body
+  required: true
+  type: string
+firewall_groups_object:
+  description: |
+    A list of ``firewall_group`` objects.
+  in: body
+  required: true
+  type: array
 firewall_id-body:
   description: |
     The ID of the firewall.
@@ -1465,12 +1614,18 @@ firewall_id-body:
   type: string
 firewall_list:
   description: |
-    A list of the IDs for firewall associated with
+    A list of the IDs of firewalls associated with
     the firewall policy.
   in: body
   required: true
   type: array
 firewall_policies:
+  description: |
+    A list of ``firewall_policy`` objects.
+  in: body
+  required: true
+  type: array
+firewall_policies_object:
   description: |
     A list of ``firewall_policy`` objects.
   in: body
@@ -1482,6 +1637,34 @@ firewall_policy:
   in: body
   required: true
   type: object
+firewall_policy_audited-body-optional:
+  description: |
+    Each time that the firewall policy or its associated rules are
+    changed, the API sets this attribute to ``false``. To audit the
+    policy, explicitly set this attribute to ``true``.
+  in: body
+  required: false
+  type: boolean
+firewall_policy_audited-body-required:
+  description: |
+    Each time that the firewall policy or its associated rules are
+    changed, the API sets this attribute to ``false``. To audit the
+    policy, explicitly set this attribute to ``true``.
+  in: body
+  required: true
+  type: boolean
+firewall_policy_description-body-optional:
+  description: |
+    A human-readable name of the firewall policy.
+  in: body
+  required: false
+  type: string
+firewall_policy_description-body-required:
+  description: |
+    A human-readable name of the firewall policy.
+  in: body
+  required: true
+  type: string
 firewall_policy_id:
   description: |
     Read-only attribute that the API populates with
@@ -1500,6 +1683,12 @@ firewall_policy_id-body:
   in: body
   required: true
   type: string
+firewall_policy_id-body-required:
+  description: |
+    The ID of the firewall policy.
+  in: body
+  required: true
+  type: string
 firewall_policy_id_3:
   description: |
     The ID of the policy that is associated with
@@ -1507,21 +1696,293 @@ firewall_policy_id_3:
   in: body
   required: false
   type: string
+firewall_policy_id_description-body-optional:
+  description: |
+    A human-readable description of the firewall policy.
+  in: body
+  required: false
+  type: string
+firewall_policy_id_description-body-required:
+  description: |
+    A human-readable description of the firewall policy.
+  in: body
+  required: true
+  type: string
+firewall_policy_name-body-optional:
+  description: |
+    A human-readable name of the firewall policy.
+  in: body
+  required: false
+  type: string
+firewall_policy_name-body-required:
+  description: |
+    A human-readable name of the firewall policy.
+  in: body
+  required: true
+  type: string
+firewall_policy_object:
+  description: |
+    A ``firewall_policy`` object.
+  in: body
+  required: true
+  type: object
+firewall_policy_shared-body-optional:
+  description: |
+    Set to ``true`` to make this firewall policy
+    visible to other projects. Default is ``false``.
+  in: body
+  required: false
+  type: boolean
+firewall_policy_shared-body-required:
+  description: |
+    Set to ``true`` to make this firewall policy
+    visible to other projects. Default is ``false``.
+  in: body
+  required: true
+  type: boolean
 firewall_rule:
   description: |
     A ``firewall_rule`` object.
   in: body
   required: true
   type: object
+firewall_rule_action-body-optional:
+  description: |
+    The action that the API performs on traffic that
+    matches the firewall rule.  Valid values are ``allow`` or ``deny``.
+    Default is ``deny``.
+  in: body
+  required: false
+  type: string
+firewall_rule_action-body-required:
+  description: |
+    The action that the API performs on traffic that
+    matches the firewall rule.  Valid values are ``allow`` or ``deny``.
+    Default is ``deny``.
+  in: body
+  required: true
+  type: string
+firewall_rule_description-body-optional:
+  description: |
+    A human-readable description of the firewall rule.
+  in: body
+  required: false
+  type: string
+firewall_rule_description-body-required:
+  description: |
+    A human-readable description of the firewall rule.
+  in: body
+  required: true
+  type: string
+firewall_rule_destination_ip_address-body-optional:
+  description: |
+    The destination IPv4 or IPv6 address or CIDR for the firewall rule. No
+    default.
+  in: body
+  required: false
+  type: string
+firewall_rule_destination_ip_address-body-required:
+  description: |
+    The destination IPv4 or IPv6 address or CIDR for the firewall rule. No
+    default.
+  in: body
+  required: true
+  type: string
+firewall_rule_destination_port-body-optional:
+  description: |
+    The destination port or port range for the firewall rule. A valid
+    value is a port number, as an integer, or a port range, in the
+    format of a ``:`` separated range. For a port range, include both
+    ends of the range. For example, ``80:90``.
+  in: body
+  required: false
+  type: string
+firewall_rule_destination_port-body-required:
+  description: |
+    The destination port or port range for the firewall rule. A valid
+    value is a port number, as an integer, or a port range, in the
+    format of a ``:`` separated range. For a port range, include both
+    ends of the range. For example, ``80:90``.
+  in: body
+  required: true
+  type: string
+firewall_rule_enabled-body-optional:
+  description: |
+    Set to ``false`` to disable this rule in the firewall policy.
+    Facilitates selectively turning off rules without having to
+    disassociate the rule from the firewall policy. Valid values are
+    ``true`` or ``false``. Default is ``true``.
+  in: body
+  required: false
+  type: boolean
+firewall_rule_enabled-body-required:
+  description: |
+    Set to ``false`` to disable this rule in the firewall policy.
+    Facilitates selectively turning off rules without having to
+    disassociate the rule from the firewall policy. Valid values are
+    ``true`` or ``false``. Default is ``true``.
+  in: body
+  required: true
+  type: boolean
 firewall_rule_id-body:
   description: |
     The ID of the firewall rule.
   in: body
   required: true
   type: string
+firewall_rule_id-body-required:
+  description: |
+    The ID of the firewall rule.
+  in: body
+  required: true
+  type: string
+firewall_rule_insert_after-body-required:
+  description: |
+    The ID of the firewall_rule to insert the new rule after. The new
+    rule will be inserted immediately after the specified firewall_rule.
+    If both ``before`` and ``after`` values are supplied, the ``after`` value
+    will be ignored. To insert a rule into a policy with no rules yet,
+    the both the ``before`` and the ``after`` values must be "".
+  in: body
+  required: true
+  type: string
+firewall_rule_insert_before-body-required:
+  description: |
+    The ID of the firewall_rule to insert the new rule before. The new
+    rule will be inserted immediately before the specified firewall_rule.
+    If both ``before`` and ``after`` values are supplied, the ``after`` value
+    will be ignored. To insert a rule into a policy with no rules yet,
+    the both the ``before`` and the ``after`` values must be "".
+  in: body
+  required: true
+  type: string
+firewall_rule_ip_version-body-optional:
+  description: |
+    The IP protocol version for the firewall rule. Valid values are
+    ``4`` or ``6``. Default is ``4``.
+  in: body
+  required: false
+  type: integer
+firewall_rule_ip_version-body-required:
+  description: |
+    The IP protocol version for the firewall rule. Valid values
+    are ``4`` or ``6``. Default is ``4``.
+  in: body
+  required: true
+  type: integer
+firewall_rule_name-body-optional:
+  description: |
+     A human-readable name of the firewall rule.
+  in: body
+  required: false
+  type: string
+firewall_rule_name-body-required:
+  description: |
+     A human-readable name of the firewall rule.
+  in: body
+  required: true
+  type: string
+firewall_rule_object:
+  description: |
+    A ``firewall_rule`` object.
+  in: body
+  required: true
+  type: object
+firewall_rule_position-body-optional:
+  description: |
+    Read-only attribute that the API assigns to this
+    rule when it associates it with a firewall policy. This value
+    indicates the position of this rule in that firewall policy. This
+    position number starts at 1. If the firewall rule is not
+    associated with any policy, the position is ``null``.
+  in: body
+  required: false
+  type: integer
+firewall_rule_position-body-required:
+  description: |
+    Read-only attribute that the API assigns to this
+    rule when it associates it with a firewall policy. This value
+    indicates the position of this rule in that firewall policy. This
+    position number starts at 1. If the firewall rule is not
+    associated with any policy, the position is ``null``.
+  in: body
+  required: true
+  type: integer
+firewall_rule_protocol-body-optional:
+  description: |
+    The IP protocol for the firewall rule. Possible values are ``icmp``, ``tcp``,
+    ``udp``, or ``null``.
+  in: body
+  required: false
+  type: string
+firewall_rule_protocol-body-required:
+  description: |
+    The IP protocol for the firewall rule. Possible values are ``icmp``, ``tcp``,
+    ``udp``, or ``null``.
+  in: body
+  required: true
+  type: string
+firewall_rule_shared-body-optional:
+  description: |
+    Indicates whether this firewall rule is shared across all projects.
+  in: body
+  required: false
+  type: boolean
+firewall_rule_shared-body-required:
+  description: |
+    Indicates whether this firewall rule is shared across all projects.
+  in: body
+  required: true
+  type: boolean
+firewall_rule_source_ip_address-body-optional:
+  description: |
+    The source IPv4 or IPv6 address or CIDR for the firewall rule. No
+    default.
+  in: body
+  required: false
+  type: string
+firewall_rule_source_ip_address-body-required:
+  description: |
+    The source IPv4 or IPv6 address or CIDR for the firewall rule. No
+    default.
+  in: body
+  required: true
+  type: string
+firewall_rule_source_port-body-optional:
+  description: |
+    The source port or port range for the firewall rule. A valid
+    value is a port number, as an integer, or a port range, in the
+    format of a ``:`` separated range. For a port range, include both
+    ends of the range. For example, ``80:90``.
+  in: body
+  required: false
+  type: string
+firewall_rule_source_port-body-required:
+  description: |
+    The source port or port range for the firewall rule. A valid
+    value is a port number, as an integer, or a port range, in the
+    format of a ``:`` separated range. For a port range, include both
+    ends of the range. For example, ``80:90``.
+  in: body
+  required: true
+  type: string
 firewall_rules:
   description: |
     A list of the IDs for firewall rule associated
+    with the firewall policy.
+  in: body
+  required: true
+  type: array
+firewall_rules-body-optional:
+  description: |
+    A list of the IDs of the firewall rules associated
+    with the firewall policy.
+  in: body
+  required: false
+  type: array
+firewall_rules-body-required:
+  description: |
+    A list of the IDs of the firewall rules associated
     with the firewall policy.
   in: body
   required: true
@@ -1533,6 +1994,12 @@ firewall_rules_id:
   in: body
   required: false
   type: array
+firewall_rules_object:
+  description: |
+    A list of ``firewall_rule`` objects.
+  in: body
+  required: true
+  type: object
 firewalls:
   description: |
     A list of ``firewall_rule`` objects.
@@ -1998,6 +2465,18 @@ ikepolicy:
 ikepolicy_id:
   description: |
     The UUID of the IKE policy.
+  in: body
+  required: true
+  type: string
+ingress_firewall_policy_id-body-optional:
+  description: |
+    The ID of the ingress firewall policy for the firewall group.
+  in: body
+  required: false
+  type: string
+ingress_firewall_policy_id-body-required:
+  description: |
+    The ID of the ingress firewall policy for the firewall group.
   in: body
   required: true
   type: string
@@ -2594,7 +3073,7 @@ name_20:
   type: string
 name_21:
   description: |
-    Human readable name for the firewall rule.
+    A human-readable name for the firewall rule.
   in: body
   required: true
   type: string
@@ -2730,7 +3209,7 @@ name_4:
   type: string
 name_40:
   description: |
-    Human readable name for the firewall rule.
+    A human-readable name for the firewall rule.
     Maximum length is 255 characters. Does not have to be unique. No
     default.
   in: body
@@ -2738,14 +3217,14 @@ name_40:
   type: string
 name_41:
   description: |
-    Human-readable name for the flavor. Can be "" and
+    A human-readable name for the flavor. Can be "" and
     non-unique.
   in: body
   required: false
   type: string
 name_42:
   description: |
-    The human-readable name for the firewall service.
+    A human-readable name for the firewall service.
     Does not have to be unique.
   in: body
   required: false
@@ -2759,7 +3238,7 @@ name_43:
   type: string
 name_5:
   description: |
-    Human-readable name for the IPSec policy. Does
+    A human-readable name for the IPSec policy. Does
     not have to be unique.
   in: body
   required: true
@@ -3199,6 +3678,18 @@ prefixes_2:
   required: true
   type: array
 project_id:
+  description: |
+    The ID of the project.
+  in: body
+  required: true
+  type: string
+project_id-body-optional:
+  description: |
+    The ID of the project.
+  in: body
+  required: false
+  type: string
+project_id-body-required:
   description: |
     The ID of the project.
   in: body
@@ -4464,7 +4955,7 @@ tenant_id:
   description: |
     The ID of the project that owns the resource.
   in: body
-  required: true
+  required: false
   type: string
 tenant_id-request:
   description: |
@@ -4561,9 +5052,7 @@ tenant_id_19:
   type: string
 tenant_id_2:
   description: |
-    The UUID of the tenant who owns the network. Only
-    administrative users can specify a tenant UUID other than their
-    own.
+    The ID of the project that owns the resource.
   in: body
   required: true
   type: string

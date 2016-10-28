@@ -1,0 +1,18 @@
+{
+    "firewall_rule": {
+        "action": "deny",
+        "description": "",
+        "destination_ip_address": null,
+        "destination_port": null,
+        "enabled": true,
+        "id": "1fd59b2f-cc87-435f-a244-1df2c0cc3f70",
+        "ip_version": 4,
+        "name": "rule3",
+        "project_id": "95573613ec554b4b8df9f2679c64557b",
+        "protocol": null,
+        "public": false,
+        "source_ip_address": null,
+        "source_port": null,
+        "tenant_id": "95573613ec554b4b8df9f2679c64557b"
+    }
+}
