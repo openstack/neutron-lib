@@ -1,37 +1,59 @@
 :tocdepth: 2
 
+
 ###################
 Networking API v2.0
 ###################
 
 .. rest_expand_all::
 
+####################
+General API Overview
+####################
 .. include:: intro.inc
 .. include:: versions.inc
 .. include:: extensions.inc
-.. include:: networks.inc
-.. include:: segments.inc
+##################
+Layer 2 Networking
+##################
 .. include:: network-provider.inc
+.. include:: networks.inc
 .. include:: networks-multi-provider-ext.inc
 .. include:: networks-vlan-transparency-ext.inc
-.. include:: subnets.inc
-.. include:: ports.inc
 .. include:: port-binding.inc
-.. include:: subnetpools.inc
-.. include:: routers.inc
-.. include:: floatingips.inc
-.. include:: security-groups.inc
-.. include:: security-group-rules.inc
-.. include:: quotas.inc
-.. include:: service-providers.inc
-.. include:: flavors.inc
-.. include:: tags.inc
-.. include:: network-ip-availability.inc
-.. include:: qos.inc
-.. include:: metering.inc
+.. include:: ports.inc
+.. include:: segments.inc
 .. include:: trunk.inc
 .. include:: trunk-details.inc
-.. include:: lbaas-v2.inc
-.. include:: lbaas-v1.inc
+##################
+Layer 3 Networking
+##################
+.. include:: floatingips.inc
+.. include:: routers.inc
+.. include:: subnetpools.inc
+.. include:: subnets.inc
+########
+Security
+########
 .. include:: fwaas.inc
+.. include:: security-group-rules.inc
+.. include:: security-groups.inc
 .. include:: vpnaas.inc
+###################
+Resource Management
+###################
+.. include:: flavors.inc
+.. include:: metering.inc
+.. include:: network-ip-availability.inc
+.. include:: quotas.inc
+.. include:: service-providers.inc
+.. include:: tags.inc
+##################
+Quality of Service
+##################
+.. include:: qos.inc
+##########################
+Load Balancer as a Service
+##########################
+.. include:: lbaas-v1.inc
+.. include:: lbaas-v2.inc
