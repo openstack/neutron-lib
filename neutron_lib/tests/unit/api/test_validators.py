@@ -110,7 +110,7 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_values("1", ["2", "1", "4", "5"])
         self.assertIsNone(msg)
 
-        # Check that value is not compatible for comparision
+        # Check that value is not compatible for comparison
         response = "'valid_values' does not support membership operations"
         self.assertRaisesRegex(TypeError, response,
                                validators.validate_values, data=None,
