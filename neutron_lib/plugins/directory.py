@@ -90,3 +90,7 @@ def get_plugins():
 
 def get_unique_plugins():
     return _get_plugin_directory().unique_plugins
+
+
+def is_loaded():
+    return _get_plugin_directory().is_loaded
