@@ -12,7 +12,7 @@
 
 from webob import exc
 
-from neutron_lib.api import utils
+from neutron_lib.api import attributes
 from oslo_utils import uuidutils
 
 from neutron_lib.tests import _base as base
@@ -22,14 +22,14 @@ class TestApiUtils(base.BaseTestCase):
 
     def test_populate_project_info_add_project(self):
         attrs_in = {'tenant_id': uuidutils.generate_uuid()}
-        attrs_out = utils.populate_project_info(attrs_in)
+        attrs_out = attributes.populate_project_info(attrs_in)
         self.assertIn('project_id', attrs_out)
         self.assertEqual(attrs_in['tenant_id'], attrs_out['project_id'])
         self.assertEqual(2, len(attrs_out))
 
     def test_populate_project_info_add_tenant(self):
         attrs_in = {'project_id': uuidutils.generate_uuid()}
-        attrs_out = utils.populate_project_info(attrs_in)
+        attrs_out = attributes.populate_project_info(attrs_in)
         self.assertIn('tenant_id', attrs_out)
         self.assertEqual(attrs_in['project_id'], attrs_out['tenant_id'])
         self.assertEqual(2, len(attrs_out))
@@ -37,7 +37,7 @@ class TestApiUtils(base.BaseTestCase):
     def test_populate_project_info_ids_match(self):
         project_id = uuidutils.generate_uuid()
         attrs_in = {'project_id': project_id, 'tenant_id': project_id}
-        attrs_out = utils.populate_project_info(attrs_in)
+        attrs_out = attributes.populate_project_info(attrs_in)
         self.assertEqual(attrs_in, attrs_out)
 
     def test_populate_project_info_id_mismatch(self):
@@ -46,4 +46,4 @@ class TestApiUtils(base.BaseTestCase):
             'tenant_id': uuidutils.generate_uuid()
         }
         self.assertRaises(exc.HTTPBadRequest,
-                          utils.populate_project_info, attrs)
+                          attributes.populate_project_info, attrs)

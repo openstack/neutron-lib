@@ -10,35 +10,14 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from webob import exc
+"""
+NOTE: Do not use this module to add random utils.
+We want to avoid having a generic utils.py dumping ground.
+"""
 
-from neutron_lib._i18n import _
+from debtcollector import moves
 
+from neutron_lib.api import attributes
 
-def populate_project_info(attributes):
-    """Ensure that both project_id and tenant_id attributes are present.
-
-    If either project_id or tenant_id is present in attributes then ensure
-    that both are present.
-
-    If neither are present then attributes is not updated.
-
-    :param attributes: a dictionary of resource/API attributes
-    :type attributes: dict
-
-    :return: the updated attributes dictionary
-    :rtype: dict
-
-    """
-    if 'tenant_id' in attributes and 'project_id' not in attributes:
-        # TODO(HenryG): emit a deprecation warning here
-        attributes['project_id'] = attributes['tenant_id']
-    elif 'project_id' in attributes and 'tenant_id' not in attributes:
-        # Backward compatibility for code still using tenant_id
-        attributes['tenant_id'] = attributes['project_id']
-
-    if attributes.get('project_id') != attributes.get('tenant_id'):
-        msg = _("'project_id' and 'tenant_id' do not match")
-        raise exc.HTTPBadRequest(msg)
-
-    return attributes
+populate_project_info = moves.moved_function(
+    attributes.populate_project_info, 'populate_project_info', __name__)
