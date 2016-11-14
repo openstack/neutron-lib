@@ -23,6 +23,19 @@ from neutron_lib._callbacks import manager
 from neutron_lib._callbacks import resources
 
 
+class ObjectWithCallback(object):
+
+    def __init__(self):
+        self.counter = 0
+
+    def callback(self, *args, **kwargs):
+        self.counter += 1
+
+
+class GloriousObjectWithCallback(ObjectWithCallback):
+    pass
+
+
 def callback_1(*args, **kwargs):
     callback_1.counter += 1
 callback_id_1 = manager._get_id(callback_1)
@@ -55,7 +68,8 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.assertIsNotNone(
             self.manager._callbacks[resources.PORT][events.BEFORE_CREATE])
         self.assertIn(callback_id_1, self.manager._index)
-        self.assertEqual(self.__module__ + '.callback_1', callback_id_1)
+        self.assertEqual(self.__module__ + '.callback_1-%s' %
+                         hash(callback_1), callback_id_1)
 
     def test_subscribe_unknown(self):
         self.manager.subscribe(
@@ -246,3 +260,32 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.manager.clear()
         self.assertEqual(0, len(self.manager._callbacks))
         self.assertEqual(0, len(self.manager._index))
+
+    @mock.patch("neutron_lib._callbacks.manager.LOG")
+    def test__notify_loop_skip_log_errors(self, _logger):
+        self.manager.subscribe(
+            callback_raise, resources.PORT, events.BEFORE_CREATE)
+        self.manager.subscribe(
+            callback_raise, resources.PORT, events.PRECOMMIT_CREATE)
+        self.manager._notify_loop(
+            resources.PORT, events.BEFORE_CREATE, mock.ANY)
+        self.manager._notify_loop(
+            resources.PORT, events.PRECOMMIT_CREATE, mock.ANY)
+        self.assertFalse(_logger.exception.call_count)
+        self.assertTrue(_logger.error.call_count)
+
+    def test_object_instances_as_subscribers(self):
+        """Ensures that the manager doesn't think these are equivalent."""
+        a = GloriousObjectWithCallback()
+        b = ObjectWithCallback()
+        c = ObjectWithCallback()
+        for o in (a, b, c):
+            self.manager.subscribe(
+                o.callback, resources.PORT, events.BEFORE_CREATE)
+            # ensure idempotency remains for a single object
+            self.manager.subscribe(
+                o.callback, resources.PORT, events.BEFORE_CREATE)
+        self.manager.notify(resources.PORT, events.BEFORE_CREATE, mock.ANY)
+        self.assertEqual(1, a.counter)
+        self.assertEqual(1, b.counter)
+        self.assertEqual(1, c.counter)
