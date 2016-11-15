@@ -79,10 +79,10 @@ if [[ ${TAG_RELEASE} == '' ]]; then
 fi
 
 
-${PYIR_PATH} generate --blacklist '.*\/tests\/.*','.*\._(\w+)' ${PACKAGE} > "${TMPDIR}/${PACKAGE}.master.json.txt"
+${PYIR_PATH} generate --blacklist '.*\/tests\/.*','.*\._(\w*)' ${PACKAGE} > "${TMPDIR}/${PACKAGE}.master.json.txt"
 
 install_project
-${PYIR_PATH} generate --blacklist '.*\/tests\/.*','.*\._(\w+)' ${TMPDIR}/${PROJECT}/${PACKAGE} > "${TMPDIR}/${PACKAGE}.${TAG_RELEASE}.json.txt"
+${PYIR_PATH} generate --blacklist '.*\/tests\/.*','.*\._(\w*)' ${TMPDIR}/${PROJECT}/${PACKAGE} > "${TMPDIR}/${PACKAGE}.${TAG_RELEASE}.json.txt"
 
 
 echo "==========================================================="

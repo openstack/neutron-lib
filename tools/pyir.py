@@ -331,13 +331,15 @@ def ordered(obj):
 
 
 def json_primitive(val):
-    if (str(val).count(_MOCK_CLASS_NAME) or
+    if isinstance(val, (six.string_types, six.text_type,
+                        six.integer_types, bool)):
+        return str(val)
+    elif str(val).startswith('<') or type(val) in [dict, list, set, tuple]:
+        return str(type(val))
+    elif (str(val).count(_MOCK_CLASS_NAME) or
             str(val).count(_MOCK_IMPORT_CLASS_NAME)):
         return UNKNOWN_VAL
-    primitive = jsonutils.to_primitive(val)
-    if str(primitive).startswith('<'):
-        return UNKNOWN_VAL
-    return primitive
+    return val
 
 
 def is_mock_import(obj):
@@ -1079,10 +1081,8 @@ class APISignature(object):
         return "%s(%s)" % (signature_dict['qualified_name'], arg_str.strip())
 
     def _build_variable_signature(self, signature_dict):
-        val = (UNKNOWN_VAL
-               if signature_dict['member_value'] is None
-               else signature_dict['member_value'])
-        return "%s = %s" % (signature_dict['qualified_name'], val)
+        return "%s = %s" % (signature_dict['qualified_name'],
+                            signature_dict['member_value'])
 
     def _build_class_signature(self, signature_dict):
         return signature_dict['qualified_name']
@@ -1305,6 +1305,11 @@ class APIReport(object):
                               if ordered(self.api[k]) !=
                               ordered(other_api.api[k])]
 
+        for k in common_key_changes:
+            if (not blacklist_filter(self.api[k]['member_value']) and not
+                    blacklist_filter(other_api.api[k]['member_value'])):
+                common_key_changes.remove(k)
+
         def _build_report(new_api):
             apis = APIReport()
             apis._api = new_api
@@ -1467,6 +1472,23 @@ class DiffReportCommand(AbstractCommand):
 
         new_sigs = api_diff['new_changed'].get_filtered_signatures()
         old_sigs = api_diff['old_changed'].get_filtered_signatures()
+        if len(new_sigs) != len(old_sigs):
+            new_sigs = []
+            old_sigs = []
+            new_changed = api_diff['new_changed'].api
+            old_changed = api_diff['old_changed'].api
+            for n, new_spec in new_changed.items():
+                display_old = blacklist_filter(old_changed[n]['member_value'])
+                display_new = blacklist_filter(new_spec['member_value'])
+                if display_old and display_new:
+                    new_sigs.append(APISignature.get_signature(new_spec))
+                    old_sigs.append(APISignature.get_signature(old_changed[n]))
+                elif not display_old:
+                    new_sigs.append(APISignature.get_signature(new_spec))
+                    old_sigs.append(n)
+                else:
+                    new_sigs.append('UNKNOWN')
+                    old_sigs.append(n)
         self._print_row("Changed API Signatures",
                         ["%s [is now] %s" %
                          (old_sigs[i], new_sigs[i])
