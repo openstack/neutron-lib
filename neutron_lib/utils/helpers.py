@@ -15,7 +15,6 @@ import collections
 import decimal
 import random
 
-import eventlet
 import six
 
 from neutron_lib._i18n import _
@@ -177,18 +176,3 @@ def safe_decode_utf8(s):
     if six.PY3 and isinstance(s, bytes):
         return s.decode('utf-8', 'surrogateescape')
     return s
-
-
-def wait_until_true(predicate, timeout=60, sleep=1, exception=None):
-    """Wait until callable predicate is evaluated as True
-
-    :param predicate: Callable deciding whether waiting should continue.
-    Best practice is to instantiate predicate with functools.partial()
-    :param timeout: Timeout in seconds how long should function wait.
-    :param sleep: Polling interval for results in seconds.
-    :param exception: Exception class for eventlet.Timeout.
-    (see doc for eventlet.Timeout for more information)
-    """
-    with eventlet.timeout.Timeout(timeout, exception):
-        while not predicate():
-            eventlet.sleep(sleep)

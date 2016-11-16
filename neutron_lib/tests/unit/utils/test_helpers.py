@@ -14,8 +14,6 @@
 import collections
 import re
 
-import eventlet
-import mock
 import six
 import testtools
 
@@ -224,25 +222,3 @@ class TestSafeSortKey(base.BaseTestCase):
         data2 = self._create_dict_from_list(list2)
         self.assertEqual(helpers.safe_sort_key(data1),
                          helpers.safe_sort_key(data2))
-
-
-class TestWaitUntilTrue(base.BaseTestCase):
-    def test_wait_until_true_predicate_succeeds(self):
-        helpers.wait_until_true(lambda: True)
-
-    def test_wait_until_true_predicate_fails(self):
-        with testtools.ExpectedException(eventlet.timeout.Timeout):
-            helpers.wait_until_true(lambda: False, 2)
-
-    def test_wait_until_true_predicate_fails_long_sleep(self):
-        predicate = mock.Mock(return_value=False)
-        with testtools.ExpectedException(eventlet.timeout.Timeout):
-            helpers.wait_until_true(predicate, 7, 3)
-        self.assertEqual(3, predicate.call_count)
-
-    def test_wait_until_true_predicate_fails_custom_exception(self):
-        class PrivateTimeoutException(Exception):
-            pass
-        with testtools.ExpectedException(PrivateTimeoutException):
-            helpers.wait_until_true(lambda: False, 2,
-                                    exception=PrivateTimeoutException)
