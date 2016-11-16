@@ -38,7 +38,7 @@ class TestApiUtils(base.BaseTestCase):
         project_id = uuidutils.generate_uuid()
         attrs_in = {'project_id': project_id, 'tenant_id': project_id}
         attrs_out = utils.populate_project_info(attrs_in)
-        self.assertEqual(2, len(attrs_out))
+        self.assertEqual(attrs_in, attrs_out)
 
     def test_populate_project_info_id_mismatch(self):
         attrs = {
