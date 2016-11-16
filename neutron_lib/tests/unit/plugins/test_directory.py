@@ -59,6 +59,11 @@ class DirectoryTestCase(base.BaseTestCase):
         directory.add_plugin('foo2', fake_plugin)
         self.assertEqual(1, len(directory.get_unique_plugins()))
 
+    def test_is_loaded(self):
+        self.assertFalse(directory.is_loaded())
+        directory.add_plugin('foo1', fake_plugin)
+        self.assertTrue(directory.is_loaded())
+
 
 class PluginDirectoryTestCase(base.BaseTestCase):
 
