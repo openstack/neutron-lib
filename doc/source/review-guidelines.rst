@@ -52,3 +52,13 @@ When reviewing neutron-lib changes, please be aware:
   moved into neutron-lib:
 
   - eventlet
+
+* With respect to `Oslo config options <http://docs.openstack.org/developer/oslo.config/>`_:
+
+  - Config options should only be included in neutron-lib when the respective
+    functionality that uses the options lives in neutron-lib. In this case the
+    options will need to be exposed as entry points for
+    `config generation <http://docs.openstack.org/developer/oslo.config/generator.html>`_.
+  - Common functionality in neutron-lib that accesses config values should
+    assume the caller has registered them and document such in the docstring for
+    the respective functionality in neutron-lib.
