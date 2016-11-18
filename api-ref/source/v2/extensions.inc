@@ -1,15 +1,12 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 ==========
 Extensions
 ==========
 
-Lists available Networking API v2.0 extensions and shows details
-for an extension.
+
+Extensions introduce features and vendor-specific functionality to
+the API.
 
 List extensions
 ===============
@@ -18,15 +15,12 @@ List extensions
 
 Lists available extensions.
 
-Extensions introduce features and vendor-specific functionality to
-the API.
-
-The response shows the extension name and its alias. To show
-details for an extension, you specify the alias.
+Lists available Networking API v2.0 extensions and shows details
+for an extension.
 
 Normal response codes: 200
 
-Error response codes: 203
+Error response codes: 401
 
 Request
 -------
@@ -36,12 +30,12 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - updated: updated
-   - description: description
-   - links: links
-   - alias: alias
    - extensions: extensions
-   - name: name
+   - name: extension-name
+   - links: extension-links
+   - alias: extension-alias-body
+   - updated: extension-updated
+   - description: extension-description
 
 Response Example
 ----------------
@@ -55,29 +49,31 @@ Show extension details
 .. rest_method::  GET /v2.0/extensions/{alias}
 
 Shows details for an extension, by alias.
+The response shows the extension name and its alias. To show
+details for an extension, you specify the alias.
 
 Normal response codes: 200
 
-Error response codes: 203
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - alias: alias
+   - alias: extensions-alias-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - updated: updated
-   - description: description
-   - links: links
-   - alias: alias
    - extension: extension
-   - name: name
+   - name: extension-name
+   - links: extension-links
+   - alias: extension-alias-body
+   - updated: extension-updated
+   - description: extension-description
 
 Response Example
 ----------------
