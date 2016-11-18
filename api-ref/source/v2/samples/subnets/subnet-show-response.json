@@ -19,6 +19,12 @@
         "gateway_ip": "192.0.0.1",
         "cidr": "192.0.0.0/8",
         "updated_at": "2016-03-08T20:19:41",
-        "id": "54d6f61d-db07-451c-9ab3-b9609b6b6f0b"
+        "id": "54d6f61d-db07-451c-9ab3-b9609b6b6f0b",
+        "description": "",
+        "ipv6_address_mode": null,
+        "ipv6_ra_mode": null,
+        "revision_number": 2,
+        "service_types": [],
+        "subnetpool_id": null
     }
 }

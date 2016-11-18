@@ -18,7 +18,15 @@
             "network_id": "e6031bc2-901a-4c66-82da-f4c32ed89406",
             "segment_id": null,
             "project_id": "d19231fc08ec4bc4829b668040d34512",
-            "tenant_id": "d19231fc08ec4bc4829b668040d34512"
+            "tenant_id": "d19231fc08ec4bc4829b668040d34512",
+            "created_at": "2016-10-10T14:35:47Z",
+            "description": "",
+            "ipv6_address_mode": null,
+            "ipv6_ra_mode": null,
+            "revision_number": 2,
+            "service_types": [],
+            "subnetpool_id": null,
+            "updated_at": "2016-10-10T14:35:47Z"
         },
         {
             "allocation_pools": [
@@ -38,7 +46,15 @@
             "network_id": "64239a54-dcc4-4b39-920b-b37c2144effa",
             "segment_id": null,
             "project_id": "d19231fc08ec4bc4829b668040d34512",
-            "tenant_id": "d19231fc08ec4bc4829b668040d34512"
+            "tenant_id": "d19231fc08ec4bc4829b668040d34512",
+            "created_at": "2016-10-10T14:35:34Z",
+            "description": "",
+            "ipv6_address_mode": null,
+            "ipv6_ra_mode": null,
+            "revision_number": 2,
+            "service_types": [],
+            "subnetpool_id": null,
+            "updated_at": "2016-10-10T14:35:34Z"
         }
     ]
 }

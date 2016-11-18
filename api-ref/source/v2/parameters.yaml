@@ -169,11 +169,11 @@ service_id:
   in: path
   required: false
   type: string
-subnet_id_2:
+subnet_id-path:
   description: |
-    The UUID of the subnet.
+    The ID of the subnet.
   in: path
-  required: false
+  required: true
   type: string
 subnetpool_id:
   description: |
@@ -1864,12 +1864,6 @@ ip_version_1:
   description: |
     The IP address family of the list of prefixes
     passed to the ``prefixes`` attribute.
-  in: body
-  required: true
-  type: integer
-ip_version_2:
-  description: |
-    The IP protocol version. Value is ``4`` or ``6``.
   in: body
   required: true
   type: integer
@@ -3863,6 +3857,209 @@ sub_ports:
   in: body
   required: true
   type: array
+subnet-allocation_pools:
+  description: |
+    Allocation pools with ``start`` and ``end`` IP addresses
+    for this subnet.
+  in: body
+  required: true
+  type: array
+subnet-allocation_pools-request:
+  description: |
+    Allocation pools with ``start`` and ``end`` IP addresses
+    for this subnet. If allocation_pools are not specified, OpenStack
+    Networking automatically allocates pools for covering all IP addresses
+    in the CIDR, excluding the address reserved for the subnet gateway by
+    default.
+  in: body
+  required: false
+  type: array
+subnet-created_at:
+  description: |
+    Time at which the subnet has been created.
+  in: body
+  required: true
+  type: string
+subnet-description:
+  description: |
+    Description of the subnet.
+  in: body
+  required: true
+  type: string
+subnet-dns_nameservers:
+  description: |
+    List of dns name servers associated with the subnet.
+  in: body
+  required: true
+  type: array
+subnet-dns_nameservers-request:
+  description: |
+    List of dns name servers associated with the subnet. Default is an
+    empty list.
+  in: body
+  required: false
+  type: array
+subnet-enable_dhcp:
+  description: |
+    Indicates whether dhcp is enabled or disabled
+    for the subnet.
+  in: body
+  required: true
+  type: boolean
+subnet-enable_dhcp-request:
+  description: |
+    Indicates whether dhcp is enabled or disabled
+    for the subnet. Default is ``true``.
+  in: body
+  required: false
+  type: boolean
+subnet-gateway_ip:
+  description: |
+    Gateway IP of this subnet. If the value is ``null`` that implies no
+    gateway is associated with the subnet.
+  in: body
+  required: true
+  type: string
+subnet-gateway_ip-request:
+  description: |
+    Gateway IP of this subnet. If the value is ``null`` that implies no
+    gateway is associated with the subnet. If the gateway_ip is not
+    specified, OpenStack Networking allocates an address from the CIDR
+    for the gateway for the subnet by default.
+  in: body
+  required: false
+  type: string
+subnet-host_routes:
+  description: |
+    Additional routes for the subnet. A list of dictionaries with
+    ``destination`` and ``nexthop`` parameters.
+  in: body
+  required: true
+  type: array
+subnet-host_routes-request:
+  description: |
+    Additional routes for the subnet. A list of dictionaries with
+    ``destination`` and ``nexthop`` parameters. Default value is
+    an empty list.
+  in: body
+  required: false
+  type: array
+subnet-id-body:
+  description: |
+    The ID of the subnet.
+  in: body
+  required: true
+  type: string
+subnet-ip_version:
+  description: |
+    The IP protocol version. Value is ``4`` or ``6``.
+  in: body
+  required: true
+  type: integer
+subnet-ipv6_address_mode:
+  description: |
+    The IPv6 address modes specifies mechanisms for assigning IP addresses.
+    Value is ``slaac``, ``dhcpv6-stateful``, ``dhcpv6-stateless`` or ``null``.
+  in: body
+  required: true
+  type: string
+subnet-ipv6_address_mode-request:
+  description: |
+    The IPv6 address modes specifies mechanisms for assigning IP addresses.
+    Value is ``slaac``, ``dhcpv6-stateful``, ``dhcpv6-stateless``.
+  in: body
+  required: false
+  type: string
+subnet-ipv6_ra_mode:
+  description: |
+    The IPv6 router advertisement specifies whether the networking service
+    should transmit ICMPv6 packets, for a subnet. Value is ``slaac``,
+    ``dhcpv6-stateful``, ``dhcpv6-stateless`` or ``null``.
+  in: body
+  required: true
+  type: string
+subnet-ipv6_ra_mode-request:
+  description: |
+    The IPv6 router advertisement specifies whether the networking service
+    should transmit ICMPv6 packets, for a subnet. Value is ``slaac``,
+    ``dhcpv6-stateful``, ``dhcpv6-stateless``.
+  in: body
+  required: false
+  type: string
+subnet-name:
+  description: |
+    Human-readable name of the resource.
+  in: body
+  required: true
+  type: string
+subnet-name-request:
+  description: |
+    Human-readable name of the resource. Default is an empty string.
+  in: body
+  required: false
+  type: string
+subnet-name-update-request:
+  description: |
+    Human-readable name of the resource.
+  in: body
+  required: false
+  type: string
+subnet-network_id:
+  description: |
+    The ID of the network to which the subnet belongs.
+  in: body
+  required: true
+  type: string
+subnet-obj:
+  description: |
+    A ``subnet`` object.
+  in: body
+  required: true
+  type: string
+subnet-revision_number:
+  description: |
+    The revision number of the subnet.
+  in: body
+  required: true
+  type: string
+subnet-segment_id:
+  description: |
+    The ID of a network segment the subnet is associated with.
+    It is available when ``segment`` extension is enabled.
+  in: body
+  required: true
+  type: string
+subnet-segment_id-request:
+  description: |
+    The ID of a network segment the subnet is associated with.
+    It is available when ``segment`` extension is enabled.
+  in: body
+  required: false
+  type: string
+subnet-service_types:
+  description: |
+    The service types associated with the subnet.
+  in: body
+  required: true
+  type: string
+subnet-subnetpool_id:
+  description: |
+    The ID of the subnet pool associated with the subnet.
+  in: body
+  required: true
+  type: string
+subnet-subnetpool_id-request:
+  description: |
+    The ID of the subnet pool associated with the subnet.
+  in: body
+  required: false
+  type: string
+subnet-updated_at:
+  description: |
+    Time at which the subnet has been updated.
+  in: body
+  required: true
+  type: string
 subnet_id:
   description: |
     If you specify only a subnet UUID, OpenStack
@@ -3871,41 +4068,6 @@ subnet_id:
     Networking tries to allocate the address to the port.
   in: body
   required: false
-  type: string
-subnet_id_1:
-  description: |
-    The UUID of the subnet to which the port is
-    attached.
-  in: body
-  required: true
-  type: string
-subnet_id_3:
-  description: |
-    (Deprecated) The subnet where the VPN service should
-    be provided.
-  in: body
-  required: false
-  type: string
-subnet_id_4:
-  description: |
-    (Deprecated) The subnet where the VPN service should
-    be provided.
-  in: body
-  required: true
-  type: string
-subnet_id_6:
-  description: |
-    If you omit this parameter, LBaaS uses the
-    ``vip_subnet_id`` parameter value for the subnet UUID.
-  in: body
-  required: false
-  type: integer
-subnet_id_7:
-  description: |
-    The UUID of the subnet on which to allocate the
-    virtual IP (VIP) address.
-  in: body
-  required: true
   type: string
 subnet_ip_availability:
   description: |
@@ -3966,6 +4128,12 @@ subnetpools:
 subnets:
   description: |
     The associated subnets.
+  in: body
+  required: true
+  type: array
+subnets-obj:
+  description: |
+    A list of ``subnet`` objects.
   in: body
   required: true
   type: array
