@@ -15,6 +15,8 @@
         "shared": false,
         "default_prefixlen": 64,
         "id": "03f761e6-eee0-43fc-a921-8acf64c14988",
-        "max_prefixlen": 64
+        "max_prefixlen": 64,
+        "description": "",
+        "revision_number": 2
     }
 }

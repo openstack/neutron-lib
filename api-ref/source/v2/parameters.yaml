@@ -179,7 +179,7 @@ subnetpool_id:
   description: |
     The UUID of the subnet pool.
   in: path
-  required: false
+  required: true
   type: string
 tag:
   description: |
@@ -3885,6 +3885,36 @@ subnetpool:
   in: body
   required: true
   type: object
+subnetpool_description_request:
+  description: |
+      Description of the subnetpool.
+  in: body
+  required: false
+  type: string
+subnetpool_description_response:
+  description: |
+    Description of the subnetpool.
+  in: body
+  required: true
+  type: string
+subnetpool_id_body:
+  description: |
+    The ID of the subnet.
+  in: body
+  required: true
+  type: string
+subnetpool_is_default:
+  description: |
+    The subnetpool is default pool or not.
+  in: body
+  required: true
+  type: boolean
+subnetpool_revision_number:
+  description: |
+    The revision number of the subnetpool.
+  in: body
+  required: true
+  type: string
 subnetpools:
   description: |
     A list of ``subnetpool`` objects.
