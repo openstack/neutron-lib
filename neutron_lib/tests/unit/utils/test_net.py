@@ -11,6 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import random
 import socket
 
 import mock
@@ -31,18 +32,32 @@ class TestGetHostname(base.BaseTestCase):
 
 class TestGetRandomMac(base.BaseTestCase):
 
-    def _test_get_random_mac(self, base_mac, startswith_len):
-        random_mac = net.get_random_mac(base_mac.split(':'))
-        self.assertEqual(base_mac[:startswith_len],
-                         random_mac[:startswith_len])
-        self.assertEqual(len(base_mac), len(random_mac))
-        for i in random_mac.split(':'):
-            int(i, 16)
+    def test_full_prefix_does_nothing(self):
+        mac = net.get_random_mac(['aa', 'bb', 'cc', 'dd', 'ee', 'ff'])
 
-    def test_get_random_mac_with_three_octets(self):
-        base_mac = 'fa:16:3e:00:00:00'
-        self._test_get_random_mac(base_mac, 9)
+        self.assertEqual('aa:bb:cc:dd:ee:ff', mac)
 
-    def test_get_random_mac_with_four_octets(self):
-        base_mac = 'fa:16:3e:fe:00:00'
-        self._test_get_random_mac(base_mac, 12)
+    @mock.patch.object(random, 'randint', side_effect=[0x11])
+    def test_5_octets_prefix_replaces_1_part(self, mock_rnd):
+        mac = net.get_random_mac(['aa', 'bb', 'cc', 'dd', 'ee', '00'])
+
+        self.assertEqual('aa:bb:cc:dd:ee:11', mac)
+
+        mock_rnd.assert_called_with(0x00, 0xff)
+
+    @mock.patch.object(random, 'randint',
+                       side_effect=[0x01, 0x02, 0x03, 0x04, 0x05])
+    def test_1_octets_prefix_replaces_5_parts(self, mock_rnd):
+        mac = net.get_random_mac(['aa', '00', '00', '00', '00', '00'])
+
+        self.assertEqual('aa:01:02:03:04:05', mac)
+
+        mock_rnd.assert_called_with(0x00, 0xff)
+
+    @mock.patch.object(random, 'randint', return_value=0xa2)
+    def test_no_prefix_replaces_all_parts(self, mock_rnd):
+        mac = net.get_random_mac(['00', '00', '00', '00', '00', '00'])
+
+        self.assertEqual('a2:a2:a2:a2:a2:a2', mac)
+
+        mock_rnd.assert_called_with(0x00, 0xff)

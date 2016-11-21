@@ -26,12 +26,13 @@ def get_hostname():
 def get_random_mac(base_mac):
     """Get a random MAC address string of the specified base format.
 
-    :param base_mac: The base MAC address format for the MAC address string.
+    Any part that is '00' will be randomized
+
+    :param base_mac: Base MAC address represented by an array of 6 strings/int
     :returns: The MAC address string.
     """
-    mac = [int(base_mac[0], 16), int(base_mac[1], 16),
-           int(base_mac[2], 16), random.randint(0x00, 0xff),
-           random.randint(0x00, 0xff), random.randint(0x00, 0xff)]
-    if base_mac[3] != '00':
-        mac[3] = int(base_mac[3], 16)
-    return ':'.join(["%02x" % x for x in mac])
+
+    return ':'.join(
+        "{:02x}".format(random.randint(0x00, 0xff))if p == '00' else p
+        for p in base_mac
+    )
