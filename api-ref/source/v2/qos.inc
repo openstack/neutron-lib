@@ -133,18 +133,14 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - max_kbps: max_kbps
-   - bandwidth_limit_rules: bandwidth_limit_rules
    - description: description
    - policy_id: policy_id
    - tenant_id: project_id
    - project_id: project_id
-   - dscp_marking_rules: dscp_marking_rules
    - policies: policies
    - shared: shared
-   - dscp_mark: dscp_mark
    - id: id
-   - max_burst_kbps: max_burst_kbps
+   - rules: rules
    - name: name
 
 Response Example
@@ -393,18 +389,14 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - max_kbps: max_kbps
-   - bandwidth_limit_rules: bandwidth_limit_rules
    - description: description
    - policy_id: policy_id
    - tenant_id: project_id
    - project_id: project_id
-   - dscp_marking_rules: dscp_marking_rules
    - policy: policy
    - shared: shared
-   - dscp_mark: dscp_mark
+   - rules: rules
    - id: id
-   - max_burst_kbps: max_burst_kbps
    - name: name
 
 Response Example

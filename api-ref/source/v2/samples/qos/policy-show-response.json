@@ -6,19 +6,19 @@
         "name": "10Mbit",
         "description": "This policy limits the ports to 10Mbit max.",
         "shared": false,
-        "bandwidth_limit_rules": [
+        "rules": [
             {
                 "id": "5f126d84-551a-4dcf-bb01-0e9c0df0c793",
-                "policy_id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
-                "max_kbps": "10000",
-                "max_burst_kbps": "0"
-            }
-        ],
-        "dscp_marking_rules": [
+                "qos_policy_id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
+                "max_kbps": 10000,
+                "max_burst_kbps": 0,
+                "type": "bandwidth_limit"
+             },
             {
                 "id": "5f126d84-551a-4dcf-bb01-0e9c0df0c794",
-                "policy_id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
-                "dscp_mark": "26"
+                "qos_policy_id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
+                "dscp_mark": 26,
+                "type": "dscp_marking"
             }
         ]
     }
