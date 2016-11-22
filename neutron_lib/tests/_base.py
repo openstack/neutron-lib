@@ -24,7 +24,6 @@ from oslo_config import cfg
 from oslo_db import options as db_options
 from oslo_utils import strutils
 import pbr.version
-import six
 import testtools
 
 from neutron_lib._i18n import _
@@ -222,7 +221,7 @@ class BaseTestCase(testtools.TestCase):
         self.assertEqual(expect_val, actual_val)
 
     def sort_dict_lists(self, dic):
-        for key, value in six.iteritems(dic):
+        for key, value in dic.items():
             if isinstance(value, list):
                 dic[key] = sorted(value)
             elif isinstance(value, dict):
