@@ -1,0 +1,5 @@
+---
+deprecations:
+  - The function ``neutron_lib.api.utils.populate_project_info`` has moved
+    to ``neutron_lib.api.attributes.populate_project_info``.  It will be removed
+    from the old location in the future.
