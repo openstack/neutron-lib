@@ -12,6 +12,8 @@
             "id": "a9729389-6147-41a3-ab22-a24aed8692b2",
             "operating_status": "ONLINE",
             "name": "loadbalancer1"
+            "flavor": "a7ae5d5a-d855-4f9a-b187-af66b53f4d04"
+            "provider": "sample-provider"
         }
     ]
 }

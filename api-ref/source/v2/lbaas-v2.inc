@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 ==================
 LBaaS 2.0 (STABLE)
@@ -10,7 +6,7 @@ LBaaS 2.0 (STABLE)
 
 The Load-Balancer-as-a-Service (LBaaS) version 2.0 extension pairs with the
 Networking 2.0 API to enable OpenStack projects to manage load balancers for
-their VMs. With this extension you can load- balance client traffic from one
+their VMs. With this extension you can load-balance client traffic from one
 network to application services, such as VMs, on the same network.
 
 Use this extension to create and manage load balancers, listeners, pools,
@@ -45,34 +41,44 @@ List load balancers
 
 Lists all load balancers for the project.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 The list might be empty.
 
 Normal response codes: 200
 
-Error response codes: 404,500,401,503
+Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - admin_state_up: admin_state_up
    - loadbalancers: loadbalancers
-   - tenant_id: project_id
-   - project_id: project_id
-   - provisioning_status: provisioning_status
+   - admin_state_up: admin_state_up
+   - description: description
+   - flavor: flavor-id-response
+   - id: loadbalancer-id
    - listeners: listeners
-   - vip_address: vip_address
-   - provider: provider
-   - vip_subnet_id: vip_subnet_id
-   - flavor: flavor
-   - id: id
-   - operating_status: operating_status
    - name: name
+   - operating_status: operating_status
+   - project_id: project_id
+   - provider: loadbalancer-provider
+   - provisioning_status: provisioning_status
+   - tenant_id: project_id
+   - vip_address: vip_address
+   - vip_subnet_id: vip_subnet_id
 
 Response Example
 ----------------
@@ -80,8 +86,8 @@ Response Example
 .. literalinclude:: samples/lbaas/loadbalancers-list-response.json
    :language: javascript
 
-Create load balancer
-====================
+Create a load balancer
+======================
 
 .. rest_method::  POST /v2.0/lbaas/loadbalancers
 
@@ -134,19 +140,6 @@ request:
 
 - ``description``. Default is an empty string.
 
-If the API cannot fulfill the request due to insufficient data or
-data that is not valid, the service returns the HTTP ``Bad Request
-(400)`` response code with information about the failure in the
-response body. Validation errors require that you correct the error
-and submit the request again.
-
-You can configure all documented features of the load balancer at
-creation time by specifying the additional elements or attributes
-in the request.
-
-Administrative users can specify a project ID that is different than
-their own to create load balancers for other projects.
-
 If you own the subnet where you want to create the load balancer
 VIP, you can specify a ``vip_address`` attribute. If you omit the
 ``vip_address`` attribute from the payload, the LBaaS service
@@ -168,24 +161,25 @@ created on the given network using the default behavior. If
 assigned multiple fixed IPs, an IPv4 addresses is chosen as the
 VIP in preference to IPv6 addresses.
 
-Example: Create a load balancer
+Normal response codes: 201
 
-Error response codes: 201,404,409,401,413,503,500
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
+   - loadbalancer: loadbalancer
+   - admin_state_up: admin_state_up-request
+   - description: description-request
+   - flavor: flavor-id-request
+   - name: name-request
+   - project_id: project_id-request
+   - provider: loadbalancer-provider-request
+   - tenant_id: project_id-request
    - vip_address: vip_address
-   - provider: provider
    - vip_subnet_id: vip_subnet_id
-   - flavor: flavor
-   - name: name
 
 Request Example
 ---------------
@@ -198,21 +192,27 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - provisioning_status: provisioning_status
-   - listeners: listeners
-   - vip_address: vip_address
-   - operating_status: operating_status
-   - provider: provider
-   - vip_subnet_id: vip_subnet_id
-   - flavor: flavor
-   - id: id
    - loadbalancer: loadbalancer
+   - admin_state_up: admin_state_up
+   - description: description
+   - flavor: flavor-id-response
+   - id: loadbalancer-id
+   - listeners: listeners
    - name: name
+   - operating_status: operating_status
+   - project_id: project_id
+   - provider: loadbalancer-provider
+   - provisioning_status: provisioning_status
+   - tenant_id: project_id
+   - vip_address: vip_address
    - vip_network_id: vip_network_id
+   - vip_subnet_id: vip_subnet_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas/loadbalancer-create-response.json
+   :language: javascript
 
 Show load balancer details
 ==========================
@@ -228,30 +228,32 @@ belong to your project, the service returns the HTTP
 
 Normal response codes: 200
 
-Error response codes: 404,403,500,401,413,503,409
+Error response codes: 403, 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - loadbalancer_id: loadbalancer-id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
+   - loadbalancer: loadbalancer
    - admin_state_up: admin_state_up
-   - tenant_id: project_id
+   - description: description
+   - id: loadbalancer-id
+   - listeners: listeners
+   - name: name
+   - operating_status: operating_status
    - project_id: project_id
    - provisioning_status: provisioning_status
-   - listeners: listeners
+   - tenant_id: project_id
    - vip_address: vip_address
-   - operating_status: operating_status
-   - provider: provider
    - vip_subnet_id: vip_subnet_id
-   - flavor: flavor
-   - id: id
-   - loadbalancer: loadbalancer
-   - name: name
 
 Response Example
 ----------------
@@ -275,19 +277,20 @@ object for changes.
 This operation returns the updated load balancer object with the
 ``ACTIVE``, ``PENDING_UPDATE``, or ``ERROR`` provisioning status.
 
-Normal response codes: 200
+Normal response codes: 202
 
-Error response codes: 400,401,413,503,500
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - name: name
-   - description: description
+   - loadbalancer_id: loadbalancer-id-path
    - loadbalancer: loadbalancer
-   - admin_state_up: admin_state_up
+   - admin_state_up: admin_state_up-request
+   - name: name-request
+   - description: description-request
 
 Request Example
 ---------------
@@ -300,20 +303,20 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - provisioning_status: provisioning_status
-   - listeners: listeners
-   - vip_address: vip_address
-   - operating_status: operating_status
-   - provider: provider
-   - vip_subnet_id: vip_subnet_id
-   - flavor: flavor
-   - id: id
    - loadbalancer: loadbalancer
+   - admin_state_up: admin_state_up
+   - description: description
+   - flavor: flavor-id-response
+   - id: loadbalancer-id
+   - listeners: listeners
    - name: name
+   - operating_status: operating_status
+   - project_id: project_id
+   - provider: loadbalancer-provider
+   - provisioning_status: provisioning_status
+   - tenant_id: project_id
+   - vip_address: vip_address
+   - vip_subnet_id: vip_subnet_id
 
 Response Example
 ----------------
@@ -333,10 +336,21 @@ cannot recover it.
 
 Example: Delete a load balancer
 
-Error response codes: 204,400,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - loadbalancer_id: loadbalancer-id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 Show load balancer status tree
 ==============================
@@ -356,23 +370,29 @@ statuses for its children.
 
 Normal response codes: 200
 
-Error response codes: 403,401,413,503,500
+Error response codes: 403, 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - loadbalancer_id: loadbalancer-id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - provisioning_status: provisioning_status
+   - statuses: statuses-response
+   - loadbalancer: loadbalancer
    - listeners: listeners
-   - healthmonitor: healthmonitor
-   - members: members
    - pools: pools
-   - id: id
+   - healthmonitor: healthmonitor
+   - id: loadbalancer-id
+   - members: members
    - operating_status: operating_status
+   - provisioning_status: provisioning_status
 
 Response Example
 ----------------
@@ -389,6 +409,12 @@ List listeners
 
 Lists all listeners.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 This operation lists all listeners that are associated with your
 project.
 
@@ -398,30 +424,34 @@ Example: List listeners
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - protocol_port: protocol_port
-   - protocol: protocol
-   - description: description
-   - default_tls_container_ref: default_tls_container_ref
+   - listeners: listeners-response
    - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - default_pool_id: default_pool_id-response
+   - default_tls_container_ref: default_tls_container_ref-response
+   - description: description
+   - id: listener-id-response
    - loadbalancers: loadbalancers
-   - tenant_id: project_id
-   - project_id: project_id
-   - sni_container_refs: sni_container_refs
-   - connection_limit: connection_limit
-   - listeners: listeners
-   - default_pool_id: default_pool_id
-   - id: id
    - name: name
+   - project_id: project_id
+   - protocol: protocol-response
+   - protocol_port: protocol_port
+   - sni_container_refs: sni_container_refs-response
+   - tenant_id: project_id
 
 Response Example
 ----------------
@@ -495,26 +525,28 @@ their own to create listeners for other projects.
 To update a listener, the load balancer to which to attach must
 have an ``ACTIVE`` provisioning status.
 
-Error response codes: 201,404,409,401,413,503,500
+Normal response codes: 201
+
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - protocol_port: protocol_port
-   - protocol: protocol
-   - description: description
-   - default_tls_container_ref: default_tls_container_ref
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - sni_container_refs: sni_container_refs
-   - connection_limit: connection_limit
    - listener: listener
+   - admin_state_up: admin_state_up-request
+   - connection_limit: connection_limit
    - default_pool_id: default_pool_id
-   - loadbalancer_id: loadbalancer_id
+   - default_tls_container_ref: default_tls_container_ref
+   - description: description
+   - loadbalancer_id: loadbalancer-id
    - name: name
+   - project_id: project_id-request
+   - protocol: protocol-response
+   - protocol_port: protocol_port-request
+   - sni_container_refs: sni_container_refs
+   - tenant_id: project_id-request
 
 Request Example
 ---------------
@@ -527,20 +559,26 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - protocol_port: protocol_port
-   - protocol: protocol
-   - description: description
-   - default_tls_container_ref: default_tls_container_ref
-   - admin_state_up: admin_state_up
-   - loadbalancers: loadbalancers
-   - tenant_id: project_id
-   - project_id: project_id
-   - sni_container_refs: sni_container_refs
-   - connection_limit: connection_limit
    - listener: listener
-   - default_pool_id: default_pool_id
-   - id: id
+   - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - default_pool_id: default_pool_id-response
+   - default_tls_container_ref: default_tls_container_ref-response
+   - description: description
+   - id: listener-id-response
+   - loadbalancers: loadbalancers
    - name: name
+   - project_id: project_id
+   - protocol: protocol-response
+   - protocol_port: protocol_port
+   - sni_container_refs: sni_container_refs-response
+   - tenant_id: project_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas/listener-create-response.json
+   :language: javascript
 
 Show listener details
 =====================
@@ -558,30 +596,34 @@ Example: Show listener details
 
 Normal response codes: 200
 
-Error response codes: 404,403,500,401,413,503,409
+Error response codes: 401, 403
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - listener_id: listener-id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - protocol_port: protocol_port
-   - protocol: protocol
-   - description: description
-   - default_tls_container_ref: default_tls_container_ref
-   - admin_state_up: admin_state_up
-   - loadbalancers: loadbalancers
-   - tenant_id: project_id
-   - project_id: project_id
-   - sni_container_refs: sni_container_refs
-   - connection_limit: connection_limit
    - listener: listener
-   - default_pool_id: default_pool_id
-   - id: id
+   - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - id: listener-id-response
+   - default_pool_id: default_pool_id-response
+   - default_tls_container_ref: default_tls_container_ref-response
+   - description: description
+   - loadbalancers: loadbalancers
    - name: name
+   - project_id: project_id
+   - protocol: protocol-response
+   - protocol_port: protocol_port
+   - sni_container_refs: sni_container_refs-response
+   - tenant_id: project_id
 
 Response Example
 ----------------
@@ -610,28 +652,23 @@ Note: You cannot update a listener if the load balancer to which
 the listener is attached does not have an ``ACTIVE`` provisioning
 status.
 
-Normal response codes: 200
+Normal response codes: 202
 
-Error response codes: 400,401,413,503,500
+Error response codes: 422, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - protocol_port: protocol_port
-   - protocol: protocol
-   - description: description
-   - default_tls_container_ref: default_tls_container_ref
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - sni_container_refs: sni_container_refs
-   - connection_limit: connection_limit
+   - listener_id: listener-id-path
    - listener: listener
-   - default_pool_id: default_pool_id
-   - loadbalancer_id: loadbalancer_id
+   - admin_state_up: admin_state_up-request
+   - connection_limit: connection_limit
+   - default_tls_container_ref: default_tls_container_ref
+   - description: description
    - name: name
+   - sni_container_refs: sni_container_refs
 
 Request Example
 ---------------
@@ -644,20 +681,20 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - protocol_port: protocol_port
-   - protocol: protocol
-   - description: description
-   - default_tls_container_ref: default_tls_container_ref
-   - admin_state_up: admin_state_up
-   - loadbalancers: loadbalancers
-   - tenant_id: project_id
-   - project_id: project_id
-   - sni_container_refs: sni_container_refs
-   - connection_limit: connection_limit
    - listener: listener
-   - default_pool_id: default_pool_id
-   - id: id
+   - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - default_pool_id: default_pool_id-response
+   - default_tls_container_ref: default_tls_container_ref-response
+   - description: description
+   - id: listener-id-response
+   - loadbalancers: loadbalancers
    - name: name
+   - project_id: project_id
+   - protocol: protocol-response
+   - protocol_port: protocol_port
+   - sni_container_refs: sni_container_refs-response
+   - tenant_id: project_id
 
 Response Example
 ----------------
@@ -681,10 +718,21 @@ attached does not have an ``ACTIVE`` provisioning status.
 
 Example: Delete a listener
 
-Error response codes: 204,400,409,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 401, 404, 409
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - listener_id: listener-id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
@@ -695,36 +743,49 @@ List pools
 
 Lists all pools that are associated with your project.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 The list might be empty.
 
 Example: List pools
 
 Normal response codes: 200
 
-Error response codes: 500,401,504
+Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - lb_method: lb_method
-   - protocol: protocol
-   - description: description
-   - health_monitors: health_monitors
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
+   - pools: pools-obj
    - admin_state_up: admin_state_up
-   - vip_id: vip_id
+   - description: description
+   - health_monitors: health_monitors-response
+   - health_monitors_status: health_monitors_status
+   - id: pool-id-response
+   - lb_algorithm: lb_algorithm
    - members: members
-   - pools: pools
-   - id: id
    - name: name
+   - project_id: project_id
+   - protocol: protocol-response
+   - provider: loadbalancer-provider
+   - status: status
+   - status_description: status_description
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
 
 Response Example
 ----------------
@@ -757,7 +818,7 @@ At a minimum, you must specify these pool attributes:
   distributes traffic to the pool members. The load-balancer
   provider must support this algorithm.
 
-- ``listener_id``. The UUID of the listener in which this pool
+- ``listener_id``. The ID of the listener in which this pool
   becomes the default pool. Each listener has only one default
   pool.
 
@@ -787,22 +848,25 @@ their own to create pools for other projects.
 To update a pool, the load balancer to which to attach must have an
 ``ACTIVE`` provisioning status.
 
-Error response codes: 201,404,409,401,413,503,500
+Normal response codes: 201
+
+Error response codes: 400, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - pool: pool
+   - admin_state_up: admin_state_up-request
+   - description: description-request
    - lb_algorithm: lb_algorithm
-   - protocol: protocol
-   - description: description
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
-   - listener_id: listener_id
+   - listener_id: listener-id-response
    - name: name
+   - project_id: project_id-request
+   - protocol: protocol
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id-request
 
 Request Example
 ---------------
@@ -815,22 +879,29 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - lb_algorithm: lb_algorithm
-   - status: status
-   - protocol: protocol
-   - description: description
-   - vip_id: vip_id
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
-   - session_persistence: session_persistence
-   - healthmonitor_id: healthmonitor_id
-   - health_monitors_status: health_monitors_status
-   - members: members
-   - id: id
    - pool: pool
+   - admin_state_up: admin_state_up
+   - description: description
+   - health_monitors: health_monitors-response
+   - health_monitors_status: health_monitors_status
+   - id: pool-id-response
+   - lb_algorithm: lb_algorithm
+   - members: members
    - name: name
+   - project_id: project_id
+   - protocol: protocol-response
+   - provider: loadbalancer-provider
+   - status: status
+   - status_description: status_description
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas/pool-create-response.json
+   :language: javascript
 
 Show pool details
 =================
@@ -850,30 +921,37 @@ Example: Show pool details
 
 Normal response codes: 200
 
-Error response codes: 404,403,500,401,413,503,409
+Error response codes: 403
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - pool_id: pool_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - lb_method: lb_method
-   - protocol: protocol
-   - description: description
-   - health_monitors: health_monitors
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
+   - pool: pool
    - admin_state_up: admin_state_up
-   - vip_id: vip_id
+   - description: description
+   - health_monitors: health_monitors-response
+   - health_monitors_status: health_monitors_status
+   - lb_algorithm: lb_algorithm
    - members: members
-   - pools: pools
-   - id: id
+   - id: pool-id-response
    - name: name
+   - status: status
+   - status_description: status_description
+   - project_id: project_id
+   - protocol: protocol-response
+   - provider: loadbalancer-provider
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
 
 Response Example
 ----------------
@@ -892,29 +970,30 @@ This operation updates the attributes of a pool. Upon successful
 validation of the request, the service returns the HTTP ``Accepted
 (202)`` response code.
 
-Note: You cannot update the pool UUID, ``project_id``,
+Note: You cannot update the pool ID, ``project_id``,
 ``listener_id``, ``listeners``, ``health_monitor_id``,
 ``protocol``, and ``members`` immutable attributes. If you try to
 update any of these attributes, the service returns the HTTP
-``Immutable (422)`` response code.
+``Immutable (422)`` response code   .
 
 Note: You cannot update a pool if the load balancer to which it is
 attached does not have an ``ACTIVE`` provisioning status.
 
-Normal response codes: 200
+Normal response codes: 202
 
-Error response codes: 400,401,413,503,500
+Error response codes: 422, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - pool_id: pool_id-path
    - pool: pool
-   - lb_method: lb_method
-   - description: description
+   - admin_state_up: admin_state_up-request
+   - description: description-request
+   - lb_algorithm: lb_algorithm
    - name: name
-   - admin_state_up: admin_state_up
 
 Request Example
 ---------------
@@ -927,20 +1006,23 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - lb_method: lb_method
-   - protocol: protocol
-   - description: description
-   - health_monitors: health_monitors
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
+   - pool: pool
    - admin_state_up: admin_state_up
-   - vip_id: vip_id
+   - description: description
+   - health_monitors: health_monitors-response
+   - health_monitors_status: health_monitors_status
+   - id: pool-id-response
+   - lb_algorithm: lb_algorithm
    - members: members
-   - pools: pools
-   - id: id
    - name: name
+   - status: status
+   - status_description: status_description
+   - project_id: project_id
+   - protocol: protocol-response
+   - provider: loadbalancer-provider
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
 
 Response Example
 ----------------
@@ -962,10 +1044,21 @@ configuration data. You cannot recover it.
 You cannot delete a pool if the load balancer to which it is
 attached does not have an ``ACTIVE`` provisioning status.
 
-Error response codes: 204,400,409,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - pool_id: pool_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
@@ -987,27 +1080,29 @@ Example: List pool members
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - pool_id: pool_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - status_description: status_description
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
    - members: members
    - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - project_id: project_id
    - protocol_port: protocol_port
-   - id: id
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - weight: member-weight
 
 Response Example
 ----------------
@@ -1062,19 +1157,22 @@ their own to create members for other projects.
 To update a member, the load balancer must have an ``ACTIVE``
 provisioning status.
 
-Error response codes: 201,404,409,401,413,503,500
+Normal response codes: 201
+
+Error response codes: 400, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - member: member
-   - subnet_id: subnet_id
-   - protocol_port: protocol_port
-   - tenant_id: project_id
-   - project_id: project_id
+   - pool_id: pool_id-path
    - address: address
+   - member: member
+   - project_id: project_id-request
+   - protocol_port: protocol_port
+   - subnet_id: pool-subnet_id-request
+   - tenant_id: project_id-request
 
 Request Example
 ---------------
@@ -1087,16 +1185,21 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
    - member: member
    - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - project_id: project_id
    - protocol_port: protocol_port
-   - id: id
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - weight: member-weight
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas/member-create-response.json
+   :language: javascript
 
 Show pool member details
 ========================
@@ -1117,27 +1220,30 @@ Example: Show pool member details
 
 Normal response codes: 200
 
-Error response codes: 404,403,500,401,413,503,409
+Error response codes: 403, 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - pool_id: pool_id-path
+   - member_id: member_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - status_description: status_description
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
    - member: member
    - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - project_id: project_id
    - protocol_port: protocol_port
-   - id: id
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - weight: member-weight
 
 Response Example
 ----------------
@@ -1155,7 +1261,7 @@ Updates attributes for a pool member.
 Upon successful validation of the request, the service returns the
 HTTP ``OK (200)`` response code.
 
-Note: You cannot update the member UUID, ``project_id``,
+Note: You cannot update the member ID, ``project_id``,
 ``address``, ``protocol_port``, and ``subnet_id`` attributes. If
 you attempt to update any of these attributes, the service returns
 the HTTP ``Immutable (422)`` response code.
@@ -1165,17 +1271,18 @@ not have an ``ACTIVE`` provisioning status.
 
 Normal response codes: 200
 
-Error response codes: 400,401,413,503,500
+Error response codes: 401, 404, 422
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - pool_id: pool_id-path
+   - member_id: member_id-path
    - member: member
-   - pool_id: pool_id
-   - weight: weight
    - admin_state_up: admin_state_up
+   - weight: weight
 
 Request Example
 ---------------
@@ -1188,17 +1295,15 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
-   - status_description: status_description
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
    - member: member
    - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - project_id: project_id
    - protocol_port: protocol_port
-   - id: id
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - weight: member-weight
 
 Response Example
 ----------------
@@ -1221,31 +1326,53 @@ have an ``ACTIVE`` provisioning status.
 
 Example: Remove a member from a pool
 
-Error response codes: 204,400,409,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - pool_id: pool_id-path
+   - member_id: member_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
 List health monitors
 ====================
 
-.. rest_method::  GET /v2.0/lbaas/health_monitors
+.. rest_method::  GET /v2.0/lbaas/healthmonitors
 
 Lists health monitors.
 
 This operation lists all health monitors that are associated with
 your project.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 This operation returns a list, which might be empty.
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
 
 Response Parameters
 -------------------
@@ -1253,18 +1380,18 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitors: health_monitors
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - id: health_monitors-id
+   - max_retries: max_retries
    - pools: pools
-   - url_path: url_path
+   - project_id: project_id
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
 
 Response Example
 ----------------
@@ -1332,7 +1459,9 @@ their own to create health monitors for other projects.
 To update a health monitor, the load balancer to which to attach
 must have an ``ACTIVE`` provisioning status.
 
-Error response codes: 201,404,409,401,413,503,500
+Normal response codes: 201
+
+Error response codes: 401, 404
 
 Request
 -------
@@ -1340,16 +1469,17 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
-   - max_retries: max_retries
    - http_method: http_method
+   - max_retries: max_retries
+   - pool_id: pool_id-request
+   - project_id: project_id
+   - tenant_id: project_id
    - timeout: timeout
-   - url_path: url_path
    - type: type
+   - url_path: url_path
 
 Request Example
 ---------------
@@ -1363,18 +1493,24 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - id: health_monitors-id
+   - max_retries: max_retries
    - pools: pools
-   - url_path: url_path
+   - project_id: project_id
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas/healthmonitor-show-response.json
+   :language: javascript
 
 Show health monitor details
 ===========================
@@ -1392,10 +1528,14 @@ Example: Show health monitor details
 
 Normal response codes: 200
 
-Error response codes: 404,403,500,401,413,503,409
+Error response codes: 403, 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - health_monitor_id: health_monitor_id-path
 
 Response Parameters
 -------------------
@@ -1403,18 +1543,18 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - max_retries: max_retries
+   - id: health_monitors-id
    - pools: pools
-   - url_path: url_path
+   - project_id: project_id
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
 
 Response Example
 ----------------
@@ -1432,26 +1572,27 @@ Updates a health monitor.
 Upon successful validation of the request, the service returns the
 HTTP ``Accepted (202)`` response code.
 
-Note: The health monitor UUID, ``project_id``, ``pool_id``, and type
+Note: The health monitor ID, ``project_id``, ``pool_id``, and type
 are immutable attributes and cannot be updated. If you specify an
 unsupported attribute, the service returns the HTTP ``Immutable
 (422)`` response code.
 
-Normal response codes: 200
+Normal response codes: 202
 
-Error response codes: 400,401,413,503,500
+Error response codes: 401, 404, 422
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - health_monitor_id: health_monitor_id-path
    - health_monitor: health_monitor
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
-   - max_retries: max_retries
    - http_method: http_method
+   - max_retries: max_retries
    - timeout: timeout
    - url_path: url_path
 
@@ -1467,18 +1608,18 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - max_retries: max_retries
+   - id: health_monitors-id
    - pools: pools
-   - url_path: url_path
+   - project_id: project_id
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
 
 Response Example
 ----------------
@@ -1501,7 +1642,18 @@ does not have an ``ACTIVE`` provisioning status.
 
 Example: Delete a health monitor
 
-Error response codes: 204,400,409,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - health_monitor_id: health_monitor_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
