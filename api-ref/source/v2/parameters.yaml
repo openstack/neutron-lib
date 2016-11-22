@@ -574,8 +574,9 @@ audited_1:
   type: boolean
 auth_algorithm:
   description: |
-    The authentication hash algorithm. A valid value
-    is ``sha1``, which is the default.
+    The authentication hash algorithm. Valid values
+    are ``sha1``, ``sha256``, ``sha384``, ``sha512``.
+    The default is ``sha1``.
   in: body
   required: false
   type: string
