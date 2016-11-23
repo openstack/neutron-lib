@@ -15,7 +15,13 @@ Welcome to Neutron Lib developer documentation!
 ===============================================
 
 Neutron-lib is an OpenStack library project used by Neutron, Advanced Services,
-and third-party projects to provide common functionality and remove duplication.
+and third-party projects that aims to provide common functionality across all
+such consumers. The library is developed with the following goals in mind:
+
+- Decouple sub-projects from Neutron (i.e. no direct neutron imports in
+  sub-projects).
+- Pay down Neutron technical debt via refactoring/re-architecting of
+  sub-optimal patterns in their respective neutron-lib implementation.
 
 This document describes the library for contributors of the project, and assumes
 that you are already familiar with Neutron from an `end-user perspective`_.
