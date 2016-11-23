@@ -14,6 +14,7 @@
 #    under the License.
 
 import fixtures
+import platform
 import warnings
 
 from neutron_lib.utils import helpers
@@ -44,3 +45,14 @@ class WarningsFixture(fixtures.Fixture):
         for wtype in self.warning_types:
             warnings.filterwarnings(
                 "always", category=wtype, module='^neutron_lib\\.')
+
+
+def is_bsd():
+    """Return True on BSD-based systems."""
+
+    system = platform.system()
+    if system == 'Darwin':
+        return True
+    if 'bsd' in system.lower():
+        return True
+    return False
