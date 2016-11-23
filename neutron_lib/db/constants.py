@@ -22,3 +22,7 @@ STATUS_FIELD_SIZE = 16
 IP_ADDR_FIELD_SIZE = 64  # large enough to hold a v4 or v6 address
 MAC_ADDR_FIELD_SIZE = 32
 RESOURCE_TYPE_FIELD_SIZE = 255
+
+# Alembic branches
+EXPAND_BRANCH = 'expand'
+CONTRACT_BRANCH = 'contract'
