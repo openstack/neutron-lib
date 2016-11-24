@@ -27,3 +27,22 @@ class TestGetHostname(base.BaseTestCase):
         self.assertEqual('fake-host-name',
                          net.get_hostname())
         mock_gethostname.assert_called_once_with()
+
+
+class TestGetRandomMac(base.BaseTestCase):
+
+    def _test_get_random_mac(self, base_mac, startswith_len):
+        random_mac = net.get_random_mac(base_mac.split(':'))
+        self.assertEqual(base_mac[:startswith_len],
+                         random_mac[:startswith_len])
+        self.assertEqual(len(base_mac), len(random_mac))
+        for i in random_mac.split(':'):
+            int(i, 16)
+
+    def test_get_random_mac_with_three_octets(self):
+        base_mac = 'fa:16:3e:00:00:00'
+        self._test_get_random_mac(base_mac, 9)
+
+    def test_get_random_mac_with_four_octets(self):
+        base_mac = 'fa:16:3e:fe:00:00'
+        self._test_get_random_mac(base_mac, 12)
