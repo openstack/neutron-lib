@@ -4,9 +4,9 @@
 .. needs:example_verification
 .. needs:body_verification
 
-============================================================================================================
-VPNaaS 2.0 (CURRENT) (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-groups, ipsec-site-connections)
-============================================================================================================
+===================================================================================================================================================================================================
+VPNaaS 2.0 (`UNMAINTAINED <http://lists.openstack.org/pipermail/openstack-dev/2016-November/107384.html>`_) (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-groups, ipsec-site-connections)
+===================================================================================================================================================================================================
 
 The Virtual-Private-Network-as-a-Service (VPNaaS) extension enables
 OpenStack projects to extend private networks across the public
