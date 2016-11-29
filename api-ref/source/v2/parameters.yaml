@@ -41,7 +41,7 @@ flavor_id:
   description: |
     The UUID of the flavor.
   in: path
-  required: false
+  required: true
   type: string
 floatingip_id:
   description: |
@@ -147,9 +147,9 @@ port_id_3:
   type: string
 profile_id:
   description: |
-    The UUID of the profile.
+    The UUID of the service profile.
   in: path
-  required: false
+  required: true
   type: string
 project_id:
   description: |
@@ -1526,6 +1526,36 @@ flavor:
   in: body
   required: true
   type: object
+flavor-description:
+  description: |
+    The human-readable description for the flavor.
+  in: body
+  required: true
+  type: string
+flavor-description-request:
+  description: |
+    The human-readable description for the flavor.
+  in: body
+  required: false
+  type: string
+flavor-enabled:
+  description: |
+    Indicates whether the flavor is enabled or not. Default is true.
+  in: body
+  required: true
+  type: boolean
+flavor-enabled-request:
+  description: |
+    Indicates whether the flavor is enabled or not. Default is true.
+  in: body
+  required: false
+  type: boolean
+flavor-id:
+  description: |
+    The ID of the flavor.
+  in: body
+  required: true
+  type: string
 flavor-id-request:
   description: |
     The ID of the flavor.
@@ -1535,6 +1565,36 @@ flavor-id-request:
 flavor-id-response:
   description: |
     The ID of the flavor.
+  in: body
+  required: true
+  type: string
+flavor-name:
+  description: |
+    Name of the flavor.
+  in: body
+  required: true
+  type: string
+flavor-name-request:
+  description: |
+    Name of the flavor.
+  in: body
+  required: false
+  type: string
+flavor-service_profiles:
+  description: |
+    Service profile UUIDs associated with this flavor.
+  in: body
+  required: true
+  type: array
+flavor-service_profiles-request:
+  description: |
+    Service profile UUIDs associated with this flavor.
+  in: body
+  required: false
+  type: array
+flavor-service_type:
+  description: |
+    Service type for the flavor. Example: LOADBALANCERV2.
   in: body
   required: true
   type: string
@@ -1759,12 +1819,6 @@ id_25:
 id_26:
   description: |
     The UUID of the security group.
-  in: body
-  required: true
-  type: string
-id_28:
-  description: |
-    The UUID of the service profile.
   in: body
   required: true
   type: string
@@ -3617,6 +3671,64 @@ service_profile:
   in: body
   required: true
   type: object
+service_profile-description:
+  description: |
+    The human-readable description for the service profile.
+  in: body
+  required: true
+  type: string
+service_profile-description-request:
+  description: |
+    The human-readable description for the service profile.
+  in: body
+  required: false
+  type: string
+service_profile-driver:
+  description: |
+    Provider driver to use for this profile. Example:
+    ``neutron_lbaas.drivers.octavia.driver.OctaviaDriver``
+  in: body
+  required: true
+  type: string
+service_profile-driver-request:
+  description: |
+    Provider driver to use for this profile. Example:
+    ``neutron_lbaas.drivers.octavia.driver.OctaviaDriver``
+  in: body
+  required: false
+  type: string
+service_profile-enabled:
+  description: |
+    Indicates whether this service profile is enabled or not.
+    Default is ``true``.
+  in: body
+  required: true
+  type: boolean
+service_profile-enabled-request:
+  description: |
+    Indicates whether this service profile is enabled or not.
+    Default is ``true``.
+  in: body
+  required: false
+  type: boolean
+service_profile-id:
+  description: |
+    The UUID of the service profile.
+  in: body
+  required: true
+  type: string
+service_profile-metainfo:
+  description: |
+    JSON-formatted meta information of the service profile.
+  in: body
+  required: true
+  type: string
+service_profile-metainfo-request:
+  description: |
+    JSON-formatted meta information of the service profile.
+  in: body
+  required: false
+  type: string
 service_profiles:
   description: |
     Service profile UUIDs associated with this
