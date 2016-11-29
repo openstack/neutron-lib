@@ -1,0 +1,5 @@
+---
+features:
+  - The constants ``EXPAND_BRANCH`` and ``CONTRACT_BRANCH`` are now available in
+    ``neutron_lib.db.constants``. They should be used instead of the ones in
+    ``neutron.db.migration.cli``.
