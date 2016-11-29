@@ -65,7 +65,7 @@ class ExtensionDescriptor(object):
         return []
 
     def get_request_extensions(self):
-        """List of extensions.RequestException extension objects.
+        """List of extensions.RequestExtension extension objects.
 
         Request extensions are used to handle custom request data.
         """
