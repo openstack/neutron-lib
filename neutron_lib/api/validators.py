@@ -700,7 +700,7 @@ def _validate_dict_item(key, key_validator, data):
     # TODO(salv-orlando): Structure of dict attributes should be improved
     # to avoid iterating over items
     val_func = val_params = None
-    for (k, v) in six.iteritems(key_validator):
+    for (k, v) in key_validator.items():
         if k.startswith('type:'):
             # ask forgiveness, not permission
             try:
@@ -735,7 +735,7 @@ def validate_dict(data, key_specs=None):
         return
 
     # Check whether all required keys are present
-    required_keys = [key for key, spec in six.iteritems(key_specs)
+    required_keys = [key for key, spec in key_specs.items()
                      if spec.get('required')]
 
     if required_keys:
@@ -752,7 +752,7 @@ def validate_dict(data, key_specs=None):
 
     # Perform validation and conversion of all values
     # according to the specifications.
-    for key, key_validator in [(k, v) for k, v in six.iteritems(key_specs)
+    for key, key_validator in [(k, v) for k, v in key_specs.items()
                                if k in data]:
         msg = _validate_dict_item(key, key_validator, data)
         if msg:

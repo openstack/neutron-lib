@@ -92,7 +92,7 @@ def dict2str(dic):
     each item in dic.
     """
     return ','.join("%s=%s" % (key, val)
-                    for key, val in sorted(six.iteritems(dic)))
+                    for key, val in sorted(dic.items()))
 
 
 def str2dict(string):

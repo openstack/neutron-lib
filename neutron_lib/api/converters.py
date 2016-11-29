@@ -128,7 +128,7 @@ def convert_kvp_list_to_dict(kvp_list):
         key, value = convert_kvp_str_to_list(kvp_str)
         kvp_map.setdefault(key, set())
         kvp_map[key].add(value)
-    return dict((x, list(y)) for x, y in six.iteritems(kvp_map))
+    return dict((x, list(y)) for x, y in kvp_map.items())
 
 
 def convert_none_to_empty_list(value):
