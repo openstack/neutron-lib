@@ -137,6 +137,16 @@ source.
   impacted subproject to ensure the impacts are fully understood. Testing this
   change can be done using the ``Depends-On:`` approach described in the
   `review guidelines <./review-guidelines.html>`_.
+- If you are a core reviewer and about to approve a NeutronLibImpact change, please consider
+  checking the state of all Stadium subprojects by looking at the
+  `grafana periodic dashboard <http://grafana.openstack.org/dashboard/db/neutron-lib-failure-rate?panelId=4&fullscreen>`_.
+  This dashboard shows the status of subprojects' unit tests against neutron and neutron-lib
+  master branches, and even though it is not exactly validating unit tests against a released
+  version of neutron-lib it may be enough of an alarm bell to indicate that something might
+  be wrong because of a patch that recently landed in neutron (assuming that the subprojects
+  still has direct neutron imports). The check happens daily therefore consider waiting to
+  approve if you are either aware of another impactful change recently merged that has not
+  been yet processed or you see failure rates spiking.
 
 Examples:
 
