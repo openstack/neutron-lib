@@ -10,37 +10,17 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-"""
-TEMPORARY: use the old EngineFacade and lazy init.
-
-TODO(HenryG): replace this file with the new db/api.py from neutron.
-"""
-
-from oslo_config import cfg
-from oslo_db.sqlalchemy import session
-
-_FACADE = None
+from oslo_db.sqlalchemy import enginefacade
 
 
-def _create_facade_lazily():
-    global _FACADE
-
-    # NOTE: This is going to change with bug 1520719
-    if _FACADE is None:
-        _FACADE = session.EngineFacade.from_config(cfg.CONF, sqlite_fk=True)
-
-    return _FACADE
+context_manager = enginefacade.transaction_context()
+context_manager.configure(sqlite_fk=True)
 
 
-def get_engine():
-    """Helper method to grab engine."""
-    facade = _create_facade_lazily()
-    return facade.get_engine()
-
-
+# TODO(akamyshnikova): when all places in the code, which use sessions/
+# connections will be updated, this won't be needed
 def get_session(autocommit=True, expire_on_commit=False, use_slave=False):
     """Helper method to grab session."""
-    facade = _create_facade_lazily()
-    return facade.get_session(autocommit=autocommit,
-                              expire_on_commit=expire_on_commit,
-                              use_slave=use_slave)
+    return context_manager.get_legacy_facade().get_session(
+        autocommit=autocommit, expire_on_commit=expire_on_commit,
+        use_slave=use_slave)

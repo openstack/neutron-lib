@@ -30,7 +30,7 @@ class SqlFixture(fixtures.Fixture):
 
     def _setUp(self):
         # Register all data models
-        engine = db_api.get_engine()
+        engine = db_api.context_manager.get_legacy_facade().get_engine()
         if not SqlFixture._TABLES_ESTABLISHED:
             model_base.BASEV2.metadata.create_all(engine)
             SqlFixture._TABLES_ESTABLISHED = True
