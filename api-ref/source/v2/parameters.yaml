@@ -21,21 +21,21 @@ extensions-alias-path:
   type: string
 firewall_id:
   description: |
-    The UUID of the firewall.
+    The ID of the firewall.
   in: path
-  required: false
+  required: true
   type: string
-firewall_policy_id_2:
+firewall_policy_id-path:
   description: |
-    The UUID of the firewall policy.
+    The ID of the firewall policy.
   in: path
-  required: false
+  required: true
   type: string
 firewall_rule_id:
   description: |
-    The UUID for the firewall rule.
+    The ID for the firewall rule.
   in: path
-  required: false
+  required: true
   type: string
 flavor_id:
   description: |
@@ -99,7 +99,7 @@ member_id-path:
   type: string
 network_id_1:
   description: |
-    The UUID of the network.
+    The ID of the network.
   in: path
   required: false
   type: string
@@ -264,6 +264,14 @@ action:
     Default is ``deny``.
   in: body
   required: false
+  type: string
+action-response:
+  description: |
+    The action that the API performs on traffic that
+    matches the firewall rule.  Valid value is ``allow``, ``deny`` or ``reject``.
+    Default is ``deny``.
+  in: body
+  required: true
   type: string
 action_1:
   description: |
@@ -560,7 +568,7 @@ audited:
     ``false``. To audit the policy, explicitly set this attribute to
     ``true``.
   in: body
-  required: false
+  required: true
   type: boolean
 audited_1:
   description: |
@@ -1053,6 +1061,13 @@ destination_ip_address:
   in: body
   required: false
   type: string
+destination_ip_address-response:
+  description: |
+    The destination IPv4 or IPv6 address or CIDR. No
+    default.
+  in: body
+  required: true
+  type: string
 destination_ip_address_1:
   description: |
     The destination IPv4 or IPv6 address or CIDR.
@@ -1067,6 +1082,15 @@ destination_port:
     ends of the range. For example, ``80:90``.
   in: body
   required: false
+  type: string
+destination_port-response:
+  description: |
+    The destination port or port range.  A valid
+    value is a port number, as an integer, or a port range, in the
+    format of a ``:`` separated range. For a port range, include both
+    ends of the range. For example, ``80:90``.
+  in: body
+  required: true
   type: string
 destination_port_1:
   description: |
@@ -1189,6 +1213,15 @@ enabled:
     value is ``true`` or ``false``. Default is ``true``.
   in: body
   required: false
+  type: boolean
+enabled-response:
+  description: |
+    Set to ``false`` to disable this rule in the
+    firewall policy. Facilitates selectively turning off rules without
+    having to disassociate the rule from the firewall policy. Valid
+    value is ``true`` or ``false``. Default is ``true``.
+  in: body
+  required: true
   type: boolean
 enabled_1:
   description: |
@@ -1404,9 +1437,15 @@ firewall:
   in: body
   required: true
   type: object
+firewall_id-body:
+  description: |
+    The ID of the firewall.
+  in: body
+  required: true
+  type: string
 firewall_list:
   description: |
-    A list of the UUIDs for firewall associated with
+    A list of the IDs for firewall associated with
     the firewall policy.
   in: body
   required: true
@@ -1426,24 +1465,24 @@ firewall_policy:
 firewall_policy_id:
   description: |
     Read-only attribute that the API populates with
-    the UUID of the firewall policy when you associate this firewall
+    the ID of the firewall policy when you associate this firewall
     rule with a policy.  You can associate a firewall rule with one
     policy at a time. You can update this association can to a
     different firewall policy.  If you do not associate the rule with
     any policy, this attribute is ``null``.
   in: body
-  required: true
+  required: false
   type: string
-firewall_policy_id_1:
+firewall_policy_id-body:
   description: |
-    The UUID of the policy that is associated with
+    The ID of the policy that is associated with
     the firewall.
   in: body
   required: true
   type: string
 firewall_policy_id_3:
   description: |
-    The UUID of the policy that is associated with
+    The ID of the policy that is associated with
     the firewall.
   in: body
   required: false
@@ -1454,15 +1493,15 @@ firewall_rule:
   in: body
   required: true
   type: object
-firewall_rule_id_1:
+firewall_rule_id-body:
   description: |
-    The UUID of the firewall rule.
+    The ID of the firewall rule.
   in: body
   required: true
   type: string
 firewall_rules:
   description: |
-    A list of the UUIDs for firewall rule associated
+    A list of the IDs for firewall rule associated
     with the firewall policy.
   in: body
   required: true
@@ -1922,14 +1961,14 @@ initiator_1:
   type: string
 insert_after:
   description: |
-    The UUID of the firewall_rule. A new
+    The ID of the firewall_rule. A new
     firewall_rule will be inserted after this firewall_rule.
   in: body
   required: false
   type: string
 insert_before:
   description: |
-    The UUID of the firewall_rule. A new
+    The ID of the firewall_rule. A new
     firewall_rule will be inserted before this firewall_rule.
   in: body
   required: false
@@ -1966,6 +2005,13 @@ ip_version:
     ``6``. Default is ``4``.
   in: body
   required: false
+  type: integer
+ip_version-response:
+  description: |
+    The IP protocol version. Valid value is ``4`` or
+    ``6``. Default is ``4``.
+  in: body
+  required: true
   type: integer
 ip_version_1:
   description: |
@@ -3023,6 +3069,12 @@ prefixes_2:
   in: body
   required: true
   type: array
+project_id-body:
+  description: |
+    The ID of the project.
+  in: body
+  required: true
+  type: string
 project_id-request:
   description: |
     The ID of the project that owns the resource.
@@ -3039,6 +3091,13 @@ protocol:
   required: false
   type: string
 protocol-response:
+  description: |
+    The IP protocol. Valid value is ``icmp``,
+    ``tcp``, ``udp``, or ``null``. No default.
+  in: body
+  required: true
+  type: string
+protocol_1:
   description: |
     The protocol to load balance. A valid value is
     ``HTTP``, ``HTTPS``, ``TCP``, or ``TERMINATED_HTTPS``.
@@ -3568,14 +3627,21 @@ router_id_3:
   type: string
 router_ids:
   description: |
-    A list of UUIDs for routers that are associated
+    A list of IDs for routers that are associated
     with the firewall.
   in: body
   required: false
   type: array
-router_ids_1:
+router_ids-1:
   description: |
-    A list of UUIDs for routers that are associated
+    A list of IDs for routers that are associated
+    with the firewall.
+  in: body
+  required: true
+  type: array
+router_ids-response:
+  description: |
+    A list of IDs for routers that are associated
     with the firewall.
   in: body
   required: true
@@ -3812,6 +3878,13 @@ shared:
   in: body
   required: false
   type: boolean
+shared-response:
+  description: |
+    Admin-only. Indicates whether this network is
+    shared across all tenants.
+  in: body
+  required: true
+  type: boolean
 shared_1:
   description: |
     Indicates whether this network is shared across
@@ -3862,7 +3935,7 @@ shared_3:
     Admin-only. Indicates whether this network is
     shared across all projects.
   in: body
-  required: false
+  required: true
   type: boolean
 shared_4:
   description: |
@@ -3923,9 +3996,18 @@ source_ip_address:
   description: |
     The source IPv4 or IPv6 address or CIDR.
   in: body
-  required: true
+  required: false
   type: string
 source_port:
+  description: |
+    The source port or port range.  A valid value is
+    a port number, as an integer, or a port range, in the format of a
+    ``:`` separated range. For a port range, include both ends of the
+    range. For example, ``80:90``.
+  in: body
+  required: true
+  type: string
+source_port-response:
   description: |
     The source port or port range.  A valid value is
     a port number, as an integer, or a port range, in the format of a
