@@ -30,24 +30,20 @@ class ContextBase(oslo_context.RequestContext):
 
     """
 
-    def __init__(self, user_id, tenant_id, is_admin=None, roles=None,
-                 timestamp=None, request_id=None, tenant_name=None,
-                 user_name=None, overwrite=True, auth_token=None,
+    def __init__(self, user_id=None, tenant_id=None, is_admin=None,
+                 timestamp=None, tenant_name=None, user_name=None,
                  is_advsvc=None, **kwargs):
         """Object initialization.
-
-        :param overwrite: Set to False to ensure that the greenthread local
-            copy of the index is not overwritten.
 
         :param kwargs: Extra arguments that might be present, but we ignore
             because they possibly came in from older rpc messages.
         """
-        super(ContextBase, self).__init__(auth_token=auth_token,
-                                          user=user_id, tenant=tenant_id,
-                                          is_admin=is_admin,
-                                          request_id=request_id,
-                                          overwrite=overwrite,
-                                          roles=roles)
+        # NOTE(jamielennox): We maintain these arguments in order for tests
+        # that pass arguments positionally.
+        kwargs.setdefault('user', user_id)
+        kwargs.setdefault('tenant', tenant_id)
+        super(ContextBase, self).__init__(is_admin=is_admin, **kwargs)
+
         self.user_name = user_name
         self.tenant_name = tenant_name
 
@@ -93,9 +89,37 @@ class ContextBase(oslo_context.RequestContext):
         })
         return context
 
+    def to_policy_values(self):
+        values = super(ContextBase, self).to_policy_values()
+        values['tenant_id'] = self.tenant_id
+        values['is_admin'] = self.is_admin
+
+        # NOTE(jamielennox): These are almost certainly unused and non-standard
+        # but kept for backwards compatibility. Remove them in Pike
+        # (oslo.context from Ocata release already issues deprecation warnings
+        # for non-standard keys).
+        values['user'] = self.user
+        values['tenant'] = self.tenant
+        values['domain'] = self.domain
+        values['user_domain'] = self.user_domain
+        values['project_domain'] = self.project_domain
+        values['tenant_name'] = self.tenant_name
+        values['project_name'] = self.tenant_name
+        values['user_name'] = self.user_name
+
+        return values
+
     @classmethod
     def from_dict(cls, values):
-        return cls(**values)
+        return cls(user_id=values.get('user_id', values.get('user')),
+                   tenant_id=values.get('tenant_id', values.get('project_id')),
+                   is_admin=values.get('is_admin'),
+                   roles=values.get('roles'),
+                   timestamp=values.get('timestamp'),
+                   request_id=values.get('request_id'),
+                   tenant_name=values.get('tenant_name'),
+                   user_name=values.get('user_name'),
+                   auth_token=values.get('auth_token'))
 
     def elevated(self):
         """Return a version of this context with admin flag set."""

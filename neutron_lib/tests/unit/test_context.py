@@ -11,7 +11,6 @@
 #    under the License.
 
 import mock
-
 from oslo_context import context as oslo_context
 from testtools import matchers
 
@@ -20,6 +19,12 @@ from neutron_lib.tests import _base
 
 
 class TestNeutronContext(_base.BaseTestCase):
+
+    def setUp(self):
+        super(TestNeutronContext, self).setUp()
+        db_api = 'neutron_lib.db._api.get_session'
+        self._db_api_session_patcher = mock.patch(db_api)
+        self.db_api_session = self._db_api_session_patcher.start()
 
     def test_neutron_context_create(self):
         ctx = _context.Context('user_id', 'tenant_id')
@@ -110,6 +115,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertEqual('auth_token_xxx', ctx_dict['auth_token'])
 
     def test_neutron_context_admin_to_dict(self):
+        self.db_api_session.return_value = 'fakesession'
         ctx = _context.get_admin_context()
         ctx_dict = ctx.to_dict()
         self.assertIsNone(ctx_dict['user_id'])
@@ -169,6 +175,31 @@ class TestNeutronContext(_base.BaseTestCase):
         ctx_admin = _context.get_admin_context()
         self.assertEqual(req_id_before, oslo_context.get_current().request_id)
         self.assertNotEqual(req_id_before, ctx_admin.request_id)
+
+    def test_to_policy_values(self):
+        values = {
+            'user_id': 'user_id',
+            'tenant_id': 'tenant_id',
+            'is_admin': 'is_admin',
+            'tenant_name': 'tenant_name',
+            'user_name': 'user_name',
+            'domain': 'domain',
+            'user_domain': 'user_domain',
+            'project_domain': 'project_domain',
+            'user_name': 'user_name',
+        }
+        additional_values = {
+            'user': 'user_id',
+            'tenant': 'tenant_id',
+            'project_id': 'tenant_id',
+            'project_name': 'tenant_name',
+        }
+        ctx = _context.Context(**values)
+        # apply dict() to get a real dictionary, needed for newer oslo.context
+        # that returns _DeprecatedPolicyValues object instead
+        policy_values = dict(ctx.to_policy_values())
+        self.assertDictSupersetOf(values, policy_values)
+        self.assertDictSupersetOf(additional_values, policy_values)
 
     @mock.patch.object(_context.ContextBaseWithSession, 'session')
     def test_superclass_session(self, mocked_session):
