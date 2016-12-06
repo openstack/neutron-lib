@@ -45,7 +45,6 @@ Programming HowTos and Tutorials
 .. toctree::
     :maxdepth: 3
 
-    readme
     conventions
     installation
     usage
