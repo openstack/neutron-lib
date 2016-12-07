@@ -1,0 +1,6 @@
+{
+    "logging_resource": {
+        "description": "my log2",
+        "enabled": false
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "firewall_log": {
+        "description": "my firewall log 3",
+        "firewall_id": "a6564146-f8b3-49c3-add1-fb213455d5a8",
+        "fw_event": "ALL",
+        "id": "3969b708-d600-4343-93b9-01645f8e9a8a",
+        "logging_resource_id": "13b64f3c-20af-4741-b230-658ab7d5b257",
+        "project_id": "8d018258316e4f22890561e8780c85bb",
+        "tenant_id": "8d018258316e4f22890561e8780c85bb"
+    }
+}

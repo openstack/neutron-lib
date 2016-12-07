@@ -37,6 +37,12 @@ firewall_id:
   in: path
   required: true
   type: string
+firewall_log_id:
+  description: |
+    The ID of the firewall log resource.
+  in: path
+  required: true
+  type: string
 firewall_policy_id-path:
   description: |
     The ID of the firewall policy.
@@ -100,6 +106,12 @@ listener-id-path:
 loadbalancer-id-path:
   description: |
     The ID of the load balancer.
+  in: path
+  required: true
+  type: string
+logging_resource_id:
+  description: |
+    The ID of the logging resource.
   in: path
   required: true
   type: string
@@ -847,6 +859,13 @@ description:
   required: true
   type: string
 description-request:
+  description: |
+    A human-readable description for the resource.
+    Default is an empty string.
+  in: body
+  required: false
+  type: string
+description-request-put:
   description: |
     A human-readable description for the resource.
   in: body
@@ -1598,7 +1617,7 @@ firewall_groups_object:
   type: array
 firewall_id-body:
   description: |
-    The ID of the firewall.
+    The ID of the FWaaS v1 firewall.
   in: body
   required: true
   type: string
@@ -1606,6 +1625,24 @@ firewall_list:
   description: |
     A list of the IDs of firewalls associated with
     the firewall policy.
+  in: body
+  required: true
+  type: array
+firewall_log:
+  description: |
+    A ``firewall_log`` object.
+  in: body
+  required: true
+  type: object
+firewall_log_id-body:
+  description: |
+    The ID of the firewall log resource.
+  in: body
+  required: true
+  type: string
+firewall_logs:
+  description: |
+    A list of ``firewall_log`` objects.
   in: body
   required: true
   type: array
@@ -2223,6 +2260,28 @@ floatingips:
   in: body
   required: true
   type: array
+fw_event:
+  description: |
+    Type of firewall events to log.
+    ``ACCEPT``, ``DROP``, or ``ALL``.
+  in: body
+  required: true
+  type: string
+fw_event-request:
+  description: |
+    Type of firewall events to log.
+    ``ACCEPT``, ``DROP``, or ``ALL``.
+    Default is ``ALL``.
+  in: body
+  required: false
+  type: string
+fw_event-request-put:
+  description: |
+    Type of firewall events to log.
+    ``ACCEPT``, ``DROP``, or ``ALL``.
+  in: body
+  required: false
+  type: string
 health_monitor:
   description: |
     A ``health_monitor`` object.
@@ -2734,6 +2793,43 @@ location:
   in: body
   required: true
   type: string
+logging_resource:
+  description: |
+    A ``logging_resource`` object.
+  in: body
+  required: true
+  type: object
+logging_resource_enabled:
+  description: |
+    Indicates whether this logging resource is enabled or disabled.
+  in: body
+  required: true
+  type: boolean
+logging_resource_enabled-request:
+  description: |
+    Indicates whether this logging resource is enabled or disabled.
+    Default is false.
+  in: body
+  required: false
+  type: boolean
+logging_resource_enabled-request-put:
+  description: |
+    Indicates whether this logging resource is enabled or disabled.
+  in: body
+  required: false
+  type: boolean
+logging_resource_id-body:
+  description: |
+    The ID of the logging resource.
+  in: body
+  required: true
+  type: string
+logging_resources:
+  description: |
+    A list of ``logging_resource`` objects.
+  in: body
+  required: true
+  type: array
 mac_address:
   description: |
     The MAC address of the port.
@@ -2986,6 +3082,12 @@ name-request:
   description: |
     Human-readable name of the resource.
     Default is an empty string.
+  in: body
+  required: false
+  type: string
+name-request-put:
+  description: |
+    Human-readable name of the resource.
   in: body
   required: false
   type: string
