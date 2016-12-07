@@ -41,8 +41,6 @@ def _regex_for_level(level, hint):
 _log_translation_hint = re.compile(
     '|'.join('(?:%s)' % _regex_for_level(level, hint)
              for level, hint in _all_log_levels.items()))
-_log_string_interpolation = re.compile(
-    r".*LOG\.(error|warning|info|critical|exception|debug)\([^,]*%[^,]*[,)]")
 
 
 def _translation_is_not_expected(filename):
@@ -127,31 +125,3 @@ def check_raised_localized_exceptions(logical_line, filename):
         if exception_msg.startswith("\"") or exception_msg.startswith("\'"):
             msg = "N534: Untranslated exception message."
             yield (logical_line.index(exception_msg), msg)
-
-
-def check_delayed_string_interpolation(logical_line, filename, noqa):
-    """N536 - String interpolation should be delayed at logging calls.
-
-    N536: LOG.debug('Example: %s' % 'bad')
-    Okay: LOG.debug('Example: %s', 'good')
-
-    :param logical_line: The logical line to check.
-    :param filename: The file name where the logical line exists.
-    :param noqa: Noqa indicator.
-    :returns: None if the logical line passes the check, otherwise a tuple
-    is yielded that contains the offending index in logical line and a
-    message describe the check validation failure.
-    """
-    msg = ("N536 String interpolation should be delayed to be "
-           "handled by the logging code, rather than being done "
-           "at the point of the logging call. "
-           "Use ',' instead of '%'.")
-
-    if noqa:
-        return
-
-    if '/tests/' in filename:
-        return
-
-    if _log_string_interpolation.match(logical_line):
-        yield(logical_line.index('%'), msg)
