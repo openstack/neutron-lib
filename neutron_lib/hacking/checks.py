@@ -224,6 +224,14 @@ def check_no_eventlet_imports(logical_line):
 
 
 def factory(register):
+    """Hacking check factory for neutron-lib adopter compliant checks.
+
+    Hacking check factory for use with tox.ini. This factory registers all
+    neutron-lib adopter checks consumers should seek to comply with.
+
+    :param register: The function to register the check functions with.
+    :returns: None.
+    """
     register(use_jsonutils)
     register(check_no_contextlib_nested)
     register(check_python3_xrange)
@@ -231,11 +239,36 @@ def factory(register):
     register(check_python3_no_iteritems)
     register(no_mutable_default_args)
     register(check_neutron_namespace_imports)
-    # TODO(boden) - uncomment this after 0.4.0 ships
-    # register(check_no_eventlet_imports)
     register(translation_checks.validate_log_translations)
     register(translation_checks.no_translate_debug_logs)
     register(translation_checks.check_log_warn_deprecated)
     register(translation_checks.check_raised_localized_exceptions)
-    # TODO(boden) - uncomment this after 0.4.0 ships
-    # register(translation_checks.check_delayed_string_interpolation)
+
+
+def incubating_factory(register):
+    """Hacking check factory for neutron-lib incubating checks.
+
+    Hacking check factory for use with tox.ini. This factory registers all
+    neutron-lib incubating checks. Each incubating check will become an adopter
+    check after undergoing an incubation period.
+
+    :param register: The function to register the check functions with.
+    :returns: None.
+    """
+    register(translation_checks.check_delayed_string_interpolation)
+
+
+def _neutron_lib_factory(register):
+    """Hacking check factory for neutron-lib internal project checks.
+
+    Hacking check factory for use with tox.ini. This factory registers all
+    checks that are run with the neutron-lib project itself.
+
+    :param register: The function to register the check functions with.
+    :returns: None.
+    """
+    factory(register)
+    incubating_factory(register)
+
+    # neutron-lib project specific checks below
+    register(check_no_eventlet_imports)

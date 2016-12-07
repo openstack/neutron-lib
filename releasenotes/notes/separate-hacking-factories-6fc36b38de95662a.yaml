@@ -1,0 +1,7 @@
+---
+features:
+  - The hacking check factory ``incubating_factory`` has been added
+    to ``neutron_lib.hacking.checks`` allowing adopters to test
+    compliance on incubating hacking checks. See the usage documentation
+    for additional details.
+
