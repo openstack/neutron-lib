@@ -66,6 +66,15 @@ def refresh(policy_file=None):
     init(policy_file=policy_file)
 
 
+def _check_rule(context, rule):
+    init()
+    # the target is user-self
+    credentials = context.to_policy_values()
+    if rule not in _ENFORCER.rules:
+        return False
+    return _ENFORCER.enforce(rule, credentials, credentials)
+
+
 def check_is_admin(context):
     """Verify context has admin rights according to the global policy settings.
 
@@ -73,12 +82,7 @@ def check_is_admin(context):
     :returns: True if the context has admin rights (as per the global
     enforcer) and False otherwise.
     """
-    init()
-    # the target is user-self
-    credentials = context.to_policy_values()
-    if _ADMIN_CTX_POLICY not in _ENFORCER.rules:
-        return False
-    return _ENFORCER.enforce(_ADMIN_CTX_POLICY, credentials, credentials)
+    return _check_rule(context, _ADMIN_CTX_POLICY)
 
 
 def check_is_advsvc(context):
@@ -88,9 +92,4 @@ def check_is_advsvc(context):
     :returns: True if the context has advsvc rights (as per the global
     enforcer) and False otherwise.
     """
-    init()
-    # the target is user-self
-    credentials = context.to_policy_values()
-    if _ADVSVC_CTX_POLICY not in _ENFORCER.rules:
-        return False
-    return _ENFORCER.enforce(_ADVSVC_CTX_POLICY, credentials, credentials)
+    return _check_rule(context, _ADVSVC_CTX_POLICY)
