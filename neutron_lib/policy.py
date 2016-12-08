@@ -75,7 +75,7 @@ def check_is_admin(context):
     """
     init()
     # the target is user-self
-    credentials = context.to_dict()
+    credentials = context.to_policy_values()
     if _ADMIN_CTX_POLICY not in _ENFORCER.rules:
         return False
     return _ENFORCER.enforce(_ADMIN_CTX_POLICY, credentials, credentials)
@@ -90,7 +90,7 @@ def check_is_advsvc(context):
     """
     init()
     # the target is user-self
-    credentials = context.to_dict()
+    credentials = context.to_policy_values()
     if _ADVSVC_CTX_POLICY not in _ENFORCER.rules:
         return False
     return _ENFORCER.enforce(_ADVSVC_CTX_POLICY, credentials, credentials)
