@@ -194,6 +194,15 @@ IP_PROTOCOL_MAP = {PROTO_NAME_AH: PROTO_NUM_AH,
                    PROTO_NAME_UDPLITE: PROTO_NUM_UDPLITE,
                    PROTO_NAME_VRRP: PROTO_NUM_VRRP}
 
+# Note that this differs from IP_PROTOCOL_MAP because iptables refers to IPv6
+# ICMP as 'icmp6' whereas it is 'ipv6-icmp' in IP_PROTOCOL_MAP.
+IPTABLES_PROTOCOL_MAP = {PROTO_NAME_DCCP: 'dccp',
+                         PROTO_NAME_ICMP: 'icmp',
+                         PROTO_NAME_IPV6_ICMP: 'icmp6',
+                         PROTO_NAME_SCTP: 'sctp',
+                         PROTO_NAME_TCP: 'tcp',
+                         PROTO_NAME_UDP: 'udp'}
+
 # ICMPv6 types:
 # Destination Unreachable (1)
 ICMPV6_TYPE_DEST_UNREACH = 1

@@ -1,0 +1,5 @@
+---
+features:
+  - Added the converter ``convert_string_to_case_insensitive``.
+  - Added the converter ``convert_to_protocol``.
+  - Added the validator ``validate_port_range_or_none``.
