@@ -1437,6 +1437,14 @@ firewall:
   in: body
   required: true
   type: object
+firewall-status:
+  description: |
+    The status of the firewall service. Values are
+    ``ACTIVE``, ``INACTIVE``, ``ERROR``, ``DOWN``,
+    ``PENDING_CREATE``, ``PENDING_UPDATE``, or ``PENDING_DELETE``.
+  in: body
+  required: true
+  type: string
 firewall_id-body:
   description: |
     The ID of the firewall.
@@ -1718,7 +1726,8 @@ floatingip-router_id:
   type: string
 floatingip-status:
   description: |
-    The status of the floating IP.
+    The status of the floating IP. Values are
+    ``ACTIVE``, ``DOWN`` and ``ERROR``.
   in: body
   required: true
   type: string
@@ -2065,6 +2074,15 @@ ipsec_site_connection:
   in: body
   required: true
   type: object
+ipsec_site_connection-status:
+  description: |
+    Indicates whether the IPSec connection is
+    currently operational. Values are ``ACTIVE``, ``DOWN``, ``BUILD``,
+    ``ERROR``, ``PENDING_CREATE``, ``PENDING_UPDATE``, or
+    ``PENDING_DELETE``.
+  in: body
+  required: true
+  type: string
 ipsecpolicies:
   description: |
     A list of IPSec policy objects.
@@ -2190,6 +2208,13 @@ loadbalancer-provider-request:
   in: body
   required: false
   type: string
+loadbalancer-statuses:
+  description: |
+    The status tree of a load balancer object contains all
+    provisioning and operating statuses for its children.
+  in: body
+  required: true
+  type: object
 loadbalancers:
   description: |
     A list of load balancer objects.
@@ -2302,6 +2327,13 @@ member:
 member-id-response:
   description: |
     The ID of the member.
+  in: body
+  required: true
+  type: string
+member-status:
+  description: |
+    The status of the member. Indicates whether the
+    member is operational.
   in: body
   required: true
   type: string
@@ -2726,6 +2758,12 @@ network:
   in: body
   required: true
   type: object
+network-status:
+  description: |
+    The network status.
+  in: body
+  required: true
+  type: string
 network_3:
   description: |
     A ``network`` object.
@@ -2934,6 +2972,13 @@ pool-id-response:
   in: body
   required: true
   type: string
+pool-status:
+  description: |
+    The status of the pool. Indicates whether the
+    pool is operational.
+  in: body
+  required: true
+  type: string
 pool-subnet_id:
   description: |
     The subnet on which the members of the pool will be located.
@@ -2972,6 +3017,13 @@ port:
   in: body
   required: true
   type: object
+port-status:
+  description: |
+    The port status. Values are ``ACTIVE``, ``DOWN``,
+    ``BUILD`` and ``ERROR``.
+  in: body
+  required: true
+  type: string
 port_id_1:
   description: |
     The UUID of the port.
@@ -3606,6 +3658,12 @@ router-routes-request:
   in: body
   required: false
   type: array
+router-status:
+  description: |
+    The router status.
+  in: body
+  required: true
+  type: string
 router-subnet_id:
   description: |
     The ID of the subnet which the router interface belongs to.
@@ -3679,12 +3737,6 @@ router_ids-response:
   in: body
   required: true
   type: array
-router_status:
-  description: |
-    The router status.
-  in: body
-  required: true
-  type: string
 routers:
   description: |
     A list of ``router`` objects.
@@ -4061,93 +4113,9 @@ source_port_1:
   in: body
   required: true
   type: string
-status:
-  description: |
-    The network status.
-  in: body
-  required: true
-  type: string
-status_1:
-  description: |
-    The port status. Value is ``ACTIVE`` or ``DOWN``.
-  in: body
-  required: true
-  type: string
-status_10:
-  description: |
-    The status of the floating IP address.
-  in: body
-  required: true
-  type: string
-status_2:
-  description: |
-    The operational status of the IPSec connection.
-    Value is ``ACTIVE``, ``DOWN``, ``BUILD``, ``ERROR``,
-    ``PENDING_CREATE``, ``PENDING_UPDATE``, or ``PENDING_DELETE``.
-  in: body
-  required: false
-  type: string
-status_3:
-  description: |
-    The status of the member. Indicates whether the
-    member is operational.
-  in: body
-  required: true
-  type: string
-status_4:
-  description: |
-    The network status.
-  in: body
-  required: true
-  type: string
-status_5:
-  description: |
-    The status of the pool. Indicates whether the
-    pool is operational.
-  in: body
-  required: true
-  type: string
-status_6:
-  description: |
-    The status of the VIP. Indicates whether the VIP
-    is operational.
-  in: body
-  required: true
-  type: string
-status_7:
-  description: |
-    Indicates whether IPSec VPN service is currently
-    operational. Value is ``ACTIVE``, ``DOWN``, ``BUILD``, ``ERROR``,
-    ``PENDING_CREATE``, ``PENDING_UPDATE``, or ``PENDING_DELETE``.
-  in: body
-  required: true
-  type: string
-status_8:
-  description: |
-    Indicates whether the IPSec connection is
-    currently operational. Value is ``ACTIVE``, ``DOWN``, ``BUILD``,
-    ``ERROR``, ``PENDING_CREATE``, ``PENDING_UPDATE``, or
-    ``PENDING_DELETE``.
-  in: body
-  required: true
-  type: string
-status_9:
-  description: |
-    The status of the firewall service. Value is
-    ``ACTIVE``, ``INACTIVE``, ``ERROR``, ``PENDING_CREATE``,
-    ``PENDING_UPDATE``, or ``PENDING_DELETE``.
-  in: body
-  required: true
-  type: string
 status_description:
   description: |
     Human-readable description of the status.
-  in: body
-  required: true
-  type: string
-statuses-response:
-  description: |
-    List of load balancer statuses.
   in: body
   required: true
   type: string
@@ -4782,6 +4750,13 @@ transform_protocol_1:
   in: body
   required: true
   type: string
+trunk-status:
+  description: |
+    The status for the trunk. Possible values are  ``ACTIVE``,
+    ``DOWN``, ``BUILD``, ``DEGRADED``, and ``ERROR``.
+  in: body
+  required: true
+  type: string
 trunk_details:
   description: |
     The details about the trunk.
@@ -4791,13 +4766,6 @@ trunk_details:
 trunk_port_id:
   description: |
     The ID of the parent port.
-  in: body
-  required: true
-  type: string
-trunk_status:
-  description: |
-    The status for the trunk. Possible values are  ``ACTIVE``,
-    ``DOWN``, ``BUILD``, ``DEGRADED``, and ``ERROR``.
   in: body
   required: true
   type: string
@@ -4963,6 +4931,13 @@ vip:
   in: body
   required: true
   type: object
+vip-status:
+  description: |
+    The status of the VIP. Indicates whether the VIP
+    is operational.
+  in: body
+  required: true
+  type: string
 vip_address:
   description: |
     The IP address of the VIP .
@@ -5018,6 +4993,14 @@ vpnservice:
   in: body
   required: true
   type: object
+vpnservice-status:
+  description: |
+    Indicates whether IPSec VPN service is currently
+    operational. Values are ``ACTIVE``, ``DOWN``, ``BUILD``, ``ERROR``,
+    ``PENDING_CREATE``, ``PENDING_UPDATE``, or ``PENDING_DELETE``.
+  in: body
+  required: true
+  type: string
 vpnservice_id:
   description: |
     The UUID of the VPN service.

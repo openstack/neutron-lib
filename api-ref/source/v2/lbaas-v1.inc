@@ -64,7 +64,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - lb_algorithm: lb_algorithm
-   - status: status
+   - status: pool-status
    - protocol: protocol
    - description: description
    - health_monitors: health_monitors
@@ -123,7 +123,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - lb_algorithm: lb_algorithm
-   - status: status
+   - status: pool-status
    - protocol: protocol
    - description: description
    - health_monitors: health_monitors
@@ -163,7 +163,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - lb_algorithm: lb_algorithm
-   - status: status
+   - status: pool-status
    - protocol: protocol
    - description: description
    - health_monitors: health_monitors
@@ -220,7 +220,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - lb_algorithm: lb_algorithm
-   - status: status
+   - status: pool-status
    - protocol: protocol
    - description: description
    - health_monitors: health_monitors
@@ -281,7 +281,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: vip-status
    - status_description: status_description
    - protocol: protocol
    - description: description
@@ -344,7 +344,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: vip-status
    - status_description: status_description
    - protocol: protocol
    - description: description
@@ -384,7 +384,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: vip-status
    - status_description: status_description
    - protocol: protocol
    - description: description
@@ -443,7 +443,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: vip-status
    - status_description: status_description
    - protocol: protocol
    - description: description
@@ -503,7 +503,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: member-status
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
@@ -555,7 +555,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: member-status
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
@@ -589,7 +589,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: member-status
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up
@@ -639,7 +639,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: member-status
    - status_description: status_description
    - weight: weight
    - admin_state_up: admin_state_up

@@ -43,7 +43,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: network-status
    - router:external: router:external
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
@@ -109,7 +109,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: network-status
    - router:external: router:external
    - subnets: subnets
    - network: network
@@ -166,7 +166,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: network-status
    - router:external: router:external
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
@@ -227,7 +227,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: status
+   - status: network-status
    - router:external: router:external
    - availability_zone_hints: availability_zone_hints
    - network: network

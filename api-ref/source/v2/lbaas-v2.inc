@@ -384,7 +384,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - statuses: statuses-response
+   - statuses: loadbalancer-statuses
    - loadbalancer: loadbalancer
    - listeners: listeners
    - pools: pools
@@ -781,7 +781,7 @@ Response Parameters
    - project_id: project_id
    - protocol: protocol-response
    - provider: loadbalancer-provider
-   - status: status
+   - status: pool-status
    - status_description: status_description
    - subnet_id: pool-subnet_id
    - tenant_id: project_id
@@ -891,7 +891,7 @@ Response Parameters
    - project_id: project_id
    - protocol: protocol-response
    - provider: loadbalancer-provider
-   - status: status
+   - status: pool-status
    - status_description: status_description
    - subnet_id: pool-subnet_id
    - tenant_id: project_id
@@ -944,7 +944,7 @@ Response Parameters
    - members: members
    - id: pool-id-response
    - name: name
-   - status: status
+   - status: pool-status
    - status_description: status_description
    - project_id: project_id
    - protocol: protocol-response
@@ -1015,7 +1015,7 @@ Response Parameters
    - lb_algorithm: lb_algorithm
    - members: members
    - name: name
-   - status: status
+   - status: pool-status
    - status_description: status_description
    - project_id: project_id
    - protocol: protocol-response

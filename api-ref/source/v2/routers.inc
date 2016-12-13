@@ -50,7 +50,7 @@ Response Parameters
    - name: name
    - description: description
    - admin_state_up: admin_state_up
-   - status: router_status
+   - status: router-status
    - external_gateway_info: router-external_gateway_info
    - network_id: router-network_id
    - enable_snat: router-enable_snat
@@ -127,7 +127,7 @@ Response Parameters
    - name: name
    - description: description
    - admin_state_up: admin_state_up
-   - status: router_status
+   - status: router-status
    - external_gateway_info: router-external_gateway_info
    - network_id: router-network_id
    - enable_snat: router-enable_snat
@@ -183,7 +183,7 @@ Response Parameters
    - name: name
    - description: description
    - admin_state_up: admin_state_up
-   - status: router_status
+   - status: router-status
    - external_gateway_info: router-external_gateway_info
    - network_id: router-network_id
    - enable_snat: router-enable_snat
@@ -248,7 +248,7 @@ Response Parameters
    - name: name
    - description: description
    - admin_state_up: admin_state_up
-   - status: router_status
+   - status: router-status
    - external_gateway_info: router-external_gateway_info
    - network_id: router-network_id
    - enable_snat: router-enable_snat
