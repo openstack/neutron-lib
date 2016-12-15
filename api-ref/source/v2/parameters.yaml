@@ -165,15 +165,15 @@ project_id-path:
   type: string
 resource_id:
   description: |
-    The UUID of resource which the tag is set on.
+    The ID of resource which the tag is set on.
   in: path
-  required: false
+  required: true
   type: string
 resource_type:
   description: |
     The type of resource which the tag is set on.
   in: path
-  required: false
+  required: true
   type: string
 router_id:
   description: |
@@ -221,7 +221,7 @@ tag:
   description: |
     The name for the tag.
   in: path
-  required: false
+  required: true
   type: string
 trunk_id:
   description: |
