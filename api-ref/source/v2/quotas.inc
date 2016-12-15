@@ -65,7 +65,6 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: project_id-path
    - project_id: project_id-path
 
 Response Parameters
@@ -106,6 +105,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - project_id: project_id-path
    - subnet: quota-subnet
    - network: quota-network
    - floatingip: quota-floatingip
@@ -116,8 +116,6 @@ Request
    - router: quota-router
    - rbac_policy: quota-rbac_policy
    - port: quota-port
-   - tenant_id: project_id
-   - project_id: project_id
 
 Request Example
 ---------------
@@ -140,8 +138,6 @@ Response Parameters
    - router: quota-router
    - rbac_policy: quota-rbac_policy
    - port: quota-port
-   - tenant_id: project_id
-   - project_id: project_id
 
 Response Example
 ----------------
@@ -163,7 +159,6 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: project_id-path
    - project_id: project_id-path
 
 List default quotas for a project
@@ -182,7 +177,6 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: project_id-path
    - project_id: project_id-path
 
 Response Parameters

@@ -62,7 +62,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: project_id-body
+   - tenant_id: project_id
    - firewall_policies: firewall_policies
    - audited: audited
    - description: description
@@ -70,7 +70,7 @@ Response Parameters
    - id: firewall_policy_id-body
    - name: name
    - shared: shared-response
-   - tenant_id: project_id-body
+   - project_id: project_id
 
 Response Example
 ----------------
@@ -97,8 +97,8 @@ Request
    - firewall_policy: firewall_policy
    - firewall_rules_id: firewall_rules_id
    - name: name
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id-request
+   - project_id: project_id-request
    - shared: shared
    - audited: audited
    - description: description-request
@@ -117,8 +117,8 @@ Response Parameters
    - firewall_policy: firewall_policy
    - name: name
    - firewall_rules: firewall_rules
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - audited: audited
    - shared: shared-response
    - id: firewall_policy_id-body
@@ -152,8 +152,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall_policy: firewall_policy
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - audited: audited
    - description: description
    - firewall_rules: firewall_rules
@@ -202,14 +202,14 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall_policy: firewall_policy
-   - project_id: project_id-body
+   - project_id: project_id
    - audited: audited
    - description: description
    - firewall_rules: firewall_rules
    - id: firewall_policy_id-body
    - name: name
    - shared: shared-response
-   - tenant_id: project_id-body
+   - tenant_id: project_id
 
 Response Example
 ----------------
@@ -282,8 +282,8 @@ Response Parameters
    - description: description
    - firewall_list: firewall_list
    - firewall_rules: firewall_rules
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - id: firewall_policy_id-body
    - name: name
    - shared: shared-response
@@ -324,8 +324,8 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - audited: audited
    - description: description
    - firewall_list: firewall_list
@@ -364,8 +364,8 @@ Response Parameters
    - firewall_rule: firewall_rule
    - action: action-response
    - description: description
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - destination_ip_address: destination_ip_address-response
    - destination_port: destination_port-response
    - enabled: enabled-response
@@ -406,8 +406,8 @@ Request
    - destination_port: destination_port
    - enabled: enabled
    - description: description-request
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id-request
+   - project_id: project_id-request
    - enabled: enabled
    - name: name
    - protocol: protocol
@@ -430,8 +430,8 @@ Response Parameters
    - firewall_rule: firewall_rule
    - action: action-response
    - description: description
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - destination_ip_address: destination_ip_address-response
    - destination_port: destination_port-response
    - enabled: enabled-response
@@ -481,8 +481,8 @@ Response Parameters
    - firewall_rule: firewall_rule
    - action: action-response
    - description: description
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - destination_ip_address: destination_ip_address-response
    - destination_port: destination_port-response
    - enabled: enabled-response
@@ -522,8 +522,8 @@ Request
    - firewall_rule: firewall_rule
    - shared: shared
    - description: description-request
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id-request
+   - project_id: project_id-request
    - enabled: enabled
    - ip_version: ip_version
    - destination_ip_address: destination_ip_address
@@ -548,8 +548,8 @@ Response Parameters
    - action: action-response
    - description: description
    - source_ip_address: source_ip_address
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - enabled: enabled
    - protocol: protocol
    - source_port: source_port
@@ -619,8 +619,8 @@ Response Parameters
 
    - firewalls: firewalls
    - admin_state_up: admin_state_up
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - description: description
    - firewall_policy_id: firewall_policy_id-body
    - id: firewall_id-body
@@ -673,8 +673,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall: firewall
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - description: description
    - firewall_policy_id: firewall_policy_id-body
@@ -717,8 +717,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall: firewall
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - description: description
    - status: firewall-status
@@ -772,8 +772,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - firewall: firewall
-   - tenant_id: project_id-body
-   - project_id: project_id-body
+   - tenant_id: project_id
+   - project_id: project_id
    - admin_state_up: admin_state_up
    - description: description
    - status: firewall-status

@@ -151,12 +151,6 @@ profile_id:
   in: path
   required: true
   type: string
-project_id:
-  description: |
-    The ID of the project.
-  in: path
-  required: true
-  type: string
 project_id-path:
   description: |
     The ID of the project.
@@ -3154,7 +3148,7 @@ prefixes_2:
   in: body
   required: true
   type: array
-project_id-body:
+project_id:
   description: |
     The ID of the project.
   in: body
