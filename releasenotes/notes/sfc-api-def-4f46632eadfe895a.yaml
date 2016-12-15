@@ -1,0 +1,11 @@
+---
+features:
+  - Add the definitions for the ``sfc`` and ``flowclassifier`` API extensions
+    of the networking-sfc project.
+  - Add a ``convert_uppercase_ip`` converter, convenient to easily accept for
+    instance ``Ipv4``, ``IPv4`` and ``ipv4`` independently of the case of the
+    first two letters.
+  - And add a ``convert_prefix_forced_case`` converter, to allow forcing the
+    case of a string prefix
+  - Add a ``uuid_list_non_empty`` validator, that will validate that the
+    value is a non-empty list of UUIDs

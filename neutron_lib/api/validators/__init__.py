@@ -117,6 +117,17 @@ def _validate_list_of_items(item_validator, data, *args, **kwargs):
             return msg
 
 
+def _validate_list_of_items_non_empty(item_validator, data, *args, **kwargs):
+    res = _validate_list_of_items(item_validator, data, *args, **kwargs)
+
+    if res is not None:
+        return res
+
+    if len(data) == 0:
+        msg = _("List should not be empty")
+        return msg
+
+
 def validate_values(data, valid_values=None, valid_values_display=None):
     """Validate that the provided 'data' is within 'valid_values'.
 
@@ -805,6 +816,18 @@ def validate_uuid_list(data, valid_values=None):
     return _validate_uuid_list(data, valid_values)
 
 
+def validate_uuid_list_non_empty(data, valid_values=None):
+    """Validate data is a non-empty list of UUID like values.
+
+    :param data: The data to validate.
+    :param valid_values: Not used!
+    :returns: None if data is a non-empty iterable that contains valid UUID
+        values, otherwise a message is returned indicating why validation
+        failed.
+    """
+    return _validate_list_of_items_non_empty(validate_uuid, data)
+
+
 def _extract_validator(key_validator):
     # Find validator function in key validation spec
     #
@@ -1089,6 +1112,7 @@ validators = {'type:dict': validate_dict,
               'type:uuid': validate_uuid,
               'type:uuid_or_none': validate_uuid_or_none,
               'type:uuid_list': validate_uuid_list,
+              'type:uuid_list_non_empty': validate_uuid_list_non_empty,
               'type:values': validate_values,
               'type:boolean': validate_boolean,
               'type:integer': validate_integer,
@@ -1096,7 +1120,7 @@ validators = {'type:dict': validate_dict,
               'type:list_of_any_key_specs_or_none':
                   validate_any_key_specs_or_none,
               'type:service_plugin_type': validate_service_plugin_type,
-              'type:list_of_subnets_or_none': validate_subnet_list_or_none,
+              'type:list_of_subnets_or_none': validate_subnet_list_or_none
               }
 
 

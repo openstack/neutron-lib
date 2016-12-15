@@ -152,6 +152,15 @@ def convert_none_to_empty_dict(value):
     return {} if value is None else value
 
 
+def convert_none_to_empty_string(value):
+    """Convert the value to an empty string if it's None.
+
+    :param value: The value to convert.
+    :returns: An empty string if 'value' is None, otherwise 'value'.
+    """
+    return '' if value is None else value
+
+
 def convert_to_list(data):
     """Convert a value into a list.
 
@@ -263,3 +272,37 @@ def convert_to_string(data):
 
     if data is not None:
         return str(data)
+
+
+def convert_prefix_forced_case(data, prefix):
+    """If <prefix> is a prefix of data, case insensitive, then force its case
+
+    This converter forces the case of a given prefix of a string.
+
+    Example, with prefix="Foo":
+    * 'foobar' converted into 'Foobar'
+    * 'fOozar' converted into 'Foozar'
+    * 'FOObaz' converted into 'Foobaz'
+
+    :param data: The data to convert
+    :returns: if data is a string starting with <prefix> in a case insensitive
+              comparison, then the return value is data with this prefix
+              replaced by <prefix>
+    """
+    plen = len(prefix)
+    if (isinstance(data, six.string_types) and len(data) >= plen and
+            data[0:plen].lower() == prefix.lower()):
+        return prefix + data[plen:]
+    return data
+
+
+def convert_uppercase_ip(data):
+    """Uppercase "ip" if present at start of data case-insensitive
+
+    Can be used for instance to accept both "ipv4" and "IPv4".
+
+    :param data: The data to convert
+    :returns: if data is a string starting with "ip" case insensitive, then
+              the return value is data with the first two letter uppercased
+    """
+    return convert_prefix_forced_case(data, "IP")

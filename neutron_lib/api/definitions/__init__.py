@@ -33,6 +33,7 @@ from neutron_lib.api.definitions import firewall
 from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
 from neutron_lib.api.definitions import flavors
+from neutron_lib.api.definitions import flowclassifier
 from neutron_lib.api.definitions import ip_allocation
 from neutron_lib.api.definitions import ip_substring_port_filtering
 from neutron_lib.api.definitions import l2_adjacency
@@ -66,6 +67,7 @@ from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import routerservicetype
 from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import servicetype
+from neutron_lib.api.definitions import sfc
 from neutron_lib.api.definitions import sorting
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_onboard
@@ -106,6 +108,7 @@ _ALL_API_DEFINITIONS = {
     ip_allocation,
     ip_substring_port_filtering,
     l2_adjacency,
+    flowclassifier,
     l3,
     l3_ext_gw_mode,
     l3_ext_ha_mode,
@@ -136,6 +139,7 @@ _ALL_API_DEFINITIONS = {
     routerservicetype,
     segment,
     servicetype,
+    sfc,
     sorting,
     subnet,
     subnet_onboard,

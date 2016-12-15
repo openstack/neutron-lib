@@ -138,6 +138,10 @@ KNOWN_EXTENSIONS = (
     'vpnaas',
     'vpn-endpoint-groups',
     'vpn-flavors',
+
+    # http://git.openstack.org/cgit/openstack/networking-sfc:
+    'flow_classifier',
+    'sfc',
 )
 
 KNOWN_KEYWORDS = (

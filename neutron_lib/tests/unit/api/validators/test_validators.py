@@ -856,6 +856,16 @@ class TestAttributeValidation(base.BaseTestCase):
                 mock.Mock(return_value=None), list_obj)
             self.assertIsNone(msg)
 
+    def test__test__validate_list_of_items_non_empty(self):
+        items = None
+        msg = validators._validate_list_of_items_non_empty(mock.Mock(), items)
+        error = "'%s' is not a list" % items
+        self.assertEqual(error, msg)
+
+        items = []
+        msg = validators._validate_list_of_items_non_empty(mock.Mock(), items)
+        self.assertEqual("List should not be empty", msg)
+
     def test_validate_dict_type(self):
         for value in (None, True, '1', []):
             self.assertEqual("'%s' is not a dictionary" % value,
