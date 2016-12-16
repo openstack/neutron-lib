@@ -1,0 +1,5 @@
+---
+features:
+  - The ``floating_ip`` and ``router`` API definitions from
+    ``neutron.extensions.l3`` have been rehomed to
+    ``neutron_lib.api.definitions`` as the module ``l3``.
