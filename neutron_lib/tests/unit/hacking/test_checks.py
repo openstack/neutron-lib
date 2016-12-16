@@ -28,10 +28,41 @@ class HackingTestCase(base.BaseTestCase):
     def assertLineFails(self, func, *args):
         self.assertIsInstance(next(func(*args)), tuple)
 
+    def _get_factory_checks(self, factory):
+        check_fns = []
+
+        def _reg(check_fn):
+            self.assertTrue(hasattr(check_fn, '__call__'))
+            self.assertFalse(check_fn in check_fns)
+            check_fns.append(check_fn)
+
+        factory(_reg)
+        return check_fns
+
     def test_factory(self):
-        def check_callable(fn):
-            self.assertTrue(hasattr(fn, '__call__'))
-        self.assertIsNone(checks.factory(check_callable))
+        self.assertTrue(len(self._get_factory_checks(checks.factory)) > 0)
+
+    def test_incubating_factory(self):
+        incubating_checks = self._get_factory_checks(
+            checks.incubating_factory)
+
+        if incubating_checks:
+            adopter_checks = self._get_factory_checks(checks.factory)
+            for incubating_check in incubating_checks:
+                self.assertFalse(incubating_check in adopter_checks)
+
+    def test_neutron_lib_factory(self):
+        lib_checks = self._get_factory_checks(checks._neutron_lib_factory)
+        other_checks = self._get_factory_checks(checks.factory)
+        other_checks.extend(self._get_factory_checks(
+            checks.incubating_factory))
+
+        self.assertTrue(len(lib_checks) > 0)
+
+        if other_checks:
+            for other_check in other_checks:
+                # lib checks are superset of all checks
+                self.assertTrue(other_check in lib_checks)
 
     def test_use_jsonutils(self):
         def __get_msg(fun):
