@@ -66,7 +66,8 @@ _PLUGIN_DIRECTORY = None
 @_synchronized("plugin-directory")
 def _create_plugin_directory():
     global _PLUGIN_DIRECTORY
-    _PLUGIN_DIRECTORY = _PluginDirectory()
+    if _PLUGIN_DIRECTORY is None:
+        _PLUGIN_DIRECTORY = _PluginDirectory()
     return _PLUGIN_DIRECTORY
 
 
