@@ -1,0 +1,4 @@
+---
+features:
+  - The class ``neutron.services.service_base.ServicePluginBase`` is
+    now available as ``neutron_lib.services.base.ServicePluginBase``.
