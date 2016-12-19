@@ -756,6 +756,20 @@ class TestAttributeValidation(base.BaseTestCase):
         self._test_validate_regex(validators.validate_regex_or_none,
                                   allow_none=True)
 
+    def test_validate_list_of_regex_or_none(self):
+        pattern = '[hc]at|^$'
+
+        list_of_regex = ['hat', 'cat', '']
+        msg = validators.validate_list_of_regex_or_none(list_of_regex, pattern)
+        self.assertIsNone(msg)
+
+        list_of_regex = ['bat', 'hat', 'cat', '']
+        msg = validators.validate_list_of_regex_or_none(list_of_regex, pattern)
+        self.assertEqual("'bat' is not a valid input", msg)
+
+        empty_list = []
+        msg = validators.validate_list_of_regex_or_none(empty_list, pattern)
+
     def test_validate_subnetpool_id(self):
         msg = validators.validate_subnetpool_id(constants.IPV6_PD_POOL_ID)
         self.assertIsNone(msg)

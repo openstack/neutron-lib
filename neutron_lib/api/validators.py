@@ -642,6 +642,19 @@ def validate_regex_or_none(data, valid_values=None):
         return validate_regex(data, valid_values)
 
 
+def validate_list_of_regex_or_none(data, valid_values=None):
+    """Validate data is None or a list of items matching regex.
+
+    :param data: A list of data to validate.
+    :param valid_values: The regular expression to use with re.match on
+    each element of the data.
+    :returns: None if data is None or contains matches for valid_values,
+    otherwise a human readable message as to why data is invalid.
+    """
+    if data is not None:
+        return _validate_list_of_items(validate_regex, data, valid_values)
+
+
 def validate_subnetpool_id(data, valid_values=None):
     """Validate data is valid subnet pool ID.
 
@@ -943,6 +956,7 @@ validators = {'type:dict': validate_dict,
               'type:ip_address_or_none': validate_ip_address_or_none,
               'type:ip_or_subnet_or_none': validate_ip_or_subnet_or_none,
               'type:ip_pools': validate_ip_pools,
+              'type:list_of_regex_or_none': validate_list_of_regex_or_none,
               'type:mac_address': validate_mac_address,
               'type:mac_address_or_none': validate_mac_address_or_none,
               'type:nameservers': validate_nameservers,
