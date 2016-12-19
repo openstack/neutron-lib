@@ -146,6 +146,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
             self.assertParams(self.subresource_map[subresource]['parameters'])
 
     def test_action_map(self):
+        self.assertIsInstance(self.action_map, dict)
         if not self.action_map:
             self.skipTest('API definition has no action map.')
 
@@ -155,6 +156,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
                               'HTTP verb is unknown, check for typos.')
 
     def test_required_extensions(self):
+        self.assertIsInstance(self.required_extensions, list)
         if not self.required_extensions:
             self.skipTest('API definition has no required extensions.')
 
@@ -163,6 +165,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
                           'Required extension is unknown, check for typos.')
 
     def test_optional_extensions(self):
+        self.assertIsInstance(self.optional_extensions, list)
         if not self.optional_extensions:
             self.skipTest('API definition has no optional extensions.')
 

@@ -62,10 +62,10 @@ RESOURCE_ATTRIBUTE_MAP = {
 SUB_RESOURCE_ATTRIBUTE_MAP = None
 
 # The action map.
-ACTION_MAP = None
+ACTION_MAP = {}
 
 # The list of required extensions.
 REQUIRED_EXTENSIONS = [trunk.ALIAS]
 
 # The list of optional extensions.
-OPTIONAL_EXTENSIONS = None
+OPTIONAL_EXTENSIONS = []
