@@ -255,7 +255,6 @@ def incubating_factory(register):
     :param register: The function to register the check functions with.
     :returns: None.
     """
-    register(translation_checks.check_delayed_string_interpolation)
 
 
 def _neutron_lib_factory(register):

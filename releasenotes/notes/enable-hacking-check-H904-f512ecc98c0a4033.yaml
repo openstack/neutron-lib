@@ -1,0 +1,5 @@
+---
+other:
+  - OpenStack dev hacking check ``H904`` is now enabled in ``tox.ini``
+    via the ``enable-extensions`` configuration property. Neutron-lib
+    adopters should also enable this hacking check in their ``tox.ini``.
