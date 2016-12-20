@@ -11,6 +11,10 @@ Tag extension (tags)
 Shows details for, updates, and deletes tags. This extension is
 available since Mitaka release.
 
+The maximum number of characters allowed in a tag is 60. If the length
+is longer than 60, the API returns the HTTP ``Bad Request (400)`` response
+code with 'invalid input for operation' error message.
+
 Replace all tags
 ================
 
