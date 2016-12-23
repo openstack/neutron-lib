@@ -540,6 +540,22 @@ def validate_ip_address_or_none(data, valid_values=None):
         return validate_ip_address(data, valid_values)
 
 
+def validate_ip_or_subnet_or_none(data, valid_values=None):
+    """Validate data is an IP address, a valid IP subnet string, or None.
+
+    :param data: The data to validate.
+    :param valid_values: Not used!
+    :return: None if data is None or a valid IP address or a valid IP subnet,
+    otherwise a human readable message indicating why the data is neither an
+    IP address nor IP subnet.
+    """
+    msg_ip = validate_ip_address_or_none(data)
+    msg_subnet = validate_subnet_or_none(data)
+    if msg_ip is not None and msg_subnet is not None:
+        return _("'%(data)s' is neither a valid IP address, nor "
+                 "is it a valid IP subnet") % {'data': data}
+
+
 def validate_subnet(data, valid_values=None):
     """Validate data is an IP network subnet string.
 
@@ -888,6 +904,7 @@ validators = {'type:dict': validate_dict,
               'type:hostroutes': validate_hostroutes,
               'type:ip_address': validate_ip_address,
               'type:ip_address_or_none': validate_ip_address_or_none,
+              'type:ip_or_subnet_or_none': validate_ip_or_subnet_or_none,
               'type:ip_pools': validate_ip_pools,
               'type:mac_address': validate_mac_address,
               'type:mac_address_or_none': validate_mac_address_or_none,
