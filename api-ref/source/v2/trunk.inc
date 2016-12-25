@@ -54,7 +54,7 @@ Response Parameters
    - name: name_resource
    - port_id: trunk_port_id
    - revision_number: revision_number
-   - status: trunk_status
+   - status: trunk-status
    - tenant_id: project_id-request
    - project_id: project_id-request
    - sub_ports: sub_ports
@@ -127,7 +127,7 @@ Response Parameters
    - name: name_resource
    - port_id: trunk_port_id
    - revision_number: revision_number
-   - status: trunk_status
+   - status: trunk-status
    - tenant_id: project_id
    - project_id: project_id
    - sub_ports: sub_ports
@@ -171,7 +171,7 @@ Response Parameters
    - name: name_resource
    - port_id: trunk_port_id
    - revision_number: revision_number
-   - status: trunk_status
+   - status: trunk-status
    - tenant_id: project_id
    - project_id: project_id
    - sub_ports: sub_ports
@@ -219,7 +219,7 @@ Response Parameters
    - name: name_resource
    - port_id: trunk_port_id
    - revision_number: revision_number
-   - status: trunk_status
+   - status: trunk-status
    - tenant_id: project_id
    - project_id: project_id
    - sub_ports: sub_ports
@@ -305,7 +305,7 @@ Response Parameters
    - name: name_resource
    - port_id: trunk_port_id
    - revision_number: revision_number
-   - status: trunk_status
+   - status: trunk-status
    - tenant_id: project_id
    - project_id: project_id
    - sub_ports: sub_ports
@@ -354,7 +354,7 @@ Response Parameters
    - name: name_resource
    - port_id: trunk_port_id
    - revision_number: revision_number
-   - status: trunk_status
+   - status: trunk-status
    - tenant_id: project_id
    - project_id: project_id
    - sub_ports: sub_ports

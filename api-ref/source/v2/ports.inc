@@ -34,7 +34,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - opt_value: opt_value
-   - status: status
+   - status: port-status
    - name: name
    - allowed_address_pairs: allowed_address_pairs
    - admin_state_up: admin_state_up
@@ -125,7 +125,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - opt_value: opt_value
-   - status: status
+   - status: port-status
    - name: name
    - allowed_address_pairs: allowed_address_pairs
    - admin_state_up: admin_state_up
@@ -200,7 +200,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - opt_value: opt_value
-   - status: status
+   - status: port-status
    - name: name
    - allowed_address_pairs: allowed_address_pairs
    - admin_state_up: admin_state_up
@@ -274,7 +274,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - opt_value: opt_value
-   - status: status
+   - status: port-status
    - name: name
    - allowed_address_pairs: allowed_address_pairs
    - admin_state_up: admin_state_up
@@ -341,7 +341,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - opt_value: opt_value
-   - status: status
+   - status: port-status
    - name: name
    - allowed_address_pairs: allowed_address_pairs
    - admin_state_up: admin_state_up
