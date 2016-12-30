@@ -133,6 +133,12 @@ loadbalancer-id-path:
   in: path
   required: true
   type: string
+log_id-path:
+  description: |
+    The ID of the log resource.
+  in: path
+  required: true
+  type: string
 logging_resource_id:
   description: |
     The ID of the logging resource.
@@ -3126,6 +3132,58 @@ location:
   in: body
   required: true
   type: string
+log:
+  description: |
+    A ``log`` object.
+  in: body
+  required: true
+  type: object
+log_enabled:
+  description: |
+    Indicates whether this log object is enabled or disabled.
+  in: body
+  required: true
+  type: boolean
+log_enabled-request:
+  description: |
+    Indicates whether this log object is enabled or disabled.
+    Default is true.
+  in: body
+  required: false
+  type: boolean
+log_enabled-request-put:
+  description: |
+    Indicates whether this log object is enabled or disabled.
+  in: body
+  required: false
+  type: boolean
+log_event:
+  description: |
+    Type of security events to log.
+    ``ACCEPT``, ``DROP``, or ``ALL``.
+  in: body
+  required: true
+  type: string
+log_event-request:
+  description: |
+    Type of security events to log.
+    ``ACCEPT``, ``DROP``, or ``ALL``.
+    Default is ``ALL``.
+  in: body
+  required: false
+  type: string
+log_id:
+  description: |
+    The ID of the log object.
+  in: body
+  required: true
+  type: string
+loggable_resources:
+  description: |
+    A list of ``loggable_resource`` object.
+  in: body
+  required: true
+  type: object
 logging_resource:
   description: |
     A ``logging_resource`` object.
@@ -3160,6 +3218,12 @@ logging_resource_id-body:
 logging_resources:
   description: |
     A list of ``logging_resource`` objects.
+  in: body
+  required: true
+  type: array
+logs:
+  description: |
+    A list of ``log`` objects.
   in: body
   required: true
   type: array
@@ -4574,6 +4638,36 @@ resource-rel:
     Relationship between link and the resource.
   in: body
   required: true
+  type: string
+resource_log_id:
+  description: |
+    The ID of resource log (e.g security group ID).
+  in: body
+  required: true
+  type: string
+resource_log_id-request:
+  description: |
+    The ID of resource log (e.g security group ID).
+  in: body
+  required: false
+  type: string
+resource_log_type:
+  description: |
+    The resource log type such as 'security_group'.
+  in: body
+  required: true
+  type: string
+resource_target_log_id:
+  description: |
+    The ID of resource target log such as port ID.
+  in: body
+  required: true
+  type: string
+resource_target_log_id-request:
+  description: |
+    The ID of resource target log such as port ID.
+  in: body
+  required: false
   type: string
 resources:
   description: |
