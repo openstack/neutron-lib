@@ -60,6 +60,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
 
     extension_module = None
     extension_resources = ()
+    extension_subresources = ()
     extension_attributes = ()
 
     def setUp(self):
@@ -73,6 +74,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
         self.name = self.extension_module.NAME
         self.description = self.extension_module.DESCRIPTION
         self.resource_map = self.extension_module.RESOURCE_ATTRIBUTE_MAP
+        self.subresource_map = self.extension_module.SUB_RESOURCE_ATTRIBUTE_MAP
         self.action_map = self.extension_module.ACTION_MAP
         self.required_extensions = self.extension_module.REQUIRED_EXTENSIONS
         self.optional_extensions = self.extension_module.OPTIONAL_EXTENSIONS
@@ -100,19 +102,40 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
             self.assertIn(
                 resource, base.KNOWN_RESOURCES + self.extension_resources,
                 'Resource is unknown, check for typos.')
-            for attribute in self.resource_map[resource].keys():
-                self.assertIn(
-                    attribute,
-                    base.KNOWN_ATTRIBUTES + self.extension_attributes,
-                    'Attribute is unknown, check for typos.')
-                for keyword in self.resource_map[resource][attribute]:
-                    self.assertIn(keyword, base.KNOWN_KEYWORDS,
-                                  'Keyword is unknown, check for typos.')
-                    value = self.resource_map[resource][attribute][keyword]
-                    assert_f = ASSERT_FUNCTIONS[keyword]
-                    assert_f(self, attribute,
-                             self.resource_map[resource][attribute],
-                             keyword, value)
+            self.assertParams(self.resource_map[resource])
+
+    def assertParams(self, resource):
+        for attribute in resource.keys():
+            self.assertIn(
+                attribute,
+                base.KNOWN_ATTRIBUTES + self.extension_attributes,
+                'Attribute is unknown, check for typos.')
+            for keyword in resource[attribute]:
+                self.assertIn(keyword, base.KNOWN_KEYWORDS,
+                              'Keyword is unknown, check for typos.')
+                value = resource[attribute][keyword]
+                assert_f = ASSERT_FUNCTIONS[keyword]
+                assert_f(self, attribute,
+                         resource[attribute],
+                         keyword, value)
+
+    def test_subresource_map(self):
+        if not self.subresource_map:
+            self.skipTest('API extension has no subresource map.')
+        for subresource in self.subresource_map:
+            self.assertIn(
+                subresource, self.extension_subresources,
+                'Sub-resource is unknown, check for typos.')
+            for attribute in self.subresource_map[subresource]:
+                self.assertIn(attribute, ('parent', 'parameters'))
+            self.assertIn(
+                self.subresource_map[subresource]['parent']['collection_name'],
+                base.KNOWN_RESOURCES + self.extension_resources,
+                'Sub-resource parent is unknown, check for typos.')
+            self.assertIn('member_name',
+                          self.subresource_map[subresource]['parent'],
+                          'Incorrect parent definition, check for typos.')
+            self.assertParams(self.subresource_map[subresource]['parameters'])
 
     def test_action_map(self):
         if not self.action_map:

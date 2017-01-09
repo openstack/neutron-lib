@@ -40,17 +40,26 @@ DESCRIPTION = "Expose trunk port details"
 # A timestamp of when the extension was introduced.
 TIMESTAMP = "2016-01-01T10:00:00-00:00"
 
+# The name of the resource introduced or being extended.
+RESOURCE_NAME = 'port'
+
+# The plural for the resource introduced or being extended.
+COLLECTION_NAME = 'ports'
+
 # The specific resources and/or attributes for the extension (optional).
 TRUNK_DETAILS = 'trunk_details'
 
 # The resource attribute map for the extension.
 RESOURCE_ATTRIBUTE_MAP = {
-    'ports': {TRUNK_DETAILS: {'allow_post': False, 'allow_put': False,
-                              'default': constants.ATTR_NOT_SPECIFIED,
-                              'is_visible': True,
-                              'enforce_policy': True,
-                              'required_by_policy': True}},
+    COLLECTION_NAME: {TRUNK_DETAILS: {'allow_post': False, 'allow_put': False,
+                                      'default': constants.ATTR_NOT_SPECIFIED,
+                                      'is_visible': True,
+                                      'enforce_policy': True,
+                                      'required_by_policy': True}},
 }
+
+# The subresource attribute map for the extension.
+SUB_RESOURCE_ATTRIBUTE_MAP = None
 
 # The action map.
 ACTION_MAP = None
