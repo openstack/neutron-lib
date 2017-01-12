@@ -17,11 +17,12 @@ import functools
 import inspect
 import netaddr
 from oslo_log import log as logging
+from oslo_utils import netutils
+from oslo_utils import strutils
 from oslo_utils import uuidutils
 import six
 
 from neutron_lib._i18n import _
-from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
 
@@ -226,8 +227,8 @@ def validate_boolean(data, valid_values=None):
     human readable message indicating why data is invalid.
     """
     try:
-        converters.convert_to_boolean(data)
-    except n_exc.InvalidInput:
+        strutils.bool_from_string(data, strict=True)
+    except ValueError:
         msg = _("'%s' is not a valid boolean value") % data
         LOG.debug(msg)
         return msg
@@ -838,6 +839,42 @@ def validate_non_negative(data, valid_values=None):
         return msg
 
 
+def validate_port_range_or_none(data, valid_values=None):
+    """Validate data is a range of TCP/UDP port numbers
+
+    :param data: The data to validate
+    :param valid_values: Not used!
+    :returns: None if data is an int between 0 and 65535, or two ints between 0
+    and 65535 with a colon between them, otherwise a human readable message as
+    to why data is invalid.
+    """
+    if data is None:
+        return
+    if validate_string_or_none(data):
+        msg = _("Port range must be a string.")
+        LOG.debug(msg)
+        return msg
+    ports = data.split(':')
+    if len(ports) > 2:
+        msg = _("Port range must be two integers separated by a colon.")
+        LOG.debug(msg)
+        return msg
+    for p in ports:
+        if len(p) == 0:
+            msg = _("Port range must be two integers separated by a colon.")
+            LOG.debug(msg)
+            return msg
+        if not netutils.is_valid_port(p):
+            msg = _("Invalid port: %s.") % p
+            LOG.debug(msg)
+            return msg
+    if len(ports) > 1 and ports[0] > ports[1]:
+        msg = _("First port in a port range must be lower than the second "
+                "port.")
+        LOG.debug(msg)
+        return msg
+
+
 def validate_subports(data, valid_values=None):
     """Validate data is a list of subnet port dicts.
 
@@ -910,6 +947,7 @@ validators = {'type:dict': validate_dict,
               'type:mac_address_or_none': validate_mac_address_or_none,
               'type:nameservers': validate_nameservers,
               'type:non_negative': validate_non_negative,
+              'type:port_range': validate_port_range_or_none,
               'type:range': validate_range,
               'type:regex': validate_regex,
               'type:regex_or_none': validate_regex_or_none,

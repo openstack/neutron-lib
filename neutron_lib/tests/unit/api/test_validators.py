@@ -1073,3 +1073,53 @@ class TestValidateIPSubnetNone(base.BaseTestCase):
         self.assertEqual(("'::1/2048' is neither a valid IP address, nor is "
                           "it a valid IP subnet"),
                          validators.validate_ip_or_subnet_or_none(testdata))
+
+
+class TestPortRangeValidation(base.BaseTestCase):
+
+    def test_valid_port(self):
+        result = validators.validate_port_range_or_none("80")
+        self.assertIsNone(result)
+
+    def test_valid_range(self):
+        result = validators.validate_port_range_or_none("80:8888")
+        self.assertIsNone(result)
+
+    def test_port_too_high(self):
+        result = validators.validate_port_range_or_none("99999")
+        self.assertEqual(u"Invalid port: 99999.", result)
+
+    def test_port_too_low(self):
+        result = validators.validate_port_range_or_none("-1")
+        self.assertEqual(u"Invalid port: -1.", result)
+
+    def test_range_too_high(self):
+        result = validators.validate_port_range_or_none("80:99999")
+        self.assertEqual(u"Invalid port: 99999.", result)
+
+    def test_range_too_low(self):
+        result = validators.validate_port_range_or_none("-1:8888")
+        self.assertEqual(u"Invalid port: -1.", result)
+
+    def test_range_wrong_way(self):
+        result = validators.validate_port_range_or_none("8888:80")
+        self.assertEqual(u"First port in a port range must be lower than the "
+                         "second port.", result)
+
+    def test_range_invalid(self):
+        result = validators.validate_port_range_or_none("DEAD:BEEF")
+        self.assertEqual(u"Invalid port: DEAD.", result)
+
+    def test_range_bad_input(self):
+        result = validators.validate_port_range_or_none(['a', 'b', 'c'])
+        self.assertEqual(u"Port range must be a string.", result)
+
+    def test_range_colon(self):
+        result = validators.validate_port_range_or_none(":")
+        self.assertEqual(u"Port range must be two integers separated by a "
+                         "colon.", result)
+
+    def test_too_many_colons(self):
+        result = validators.validate_port_range_or_none("80:888:8888")
+        self.assertEqual(u"Port range must be two integers separated by a "
+                         "colon.", result)
