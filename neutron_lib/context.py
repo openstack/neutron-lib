@@ -33,11 +33,6 @@ class ContextBase(oslo_context.RequestContext):
     def __init__(self, user_id=None, tenant_id=None, is_admin=None,
                  timestamp=None, tenant_name=None, user_name=None,
                  is_advsvc=None, **kwargs):
-        """Object initialization.
-
-        :param kwargs: Extra arguments that might be present, but we ignore
-            because they possibly came in from older rpc messages.
-        """
         # NOTE(jamielennox): We maintain these arguments in order for tests
         # that pass arguments positionally.
         kwargs.setdefault('user', user_id)
