@@ -19,8 +19,8 @@ from oslo_context import context as oslo_context
 from oslo_db.sqlalchemy import enginefacade
 
 # TODO(HenryG): replace db/_api.py with the real db/api.py
+from neutron_lib import _policy as policy
 from neutron_lib.db import _api as db_api
-from neutron_lib import policy
 
 
 class ContextBase(oslo_context.RequestContext):
