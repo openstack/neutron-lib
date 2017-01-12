@@ -77,6 +77,9 @@ RESOURCE_ATTRIBUTE_MAP = {
     },
 }
 
+# The subresource attribute map for the extension.
+SUB_RESOURCE_ATTRIBUTE_MAP = None
+
 # The action map.
 ACTION_MAP = {
     TRUNK: {
