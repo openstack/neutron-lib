@@ -12,7 +12,7 @@
 
 import sqlalchemy as sa
 
-from neutron_lib import _context as context
+from neutron_lib import context
 from neutron_lib.db import model_base
 
 from neutron_lib.tests.unit.db import _base as db_base
