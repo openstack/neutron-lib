@@ -121,13 +121,11 @@ class CallbacksManager(object):
         the payload object is not an instance of BaseEvent. CallbackFailure
         is raise if the underlying callback has errors.
         """
-        kwargs = {}
         if payload:
             if not isinstance(payload, events.EventPayload):
                 raise exceptions.Invalid(element='event payload',
                                          value=type(payload))
-            kwargs['payload'] = payload
-        return self.notify(resource, event, trigger, **kwargs)
+        return self.notify(resource, event, trigger, payload=payload)
 
     # NOTE(boden): We plan to deprecate the usage of this method and **kwargs
     # as the payload in Queens, but no warning here to avoid log flooding

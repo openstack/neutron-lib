@@ -38,7 +38,7 @@ class EventPayloadTestCase(base.BaseTestCase):
         e = events.EventPayload(mock.ANY, states=['s1', 's2'])
         self.assertEqual(['s1', 's2'], e.states)
         e.states.append('state')
-        self.assertTrue('state' in e.states)
+        self.assertIn('state', e.states)
 
     def test_resource_id(self):
         e = events.EventPayload(mock.ANY, resource_id='id1')

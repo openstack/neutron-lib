@@ -6,7 +6,7 @@ features:
     standardized way.
   - A test fixture is provided for isolating the global callback manager in
     ``neutron_lib.callbacks.registry``. For more details see the comments in
-    ``neutron_lib.tests.unti.callbacks.base``.
+    ``neutron_lib.fixture.CallbackRegistryFixture``.
 deprecations:
   - The use of ``neutron_lib.callbacks.registry.notify()`` and
     ``neutron_lib.callbacks.manager.CallbacksManager.notify()`` is deprecated in
