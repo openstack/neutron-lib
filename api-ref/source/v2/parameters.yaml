@@ -187,6 +187,12 @@ security_group_id_2:
   in: path
   required: false
   type: string
+security_group_rule-id-path:
+  description: |
+    The ID of the security group rule.
+  in: path
+  required: true
+  type: string
 segment_id-path:
   description: |
     The UUID of the segment.
@@ -3774,6 +3780,19 @@ security_group_rule:
   in: body
   required: true
   type: object
+security_group_rule-id:
+  description: |
+    The ID of the security group rule.
+  in: body
+  required: true
+  type: string
+security_group_rule-security_group_id:
+  description: |
+    The security group ID to associate with this
+    security group rule.
+  in: body
+  required: true
+  type: string
 security_group_rules:
   description: |
     A list of ``security_group_rule`` objects.
