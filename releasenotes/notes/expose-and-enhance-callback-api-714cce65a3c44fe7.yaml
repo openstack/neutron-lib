@@ -1,0 +1,14 @@
+---
+features:
+  - Neutron's callback API found in ``neutron.callbacks.*`` is now exposed
+    in ``neutron_lib.callbacks.*``. In addition, a set of event payload objects
+    are now available for use in transporting event payload data in a
+    standardized way.
+  - A test fixture is provided for isolating the global callback manager in
+    ``neutron_lib.callbacks.registry``. For more details see the comments in
+    ``neutron_lib.tests.unti.callbacks.base``.
+deprecations:
+  - The use of ``neutron_lib.callbacks.registry.notify()`` and
+    ``neutron_lib.callbacks.manager.CallbacksManager.notify()`` is deprecated in
+    favor of their ``publish()`` counterparts and will be removed in
+    the "Queens" release time-frame.

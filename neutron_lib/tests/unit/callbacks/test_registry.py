@@ -16,7 +16,9 @@ import mock
 
 from oslotest import base
 
-from neutron_lib._callbacks import registry
+from neutron_lib.callbacks import events
+from neutron_lib.callbacks import registry
+from neutron_lib import fixture
 
 
 def my_callback():
@@ -27,40 +29,42 @@ class TestCallbackRegistryDispatching(base.BaseTestCase):
 
     def setUp(self):
         super(TestCallbackRegistryDispatching, self).setUp()
-        registry.CALLBACK_MANAGER = mock.Mock()
+        self.callback_manager = mock.Mock()
+        self.registry_fixture = fixture.CallbackRegistryFixture(
+            callback_manager=self.callback_manager)
+        self.useFixture(self.registry_fixture)
 
     def test_subscribe(self):
         registry.subscribe(my_callback, 'my-resource', 'my-event')
-        registry.CALLBACK_MANAGER.subscribe.assert_called_with(
+        self.callback_manager.subscribe.assert_called_with(
             my_callback, 'my-resource', 'my-event')
 
     def test_unsubscribe(self):
         registry.unsubscribe(my_callback, 'my-resource', 'my-event')
-        registry.CALLBACK_MANAGER.unsubscribe.assert_called_with(
+        self.callback_manager.unsubscribe.assert_called_with(
             my_callback, 'my-resource', 'my-event')
 
     def test_unsubscribe_by_resource(self):
         registry.unsubscribe_by_resource(my_callback, 'my-resource')
-        registry.CALLBACK_MANAGER.unsubscribe_by_resource.assert_called_with(
+        self.callback_manager.unsubscribe_by_resource.assert_called_with(
             my_callback, 'my-resource')
 
     def test_unsubscribe_all(self):
         registry.unsubscribe_all(my_callback)
-        registry.CALLBACK_MANAGER.unsubscribe_all.assert_called_with(
+        self.callback_manager.unsubscribe_all.assert_called_with(
             my_callback)
 
     def test_notify(self):
         registry.notify('my-resource', 'my-event', mock.ANY)
-        registry.CALLBACK_MANAGER.notify.assert_called_with(
+        self.callback_manager.notify.assert_called_with(
             'my-resource', 'my-event', mock.ANY)
 
     def test_clear(self):
         registry.clear()
-        registry.CALLBACK_MANAGER.clear.assert_called_with()
+        self.callback_manager.clear.assert_called_with()
 
-    def test_get_callback_manager(self):
-        with mock.patch.object(registry.manager,
-                               'CallbacksManager') as mock_mgr:
-            registry.CALLBACK_MANAGER = None
-            registry._get_callback_manager()
-            mock_mgr.assert_called_once_with()
+    def test_publish_payload(self):
+        event_payload = events.EventPayload(mock.ANY)
+        registry.publish('x', 'y', self, payload=event_payload)
+        self.callback_manager.publish.assert_called_with(
+            'x', 'y', self, payload=event_payload)

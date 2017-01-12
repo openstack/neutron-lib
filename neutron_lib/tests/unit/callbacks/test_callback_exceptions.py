@@ -19,7 +19,7 @@ Tests for `neutron_lib.callback.exceptions` module.
 
 import functools
 
-import neutron_lib._callbacks.exceptions as ex
+import neutron_lib.callbacks.exceptions as ex
 from neutron_lib.tests.unit import test_exceptions
 
 
