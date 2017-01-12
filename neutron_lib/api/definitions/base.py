@@ -79,6 +79,8 @@ KNOWN_EXTENSIONS = (
     'tag',
     'trunk',
     'trunk-details',
+    # Add here list of extensions with pointers to the project repo, e.g.
+    # 'bgp',  # http://git.openstack.org/cgit/openstack/neutron-dynamic-routing
 )
 
 # The following is a short reference for understanding attribute info:
