@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 =================================================================
 Metering labels and rules (metering-labels, metering-label-rules)
@@ -18,7 +14,13 @@ List metering labels
 
 Lists all L3 metering labels that belong to the project.
 
-The list shows the UUID for each metering label.
+The list shows the ID for each metering label.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
 
@@ -27,17 +29,21 @@ Error response codes: 401
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - metering_labels: metering_labels
    - description: description
    - tenant_id: project_id
    - project_id: project_id
-   - metering_labels: metering_labels
-   - shared: shared
-   - id: id
+   - shared: metering_label-shared
+   - id: metering_label-id
    - name: name
 
 Response Example
@@ -53,15 +59,17 @@ Create metering label
 
 Creates an L3 metering label.
 
-Error response codes: 201,403,401,400
+Normal response codes: 201
+
+Error response codes: 400, 401, 403
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - shared: shared
    - metering_label: metering_label
+   - shared: metering_label-shared-request
    - description: description
    - name: name
    - tenant_id: project_id
@@ -78,41 +86,49 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - metering_label: metering_label
    - description: description
    - tenant_id: project_id
    - project_id: project_id
-   - metering_label: metering_label
-   - shared: shared
-   - id: id
+   - shared: metering_label-shared
+   - id: metering_label-id
    - name: name
 
 Show metering label details
 ===========================
 
-.. rest_method::  GET /v2.0/metering/metering-labels/{metering-label-id}
+.. rest_method::  GET /v2.0/metering/metering-labels/{metering_label_id}
 
 Shows details for a metering label.
 
-The response body shows the description, name, and UUID.
-
 Normal response codes: 200
 
-Error response codes: 404,401
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - metering_label_id: metering_label-id-path
+
+Request Example
+---------------
+
+.. literalinclude:: samples/metering/metering-label-show-request-json-http.txt
+   :language: javascript
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - metering_label: metering_label
    - description: description
    - tenant_id: project_id
    - project_id: project_id
-   - metering_label: metering_label
-   - shared: shared
-   - id: id
+   - shared: metering_label-shared
+   - id: metering_label-id
    - name: name
 
 Response Example
@@ -124,14 +140,31 @@ Response Example
 Delete metering label
 =====================
 
-.. rest_method::  DELETE /v2.0/metering/metering-labels/{metering-label-id}
+.. rest_method::  DELETE /v2.0/metering/metering-labels/{metering_label_id}
 
 Deletes an L3 metering label.
 
-Error response codes: 404,204,401
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - metering_label_id: metering_label-id-path
+
+Request Example
+---------------
+
+.. literalinclude:: samples/metering/metering-label-delete-request-json-http.txt
+   :language: javascript
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 List metering label rules
 =========================
@@ -140,7 +173,13 @@ List metering label rules
 
 Lists a summary of all L3 metering label rules that belong to the project.
 
-The list shows the UUID for each metering label rule.
+The list shows the ID for each metering label rule.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
 
@@ -149,17 +188,21 @@ Error response codes: 401
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - metering_label_rules: metering_label_rules
    - direction: direction
    - remote_ip_prefix: remote_ip_prefix
-   - metering_label_rules: metering_label_rules
-   - excluded : excluded 
-   - metering_label_id: metering_label_id
-   - id: id
+   - excluded : excluded
+   - metering_label_id: metering_label-id-response-body
+   - id: metering_label_rule-id
 
 Response Example
 ----------------
@@ -174,17 +217,19 @@ Create metering label rule
 
 Creates an L3 metering label rule.
 
-Error response codes: 201,404,403,401,400,409
+Normal response codes: 201
+
+Error response codes: 400, 401, 403, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - metering_label_rule: metering_label_rule
    - remote_ip_prefix: remote_ip_prefix
    - direction: direction
-   - metering_label_id: metering_label_id
-   - metering_label_rule: metering_label_rule
+   - metering_label_id: metering_label-id-response-body
    - excluded: excluded
 
 Request Example
@@ -198,28 +243,33 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - metering_label_rule: metering_label_rule
    - direction: direction
    - remote_ip_prefix: remote_ip_prefix
-   - excluded : excluded 
-   - metering_label_id: metering_label_id
-   - metering_label_rule: metering_label_rule
-   - id: id
+   - excluded : excluded
+   - metering_label_id: metering_label-id-response-body
+   - id: metering_label_rule-id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/metering/metering-label-rule-create-response.json
+   :language: javascript
 
 Show metering label rule details
 ================================
 
-.. rest_method::  GET /v2.0/metering/metering-label-rules/{metering-label-rule-id}
+.. rest_method::  GET /v2.0/metering/metering-label-rules/{metering_label_rule_id}
 
 Shows details for a metering label rule.
 
-The response body shows this information for each metering label
-rule:
+The response body shows this information for each metering label rule:
 
 - ``direction``. Either ingress or egress.
 
 - ``excluded``. Either ``true`` or ``false``.
 
-- The UUID for the metering label rule.
+- The ID for the metering label rule.
 
 - The remote IP prefix.
 
@@ -228,10 +278,32 @@ rule:
 
 Normal response codes: 200
 
-Error response codes: 404,401
+Error response codes: 401, 404
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - metering_label_rule_id: metering_label_rule-id-path
+
+Request Example
+---------------
+
+.. literalinclude:: samples/metering/metering-label-rule-show-request-json-http.txt
+   :language: javascript
+
+Response Paramters
+------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - metering_label_rule: metering_label_rule
+   - direction: direction
+   - remote_ip_prefix: remote_ip_prefix
+   - excluded : excluded
+   - metering_label_id: metering_label-id-response-body
+   - id: metering_label_rule-id
 
 Response Example
 ----------------
@@ -242,12 +314,28 @@ Response Example
 Delete metering label rule
 ==========================
 
-.. rest_method::  DELETE /v2.0/metering/metering-label-rules/{metering-label-rule-id}
+.. rest_method::  DELETE /v2.0/metering/metering-label-rules/{metering_label_rule_id}
 
 Deletes an L3 metering label rule.
 
-Error response codes: 404,204,401
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - metering_label_rule_id: metering_label_rule-id-path
+
+Request Example
+---------------
+
+.. literalinclude:: samples/metering/metering-label-rule-delete-request-json-http.txt
+   :language: javascript
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
