@@ -1,9 +1,3 @@
-.. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
-
 ==========================
 Floating IPs (floatingips)
 ==========================
@@ -32,10 +26,15 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 -specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
-Error response codes:401,
+
+Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
 
 Response Parameters
 -------------------
@@ -48,6 +47,10 @@ Response Parameters
    - status: floatingip-status
    - tenant_id: project_id
    - project_id: project_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - revision_number: revision_number
+   - description: description
    - floating_network_id: floating_network_id
    - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -67,8 +70,8 @@ Create floating IP
 Creates a floating IP, and, if you specify port information, associates the floating IP with an internal port.
 
 To associate the floating IP with an internal port, specify the
-port UUID attribute in the request body. If you do not specify a
-port UUID in the request, you can issue a PUT request instead of a
+port ID attribute in the request body. If you do not specify a
+port ID in the request, you can issue a PUT request instead of a
 POST request.
 
 Default policy settings enable only administrative users to set
@@ -83,7 +86,7 @@ specify the ``fixed_ip_address`` attribute in the request body to
 associate a fixed IP address with the floating IP address.
 
 You can create floating IPs on only external networks. When you
-create a floating IP, you must specify the UUID of the network on
+create a floating IP, you must specify the ID of the network on
 which you want to create the floating IP. Alternatively, you can
 create a floating IP on a subnet in the external network, based on
 the costs and quality of that subnet.
@@ -91,10 +94,8 @@ the costs and quality of that subnet.
 You must configure an IP address with the internal OpenStack
 Networking port that is associated with the floating IP address.
 
-Error codes:
-
-- ``400`` The operation returns this error code for one of these
-  reasons:
+The operation returns the ``Bad Request (400)`` response code for one of
+reasons:
 
   - The network is not external, such as ``router:external=False``.
 
@@ -106,19 +107,19 @@ Error codes:
 
   - The fixed IP address is not valid.
 
-- ``401`` The operation is not authorized.
+If the port ID is not valid, this operation returns ``404`` response code.
 
-- ``404`` The port UUID is not valid.
-
-- ``409`` The operation returns this error code for one of these
-  reasons:
+The operation returns the ``Conflict (409)`` response code for one of
+reasons:
 
   - The requested floating IP address is already in use.
 
   - The internal OpenStack Networking port and fixed IP address are
     already associated with another floating IP.
 
-Error response codes:201,404,409,401,400,
+Normal response codes: 201
+
+Error response codes: 400, 401, 404, 409
 
 Request
 -------
@@ -132,6 +133,8 @@ Request
    - fixed_ip_address: floatingip-fixed_ip_address-request
    - floating_ip_address: floating_ip_address-request
    - port_id: floatingip-port_id-post-request
+   - subnet_id: floatingip-subnet_id
+   - description: description-request
 
 Request Example
 ---------------
@@ -147,7 +150,11 @@ Response Parameters
    - floatingip: floatingip
    - router_id: floatingip-router_id
    - status: floatingip-status
+   - description: description
    - tenant_id: project_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - revision_number: revision_number
    - project_id: project_id
    - floating_network_id: floating_network_id
    - fixed_ip_address: floatingip-fixed_ip_address
@@ -180,7 +187,8 @@ format. This example also filters the result by the
    Accept: application/json
 
 Normal response codes: 200
-Error response codes:404,403,401,
+
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -194,10 +202,14 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - floatingip: floatingip
    - router_id: floatingip-router_id
    - status: floatingip-status
-   - floatingip: floatingip
+   - description: description
    - tenant_id: project_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - revision_number: revision_number
    - project_id: project_id
    - floating_network_id: floating_network_id
    - fixed_ip_address: floatingip-fixed_ip_address
@@ -234,15 +246,16 @@ Depending on the request body that you submit, this request
 associates a port with or disassociates a port from a floating IP.
 
 Normal response codes: 200
-Error response codes:404,409,401,400,
+
+Error response codes: 400, 401, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - floatingip_id: floatingip-id-path
    - floatingip: floatingip
+   - floatingip_id: floatingip-id-path
    - port_id: floatingip-port_id-put-request
    - fixed_ip_address: floatingip-fixed_ip_address-request
 
@@ -267,6 +280,10 @@ Response Parameters
    - floating_ip_address: floating_ip_address
    - port_id: floatingip-port_id
    - id: floatingip-id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - revision_number: revision_number
+   - description: description
 
 Response Example
 ----------------
@@ -287,7 +304,9 @@ This example deletes a floating IP:
 
    DELETE /v2.0/floatingips/{floatingip_id} Accept: application/json
 
-Error response codes:404,204,401,
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
@@ -295,3 +314,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - floatingip_id: floatingip-id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.

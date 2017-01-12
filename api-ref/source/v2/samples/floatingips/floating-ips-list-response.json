@@ -2,6 +2,10 @@
     "floatingips": [
         {
             "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
+            "description": "for test",
+            "created_at": "2016-12-21T10:55:50Z",
+            "updated_at": "2016-12-21T10:55:53Z",
+            "revision_number": 1,
             "project_id": "4969c491a3c74ee4af974e6d800c62de",
             "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
             "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",
@@ -13,6 +17,10 @@
         },
         {
             "router_id": null,
+            "description": "for test",
+            "created_at": "2016-12-21T11:55:50Z",
+            "updated_at": "2016-12-21T11:55:53Z",
+            "revision_number": 2,
             "project_id": "4969c491a3c74ee4af974e6d800c62de",
             "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
             "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",

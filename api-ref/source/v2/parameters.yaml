@@ -1710,7 +1710,7 @@ floatingip-port_id-put-request:
     you must specify the ID of the internal port.
     To disassociate the floating IP, ``null`` should be specified.
   in: body
-  required: false
+  required: true
   type: string
 floatingip-router_id:
   description: |
@@ -1724,6 +1724,12 @@ floatingip-status:
     ``ACTIVE``, ``DOWN`` and ``ERROR``.
   in: body
   required: true
+  type: string
+floatingip-subnet_id:
+  description: |
+    The subnet ID on which you want to create the floating IP.
+  in: body
+  required: false
   type: string
 floatingips:
   description: |
