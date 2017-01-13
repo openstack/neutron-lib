@@ -1,0 +1,85 @@
+#    Licensed under the Apache License, Version 2.0 (the "License"); you may
+#    not use this file except in compliance with the License. You may obtain
+#    a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#    License for the specific language governing permissions and limitations
+#    under the License.
+
+import abc
+
+from neutron_lib.services import base
+from neutron_lib.tests import _base as test_base
+
+
+class _Worker(base._WorkerSupportServiceMixin):
+    pass
+
+
+class Test_WorkerSupportServiceMixin(test_base.BaseTestCase):
+
+    def setUp(self):
+        super(Test_WorkerSupportServiceMixin, self).setUp()
+        self.worker = _Worker()
+
+    def test_allocate_workers(self):
+        self.assertEqual([], self.worker.get_workers())
+
+    def test_add_worker(self):
+        workers = [object(), object()]
+        for w in workers:
+            self.worker.add_worker(w)
+
+        self.assertSequenceEqual(workers, self.worker.get_workers())
+
+    def test_add_workers(self):
+        workers = [object(), object(), object()]
+        self.worker.add_workers(workers)
+
+        self.assertSequenceEqual(workers, self.worker.get_workers())
+
+
+class Test_PluginInterface(test_base.BaseTestCase):
+
+    def test_issubclass_hook(self):
+        class A(object):
+            def f(self):
+                pass
+
+        class B(base._PluginInterface):
+            @abc.abstractmethod
+            def f(self):
+                pass
+
+        self.assertTrue(issubclass(A, B))
+
+    def test_issubclass_hook_class_without_abstract_methods(self):
+        class A(object):
+            def f(self):
+                pass
+
+        class B(base._PluginInterface):
+            def f(self):
+                pass
+
+        self.assertFalse(issubclass(A, B))
+
+    def test_issubclass_hook_not_all_methods_implemented(self):
+        class A(object):
+            def f(self):
+                pass
+
+        class B(base._PluginInterface):
+            @abc.abstractmethod
+            def f(self):
+                pass
+
+            @abc.abstractmethod
+            def g(self):
+                pass
+
+        self.assertFalse(issubclass(A, B))
