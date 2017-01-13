@@ -1,0 +1,4 @@
+---
+features:
+  - The Neutron ``Provider network`` extension API definition has been added as
+    ``neutron_lib.api.definitions.provider_net``.
