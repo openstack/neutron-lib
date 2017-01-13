@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 ===================================================================================================================================================================================================
 VPNaaS 2.0 (`UNMAINTAINED <http://lists.openstack.org/pipermail/openstack-dev/2016-November/107384.html>`_) (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-groups, ipsec-site-connections)
@@ -45,6 +41,60 @@ This extension introduces these resources:
   connection, including the peer CIDRs, MTU, authentication mode,
   peer address, DPD settings, and status.
 
+- ``endpoint-groups``. Defines one or more endpoints of a specific type,
+  and can be used to specify both local and peer endpoints for
+  IPSec Connections.
+
+List IKE policies
+=================
+
+.. rest_method::  GET /v2.0/vpn/ikepolicies
+
+Lists IKE policies.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 403, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - ikepolicies: ikepolicies
+   - name: name
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - auth_algorithm: auth_algorithm
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - phase1_negotiation_mode: phase1_negotiation_mode
+   - units: units
+   - lifetime: lifetime
+   - id: ikepolicy_id-body-response
+   - ike_version: ike_version
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/ikepolicies-list-response.json
+   :language: javascript
+
 Create IKE policy
 =================
 
@@ -56,7 +106,9 @@ The IKE policy is used for phases one and two negotiation of the
 VPN connection. You can specify both the authentication and
 encryption algorithms for connections.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 401, 400
 
 Request
 -------
@@ -64,11 +116,11 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - ikepolicy: ikepolicy
+   - name: name
    - description: description
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
-   - name: name
    - encryption_algorithm: encryption_algorithm
    - pfs: pfs
    - value: value
@@ -88,35 +140,45 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - ikepolicy: ikepolicy
    - ikepolicies: ikepolicies
+   - ikepolicy: ikepolicy
+   - name: name
    - description: description
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
-   - name: name
    - encryption_algorithm: encryption_algorithm
    - pfs: pfs
    - value: value
    - phase1_negotiation_mode: phase1_negotiation_mode
    - units: units
    - lifetime: lifetime
-   - id: id
+   - id: ikepolicy_id-body-response
    - ike_version: ike_version
 
-List IKE policies
-=================
+Response Example
+----------------
 
-.. rest_method::  GET /v2.0/vpn/ikepolicies
+.. literalinclude:: samples/vpn/ikepolicy-create-response.json
+   :language: javascript
 
-Lists IKE policies.
+Show IKE policy details
+=======================
+
+.. rest_method::  GET /v2.0/vpn/ikepolicies/{ikepolicy_id}
+
+Shows details for an IKE policy.
 
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 404, 403, 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - ikepolicy_id: ikepolicy_id-path
 
 Response Parameters
 -------------------
@@ -124,6 +186,69 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - ikepolicies: ikepolicies
+   - ikepolicy: ikepolicy
+   - name: name
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - auth_algorithm: auth_algorithm
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - phase1_negotiation_mode: phase1_negotiation_mode
+   - units: units
+   - lifetime: lifetime
+   - id: ikepolicy_id-body-response
+   - ike_version: ike_version
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/ikepolicy-show-response.json
+   :language: javascript
+
+Update IKE policy
+=================
+
+.. rest_method::  PUT /v2.0/vpn/ikepolicies/{ikepolicy_id}
+
+Updates policy settings in an IKE policy.
+
+Normal response codes: 200
+
+Error response codes: 404, 401, 400
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - ikepolicy_id: ikepolicy_id-path
+   - ikepolicy: ikepolicy
+   - description: description
+   - auth_algorithm: auth_algorithm
+   - name: name
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - phase1_negotiation_mode: phase1_negotiation_mode
+   - units: units
+   - lifetime: lifetime
+   - ike_version: ike_version
+
+Request Example
+---------------
+
+.. literalinclude:: samples/vpn/ikepolicy-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - ikepolicies: ikepolicies
+   - ikepolicy: ikepolicy
    - description: description
    - tenant_id: project_id
    - project_id: project_id
@@ -135,13 +260,344 @@ Response Parameters
    - phase1_negotiation_mode: phase1_negotiation_mode
    - units: units
    - lifetime: lifetime
-   - id: id
+   - id: ikepolicy_id-body-response
    - ike_version: ike_version
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/vpn/ikepolicies-list-response.json
+.. literalinclude:: samples/vpn/ikepolicy-update-response.json
+   :language: javascript
+
+Remove IKE policy
+=================
+
+.. rest_method::  DELETE /v2.0/vpn/ikepolicies/{ikepolicy_id}
+
+Removes an IKE policy.
+
+Normal response codes: 204
+
+Error response codes: 409, 404, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - ikepolicy_id: ikepolicy_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
+List IPSec policies
+===================
+
+.. rest_method::  GET /v2.0/vpn/ipsecpolicies
+
+Lists all IPSec policies.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 403, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicies: ipsecpolicies
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - auth_algorithm: auth_algorithm
+   - encapsulation_mode: encapsulation_mode
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - transform_protocol: transform_protocol
+   - units: units
+   - lifetime: lifetime
+   - id: ipsecpolicy_id-body-response
+   - name: name
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/ipsecpolicies-list-response.json
+   :language: javascript
+
+Create IPSec policy
+===================
+
+.. rest_method::  POST /v2.0/vpn/ipsecpolicies
+
+Creates an IP security (IPSec) policy.
+
+The IPsec policy specifies the authentication and encryption
+algorithms and encapsulation mode to use for the established VPN
+connection.
+
+Normal response codes: 201
+
+Error response codes: 401, 400
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicy: ipsecpolicy
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id 
+   - auth_algorithm: auth_algorithm
+   - encapsulation_mode: encapsulation_mode
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - transform_protocol: transform_protocol
+   - units: units
+   - lifetime: lifetime
+   - name: name
+
+Request Example
+---------------
+
+.. literalinclude:: samples/vpn/ipsecpolicy-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicies: ipsecpolicies
+   - ipsecpolicy: ipsecpolicy
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id 
+   - auth_algorithm: auth_algorithm
+   - encapsulation_mode: encapsulation_mode
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - transform_protocol: transform_protocol
+   - units: units
+   - lifetime: lifetime
+   - id: ipsecpolicy_id-body-response
+   - name: name
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/ipsecpolicy-create-response.json
+   :language: javascript
+
+Show IPSec policy
+=================
+
+.. rest_method::  GET /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
+
+Shows details for an IPSec policy.
+
+Normal response codes: 200
+
+Error response codes: 404, 403, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicy_id: ipsecpolicy_id-path
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicies: ipsecpolicies
+   - ipsecpolicy: ipsecpolicy
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id 
+   - auth_algorithm: auth_algorithm
+   - encapsulation_mode: encapsulation_mode
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - transform_protocol: transform_protocol
+   - units: units
+   - lifetime: lifetime
+   - id: ipsecpolicy_id-body-response
+   - name: name
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/ipsecpolicy-show-response.json
+   :language: javascript
+
+Update IPSec policy
+===================
+
+.. rest_method::  PUT /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
+
+Updates policy settings in an IPSec policy.
+
+Normal response codes: 200
+
+Error response codes: 404, 401, 400
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicy_id: ipsecpolicy_id-path
+   - ipsecpolicy: ipsecpolicy
+   - description: description
+   - transform_protocol: transform_protocol
+   - auth_algorithm: auth_algorithm
+   - encapsulation_mode: encapsulation_mode
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - units: units
+   - lifetime: lifetime
+   - name: name
+
+Request Example
+---------------
+
+.. literalinclude:: samples/vpn/ipsecpolicy-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicies: ipsecpolicies
+   - ipsecpolicy: ipsecpolicy
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - auth_algorithm: auth_algorithm
+   - encapsulation_mode: encapsulation_mode
+   - encryption_algorithm: encryption_algorithm
+   - pfs: pfs
+   - value: value
+   - transform_protocol: transform_protocol
+   - units: units
+   - lifetime: lifetime
+   - id: ipsecpolicy_id-body-response
+   - name: name
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/ipsecpolicy-update-response.json
+   :language: javascript
+
+Remove IPSec policy
+===================
+
+.. rest_method::  DELETE /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
+
+Removes an IPSec policy.
+
+Normal response codes: 204
+
+Error response codes: 409, 404, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - ipsecpolicy_id: ipsecpolicy_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
+List IPSec connections
+======================
+
+.. rest_method::  GET /v2.0/vpn/ipsec-site-connections
+
+Lists all IPSec connections.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. For information, see `Filtering and
+Column Selection <http://specs.openstack.org/openstack/neutron-
+specs/specs/api/networking_general_api_information.html#filtering-
+and-column-selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 403, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - auth_mode: auth_mode
+   - ikepolicy_id: ikepolicy_id-body-response
+   - vpnservice_id: vpnservice_id-body-response
+   - local_ep_group_id: local_ep_group_id
+   - peer_address: peer_address
+   - id: connection_id-body-response
+   - route_mode: route_mode
+   - ipsecpolicy_id: ipsecpolicy_id-body-response
+   - peer_id: peer_id
+   - status: ipsec_site_connection-status 
+   - psk: psk
+   - description: description
+   - initiator: initiator
+   - peer_cidrs: peer_cidrs
+   - name: name
+   - admin_state_up: admin_state_up
+   - tenant_id: project_id
+   - project_id: project_id
+   - interval: interval
+   - mtu: mtu
+   - peer_ep_group_id: peer_ep_group_id
+   - dpd: dpd
+   - timeout: ipsec_site_connection-timeout
+   - action: ipsec_site_connection-action
+   - local_id: local_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/ipsec-site-connections-list-response.json
    :language: javascript
 
 Create IPSec connection
@@ -151,21 +607,23 @@ Create IPSec connection
 
 Creates a site-to-site IPSec connection for a service.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 401, 400
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - ipsec_site_connection: ipsec_site_connection
    - auth_mode: auth_mode
-   - ikepolicy_id: ikepolicy_id
-   - vpnservice_id: vpnservice_id
+   - ikepolicy_id: ikepolicy_id-body-request
+   - vpnservice_id: vpnservice_id-body-request
    - local_ep_group_id: local_ep_group_id
    - peer_address: peer_address
-   - ipsec_site_connection: ipsec_site_connection
    - route_mode: route_mode
-   - ipsecpolicy_id: ipsecpolicy_id
+   - ipsecpolicy_id: ipsecpolicy_id-body-request
    - peer_id: peer_id
    - psk: psk
    - description: description
@@ -179,8 +637,8 @@ Request
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
    - dpd: dpd
-   - timeout: timeout
-   - action: action
+   - timeout: ipsec_site_connection-timeout
+   - action: ipsec_site_connection-action
    - local_id: local_id
 
 Request Example
@@ -194,60 +652,15 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - auth_mode: auth_mode
-   - ikepolicy_id: ikepolicy_id
-   - vpnservice_id: vpnservice_id
-   - local_ep_group_id: local_ep_group_id
-   - peer_address: peer_address
-   - id: id
    - ipsec_site_connection: ipsec_site_connection
-   - route_mode: route_mode
-   - ipsecpolicy_id: ipsecpolicy_id
-   - peer_id: peer_id
-   - status: ipsec_site_connection-status
-   - psk: psk
-   - description: description
-   - initiator: initiator
-   - peer_cidrs: peer_cidrs
-   - name: name
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - interval: interval
-   - mtu: mtu
-   - peer_ep_group_id: peer_ep_group_id
-   - dpd: dpd
-   - timeout: timeout
-   - action: action
-   - local_id: local_id
-
-List IPSec connections
-======================
-
-.. rest_method::  GET /v2.0/vpn/ipsec-site-connections
-
-Lists all IPSec connections.
-
-Normal response codes: 200
-
-Error response codes: 403,401
-
-Request
--------
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
    - auth_mode: auth_mode
-   - ikepolicy_id: ikepolicy_id
-   - vpnservice_id: vpnservice_id
+   - ikepolicy_id: ikepolicy_id-body-response
+   - vpnservice_id: vpnservice_id-body-response
    - local_ep_group_id: local_ep_group_id
    - peer_address: peer_address
-   - id: id
+   - id: connection_id-body-response
    - route_mode: route_mode
-   - ipsecpolicy_id: ipsecpolicy_id
+   - ipsecpolicy_id: ipsecpolicy_id-body-response
    - peer_id: peer_id
    - status: ipsec_site_connection-status
    - psk: psk
@@ -262,14 +675,14 @@ Response Parameters
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
    - dpd: dpd
-   - timeout: timeout
-   - action: action
+   - timeout: ipsec_site_connection-timeout
+   - action: ipsec_site_connection-action
    - local_id: local_id
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/vpn/ipsec-site-connections-list-response.json
+.. literalinclude:: samples/vpn/ipsec-site-connection-create-response.json
    :language: javascript
 
 Show IPSec connection
@@ -281,14 +694,14 @@ Shows details for an IPSec connection.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401
+Error response codes: 404, 403, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - connection_id: connection_id
+   - connection_id: connection_id-path
 
 Response Parameters
 -------------------
@@ -296,16 +709,16 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - auth_mode: auth_mode
-   - ikepolicy_id: ikepolicy_id
-   - vpnservice_id: vpnservice_id
+   - ikepolicy_id: ikepolicy_id-body-response
+   - vpnservice_id: vpnservice_id-body-response
    - local_ep_group_id: local_ep_group_id
    - peer_address: peer_address
-   - id: id
+   - id: connection_id-body-response
    - ipsec_site_connection: ipsec_site_connection
    - route_mode: route_mode
-   - ipsecpolicy_id: ipsecpolicy_id
+   - ipsecpolicy_id: ipsecpolicy_id-body-response
    - peer_id: peer_id
-   - status: ipsec_site_connection-status
+   - status: ipsec_site_connection-status 
    - psk: psk
    - description: description
    - initiator: initiator
@@ -318,8 +731,8 @@ Response Parameters
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
    - dpd: dpd
-   - timeout: timeout
-   - action: action
+   - timeout: ipsec_site_connection-timeout
+   - action: ipsec_site_connection-action
    - local_id: local_id
 
 Response Example
@@ -337,17 +750,18 @@ Updates connection settings for an IPSec connection.
 
 Normal response codes: 200
 
-Error response codes: 404,401,400
+Error response codes: 404, 401, 400
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - connection_id: connection_id-path
+   - ipsec_site_connection: ipsec_site_connection
    - psk: psk
    - initiator: initiator
    - description: description
-   - ipsec_site_connection: ipsec_site_connection
    - admin_state_up: admin_state_up
    - interval: interval
    - peer_cidrs: peer_cidrs
@@ -355,12 +769,11 @@ Request
    - peer_ep_group_id: peer_ep_group_id
    - local_ep_group_id: local_ep_group_id
    - dpd: dpd
-   - timeout: timeout
-   - action: action
+   - timeout: ipsec_site_connection-timeout
+   - action: ipsec_site_connection-action
    - peer_address: peer_address
    - peer_id: peer_id
    - name: name
-   - connection_id: connection_id
    - local_id: local_id
 
 Request Example
@@ -375,14 +788,14 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - auth_mode: auth_mode
-   - ikepolicy_id: ikepolicy_id
-   - vpnservice_id: vpnservice_id
+   - ikepolicy_id: ikepolicy_id-body-response
+   - vpnservice_id: vpnservice_id-body-response
    - local_ep_group_id: local_ep_group_id
    - peer_address: peer_address
-   - id: id
+   - id: connection_id-body-response
    - ipsec_site_connection: ipsec_site_connection
    - route_mode: route_mode
-   - ipsecpolicy_id: ipsecpolicy_id
+   - ipsecpolicy_id: ipsecpolicy_id-body-response
    - peer_id: peer_id
    - status: ipsec_site_connection-status
    - psk: psk
@@ -397,8 +810,8 @@ Response Parameters
    - mtu: mtu
    - peer_ep_group_id: peer_ep_group_id
    - dpd: dpd
-   - timeout: timeout
-   - action: action
+   - timeout: ipsec_site_connection-timeout
+   - action: ipsec_site_connection-action
    - local_id: local_id
 
 Response Example
@@ -414,14 +827,64 @@ Remove IPSec connection
 
 Removes an IPSec connection.
 
-Error response codes: 409,404,204,401
+Normal response codes: 204
+
+Error response codes: 409, 404, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - connection_id: connection_id
+   - connection_id: connection_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
+List VPN endpoint groups
+========================
+
+.. rest_method::  GET /v2.0/vpn/endpoint-groups
+
+Lists VPN endpoint groups.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 403, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - endpoints: endpoints
+   - name: name
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id 
+   - type: type
+   - id: endpoint_group_id-body-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/vpn-endpoint-groups-list-response.json
+   :language: javascript
 
 Create VPN endpoint group
 =========================
@@ -433,7 +896,9 @@ Creates a VPN endpoint group.
 The endpoint group contains one or more endpoints of a specific
 type that you can use to create a VPN connections.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 401, 400
 
 Request
 -------
@@ -458,46 +923,124 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - endpoints: endpoints
    - description: description
    - tenant_id: project_id
    - project_id: project_id
-   - endpoints: endpoints
    - type: type
-   - id: id
+   - id: endpoint_group_id-body-response
    - name: name
 
-List VPN endpoint groups
-========================
+Response Example
+----------------
 
-.. rest_method::  GET /v2.0/vpn/endpoint-groups
+.. literalinclude:: samples/vpn/vpn-endpoint-group-create-response.json
+   :language: javascript
 
-Lists VPN endpoint groups.
+Show VPN endpoint group
+=======================
+
+.. rest_method::  GET /v2.0/vpn/endpoint-groups/{endpoint_group_id}
+
+Shows details for a VPN endpoint group.
 
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 404, 403, 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - endpoint_group_id: endpoint_group_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - endpoints: endpoints
    - description: description
    - tenant_id: project_id
    - project_id: project_id
-   - endpoints: endpoints
    - type: type
-   - id: id
+   - id: endpoint_group_id-body-response
    - name: name
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/vpn/vpn-endpoint-groups-list-response.json
+.. literalinclude:: samples/vpn/vpn-endpoint-group-show-response.json
    :language: javascript
+
+Update VPN endpoint group
+=========================
+
+.. rest_method::  PUT /v2.0/vpn/endpoint-groups/{endpoint_group_id}
+
+Updates settings for a VPN endpoint group.
+
+Normal response codes: 200
+
+Error response codes: 404, 401, 400
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - description: description
+   - name: name
+   - endpoint_group_id: endpoint_group_id-path
+
+Request Example
+---------------
+
+.. literalinclude:: samples/vpn/vpn-endpoint-group-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - endpoints: endpoints
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - type: type
+   - id: endpoint_group_id-body-response
+   - name: name
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/vpn-endpoint-group-update-response.json
+   :language: javascript
+
+Remove VPN endpoint group
+=========================
+
+.. rest_method::  DELETE /v2.0/vpn/endpoint-groups/{endpoint_group_id}
+
+Removes a VPN endpoint group.
+
+Normal response codes: 204
+
+Error response codes: 409, 404, 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - endpoint_group_id: endpoint_group_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 List VPN services
 =================
@@ -508,20 +1051,31 @@ Lists all VPN services.
 
 The list might be empty.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 403, 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - vpnservices: vpnservices
    - router_id: router_id
-   - status: vpnservice-status
+   - status: vpnservice-status 
    - name: name
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
@@ -529,8 +1083,7 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - external_v4_ip: external_v4_ip
-   - vpnservices: vpnservices
-   - id: id
+   - id: vpnservice_id-body-response
    - description: description
 
 Response Example
@@ -549,20 +1102,22 @@ Creates a VPN service.
 The service is associated with a router. After you create the
 service, it can contain multiple VPN connections.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 401, 400
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - vpnservice: vpnservice
    - router_id: router_id
    - description: description
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
    - tenant_id: project_id
    - project_id: project_id
-   - vpnservice: vpnservice
    - name: name
 
 Request Example
@@ -576,6 +1131,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - vpnservice: vpnservice
    - router_id: router_id
    - status: vpnservice-status
    - name: name
@@ -585,9 +1141,14 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - external_v4_ip: external_v4_ip
-   - vpnservice: vpnservice
-   - id: id
+   - id: vpnservice_id-body-response
    - description: description
+
+Response Example
+----------------
+
+.. literalinclude:: samples/vpn/vpnservice-create-response.json
+   :language: javascript
 
 Show VPN service details
 ========================
@@ -596,26 +1157,27 @@ Show VPN service details
 
 Shows details for a VPN service.
 
-If the user does not have administrative role and the VPN service
-object does not belong to the user's project, the
+If the user is not an administrative user and the VPN service
+object does not belong to the tenant account for the user, the
 operation returns the ``Forbidden (403)`` response code.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401
+Error response codes: 404, 403, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - service_id: service_id
+   - service_id: vpnservice_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - vpnservice: vpnservice
    - router_id: router_id
    - status: vpnservice-status
    - name: name
@@ -625,8 +1187,7 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - external_v4_ip: external_v4_ip
-   - vpnservice: vpnservice
-   - id: id
+   - id: vpnservice_id-body-response
    - description: description
 
 Response Example
@@ -647,7 +1208,7 @@ service with a ``PENDING_*`` status.
 
 Normal response codes: 200
 
-Error response codes: 404,401,400
+Error response codes: 404, 401, 400
 
 Request
 -------
@@ -658,7 +1219,7 @@ Request
    - description: description
    - name: name
    - admin_state_up: admin_state_up
-   - service_id: service_id
+   - service_id: vpnservice_id-path
 
 Request Example
 ---------------
@@ -671,6 +1232,7 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - vpnservice: vpnservice
    - router_id: router_id
    - status: vpnservice-status
    - name: name
@@ -680,8 +1242,7 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - external_v4_ip: external_v4_ip
-   - vpnservice: vpnservice
-   - id: id
+   - id: vpnservice_id-body-response
    - description: description
 
 Response Example
@@ -699,455 +1260,18 @@ Removes a VPN service.
 
 If the service has connections, the request is rejected.
 
-Error response codes: 409,404,204,401
+Normal response codes: 204
+
+Error response codes: 409, 404, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - service_id: service_id
+   - service_id: vpnservice_id-path
 
-Show IKE policy details
-=======================
+Response
+--------
 
-.. rest_method::  GET /v2.0/vpn/ikepolicies/{ikepolicy_id}
-
-Shows details for an IKE policy.
-
-Normal response codes: 200
-
-Error response codes: 404,403,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - ikepolicy_id: ikepolicy_id
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - ikepolicy: ikepolicy
-   - ikepolicies: ikepolicies
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - auth_algorithm: auth_algorithm
-   - name: name
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - phase1_negotiation_mode: phase1_negotiation_mode
-   - units: units
-   - lifetime: lifetime
-   - id: id
-   - ike_version: ike_version
-
-Response Example
-----------------
-
-.. literalinclude:: samples/vpn/ikepolicy-show-response.json
-   :language: javascript
-
-Update IKE policy
-=================
-
-.. rest_method::  PUT /v2.0/vpn/ikepolicies/{ikepolicy_id}
-
-Updates policy settings in an IKE policy.
-
-Normal response codes: 200
-
-Error response codes: 404,401,400
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - ikepolicy: ikepolicy
-   - description: description
-   - auth_algorithm: auth_algorithm
-   - name: name
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - phase1_negotiation_mode: phase1_negotiation_mode
-   - units: units
-   - lifetime: lifetime
-   - ike_version: ike_version
-   - ikepolicy_id: ikepolicy_id
-
-Request Example
----------------
-
-.. literalinclude:: samples/vpn/ikepolicy-update-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - ikepolicy: ikepolicy
-   - ikepolicies: ikepolicies
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - auth_algorithm: auth_algorithm
-   - name: name
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - phase1_negotiation_mode: phase1_negotiation_mode
-   - units: units
-   - lifetime: lifetime
-   - id: id
-   - ike_version: ike_version
-
-Response Example
-----------------
-
-.. literalinclude:: samples/vpn/ikepolicy-update-response.json
-   :language: javascript
-
-Remove IKE policy
-=================
-
-.. rest_method::  DELETE /v2.0/vpn/ikepolicies/{ikepolicy_id}
-
-Removes an IKE policy.
-
-Error response codes: 409,404,204,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - ikepolicy_id: ikepolicy_id
-
-Show IPSec policy
-=================
-
-.. rest_method::  GET /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
-
-Shows details for an IPSec policy.
-
-Normal response codes: 200
-
-Error response codes: 404,403,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - ipsecpolicy_id: ipsecpolicy_id
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - ipsecpolicies: ipsecpolicies
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - ipsecpolicy: ipsecpolicy
-   - auth_algorithm: auth_algorithm
-   - encapsulation_mode: encapsulation_mode
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - transform_protocol: transform_protocol
-   - units: units
-   - lifetime: lifetime
-   - id: id
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/vpn/ipsecpolicy-show-response.json
-   :language: javascript
-
-Update IPSec policy
-===================
-
-.. rest_method::  PUT /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
-
-Updates policy settings in an IPSec policy.
-
-Normal response codes: 200
-
-Error response codes: 404,401,400
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - description: description
-   - transform_protocol: transform_protocol
-   - ipsecpolicy: ipsecpolicy
-   - auth_algorithm: auth_algorithm
-   - encapsulation_mode: encapsulation_mode
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - units: units
-   - lifetime: lifetime
-   - name: name
-   - ipsecpolicy_id: ipsecpolicy_id
-
-Request Example
----------------
-
-.. literalinclude:: samples/vpn/ipsecpolicy-update-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - ipsecpolicies: ipsecpolicies
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - ipsecpolicy: ipsecpolicy
-   - auth_algorithm: auth_algorithm
-   - encapsulation_mode: encapsulation_mode
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - transform_protocol: transform_protocol
-   - units: units
-   - lifetime: lifetime
-   - id: id
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/vpn/ipsecpolicy-update-response.json
-   :language: javascript
-
-Remove IPSec policy
-===================
-
-.. rest_method::  DELETE /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
-
-Removes an IPSec policy.
-
-Error response codes: 409,404,204,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - ipsecpolicy_id: ipsecpolicy_id
-
-Show VPN endpoint group
-=======================
-
-.. rest_method::  GET /v2.0/vpn/endpoint-groups/{endpoint_group_id}
-
-Shows details for a VPN endpoint group.
-
-Normal response codes: 200
-
-Error response codes: 404,403,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - endpoint_group_id: endpoint_group_id
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - endpoints: endpoints
-   - type: type
-   - id: id
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/vpn/vpn-endpoint-group-show-response.json
-   :language: javascript
-
-Update VPN endpoint group
-=========================
-
-.. rest_method::  PUT /v2.0/vpn/endpoint-groups/{endpoint_group_id}
-
-Updates settings for a VPN endpoint group.
-
-Normal response codes: 200
-
-Error response codes: 404,401,400
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - description: description
-   - name: name
-   - endpoint_group_id: endpoint_group_id
-
-Request Example
----------------
-
-.. literalinclude:: samples/vpn/vpn-endpoint-group-update-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - endpoints: endpoints
-   - type: type
-   - id: id
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/vpn/vpn-endpoint-group-update-response.json
-   :language: javascript
-
-Remove VPN endpoint group
-=========================
-
-.. rest_method::  DELETE /v2.0/vpn/endpoint-groups/{endpoint_group_id}
-
-Removes a VPN endpoint group.
-
-Error response codes: 409,404,204,401
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - endpoint_group_id: endpoint_group_id
-
-Create IPSec policy
-===================
-
-.. rest_method::  POST /v2.0/vpn/ipsecpolicies
-
-Creates an IP security (IPSec) policy.
-
-The IPsec policy specifies the authentication and encryption
-algorithms and encapsulation mode to use for the established VPN
-connection.
-
-Error response codes: 201,401,400
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - ipsecpolicy: ipsecpolicy
-   - auth_algorithm: auth_algorithm
-   - encapsulation_mode: encapsulation_mode
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - transform_protocol: transform_protocol
-   - units: units
-   - lifetime: lifetime
-   - name: name
-
-Request Example
----------------
-
-.. literalinclude:: samples/vpn/ipsecpolicy-create-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - ipsecpolicies: ipsecpolicies
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - ipsecpolicy: ipsecpolicy
-   - auth_algorithm: auth_algorithm
-   - encapsulation_mode: encapsulation_mode
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - transform_protocol: transform_protocol
-   - units: units
-   - lifetime: lifetime
-   - id: id
-   - name: name
-
-List IPSec policies
-===================
-
-.. rest_method::  GET /v2.0/vpn/ipsecpolicies
-
-Lists all IPSec policies.
-
-Normal response codes: 200
-
-Error response codes: 403,401
-
-Request
--------
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - ipsecpolicies: ipsecpolicies
-   - description: description
-   - tenant_id: project_id
-   - project_id: project_id
-   - auth_algorithm: auth_algorithm
-   - encapsulation_mode: encapsulation_mode
-   - encryption_algorithm: encryption_algorithm
-   - pfs: pfs
-   - value: value
-   - transform_protocol: transform_protocol
-   - units: units
-   - lifetime: lifetime
-   - id: id
-   - name: name
-
-Response Example
-----------------
-
-.. literalinclude:: samples/vpn/ipsecpolicies-list-response.json
-   :language: javascript
-
+There is no body content for the response of a successful DELETE request.
