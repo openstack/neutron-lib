@@ -14,24 +14,9 @@ from oslo_config import cfg
 from oslo_policy import policy
 
 
-_ENFORCER = None
+_ROLE_ENFORCER = None
 _ADMIN_CTX_POLICY = 'context_is_admin'
 _ADVSVC_CTX_POLICY = 'context_is_advsvc'
-
-
-def reset():
-    """Reset the global enforcer.
-
-    Resets the global enforcer thereby deleting any rules and state associated
-    with it. Subsequent calls to this modules API will trigger a
-    re-initialization of the global enforcer as necessary.
-
-    :returns: None.
-    """
-    global _ENFORCER
-    if _ENFORCER:
-        _ENFORCER.clear()
-        _ENFORCER = None
 
 
 def init(conf=cfg.CONF, policy_file=None):
@@ -47,32 +32,19 @@ def init(conf=cfg.CONF, policy_file=None):
     :returns: None.
     """
 
-    global _ENFORCER
-    if not _ENFORCER:
-        _ENFORCER = policy.Enforcer(conf, policy_file=policy_file)
-        _ENFORCER.load_rules(True)
-
-
-def refresh(policy_file=None):
-    """Reset the global enforcer and re-initialize it.
-
-    Reset the global policy and re-initialize it optionally using the said
-    policy file.
-
-    :param policy_file: The policy file to initialize the global enforcer with.
-    :returns: None.
-    """
-    reset()
-    init(policy_file=policy_file)
+    global _ROLE_ENFORCER
+    if not _ROLE_ENFORCER:
+        _ROLE_ENFORCER = policy.Enforcer(conf, policy_file=policy_file)
+        _ROLE_ENFORCER.load_rules(True)
 
 
 def _check_rule(context, rule):
     init()
     # the target is user-self
     credentials = context.to_policy_values()
-    if rule not in _ENFORCER.rules:
+    if rule not in _ROLE_ENFORCER.rules:
         return False
-    return _ENFORCER.enforce(rule, credentials, credentials)
+    return _ROLE_ENFORCER.enforce(rule, credentials, credentials)
 
 
 def check_is_admin(context):

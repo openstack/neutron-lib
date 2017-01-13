@@ -13,8 +13,8 @@
 
 import mock
 
+from neutron_lib import _policy as policy
 from neutron_lib import context
-from neutron_lib import policy
 
 from neutron_lib.tests import _base as base
 
@@ -22,17 +22,13 @@ from neutron_lib.tests import _base as base
 class TestPolicyEnforcer(base.BaseTestCase):
     def setUp(self):
         super(TestPolicyEnforcer, self).setUp()
-        # Isolate one _ENFORCER per test case
-        mock.patch.object(policy, '_ENFORCER', None).start()
+        # Isolate one _ROLE_ENFORCER per test case
+        mock.patch.object(policy, '_ROLE_ENFORCER', None).start()
 
-    def test_init_reset_refresh(self):
-        self.assertIsNone(policy._ENFORCER)
+    def test_init_reset(self):
+        self.assertIsNone(policy._ROLE_ENFORCER)
         policy.init()
-        self.assertIsNotNone(policy._ENFORCER)
-        policy.reset()
-        self.assertIsNone(policy._ENFORCER)
-        policy.refresh()
-        self.assertIsNotNone(policy._ENFORCER)
+        self.assertIsNotNone(policy._ROLE_ENFORCER)
 
     def test_check_user_is_not_admin(self):
         ctx = context.Context('me', 'my_project')

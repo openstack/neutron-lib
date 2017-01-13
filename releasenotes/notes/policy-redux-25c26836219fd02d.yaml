@@ -1,0 +1,7 @@
+---
+deprecations:
+  - |
+    ``policy.refresh()`` and ``policy.reset()`` have been removed. The library
+    policy module is not meant for public consumption, and it should be
+    considered in practice a private component of the library. If you use it,
+    you will do so at your own risk, as it has been marked as a private module.
