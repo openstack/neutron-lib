@@ -1,25 +1,29 @@
 {
     "port": {
-        "status": "DOWN",
-        "name": "private-port",
-        "allowed_address_pairs": [],
         "admin_state_up": true,
-        "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7",
-        "project_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
-        "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
+        "allowed_address_pairs": [],
+        "created_at": "2016-03-08T20:19:41",
+        "description": "",
+        "device_id": "",
         "device_owner": "",
-        "mac_address": "fa:16:3e:c9:cb:f0",
+        "extra_dhcp_opts": [],
         "fixed_ips": [
             {
-                "subnet_id": "a0304c3a-4f08-4c43-88af-d796509c97d2",
-                "ip_address": "10.0.0.2"
+                "ip_address": "10.0.0.2",
+                "subnet_id": "a0304c3a-4f08-4c43-88af-d796509c97d2"
             }
         ],
         "id": "65c0ee9f-d634-4522-8954-51021b570b0d",
+        "mac_address": "fa:16:3e:c9:cb:f0",
+        "name": "private-port",
+        "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7",
+        "port_security_enabled": true,
+        "project_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
         "security_groups": [
             "f0ac4394-7e4a-4409-9701-ba8be283dbc3"
         ],
-        "device_id": "",
-        "description": ""
+        "status": "DOWN",
+        "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
+        "updated_at": "2016-03-08T20:19:41"
     }
 }

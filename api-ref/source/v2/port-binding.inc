@@ -24,7 +24,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - port_id: port_id
+   - port_id: port_id-path
 
 Response Example
 ----------------
@@ -48,7 +48,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - port_id: port_id
+   - port_id: port_id-path
 
 Request Example
 ---------------
@@ -76,7 +76,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - port_id: port_id
+   - port_id: port_id-path
 
 List ports (port binding)
 =========================
