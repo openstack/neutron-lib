@@ -1,8 +1,3 @@
-.. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 ====================
 Tag extension (tags)
@@ -24,16 +19,16 @@ Replaces all tags on the resource.
 
 Normal response codes: 200
 
-Error response codes: 404,401,400,503,500
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - tags: tags
    - resource_type: resource_type
    - resource_id: resource_id
+   - tags: tags
 
 Request Example
 ---------------
@@ -61,7 +56,9 @@ Remove all tags
 
 Removes all tags on the resource.
 
-Error response codes: 500,404,204,401,503
+Normal response codes: 204 
+
+Error response codes: 401, 404
 
 Request
 -------
@@ -70,6 +67,11 @@ Request
 
    - resource_type: resource_type
    - resource_id: resource_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 Confirm a tag
 =============
@@ -78,16 +80,23 @@ Confirm a tag
 
 Confirms a given tag is set on the resource.
 
-Error response codes: 500,404,204,401,503
+Normal response codes: 204 
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - tag: tag
    - resource_type: resource_type
    - resource_id: resource_id
+   - tag: tag
+
+Response
+--------
+
+There is no body content for the response of a successful GET request.
 
 Add a tag
 =========
@@ -96,16 +105,55 @@ Add a tag
 
 Adds a tag on the resource.
 
-Error response codes: 201,404,500,401,503
+Normal response codes: 201 
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - tag: tag
    - resource_type: resource_type
    - resource_id: resource_id
+   - tag: tag
+
+Response
+--------
+
+There is no body content for the response of a successful PUT request.
+
+Obtain Tag List
+===============
+
+.. rest_method::  GET /v2.0/{resource_type}/{resource_id}/tags
+
+Obtains the tags for a resource.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - resource_type: resource_type
+   - resource_id: resource_id
+
+Response
+--------
+
+.. rest_parameters:: parameters.yaml
+
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/tag/tag-obtain-response.json
+   :language: javascript
 
 Remove a tag
 ============
@@ -114,14 +162,21 @@ Remove a tag
 
 Removes a tag on the resource.
 
-Error response codes: 500,404,204,401,503
+Normal response codes: 204 
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - tag: tag
    - resource_type: resource_type
    - resource_id: resource_id
+   - tag: tag
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
