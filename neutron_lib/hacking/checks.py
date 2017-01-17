@@ -37,6 +37,11 @@ namespace_imports_from_dot = re.compile(r"from[\s]+([\w]+)[.]")
 namespace_imports_from_root = re.compile(r"from[\s]+([\w]+)[\s]+import[\s]+")
 contextlib_nested = re.compile(r"^\s*with (contextlib\.)?nested\(")
 
+assert_equal_none_re = re.compile(
+    r"assertEqual\(.*?,\s+None\)|assertEqual\(None,")
+assert_is_none_re = re.compile(
+    r"assertIs(Not)?\(.*,\s+None\)|assertIs(Not)?\(None,")
+
 
 def use_jsonutils(logical_line, filename):
     """N521 - jsonutils must be used instead of json.
@@ -223,6 +228,19 @@ def check_no_eventlet_imports(logical_line):
         yield logical_line.index('eventlet'), msg
 
 
+def assert_equal_none(logical_line):
+    """N536 - Use assertIsNone."""
+    if assert_equal_none_re.search(logical_line):
+        msg = ("N536: Use assertIsNone rather than assertEqual "
+               "to check for None values")
+        yield logical_line.index('assert'), msg
+
+    if assert_is_none_re.search(logical_line):
+        msg = ("N536: Use assertIsNone or assertIsNotNone rather than "
+               "assertIs or assertIsNone to check for None values.")
+        yield logical_line.index('assert'), msg
+
+
 def factory(register):
     """Hacking check factory for neutron-lib adopter compliant checks.
 
@@ -255,6 +273,7 @@ def incubating_factory(register):
     :param register: The function to register the check functions with.
     :returns: None.
     """
+    register(assert_equal_none)
 
 
 def _neutron_lib_factory(register):

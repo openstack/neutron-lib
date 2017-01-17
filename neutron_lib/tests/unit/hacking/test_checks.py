@@ -225,3 +225,25 @@ class HackingTestCase(base.BaseTestCase):
         self.assertLinePasses(f, 'print("eventlet not here")')
         self.assertLinePasses(f, 'print("eventlet.timeout")')
         self.assertLinePasses(f, "from mymod.timeout import (eventlet, X)")
+
+    def test_assert_equal_none(self):
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual(A, None)"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual(A, None)  # Comment"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual(None, A)"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual(None, A)  # Comment"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot(A, None)"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot(A, None)  # Comment"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot(None, A)"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot(None, A)  # Comment"))), 1)
+        self.assertEqual(
+            len(list(checks.assert_equal_none("self.assertIsNone(A)"))), 0)
+        self.assertEqual(
+            len(list(checks.assert_equal_none("self.assertIsNotNone(A)"))), 0)
