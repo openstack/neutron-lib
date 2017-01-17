@@ -179,6 +179,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
 
 # The action map.
 ACTION_MAP = {
+    'firewall_policy': {'insert_rule': 'PUT', 'remove_rule': 'PUT'},
 }
 
 # The list of required extensions.
