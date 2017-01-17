@@ -54,21 +54,19 @@ To adopt neutron-lib's hacking checks:
    In the example above, adopters should also add ``H904`` to the
    ``enable-extensions`` in their ``tox.ini``.
 
-#. Actively adopt neutron-lib hacking checks that are incubating and will
-   soon become adopter checks by manually running the checks on your project.
-   This can be done by modifying your ``tox.ini`` to use the
-   ``incubating_factory`` in neutron-lib::
+#. Actively adopt neutron-lib hacking checks by running and monitoring
+   the neutron-lib periodic job (as per `stadium guidelines
+   <https://review.openstack.org/389397/>`_ and
+   watching for announcements. Announcements regarding neutron-lib adopter
+   hacking checks will be communicated via openstack-dev email list
+   and `neutron meetings <https://wiki.openstack.org/wiki/Network/Meetings>`_.
 
-       [hacking]
-       local-check-factory = neutron_lib.hacking.checks.incubating_factory
+   Under certain circumstances, adopters may need to ignore specific
+   neutron-lib hacking checks temporarily. This can be done using the
+   ``ignore`` property in the ``[flake8]`` section of your ``tox.ini``.
+   For example, to ignore the hacking check ``N536`` your tox.ini might
+   have::
 
-   And then manually running pep8 on your project::
-
-       tox -e pep8
-
-   New adopter hacking checks in neutron-lib will be registered via the
-   ``incubating_factory`` while sub-projects are adopting the new check(s)
-   and then be moved out of incubating and into ``factory``. Announcements
-   regarding neutron-lib adopter hacking checks will be communicated via
-   openstack-dev email list and `neutron meetings
-   <https://wiki.openstack.org/wiki/Network/Meetings>`_.
+      [flake8]
+      # temporarily ignore N536 while fixing failing checks
+      ignore = N536

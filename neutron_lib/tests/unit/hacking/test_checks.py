@@ -40,20 +40,9 @@ class HackingTestCase(base.BaseTestCase):
     def test_factory(self):
         self.assertTrue(len(self._get_factory_checks(checks.factory)) > 0)
 
-    def test_incubating_factory(self):
-        incubating_checks = self._get_factory_checks(
-            checks.incubating_factory)
-
-        if incubating_checks:
-            adopter_checks = self._get_factory_checks(checks.factory)
-            for incubating_check in incubating_checks:
-                self.assertFalse(incubating_check in adopter_checks)
-
     def test_neutron_lib_factory(self):
         lib_checks = self._get_factory_checks(checks._neutron_lib_factory)
         other_checks = self._get_factory_checks(checks.factory)
-        other_checks.extend(self._get_factory_checks(
-            checks.incubating_factory))
 
         self.assertTrue(len(lib_checks) > 0)
 
