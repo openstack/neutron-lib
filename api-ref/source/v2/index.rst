@@ -16,10 +16,7 @@ General API Overview
 ##################
 Layer 2 Networking
 ##################
-.. include:: network-provider.inc
 .. include:: networks.inc
-.. include:: networks-multi-provider-ext.inc
-.. include:: networks-vlan-transparency-ext.inc
 .. include:: port-binding.inc
 .. include:: ports.inc
 .. include:: segments.inc

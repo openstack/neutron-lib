@@ -121,17 +121,11 @@ metering_label_rule-id-path:
   in: path
   required: true
   type: string
-network_id_1:
+network_id-path:
   description: |
     The ID of the network.
   in: path
-  required: false
-  type: string
-network_id_3:
-  description: |
-    The UUID of the network.
-  in: path
-  required: false
+  required: true
   type: string
 policy_id:
   description: |
@@ -396,24 +390,10 @@ admin_state_up_17:
   in: body
   required: true
   type: boolean
-admin_state_up_18:
-  description: |
-    The administrative state of the network, which is
-    up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
 admin_state_up_19:
   description: |
     The administrative state of the pool, which is up
     (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_2:
-  description: |
-    The administrative state of the network, which is
-    up (``true``) or down (``false``).
   in: body
   required: true
   type: boolean
@@ -607,12 +587,6 @@ bandwidth_limit_rules:
   in: body
   required: true
   type: array
-changed_at:
-  description: |
-    Time at which the network has been created.
-  in: body
-  required: true
-  type: string
 cidr:
   description: |
     The CIDR of the subnet.
@@ -2875,25 +2849,13 @@ min_prefixlen_1:
   type: integer
 mtu:
   description: |
-    The MTU of a network resource.
+    The maximum transmission unit (MTU) value to
+    address fragmentation. Minimum value is 68 for IPv4, and 1280 for
+    IPv6.
   in: body
   required: true
   type: integer
-mtu_1:
-  description: |
-    The MTU of a network resource.
-  in: body
-  required: true
-  type: integer
-mtu_2:
-  description: |
-    The maximum transmission unit (MTU) to address
-    fragmentation. The minimum value for IPv4 is 68. The minimum value
-    for IPv6 is 1280.
-  in: body
-  required: true
-  type: integer
-mtu_3:
+mtu-request:
   description: |
     The maximum transmission unit (MTU) value to
     address fragmentation. Minimum value is 68 for IPv4, and 1280 for
@@ -2923,12 +2885,6 @@ name-segment:
 name_1:
   description: |
     A symbolic name for the port.
-  in: body
-  required: false
-  type: string
-name_10:
-  description: |
-    The network name.
   in: body
   required: false
   type: string
@@ -3208,27 +3164,97 @@ network:
   in: body
   required: true
   type: object
+network-admin_state_up:
+  description: |
+    The administrative state of the network, which is
+    up (``true``) or down (``false``).
+  in: body
+  required: true
+  type: boolean
+network-admin_state_up-request:
+  description: |
+    The administrative state of the network, which is
+    up (``true``) or down (``false``).
+  in: body
+  required: false
+  type: boolean
+network-count:
+  description: |
+    The number of networks allowed for each tenant.
+  in: body
+  required: true
+  type: integer
+network-count-request:
+  description: |
+    The number of networks allowed for each tenant.
+  in: body
+  required: false
+  type: integer
+network-id:
+  description: |
+    The ID of the network.
+  in: body
+  required: true
+  type: string
+network-name:
+  description: |
+    Human-readable name of the network.
+  in: body
+  required: true
+  type: string
+network-name-request:
+  description: |
+    Human-readable name of the network.
+  in: body
+  required: False
+  type: string
+network-port_security_enabled:
+  description: |
+    The port security status of the network. Valid values are
+    enabled (``true``) and disabled (``false``).
+    This value is used as the default value of ``port_security_enabled``
+    field of a newly created port.
+  in: body
+  required: true
+  type: boolean
+network-port_security_enabled-request:
+  description: |
+    The port security status of the network. Valid values are
+    enabled (``true``) and disabled (``false``).
+    This value is used as the default value of ``port_security_enabled``
+    field of a newly created port.
+  in: body
+  required: false
+  type: boolean
+network-shared:
+  description: |
+    Indicates whether this network is shared across all tenants. By default,
+    only administrative users can change this value.
+  in: body
+  required: true
+  type: boolean
+network-shared-request:
+  description: |
+    Indicates whether this network is shared across all tenants. By default,
+    only administrative users can change this value.
+  in: body
+  required: false
+  type: boolean
 network-status:
   description: |
-    The network status.
+    The network status. Values are ``ACTIVE``, ``DOWN``, ``BUILD`` or ``ERROR``.
   in: body
   required: true
   type: string
-network_3:
+network-subnets:
   description: |
-    A ``network`` object.
+    The associated subnets.
   in: body
   required: true
-  type: object
+  type: array
 network_id:
   description: |
-    The UUID of the network.
-  in: body
-  required: true
-  type: string
-network_id_2:
-  description: |
-    The UUID of the attached network.
+    The ID of the attached network.
   in: body
   required: true
   type: string
@@ -3244,12 +3270,6 @@ network_ip_availability:
   in: body
   required: true
   type: object
-network_name:
-  description: |
-    The name of the network.
-  in: body
-  required: true
-  type: string
 network_type:
   description: |
     The type of physical network that maps to this
@@ -3509,20 +3529,6 @@ port_security_enabled:
   in: body
   required: false
   type: boolean
-port_security_enabled_1:
-  description: |
-    The port security status. The status is enabled
-    (``true``) or disabled (``false``).
-  in: body
-  required: true
-  type: boolean
-port_security_enabled_2:
-  description: |
-    The port security status. A valid value is
-    enabled (``true``) or disabled (``false``).
-  in: body
-  required: true
-  type: boolean
 ports:
   description: |
     A list of ``port`` objects.
@@ -3653,32 +3659,54 @@ protocol_port-request:
   type: integer
 provider:network_type:
   description: |
-    The type of physical network that maps to this
-    network resource. For example, ``flat``, ``vlan``, ``vxlan``, or
-    ``gre``.
+    The type of physical network that this network is mapped to.
+    For example, ``flat``, ``vlan``, ``vxlan``, or ``gre``.
+    Valid values depend on a networking back-end.
+  in: body
+  required: true
+  type: string
+provider:network_type-request:
+  description: |
+    The type of physical network that this network should be mapped to.
+    For example, ``flat``, ``vlan``, ``vxlan``, or ``gre``.
+    Valid values depend on a networking back-end.
   in: body
   required: false
   type: string
 provider:physical_network:
   description: |
-    The physical network where this network object is
-    implemented. The Networking API v2.0 does not provide a way to
-    list available physical networks. For example, the Open vSwitch
-    plug-in configuration file defines a symbolic name that maps to
-    specific bridges on each Compute host.
+    The physical network where this network is implemented.
+  in: body
+  required: true
+  type: string
+provider:physical_network-request:
+  description: |
+    The physical network where this network should be implemented.
+    The Networking API v2.0 does not provide a way to list available
+    physical networks. For example, the Open vSwitch plug-in configuration
+    file defines a symbolic name that maps to specific bridges on each
+    compute host.
   in: body
   required: false
   type: string
 provider:segmentation_id:
   description: |
-    An isolated segment on the physical network. The
-    ``network_type`` attribute defines the segmentation model. For
-    example, if the ``network_type`` value is vlan, this ID is a vlan
-    identifier. If the ``network_type`` value is gre, this ID is a gre
-    key.
+    The ID of the isolated segment on the physical network.
+    The ``network_type`` attribute defines the segmentation model.
+    For example, if the ``network_type`` value is vlan, this ID is a vlan
+    identifier. If the ``network_type`` value is gre, this ID is a gre key.
+  in: body
+  required: true
+  type: integer
+provider:segmentation_id-request:
+  description: |
+    The ID of the isolated segment on the physical network.
+    The ``network_type`` attribute defines the segmentation model.
+    For example, if the ``network_type`` value is vlan, this ID is a vlan
+    identifier. If the ``network_type`` value is gre, this ID is a gre key.
   in: body
   required: false
-  type: string
+  type: integer
 provider_1:
   description: |
     The load-balancer provider.
@@ -3706,7 +3734,13 @@ psk:
   type: string
 qos_policy_id:
   description: |
-    The UUID of the QoS policy.
+    The ID of the QoS policy.
+  in: body
+  required: true
+  type: string
+qos_policy_id-request:
+  description: |
+    The ID of the QoS policy.
   in: body
   required: false
   type: string
@@ -4096,13 +4130,13 @@ router:external:
   description: |
     Indicates whether this network can provide floating IPs via a router.
   in: body
-  required: false
+  required: true
   type: boolean
-router:external_1:
+router:external-request:
   description: |
     Indicates whether this network can provide floating IPs via a router.
   in: body
-  required: true
+  required: false
   type: boolean
 router_id_1:
   description: |
@@ -4238,6 +4272,12 @@ segments:
   in: body
   required: true
   type: array
+segments-request:
+  description: |
+    A list of provider ``segment`` objects.
+  in: body
+  required: false
+  type: array
 service_profile:
   description: |
     A ``service_profile`` object.
@@ -4346,14 +4386,6 @@ shared-response:
   description: |
     Admin-only. Indicates whether this network is
     shared across all tenants.
-  in: body
-  required: true
-  type: boolean
-shared_1:
-  description: |
-    Indicates whether this network is shared across
-    all projects. By default, only administrative users can change this
-    value.
   in: body
   required: true
   type: boolean
@@ -4746,27 +4778,21 @@ subnetpool_revision_number:
   in: body
   required: true
   type: string
+subnetpool_updated_at:
+  description: |
+    Time at which subnetpool has been updated.
+  in: body
+  required: true
+  type: string
 subnetpools:
   description: |
     A list of ``subnetpool`` objects.
   in: body
   required: true
   type: array
-subnets:
-  description: |
-    The associated subnets.
-  in: body
-  required: true
-  type: array
 subnets-obj:
   description: |
     A list of ``subnet`` objects.
-  in: body
-  required: true
-  type: array
-subnets_1:
-  description: |
-    The associated subnets.
   in: body
   required: true
   type: array
@@ -4826,14 +4852,6 @@ tenant_id_13:
   in: body
   required: true
   type: string
-tenant_id_14:
-  description: |
-    The UUID of the tenant who owns the network. Only
-    administrative users can specify a tenant UUID other than their
-    own. You cannot change this value through authorization policies.
-  in: body
-  required: false
-  type: string
 tenant_id_15:
   description: |
     The tenant UUID of QoS policy owner. Only
@@ -4874,12 +4892,6 @@ tenant_id_19:
     policies.
   in: body
   required: false
-  type: string
-tenant_id_2:
-  description: |
-    The ID of the project that owns the resource.
-  in: body
-  required: true
   type: string
 tenant_id_20:
   description: |
@@ -5147,12 +5159,6 @@ updated_at:
   in: body
   required: true
   type: string
-updated_at_1:
-  description: |
-    Time at which the network has been updated.
-  in: body
-  required: true
-  type: string
 updated_at_2:
   description: |
     Time at which subnetpool has been updated.
@@ -5373,10 +5379,17 @@ vips:
   type: array
 vlan_transparent:
   description: |
-    The state of the network, which is VLAN
-    transparent (``true``) or not VLAN transparent (``false``).
+    Indicates the VLAN transparency mode of the network, which is
+    VLAN transparent (``true``) or not VLAN transparent (``false``).
   in: body
   required: true
+  type: boolean
+vlan_transparent-request:
+  description: |
+    Indicates the VLAN transparency mode of the network, which is
+    VLAN transparent (``true``) or not VLAN transparent (``false``).
+  in: body
+  required: false
   type: boolean
 vpnservice:
   description: |

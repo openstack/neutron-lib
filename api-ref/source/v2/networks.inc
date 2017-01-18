@@ -1,14 +1,53 @@
 .. -*- rst -*-
 .. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
+.. NOTE(amotoki): method_verification will be removed after sorting methods
+   in the recommended order.
 
 ========
 Networks
 ========
 
 Lists, shows details for, creates, updates, and deletes networks.
+
+provider extended attributes
+============================
+
+The ``provider`` extension allows administrative users to define a physical
+binding of a logical network. This extension provides three additional
+attributes: ``provider:network_type``, ``provider:physical_network`` and
+``provider:segmentation_id``. The validation rules for these attributes
+vary across ``provider:network_type``. For example, ``vlan`` and ``flat``
+network types require ``provider:physical_network`` attribute, but ``vxlan``
+network type does not.
+
+Most Networking plug-ins and drivers do not support updating any provider
+related attributes.
+
+multiple provider extension
+===========================
+
+The ``multi-provider`` extension allows administrative users to define multiple
+physical bindings for a logical network.
+
+To define multiple physical bindings for a network, include a ``segments`` list
+in the request body of network creation request.  Each element in the
+``segments`` list has the same structure as the provider network
+attributes. These attributes are ``provider:network_type``,
+``provider:physical_network``, and ``provider:segmentation_id``. The same
+validation rules are applied to each element in the ``segments`` list.
+
+Note that you cannot use the provider extension and the multiple provider
+extension for a single logical network.
+
+VLAN transparency extension
+===========================
+
+The ``vlan-transparent`` extension enables plug-ins that support VLAN
+transparency to deliver VLAN transparent trunk networks.
+This extension introduces ``vlan_transparent`` attribute to control
+a VLAN transparecy of the network. If the service does not support VLAN
+transparency and a user requests a VLAN transparent network,
+the plug-in refuses to create one and returns an appropriate error to the user.
 
 Show network details
 ====================
@@ -17,54 +56,68 @@ Show network details
 
 Shows details for a network.
 
-You can control which response parameters are returned by using the
-fields query parameter. For information, see `Filtering and column
-selection <http://specs.openstack.org/openstack/neutron-
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. For information, see `Filtering and
+Column Selection <http://specs.openstack.org/openstack/neutron-
 specs/specs/api/networking_general_api_information.html#filtering-
 and-column-selection>`__.
 
-The response might show extension response parameters. For
-information, see `Networks multiple provider extension (networks)
-<http://developer.openstack.org/api-ref-
-networking-v2-ext.html#showProviderNetwork>`_.
-
 Normal response codes: 200
 
-Error response codes: 404,401
+Error response codes: 404, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - network_id: network_id
+   - network_id: network_id-path
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: network-status
-   - router:external: router:external
+   - network: network
+   - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
-   - name: name
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - updated_at: updated_at
-   - changed_at: changed_at
+   - created_at: created_at_resource
+   - id: network-id
    - mtu: mtu
+   - name: network-name
+   - port_security_enabled: network-port_security_enabled
+   - project_id: project_id
+   - provider:network_type: provider:network_type
+   - provider:physical_network: provider:physical_network
+   - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
-   - subnets: subnets
-   - shared: shared
-   - id: id
-   - network: network
+   - router:external: router:external
+   - segments: segments
+   - shared: network-shared
+   - status: network-status
+   - subnets: network-subnets
+   - tenant_id: project_id
+   - updated_at: updated_at_resource
+   - vlan_transparent: vlan_transparent
 
 Response Example
 ----------------
 
 .. literalinclude:: samples/networks/network-show-response.json
+   :language: javascript
+
+Response Example (admin user; single segment mapping)
+-----------------------------------------------------
+
+.. literalinclude:: samples/networks/network-provider-show-response.json
+   :language: javascript
+
+Response Example (admin user; multiple segment mappings)
+--------------------------------------------------------
+
+.. literalinclude:: samples/networks/network-multi-show-response.json
    :language: javascript
 
 Update network
@@ -76,20 +129,20 @@ Updates a network.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401,400
+Error response codes: 404, 403, 401, 400
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - router:external: router:external
+   - network_id: network_id-path
    - network: network
-   - admin_state_up: admin_state_up
-   - shared: shared
-   - port_security_enabled: port_security_enabled
-   - name: name
-   - network_id: network_id
+   - admin_state_up: network-admin_state_up-request
+   - name: network-name-request
+   - port_security_enabled: network-port_security_enabled-request
+   - router:external: router:external-request
+   - shared: network-shared-request
 
 Request Example
 ---------------
@@ -102,23 +155,33 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: network-status
-   - router:external: router:external
+   - network: network
+   - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
-   - name: name
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
+   - id: network-id
    - mtu: mtu
+   - name: network-name
+   - port_security_enabled: network-port_security_enabled
+   - project_id: project_id
+   - provider:network_type: provider:network_type
+   - provider:physical_network: provider:physical_network
+   - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
-   - subnets: subnets
-   - shared: shared
-   - id: id
-   - network: network
+   - router:external: router:external
+   - segments: segments
+   - shared: network-shared
+   - status: network-status
+   - subnets: network-subnets
+   - tenant_id: project_id
 
 Response Example
 ----------------
+
+This is an example when a regular user without administrative roles
+sends a PUT request. Response examples for administrative users are
+similar to responses of `Show network details <#show-network-details>`__
+and `Create network <#create-network>`__. See them for details.
 
 .. literalinclude:: samples/networks/network-update-response.json
    :language: javascript
@@ -130,28 +193,42 @@ Delete network
 
 Deletes a network and its associated resources.
 
-Error response codes: 409,404,204,401
+Normal response codes: 204
+
+Error response codes: 409, 404, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - network_id: network_id
+   - network_id: network_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 List networks
 =============
 
 .. rest_method::  GET /v2.0/networks
 
-Lists networks to which the user has access.
+Lists networks to which the project has access.
 
-Use the ``fields`` query parameter to filter the response. For
-information, see `Filtering and Column Selection <https://wiki.open
-stack.org/wiki/Neutron/APIv2-specification#Filtering_and_Column_Sel
-ection>`__.
+Default policy settings return only networks that the project who submits the
+request owns, unless an administrative user submits the request. In addition,
+networks shared with the project who submits the request are also returned.
 
-Use the ``tags``, ``tags-any``, ``not-tags``, ``not-tags-any``
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
+.. TODO(amotoki): Add description on tag filtering to the general API overview.
+
+You can also use the ``tags``, ``tags-any``, ``not-tags``, ``not-tags-any``
 query parameter to filter the response with tags. For information,
 see `REST API Impact <http://specs.openstack.org/openstack/neutron-
 specs/specs/mitaka/add-tags-to-core-resources.html#rest-api-
@@ -164,30 +241,51 @@ Error response codes: 401
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: network-status
-   - router:external: router:external
+   - networks: networks
+   - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
-   - name: name
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - networks: networks
+   - id: network-id
    - mtu: mtu
-   - subnets: subnets
-   - shared: shared
-   - id: id
+   - name: network-name
+   - port_security_enabled: network-port_security_enabled
+   - project_id: project_id
+   - provider:network_type: provider:network_type
+   - provider:physical_network: provider:physical_network
+   - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
+   - router:external: router:external
+   - segments: segments
+   - shared: network-shared
+   - status: network-status
+   - subnets: network-subnets
+   - tenant_id: project_id
+   - vlan_transparent: vlan_transparent
 
 Response Example
 ----------------
 
 .. literalinclude:: samples/networks/networks-list-response.json
+   :language: javascript
+
+Response Example (admin user)
+-----------------------------
+
+When Administrative users request to list networks,
+physical segment information bound to the networks are also returned
+in a response. In this example, a network ``net1`` is mapped to a single
+network segment and a network ``net2`` is mapped to multiple network segments.
+
+.. literalinclude:: samples/networks/networks-provider-list-response.json
    :language: javascript
 
 Create network
@@ -201,10 +299,28 @@ A request body is optional. An administrative user can specify
 another project ID, which is the project that owns the network, in
 the request body.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 401, 400
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - network: network
+   - admin_state_up: network-admin_state_up-request
+   - name: network-name-request
+   - port_security_enabled: network-port_security_enabled-request
+   - project_id: project_id-request
+   - provider:network_type: provider:network_type-request
+   - provider:physical_network: provider:physical_network-request
+   - provider:segmentation_id: provider:segmentation_id-request
+   - router:external: router:external-request
+   - segments: segments-request
+   - shared: network-shared-request
+   - tenant_id: project_id-request
+   - vlan_transparent: vlan_transparent-request
 
 Request Example
 ---------------
@@ -212,25 +328,61 @@ Request Example
 .. literalinclude:: samples/networks/network-create-request.json
    :language: javascript
 
+Request Example (admin user; single segment mapping)
+----------------------------------------------------
+
+.. literalinclude:: samples/networks/network-provider-create-request.json
+   :language: javascript
+
+Request Example (admin user; multiple segment mappings)
+-------------------------------------------------------
+
+.. literalinclude:: samples/networks/network-multi-create-request.json
+   :language: javascript
+
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: network-status
-   - router:external: router:external
+   - network: network
+   - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
-   - name: name
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
+   - id: network-id
    - mtu: mtu
+   - name: network-name
+   - port_security_enabled: network-port_security_enabled
+   - project_id: project_id
+   - provider:network_type: provider:network_type
+   - provider:physical_network: provider:physical_network
+   - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
-   - subnets: subnets
-   - shared: shared
-   - id: id
-   - network: network
+   - router:external: router:external
+   - segments: segments
+   - shared: network-shared
+   - status: network-status
+   - subnets: network-subnets
+   - tenant_id: project_id
+   - vlan_transparent: vlan_transparent
+
+Response Example
+----------------
+
+.. literalinclude:: samples/networks/network-create-response.json
+   :language: javascript
+
+Response Example (admin user; single segment mapping)
+-----------------------------------------------------
+
+.. literalinclude:: samples/networks/network-provider-create-response.json
+   :language: javascript
+
+Response Example (admin user; multiple segment mappings)
+--------------------------------------------------------
+
+.. literalinclude:: samples/networks/network-multi-create-response.json
+   :language: javascript
 
 Bulk create networks
 ====================
@@ -244,21 +396,28 @@ In the request body, specify a list of networks.
 The bulk create operation is always atomic. Either all or no
 networks in the request body are created.
 
-Error response codes: 201,401,400
+Normal response codes: 201
+
+Error response codes: 401, 400
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - router:external: router:external
-   - name: name
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - port_security_enabled: port_security_enabled
-   - shared: shared
    - networks: networks
+   - admin_state_up: network-admin_state_up-request
+   - name: network-name-request
+   - port_security_enabled: network-port_security_enabled-request
+   - project_id: project_id-request
+   - provider:network_type: provider:network_type-request
+   - provider:physical_network: provider:physical_network-request
+   - provider:segmentation_id: provider:segmentation_id-request
+   - router:external: router:external-request
+   - segments: segments-request
+   - shared: network-shared-request
+   - tenant_id: project_id-request
+   - vlan_transparent: vlan_transparent-request
 
 Request Example
 ---------------
@@ -271,15 +430,29 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: network-status
-   - router:external: router:external
-   - subnets: subnets
-   - name: name
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - mtu: mtu
-   - shared: shared
-   - id: id
-   - port_security_enabled: port_security_enabled
    - networks: networks
+   - admin_state_up: network-admin_state_up
+   - availability_zone_hints: availability_zone_hints
+   - availability_zones: availability_zones
+   - id: network-id
+   - mtu: mtu
+   - name: network-name
+   - port_security_enabled: network-port_security_enabled
+   - project_id: project_id
+   - provider:network_type: provider:network_type
+   - provider:physical_network: provider:physical_network
+   - provider:segmentation_id: provider:segmentation_id
+   - qos_policy_id: qos_policy_id
+   - router:external: router:external
+   - segments: segments
+   - shared: network-shared
+   - status: network-status
+   - subnets: network-subnets
+   - tenant_id: project_id
+   - vlan_transparent: vlan_transparent
+
+Response Example
+----------------
+
+.. literalinclude:: samples/networks/networks-bulk-create-response.json
+   :language: javascript

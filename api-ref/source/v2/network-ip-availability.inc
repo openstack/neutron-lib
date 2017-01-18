@@ -21,14 +21,14 @@ Shows network IP availability details for a network.
 
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 403, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - network_id: network_id_3
+   - network_id: network_id-path
 
 Response Parameters
 -------------------
@@ -37,7 +37,7 @@ Response Parameters
 
    - used_ips: used_ips
    - subnet_ip_availability: subnet_ip_availability
-   - network_id: network_id_3
+   - network_id: network_id
    - tenant_id: project_id
    - project_id: project_id
    - total_ips: total_ips
@@ -46,7 +46,7 @@ Response Parameters
    - subnet_name: subnet_name
    - ip_version: ip_version
    - cidr: cidr
-   - network_name: network_name
+   - network_name: network-name
 
 Response Example
 ----------------
@@ -63,7 +63,7 @@ Lists network IP availability of all networks.
 
 Normal response codes: 200
 
-Error response codes: 403,401
+Error response codes: 403, 401
 
 Request
 -------
@@ -75,7 +75,7 @@ Response Parameters
 
    - used_ips: used_ips
    - subnet_ip_availability: subnet_ip_availability
-   - network_id: network_id_3
+   - network_id: network_id
    - tenant_id: project_id
    - project_id: project_id
    - total_ips: total_ips
@@ -83,7 +83,7 @@ Response Parameters
    - subnet_name: subnet_name
    - ip_version: ip_version
    - cidr: cidr
-   - network_name: network_name
+   - network_name: network-name
    - network_ip_availabilities: network_ip_availabilities
 
 Response Example

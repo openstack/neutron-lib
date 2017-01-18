@@ -1,22 +1,22 @@
 {
     "network": {
-        "status": "ACTIVE",
-        "subnets": [],
+        "admin_state_up": true,
         "availability_zone_hints": [],
         "availability_zones": [
             "nova"
         ],
-        "name": "sample_network_5_updated",
-        "provider:physical_network": null,
-        "admin_state_up": true,
-        "project_id": "4fd44f30292945e481c7b8a0c8908869",
-        "tenant_id": "4fd44f30292945e481c7b8a0c8908869",
-        "provider:network_type": "local",
-        "router:external": false,
-        "mtu": 0,
-        "shared": false,
-        "port_security_enabled": true,
         "id": "1f370095-98f6-4079-be64-6d3d4a6adcc6",
-        "provider:segmentation_id": null
+        "mtu": 0,
+        "name": "sample_network_5_updated",
+        "port_security_enabled": true,
+        "project_id": "4fd44f30292945e481c7b8a0c8908869",
+        "provider:network_type": "local",
+        "provider:physical_network": null,
+        "provider:segmentation_id": null,
+        "router:external": false,
+        "shared": false,
+        "status": "ACTIVE",
+        "subnets": [],
+        "tenant_id": "4fd44f30292945e481c7b8a0c8908869"
     }
 }
