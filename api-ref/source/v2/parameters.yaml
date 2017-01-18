@@ -593,6 +593,85 @@ bandwidth_limit_rules:
   in: body
   required: true
   type: array
+binding:host_id:
+  description: |
+    The ID of the host where the port resides.
+  in: body
+  required: true
+  type: string
+binding:host_id-request:
+  description: |
+    The ID of the host where the port resides.
+    The default is an empty string.
+  in: body
+  required: false
+  type: string
+binding:profile:
+  description: |
+    A dictionary that enables the application running on the specific host to
+    pass and receive vif port information specific to the networking back-end.
+    The networking API does not define a specific format of this field.
+  in: body
+  required: true
+  type: string
+binding:profile-request:
+  description: |
+    A dictionary that enables the application running on the specific host to
+    pass and receive vif port information specific to the networking back-end.
+    The networking API does not define a specific format of this field.
+    The default is an empty dictionary.
+  in: body
+  required: false
+  type: string
+binding:vif_details:
+  description: |
+    A dictionary which contains additional information on the port.
+    Currently the following fields are defined: ``port_filter`` and
+    ``ovs_hybrid_plug``.
+    ``port_filter`` is a boolean indicating the networking service
+    provides port filtering features such as security group and/or
+    anti MAC/IP spoofing.
+    ``ovs_hybrid_plug`` is a boolean used to inform an API consumer
+    like nova that the hybrid plugging strategy for OVS should be used.
+  in: body
+  required: true
+  type: object
+binding:vif_type:
+  description: |
+    The type of which mechanism is used for the port.
+    An API consumer like nova can use this to determine an appropriate way to
+    attach a device (for example an interface of a virtual server) to the port.
+    Available values currently defined includes
+    ``ovs``, ``bridge``, ``macvtap``, ``hw_veb``, ``hostdev_physical``,
+    ``vhostuser``, ``distributed`` and ``other``.
+    There are also special values: ``unbound`` and ``binding_failed``.
+    ``unbound`` means the port is
+    not bound to a networking back-end. ``binding_failed`` means an error
+    that the port failed to be bound to a networking back-end.
+  in: body
+  required: true
+  type: string
+binding:vnic_type:
+  description: |
+    The type of vNIC which this port should be attached to. This is used to
+    determine which mechanism driver(s) to be used to bind the port.
+    The valid values are ``normal``, ``macvtap``, ``direct``, ``baremetal``,
+    and ``direct-physical``.
+    What type of vNIC is actually available depends on deployments.
+  in: body
+  required: true
+  type: string
+binding:vnic_type-request:
+  description: |
+    The type of vNIC which this port should be attached to. This is used to
+    determine which mechanism driver(s) to be used to bind the port.
+    The valid values are ``normal``, ``macvtap``, ``direct``, ``baremetal``,
+    and ``direct-physical``.
+    What type of vNIC is actually available depends on deployments.
+    The default is ``normal``.
+  in: body
+  required: false
+  type: string
 cidr:
   description: |
     The CIDR of the subnet.

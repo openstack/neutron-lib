@@ -1,0 +1,31 @@
+{
+    "port": {
+        "admin_state_up": true,
+        "allowed_address_pairs": [],
+        "binding:host_id": "test_for_port_update_host",
+        "binding:profile": {},
+        "binding:vif_details": {},
+        "binding:vif_type": "binding_failed",
+        "binding:vnic_type": "normal",
+        "description": "",
+        "device_id": "d90a13da-be41-461f-9f99-1dbcf438fdf2",
+        "device_owner": "compute:nova",
+        "extra_dhcp_opts": [],
+        "fixed_ips": [
+            {
+                "ip_address": "20.20.0.4",
+                "subnet_id": "898dec4a-74df-4193-985f-c76721bcc746"
+            }
+        ],
+        "id": "43c831e0-19ce-4a76-9a49-57b57e69428b",
+        "mac_address": "fa:16:3e:11:11:5e",
+        "name": "test-for-port-update",
+        "network_id": "883fc383-5ea1-4c8b-8916-e1ddb0a9f365",
+        "project_id": "522eda8d23124b25bf03fe44f1986b74",
+        "security_groups": [
+            "ce0179d6-8a94-4f7c-91c2-f3038e2acbd0"
+        ],
+        "status": "DOWN",
+        "tenant_id": "522eda8d23124b25bf03fe44f1986b74"
+    }
+}

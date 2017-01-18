@@ -6,6 +6,17 @@ Ports
 
 Lists, shows details for, creates, updates, and deletes ports.
 
+Port binding extended attributes
+================================
+
+The port binding extension (``binding``) allows administrative users
+to specify and retrieve physical binding information of ports.
+The extension defines several attributes whose names have a prefix
+``binding:`` including ``binding:host_id``, ``binding:vnic_type``,
+``binding:vif_type``, ``binding:vif_details``, and ``binding:profile``.
+
+|
+
 Show port details
 =================
 
@@ -39,6 +50,11 @@ Response Parameters
    - port: port
    - admin_state_up: admin_state_up
    - allowed_address_pairs: allowed_address_pairs
+   - binding:host_id: binding:host_id
+   - binding:profile: binding:profile
+   - binding:vif_details: binding:vif_details
+   - binding:vif_type: binding:vif_type
+   - binding:vnic_type: binding:vnic_type
    - created_at: created_at
    - description: description
    - device_id: device_id
@@ -60,6 +76,12 @@ Response Example
 ----------------
 
 .. literalinclude:: samples/ports/port-show-response.json
+   :language: javascript
+
+Response Example (admin user)
+-----------------------------
+
+.. literalinclude:: samples/ports/port-bind-show-response.json
    :language: javascript
 
 Update port
@@ -99,6 +121,9 @@ Request
    - port: port
    - admin_state_up: admin_state_up-request
    - allowed_address_pairs: allowed_address_pairs-request
+   - binding:host_id: binding:host_id-request
+   - binding:profile: binding:profile-request
+   - binding:vnic_type: binding:vnic_type-request
    - description: description-request
    - device_id: device_id-request
    - device_owner: device_owner-request
@@ -115,6 +140,12 @@ Request Example
 .. literalinclude:: samples/ports/port-update-request.json
    :language: javascript
 
+Request Example (admin user)
+----------------------------
+
+.. literalinclude:: samples/ports/port-bind-update-request.json
+   :language: javascript
+
 Response Parameters
 -------------------
 
@@ -123,6 +154,11 @@ Response Parameters
    - port: port
    - admin_state_up: admin_state_up
    - allowed_address_pairs: allowed_address_pairs
+   - binding:host_id: binding:host_id
+   - binding:profile: binding:profile
+   - binding:vif_details: binding:vif_details
+   - binding:vif_type: binding:vif_type
+   - binding:vnic_type: binding:vnic_type
    - created_at: created_at
    - description: description
    - device_id: device_id
@@ -144,6 +180,12 @@ Response Example
 ----------------
 
 .. literalinclude:: samples/ports/port-update-response.json
+   :language: javascript
+
+Response Example (admin user)
+-----------------------------
+
+.. literalinclude:: samples/ports/port-bind-update-response.json
    :language: javascript
 
 Delete port
@@ -208,6 +250,11 @@ Response Parameters
    - ports: ports
    - admin_state_up: admin_state_up
    - allowed_address_pairs: allowed_address_pairs
+   - binding:host_id: binding:host_id
+   - binding:profile: binding:profile
+   - binding:vif_details: binding:vif_details
+   - binding:vif_type: binding:vif_type
+   - binding:vnic_type: binding:vnic_type
    - created_at: created_at
    - description: description
    - device_id: device_id
@@ -229,6 +276,12 @@ Response Example
 ----------------
 
 .. literalinclude:: samples/ports/ports-list-response.json
+   :language: javascript
+
+Response Example (admin user)
+-----------------------------
+
+.. literalinclude:: samples/ports/ports-bind-list-response.json
    :language: javascript
 
 Create port
@@ -253,6 +306,9 @@ Request
    - port: port
    - admin_state_up: admin_state_up-request
    - allowed_address_pairs: allowed_address_pairs-request
+   - binding:host_id: binding:host_id-request
+   - binding:profile: binding:profile-request
+   - binding:vnic_type: binding:vnic_type-request
    - description: description-request
    - device_id: device_id-request
    - device_owner: device_owner-request
@@ -272,6 +328,12 @@ Request Example
 .. literalinclude:: samples/ports/port-create-request.json
    :language: javascript
 
+Request Example (admin user)
+----------------------------
+
+.. literalinclude:: samples/ports/port-bind-create-request.json
+   :language: javascript
+
 Response Parameters
 -------------------
 
@@ -280,6 +342,11 @@ Response Parameters
    - port: port
    - admin_state_up: admin_state_up
    - allowed_address_pairs: allowed_address_pairs
+   - binding:host_id: binding:host_id
+   - binding:profile: binding:profile
+   - binding:vif_details: binding:vif_details
+   - binding:vif_type: binding:vif_type
+   - binding:vnic_type: binding:vnic_type
    - created_at: created_at
    - description: description
    - device_id: device_id
@@ -303,6 +370,12 @@ Response Example
 .. literalinclude:: samples/ports/port-create-response.json
    :language: javascript
 
+Response Example (admin user)
+-----------------------------
+
+.. literalinclude:: samples/ports/port-bind-create-response.json
+   :language: javascript
+
 Bulk create ports
 =================
 
@@ -324,6 +397,9 @@ Request
    - ports: ports
    - admin_state_up: admin_state_up-request
    - allowed_address_pairs: allowed_address_pairs-request
+   - binding:host_id: binding:host_id-request
+   - binding:profile: binding:profile-request
+   - binding:vnic_type: binding:vnic_type-request
    - description: description-request
    - device_id: device_id-request
    - device_owner: device_owner-request
@@ -351,6 +427,11 @@ Response Parameters
    - ports: ports
    - admin_state_up: admin_state_up
    - allowed_address_pairs: allowed_address_pairs
+   - binding:host_id: binding:host_id
+   - binding:profile: binding:profile
+   - binding:vif_details: binding:vif_details
+   - binding:vif_type: binding:vif_type
+   - binding:vnic_type: binding:vnic_type
    - created_at: created_at
    - description: description
    - device_id: device_id
