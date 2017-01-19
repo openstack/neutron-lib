@@ -18,9 +18,8 @@ import datetime
 from oslo_context import context as oslo_context
 from oslo_db.sqlalchemy import enginefacade
 
-# TODO(HenryG): replace db/_api.py with the real db/api.py
 from neutron_lib import _policy as policy
-from neutron_lib.db import _api as db_api
+from neutron_lib.db import api as db_api
 
 
 class ContextBase(oslo_context.RequestContext):
@@ -144,7 +143,8 @@ class Context(ContextBaseWithSession):
         if hasattr(super(Context, self), 'session'):
             return super(Context, self).session
         if self._session is None:
-            self._session = db_api.get_session()
+            self._session = db_api.get_writer_session()
+
         return self._session
 
 

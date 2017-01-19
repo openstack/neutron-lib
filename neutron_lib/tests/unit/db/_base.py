@@ -15,37 +15,12 @@ Base classes for unit tests needing DB backend.
 Only sqlite is supported in neutron-lib.
 """
 
-import fixtures
-
-from neutron_lib.db import _api as db_api
-from neutron_lib.db import model_base
-
+from neutron_lib import fixture
 from neutron_lib.tests import _base as base
-
-
-class SqlFixture(fixtures.Fixture):
-
-    # flag to indicate that the models have been loaded
-    _TABLES_ESTABLISHED = False
-
-    def _setUp(self):
-        # Register all data models
-        engine = db_api.context_manager.get_legacy_facade().get_engine()
-        if not SqlFixture._TABLES_ESTABLISHED:
-            model_base.BASEV2.metadata.create_all(engine)
-            SqlFixture._TABLES_ESTABLISHED = True
-
-        def clear_tables():
-            with engine.begin() as conn:
-                for table in reversed(
-                        model_base.BASEV2.metadata.sorted_tables):
-                    conn.execute(table.delete())
-
-        self.addCleanup(clear_tables)
 
 
 class SqlTestCase(base.BaseTestCase):
 
     def setUp(self):
         super(SqlTestCase, self).setUp()
-        self.useFixture(SqlFixture())
+        self.useFixture(fixture.SqlFixture())
