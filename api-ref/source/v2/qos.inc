@@ -217,6 +217,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - dscp_rule_id: dscp_rule_id
    - policy_id: policy_id
 
 Response Parameters
@@ -257,6 +258,7 @@ Request
    - dscp_marking_rule: dscp_marking_rule
    - dscp_mark: dscp_mark
    - policy_id: policy_id
+   - dscp_rule_id: dscp_rule_id
 
 Request Example
 ---------------
@@ -295,6 +297,7 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - policy_id: policy_id
+   - dscp_rule_id: dscp_rule_id
 
 List DSCP marking rules for QoS policy
 ======================================

@@ -1,4 +1,4 @@
-# variables in header
+ # variables in header
 
 # variables in path
 connection_id-path:
@@ -6,6 +6,12 @@ connection_id-path:
     The ID of the IPSec site-to-site connection.
   in: path
   required: false
+  type: string
+dscp_rule_id:
+  description: |
+    The ID of the DSCP rule.
+  in: path
+  required: true
   type: string
 endpoint_group_id-path:
   description: |

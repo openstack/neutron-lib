@@ -285,6 +285,7 @@ Request
    - name_resource: name_resource
    - admin_state_up_trunk: admin_state_up
    - description_resource: description_resource
+   - trunk_id: trunk_id
 
 Request Example
 ---------------
