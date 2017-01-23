@@ -53,7 +53,8 @@ List pools
 Lists pools.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 401
 
 Request
 -------
@@ -63,28 +64,27 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - lb_algorithm: lb_algorithm
-   - status: pool-status
-   - protocol: protocol
-   - description: description
-   - health_monitors: health_monitors
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
+   - pools: pools-obj
    - admin_state_up: admin_state_up
-   - vip_id: vip_id
+   - description: description
+   - health_monitors: health_monitors-response
    - health_monitors_status: health_monitors_status
+   - id: pool-id-response
+   - lb_method: lb_method
    - members: members
-   - provider: provider
-   - pools: pools
-   - status_description: status_description
-   - id: id
    - name: name
+   - protocol: pool-protocol
+   - provider: pool-provider
+   - status: pool-status
+   - status_description: status_description
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/pools-list-response.json
+.. literalinclude:: samples/lbaas-v1/pools-list-response.json
    :language: javascript
 
 Create a load balancer pool
@@ -94,27 +94,30 @@ Create a load balancer pool
 
 Creates a load balancer pool.
 
-Error response codes:201,400,401,413,503,500,
+Normal response codes: 201
+
+Error response codes: 400, 401
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - lb_method: lb_method
-   - protocol: protocol
-   - description: description
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
    - pool: pool
-   - name: name
+   - admin_state_up: admin_state_up-request
+   - description: description-request
+   - health_monitors: health_monitors-request
+   - lb_method: lb_method
+   - name: name-request
+   - protocol: pool-protocol
+   - provider: pool-provider-request
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id-request
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/pool-create-request.json
+.. literalinclude:: samples/lbaas-v1/pool-create-request.json
    :language: javascript
 
 Response Parameters
@@ -122,23 +125,28 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - lb_algorithm: lb_algorithm
-   - status: pool-status
-   - protocol: protocol
-   - description: description
-   - health_monitors: health_monitors
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
-   - admin_state_up: admin_state_up
-   - vip_id: vip_id
-   - health_monitors_status: health_monitors_status
-   - members: members
-   - provider: provider
-   - status_description: status_description
-   - id: id
    - pool: pool
+   - admin_state_up: admin_state_up
+   - description: description
+   - health_monitors: health_monitors-response
+   - health_monitors_status: health_monitors_status
+   - id: pool-id-response
+   - lb_method: lb_method
+   - members: members
    - name: name
+   - protocol: pool-protocol
+   - provider: pool-provider
+   - status: pool-status
+   - status_description: status_description
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas-v1/pool-create-response.json
+   :language: javascript
 
 Show pool details
 =================
@@ -148,42 +156,42 @@ Show pool details
 Shows details for a pool.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - pool_id: pool_id
+   - pool_id: pool_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - lb_algorithm: lb_algorithm
-   - status: pool-status
-   - protocol: protocol
-   - description: description
-   - health_monitors: health_monitors
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
-   - admin_state_up: admin_state_up
-   - vip_id: vip_id
-   - health_monitors_status: health_monitors_status
-   - members: members
-   - provider: provider
-   - status_description: status_description
-   - id: id
    - pool: pool
+   - admin_state_up: admin_state_up
+   - description: description
+   - health_monitors: health_monitors-response
+   - health_monitors_status: health_monitors_status
+   - id: pool-id-response
+   - lb_method: lb_method
+   - members: members
    - name: name
+   - protocol: pool-protocol
+   - provider: pool-provider
+   - status: pool-status
+   - status_description: status_description
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/pool-show-response.json
+.. literalinclude:: samples/lbaas-v1/pool-show-response.json
    :language: javascript
 
 Update pool
@@ -194,24 +202,26 @@ Update pool
 Updates a load balancer pool.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - pool_id: pool_id-path
    - pool: pool
-   - lb_method: lb_method
-   - description: description
-   - name: name
-   - admin_state_up: admin_state_up
-   - pool_id: pool_id
+   - admin_state_up: admin_state_up-request
+   - description: description-request
+   - health_monitors: health_monitors-request
+   - lb_method: lb_method-request-put
+   - name: name-request
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/pool-update-request.json
+.. literalinclude:: samples/lbaas-v1/pool-update-request.json
    :language: javascript
 
 Response Parameters
@@ -219,28 +229,27 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - lb_algorithm: lb_algorithm
-   - status: pool-status
-   - protocol: protocol
-   - description: description
-   - health_monitors: health_monitors
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
-   - admin_state_up: admin_state_up
-   - vip_id: vip_id
-   - health_monitors_status: health_monitors_status
-   - members: members
-   - provider: provider
-   - status_description: status_description
-   - id: id
    - pool: pool
+   - admin_state_up: admin_state_up
+   - description: description
+   - health_monitors: health_monitors-response
+   - health_monitors_status: health_monitors_status
+   - id: pool-id-response
+   - lb_method: lb_method
+   - members: members
    - name: name
+   - protocol: pool-protocol
+   - provider: pool-provider
+   - status: pool-status
+   - status_description: status_description
+   - subnet_id: pool-subnet_id
+   - tenant_id: project_id
+   - vip_id: vip_id
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/pool-update-response.json
+.. literalinclude:: samples/lbaas-v1/pool-update-response.json
    :language: javascript
 
 Delete pool
@@ -250,14 +259,24 @@ Delete pool
 
 Deletes a load balancer pool.
 
-Error response codes:204,400,401,413,503,500,
+Normal response codes: 204
+
+Error response codes: 401, 404, 409
+
+When a requested load balancer pool has a VIP,
+``Conflict (409)`` is returned.
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - pool_id: pool_id
+   - pool_id: pool_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
@@ -271,7 +290,8 @@ Lists VIPs.
 The list might be empty.
 
 Normal response codes: 200
-Error response codes:500,401,503,
+
+Error response codes: 401
 
 Request
 -------
@@ -281,28 +301,27 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - vips: vips
+   - address: vip-address
+   - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - description: description
+   - id: vip-id
+   - name: name
+   - pool_id: vip-pool_id
+   - port_id: vip-port_id
+   - protocol: vip-protocol
+   - protocol_port: protocol_port
+   - session_persistence: vip-session_persistence
    - status: vip-status
    - status_description: status_description
-   - protocol: protocol
-   - description: description
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
+   - subnet_id: vip-subnet_id
    - tenant_id: project_id
-   - project_id: project_id
-   - connection_limit: connection_limit
-   - pool_id: pool_id
-   - session_persistence: session_persistence
-   - address: address
-   - vips: vips
-   - protocol_port: protocol_port
-   - port_id: port_id
-   - id: id
-   - name: name
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/vips-list-response.json
+.. literalinclude:: samples/lbaas-v1/vips-list-response.json
    :language: javascript
 
 Create a load balancer VIP
@@ -312,31 +331,37 @@ Create a load balancer VIP
 
 Creates a load balancer VIP.
 
-Error response codes:201,400,404,500,401,413,503,409,
+Normal response codes: 201
+
+Error response codes: 400, 401, 404, 409
+
+When a specified pool already has a VIP, ``Conflict (409)`` is
+returned.
+When a specified pool or a specified subnet is not found,
+``Not Found (404)`` is returned.
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - protocol: protocol
-   - description: description
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
-   - tenant_id: project_id
-   - project_id: project_id
-   - connection_limit: connection_limit
-   - pool_id: pool_id
-   - session_persistence: session_persistence
    - vip: vip
-   - address: address
+   - address: vip-address-request
+   - admin_state_up: admin_state_up-request
+   - connection_limit: connection_limit
+   - description: description-request
+   - name: name-request
+   - pool_id: vip-pool_id
+   - protocol: vip-protocol
    - protocol_port: protocol_port
-   - name: name
+   - session_persistence: vip-session_persistence-request
+   - subnet_id: vip-subnet_id
+   - tenant_id: project_id-request
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/vip-create-request.json
+.. literalinclude:: samples/lbaas-v1/vip-create-request.json
    :language: javascript
 
 Response Parameters
@@ -344,23 +369,28 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - vip: vip
+   - address: vip-address
+   - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - description: description
+   - id: vip-id
+   - name: name
+   - pool_id: vip-pool_id
+   - port_id: vip-port_id
+   - protocol: vip-protocol
+   - protocol_port: protocol_port
+   - session_persistence: vip-session_persistence
    - status: vip-status
    - status_description: status_description
-   - protocol: protocol
-   - description: description
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
+   - subnet_id: vip-subnet_id
    - tenant_id: project_id
-   - project_id: project_id
-   - connection_limit: connection_limit
-   - pool_id: pool_id
-   - session_persistence: session_persistence
-   - vip: vip
-   - address: address
-   - protocol_port: protocol_port
-   - port_id: port_id
-   - id: id
-   - name: name
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas-v1/vip-create-response.json
+   :language: javascript
 
 Show VIP details
 ================
@@ -370,42 +400,42 @@ Show VIP details
 Shows details for a VIP.
 
 Normal response codes: 200
-Error response codes:404,403,500,401,413,503,409,
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - vip_id: vip_id
+   - vip_id: vip_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
+   - vip: vip
+   - address: vip-address
+   - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - description: description
+   - id: vip-id
+   - name: name
+   - pool_id: vip-pool_id
+   - port_id: vip-port_id
+   - protocol: vip-protocol
+   - protocol_port: protocol_port
+   - session_persistence: vip-session_persistence
    - status: vip-status
    - status_description: status_description
-   - protocol: protocol
-   - description: description
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
+   - subnet_id: vip-subnet_id
    - tenant_id: project_id
-   - project_id: project_id
-   - connection_limit: connection_limit
-   - pool_id: pool_id
-   - session_persistence: session_persistence
-   - vip: vip
-   - address: address
-   - protocol_port: protocol_port
-   - port_id: port_id
-   - id: id
-   - name: name
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/vip-show-response.json
+.. literalinclude:: samples/lbaas-v1/vip-show-response.json
    :language: javascript
 
 Update VIP
@@ -416,26 +446,27 @@ Update VIP
 Updates a load balancer VIP.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - admin_state_up: admin_state_up
-   - connection_limit: connection_limit
-   - pool_id: pool_id
-   - session_persistence: session_persistence
+   - vip_id: vip_id-path
    - vip: vip
-   - name: name
-   - vip_id: vip_id
+   - admin_state_up: admin_state_up-request
+   - connection_limit: connection_limit
+   - description: description-request
+   - name: name-request
+   - pool_id: vip-pool_id-request
+   - session_persistence: vip-session_persistence-request
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/vip-update-request.json
+.. literalinclude:: samples/lbaas-v1/vip-update-request.json
    :language: javascript
 
 Response Parameters
@@ -443,28 +474,27 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - vip: vip
+   - address: vip-address
+   - admin_state_up: admin_state_up
+   - connection_limit: connection_limit-response
+   - description: description
+   - id: vip-id
+   - name: name
+   - pool_id: vip-pool_id
+   - port_id: vip-port_id
+   - protocol: vip-protocol
+   - protocol_port: protocol_port
+   - session_persistence: vip-session_persistence
    - status: vip-status
    - status_description: status_description
-   - protocol: protocol
-   - description: description
-   - admin_state_up: admin_state_up
-   - subnet_id: subnet_id
+   - subnet_id: vip-subnet_id
    - tenant_id: project_id
-   - project_id: project_id
-   - connection_limit: connection_limit
-   - pool_id: pool_id
-   - session_persistence: session_persistence
-   - vip: vip
-   - address: address
-   - protocol_port: protocol_port
-   - port_id: port_id
-   - id: id
-   - name: name
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/vip-update-response.json
+.. literalinclude:: samples/lbaas-v1/vip-update-response.json
    :language: javascript
 
 Delete VIP
@@ -474,14 +504,21 @@ Delete VIP
 
 Deletes a load balancer VIP.
 
-Error response codes:204,400,401,413,503,500,
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - vip_id: vip_id
+   - vip_id: vip_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
@@ -493,7 +530,8 @@ List members
 Lists members.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 401
 
 Request
 -------
@@ -503,22 +541,21 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
+   - members: members-obj
+   - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - pool_id: member-pool_id
+   - protocol_port: protocol_port
    - status: member-status
    - status_description: status_description
-   - weight: weight
-   - admin_state_up: admin_state_up
    - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
-   - members: members
-   - address: address
-   - protocol_port: protocol_port
-   - id: id
+   - weight: member-weight
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/members-list-response.json
+.. literalinclude:: samples/lbaas-v1/members-list-response.json
    :language: javascript
 
 Create a load balancer member
@@ -528,26 +565,27 @@ Create a load balancer member
 
 Creates a load balancer member.
 
-Error response codes:201,400,401,413,503,500,
+Normal response codes: 201
+
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
    - member: member
    - address: address
+   - admin_state_up: admin_state_up-request
+   - pool_id: member-pool_id
    - protocol_port: protocol_port
+   - tenant_id: project_id-request
+   - weight: member-weight-request
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/member-create-request.json
+.. literalinclude:: samples/lbaas-v1/member-create-request.json
    :language: javascript
 
 Response Parameters
@@ -555,17 +593,22 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: member-status
-   - status_description: status_description
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
    - member: member
    - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - pool_id: member-pool_id
    - protocol_port: protocol_port
-   - id: id
+   - status: member-status
+   - status_description: status_description
+   - tenant_id: project_id
+   - weight: member-weight
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas-v1/member-create-response.json
+   :language: javascript
 
 Show member details
 ===================
@@ -575,36 +618,36 @@ Show member details
 Shows details for a member.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - member_id: member_id
+   - member_id: member_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - status: member-status
-   - status_description: status_description
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
    - member: member
    - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - pool_id: member-pool_id
    - protocol_port: protocol_port
-   - id: id
+   - status: member-status
+   - status_description: status_description
+   - tenant_id: project_id
+   - weight: member-weight
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/member-show-response.json
+.. literalinclude:: samples/lbaas-v1/member-show-response.json
    :language: javascript
 
 Update member
@@ -615,23 +658,24 @@ Update member
 Updates a load balancer member.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - member_id: member_id-path
    - member: member
-   - pool_id: pool_id
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - member_id: member_id
+   - admin_state_up: admin_state_up-request
+   - pool_id: member-pool_id-request
+   - weight: member-weight-request
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/member-update-request.json
+.. literalinclude:: samples/lbaas-v1/member-update-request.json
    :language: javascript
 
 Response Parameters
@@ -639,22 +683,21 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - status: member-status
-   - status_description: status_description
-   - weight: weight
-   - admin_state_up: admin_state_up
-   - tenant_id: project_id
-   - project_id: project_id
-   - pool_id: pool_id
    - member: member
    - address: address
+   - admin_state_up: admin_state_up
+   - id: member-id-response
+   - pool_id: member-pool_id
    - protocol_port: protocol_port
-   - id: id
+   - status: member-status
+   - status_description: status_description
+   - tenant_id: project_id
+   - weight: member-weight
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/member-update-response.json
+.. literalinclude:: samples/lbaas-v1/member-update-response.json
    :language: javascript
 
 Delete member
@@ -664,14 +707,21 @@ Delete member
 
 Deletes a load balancer member.
 
-Error response codes:204,400,401,413,503,500,
+Normal response codes: 204
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - member_id: member_id
+   - member_id: member_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
@@ -683,7 +733,8 @@ List health monitors
 Lists health monitors.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 401
 
 Request
 -------
@@ -693,24 +744,23 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitors: health_monitors
-   - tenant_id: project_id
-   - project_id: project_id
+   - health_monitors: health_monitors-obj
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - id: health_monitor-id
+   - max_retries: max_retries
    - pools: pools
-   - url_path: url_path
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/healthmonitors-list-response.json
+.. literalinclude:: samples/lbaas-v1/healthmonitors-list-response.json
    :language: javascript
 
 Create a load balancer health monitor
@@ -720,7 +770,9 @@ Create a load balancer health monitor
 
 Creates a load balancer health monitor.
 
-Error response codes:201,400,401,413,503,500,
+Normal response codes: 201
+
+Error response codes: 400, 401
 
 Request
 -------
@@ -728,21 +780,20 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
-   - admin_state_up: admin_state_up
+   - admin_state_up: admin_state_up-request
    - delay: delay
    - expected_codes: expected_codes
+   - http_method: http_method-request
    - max_retries: max_retries
-   - http_method: http_method
+   - tenant_id: project_id-request
    - timeout: timeout
-   - url_path: url_path
    - type: type
+   - url_path: url_path
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/healthmonitor-create-request.json
+.. literalinclude:: samples/lbaas-v1/healthmonitor-create-request.json
    :language: javascript
 
 Response Parameters
@@ -751,18 +802,23 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - id: health_monitor-id
+   - max_retries: max_retries
    - pools: pools
-   - url_path: url_path
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas-v1/healthmonitor-create-response.json
+   :language: javascript
 
 Show health monitor details
 ===========================
@@ -772,14 +828,15 @@ Show health monitor details
 Shows details for a health monitor.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor_id: health_monitor_id
+   - health_monitor_id: health_monitor_id-path
 
 Response Parameters
 -------------------
@@ -787,23 +844,22 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - id: health_monitor-id
+   - max_retries: max_retries
    - pools: pools
-   - url_path: url_path
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/healthmonitor-show-response.json
+.. literalinclude:: samples/lbaas-v1/healthmonitor-show-response.json
    :language: javascript
 
 Update health monitor
@@ -814,27 +870,28 @@ Update health monitor
 Updates a load balancer health monitor.
 
 Normal response codes: 200
-Error response codes:400,401,413,503,500,
+
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
+   - health_monitor_id: health_monitor_id-path
    - health_monitor: health_monitor
-   - admin_state_up: admin_state_up
+   - admin_state_up: admin_state_up-request
    - delay: delay
    - expected_codes: expected_codes
+   - http_method: http_method-request
    - max_retries: max_retries
-   - http_method: http_method
    - timeout: timeout
    - url_path: url_path
-   - health_monitor_id: health_monitor_id
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/healthmonitor-update-request.json
+.. literalinclude:: samples/lbaas-v1/healthmonitor-update-request.json
    :language: javascript
 
 Response Parameters
@@ -843,23 +900,22 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - health_monitor: health_monitor
-   - tenant_id: project_id
-   - project_id: project_id
    - admin_state_up: admin_state_up
    - delay: delay
-   - expected_codes: expected_codes
-   - max_retries: max_retries
+   - expected_codes: expected_codes-response
    - http_method: http_method
-   - timeout: timeout
+   - id: health_monitor-id
+   - max_retries: max_retries
    - pools: pools
-   - url_path: url_path
+   - tenant_id: project_id
+   - timeout: timeout
    - type: type
-   - id: id
+   - url_path: url_path-response
 
 Response Example
 ----------------
 
-.. literalinclude:: samples/lbaas/healthmonitor-update-response.json
+.. literalinclude:: samples/lbaas-v1/healthmonitor-update-response.json
    :language: javascript
 
 Delete health monitor
@@ -869,14 +925,21 @@ Delete health monitor
 
 Deletes a load balancer health monitor.
 
-Error response codes:204,400,401,413,503,500,
+Normal response codes: 204
+
+Error response codes: 401, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor_id: health_monitor_id
+   - health_monitor_id: health_monitor_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 Associate health monitor with pool
 ==================================
@@ -885,21 +948,23 @@ Associate health monitor with pool
 
 Associates a health monitor with a pool.
 
-Error response codes:201,400,401,413,503,500,
+Normal response codes: 201
+
+Error response codes: 400, 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - id: id
+   - pool_id: pool_id-path
    - health_monitor: health_monitor
-   - pool_id: pool_id
+   - id: health_monitor-id
 
 Request Example
 ---------------
 
-.. literalinclude:: samples/lbaas/healthmonitor-associate-request.json
+.. literalinclude:: samples/lbaas-v1/healthmonitor-associate-request.json
    :language: javascript
 
 Response Parameters
@@ -909,6 +974,12 @@ Response Parameters
 
    - health_monitor: health_monitor
 
+Response Example
+----------------
+
+.. literalinclude:: samples/lbaas-v1/healthmonitor-associate-response.json
+   :language: javascript
+
 Disassociate health monitor from pool
 =====================================
 
@@ -916,13 +987,19 @@ Disassociate health monitor from pool
 
 Disassociates a health monitor from a pool.
 
-Error response codes:204,400,401,413,503,500,
+Normal response codes: 201
+
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor_id: health_monitor_id
-   - pool_id: pool_id
+   - pool_id: pool_id-path
+   - health_monitor_id: health_monitor_id-path
 
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.

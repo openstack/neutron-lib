@@ -1,0 +1,21 @@
+{
+    "vips": [
+        {
+            "address": "10.0.0.4",
+            "admin_state_up": true,
+            "connection_limit": -1,
+            "description": "",
+            "id": "388c739a-6a57-4e74-bc7b-a5cd60248bba",
+            "name": "my-Vip",
+            "pool_id": "5a9a3e9e-d1aa-448e-af37-a70171f2a332",
+            "port_id": "5328aeea-2988-41c0-b5fe-0fd0660979d3",
+            "protocol": "HTTP",
+            "protocol_port": 80,
+            "session_persistence": null,
+            "status": "ACTIVE",
+            "status_description": null,
+            "subnet_id": "aa547115-d710-4d6d-bb2c-b038d9c2704b",
+            "tenant_id": "eabfefa3fd1740a88a47ad98e132d238"
+        }
+    ]
+}
