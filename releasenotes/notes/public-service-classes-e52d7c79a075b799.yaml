@@ -1,0 +1,10 @@
+---
+features:
+  - The ``neutron_lib.api.extensions.ExtensionDescriptor`` class's
+    ``get_plugin_interface`` method now formally only supports
+    ``neutron_lib.services.base.ServicePluginBase``. This change reflects
+    the existing usage by consumers as almost all are returning
+    instances of ``ServicePluginBase`` already.
+  - The class ``WorkerBase`` is now available and provides the same
+    functionality that's provided by
+    ``neutron.worker.WorkerSupportServiceMixin``.
