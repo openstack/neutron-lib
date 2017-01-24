@@ -31,7 +31,8 @@ def assert_converter(tester, attribute, attribute_dict, keyword, value):
         try:
             attribute_dict['convert_list_to'](attribute_dict['default'])
         except KeyError:
-            if validators.is_attr_set(value) and not isinstance(value, str):
+            if validators.is_attr_set(value) and not isinstance(
+                    value, (str, list)):
                 tester.fail("Default value '%s' cannot be converted for "
                             "attribute %s." % (value, attribute))
 
