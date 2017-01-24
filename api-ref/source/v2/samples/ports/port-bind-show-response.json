@@ -11,6 +11,7 @@
         "binding:vif_type": "ovs",
         "binding:vnic_type": "normal",
         "created_at": "2016-03-08T20:19:41",
+        "data_plane_status": "ACTIVE",
         "description": "",
         "device_id": "5e3898d7-11be-483e-9732-b2f5eccd2b2e",
         "device_owner": "network:router_interface",

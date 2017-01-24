@@ -17,6 +17,22 @@ The extension defines several attributes whose names have a prefix
 
 |
 
+Data plane status extension
+===========================
+
+The data plane port extension (``data-plane-status``) adds a new attribute
+``data_plane_status`` to represent the status of the underlying data plane.
+This attribute is to be managed by entities outside of the Networking service,
+while the ``status`` attribute is managed by Networking service. Both status
+attributes are independent from one another.
+
+Supported data plane status values:
+
+- ``null``: no status being reported; default value
+- ``ACTIVE``: the underlying data plane is up and running
+- ``DOWN``: no traffic can flow from/to the port
+
+
 Show port details
 =================
 
@@ -56,6 +72,7 @@ Response Parameters
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
    - created_at: created_at
+   - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
    - device_owner: device_owner
@@ -108,6 +125,10 @@ specify it in the request body. If the security groups are not
 valid, the operation fails and the existing security groups are not
 removed from the port.
 
+Only admins and users with a specific role can update the data plane status
+(default role: ``data_plane_integrator``).
+
+
 Normal response codes: 200
 
 Error response codes: 400, 401, 403, 404, 409
@@ -124,6 +145,7 @@ Request
    - binding:host_id: binding:host_id-request
    - binding:profile: binding:profile-request
    - binding:vnic_type: binding:vnic_type-request
+   - data_plane_status: data_plane_status-request
    - description: description-request
    - device_id: device_id-request
    - device_owner: device_owner-request
@@ -160,6 +182,7 @@ Response Parameters
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
    - created_at: created_at
+   - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
    - device_owner: device_owner
@@ -256,6 +279,7 @@ Response Parameters
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
    - created_at: created_at
+   - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
    - device_owner: device_owner
@@ -348,6 +372,7 @@ Response Parameters
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
    - created_at: created_at
+   - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
    - device_owner: device_owner
@@ -433,6 +458,7 @@ Response Parameters
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
    - created_at: created_at
+   - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
    - device_owner: device_owner

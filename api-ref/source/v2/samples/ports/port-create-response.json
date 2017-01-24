@@ -3,6 +3,7 @@
         "admin_state_up": true,
         "allowed_address_pairs": [],
         "created_at": "2016-03-08T20:19:41",
+        "data_plane_status": null,
         "description": "",
         "device_id": "",
         "device_owner": "",
