@@ -73,12 +73,6 @@ floatingip-id-path:
   in: path
   required: true
   type: string
-health_monitor_id:
-  description: |
-    The UUID for the health monitor.
-  in: path
-  required: false
-  type: string
 health_monitor_id-path:
   description: |
     The ID for the health monitor.
@@ -108,12 +102,6 @@ loadbalancer-id-path:
     The ID of the load balancer.
   in: path
   required: true
-  type: string
-member_id:
-  description: |
-    The UUID for the member.
-  in: path
-  required: false
   type: string
 member_id-path:
   description: |
@@ -148,12 +136,6 @@ network_id_3:
 policy_id:
   description: |
     The UUID of the policy.
-  in: path
-  required: false
-  type: string
-pool_id:
-  description: |
-    The UUID for the pool.
   in: path
   required: false
   type: string
@@ -259,11 +241,11 @@ trunk_id:
   in: path
   required: true
   type: string
-vip_id_1:
+vip_id-path:
   description: |
-    The UUID for the VIP.
+    The ID for the VIP.
   in: path
-  required: false
+  required: true
   type: string
 vpnservice_id-path:
   description: |
@@ -318,20 +300,6 @@ action_2:
 address:
   description: |
     The IP address of the member.
-  format: ipv4
-  in: body
-  required: true
-  type: string
-address_1:
-  description: |
-    The IP address of the VIP.
-  format: ipv4
-  in: body
-  required: false
-  type: string
-address_2:
-  description: |
-    The IP address of the VIP.
   format: ipv4
   in: body
   required: true
@@ -1343,8 +1311,13 @@ expected_codes:
   description: |
     The list of HTTP status codes expected in
     response from the member to declare it healthy. Specify one of the
-    following values:  - A single value, such as 200.  - A list, such
-    as 200, 202.  - A range, such as 200-204.
+    following values:
+
+    - A single value, such as ``200``
+    - A list, such as ``200, 202``
+    - A range, such as ``200-204``
+ 
+    The default is 200.
   in: body
   required: false
   type: string
@@ -1352,8 +1325,13 @@ expected_codes-response:
   description: |
     The list of HTTP status codes expected in
     response from the member to declare it healthy. Specify one of the
-    following values:  - A single value, such as 200.  - A list, such
-    as 200, 202.  - A range, such as 200-204.
+    following values:
+
+    - A single value, such as ``200``
+    - A list, such as ``200, 202``
+    - A range, such as ``200-204``
+
+    The default is 200.
   in: body
   required: true
   type: string
@@ -2172,29 +2150,28 @@ health_monitor:
   in: body
   required: true
   type: object
-health_monitors:
-  description: |
-    List of health monitors that are associated with
-    the pool.
-  in: body
-  required: true
-  type: array
-health_monitors-id:
+health_monitor-id:
   description: |
     The ID of the associated health monitor.
   in: body
   required: true
   type: string
-health_monitors-response:
+health_monitors-obj:
   description: |
-    List of health monitors that are associated with
-    the pool.
+    A list of ``health_monitor`` objects.
   in: body
   required: true
   type: array
-health_monitors_1:
+health_monitors-request:
   description: |
-    A list of ``health_monitor`` objects.
+    List of health monitors to be associated with the pool.
+    The default is an empty list.
+  in: body
+  required: false
+  type: array
+health_monitors-response:
+  description: |
+    List of health monitors that are associated with the pool.
   in: body
   required: true
   type: array
@@ -2219,8 +2196,14 @@ healthmonitor_id:
   type: string
 http_method:
   description: |
-    The HTTP method that the monitor uses for
-    requests.
+    The HTTP method that the monitor uses for requests.
+  in: body
+  required: true
+  type: string
+http_method-request:
+  description: |
+    The HTTP method that the monitor uses for requests.
+    The default is ``GET``.
   in: body
   required: false
   type: string
@@ -2552,6 +2535,17 @@ lb_method:
   in: body
   required: true
   type: string
+lb_method-request-put:
+  description: |
+    The load-balancer algorithm, which is round-robin
+    (``ROUND_ROBIN``), least-connections (``LEAST_CONNECTIONS``),
+    source IP (``SOURCE_IP``), and so on, that is used to distribute
+    traffic to the pool members. This value, which must be supported,
+    is dependent on the load-balancer provider. The round-robin
+    algorithm must be supported.
+  in: body
+  required: false
+  type: string
 lifetime:
   description: |
     The lifetime of the security association. The
@@ -2734,6 +2728,18 @@ member-id-response:
   in: body
   required: true
   type: string
+member-pool_id:
+  description: |
+    The ID of the pool which the member belongs to.
+  in: body
+  required: true
+  type: string
+member-pool_id-request:
+  description: |
+    The ID of the pool which the member belongs to.
+  in: body
+  required: false
+  type: string
 member-status:
   description: |
     The status of the member. Indicates whether the
@@ -2745,11 +2751,25 @@ member-weight:
   description: |
     The weight of a member determines the portion of
     requests or connections it services compared to the other members
-    of the pool. A value of 0 means the member does not participate in
+    of the pool. For example, a member with a weight of 10 receives five
+    times as much traffic as a member with a weight of 2.
+    A value of 0 means the member does not participate in
     load- balancing but still accepts persistent connections. A valid
     value is from 0 to 256.
   in: body
   required: true
+  type: integer
+member-weight-request:
+  description: |
+    The weight of a member determines the portion of
+    requests or connections it services compared to the other members
+    of the pool. For example, a member with a weight of 10 receives five
+    times as much traffic as a member with a weight of 2.
+    A value of 0 means the member does not participate in
+    load- balancing but still accepts persistent connections. A valid
+    value is from 0 to 256. The default is 1.
+  in: body
+  required: false
   type: integer
 members:
   description: |
@@ -2757,7 +2777,7 @@ members:
   in: body
   required: true
   type: array
-members_1:
+members-obj:
   description: |
     A list of ``member`` objects.
   in: body
@@ -3355,6 +3375,25 @@ pool-id-response:
   in: body
   required: true
   type: string
+pool-protocol:
+  description: |
+    The protocol of the pool, which is ``TCP``,
+    ``HTTP``, or ``HTTPS``.
+  in: body
+  required: true
+  type: string
+pool-provider:
+  description: |
+    The provider name of the load balancer pool.
+  in: body
+  required: true
+  type: string
+pool-provider-request:
+  description: |
+    The provider name of the load balancer pool.
+  in: body
+  required: false
+  type: string
 pool-status:
   description: |
     The status of the pool. Indicates whether the
@@ -3412,12 +3451,6 @@ port_id_1:
     The UUID of the port.
   in: body
   required: false
-  type: string
-port_id_2:
-  description: |
-    The UUID of the VIP port.
-  in: body
-  required: true
   type: string
 port_id_4:
   description: |
@@ -3584,13 +3617,6 @@ protocol_1:
   in: body
   required: true
   type: string
-protocol_2:
-  description: |
-    The protocol of the pool, which is ``TCP``,
-    ``HTTP``, or ``HTTPS``.
-  in: body
-  required: true
-  type: string
 protocol_3:
   description: |
     The protocol that is matched by the security
@@ -3603,13 +3629,6 @@ protocol_4:
     The protocol that is matched by the security
     group rule. Value is ``null``, ``icmp``, ``icmpv6``, ``tcp``, or
     ``udp``.
-  in: body
-  required: true
-  type: string
-protocol_5:
-  description: |
-    The protocol of the virtual IP (VIP) address. A
-    valid value is ``TCP``, ``HTTP``, or ``HTTPS``.
   in: body
   required: true
   type: string
@@ -3632,12 +3651,6 @@ protocol_port-request:
   in: body
   required: false
   type: integer
-provider:
-  description: |
-    The name of the provider.
-  in: body
-  required: false
-  type: string
 provider:network_type:
   description: |
     The type of physical network that maps to this
@@ -4322,49 +4335,6 @@ service_type_1:
   in: body
   required: true
   type: string
-session_persistence:
-  description: |
-    The session persistence algorithm. This algorithm
-    is a dictionary with type and cookie_name keys.
-  in: body
-  required: false
-  type: object
-session_persistence_1:
-  description: |
-    Session persistence parameters for the VIP. Omit
-    the ``session_persistence`` parameter to prevent session
-    persistence. When no session persistence is used, the
-    ``session_persistence`` parameter does not appear in the API
-    response. To clear session persistence for the VIP, set the
-    ``session_persistence`` parameter to ``null`` in a VIP update
-    request.
-  in: body
-  required: false
-  type: object
-session_persistence_2:
-  description: |
-    Session persistence parameters for the VIP. Omit
-    the ``session_persistence`` parameter to prevent session
-    persistence. When no session persistence is used, the
-    ``session_persistence`` parameter does not appear in the API
-    response. To clear session persistence for the VIP, set the
-    ``session_persistence`` parameter to ``null`` in a VIP update
-    request.
-  in: body
-  required: true
-  type: object
-session_persistence_3:
-  description: |
-    Session persistence parameters for the VIP. Omit
-    the ``session_persistence`` parameter to prevent session
-    persistence. When no session persistence is used, the
-    ``session_persistence`` parameter does not appear in the API
-    response.  To clear session persistence for the VIP, set the
-    ``session_persistence`` parameter to ``null`` in a VIP update
-    request.
-  in: body
-  required: false
-  type: object
 shared:
   description: |
     Admin-only. Indicates whether this network is
@@ -5199,7 +5169,7 @@ url_path:
   description: |
     The HTTP path of the request sent by the monitor
     to test the health of a member. A valid value is a string that
-    begins with a forward slash (/).
+    begins with a forward slash (``/``).
   in: body
   required: false
   type: string
@@ -5207,7 +5177,7 @@ url_path-response:
   description: |
     The HTTP path of the request sent by the monitor
     to test the health of a member. Must be a string that begins with
-    a forward slash (/).
+    a forward slash (``/``). The default is ``/``.
   in: body
   required: true
   type: string
@@ -5278,10 +5248,84 @@ vip:
   in: body
   required: true
   type: object
+vip-address:
+  description: |
+    The IP address of the VIP.
+  format: ipv4
+  in: body
+  required: true
+  type: string
+vip-address-request:
+  description: |
+    The IP address of the VIP.
+  format: ipv4
+  in: body
+  required: false
+  type: string
+vip-id:
+  description: |
+    The ID of the virtual IP (VIP) address.
+  in: body
+  required: true
+  type: string
+vip-pool_id:
+  description: |
+    The ID of the pool which the VIP belongs to.
+  in: body
+  required: true
+  type: string
+vip-pool_id-request:
+  description: |
+    The ID of the pool which the VIP belongs to.
+  in: body
+  required: false
+  type: string
+vip-port_id:
+  description: |
+    The ID of the VIP port.
+  in: body
+  required: true
+  type: string
+vip-protocol:
+  description: |
+    The protocol of the virtual IP (VIP) address. A
+    valid value is ``TCP``, ``HTTP``, or ``HTTPS``.
+  in: body
+  required: true
+  type: string
+vip-session_persistence:
+  description: |
+    Session persistence parameters for the VIP. Omit
+    the ``session_persistence`` parameter to prevent session
+    persistence. When no session persistence is used, the
+    ``session_persistence`` parameter does not appear in the API
+    response.
+  in: body
+  required: true
+  type: object
+vip-session_persistence-request:
+  description: |
+    Session persistence parameters for the VIP. Omit
+    the ``session_persistence`` parameter to prevent session
+    persistence. When no session persistence is used, the
+    ``session_persistence`` parameter does not appear in the API
+    response. To clear session persistence for the VIP, set the
+    ``session_persistence`` parameter to ``null`` in a VIP update
+    request. The default is no session persistence.
+  in: body
+  required: false
+  type: object
 vip-status:
   description: |
     The status of the VIP. Indicates whether the VIP
     is operational.
+  in: body
+  required: true
+  type: string
+vip-subnet_id:
+  description: |
+    The ID of the subnet on which to allocate the
+    virtual IP (VIP) address.
   in: body
   required: true
   type: string
@@ -5366,22 +5410,3 @@ vpnservices:
   in: body
   required: true
   type: array
-weight:
-  description: |
-    A positive integer value that indicates the
-    relative portion of traffic that this member should receive from
-    the pool. For example, a member with a weight of 10 receives five
-    times as much traffic as a member with a weight of 2.
-  in: body
-  required: false
-  type: integer
-weight_1:
-  description: |
-    The weight of a member determines the portion of
-    requests or connections it services compared to the other members
-    of the pool. A value of 0 means the member does not participate in
-    load- balancing but still accepts persistent connections. A valid
-    value is from 0 to 256.
-  in: body
-  required: false
-  type: integer

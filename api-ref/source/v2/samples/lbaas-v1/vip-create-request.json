@@ -1,0 +1,10 @@
+{
+    "vip": {
+        "admin_state_up": true,
+        "name": "NewVip",
+        "pool_id": "105320c3-8416-4997-9c1c-4098b95fdaca",
+        "protocol": "HTTP",
+        "protocol_port": "80",
+        "subnet_id": "0ba2ef27-0054-4b28-a8fa-f215e8079272"
+    }
+}

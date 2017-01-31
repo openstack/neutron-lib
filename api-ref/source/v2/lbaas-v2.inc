@@ -1282,7 +1282,7 @@ Request
    - member_id: member_id-path
    - member: member
    - admin_state_up: admin_state_up
-   - weight: weight
+   - weight: member-weight-request
 
 Request Example
 ---------------
@@ -1379,12 +1379,12 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitors: health_monitors
+   - health_monitors: health_monitors-obj
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes-response
    - http_method: http_method
-   - id: health_monitors-id
+   - id: health_monitor-id
    - max_retries: max_retries
    - pools: pools
    - project_id: project_id
@@ -1497,7 +1497,7 @@ Response Parameters
    - delay: delay
    - expected_codes: expected_codes-response
    - http_method: http_method
-   - id: health_monitors-id
+   - id: health_monitor-id
    - max_retries: max_retries
    - pools: pools
    - project_id: project_id
@@ -1548,7 +1548,7 @@ Response Parameters
    - expected_codes: expected_codes-response
    - http_method: http_method
    - max_retries: max_retries
-   - id: health_monitors-id
+   - id: health_monitor-id
    - pools: pools
    - project_id: project_id
    - tenant_id: project_id
@@ -1613,7 +1613,7 @@ Response Parameters
    - expected_codes: expected_codes-response
    - http_method: http_method
    - max_retries: max_retries
-   - id: health_monitors-id
+   - id: health_monitor-id
    - pools: pools
    - project_id: project_id
    - tenant_id: project_id
