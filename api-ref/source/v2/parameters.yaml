@@ -1290,7 +1290,7 @@ expected_codes:
     - A single value, such as ``200``
     - A list, such as ``200, 202``
     - A range, such as ``200-204``
- 
+
     The default is 200.
   in: body
   required: false

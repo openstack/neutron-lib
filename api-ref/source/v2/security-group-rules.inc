@@ -52,6 +52,7 @@ Response Parameters
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - id: security_group_rule-id
+   - description: description
 
 Response Example
 ----------------
@@ -81,9 +82,10 @@ Request
    - protocol: protocol
    - ethertype: ethertype
    - port_range_max: port_range_max
-   - security_group_id: security_group_rule-security_group_id 
+   - security_group_id: security_group_rule-security_group_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
+   - description: description-request
 
 Request Example
 ---------------
@@ -102,12 +104,13 @@ Response Parameters
    - protocol: protocol
    - ethertype: ethertype
    - port_range_max: port_range_max
-   - security_group_id: security_group_rule-security_group_id 
+   - security_group_id: security_group_rule-security_group_id
    - tenant_id: project_id
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - id: security_group_rule-id
+   - description: description
 
 Response Example
 ----------------
@@ -149,12 +152,13 @@ Response Parameters
    - protocol: protocol
    - ethertype: ethertype
    - port_range_max: port_range_max
-   - security_group_id: security_group_rule-security_group_id 
-   - tenant_id: project_id 
+   - security_group_id: security_group_rule-security_group_id
+   - tenant_id: project_id
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
    - id: security_group_rule-id
+   - description: description
 
 Response Example
 ----------------
