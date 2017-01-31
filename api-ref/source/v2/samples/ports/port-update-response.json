@@ -25,6 +25,7 @@
         "binding:vif_details": {},
         "binding:vnic_type": "normal",
         "binding:vif_type": "binding_failed",
-        "mac_address": "fa:16:3e:11:11:5e"
+        "mac_address": "fa:16:3e:11:11:5e",
+        "description": ""
     }
 }

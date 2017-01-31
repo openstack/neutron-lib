@@ -55,6 +55,7 @@ Response Parameters
    - created_at: created_at
    - security_groups: security_groups
    - device_id: device_id
+   - description: description
 
 Response Example
 ----------------
@@ -112,6 +113,7 @@ Request
    - security_groups: security_groups
    - device_id: device_id
    - port_id: port_id
+   - description: description-request
 
 Request Example
 ---------------
@@ -146,6 +148,7 @@ Response Parameters
    - created_at: created_at
    - security_groups: security_groups
    - device_id: device_id
+   - description: description
 
 Response Example
 ----------------
@@ -221,6 +224,7 @@ Response Parameters
    - created_at: created_at
    - security_groups: security_groups
    - device_id: device_id
+   - description: description
 
 Response Example
 ----------------
@@ -261,6 +265,7 @@ Request
    - port: port
    - security_groups: security_groups
    - device_id: device_id
+   - description: description-request
 
 Request Example
 ---------------
@@ -295,6 +300,13 @@ Response Parameters
    - created_at: created_at
    - security_groups: security_groups
    - device_id: device_id
+   - description: description
+
+Response Example
+----------------
+
+.. literalinclude:: samples/ports/port-create-response.json
+   :language: javascript
 
 Bulk create ports
 =================
@@ -328,6 +340,7 @@ Request
    - ports: ports
    - security_groups: security_groups
    - device_id: device_id
+   - description: description-request
 
 Request Example
 ---------------
@@ -362,4 +375,10 @@ Response Parameters
    - created_at: created_at
    - security_groups: security_groups
    - device_id: device_id
+   - description: description
 
+Response Example
+----------------
+
+.. literalinclude:: samples/ports/ports-bulk-create-response.json
+   :language: javascript
