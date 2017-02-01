@@ -18,6 +18,7 @@
         "subnets": [],
         "tenant_id": "9bacb3c5d39d41a79512987f338cf177",
         "updated_at": "2016-03-08T20:19:41",
-        "vlan_transparent": false
+        "vlan_transparent": false,
+        "description": ""
     }
 }

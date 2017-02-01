@@ -101,6 +101,7 @@ Response Parameters
    - tenant_id: project_id
    - updated_at: updated_at_resource
    - vlan_transparent: vlan_transparent
+   - description: description
 
 Response Example
 ----------------
@@ -143,6 +144,7 @@ Request
    - port_security_enabled: network-port_security_enabled-request
    - router:external: router:external-request
    - shared: network-shared-request
+   - description: description-request
 
 Request Example
 ---------------
@@ -174,6 +176,7 @@ Response Parameters
    - status: network-status
    - subnets: network-subnets
    - tenant_id: project_id
+   - description: description
 
 Response Example
 ----------------
@@ -270,6 +273,7 @@ Response Parameters
    - subnets: network-subnets
    - tenant_id: project_id
    - vlan_transparent: vlan_transparent
+   - description: description
 
 Response Example
 ----------------
@@ -321,6 +325,7 @@ Request
    - shared: network-shared-request
    - tenant_id: project_id-request
    - vlan_transparent: vlan_transparent-request
+   - description: description-request
 
 Request Example
 ---------------
@@ -365,6 +370,7 @@ Response Parameters
    - subnets: network-subnets
    - tenant_id: project_id
    - vlan_transparent: vlan_transparent
+   - description: description
 
 Response Example
 ----------------
@@ -418,6 +424,7 @@ Request
    - shared: network-shared-request
    - tenant_id: project_id-request
    - vlan_transparent: vlan_transparent-request
+   - description: description-request
 
 Request Example
 ---------------
@@ -450,6 +457,7 @@ Response Parameters
    - subnets: network-subnets
    - tenant_id: project_id
    - vlan_transparent: vlan_transparent
+   - description: description
 
 Response Example
 ----------------

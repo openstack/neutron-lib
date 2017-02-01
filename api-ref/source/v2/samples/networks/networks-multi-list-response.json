@@ -22,7 +22,8 @@
             ],
             "router:external": false,
             "shared": false,
-            "id": "4e8e5957-649f-477b-9e5b-f1f75b21c03c"
+            "id": "4e8e5957-649f-477b-9e5b-f1f75b21c03c",
+            "description": ""
         },
         {
             "status": "ACTIVE",
@@ -39,7 +40,8 @@
             "provider:network_type": "local",
             "shared": true,
             "id": "db193ab3-96e3-4cb3-8fc5-05f4296d0324",
-            "provider:segmentation_id": null
+            "provider:segmentation_id": null,
+            "description": ""
         }
     ]
 }
