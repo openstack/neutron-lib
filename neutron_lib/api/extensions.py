@@ -96,11 +96,15 @@ class ExtensionDescriptor(object):
         """
 
     def get_required_extensions(self):
-        """Returns a list of extensions to be processed before this one."""
+        """Return list of extensions required for processing this descriptor.
+
+        Without these extensions present in a neutron deployment, the
+        introduced extension cannot load or function properly.
+        """
         return []
 
     def get_optional_extensions(self):
-        """Returns a list of extensions to be processed before this one.
+        """Returns a list of optionally required extensions.
 
         Unlike get_required_extensions. This will not fail the loading of
         the extension if one of these extensions is not present. This is
