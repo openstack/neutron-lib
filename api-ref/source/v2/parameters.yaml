@@ -4539,12 +4539,6 @@ subnet-created_at:
   in: body
   required: true
   type: string
-subnet-description:
-  description: |
-    Description of the subnet.
-  in: body
-  required: true
-  type: string
 subnet-dns_nameservers:
   description: |
     List of dns name servers associated with the subnet.

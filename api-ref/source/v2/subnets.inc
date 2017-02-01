@@ -56,7 +56,7 @@ Response Parameters
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
    - created_at: subnet-created_at
-   - description: subnet-description
+   - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
    - revision_number: subnet-revision_number
@@ -166,7 +166,7 @@ Response Parameters
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
    - created_at: subnet-created_at
-   - description: subnet-description
+   - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
    - revision_number: subnet-revision_number
@@ -243,7 +243,7 @@ Response Parameters
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
    - created_at: subnet-created_at
-   - description: subnet-description
+   - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
    - revision_number: subnet-revision_number
@@ -298,7 +298,7 @@ Response Parameters
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
    - updated_at: subnet-updated_at
-   - description: subnet-description
+   - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
    - revision_number: subnet-revision_number
@@ -339,6 +339,7 @@ Request
    - allocation_pools: subnet-allocation_pools-request
    - host_routes: subnet-host_routes-request
    - gateway_ip: subnet-gateway_ip-request
+   - description: description-request
 
 Request Example
 ---------------
@@ -365,7 +366,7 @@ Response Parameters
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
    - created_at: subnet-created_at
-   - description: subnet-description
+   - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
    - revision_number: subnet-revision_number
