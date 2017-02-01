@@ -229,6 +229,7 @@ Request
    - admin_state_up: admin_state_up
    - external_fixed_ips: router-external_fixed_ips
    - router_id: router_id
+   - description: description-request
 
 Request Example
 ---------------
