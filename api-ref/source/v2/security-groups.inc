@@ -74,8 +74,8 @@ Request
 
    - security_group: security_group
    - tenant_id: project_id
-   - project_id: project_id 
-   - description: description
+   - project_id: project_id
+   - description: description-request
    - name: name
 
 Request Example
@@ -168,7 +168,7 @@ Request
 
    - security_group_id: security_group-id-path
    - security_group: security_group
-   - description: description
+   - description: description-request
    - name: name
 
 Request Example
