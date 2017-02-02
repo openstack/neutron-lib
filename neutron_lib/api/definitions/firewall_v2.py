@@ -16,7 +16,7 @@ from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 
 # The alias of the extension.
-ALIAS = 'firewall_v2'
+ALIAS = 'fwaas_v2'
 
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map.
