@@ -258,6 +258,7 @@ Request
    - floatingip_id: floatingip-id-path
    - port_id: floatingip-port_id-put-request
    - fixed_ip_address: floatingip-fixed_ip_address-request
+   - description: description-request
 
 Request Example
 ---------------
