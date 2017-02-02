@@ -79,6 +79,7 @@ Response Parameters
    - tenant_id: project_id
    - vip_address: vip_address
    - vip_subnet_id: vip_subnet_id
+   - pools: pools-obj
 
 Response Example
 ----------------
@@ -207,6 +208,7 @@ Response Parameters
    - vip_address: vip_address
    - vip_network_id: vip_network_id
    - vip_subnet_id: vip_subnet_id
+   - pools: pools-obj
 
 Response Example
 ----------------
@@ -254,6 +256,7 @@ Response Parameters
    - tenant_id: project_id
    - vip_address: vip_address
    - vip_subnet_id: vip_subnet_id
+   - pools: pools-obj
 
 Response Example
 ----------------
@@ -317,6 +320,7 @@ Response Parameters
    - tenant_id: project_id
    - vip_address: vip_address
    - vip_subnet_id: vip_subnet_id
+   - pools: pools-obj
 
 Response Example
 ----------------
