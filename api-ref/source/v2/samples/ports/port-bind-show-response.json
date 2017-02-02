@@ -27,6 +27,7 @@
         ],
         "id": "46d4bfb9-b26e-41f3-bd2e-e6dcc1ccedb2",
         "security_groups": [],
-        "device_id": "5e3898d7-11be-483e-9732-b2f5eccd2b2e"
+        "device_id": "5e3898d7-11be-483e-9732-b2f5eccd2b2e",
+        "description": ""
     }
 }
