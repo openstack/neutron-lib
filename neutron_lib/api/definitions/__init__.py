@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.api.definitions import data_plane_status
+from neutron_lib.api.definitions import extra_dhcp_opt
 from neutron_lib.api.definitions import fip64
 from neutron_lib.api.definitions import firewall
 from neutron_lib.api.definitions import firewall_v2
@@ -33,6 +34,7 @@ from neutron_lib.api.definitions import trunk_details
 _ALL_API_DEFINITIONS = {
     bgpvpn,
     data_plane_status,
+    extra_dhcp_opt,
     fip64,
     firewall,
     firewall_v2,
