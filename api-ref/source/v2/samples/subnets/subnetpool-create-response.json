@@ -15,6 +15,7 @@
             "192.168.0.0/16"
         ],
         "ip_version": 4,
-        "shared": false
+        "shared": false,
+        "description": ""
     }
 }

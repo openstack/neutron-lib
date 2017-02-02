@@ -51,7 +51,7 @@ Response Parameters
    - shared: shared
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
-   - description: subnetpool_description_response
+   - description: description
    - is_default: subnetpool_is_default
    - revision_number: subnetpool_revision_number
 
@@ -88,7 +88,7 @@ Request
    - address_scope_id: address_scope_id
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
-   - description: subnetpool_description_request
+   - description: description-request
 
 Request Example
 ---------------
@@ -116,7 +116,7 @@ Response Parameters
    - shared: shared
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
-   - description: subnetpool_description_response
+   - description: description
    - is_default: subnetpool_is_default
    - revision_number: subnetpool_revision_number
 
@@ -199,7 +199,7 @@ Response Parameters
    - shared: shared
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
-   - description: subnetpool_description_response
+   - description: description
    - is_default: subnetpool_is_default
    - revision_number: subnetpool_revision_number
 
@@ -236,7 +236,7 @@ Request
    - shared: shared
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
-   - description: subnetpool_description_request
+   - description: description-request
 
 Request Example
 ---------------
@@ -264,6 +264,6 @@ Response Parameters
    - shared: shared
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
-   - description: subnetpool_description_response
+   - description: description
    - is_default: subnetpool_is_default
    - revision_number: subnetpool_revision_number

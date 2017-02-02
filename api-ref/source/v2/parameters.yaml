@@ -4748,18 +4748,6 @@ subnetpool:
   in: body
   required: true
   type: object
-subnetpool_description_request:
-  description: |
-      Description of the subnetpool.
-  in: body
-  required: false
-  type: string
-subnetpool_description_response:
-  description: |
-    Description of the subnetpool.
-  in: body
-  required: true
-  type: string
 subnetpool_id_body:
   description: |
     The ID of the subnet.
