@@ -141,6 +141,7 @@ Request
    - admin_state_up: network-admin_state_up-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
+   - qos_policy_id: qos_policy_id-request
    - router:external: router:external-request
    - shared: network-shared-request
 
@@ -316,6 +317,7 @@ Request
    - provider:network_type: provider:network_type-request
    - provider:physical_network: provider:physical_network-request
    - provider:segmentation_id: provider:segmentation_id-request
+   - qos_policy_id: qos_policy_id-request
    - router:external: router:external-request
    - segments: segments-request
    - shared: network-shared-request
@@ -413,6 +415,7 @@ Request
    - provider:network_type: provider:network_type-request
    - provider:physical_network: provider:physical_network-request
    - provider:segmentation_id: provider:segmentation_id-request
+   - qos_policy_id: qos_policy_id-request
    - router:external: router:external-request
    - segments: segments-request
    - shared: network-shared-request
