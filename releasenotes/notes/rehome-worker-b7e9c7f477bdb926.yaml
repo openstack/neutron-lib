@@ -1,0 +1,4 @@
+---
+features:
+  - The ``NeutronWorker`` class from the ``neutron.worker`` module is now
+    available as ``BaseWorker`` in ``neutron_lib.worker``.
