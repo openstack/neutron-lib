@@ -2,11 +2,13 @@
     "networks": [
         {
             "admin_state_up": true,
-            "name": "sample_network3"
+            "name": "sample_network3",
+            "qos_policy_id": "6a8454ade84346f59e8d40665f878b2e"
         },
         {
             "admin_state_up": true,
-            "name": "sample_network4"
+            "name": "sample_network4",
+            "qos_policy_id": "6a8454ade84346f59e8d40665f878b2e"
         }
     ]
 }
