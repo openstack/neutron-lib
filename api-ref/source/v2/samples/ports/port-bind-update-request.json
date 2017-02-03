@@ -1,0 +1,7 @@
+{
+    "port": {
+        "binding:host_id": "test_for_port_update_host",
+        "device_id": "d90a13da-be41-461f-9f99-1dbcf438fdf2",
+        "device_owner": "compute:nova"
+    }
+}
