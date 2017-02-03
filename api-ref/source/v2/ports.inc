@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 =====
 Ports
@@ -17,45 +13,48 @@ Show port details
 
 Shows details for a port.
 
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. For information, see `Filtering and
+Column Selection <http://specs.openstack.org/openstack/neutron-
+specs/specs/api/networking_general_api_information.html#filtering-
+and-column-selection>`__.
+
 Normal response codes: 200
 
-Error response codes: 404,401
+Error response codes: 401, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - port_id: port_id
+   - port_id: port_id-path
+   - fields: fields
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - status: port-status
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - ip_address: ip_address
-   - extra_dhcp_opts: extra_dhcp_opts
-   - opt_name: opt_name
-   - updated_at: updated_at
-   - id: id
    - port: port
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - port_security_enabled: port_security_enabled
-   - fixed_ips: fixed_ips
+   - admin_state_up: admin_state_up
+   - allowed_address_pairs: allowed_address_pairs
    - created_at: created_at
-   - security_groups: security_groups
-   - device_id: device_id
    - description: description
+   - device_id: device_id
+   - device_owner: device_owner
+   - extra_dhcp_opts: extra_dhcp_opts
+   - fixed_ips: fixed_ips
+   - id: id
+   - mac_address: mac_address
+   - name: name
+   - network_id: network_id
+   - port_security_enabled: port_security_enabled
+   - project_id: project_id
+   - security_groups: port-security_groups
+   - status: port-status
+   - tenant_id: project_id
+   - updated_at: updated_at
 
 Response Example
 ----------------
@@ -89,31 +88,26 @@ removed from the port.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401,400,409
+Error response codes: 400, 401, 403, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - fixed_ips: fixed_ips
-   - opt_name: opt_name
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - ip_address: ip_address
+   - port_id: port_id-path
    - port: port
-   - security_groups: security_groups
-   - device_id: device_id
-   - port_id: port_id
+   - admin_state_up: admin_state_up-request
+   - allowed_address_pairs: allowed_address_pairs-request
    - description: description-request
+   - device_id: device_id-request
+   - device_owner: device_owner-request
+   - extra_dhcp_opts: extra_dhcp_opts-request
+   - fixed_ips: fixed_ips-request
+   - mac_address: mac_address-request-put
+   - name: name-request
+   - port_security_enabled: port_security_enabled-request
+   - security_groups: port-security_groups-request
 
 Request Example
 ---------------
@@ -126,29 +120,25 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - status: port-status
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - ip_address: ip_address
-   - extra_dhcp_opts: extra_dhcp_opts
-   - opt_name: opt_name
-   - updated_at: updated_at
-   - id: id
    - port: port
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - port_security_enabled: port_security_enabled
-   - fixed_ips: fixed_ips
+   - admin_state_up: admin_state_up
+   - allowed_address_pairs: allowed_address_pairs
    - created_at: created_at
-   - security_groups: security_groups
-   - device_id: device_id
    - description: description
+   - device_id: device_id
+   - device_owner: device_owner
+   - extra_dhcp_opts: extra_dhcp_opts
+   - fixed_ips: fixed_ips
+   - id: id
+   - mac_address: mac_address
+   - name: name
+   - network_id: network_id
+   - port_security_enabled: port_security_enabled
+   - project_id: project_id
+   - security_groups: port-security_groups
+   - status: port-status
+   - tenant_id: project_id
+   - updated_at: updated_at
 
 Response Example
 ----------------
@@ -166,14 +156,21 @@ Deletes a port.
 Any IP addresses that are associated with the port are returned to
 the respective subnets allocation pools.
 
-Error response codes: 404,403,204,401
+Normal response codes: 204
+
+Error response codes: 401, 403, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - port_id: port_id
+   - port_id: port_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 List ports
 ==========
@@ -184,11 +181,13 @@ Lists ports to which the user has access.
 
 Default policy settings return only those ports that are owned by
 the project of the user who submits the request, unless the request is submitted
-by a user with administrative rights. Users can control which
-attributes are returned by using the fields query parameter. You
-can use query parameters to filter the response.For information,
-see `Filtering and Column Selection <https://wiki.openstack.org/wik
-i/Neutron/APIv2-specification#Filtering_and_Column_Selection>`_.
+by a user with administrative rights.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
 
@@ -197,34 +196,34 @@ Error response codes: 401
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - status: port-status
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - ip_address: ip_address
-   - extra_dhcp_opts: extra_dhcp_opts
-   - opt_name: opt_name
-   - updated_at: updated_at
-   - id: id
    - ports: ports
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - port_security_enabled: port_security_enabled
-   - fixed_ips: fixed_ips
+   - admin_state_up: admin_state_up
+   - allowed_address_pairs: allowed_address_pairs
    - created_at: created_at
-   - security_groups: security_groups
-   - device_id: device_id
    - description: description
+   - device_id: device_id
+   - device_owner: device_owner
+   - extra_dhcp_opts: extra_dhcp_opts
+   - fixed_ips: fixed_ips
+   - id: id
+   - mac_address: mac_address
+   - name: name
+   - network_id: network_id
+   - port_security_enabled: port_security_enabled
+   - project_id: project_id
+   - security_groups: port-security_groups
+   - status: port-status
+   - tenant_id: project_id
+   - updated_at: updated_at
 
 Response Example
 ----------------
@@ -242,30 +241,30 @@ Creates a port on a network.
 To define the network in which to create the port, specify the
 ``network_id`` attribute in the request body.
 
-Error response codes: 201,404,403,401,400,503
+Normal response codes: 201
+
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - fixed_ips: fixed_ips
-   - opt_name: opt_name
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - ip_address: ip_address
    - port: port
-   - security_groups: security_groups
-   - device_id: device_id
+   - admin_state_up: admin_state_up-request
+   - allowed_address_pairs: allowed_address_pairs-request
    - description: description-request
+   - device_id: device_id-request
+   - device_owner: device_owner-request
+   - extra_dhcp_opts: extra_dhcp_opts-request
+   - fixed_ips: fixed_ips-request
+   - mac_address: mac_address-request
+   - name: name-request
+   - network_id: network_id
+   - port_security_enabled: port_security_enabled-request
+   - project_id: project_id-request
+   - security_groups: port-security_groups-request
+   - tenant_id: project_id-request
 
 Request Example
 ---------------
@@ -278,29 +277,25 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - status: port-status
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - ip_address: ip_address
-   - extra_dhcp_opts: extra_dhcp_opts
-   - opt_name: opt_name
-   - updated_at: updated_at
-   - id: id
    - port: port
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - port_security_enabled: port_security_enabled
-   - fixed_ips: fixed_ips
+   - admin_state_up: admin_state_up
+   - allowed_address_pairs: allowed_address_pairs
    - created_at: created_at
-   - security_groups: security_groups
-   - device_id: device_id
    - description: description
+   - device_id: device_id
+   - device_owner: device_owner
+   - extra_dhcp_opts: extra_dhcp_opts
+   - fixed_ips: fixed_ips
+   - id: id
+   - mac_address: mac_address
+   - name: name
+   - network_id: network_id
+   - port_security_enabled: port_security_enabled
+   - project_id: project_id
+   - security_groups: port-security_groups
+   - status: port-status
+   - tenant_id: project_id
+   - updated_at: updated_at
 
 Response Example
 ----------------
@@ -317,30 +312,30 @@ Creates multiple ports in a single request. Specify a list of ports in the reque
 
 Guarantees the atomic completion of the bulk operation.
 
-Error response codes: 201,404,403,401,400,503,409
+Normal response codes: 201
+
+Error response codes: 400, 401, 403, 404, 409
 
 Request
 -------
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - fixed_ips: fixed_ips
-   - opt_name: opt_name
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - ip_address: ip_address
    - ports: ports
-   - security_groups: security_groups
-   - device_id: device_id
+   - admin_state_up: admin_state_up-request
+   - allowed_address_pairs: allowed_address_pairs-request
    - description: description-request
+   - device_id: device_id-request
+   - device_owner: device_owner-request
+   - extra_dhcp_opts: extra_dhcp_opts-request
+   - fixed_ips: fixed_ips-request
+   - mac_address: mac_address-request
+   - name: name-request
+   - network_id: network_id
+   - port_security_enabled: port_security_enabled-request
+   - project_id: project_id-request
+   - security_groups: port-security_groups-request
+   - tenant_id: project_id-request
 
 Request Example
 ---------------
@@ -353,29 +348,25 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - opt_value: opt_value
-   - status: port-status
-   - name: name
-   - allowed_address_pairs: allowed_address_pairs
-   - admin_state_up: admin_state_up
-   - network_id: network_id
-   - ip_address: ip_address
-   - extra_dhcp_opts: extra_dhcp_opts
-   - opt_name: opt_name
-   - updated_at: updated_at
-   - id: id
    - ports: ports
-   - subnet_id: subnet_id
-   - device_owner: device_owner
-   - tenant_id: project_id
-   - project_id: project_id
-   - mac_address: mac_address
-   - port_security_enabled: port_security_enabled
-   - fixed_ips: fixed_ips
+   - admin_state_up: admin_state_up
+   - allowed_address_pairs: allowed_address_pairs
    - created_at: created_at
-   - security_groups: security_groups
-   - device_id: device_id
    - description: description
+   - device_id: device_id
+   - device_owner: device_owner
+   - extra_dhcp_opts: extra_dhcp_opts
+   - fixed_ips: fixed_ips
+   - id: id
+   - mac_address: mac_address
+   - name: name
+   - network_id: network_id
+   - port_security_enabled: port_security_enabled
+   - project_id: project_id
+   - security_groups: port-security_groups
+   - status: port-status
+   - tenant_id: project_id
+   - updated_at: updated_at
 
 Response Example
 ----------------

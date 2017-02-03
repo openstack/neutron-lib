@@ -145,17 +145,11 @@ pool_id-request:
   in: path
   required: truee
   type: string
-port_id:
+port_id-path:
   description: |
-    The UUID of the port.
+    The ID of the port.
   in: path
-  required: false
-  type: string
-port_id_3:
-  description: |
-    The UUID of the port.
-  in: path
-  required: false
+  required: true
   type: string
 profile_id:
   description: |
@@ -516,17 +510,29 @@ alias:
   type: string
 allowed_address_pairs:
   description: |
-    A set of zero or more allowed address pairs. An
-    address pair contains an IP address and MAC address.
-  in: body
-  required: false
-  type: array
-allowed_address_pairs_1:
-  description: |
-    A set of zero or more allowed address pairs. An
-    address pair consists of an IP address and MAC address.
+    A set of zero or more allowed address pairs.
+    An address pair consists of an IP address range and MAC address
+    with the format of
+    ``{"ip_address": "<IP address or CIDR>", "mac_address": "<MAC address>"}``.
+    A server connected to the port can send a packet with source address
+    which matches one of the specified allowed address pairs.
   in: body
   required: true
+  type: array
+allowed_address_pairs-request:
+  description: |
+    A set of zero or more allowed address pairs.
+    An address pair consists of an IP address range and MAC address
+    with the format of
+    ``{"ip_address": "<IP address or CIDR>", "mac_address": "<MAC address>"}``.
+    A server connected to the port can send a packet with source address
+    which matches one of the specified allowed address pairs.
+    The default is an empty list.
+    For each address pair, ``ip_address`` is required and IP address or
+    CIDR can be specified. ``mac_address`` is optional and if unspecified
+    the MAC address of the port is used as default.
+  in: body
+  required: false
   type: array
 audited:
   description: |
@@ -1039,31 +1045,33 @@ destination_port_1:
   type: string
 device_id:
   description: |
-    The UUID of the device that uses this port. For
-    example, a virtual server.
-  in: body
-  required: false
-  type: string
-device_id_1:
-  description: |
-    The UUID of the device that uses this port. For
-    example, a virtual server.
+    The ID of the device that uses this port.
+    For example, a server instance or a logical router.
   in: body
   required: true
+  type: string
+device_id-request:
+  description: |
+    The ID of the device that uses this port.
+    For example, a server instance or a logical router.
+  in: body
+  required: false
   type: string
 device_owner:
   description: |
-    The UUID of the entity that uses this port. For
-    example, a DHCP agent.
-  in: body
-  required: false
-  type: string
-device_owner_1:
-  description: |
-    The UUID of the entity that uses this port. For
-    example, a DHCP agent.
+    The entity type that uses this port.
+    For example, ``compute:nova`` (server instance), ``network:dhcp``
+    (DHCP agent) or ``network:router_interface`` (router interface).
   in: body
   required: true
+  type: string
+device_owner-request:
+  description: |
+    The entity type that uses this port.
+    For example, ``compute:nova`` (server instance), ``network:dhcp``
+    (DHCP agent) or ``network:router_interface`` (router interface).
+  in: body
+  required: false
   type: string
 direction:
   description: |
@@ -1375,6 +1383,13 @@ extra_dhcp_opts:
     option pair consists of an option value and name.
   in: body
   required: true
+  type: array
+extra_dhcp_opts-request:
+  description: |
+    A set of zero or more extra DHCP option pairs. An
+    option pair consists of an option value and name.
+  in: body
+  required: false
   type: array
 firewall:
   description: |
@@ -1910,19 +1925,30 @@ firewalls_1:
   type: array
 fixed_ips:
   description: |
-    If you specify only a subnet UUID, OpenStack
-    Networking allocates an available IP from that subnet to the port.
-    If you specify both a subnet UUID and an IP address, OpenStack
-    Networking tries to allocate the address to the port.
-  in: body
-  required: false
-  type: array
-fixed_ips_1:
-  description: |
-    The IP addresses for the port. Includes the IP
-    address and UUID of the subnet.
+    The IP addresses for the port. If the port has multiple IP addresses,
+    this field has multiple entries. Each entry consists of IP address
+    (``ip_address``) and the subnet ID from which the IP address
+    is assigned (``subnet_id``).
   in: body
   required: true
+  type: array
+fixed_ips-request:
+  description: |
+    The IP addresses for the port.
+    If you would like to assign multiple IP addresses for the port,
+    specify multiple entries in this field.
+    Each entry consists of IP address (``ip_address``) and the subnet ID
+    from which the IP address is assigned (``subnet_id``).
+
+    * If you specify both a subnet ID and an IP address, OpenStack Networking
+      tries to allocate the IP address on that subnet to the port.
+    * If you specify only a subnet ID, OpenStack Networking allocates
+      an available IP from that subnet to the port.
+    * If you specify only an IP address, OpenStack Networking
+      tries to allocate the IP address if the address is a valid IP
+      for any of the subnets on the specified network.
+  in: body
+  required: false
   type: array
 flavor:
   description: |
@@ -2183,7 +2209,7 @@ http_method-request:
   type: string
 id:
   description: |
-    The UUID of the network.
+    The ID of the resource.
   in: body
   required: true
   type: string
@@ -2631,15 +2657,23 @@ location:
   type: string
 mac_address:
   description: |
-    The MAC address of an allowed address pair.
+    The MAC address of the port.
+  in: body
+  required: true
+  type: string
+mac_address-request:
+  description: |
+    The MAC address of the port.
+    If unspecified, a MAC address is automatically generated.
   in: body
   required: false
   type: string
-mac_address_1:
+mac_address-request-put:
   description: |
-    The MAC address.
+    The MAC address of the port.
+    By default, only administrative users can change this value.
   in: body
-  required: true
+  required: false
   type: string
 max_burst_kbps:
   description: |
@@ -3291,30 +3325,6 @@ operating_status:
   in: body
   required: true
   type: string
-opt_name:
-  description: |
-    The extra DHCP option name.
-  in: body
-  required: false
-  type: string
-opt_name_1:
-  description: |
-    The extra DHCP option name.
-  in: body
-  required: true
-  type: string
-opt_value:
-  description: |
-    The extra DHCP option value.
-  in: body
-  required: false
-  type: string
-opt_value_1:
-  description: |
-    The extra DHCP option value.
-  in: body
-  required: true
-  type: string
 peer_address:
   description: |
     The peer gateway public IPv4 or IPv6 address or
@@ -3459,6 +3469,18 @@ port:
   in: body
   required: true
   type: object
+port-security_groups:
+  description: |
+    The IDs of security groups applied to the port.
+  in: body
+  required: true
+  type: array
+port-security_groups-request:
+  description: |
+    The IDs of security groups applied to the port.
+  in: body
+  required: false
+  type: array
 port-status:
   description: |
     The port status. Values are ``ACTIVE``, ``DOWN``,
@@ -3466,9 +3488,15 @@ port-status:
   in: body
   required: true
   type: string
-port_id_1:
+port_id:
   description: |
-    The UUID of the port.
+    The ID of the port.
+  in: body
+  required: true
+  type: string
+port_id-request:
+  description: |
+    The ID of the port.
   in: body
   required: false
   type: string
@@ -3526,6 +3554,19 @@ port_security_enabled:
   description: |
     The port security status. A valid value is
     enabled (``true``) or disabled (``false``).
+    If port security is enabled for the port,
+    security group rules and anti-spoofing rules are applied to
+    the traffic on the port. If disabled, no such rules are applied.
+  in: body
+  required: true
+  type: boolean
+port_security_enabled-request:
+  description: |
+    The port security status. A valid value is
+    enabled (``true``) or disabled (``false``).
+    If port security is enabled for the port,
+    security group rules and anti-spoofing rules are applied to
+    the traffic on the port. If disabled, no such rules are applied.
   in: body
   required: false
   type: boolean

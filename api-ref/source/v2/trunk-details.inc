@@ -27,7 +27,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - port_id: port_id
+   - port_id: port_id-path
 
 Response Parameters
 -------------------
