@@ -1,16 +1,12 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 =======================================
 Network IP availability and usage stats
 =======================================
 
-List and show the network IP usage stats of all networks and a
-specified network. These operations are available in the Mitaka
-release (April 2016).
+The extension ``network-ip-availability`` allows users to list and show the
+network IP usage stats of all networks or of a specified network.
+By default policy configuration, only administrative users can use this API.
 
 Show Network IP Availability
 ============================
@@ -19,9 +15,12 @@ Show Network IP Availability
 
 Shows network IP availability details for a network.
 
+By default policy configuration, only administrative users can retrieve
+IP availability. Otherwise, ``Not Found (404)`` will be returned.
+
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 404
 
 Request
 -------
@@ -35,18 +34,18 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - used_ips: used_ips
-   - subnet_ip_availability: subnet_ip_availability
-   - network_id: network_id
+   - network_ip_availability: network_ip_availability
+   - network_id: network_ip_availability-network_id
+   - network_name: network-name
    - tenant_id: project_id
    - project_id: project_id
    - total_ips: total_ips
-   - network_ip_availability: network_ip_availability
-   - subnet_id: subnet_id
+   - used_ips: used_ips
+   - subnet_ip_availability: subnet_ip_availability
+   - subnet_id: network_ip_availability-subnet_id
    - subnet_name: subnet_name
-   - ip_version: ip_version
+   - ip_version: subnet-ip_version
    - cidr: cidr
-   - network_name: network-name
 
 Response Example
 ----------------
@@ -61,9 +60,12 @@ List Network IP Availability
 
 Lists network IP availability of all networks.
 
+By default policy configuration, only administrative users can retrieve
+IP availabilities. Otherwise, an empty list will be returned.
+
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401
 
 Request
 -------
@@ -73,18 +75,18 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - used_ips: used_ips
-   - subnet_ip_availability: subnet_ip_availability
-   - network_id: network_id
+   - network_ip_availabilities: network_ip_availabilities
+   - network_id: network_ip_availability-network_id
+   - network_name: network-name
    - tenant_id: project_id
    - project_id: project_id
    - total_ips: total_ips
-   - subnet_id: subnet_id
+   - used_ips: used_ips
+   - subnet_ip_availability: subnet_ip_availability
+   - subnet_id: network_ip_availability-subnet_id
    - subnet_name: subnet_name
-   - ip_version: ip_version
+   - ip_version: subnet-ip_version
    - cidr: cidr
-   - network_name: network-name
-   - network_ip_availabilities: network_ip_availabilities
 
 Response Example
 ----------------

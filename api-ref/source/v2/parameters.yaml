@@ -3304,6 +3304,18 @@ network_ip_availability:
   in: body
   required: true
   type: object
+network_ip_availability-network_id:
+  description: |
+    The ID of the network whose IP availability detail is reported.
+  in: body
+  required: true
+  type: string
+network_ip_availability-subnet_id:
+  description: |
+    The ID of the subnet whose IP availability detail is reported.
+  in: body
+  required: true
+  type: string
 network_type:
   description: |
     The type of physical network that maps to this
@@ -4765,9 +4777,8 @@ subnet_id:
   type: string
 subnet_ip_availability:
   description: |
-    This is dictionary showing subnet IP
-    availability. It contains information for every subnet associated
-    to each network as described in the parameters.
+    A list of dictionaries showing subnet IP availability.
+    It contains information for every subnet associated to the network.
   in: body
   required: true
   type: array
