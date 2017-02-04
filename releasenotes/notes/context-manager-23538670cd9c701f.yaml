@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    ``neutron_lib.db`` has a public module ``api`` that provides
+    accessor functions for transactional context manager services.
+  - |
+    ``neutron_lib.fixture`` has a new ``SqlFixture`` available.

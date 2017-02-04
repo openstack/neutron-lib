@@ -14,6 +14,8 @@ import fixtures
 
 from neutron_lib.callbacks import manager
 from neutron_lib.callbacks import registry
+from neutron_lib.db import api as db_api
+from neutron_lib.db import model_base
 from neutron_lib.plugins import directory
 
 
@@ -59,3 +61,24 @@ class CallbackRegistryFixture(fixtures.Fixture):
 
     def _restore(self):
         registry._CALLBACK_MANAGER = self._orig_manager
+
+
+class SqlFixture(fixtures.Fixture):
+
+    # flag to indicate that the models have been loaded
+    _TABLES_ESTABLISHED = False
+
+    def _setUp(self):
+        # Register all data models
+        engine = db_api.get_context_manager().writer.get_engine()
+        if not SqlFixture._TABLES_ESTABLISHED:
+            model_base.BASEV2.metadata.create_all(engine)
+            SqlFixture._TABLES_ESTABLISHED = True
+
+        def clear_tables():
+            with engine.begin() as conn:
+                for table in reversed(
+                        model_base.BASEV2.metadata.sorted_tables):
+                    conn.execute(table.delete())
+
+        self.addCleanup(clear_tables)

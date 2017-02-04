@@ -12,9 +12,12 @@
 
 import mock
 
+from oslo_config import cfg
+from oslo_db import options
 from oslotest import base
 
 from neutron_lib.callbacks import registry
+from neutron_lib.db import model_base
 from neutron_lib import fixture
 from neutron_lib.plugins import directory
 
@@ -43,3 +46,16 @@ class CallbackRegistryFixtureTestCase(base.BaseTestCase):
     def test_fixture(self):
         registry.notify('a', 'b', self)
         self.assertTrue(self.manager.notify.called)
+
+
+class SqlFixtureTestCase(base.BaseTestCase):
+
+    def setUp(self):
+        super(SqlFixtureTestCase, self).setUp()
+        options.set_defaults(
+            cfg.CONF,
+            connection='sqlite://')
+        self.useFixture(fixture.SqlFixture())
+
+    def test_fixture(self):
+        self.assertIsNotNone(model_base.BASEV2.metadata.sorted_tables)
