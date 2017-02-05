@@ -230,7 +230,7 @@ belong to your project, the service returns the HTTP
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -374,7 +374,7 @@ statuses for its children.
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -658,7 +658,7 @@ status.
 
 Normal response codes: 202
 
-Error response codes: 422, 401, 404
+Error response codes: 401, 404, 422
 
 Request
 -------
@@ -985,7 +985,7 @@ attached does not have an ``ACTIVE`` provisioning status.
 
 Normal response codes: 202
 
-Error response codes: 422, 401, 404
+Error response codes: 401, 404, 422
 
 Request
 -------
@@ -1224,7 +1224,7 @@ Example: Show pool member details
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -1532,7 +1532,7 @@ Example: Show health monitor details
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------

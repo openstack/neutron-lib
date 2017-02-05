@@ -116,7 +116,7 @@ only supported for provider networks.
 
 Normal response codes: 201
 
-Error response codes: 404, 403, 401, 400, 409
+Error response codes: 400, 401, 403, 404, 409
 
 Request
 -------
@@ -193,7 +193,7 @@ subnets in the request body are created.
 
 Normal response codes: 201
 
-Error response codes: 404, 403, 401, 400, 409
+Error response codes: 400, 401, 403, 404, 409
 
 Request
 -------
@@ -269,7 +269,7 @@ Use the fields query parameter to filter the results.
 
 Normal response codes: 200
 
-Error response codes: 404,401
+Error response codes: 401, 404
 
 Request
 -------
@@ -325,7 +325,7 @@ attributes results in a ``400 Bad Request`` error.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401,400
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -392,7 +392,7 @@ The operation fails if subnet IP addresses are still allocated.
 
 Normal response codes: 204
 
-Error response codes: 404, 401
+Error response codes: 401, 404
 
 Request
 -------

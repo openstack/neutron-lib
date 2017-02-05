@@ -23,7 +23,7 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 
 Normal response codes: 200
 
-Error response codes: 401,403
+Error response codes: 401, 403
 
 Request
 -------
@@ -62,7 +62,7 @@ Creates a firewall log.
 
 Normal response codes: 200
 
-Error response codes: 400,401,403
+Error response codes: 400, 401, 403
 
 Request
 -------
@@ -118,7 +118,7 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 
 Normal response codes: 200
 
-Error response codes: 400,401,403,404
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -158,7 +158,7 @@ Updates a firewall log.
 
 Normal response codes: 200
 
-Error response codes: 400,401,403,404
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -206,7 +206,7 @@ Deletes a firewall log.
 
 Normal response codes: 202
 
-Error response codes: 400,401,403,404
+Error response codes: 400, 401, 403, 404
 
 Request
 -------

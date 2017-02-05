@@ -21,7 +21,7 @@ For information, see `Filtering and Column Selection <https://wiki.openstack.org
 
 Normal response codes: 200
 
-Error response codes: 404, 401
+Error response codes: 401, 404
 
 Request
 -------
@@ -70,7 +70,7 @@ Updates a subnet pool.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401, 400
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -138,7 +138,7 @@ are still in use.
 
 Normal response codes: 204
 
-Error response codes: 404, 401
+Error response codes: 401, 404
 
 Request
 -------
@@ -218,7 +218,7 @@ Creates a subnet pool.
 
 Normal response codes: 201
 
-Error response codes: 404, 403, 401, 400
+Error response codes: 400, 401, 403, 404
 
 Request
 -------

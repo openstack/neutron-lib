@@ -101,7 +101,7 @@ and submit the request again.
 
 Normal response codes: 201
 
-Error response codes: 404, 403, 401, 400
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -147,7 +147,7 @@ response code.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -187,7 +187,7 @@ service profiles and consumers depending on the value.
 
 Normal response codes: 200
 
-Error response codes: 404,403,401,400
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -234,7 +234,7 @@ Deletes a flavor.
 
 Normal response codes: 204
 
-Error response codes: 404,403,401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -261,7 +261,7 @@ Will return ``409 Conflict`` if association already exists.
 
 Normal response codes: 201
 
-Error response codes: 404,403,401,400,409
+Error response codes: 400, 401, 403, 404, 409
 
 Request
 -------
@@ -296,7 +296,7 @@ Disassociate a flavor from a service profile.
 
 Normal response codes: 204
 
-Error response codes: 404,403,401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -376,7 +376,7 @@ and submit the request again.
 
 Normal response codes: 201
 
-Error response codes: 404, 403, 401, 400
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -427,7 +427,7 @@ response code.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -463,7 +463,7 @@ Updates a service profile.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401, 400
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -516,7 +516,7 @@ Either metadata or a driver is required.
 
 Normal response codes: 204
 
-Error response codes: 409,404,403,401
+Error response codes: 401, 403, 404, 409
 
 Request
 -------

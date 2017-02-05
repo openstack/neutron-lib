@@ -152,7 +152,9 @@ Reset quota for a project
 
 Resets quotas to default values for a project.
 
-Error response codes: 204, 401, 403, 404
+Normal response codes: 204
+
+Error response codes: 401, 403, 404
 
 Request
 -------

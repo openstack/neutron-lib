@@ -40,7 +40,7 @@ section for more details.
 
 Normal response codes: 200
 
-Error response codes: 401,404
+Error response codes: 401, 404
 
 Response Parameters
 -------------------
@@ -94,7 +94,9 @@ Error codes:
   - A system configuration prevents the operation from succeeding.
 
 
-Error response codes: 201,400,401,404,409
+Normal response codes: 201
+
+Error response codes: 400, 401, 404, 409
 
 Request
 -------
@@ -141,7 +143,7 @@ Add subports to trunk
 
 Normal response codes: 200
 
-Error response codes: 400,401,404,409
+Error response codes: 400, 401, 404, 409
 
 Request
 -------
@@ -191,7 +193,7 @@ Delete subports from trunk
 
 Normal response codes: 200
 
-Error response codes: 400,401,404,409
+Error response codes: 400, 401, 404, 409
 
 Request
 -------
@@ -239,7 +241,7 @@ List subports for trunk
 
 Normal response codes: 200
 
-Error response codes: 401,404
+Error response codes: 401, 404
 
 Request
 -------
@@ -275,7 +277,7 @@ that it prevents operations such as as adding/removing subports.
 
 Normal response codes: 200
 
-Error response codes: 400,401,404,409
+Error response codes: 400, 401, 404, 409
 
 Request
 -------
@@ -334,7 +336,7 @@ and-column-selection>`__.
 
 Normal response codes: 200
 
-Error response codes: 404,401
+Error response codes: 401, 404
 
 Request
 -------
@@ -377,7 +379,7 @@ Deletes a trunk, if its state allows it.
 
 Normal response codes: 204
 
-Error response codes: 401,404,409
+Error response codes: 401, 404, 409
 
 Request
 -------

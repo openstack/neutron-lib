@@ -19,7 +19,7 @@ Shows details for a bandwidth limit rule for a QoS policy.
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
@@ -58,7 +58,7 @@ response code.
 
 Normal response codes: 200
 
-Error response codes: 400,401,413,503,500
+Error response codes: 400, 401, 413
 
 Request
 -------
@@ -102,7 +102,9 @@ Delete bandwidth limit rule
 
 Deletes a bandwidth limit rule for a QoS policy.
 
-Error response codes: 204,400,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 400, 401, 413
 
 Request
 -------
@@ -123,7 +125,7 @@ The list might be empty.
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
@@ -167,7 +169,9 @@ Users with an administrative role can create policies on behalf of
 other projects by specifying a project ID that is different than
 their own.
 
-Error response codes: 201,404,409,401,413,503,500
+Normal response codes: 201
+
+Error response codes: 401, 404, 409, 413
 
 Request
 -------
@@ -210,7 +214,7 @@ Shows details for a DSCP marking rule for a QoS policy.
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
@@ -248,7 +252,7 @@ response code.
 
 Normal response codes: 200
 
-Error response codes: 400,401,413,503,500
+Error response codes: 400, 401, 413
 
 Request
 -------
@@ -289,7 +293,9 @@ Delete DSCP marking rule
 
 Deletes a DSCP marking rule for a QoS policy.
 
-Error response codes: 204,400,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 400, 401, 413
 
 Request
 -------
@@ -310,7 +316,7 @@ The list may be empty.
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
@@ -342,7 +348,9 @@ Create DSCP marking rule
 
 Creates a DSCP marking rule for a QoS policy.
 
-Error response codes: 201,404,409,401,413,503,500
+Normal response codes: 201
+
+Error response codes: 401, 404, 409, 413
 
 Request
 -------
@@ -378,7 +386,7 @@ Shows details for a QoS policy.
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
@@ -420,7 +428,7 @@ response code.
 
 Normal response codes: 200
 
-Error response codes: 400,401,413,503,500
+Error response codes: 400, 401, 413
 
 Request
 -------
@@ -468,7 +476,9 @@ Delete QoS policy
 
 Deletes a QoS policy.
 
-Error response codes: 204,400,401,413,503,500
+Normal response codes: 204
+
+Error response codes: 400, 401, 413
 
 Request
 -------
@@ -488,7 +498,7 @@ The list might be empty.
 
 Normal response codes: 200
 
-Error response codes: 500,401,503
+Error response codes: 401
 
 Request
 -------
@@ -521,7 +531,9 @@ Create bandwidth limit rule
 
 Creates a bandwidth limit rule for a QoS policy.
 
-Error response codes: 201,404,409,401,413,503,500
+Normal response codes: 201
+
+Error response codes: 401, 404, 409, 413
 
 Request
 -------
