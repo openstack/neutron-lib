@@ -108,3 +108,95 @@ class TestExtensionIsSupported(base.BaseTestCase):
     def test_extension_does_not_exist(self):
         self.assertFalse(extensions.is_extension_supported(self._plugin,
                                                            "gordon"))
+
+
+class TestAPIExtensionDescriptor(base.BaseTestCase):
+
+    # API definition attributes; acts as an API definition module
+    NAME = 'Test API'
+    ALIAS = 'test-api'
+    DESCRIPTION = 'A test API definition'
+    UPDATED_TIMESTAMP = '2017-02-01T10:00:00-00:00'
+    RESOURCE_ATTRIBUTE_MAP = {'ports': {}}
+    REQUIRED_EXTENSIONS = ['l3']
+    OPTIONAL_EXTENSIONS = ['fw']
+
+    def setUp(self):
+        super(TestAPIExtensionDescriptor, self).setUp()
+        self.extn = _APIDefinition()
+        self.empty_extn = _EmptyAPIDefinition()
+
+    def test__assert_api_definition_no_defn(self):
+        self.assertRaises(NotImplementedError,
+                          _NoAPIDefinition._assert_api_definition)
+
+    def test__assert_api_definition_no_attr(self):
+        self.assertRaises(
+            NotImplementedError, self.extn._assert_api_definition, attr='NOPE')
+
+    def test_get_name(self):
+        self.assertEqual(self.NAME, self.extn.get_name())
+
+    def test_get_name_unset(self):
+        self.assertRaises(NotImplementedError, _EmptyAPIDefinition.get_name)
+
+    def test_get_alias(self):
+        self.assertEqual(self.ALIAS, self.extn.get_alias())
+
+    def test_get_alias_unset(self):
+        self.assertRaises(NotImplementedError, _EmptyAPIDefinition.get_alias)
+
+    def test_get_description(self):
+        self.assertEqual(self.DESCRIPTION, self.extn.get_description())
+
+    def test_get_description_unset(self):
+        self.assertRaises(NotImplementedError,
+                          _EmptyAPIDefinition.get_description)
+
+    def test_get_updated(self):
+        self.assertEqual(self.UPDATED_TIMESTAMP, self.extn.get_updated())
+
+    def test_get_updated_unset(self):
+        self.assertRaises(NotImplementedError, _EmptyAPIDefinition.get_updated)
+
+    def test_get_extended_resources_v2(self):
+        self.assertEqual(self.RESOURCE_ATTRIBUTE_MAP,
+                         self.extn.get_extended_resources('2.0'))
+
+    def test_get_extended_resources_v2_unset(self):
+        self.assertRaises(NotImplementedError,
+                          self.empty_extn.get_extended_resources, '2.0')
+
+    def test_get_extended_resources_v1(self):
+        self.assertEqual({}, self.extn.get_extended_resources('1.0'))
+
+    def test_get_extended_resources_v1_unset(self):
+        self.assertEqual({}, self.empty_extn.get_extended_resources('1.0'))
+
+    def test_get_required_extensions(self):
+        self.assertEqual(self.REQUIRED_EXTENSIONS,
+                         self.extn.get_required_extensions())
+
+    def test_get_required_extensions_unset(self):
+        self.assertRaises(NotImplementedError,
+                          self.empty_extn.get_required_extensions)
+
+    def test_get_optional_extensions(self):
+        self.assertEqual(self.OPTIONAL_EXTENSIONS,
+                         self.extn.get_optional_extensions())
+
+    def test_get_optional_extensions_unset(self):
+        self.assertRaises(NotImplementedError,
+                          self.empty_extn.get_optional_extensions)
+
+
+class _APIDefinition(extensions.APIExtensionDescriptor):
+    api_definition = TestAPIExtensionDescriptor
+
+
+class _NoAPIDefinition(extensions.APIExtensionDescriptor):
+    pass
+
+
+class _EmptyAPIDefinition(extensions.APIExtensionDescriptor):
+    api_definition = {}
