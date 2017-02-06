@@ -365,7 +365,7 @@ Request
    - ipsecpolicy: ipsecpolicy
    - description: description
    - tenant_id: project_id
-   - project_id: project_id 
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
    - encryption_algorithm: encryption_algorithm
@@ -391,7 +391,7 @@ Response Parameters
    - ipsecpolicy: ipsecpolicy
    - description: description
    - tenant_id: project_id
-   - project_id: project_id 
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
    - encryption_algorithm: encryption_algorithm
@@ -436,7 +436,7 @@ Response Parameters
    - ipsecpolicy: ipsecpolicy
    - description: description
    - tenant_id: project_id
-   - project_id: project_id 
+   - project_id: project_id
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
    - encryption_algorithm: encryption_algorithm
@@ -577,7 +577,7 @@ Response Parameters
    - route_mode: route_mode
    - ipsecpolicy_id: ipsecpolicy_id-body-response
    - peer_id: peer_id
-   - status: ipsec_site_connection-status 
+   - status: ipsec_site_connection-status
    - psk: psk
    - description: description
    - initiator: initiator
@@ -718,7 +718,7 @@ Response Parameters
    - route_mode: route_mode
    - ipsecpolicy_id: ipsecpolicy_id-body-response
    - peer_id: peer_id
-   - status: ipsec_site_connection-status 
+   - status: ipsec_site_connection-status
    - psk: psk
    - description: description
    - initiator: initiator
@@ -876,7 +876,7 @@ Response Parameters
    - name: name
    - description: description
    - tenant_id: project_id
-   - project_id: project_id 
+   - project_id: project_id
    - type: type
    - id: endpoint_group_id-body-response
 
@@ -1075,7 +1075,7 @@ Response Parameters
 
    - vpnservices: vpnservices
    - router_id: router_id
-   - status: vpnservice-status 
+   - status: vpnservice-status
    - name: name
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
