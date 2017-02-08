@@ -13,7 +13,7 @@
 from neutron_lib import constants
 
 # The alias of the extension.
-ALIAS = 'firewallrouterinsertion'
+ALIAS = 'fwaasrouterinsertion'
 
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map.

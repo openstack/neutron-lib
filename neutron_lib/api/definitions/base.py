@@ -81,8 +81,11 @@ KNOWN_EXTENSIONS = (
     'trunk-details',
     # Add here list of extensions with pointers to the project repo, e.g.
     # 'bgp',  # http://git.openstack.org/cgit/openstack/neutron-dynamic-routing
-    'fw',  # http://git.openstack.org/cgit/openstack/neutron-fwaas
-    'fwaas',  # http://git.openstack.org/cgit/openstack/neutron-fwaas
+
+    # http://git.openstack.org/cgit/openstack/neutron-fwaas
+    'fwaas',
+    'fwaasrouterinsertion',
+    'fwaas_v2',
 )
 
 # The following is a short reference for understanding attribute info:
