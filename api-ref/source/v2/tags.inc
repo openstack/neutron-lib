@@ -3,12 +3,23 @@
 Tag extension (tags)
 ====================
 
-Shows details for, updates, and deletes tags. This extension is
-available since Mitaka release.
+Shows details for, updates, and deletes tags.
 
 The maximum number of characters allowed in a tag is 60. If the length
 is longer than 60, the API returns the HTTP ``Bad Request (400)`` response
 code with 'invalid input for operation' error message.
+
+Tag Extension
+=============
+
+The ``tag`` extension allows users to set tags on their networks.
+This extension supports networks only.
+
+Enhanced Tag Extension
+======================
+
+The ``tag-ext`` extension allows users to set tags on their resources.
+This extension supports subnets, ports, routers, and subnet pools.
 
 Replace all tags
 ================
