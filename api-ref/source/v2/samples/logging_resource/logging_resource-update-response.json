@@ -1,0 +1,21 @@
+{
+    "logging_resource": {
+        "description": "my log2",
+        "enabled": false,
+        "firewall_logs": [
+            {
+                "description": "",
+                "firewall_id": "682cfe44-5fcf-4c16-982e-1176493f6825",
+                "fw_event": "ALL",
+                "id": "1ee6fea7-c294-418e-9b97-06db48e3f3d5",
+                "logging_resource_id": "335c7b7d-c4a9-423a-9c24-9f4982f31e24",
+                "project_id": "8d018258316e4f22890561e8780c85bb",
+                "tenant_id": "8d018258316e4f22890561e8780c85bb"
+            }
+        ],
+        "id": "335c7b7d-c4a9-423a-9c24-9f4982f31e24",
+        "name": "log2",
+        "project_id": "8d018258316e4f22890561e8780c85bb",
+        "tenant_id": "8d018258316e4f22890561e8780c85bb"
+    }
+}

@@ -54,3 +54,8 @@ Load Balancer as a Service
 ##########################
 .. include:: lbaas-v2.inc
 .. include:: lbaas-v1.inc
+#####################################
+Logging Resource (networking-midonet)
+#####################################
+.. include:: logging_resource.inc
+.. include:: firewall_log.inc

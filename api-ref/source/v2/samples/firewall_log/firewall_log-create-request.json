@@ -1,0 +1,7 @@
+{
+    "firewall_log": {
+        "description": "my firewall log",
+        "firewall_id": "a6564146-f8b3-49c3-add1-fb213455d5a8",
+        "fw_event": "DROP"
+    }
+}

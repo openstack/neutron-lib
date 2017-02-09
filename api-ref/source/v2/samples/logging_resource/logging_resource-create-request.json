@@ -1,0 +1,7 @@
+{
+    "logging_resource": {
+        "description": "my log",
+        "enabled": true,
+        "name": "log"
+    }
+}
