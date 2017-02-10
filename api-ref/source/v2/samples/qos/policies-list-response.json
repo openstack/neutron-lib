@@ -20,7 +20,7 @@
                     "type": "dscp_marking", 
                     "id": "d9c021d5-5433-4d7c-8bfa-69cca486aac8", 
                     "qos_policy_id": "46ebaec0-0570-43ac-82f6-60d2b03168c4"
-                }, 
+                }
             ]
         }
     ]
