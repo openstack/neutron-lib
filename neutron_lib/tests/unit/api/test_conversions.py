@@ -171,7 +171,7 @@ class TestConvertToList(base.BaseTestCase):
             self.assertEqual([item], converters.convert_to_list(item))
 
 
-class TestConvertIPv6CanonicalFormat(base.BaseTestCase):
+class TestConvertIPv6AddrCanonicalFormat(base.BaseTestCase):
 
     def test_convert_ipv6_address_extended_add_with_zeroes(self):
         result = converters.convert_ip_to_canonical_format(
@@ -200,6 +200,23 @@ class TestConvertIPv6CanonicalFormat(base.BaseTestCase):
     def test_convert_invalid_address(self):
         result = converters.convert_ip_to_canonical_format("on")
         self.assertEqual("on", result)
+
+
+class TestConvertIPv6CIDRCanonicalFormat(base.BaseTestCase):
+
+    def test_convert_ipv4_address_with_CIDR(self):
+        result = converters.convert_cidr_to_canonical_format(u'192.168.1.1/24')
+        self.assertEqual(u'192.168.1.1/24', result)
+
+    def test_convert_ipv6_extended_addr_withcidr_to_compressed(self):
+        result = converters.convert_cidr_to_canonical_format(
+            u'Fe80:0:0:0:0:0:0:1/64')
+        self.assertEqual(u'fe80::1/64', result)
+
+    def test_convert_non_ip_addr_with_slash(self):
+        with testtools.ExpectedException(n_exc.InvalidInput):
+            converters.convert_cidr_to_canonical_format(
+                u"Dormamu/DarkSeid/Vulture")
 
 
 class TestConvertStringToCaseInsensitive(base.BaseTestCase):

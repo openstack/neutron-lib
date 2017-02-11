@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    A new converter is added to facilitate converting IPv6 CIDRs to canonical format. This way
+    IPv6 CIDRs can be specified in multiple formats but would be handled in their canonical format.
