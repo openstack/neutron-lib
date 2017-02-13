@@ -1,0 +1,6 @@
+---
+features:
+  - A new ``neutron_lib.exceptions`` package is now available where the
+    existing definitions from the ``exceptions`` module are now in
+    ``neutron_lib.exceptions.__init__`` and subsequent per-component
+    exceptions can be created in their own exceptions sub-module.
