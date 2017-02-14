@@ -59,3 +59,7 @@ Logging Resource (networking-midonet)
 #####################################
 .. include:: logging_resource.inc
 .. include:: firewall_log.inc
+#################################################
+Router interface floating IP (networking-midonet)
+#################################################
+.. include:: router-interface-fip.inc
