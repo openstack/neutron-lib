@@ -14,7 +14,7 @@
             "project_id": "4fd44f30292945e481c7b8a0c8908869",
             "provider:network_type": "vlan",
             "provider:physical_network": "8bab8453-1bc9-45af-8c70-f83aa9b50453",
-            "provider:segmentation_id": 3
+            "provider:segmentation_id": 3,
             "router:external": false,
             "shared": false,
             "status": "ACTIVE",
