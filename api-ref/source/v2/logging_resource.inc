@@ -23,7 +23,7 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 
 Normal response codes: 200
 
-Error response codes: 401,403
+Error response codes: 401, 403
 
 Request
 -------
@@ -61,7 +61,7 @@ Creates a logging resource.
 
 Normal response codes: 200
 
-Error response codes: 400,401,403
+Error response codes: 400, 401, 403
 
 Request
 -------
@@ -116,7 +116,7 @@ and-column-selection>`__.
 
 Normal response codes: 200
 
-Error response codes: 400,401,403,404
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -155,7 +155,7 @@ Updates a logging resource.
 
 Normal response codes: 200
 
-Error response codes: 400,401,403,404
+Error response codes: 400, 401, 403, 404
 
 Request
 -------
@@ -203,7 +203,7 @@ Deletes a logging resource.
 
 Normal response codes: 202
 
-Error response codes: 400,401,403,404
+Error response codes: 400, 401, 403, 404
 
 Request
 -------

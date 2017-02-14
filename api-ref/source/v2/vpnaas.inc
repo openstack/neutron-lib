@@ -60,7 +60,7 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -108,7 +108,7 @@ encryption algorithms for connections.
 
 Normal response codes: 201
 
-Error response codes: 401, 400
+Error response codes: 400, 401
 
 Request
 -------
@@ -171,7 +171,7 @@ Shows details for an IKE policy.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -216,7 +216,7 @@ Updates policy settings in an IKE policy.
 
 Normal response codes: 200
 
-Error response codes: 404, 401, 400
+Error response codes: 400, 401, 404
 
 Request
 -------
@@ -278,7 +278,7 @@ Removes an IKE policy.
 
 Normal response codes: 204
 
-Error response codes: 409, 404, 401
+Error response codes: 401, 404, 409
 
 Request
 -------
@@ -307,7 +307,7 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -355,7 +355,7 @@ connection.
 
 Normal response codes: 201
 
-Error response codes: 401, 400
+Error response codes: 400, 401
 
 Request
 -------
@@ -418,7 +418,7 @@ Shows details for an IPSec policy.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -463,7 +463,7 @@ Updates policy settings in an IPSec policy.
 
 Normal response codes: 200
 
-Error response codes: 404, 401, 400
+Error response codes: 400, 401, 404
 
 Request
 -------
@@ -525,7 +525,7 @@ Removes an IPSec policy.
 
 Normal response codes: 204
 
-Error response codes: 409, 404, 401
+Error response codes: 401, 404, 409
 
 Request
 -------
@@ -554,7 +554,7 @@ and-column-selection>`__.
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -609,7 +609,7 @@ Creates a site-to-site IPSec connection for a service.
 
 Normal response codes: 201
 
-Error response codes: 401, 400
+Error response codes: 400, 401
 
 Request
 -------
@@ -694,7 +694,7 @@ Shows details for an IPSec connection.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -750,7 +750,7 @@ Updates connection settings for an IPSec connection.
 
 Normal response codes: 200
 
-Error response codes: 404, 401, 400
+Error response codes: 400, 401, 404
 
 Request
 -------
@@ -829,7 +829,7 @@ Removes an IPSec connection.
 
 Normal response codes: 204
 
-Error response codes: 409, 404, 401
+Error response codes: 401, 404, 409
 
 Request
 -------
@@ -858,7 +858,7 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -898,7 +898,7 @@ type that you can use to create a VPN connections.
 
 Normal response codes: 201
 
-Error response codes: 401, 400
+Error response codes: 400, 401
 
 Request
 -------
@@ -946,7 +946,7 @@ Shows details for a VPN endpoint group.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -983,7 +983,7 @@ Updates settings for a VPN endpoint group.
 
 Normal response codes: 200
 
-Error response codes: 404, 401, 400
+Error response codes: 400, 401, 404
 
 Request
 -------
@@ -1028,7 +1028,7 @@ Removes a VPN endpoint group.
 
 Normal response codes: 204
 
-Error response codes: 409, 404, 401
+Error response codes: 401, 404, 409
 
 Request
 -------
@@ -1059,7 +1059,7 @@ and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 
 Normal response codes: 200
 
-Error response codes: 403, 401
+Error response codes: 401, 403
 
 Request
 -------
@@ -1104,7 +1104,7 @@ service, it can contain multiple VPN connections.
 
 Normal response codes: 201
 
-Error response codes: 401, 400
+Error response codes: 400, 401
 
 Request
 -------
@@ -1163,7 +1163,7 @@ operation returns the ``Forbidden (403)`` response code.
 
 Normal response codes: 200
 
-Error response codes: 404, 403, 401
+Error response codes: 401, 403, 404
 
 Request
 -------
@@ -1208,7 +1208,7 @@ service with a ``PENDING_*`` status.
 
 Normal response codes: 200
 
-Error response codes: 404, 401, 400
+Error response codes: 400, 401, 404
 
 Request
 -------
@@ -1262,7 +1262,7 @@ If the service has connections, the request is rejected.
 
 Normal response codes: 204
 
-Error response codes: 409, 404, 401
+Error response codes: 401, 404, 409
 
 Request
 -------
