@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Rehome the validation for checking if an extension is supported by the
+    plugin. The method ``is_extension_supported`` will now be part of
+    ``neutron_lib.api.extensions``.

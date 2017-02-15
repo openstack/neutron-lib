@@ -14,6 +14,7 @@
 #    under the License.
 
 from neutron_lib.api import extensions
+from neutron_lib.services import base as service_base
 from neutron_lib.tests import _base as base
 
 
@@ -81,3 +82,29 @@ class TestExtensionDescriptor(base.BaseTestCase):
         extension_description.update_attributes_map(self.extended_attributes)
         self.assertEqual(self.extension_attrs_map,
                          {'resource_one': {'three': 'third'}})
+
+
+class DummyPlugin(service_base.ServicePluginBase):
+
+    supported_extension_aliases = ['flash']
+
+    def get_plugin_type(self):
+        return 'Flash Gordon'
+
+    def get_plugin_description(self):
+        return 'Legend!'
+
+
+class TestExtensionIsSupported(base.BaseTestCase):
+
+    def setUp(self):
+        super(TestExtensionIsSupported, self).setUp()
+        self._plugin = DummyPlugin()
+
+    def test_extension_exists(self):
+        self.assertTrue(extensions.is_extension_supported(self._plugin,
+                                                          "flash"))
+
+    def test_extension_does_not_exist(self):
+        self.assertFalse(extensions.is_extension_supported(self._plugin,
+                                                           "gordon"))
