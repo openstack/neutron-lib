@@ -38,7 +38,8 @@ class _PluginDirectory(object):
 
     def get_plugin(self, alias):
         """Get a plugin for a given alias or None if not present."""
-        return self.plugins.get(alias)
+        p = self._plugins.get(alias)
+        return weakref.proxy(p) if p else None
 
     @property
     def plugins(self):
