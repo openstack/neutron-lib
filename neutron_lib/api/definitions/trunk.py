@@ -95,6 +95,8 @@ REQUIRED_EXTENSIONS = [
 ]
 
 # The list of optional extensions.
-OPTIONAL_EXTENSIONS = None
+OPTIONAL_EXTENSIONS = [
+    "provider",  # needed to learn about network segmentation details.
+]
 
 # TODO(armax): add support for modeling custom queries
