@@ -162,6 +162,12 @@ Response Parameters
    - port_id: floatingip-port_id
    - id: floatingip-id
 
+Response Example
+----------------
+
+.. literalinclude:: samples/floatingips/floatingip-create-response.json
+   :language: javascript
+
 Show floating IP details
 ========================
 
@@ -263,7 +269,7 @@ Request
 Request Example
 ---------------
 
-.. literalinclude:: samples/floatingips/floatingip-disassociate-request.json
+.. literalinclude:: samples/floatingips/floatingip-update-request.json
    :language: javascript
 
 Response Parameters
@@ -289,7 +295,7 @@ Response Parameters
 Response Example
 ----------------
 
-.. literalinclude:: samples/floatingips/floatingip-disassociate-response.json
+.. literalinclude:: samples/floatingips/floatingip-update-response.json
    :language: javascript
 
 Delete floating IP

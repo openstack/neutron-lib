@@ -133,6 +133,12 @@ Response Parameters
    - enabled: flavor-enabled
    - service_profiles: flavor-service_profiles
 
+Response Example
+----------------
+
+.. literalinclude:: samples/flavors/flavor-create-response.json
+   :language: javascript
+
 Show flavor details
 ===================
 
@@ -286,6 +292,12 @@ Response Parameters
 
    - service_profile: service_profile
    - id: id
+
+Response Example
+----------------
+
+.. literalinclude:: samples/flavors/flavor-associate-response.json
+   :language: javascript
 
 Disassociate a flavor.
 ======================

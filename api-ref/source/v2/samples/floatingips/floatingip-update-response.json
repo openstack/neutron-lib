@@ -1,14 +1,17 @@
 {
     "floatingip": {
-        "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",
-        "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
+        "created_at": "2016-12-21T10:55:50Z",
+        "description": "floating ip for testing",
         "fixed_ip_address": "10.0.0.4",
         "floating_ip_address": "172.24.4.228",
-        "project_id": "4969c491a3c74ee4af974e6d800c62de",
-        "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
-        "status": "ACTIVE",
-        "port_id": "fc861431-0e6c-4842-a0ed-e2363f9bc3a8",
+        "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",
         "id": "2f245a7b-796b-4f26-9cf9-9e82d248fda7",
-        "description": "floating ip for testing"
+        "port_id": "fc861431-0e6c-4842-a0ed-e2363f9bc3a8",
+        "project_id": "4969c491a3c74ee4af974e6d800c62de",
+        "revision_number": 3,
+        "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
+        "status": "ACTIVE",
+        "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
+        "updated_at": "2016-12-22T03:13:49Z"
     }
 }

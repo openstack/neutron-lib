@@ -267,3 +267,9 @@ Response Parameters
    - description: description
    - is_default: subnetpool_is_default
    - revision_number: subnetpool_revision_number
+
+Response Example
+----------------
+
+.. literalinclude:: samples/subnets/subnetpool-create-response.json
+   :language: javascript

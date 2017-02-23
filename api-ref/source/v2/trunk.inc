@@ -135,6 +135,11 @@ Response Parameters
    - sub_ports: sub_ports
    - updated_at: updated_at_resource
 
+Response Example
+----------------
+
+.. literalinclude:: ../v2/samples/trunks/trunks-create-response.json
+   :language: javascript
 
 Add subports to trunk
 =====================
