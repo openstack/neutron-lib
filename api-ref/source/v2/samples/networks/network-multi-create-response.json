@@ -10,13 +10,13 @@
         "segments": [
             {
                 "provider:segmentation_id": 2,
-                "provider:physical_network": "8bab8453-1bc9-45af-8c70-f83aa9b50453",
+                "provider:physical_network": "public",
                 "provider:network_type": "vlan"
             },
             {
                 "provider:segmentation_id": null,
-                "provider:physical_network": "8bab8453-1bc9-45af-8c70-f83aa9b50453",
-                "provider:network_type": "stt"
+                "provider:physical_network": "default",
+                "provider:network_type": "flat"
             }
         ],
         "shared": false,

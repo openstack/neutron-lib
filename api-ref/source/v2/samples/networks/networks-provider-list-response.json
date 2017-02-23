@@ -13,7 +13,7 @@
             "port_security_enabled": true,
             "project_id": "4fd44f30292945e481c7b8a0c8908869",
             "provider:network_type": "vlan",
-            "provider:physical_network": "8bab8453-1bc9-45af-8c70-f83aa9b50453",
+            "provider:physical_network": "public",
             "provider:segmentation_id": 3,
             "router:external": false,
             "shared": false,
@@ -45,12 +45,12 @@
             "segments": [
                 {
                     "provider:network_type": "vlan",
-                    "provider:physical_network": "8bab8453-1bc9-45af-8c70-f83aa9b50453",
+                    "provider:physical_network": "public",
                     "provider:segmentation_id": 2
                 },
                 {
                     "provider:network_type": "stt",
-                    "provider:physical_network": "8bab8453-1bc9-45af-8c70-f83aa9b50453",
+                    "provider:physical_network": "default",
                     "provider:segmentation_id": 0
                 }
             ],

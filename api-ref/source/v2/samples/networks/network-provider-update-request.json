@@ -1,0 +1,7 @@
+{
+    "network": {
+        "provider:network_type": "vlan",
+        "provider:physical_network": "public",
+        "provider:segmentation_id": 2
+    }
+}
