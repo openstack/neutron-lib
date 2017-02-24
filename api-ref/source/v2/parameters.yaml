@@ -3959,6 +3959,18 @@ psk:
   in: body
   required: true
   type: string
+qos-rule-type:
+  description: |
+    The type of QoS rule.
+  in: body
+  required: true
+  type: string
+qos-rule-types:
+  description: |
+    A list of QoS ``rule_type`` objects.
+  in: body
+  required: true
+  type: array
 qos-rules:
   description: |
     A set of zero or more policy rules.
@@ -5346,12 +5358,6 @@ type:
     ``HTTP``, or ``HTTPS``.
   in: body
   required: true
-  type: string
-type_1:
-  description: |
-    The type of QoS policy.
-  in: body
-  required: false
   type: string
 type_2:
   description: |

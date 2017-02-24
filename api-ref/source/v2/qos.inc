@@ -6,6 +6,31 @@ QoS policies (qos)
 
 Lists, creates, shows information for, and updates QoS policies.
 
+List QoS rule types
+===================
+
+.. rest_method::  GET /v2.0/qos/rule-types
+
+Lists available qos rule types.
+
+Normal response codes: 200
+
+Error response codes: 401
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - rule_types: qos-rule-types
+   - type: qos-rule-type
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/rule_types-list-response.json
+   :language: javascript
+
 List QoS policies
 =================
 
