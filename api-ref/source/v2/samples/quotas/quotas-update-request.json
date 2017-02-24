@@ -1,13 +1,13 @@
 {
     "quota": {
-        "subnet": 10,
-        "network": 10,
         "floatingip": 50,
-        "subnetpool": -1,
-        "security_group_rule": 100,
-        "security_group": 10,
-        "router": 10,
+        "network": 10,
+        "port": 50,
         "rbac_policy": -1,
-        "port": 50
+        "router": 10,
+        "security_group": 10,
+        "security_group_rule": 100,
+        "subnet": 10,
+        "subnetpool": -1
     }
 }

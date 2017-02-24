@@ -4028,57 +4028,126 @@ quota-floatingip:
   in: body
   required: true
   type: integer
+quota-floatingip-request:
+  description: |
+    The number of floating IP addresses allowed for
+    each project.  A value of ``-1`` means no limit.
+  in: body
+  required: false
+  type: integer
 quota-network:
   description: |
     The number of networks allowed for each project.
+    A value of ``-1`` means no limit.
   in: body
   required: true
+  type: integer
+quota-network-request:
+  description: |
+    The number of networks allowed for each project.
+    A value of ``-1`` means no limit.
+  in: body
+  required: false
   type: integer
 quota-port:
   description: |
     The number of ports allowed for each project.
+    A value of ``-1`` means no limit.
   in: body
   required: true
+  type: integer
+quota-port-request:
+  description: |
+    The number of ports allowed for each project.
+    A value of ``-1`` means no limit.
+  in: body
+  required: false
   type: integer
 quota-rbac_policy:
   description: |
     The number of role-based access control (RBAC)
-    policies for each project.
+    policies for each project. A value of ``-1`` means
+    no limit.
   in: body
   required: true
+  type: integer
+quota-rbac_policy-request:
+  description: |
+    The number of role-based access control (RBAC)
+    policies for each project. A value of ``-1`` means
+    no limit.
+  in: body
+  required: false
   type: integer
 quota-router:
   description: |
     The number of routers allowed for each project.
+    A value of ``-1`` means no limit.
   in: body
   required: true
+  type: integer
+quota-router-request:
+  description: |
+    The number of routers allowed for each project.
+    A value of ``-1`` means no limit.
+  in: body
+  required: false
   type: integer
 quota-security_group:
   description: |
     The number of security groups allowed for each
-    project.
+    project. A value of ``-1`` means no limit.
   in: body
   required: true
+  type: integer
+quota-security_group-request:
+  description: |
+    The number of security groups allowed for each
+    project. A value of ``-1`` means no limit.
+  in: body
+  required: false
   type: integer
 quota-security_group_rule:
   description: |
     The number of security group rules allowed for
-    each project.
+    each project. A value of ``-1`` means no limit.
   in: body
   required: true
+  type: integer
+quota-security_group_rule-request:
+  description: |
+    The number of security group rules allowed for
+    each project. A value of ``-1`` means no limit.
+  in: body
+  required: false
   type: integer
 quota-subnet:
   description: |
     The number of subnets allowed for each project.
+    A value of ``-1`` means no limit.
   in: body
   required: true
+  type: integer
+quota-subnet-request:
+  description: |
+    The number of subnets allowed for each project.
+    A value of ``-1`` means no limit.
+  in: body
+  required: false
   type: integer
 quota-subnetpool:
   description: |
     The number of subnet pools allowed for each
-    project.
+    project. A value of ``-1`` means no limit.
   in: body
   required: true
+  type: integer
+quota-subnetpool-request:
+  description: |
+    The number of subnet pools allowed for each
+    project. A value of ``-1`` means no limit.
+  in: body
+  required: false
   type: integer
 quotas:
   description: |
