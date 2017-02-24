@@ -2,6 +2,11 @@
 FWaaS v1.0 (DEPRECATED) (fw, firewalls, firewall_policies, firewall_rules)
 ==========================================================================
 
+.. note::
+
+    While FWaaS v1.0 is still maintained, new features will be
+    implemented in FWaaS v2.0 API.
+
 Use the Firewall-as-a-Service (FWaaS) v1.0 extension to deploy
 firewalls to protect your networks.
 
