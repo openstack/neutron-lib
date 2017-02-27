@@ -52,8 +52,8 @@ Quality of Service
 ##########################
 Load Balancer as a Service
 ##########################
-.. include:: lbaas-v2.inc
 .. include:: lbaas-v1.inc
+.. include:: lbaas-v2.inc
 #####################################
 Logging Resource (networking-midonet)
 #####################################
@@ -67,3 +67,10 @@ Router interface floating IP (networking-midonet)
 FIP64 (networking-midonet)
 ##########################
 .. include:: fip64.inc
+############################
+BGP/MPLS VPN Interconnection
+############################
+.. include:: bgpvpn-overview.inc
+.. include:: bgpvpn-bgpvpns.inc
+.. include:: bgpvpn-network_associations.inc
+.. include:: bgpvpn-router_associations.inc

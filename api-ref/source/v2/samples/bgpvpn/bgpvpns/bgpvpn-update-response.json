@@ -1,0 +1,16 @@
+{
+  "bgpvpn": {
+    "export_targets": [],
+    "name": "",
+    "routers": [],
+    "route_distinguishers": [
+      "12345:1234"
+    ],
+    "tenant_id": "b7549121395844bea941bb92feb3fad9",
+    "import_targets": [],
+    "route_targets": ["64512:1444"],
+    "type": "l3",
+    "id": "4d627abf-06dd-45ab-920b-8e61422bb984",
+    "networks": []
+  }
+}

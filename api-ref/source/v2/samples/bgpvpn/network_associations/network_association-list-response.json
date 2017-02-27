@@ -1,0 +1,16 @@
+{
+  "network_associations": [
+    {
+      "network_id": "8c5d88dc-60ac-4b02-a65a-36b65888ddcd",
+      "tenant_id": "b7549121395844bea941bb92feb3fad9",
+      "project_id": "b7549121395844bea941bb92feb3fad9",
+      "id": "96227c78-6a0c-4d9d-b441-c4b8f6fb6c4a"
+    },
+    {
+      "network_id": "a4f2b8df-cb42-4893-a333-d0b5c36ade17",
+      "tenant_id": "b7549121395844bea941bb92feb3fad9",
+      "project_id": "b7549121395844bea941bb92feb3fad9",
+      "id": "1b09fd12-c769-4be7-9c26-dececa474acf"
+    }
+  ]
+}

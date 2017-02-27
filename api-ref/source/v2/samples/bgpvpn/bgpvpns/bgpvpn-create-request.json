@@ -1,0 +1,10 @@
+{
+  "bgpvpn": {
+    "tenant_id": "b7549121395844bea941bb92feb3fad9",
+    "route_targets": "64512:1444",
+    "import_targets": "64512:1555",
+    "export_targets": "64512:1666",
+    "route_distinguishers": ["64512:1777", "64512:1888", "64512:1999"],
+    "type": "l3"
+  }
+}
