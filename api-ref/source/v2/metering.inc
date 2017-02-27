@@ -94,6 +94,12 @@ Response Parameters
    - id: metering_label-id
    - name: name
 
+Response Example
+----------------
+
+.. literalinclude:: samples/metering/metering-label-create-response.json
+   :language: javascript
+
 Show metering label details
 ===========================
 
