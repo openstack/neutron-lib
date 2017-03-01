@@ -1,8 +1,4 @@
 .. -*- rst -*-
-.. needs:method_verification
-.. needs:parameter_verification
-.. needs:example_verification
-.. needs:body_verification
 
 =========================
 Quotas extension (quotas)
@@ -32,16 +28,18 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet: quota-subnet
-   - network: quota-network
-   - floatingip: quota-floatingip
-   - subnetpool: quota-subnetpool
    - quotas: quotas
-   - security_group_rule: quota-security_group_rule
-   - security_group: quota-security_group
-   - router: quota-router
-   - rbac_policy: quota-rbac_policy
+   - floatingip: quota-floatingip
+   - network: quota-network
    - port: quota-port
+   - project_id: project_id
+   - rbac_policy: quota-rbac_policy
+   - router: quota-router
+   - security_group: quota-security_group
+   - security_group_rule: quota-security_group_rule
+   - subnet: quota-subnet
+   - subnetpool: quota-subnetpool
+   - tenant_id: project_id
 
 Response Example
 ----------------
@@ -72,16 +70,16 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet: quota-subnet
-   - network: quota-network
+   - quota: quota
    - floatingip: quota-floatingip
-   - subnetpool: quota-subnetpool
-   - quotas: quotas
-   - security_group_rule: quota-security_group_rule
-   - security_group: quota-security_group
-   - router: quota-router
-   - rbac_policy: quota-rbac_policy
+   - network: quota-network
    - port: quota-port
+   - rbac_policy: quota-rbac_policy
+   - router: quota-router
+   - security_group: quota-security_group
+   - security_group_rule: quota-security_group_rule
+   - subnet: quota-subnet
+   - subnetpool: quota-subnetpool
 
 Response Example
 ----------------
@@ -106,16 +104,16 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - project_id: project_id-path
-   - subnet: quota-subnet
-   - network: quota-network
-   - floatingip: quota-floatingip
-   - subnetpool: quota-subnetpool
-   - quotas: quotas
-   - security_group_rule: quota-security_group_rule
-   - security_group: quota-security_group
-   - router: quota-router
-   - rbac_policy: quota-rbac_policy
-   - port: quota-port
+   - quota: quota
+   - floatingip: quota-floatingip-request
+   - network: quota-network-request
+   - port: quota-port-request
+   - rbac_policy: quota-rbac_policy-request
+   - router: quota-router-request
+   - security_group: quota-security_group-request
+   - security_group_rule: quota-security_group_rule-request
+   - subnet: quota-subnet-request
+   - subnetpool: quota-subnetpool-request
 
 Request Example
 ---------------
@@ -128,16 +126,16 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - subnet: quota-subnet
-   - network: quota-network
+   - quota: quota
    - floatingip: quota-floatingip
-   - subnetpool: quota-subnetpool
-   - quotas: quotas
-   - security_group_rule: quota-security_group_rule
-   - security_group: quota-security_group
-   - router: quota-router
-   - rbac_policy: quota-rbac_policy
+   - network: quota-network
    - port: quota-port
+   - rbac_policy: quota-rbac_policy
+   - router: quota-router
+   - security_group: quota-security_group
+   - security_group_rule: quota-security_group_rule
+   - subnet: quota-subnet
+   - subnetpool: quota-subnetpool
 
 Response Example
 ----------------
@@ -162,6 +160,11 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - project_id: project_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
 
 List default quotas for a project
 =================================
