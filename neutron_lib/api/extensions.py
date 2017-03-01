@@ -16,6 +16,12 @@
 import abc
 import six
 
+from neutron_lib._i18n import _
+from neutron_lib import constants
+
+
+_UNSET = constants.Sentinel()
+
 
 def is_extension_supported(plugin, alias):
     """Validate that the extension is supported.
@@ -92,7 +98,6 @@ class ExtensionDescriptor(object):
         map[<resource_name>][<attribute_name>][<attribute_property>]
         specifying the extended resource attribute properties required
         by that API version.
-
         Extension can add resources and their attr definitions too.
         The returned map can be integrated into RESOURCE_ATTRIBUTE_MAP.
         """
@@ -128,7 +133,6 @@ class ExtensionDescriptor(object):
         An extension can use this method and supplying its own resource
         attribute map in extension_attrs_map argument to extend all its
         attributes that needs to be extended.
-
         If an extension does not implement update_attributes_map, the method
         does nothing and just return.
         """
@@ -147,8 +151,83 @@ class ExtensionDescriptor(object):
         The controllers associated with each instance of
         extensions.ResourceExtension should be a subclass of
         neutron.pecan_wsgi.controllers.utils.NeutronPecanController.
-
         If a resource is defined in both get_resources and get_pecan_resources,
         the resource defined in get_pecan_resources will take precedence.
         """
         return []
+
+
+class APIExtensionDescriptor(ExtensionDescriptor):
+    """Base class that defines the contract for extensions.
+
+    Concrete implementations of API extensions should first provide
+    an API definition in neutron_lib.api.definitions. The API
+    definition module (object reference) can then be specified as a
+    class level attribute on the concrete extension.
+
+    For example::
+
+        from neutron_lib.api.definitions import provider_net
+        from neutron_lib.api import extensions
+
+
+        class Providernet(extensions.APIExtensionDescriptor):
+            api_definition = provider_net
+            # nothing else needed if default behavior is acceptable
+
+
+    If extension implementations need to override the default behavior of
+    this class they can override the respective method directly.
+    """
+    api_definition = _UNSET
+
+    @classmethod
+    def _assert_api_definition(cls, attr=None):
+        if cls.api_definition == _UNSET:
+            raise NotImplementedError(
+                _("Extension module API definition not set."))
+        if attr and getattr(cls.api_definition, attr, _UNSET) == _UNSET:
+            raise NotImplementedError(_("Extension module API definition "
+                                        "does not define '%s'") % attr)
+
+    @classmethod
+    def get_name(cls):
+        """The name of the API definition."""
+        cls._assert_api_definition('NAME')
+        return cls.api_definition.NAME
+
+    @classmethod
+    def get_alias(cls):
+        """The alias for the API definition."""
+        cls._assert_api_definition('ALIAS')
+        return cls.api_definition.ALIAS
+
+    @classmethod
+    def get_description(cls):
+        """Friendly description for the API definition."""
+        cls._assert_api_definition('DESCRIPTION')
+        return cls.api_definition.DESCRIPTION
+
+    @classmethod
+    def get_updated(cls):
+        """The timestamp when the API definition was last updated."""
+        cls._assert_api_definition('UPDATED_TIMESTAMP')
+        return cls.api_definition.UPDATED_TIMESTAMP
+
+    def get_extended_resources(self, version):
+        """Retrieve the resource attribute map for the API definition."""
+        if version == "2.0":
+            self._assert_api_definition('RESOURCE_ATTRIBUTE_MAP')
+            return self.api_definition.RESOURCE_ATTRIBUTE_MAP
+        else:
+            return {}
+
+    def get_required_extensions(self):
+        """Returns the API definition's required extensions."""
+        self._assert_api_definition('REQUIRED_EXTENSIONS')
+        return self.api_definition.REQUIRED_EXTENSIONS
+
+    def get_optional_extensions(self):
+        """Returns the API definition's optional extensions."""
+        self._assert_api_definition('OPTIONAL_EXTENSIONS')
+        return self.api_definition.OPTIONAL_EXTENSIONS

@@ -1,0 +1,6 @@
+---
+features:
+  - The ``APIExtensionDescriptor`` was added to ``neutron_lib.api.extensions``
+    and can be used with extensions that have an API definition in neutron-lib
+    to minimize the boilplate code needed in the extension definition class.
+    For more details, see the dev-ref.
