@@ -1013,6 +1013,13 @@ class TestAttributeValidation(base.BaseTestCase):
         ]
         self.assertIsNotNone(validators.validate_subports(body))
 
+    def test_validate_subports_inherit_segmentation_details(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000',
+             'segmentation_type': 'inherit'}
+        ]
+        self.assertIsNone(validators.validate_subports(body))
+
     def test_validate_subports_valid_unique_segmentation_id(self):
         body = [
             {'port_id': '00000000-ffff-ffff-ffff-000000000000',

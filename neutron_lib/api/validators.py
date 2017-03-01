@@ -924,12 +924,15 @@ def validate_subports(data, valid_values=None):
             return msg
         subport_ids.add(subport["port_id"])
 
-        # Validate that both segmentation id and segmentation type are
+        # Validate that both segmentation ID and segmentation type are
         # specified, and that the client does not duplicate segmentation
-        # ids
-        segmentation_id = subport.get("segmentation_id")
+        # IDs (unless it is explicitly asked to inherit segmentation
+        # details from the underlying subport's network).
         segmentation_type = subport.get("segmentation_type")
-        if (not segmentation_id or not segmentation_type) and len(subport) > 1:
+        if segmentation_type == 'inherit':
+            return
+        segmentation_id = subport.get("segmentation_id")
+        if (not segmentation_type or not segmentation_id) and len(subport) > 1:
             msg = _("Invalid subport details '%s': missing segmentation "
                     "information. Must specify both segmentation_id and "
                     "segmentation_type") % subport
