@@ -1,0 +1,4 @@
+---
+features:
+  - The ML2 ``MechanismDriver`` class from ``neutron.plugins.ml2.driver_api``
+    is now available in ``neutron_lib.plugins.ml2.api``.
