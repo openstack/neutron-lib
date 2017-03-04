@@ -1,0 +1,6 @@
+---
+other:
+  - The hacking check factory function
+    ``neutron_lib.hacking.checks.incubating_factory`` has been removed.
+    All consumers should use ``neutron_lib.hacking.checks.factory`` as per
+    the ``usage`` dev-ref.

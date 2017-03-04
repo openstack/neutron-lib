@@ -261,18 +261,6 @@ def factory(register):
     register(translation_checks.no_translate_debug_logs)
     register(translation_checks.check_log_warn_deprecated)
     register(translation_checks.check_raised_localized_exceptions)
-
-
-def incubating_factory(register):
-    """Hacking check factory for neutron-lib incubating checks.
-
-    Hacking check factory for use with tox.ini. This factory registers all
-    neutron-lib incubating checks. Each incubating check will become an adopter
-    check after undergoing an incubation period.
-
-    :param register: The function to register the check functions with.
-    :returns: None.
-    """
     register(assert_equal_none)
 
 
@@ -286,7 +274,6 @@ def _neutron_lib_factory(register):
     :returns: None.
     """
     factory(register)
-    incubating_factory(register)
 
     # neutron-lib project specific checks below
     register(check_no_eventlet_imports)
