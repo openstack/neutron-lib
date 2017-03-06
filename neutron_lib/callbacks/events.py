@@ -44,6 +44,8 @@ ABORT = 'abort_'
 BEFORE = 'before_'
 PRECOMMIT = 'precommit_'
 
+OVS_RESTARTED = 'ovs_restarted'
+
 
 class EventPayload(object):
     """Base event payload object.
