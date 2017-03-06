@@ -1,0 +1,6 @@
+---
+features:
+  - The ``port security`` extension API definition has been rehomed from
+    ``neutron`` to ``neutron_lib.api.definitions.port_security``. The
+    related exceptions can be found in the
+    ``neutron_lib.exceptions.port_security`` module.
