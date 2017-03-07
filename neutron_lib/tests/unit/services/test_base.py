@@ -16,7 +16,7 @@ from neutron_lib.services import base
 from neutron_lib.tests import _base as test_base
 
 
-class _Worker(base._WorkerSupportServiceMixin):
+class _Worker(base.WorkerBase):
     pass
 
 
@@ -43,14 +43,21 @@ class Test_WorkerSupportServiceMixin(test_base.BaseTestCase):
         self.assertSequenceEqual(workers, self.worker.get_workers())
 
 
-class Test_PluginInterface(test_base.BaseTestCase):
+class TestPluginInterface(test_base.BaseTestCase):
+
+    class ServicePluginStub(base.ServicePluginBase):
+        def get_plugin_type(self):
+            pass
+
+        def get_plugin_description(self):
+            pass
 
     def test_issubclass_hook(self):
-        class A(object):
+        class A(TestPluginInterface.ServicePluginStub):
             def f(self):
                 pass
 
-        class B(base._PluginInterface):
+        class B(base.ServicePluginBase):
             @abc.abstractmethod
             def f(self):
                 pass
@@ -62,18 +69,18 @@ class Test_PluginInterface(test_base.BaseTestCase):
             def f(self):
                 pass
 
-        class B(base._PluginInterface):
+        class B(base.ServicePluginBase):
             def f(self):
                 pass
 
         self.assertFalse(issubclass(A, B))
 
     def test_issubclass_hook_not_all_methods_implemented(self):
-        class A(object):
+        class A(TestPluginInterface.ServicePluginStub):
             def f(self):
                 pass
 
-        class B(base._PluginInterface):
+        class B(base.ServicePluginBase):
             @abc.abstractmethod
             def f(self):
                 pass
