@@ -24,7 +24,7 @@ or -2, if you have the right access permissions.
 It is also worth noting that every Stadium project will have a periodic job
 running unit tests against the master version of neutron-lib
 (`periodic-neutron-py35-with-neutron-lib-master <http://logs.openstack.org/periodic/periodic-neutron-py35-with-neutron-lib-master/>`_
-being an example). Checking Grafana's `periodic <http://grafana.openstack.org/dashboard/db/neutron-failure-rate?panelId=4&fullscreen>`_
+being an example). Checking Grafana's `periodic <http://grafana.openstack.org/dashboard/db/neutron-lib-failure-rate?panelId=4&fullscreen>`_
 dashboard can give you a glimpse into the sanity of the integration between
 neutron-lib and the Stadium projects, and can be considered the quick check
 before going ahead with a full blown sentinel patch.
