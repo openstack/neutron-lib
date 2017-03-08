@@ -126,6 +126,11 @@ KNOWN_EXTENSIONS = (
     'bgpvpn',  # https://git.openstack.org/cgit/openstack/networking-bgpvpn
     'bgpvpn-routes-control',
     'bgpvpn-vni',
+
+    # git.openstack.org/cgit/openstack/neutron-vpnaas
+    'vpnaas',
+    'vpn-endpoint-groups',
+    'vpn-flavors',
 )
 
 KNOWN_KEYWORDS = (
