@@ -44,6 +44,7 @@ KNOWN_EXTENSIONS = (
     'auto-allocated-topology',
     'availability_zone',
     'binding',
+    'data-plane-status',
     'default-subnetpools',
     'dhcp_agent_scheduler',
     'dns-integration',

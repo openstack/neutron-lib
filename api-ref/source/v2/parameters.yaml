@@ -935,6 +935,18 @@ created_at_resource:
   in: body
   required: true
   type: string
+data_plane_status:
+  description: |
+    Status of the underlying data plane of a port.
+  in: body
+  required: true
+  type: string
+data_plane_status-request:
+  description: |
+    Status of the underlying data plane of a port.
+  in: body
+  required: false
+  type: string
 default:
   description: |
     Defines whether the provider is the default for

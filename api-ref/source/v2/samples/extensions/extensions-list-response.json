@@ -118,6 +118,13 @@
             "links": [],
             "alias": "extraroute",
             "description": "Extra routes configuration for L3 router"
+        },
+        {
+            "updated": "2016-01-24T10:00:00-00:00",
+            "name": "Neutron Port Data Plane Status",
+            "links": [],
+            "alias": "data-plane-status",
+            "description": "Status of the underlying data plane."
         }
     ]
 }

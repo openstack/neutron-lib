@@ -3,6 +3,7 @@
         {
             "admin_state_up": false,
             "allowed_address_pairs": [],
+            "data_plane_status": null,
             "description": "",
             "device_id": "",
             "device_owner": "",
@@ -26,6 +27,7 @@
         {
             "admin_state_up": false,
             "allowed_address_pairs": [],
+            "data_plane_status": null,
             "description": "",
             "device_id": "",
             "device_owner": "",
