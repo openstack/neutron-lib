@@ -59,3 +59,31 @@ class SqlFixtureTestCase(base.BaseTestCase):
 
     def test_fixture(self):
         self.assertIsNotNone(model_base.BASEV2.metadata.sorted_tables)
+
+
+class APIDefinitionFixtureTestCase(base.BaseTestCase):
+
+    _ATTR_MAP_1 = {'routers': {'name': 'a'}}
+    _ATTR_MAP_2 = {'ports': {'description': 'a'}}
+
+    def setUp(self):
+        super(APIDefinitionFixtureTestCase, self).setUp()
+        self.routers_def = mock.Mock()
+        self.routers_def.RESOURCE_ATTRIBUTE_MAP = (
+            APIDefinitionFixtureTestCase._ATTR_MAP_1)
+        self.ports_def = mock.Mock()
+        self.ports_def.RESOURCE_ATTRIBUTE_MAP = (
+            APIDefinitionFixtureTestCase._ATTR_MAP_2)
+        self.useFixture(fixture.APIDefinitionFixture(
+            self.routers_def, self.ports_def))
+
+    def test_fixture(self):
+        # assert same contents, but different instances
+        self.assertEqual(APIDefinitionFixtureTestCase._ATTR_MAP_1,
+                         self.routers_def.RESOURCE_ATTRIBUTE_MAP)
+        self.assertEqual(APIDefinitionFixtureTestCase._ATTR_MAP_2,
+                         self.ports_def.RESOURCE_ATTRIBUTE_MAP)
+        self.assertIsNot(APIDefinitionFixtureTestCase._ATTR_MAP_1,
+                         self.routers_def.RESOURCE_ATTRIBUTE_MAP)
+        self.assertIsNot(APIDefinitionFixtureTestCase._ATTR_MAP_2,
+                         self.ports_def.RESOURCE_ATTRIBUTE_MAP)

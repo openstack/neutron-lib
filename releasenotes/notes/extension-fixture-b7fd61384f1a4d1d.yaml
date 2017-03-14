@@ -1,0 +1,12 @@
+---
+features:
+  - A new fixture for testing with neutron-lib API definitions has
+    been added as ``neutron_lib.fixtures.APIDefinitionFixture``. This
+    fixture can be used anytime extension plugins are being tested
+    that modify resource attribute maps and ensures the single global
+    API definition attribute map is copied and restored.
+  - The ``neutron_lib.api.extensions.APIExtensionDescriptor`` class now
+    defines update_attributes_map that uses the API definitions attribute
+    map if none is given. This is the default behavior in most all
+    extensions today and thus is collapsed into the base class for convenience.
+

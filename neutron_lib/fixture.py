@@ -10,8 +10,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import copy
 import fixtures
 
+from neutron_lib.api import definitions
 from neutron_lib.callbacks import manager
 from neutron_lib.callbacks import registry
 from neutron_lib.db import api as db_api
@@ -82,3 +84,40 @@ class SqlFixture(fixtures.Fixture):
                     conn.execute(table.delete())
 
         self.addCleanup(clear_tables)
+
+
+class APIDefinitionFixture(fixtures.Fixture):
+    """Test fixture for testing neutron-lib API definitions.
+
+    Extension API definition RESOURCE_ATTRIBUTE_MAP dicts get updated as
+    part of standard extension processing/handling. While this behavior is
+    fine for service runtime, it can impact testing scenarios whereby test1
+    updates the attribute map (globally) and test2 doesn't expect the
+    test1 updates.
+
+    This fixture saves and restores 1 or more neutron-lib API definitions
+    attribute maps. It should be used anywhere multiple tests can be run
+    that might update an extension attribute map.
+    """
+
+    def __init__(self, *api_definitions):
+        self.definitions = api_definitions
+        self._orig_attr_maps = {}
+
+    def _setUp(self):
+        for api_def in self.definitions:
+            self._orig_attr_maps[api_def.ALIAS] = (
+                api_def, api_def.RESOURCE_ATTRIBUTE_MAP)
+            api_def.RESOURCE_ATTRIBUTE_MAP = copy.deepcopy(
+                api_def.RESOURCE_ATTRIBUTE_MAP)
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        for alias, def_and_map in self._orig_attr_maps.items():
+            api_def, attr_map = def_and_map[0], def_and_map[1]
+            api_def.RESOURCE_ATTRIBUTE_MAP = attr_map
+
+    @classmethod
+    def all_api_definitions_fixture(cls):
+        """Return a fixture that handles all neutron-lib api-defs."""
+        return APIDefinitionFixture(*tuple(definitions._ALL_API_DEFINITIONS))

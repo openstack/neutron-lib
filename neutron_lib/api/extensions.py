@@ -232,3 +232,15 @@ class APIExtensionDescriptor(ExtensionDescriptor):
         """Returns the API definition's optional extensions."""
         self._assert_api_definition('OPTIONAL_EXTENSIONS')
         return self.api_definition.OPTIONAL_EXTENSIONS
+
+    def update_attributes_map(self, attributes, extension_attrs_map=None):
+        """Update attributes map for this extension.
+
+        Behaves like ExtensionDescriptor.update_attributes_map(), but
+        if extension_attrs_map is not given the extension's API
+        definition RESOURCE_ATTRIBUTE_MAP is used.
+        """
+        if extension_attrs_map is None:
+            extension_attrs_map = self.get_extended_resources('2.0')
+        super(APIExtensionDescriptor, self).update_attributes_map(
+            attributes, extension_attrs_map=extension_attrs_map)
