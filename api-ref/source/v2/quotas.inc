@@ -56,7 +56,7 @@ Lists quotas for a project.
 
 Normal response codes: 200
 
-Error response codes: 401, 403, 404
+Error response codes: 401, 403
 
 Request
 -------
@@ -96,7 +96,7 @@ Updates quotas for a project. Use when non-default quotas are desired.
 
 Normal response codes: 200
 
-Error response codes: 401, 403, 404
+Error response codes: 401, 403
 
 Request
 -------
@@ -175,7 +175,7 @@ Lists default quotas for a project.
 
 Normal response codes: 200
 
-Error response codes: 401, 403, 404
+Error response codes: 401, 403
 
 Request
 -------
