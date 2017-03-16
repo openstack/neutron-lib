@@ -15,14 +15,22 @@
 import re
 
 
+_all_log_levels = {'critical', 'error', 'exception', 'info', 'warning'}
 _all_hints = {'_LC', '_LE', '_LI', '_', '_LW'}
 
 
 _log_warn = re.compile(
-    r"(.)*LOG\.(warn)\(\s*('|\"|_)")
+    r"(.)*LOG\.(warn)\(\s*('|\")")
 
 
-def _translation_is_not_expected(filename):
+_log_translation_hint = re.compile(
+    r".*LOG\.(%(levels)s)\(\s*(%(hints)s)\(" % {
+        'levels': '|'.join(_all_log_levels),
+        'hints': '|'.join(_all_hints),
+    })
+
+
+def _translation_checks_not_enforced(filename):
     # Do not do these validations on tests
     return any(pat in filename for pat in ["/tests/", "rally-jobs/plugins/"])
 
@@ -41,28 +49,6 @@ def check_log_warn_deprecated(logical_line, filename):
         yield (0, msg)
 
 
-def no_translate_debug_logs(logical_line, filename):
-    """N533 - Don't translate debug level logs.
-
-    Check for 'LOG.debug(_(' and 'LOG.debug(_Lx('
-
-    As per our translation policy,
-    https://wiki.openstack.org/wiki/LoggingStandards#Log_Translation
-    we shouldn't translate debug level logs.
-
-    * This check assumes that 'LOG' is a logger.
-
-    :param logical_line: The logical line to check.
-    :param filename: The file name where the logical line exists.
-    :returns: None if the logical line passes the check, otherwise a tuple
-    is yielded that contains the offending index in logical line and a
-    message describe the check validation failure.
-    """
-    for hint in _all_hints:
-        if logical_line.startswith("LOG.debug(%s(" % hint):
-            yield(0, "N533 Don't translate debug level logs")
-
-
 def check_raised_localized_exceptions(logical_line, filename):
     """N534 - Untranslated exception message.
 
@@ -72,7 +58,7 @@ def check_raised_localized_exceptions(logical_line, filename):
     is yielded that contains the offending index in logical line and a
     message describe the check validation failure.
     """
-    if _translation_is_not_expected(filename):
+    if _translation_checks_not_enforced(filename):
         return
 
     logical_line = logical_line.strip()
@@ -83,3 +69,28 @@ def check_raised_localized_exceptions(logical_line, filename):
         if exception_msg.startswith("\"") or exception_msg.startswith("\'"):
             msg = "N534: Untranslated exception message."
             yield (logical_line.index(exception_msg), msg)
+
+
+def no_translate_logs(logical_line, filename):
+    """N537 - Don't translate logs.
+
+    Check for 'LOG.*(_(' and 'LOG.*(_Lx('
+
+    Translators don't provide translations for log messages, and operators
+    asked not to translate them.
+
+    * This check assumes that 'LOG' is a logger.
+
+    :param logical_line: The logical line to check.
+    :param filename: The file name where the logical line exists.
+    :returns: None if the logical line passes the check, otherwise a tuple
+    is yielded that contains the offending index in logical line and a
+    message describe the check validation failure.
+    """
+    if _translation_checks_not_enforced(filename):
+        return
+
+    msg = "N537: Log messages should not be translated!"
+    match = _log_translation_hint.match(logical_line)
+    if match:
+        yield (logical_line.index(match.group()), msg)

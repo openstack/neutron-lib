@@ -1,0 +1,14 @@
+---
+features:
+  - |
+    New ``N537`` hacking check is introduced that enforces no logging message
+    translations, in any logging level. The check is enabled by default. Also,
+    the ``N533`` hacking check is now removed because it is covered by
+    ``N537``.
+upgrade:
+  - |
+    Library consumers may need to adopt their code to new requirements of ``N537`` hacking check,
+    removing translation markers from all logging messages. If for some reason
+    it doesn't fit the project, consumers can disable the new hacking check
+    using ``ignore`` statement in ``flake8`` section of their ``tox.ini`` file,
+    or by other means.

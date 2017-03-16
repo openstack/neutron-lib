@@ -15,7 +15,6 @@ import collections
 from oslo_log import log as logging
 from oslo_utils import reflection
 
-from neutron_lib._i18n import _LE
 from neutron_lib.callbacks import events
 from neutron_lib.callbacks import exceptions
 from neutron_lib.db import utils as db_utils
@@ -176,8 +175,8 @@ class CallbacksManager(object):
                     event.startswith(events.PRECOMMIT)
                 )
                 if not abortable_event:
-                    LOG.exception(_LE("Error during notification for "
-                                      "%(callback)s %(resource)s, %(event)s"),
+                    LOG.exception("Error during notification for "
+                                  "%(callback)s %(resource)s, %(event)s",
                                   {'callback': callback_id,
                                    'resource': resource, 'event': event})
                 else:

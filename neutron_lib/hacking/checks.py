@@ -257,7 +257,7 @@ def factory(register):
     register(check_python3_no_iteritems)
     register(no_mutable_default_args)
     register(check_neutron_namespace_imports)
-    register(translation_checks.no_translate_debug_logs)
+    register(translation_checks.no_translate_logs)
     register(translation_checks.check_log_warn_deprecated)
     register(translation_checks.check_raised_localized_exceptions)
     register(assert_equal_none)

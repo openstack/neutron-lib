@@ -134,15 +134,24 @@ class HackingTestCase(base.BaseTestCase):
         self.assertLineFails(f, 'from neutron import context')
         self.assertLineFails(f, 'import neutron.common.config')
 
-    def test_no_translate_debug_logs(self):
-        for hint in tc._all_hints:
-            bad = "LOG.debug(%s('bad'))" % hint
-            self.assertEqual(
-                1, len(list(tc.no_translate_debug_logs(bad, 'f'))))
+    def test_no_log_translations(self):
+        for log in tc._all_log_levels:
+            for hint in tc._all_hints:
+                bad = 'LOG.%s(%s("Bad"))' % (log, hint)
+                self.assertEqual(
+                    1, len(list(tc.no_translate_logs(bad, 'f'))))
+                # Catch abuses when used with a variable and not a literal
+                bad = 'LOG.%s(%s(msg))' % (log, hint)
+                self.assertEqual(
+                    1, len(list(tc.no_translate_logs(bad, 'f'))))
+                # Do not do validations in tests
+                ok = 'LOG.%s(_("OK - unit tests"))' % log
+                self.assertEqual(
+                    0, len(list(tc.no_translate_logs(ok, 'f/tests/f'))))
 
     def test_check_log_warn_deprecated(self):
-        bad = "LOG.warn(_LW('i am deprecated!'))"
-        good = "LOG.warning(_LW('zlatan is the best'))"
+        bad = "LOG.warn('i am deprecated!')"
+        good = "LOG.warning('zlatan is the best')"
         f = tc.check_log_warn_deprecated
         self.assertLineFails(f, bad, '')
         self.assertLinePasses(f, good, '')
