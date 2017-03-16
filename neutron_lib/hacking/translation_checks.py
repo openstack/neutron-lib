@@ -14,59 +14,17 @@
 
 import re
 
-import pep8
 
-_all_log_levels = {
-    'critical': '_LC',
-    'error': '_LE',
-    'exception': '_LE',
-    'info': '_LI',
-    'reserved': '_',  # this should never be used with a log unless
-                      # it is a variable used for a log message and
-                      # a exception
-    'warning': '_LW',
-}
-_all_hints = set(_all_log_levels.values())
+_all_hints = {'_LC', '_LE', '_LI', '_', '_LW'}
+
+
 _log_warn = re.compile(
     r"(.)*LOG\.(warn)\(\s*('|\"|_)")
-
-
-def _regex_for_level(level, hint):
-    return r".*LOG\.%(level)s\(\s*((%(wrong_hints)s)\(|'|\")" % {
-        'level': level,
-        'wrong_hints': '|'.join(_all_hints - set([hint])),
-    }
-
-
-_log_translation_hint = re.compile(
-    '|'.join('(?:%s)' % _regex_for_level(level, hint)
-             for level, hint in _all_log_levels.items()))
 
 
 def _translation_is_not_expected(filename):
     # Do not do these validations on tests
     return any(pat in filename for pat in ["/tests/", "rally-jobs/plugins/"])
-
-
-def validate_log_translations(logical_line, physical_line, filename):
-    """N531 - Log messages require translation hints.
-
-    :param logical_line: The logical line to check.
-    :param physical_line: The physical line to check.
-    :param filename: The file name where the logical line exists.
-    :returns: None if the logical line passes the check, otherwise a tuple
-    is yielded that contains the offending index in logical line and a
-    message describe the check validation failure.
-    """
-    if _translation_is_not_expected(filename):
-        return
-
-    if pep8.noqa(physical_line):
-        return
-
-    msg = "N531: Log messages require translation hints!"
-    if _log_translation_hint.match(logical_line):
-        yield (0, msg)
 
 
 def check_log_warn_deprecated(logical_line, filename):

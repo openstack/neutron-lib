@@ -134,43 +134,6 @@ class HackingTestCase(base.BaseTestCase):
         self.assertLineFails(f, 'from neutron import context')
         self.assertLineFails(f, 'import neutron.common.config')
 
-    def test_log_translations(self):
-        expected_marks = {
-            'error': '_LE',
-            'info': '_LI',
-            'warning': '_LW',
-            'critical': '_LC',
-            'exception': '_LE',
-        }
-        logs = expected_marks.keys()
-        debug = "LOG.debug('OK')"
-        self.assertEqual(
-            0, len(list(tc.validate_log_translations(debug, debug, 'f'))))
-        for log in logs:
-            bad = 'LOG.%s(_("Bad"))' % log
-            self.assertEqual(
-                1, len(list(tc.validate_log_translations(bad, bad, 'f'))))
-            bad = 'LOG.%s("Bad")' % log
-            self.assertEqual(
-                1, len(list(tc.validate_log_translations(bad, bad, 'f'))))
-            ok = "LOG.%s('OK')    # noqa" % log
-            self.assertEqual(
-                0, len(list(tc.validate_log_translations(ok, ok, 'f'))))
-            ok = "LOG.%s(variable)" % log
-            self.assertEqual(
-                0, len(list(tc.validate_log_translations(ok, ok, 'f'))))
-            # Do not do validations in tests
-            ok = 'LOG.%s("OK - unit tests")' % log
-            self.assertEqual(
-                0, len(list(tc.validate_log_translations(ok, ok,
-                                                         'f/tests/f'))))
-
-            for mark in tc._all_hints:
-                stmt = "LOG.%s(%s('test'))" % (log, mark)
-                self.assertEqual(
-                    0 if expected_marks[log] == mark else 1,
-                    len(list(tc.validate_log_translations(stmt, stmt, 'f'))))
-
     def test_no_translate_debug_logs(self):
         for hint in tc._all_hints:
             bad = "LOG.debug(%s('bad'))" % hint
