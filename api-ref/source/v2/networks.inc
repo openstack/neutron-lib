@@ -20,8 +20,9 @@ vary across ``provider:network_type``. For example, ``vlan`` and ``flat``
 network types require ``provider:physical_network`` attribute, but ``vxlan``
 network type does not.
 
-Most Networking plug-ins and drivers do not support updating any provider
-related attributes.
+Most Networking plug-ins (e.g. ML2 Plugin) and drivers do not support updating
+any provider related attributes. Check your plug-in whether it supports
+updating.
 
 multiple provider extension
 ===========================
@@ -142,8 +143,12 @@ Request
    - admin_state_up: network-admin_state_up-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
+   - provider:network_type: provider:network_type
+   - provider:physical_network: provider:physical_network
+   - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id-request
    - router:external: router:external-request
+   - segments: segments
    - shared: network-shared-request
    - description: description-request
 
@@ -151,6 +156,18 @@ Request Example
 ---------------
 
 .. literalinclude:: samples/networks/network-update-request.json
+   :language: javascript
+
+Request Example (admin user; single segment mapping)
+----------------------------------------------------
+
+.. literalinclude:: samples/networks/network-provider-update-request.json
+   :language: javascript
+
+Request Example (admin user; multiple segment mappings)
+-------------------------------------------------------
+
+.. literalinclude:: samples/networks/network-multi-update-request.json
    :language: javascript
 
 Response Parameters
