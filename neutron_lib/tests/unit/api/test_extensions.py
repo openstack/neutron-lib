@@ -14,6 +14,7 @@
 #    under the License.
 
 from neutron_lib.api import extensions
+from neutron_lib import fixture
 from neutron_lib.services import base as service_base
 from neutron_lib.tests import _base as base
 
@@ -125,6 +126,7 @@ class TestAPIExtensionDescriptor(base.BaseTestCase):
         super(TestAPIExtensionDescriptor, self).setUp()
         self.extn = _APIDefinition()
         self.empty_extn = _EmptyAPIDefinition()
+        self.useFixture(fixture.APIDefinitionFixture(self))
 
     def test__assert_api_definition_no_defn(self):
         self.assertRaises(NotImplementedError,
@@ -188,6 +190,21 @@ class TestAPIExtensionDescriptor(base.BaseTestCase):
     def test_get_optional_extensions_unset(self):
         self.assertRaises(NotImplementedError,
                           self.empty_extn.get_optional_extensions)
+
+    def test_update_attributes_map_extensions_unset(self):
+        self.assertRaises(NotImplementedError,
+                          self.empty_extn.update_attributes_map, {})
+
+    def test_update_attributes_map_with_ext_attrs(self):
+        base_attrs = {'ports': {'a': 'A'}}
+        ext_attrs = {'ports': {'b': 'B'}}
+        self.extn.update_attributes_map(base_attrs, ext_attrs)
+        self.assertEqual({'ports': {'a': 'A', 'b': 'B'}}, ext_attrs)
+
+    def test_update_attributes_map_without_ext_attrs(self):
+        base_attrs = {'ports': {'a': 'A'}}
+        self.extn.update_attributes_map(base_attrs)
+        self.assertIn('a', self.extn.get_extended_resources('2.0')['ports'])
 
 
 class _APIDefinition(extensions.APIExtensionDescriptor):

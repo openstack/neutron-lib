@@ -10,6 +10,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import imp
+import os
+
+from neutron_lib.api import definitions
 from neutron_lib.api.definitions import base
 from neutron_lib.api import validators
 from neutron_lib import constants
@@ -165,3 +169,21 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
         for ext in self.optional_extensions:
             self.assertIn(ext, base.KNOWN_EXTENSIONS,
                           'Optional extension is unknown, check for typos.')
+
+    def test_all_api_definitions_list(self):
+        # ensure _ALL_API_DEFINITIONS contains all public api-defs
+        ext_aliases = []
+        api_def_path = 'neutron_lib/api/definitions'
+        for f in sorted(os.listdir(api_def_path)):
+            mod_name, file_ext = os.path.splitext(os.path.split(f)[-1])
+            ext_path = os.path.join(api_def_path, f)
+            if file_ext.lower() == '.py' and not mod_name.startswith('_'):
+                mod = imp.load_source(mod_name, ext_path)
+                ext_alias = getattr(mod, 'ALIAS', None)
+                if not ext_alias:
+                    continue
+                ext_aliases.append(ext_alias)
+
+        self.assertEqual(sorted(ext_aliases),
+                         sorted([d.ALIAS for d in
+                                 definitions._ALL_API_DEFINITIONS]))
