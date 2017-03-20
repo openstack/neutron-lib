@@ -8,6 +8,7 @@
         "project_id": "26de9cd6cae94c8cb9f79d660d628e1f",
         "tenant_id": "26de9cd6cae94c8cb9f79d660d628e1f",
         "id": "41bfef97-af4e-4f6b-a5d3-4678859d2485",
-        "description": "Updated description"
+        "description": "Updated description",
+        "flavor_id": null
     }
 }
