@@ -1,0 +1,14 @@
+---
+features:
+  - A bulk of the ``neutron.api.v2.attributes`` functionality is now available
+    in ``neutron_lib.api.attributes``. A new ``AttributeInfo`` class is
+    available in that acts as a wrapper for an API resource's attribute dict
+    and allows consumers to perform operations with the underlying attribute
+    dict. The ``populate_project_info`` function is now available. The global
+    attribute map ``RESOURCES`` is now available and will take the place of
+    neutron's global ``RESOURCE_ATTRIBUTE_MAP``.
+  - The ``neutron_lib.fixture.APIDefinitionFixture`` has been updated to handle
+    backing-up and restoring the global ``RESOURCES`` dict. By default the
+    constructor now also uses all API definitions if none are passed to it's
+    constructor. This is the default behavior almost all consumers need and is
+    thus a convenience change.

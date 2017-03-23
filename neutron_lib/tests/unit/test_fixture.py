@@ -16,10 +16,12 @@ from oslo_config import cfg
 from oslo_db import options
 from oslotest import base
 
+from neutron_lib.api import attributes
 from neutron_lib.callbacks import registry
 from neutron_lib.db import model_base
 from neutron_lib import fixture
 from neutron_lib.plugins import directory
+from neutron_lib.tests.unit.api import test_attributes
 
 
 class PluginDirectoryFixtureTestCase(base.BaseTestCase):
@@ -63,27 +65,30 @@ class SqlFixtureTestCase(base.BaseTestCase):
 
 class APIDefinitionFixtureTestCase(base.BaseTestCase):
 
-    _ATTR_MAP_1 = {'routers': {'name': 'a'}}
-    _ATTR_MAP_2 = {'ports': {'description': 'a'}}
+    def _test_all_api_definitions_fixture(self, global_cleanup=True):
+        apis = fixture.APIDefinitionFixture.all_api_definitions_fixture()
+        apis.backup_global_resources = global_cleanup
+        apis.setUp()
 
-    def setUp(self):
-        super(APIDefinitionFixtureTestCase, self).setUp()
-        self.routers_def = mock.Mock()
-        self.routers_def.RESOURCE_ATTRIBUTE_MAP = (
-            APIDefinitionFixtureTestCase._ATTR_MAP_1)
-        self.ports_def = mock.Mock()
-        self.ports_def.RESOURCE_ATTRIBUTE_MAP = (
-            APIDefinitionFixtureTestCase._ATTR_MAP_2)
-        self.useFixture(fixture.APIDefinitionFixture(
-            self.routers_def, self.ports_def))
+        asserteq = self.assertNotEqual if global_cleanup else self.assertEqual
+        asserteq({}, apis._orig_resources)
 
-    def test_fixture(self):
-        # assert same contents, but different instances
-        self.assertEqual(APIDefinitionFixtureTestCase._ATTR_MAP_1,
-                         self.routers_def.RESOURCE_ATTRIBUTE_MAP)
-        self.assertEqual(APIDefinitionFixtureTestCase._ATTR_MAP_2,
-                         self.ports_def.RESOURCE_ATTRIBUTE_MAP)
-        self.assertIsNot(APIDefinitionFixtureTestCase._ATTR_MAP_1,
-                         self.routers_def.RESOURCE_ATTRIBUTE_MAP)
-        self.assertIsNot(APIDefinitionFixtureTestCase._ATTR_MAP_2,
-                         self.ports_def.RESOURCE_ATTRIBUTE_MAP)
+        for r in test_attributes.TestCoreResources.CORE_DEFS:
+            attributes.RESOURCES[r.COLLECTION_NAME]['_test_'] = {}
+            r.RESOURCE_ATTRIBUTE_MAP['_test_'] = {}
+
+        apis.cleanUp()
+        for r in test_attributes.TestCoreResources.CORE_DEFS:
+            self.assertNotIn('_test_', r.RESOURCE_ATTRIBUTE_MAP)
+            global_assert = (self.assertNotIn
+                             if global_cleanup else self.assertIn)
+            global_assert('_test_', attributes.RESOURCES[r.COLLECTION_NAME])
+            # cleanup
+            if not global_cleanup:
+                del attributes.RESOURCES[r.COLLECTION_NAME]['_test_']
+
+    def test_all_api_definitions_fixture_no_global_backup(self):
+        self._test_all_api_definitions_fixture(global_cleanup=False)
+
+    def test_all_api_definitions_fixture_with_global_backup(self):
+        self._test_all_api_definitions_fixture(global_cleanup=True)
