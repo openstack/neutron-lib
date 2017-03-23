@@ -12,22 +12,45 @@
 
 KNOWN_ATTRIBUTES = (
     'admin_state_up',
-    'id',
+    'allocation_pools',
+    'cidr',
+    'default_prefixlen',
+    'default_quota',
     'description',
+    'device_id',
+    'device_owner',
+    'dns_nameservers',
+    'enable_dhcp',
+    'fixed_ips',
+    'gateway_ip',
+    'host_routes',
+    'id',
+    'ip_version',
+    'ipv6_address_mode',
+    'ipv6_ra_mode',
+    'is_default',
+    'mac_address',
+    'max_prefixlen',
+    'min_prefixlen',
     'name',
     'network_id',
     'port_id',
+    'prefixes',
+    'prefixlen',
     'project_id',
     'shared',
     'status',
-    'tenant_id',
+    'subnets',
+    'subnetpool_id',
+    'tenant_id'
 )
 
 KNOWN_RESOURCES = (
     'networks',
     'ports',
-    'subnets',
     'routers',
+    'subnets',
+    'subnetpools'
 )
 
 KNOWN_HTTP_ACTIONS = (

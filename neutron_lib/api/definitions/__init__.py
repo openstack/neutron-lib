@@ -18,10 +18,14 @@ from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import logging_resource
+from neutron_lib.api.definitions import network
+from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_security
 from neutron_lib.api.definitions import portbindings
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import router_interface_fip
+from neutron_lib.api.definitions import subnet
+from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
 
@@ -35,10 +39,14 @@ _ALL_API_DEFINITIONS = {
     firewallrouterinsertion,
     l3,
     logging_resource,
+    network,
+    port,
     port_security,
     portbindings,
     provider_net,
     router_interface_fip,
+    subnet,
+    subnetpool,
     trunk,
     trunk_details
 }

@@ -1,0 +1,4 @@
+---
+features:
+  - The ``network``, ``port``, ``subnet`` and ``subnetpool`` API definitions
+    are now available in ``neutron_lib.api.definitions``.

@@ -27,7 +27,8 @@ def assert_bool(tester, attribute, attribute_dict, keyword, value):
 
 
 def assert_converter(tester, attribute, attribute_dict, keyword, value):
-    if attribute_dict['default'] is constants.ATTR_NOT_SPECIFIED:
+    if ('default' not in attribute_dict or
+            attribute_dict['default'] is constants.ATTR_NOT_SPECIFIED):
         return
     try:
         attribute_dict['convert_to'](attribute_dict['default'])
