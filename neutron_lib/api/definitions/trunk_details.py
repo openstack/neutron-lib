@@ -64,6 +64,10 @@ SUB_RESOURCE_ATTRIBUTE_MAP = None
 # The action map.
 ACTION_MAP = None
 
+# The action status.
+ACTION_STATUS = {
+}
+
 # The list of required extensions.
 REQUIRED_EXTENSIONS = [trunk.ALIAS]
 

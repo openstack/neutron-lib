@@ -104,6 +104,16 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
 ACTION_MAP = {
 }
 
+# The action status: it associates response statuses with methods to be
+# performed on the API resource (mandatory). For example:
+#
+# ACTION_STATUS = {
+#     'create': 201,
+#     'delete': 204
+# }
+ACTION_STATUS = {
+}
+
 # The list of required extensions (mandatory).
 REQUIRED_EXTENSIONS = [
 ]

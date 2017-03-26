@@ -37,6 +37,16 @@ KNOWN_HTTP_ACTIONS = (
     'PUT',
 )
 
+KNOWN_ACTION_STATUSES = (
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206,
+)
+
 KNOWN_EXTENSIONS = (
     'address-scope',
     'agent',

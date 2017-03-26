@@ -69,6 +69,10 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
 ACTION_MAP = {
 }
 
+# The action status.
+ACTION_STATUS = {
+}
+
 # The list of required extensions.
 REQUIRED_EXTENSIONS = [
 ]
