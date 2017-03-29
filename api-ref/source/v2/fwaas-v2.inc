@@ -78,7 +78,7 @@ Response Parameters
    - name: firewall_group_name-body-required
    - ports: firewall_group_ports-body-required
    - project_id: project_id-body-required
-   - public: firewall_group_shared-body-required
+   - shared: firewall_group_shared-body-required
    - status: firewall_group_status-body-required
    - tenant_id: project_id-body-required
 
@@ -124,7 +124,7 @@ Response Parameters
    - name: firewall_group_name-body-required
    - ports: firewall_group_ports-body-required
    - project_id: project_id-body-required
-   - public: firewall_group_shared-body-required
+   - shared: firewall_group_shared-body-required
    - status: firewall_group_status-body-required
    - tenant_id: project_id-body-required
 
@@ -164,7 +164,7 @@ Request
    - name: firewall_group_name-body-optional
    - ports: firewall_group_ports-body-optional
    - project_id: project_id-body-optional
-   - public: firewall_group_shared-body-optional
+   - shared: firewall_group_shared-body-optional
    - status: firewall_group_status-body-optional
    - tenant_id: project_id-body-optional
 
@@ -188,7 +188,7 @@ Response Parameters
    - name: firewall_group_name-body-required
    - ports: firewall_group_ports-body-required
    - project_id: project_id-body-required
-   - public: firewall_group_shared-body-required
+   - shared: firewall_group_shared-body-required
    - status: firewall_group_status-body-required
    - tenant_id: project_id-body-required
 
@@ -224,6 +224,7 @@ Request
    - ingress_firewall_policy_id: ingress_firewall_policy_id-body-optional
    - name: firewall_group_name-body-optional
    - ports: firewall_group_ports-body-optional
+   - shared: firewall_group_shared-body-optional
    - status: firewall_group_status-body-optional
 
 Request Example
@@ -246,7 +247,7 @@ Response Parameters
    - name: firewall_group_name-body-required
    - ports: firewall_group_ports-body-required
    - project_id: project_id-body-required
-   - public: firewall_group_shared-body-required
+   - shared: firewall_group_shared-body-required
    - status: firewall_group_status-body-required
    - tenant_id: project_id-body-required
 
@@ -317,7 +318,7 @@ Response Parameters
    - firewall_rules: firewall_rules-body-required
    - name: firewall_policy_name-body-required
    - project_id: project_id-body-required
-   - public: firewall_policy_shared-body-required
+   - shared: firewall_policy_shared-body-required
    - tenant_id: project_id-body-required
 
 Response Example
@@ -355,7 +356,7 @@ Response Parameters
    - id: firewall_policy_id-body-required
    - name: firewall_policy_name-body-required
    - project_id: project_id-body-required
-   - public: firewall_policy_shared-body-required
+   - shared: firewall_policy_shared-body-required
    - tenant_id: project_id-body-required
 
 Response Example
@@ -386,7 +387,7 @@ Request
    - firewall_rules: firewall_rules-body-optional
    - name: firewall_policy_name-body-optional
    - project_id: project_id-body-optional
-   - public: firewall_policy_shared-body-optional
+   - shared: firewall_policy_shared-body-optional
    - tenant_id: project_id-body-optional
 
 Request Example
@@ -407,7 +408,7 @@ Response Parameters
    - id: firewall_policy_id-body-required
    - name: firewall_policy_name-body-required
    - project_id: project_id-body-required
-   - public: firewall_policy_shared-body-required
+   - shared: firewall_policy_shared-body-required
    - tenant_id: project_id-body-required
 
 Response Example
@@ -439,7 +440,7 @@ Request
    - firewall_rules: firewall_rules-body-optional
    - name: firewall_policy_name-body-optional
    - project_id: project_id-body-optional
-   - public: firewall_policy_shared-body-optional
+   - shared: firewall_policy_shared-body-optional
    - tenant_id: project_id-body-optional
 
 Request Example
@@ -459,7 +460,7 @@ Response Parameters
    - firewall_rules: firewall_rules-body-required
    - id: firewall_policy_id-body-required
    - name: firewall_policy_name-body-required
-   - public: firewall_policy_shared-body-required
+   - shared: firewall_policy_shared-body-required
    - project_id: project_id-body-required
    - tenant_id: project_id-body-required
 
@@ -535,7 +536,7 @@ Response Parameters
    - name: firewall_rule_name-body-required
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
-   - public: firewall_rule_shared-body-required
+   - shared: firewall_rule_shared-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
@@ -585,7 +586,7 @@ Response Parameters
    - name: firewall_rule_name-body-required
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
-   - public: firewall_rule_shared-body-required
+   - shared: firewall_rule_shared-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
@@ -622,7 +623,7 @@ Request
    - name: firewall_rule_name-body-optional
    - project_id: project_id-body-optional
    - protocol: firewall_rule_protocol-body-optional
-   - public: firewall_rule_shared-body-optional
+   - shared: firewall_rule_shared-body-optional
    - source_ip_address: firewall_rule_source_ip_address-body-optional
    - source_port: firewall_rule_source_port-body-optional
    - tenant_id: project_id-body-optional
@@ -650,7 +651,7 @@ Response Parameters
    - name: firewall_rule_name-body-required
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
-   - public: firewall_rule_shared-body-required
+   - shared: firewall_rule_shared-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
@@ -689,7 +690,7 @@ Request
    - name: firewall_rule_name-body-optional
    - project_id: project_id-body-optional
    - protocol: firewall_rule_protocol-body-optional
-   - public: firewall_rule_shared-body-optional
+   - shared: firewall_rule_shared-body-optional
    - source_ip_address: firewall_rule_source_ip_address-body-optional
    - source_port: firewall_rule_source_port-body-optional
    - tenant_id: project_id-body-optional
@@ -717,7 +718,7 @@ Response Parameters
    - name: firewall_rule_name-body-required
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
-   - public: firewall_rule_shared-body-required
+   - shared: firewall_rule_shared-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
@@ -791,7 +792,7 @@ Response Parameters
    - id: firewall_policy_id-body-required
    - name: firewall_policy_name-body-required
    - project_id: project_id-body-required
-   - public: firewall_policy_shared-body-required
+   - shared: firewall_policy_shared-body-required
    - tenant_id: project_id-body-required
 
 Response Example
@@ -836,7 +837,7 @@ Response Parameters
    - id: firewall_policy_id-body-required
    - name: firewall_policy_name-body-required
    - project_id: project_id-body-required
-   - public: firewall_policy_shared-body-required
+   - shared: firewall_policy_shared-body-required
    - tenant_id: project_id-body-required
 
 Response Example
