@@ -39,6 +39,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertEqual('tenant_id', ctx.tenant)
         self.assertIsNone(ctx.user_name)
         self.assertIsNone(ctx.tenant_name)
+        self.assertIsNone(ctx.project_name)
         self.assertIsNone(ctx.auth_token)
 
     def test_neutron_context_getter_setter(self):
@@ -56,6 +57,7 @@ class TestNeutronContext(_base.BaseTestCase):
         # Check name is set
         self.assertEqual('user_name', ctx.user_name)
         self.assertEqual('tenant_name', ctx.tenant_name)
+        self.assertEqual('tenant_name', ctx.project_name)
         # Check user/tenant contains its ID even if user/tenant_name is passed
         self.assertEqual('user_id', ctx.user)
         self.assertEqual('tenant_id', ctx.tenant)

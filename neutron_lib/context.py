@@ -36,13 +36,12 @@ class ContextBase(oslo_context.RequestContext):
         # that pass arguments positionally.
         kwargs.setdefault('user', user_id)
         kwargs.setdefault('tenant', tenant_id)
+        # prefer project_name, as that's what's going to be set by
+        # keystone. Fall back to tenant_name if for some reason it's blank.
+        kwargs.setdefault('project_name', tenant_name)
         super(ContextBase, self).__init__(is_admin=is_admin, **kwargs)
 
         self.user_name = user_name
-        # NOTE(sdague): tenant* is a deprecated set of names from
-        # keystone, and is no longer set in modern keystone middleware
-        # code, as such this is almost always going to be None.
-        self.tenant_name = tenant_name
 
         if not timestamp:
             timestamp = datetime.datetime.utcnow()
@@ -66,6 +65,14 @@ class ContextBase(oslo_context.RequestContext):
         self.tenant = tenant_id
 
     @property
+    def tenant_name(self):
+        return self.project_name
+
+    @tenant_name.setter
+    def tenant_name(self, tenant_name):
+        self.project_name = tenant_name
+
+    @property
     def user_id(self):
         return self.user
 
@@ -80,10 +87,8 @@ class ContextBase(oslo_context.RequestContext):
             'tenant_id': self.tenant_id,
             'project_id': self.project_id,
             'timestamp': str(self.timestamp),
-            # prefer project_name, as that's what's going to be set by
-            # keystone. Fall back if for some reason it's blank.
-            'tenant_name': self.project_name or self.tenant_name,
-            'project_name': self.project_name or self.tenant_name,
+            'tenant_name': self.project_name,
+            'project_name': self.project_name,
             'user_name': self.user_name,
         })
         return context
@@ -102,10 +107,8 @@ class ContextBase(oslo_context.RequestContext):
         values['domain'] = self.domain
         values['user_domain'] = self.user_domain
         values['project_domain'] = self.project_domain
-        # prefer project_name, as that's what's going to be set by
-        # keystone. Fall back if for some reason it's blank.
-        values['tenant_name'] = self.project_name or self.tenant_name
-        values['project_name'] = self.project_name or self.tenant_name
+        values['tenant_name'] = self.project_name
+        values['project_name'] = self.project_name
         values['user_name'] = self.user_name
 
         return values
