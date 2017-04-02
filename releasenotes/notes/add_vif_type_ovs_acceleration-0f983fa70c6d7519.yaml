@@ -1,0 +1,3 @@
+---
+features:
+  - Add new vif type ``VIF_TYPE_OVS_ACCELERATION`` to portbindings.
