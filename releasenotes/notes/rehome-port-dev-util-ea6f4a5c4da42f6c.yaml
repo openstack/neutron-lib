@@ -1,0 +1,4 @@
+---
+features:
+  - The ``neutron.common.utils`` function ``is_port_trusted`` is now available
+    in ``neutron_lib.utils.net``.

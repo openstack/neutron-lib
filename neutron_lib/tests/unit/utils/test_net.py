@@ -16,6 +16,7 @@ import socket
 
 import mock
 
+from neutron_lib import constants
 from neutron_lib.tests import _base as base
 from neutron_lib.utils import net
 
@@ -61,3 +62,15 @@ class TestGetRandomMac(base.BaseTestCase):
         self.assertEqual('a2:a2:a2:a2:a2:a2', mac)
 
         mock_rnd.assert_called_with(0x00, 0xff)
+
+
+class TestPortDeviceOwner(base.BaseTestCase):
+
+    def test_is_port_trusted(self):
+        self.assertTrue(net.is_port_trusted(
+            {'device_owner':
+             constants.DEVICE_OWNER_NETWORK_PREFIX + 'dev'}))
+
+    def test_is_port_not_trusted(self):
+        self.assertFalse(net.is_port_trusted(
+            {'device_owner': constants.DEVICE_OWNER_COMPUTE_PREFIX + 'dev'}))
