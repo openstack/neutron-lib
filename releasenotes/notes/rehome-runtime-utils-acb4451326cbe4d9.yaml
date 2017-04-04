@@ -1,0 +1,6 @@
+---
+features:
+  - The ``load_class_by_alias_or_classname`` function from
+    ``neutron.common.utils`` is now available in ``neutron_lib.utils.runtime``.
+  - The ``synchronized`` decorator from ``neutron.common.utils`` is now
+    available in ``neutron_lib.utils.runtime``.
