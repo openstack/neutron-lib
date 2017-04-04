@@ -22,7 +22,7 @@ def _create_context_manager():
     global _CTX_MANAGER
     if _CTX_MANAGER is None:
         _CTX_MANAGER = enginefacade.transaction_context()
-        _CTX_MANAGER.configure(sqlite_fk=True)
+        _CTX_MANAGER.configure(sqlite_fk=True, flush_on_subtransaction=True)
 
     return _CTX_MANAGER
 

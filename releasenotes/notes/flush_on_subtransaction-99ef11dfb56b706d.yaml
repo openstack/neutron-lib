@@ -1,0 +1,6 @@
+---
+fixes:
+  - The oslo.db context manager returned by ``db.api.get_context_manager()``
+    will be configured with flush_on_subtransaction=True to more closely
+    match the behavior of the previous session.begin(subtransactions=True)
+    pattern we used everywhere before. See bug 1664643 for more details.
