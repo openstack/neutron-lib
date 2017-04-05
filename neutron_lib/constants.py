@@ -203,6 +203,12 @@ IPTABLES_PROTOCOL_MAP = {PROTO_NAME_DCCP: 'dccp',
                          PROTO_NAME_TCP: 'tcp',
                          PROTO_NAME_UDP: 'udp'}
 
+# IP header length
+IP_HEADER_LENGTH = {
+    4: 20,
+    6: 40,
+}
+
 # ICMPv6 types:
 # Destination Unreachable (1)
 ICMPV6_TYPE_DEST_UNREACH = 1
@@ -260,6 +266,45 @@ DHCPV6_STATELESS = 'dhcpv6-stateless'
 IPV6_SLAAC = 'slaac'
 IPV6_MODES = [DHCPV6_STATEFUL, DHCPV6_STATELESS, IPV6_SLAAC]
 
+ACTIVE_PENDING_STATUSES = (
+    ACTIVE,
+    PENDING_CREATE,
+    PENDING_UPDATE
+)
+
+# Network Type constants
+TYPE_FLAT = 'flat'
+TYPE_GENEVE = 'geneve'
+TYPE_GRE = 'gre'
+TYPE_LOCAL = 'local'
+TYPE_VXLAN = 'vxlan'
+TYPE_VLAN = 'vlan'
+TYPE_NONE = 'none'
+
+# Values for network_type
+
+# For VLAN Network
+MIN_VLAN_TAG = 1
+MAX_VLAN_TAG = 4094
+
+# For Geneve Tunnel
+MIN_GENEVE_VNI = 1
+MAX_GENEVE_VNI = 2 ** 24 - 1
+
+# For GRE Tunnel
+MIN_GRE_ID = 1
+MAX_GRE_ID = 2 ** 32 - 1
+
+# For VXLAN Tunnel
+MIN_VXLAN_VNI = 1
+MAX_VXLAN_VNI = 2 ** 24 - 1
+VXLAN_UDP_PORT = 4789
+
+# Overlay (tunnel) protocol overhead
+GENEVE_ENCAP_MIN_OVERHEAD = 30
+GRE_ENCAP_OVERHEAD = 22
+VXLAN_ENCAP_OVERHEAD = 30
+
 
 class Sentinel(object):
     """A constant object that does not change even when copied."""
@@ -300,6 +345,7 @@ SNAT_INT_DEV_PREFIX = 'sg-'
 ##########################
 # Plugin constants that are universally used across all neutron repos.
 # The alias for the core plugin.
+# TODO(boden): remove and replace consumer usage with plugins/constants.py
 CORE = 'CORE'
 # The alias for the L3 plugin.
 L3 = 'L3_ROUTER_NAT'
