@@ -12,7 +12,6 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import constants as api_const
-from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 
 # The alias of the extension.
@@ -66,11 +65,11 @@ RESOURCE_ATTRIBUTE_MAP = {
                    'default': False, 'is_visible': True,
                    'convert_to': converters.convert_to_boolean,
                    'required_by_policy': True, 'enforce_policy': True},
-        'protocol': {'allow_post': True, 'allow_put': True,
-                     'is_visible': True, 'default': None,
-                     'convert_to': converters.convert_to_protocol,
-                     'validate': {'type:values':
-                                  constants.IPTABLES_PROTOCOL_MAP}},
+        'protocol': {
+            'allow_post': True, 'allow_put': True,
+            'is_visible': True, 'default': None,
+            'convert_to': converters.convert_to_protocol,
+            'validate': {'type:values': api_const.FW_PROTOCOL_VALUES}},
         'ip_version': {'allow_post': True, 'allow_put': True,
                        'default': 4, 'convert_to': converters.convert_to_int,
                        'validate': {'type:values': [4, 6]},

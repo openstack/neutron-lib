@@ -12,6 +12,8 @@
 #    under the License.
 
 # neutron-fwaas constants
+from neutron_lib import constants
+
 FIREWALL_GROUPS = 'firewall_groups'
 FIREWALL_POLICIES = 'firewall_policies'
 FIREWALL_RULES = 'firewall_rules'
@@ -21,3 +23,7 @@ FWAAS_ALLOW = "allow"
 FWAAS_DENY = "deny"
 FWAAS_REJECT = "reject"
 FW_VALID_ACTION_VALUES = [FWAAS_ALLOW, FWAAS_DENY, FWAAS_REJECT]
+
+# Firewall Protocol List
+
+FW_PROTOCOL_VALUES = list(constants.IPTABLES_PROTOCOL_MAP.keys()) + [None]
