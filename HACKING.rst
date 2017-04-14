@@ -17,7 +17,7 @@ Neutron Library Specific Commandments
 - [N529] Method's default argument shouldn't be mutable
 - [N530] No importing of neutron; should be ignored in neutron itself
 - [N532] Validate that LOG.warning is used instead of LOG.warn. The latter is deprecated.
-- [N533] Validate that debug level logs are not translated
 - [N534] Exception messages should be translated
 - [N535] Usage of Python eventlet module not allowed
 - [N536] Use assertIsNone/assertIsNotNone rather than assertEqual/assertIs to check None values.
+- [N537] Don't translate logs.
