@@ -23,5 +23,5 @@ class FirewallDefinitionTestCase(base.DefinitionBaseTestCase):
                             'egress_firewall_policy_id', 'enabled',
                             'firewall_policy_id', 'firewall_rules',
                             'ingress_firewall_policy_id', 'ip_version',
-                            'ports', 'position', 'protocol', 'public',
+                            'ports', 'position', 'protocol', 'shared',
                             'source_ip_address', 'source_port')

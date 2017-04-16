@@ -1,5 +1,5 @@
 {
     "firewall_rule": {
-        "public": "true"
+        "shared": true
     }
 }
