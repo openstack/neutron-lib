@@ -87,6 +87,7 @@ KNOWN_EXTENSIONS = (
     'fwaas',
     'fwaasrouterinsertion',
     'fwaas_v2',
+    'bgpvpn',  # https://git.openstack.org/cgit/openstack/networking-bgpvpn
 )
 
 # The following is a short reference for understanding attribute info:
