@@ -62,7 +62,7 @@ RESOURCE_ATTRIBUTE_MAP = {
 SUB_RESOURCE_ATTRIBUTE_MAP = None
 
 # The action map.
-ACTION_MAP = None
+ACTION_MAP = {}
 
 # The action status.
 ACTION_STATUS = {
@@ -72,4 +72,4 @@ ACTION_STATUS = {
 REQUIRED_EXTENSIONS = [trunk.ALIAS]
 
 # The list of optional extensions.
-OPTIONAL_EXTENSIONS = None
+OPTIONAL_EXTENSIONS = []
