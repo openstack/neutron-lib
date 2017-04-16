@@ -182,6 +182,10 @@ ACTION_MAP = {
     'firewall_policy': {'insert_rule': 'PUT', 'remove_rule': 'PUT'},
 }
 
+# The action status.
+ACTION_STATUS = {
+}
+
 # The list of required extensions.
 REQUIRED_EXTENSIONS = [
 ]

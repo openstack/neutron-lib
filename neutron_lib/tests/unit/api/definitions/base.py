@@ -84,6 +84,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
         self.resource_map = self.extension_module.RESOURCE_ATTRIBUTE_MAP
         self.subresource_map = self.extension_module.SUB_RESOURCE_ATTRIBUTE_MAP
         self.action_map = self.extension_module.ACTION_MAP
+        self.action_status = self.extension_module.ACTION_STATUS
         self.required_extensions = self.extension_module.REQUIRED_EXTENSIONS
         self.optional_extensions = self.extension_module.OPTIONAL_EXTENSIONS
 
@@ -93,6 +94,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
             self.assertFalse(self.extension_attributes)
             self.assertFalse(self.resource_map)
             self.assertFalse(self.action_map)
+            self.assertFalse(self.action_status)
 
     def test_is_standard_attr_extension(self):
         if self.is_standard_attr_extension:
@@ -153,6 +155,14 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
             for action in self.action_map[key].values():
                 self.assertIn(action, base.KNOWN_HTTP_ACTIONS,
                               'HTTP verb is unknown, check for typos.')
+
+    def test_action_status(self):
+        if not self.action_status:
+            self.skipTest('API definition has no action status.')
+
+        for status in self.action_status.values():
+            self.assertIn(status, base.KNOWN_ACTION_STATUSES,
+                          'HTTP status is unknown, check for typos.')
 
     def test_required_extensions(self):
         if not self.required_extensions:
