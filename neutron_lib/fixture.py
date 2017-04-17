@@ -12,6 +12,7 @@
 
 import copy
 import fixtures
+import mock
 
 from neutron_lib.api import definitions
 from neutron_lib.callbacks import manager
@@ -55,14 +56,19 @@ class CallbackRegistryFixture(fixtures.Fixture):
         """
         super(CallbackRegistryFixture, self).__init__()
         self.callback_manager = callback_manager or manager.CallbacksManager()
+        self.patcher = None
 
     def _setUp(self):
-        self._orig_manager = registry._CALLBACK_MANAGER
-        registry._CALLBACK_MANAGER = self.callback_manager
+        self._orig_manager = registry._get_callback_manager()
+        self.patcher = mock.patch.object(
+            registry, '_get_callback_manager',
+            return_value=self.callback_manager)
+        self.patcher.start()
         self.addCleanup(self._restore)
 
     def _restore(self):
         registry._CALLBACK_MANAGER = self._orig_manager
+        self.patcher.stop()
 
 
 class SqlFixture(fixtures.Fixture):
