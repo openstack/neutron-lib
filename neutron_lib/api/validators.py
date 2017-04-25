@@ -68,6 +68,24 @@ def _verify_dict_keys(expected_keys, target_dict, strict=True):
         return msg
 
 
+def _collect_duplicates(data_list):
+    """Collects duplicate items from a list and returns them.
+
+    :param data_list: A list of items to check for duplicates. The list may
+    include dict items.
+    :returns: A set of items that are duplicates in data_list. If no
+    duplicates are found, the returned set is empty.
+    """
+    seen = []
+    dups = set()
+    for datum in data_list:
+        if datum in seen:
+            dups.add(datum)
+            continue
+        seen.append(datum)
+    return dups
+
+
 def is_attr_set(attribute):
     """Determine if an attribute value is set.
 
@@ -84,8 +102,11 @@ def _validate_list_of_items(item_validator, data, *args, **kwargs):
         msg = _("'%s' is not a list") % data
         return msg
 
-    if len(set(data)) != len(data):
-        msg = _("Duplicate items in the list: '%s'") % ', '.join(data)
+    dups = _collect_duplicates(data)
+
+    if dups:
+        msg = _("Duplicate items in the list: '%s'") % ', '.join(
+            [str(d) for d in dups])
         return msg
 
     for item in data:
@@ -397,6 +418,47 @@ def validate_ip_address(data, valid_values=None):
     if msg:
         LOG.debug(msg)
     return msg
+
+
+def _validate_any_key_spec(data, key_specs=None):
+    """Validate a dict matches at least 1 key spec.
+
+    :param data: The dict to validate.
+    :param key_specs: An iterable collection of key spec dicts used to validate
+    data.
+    :returns: None if at least 1 of the key_specs matches data, otherwise
+    a message is returned indicating data could not be matched with any
+    of the key_specs.
+    """
+    for spec in key_specs:
+        if validate_dict(data, spec) is None:
+            return None
+    msg = _("No valid key specs matched for: %s") % data
+    LOG.debug(msg)
+    return msg
+
+
+def validate_any_key_specs_or_none(data, key_specs=None):
+    """Validate each dict in a list matches at least 1 key_spec.
+
+    :param data: The list of dicts to validate.
+    :param key_specs: An iterable collection of key spec dicts that is used
+    to check each dict in data.
+    :returns: None.
+    :raises InvalidInput: If any of the dicts in data do not match at least
+    1 of the key_specs given.
+    """
+    if data is None:
+        return
+
+    def dict_validator(data_dict):
+        msg = _validate_any_key_spec(data_dict, key_specs=key_specs)
+        if msg:
+            raise n_exc.InvalidInput(error_message=msg)
+
+    msg = _validate_list_of_items(dict_validator, data)
+    if msg:
+        raise n_exc.InvalidInput(error_message=msg)
 
 
 def validate_ip_pools(data, valid_values=None):
@@ -985,7 +1047,9 @@ validators = {'type:dict': validate_dict,
               'type:values': validate_values,
               'type:boolean': validate_boolean,
               'type:integer': validate_integer,
-              'type:list_of_unique_strings': validate_list_of_unique_strings}
+              'type:list_of_unique_strings': validate_list_of_unique_strings,
+              'type:list_of_any_key_specs_or_none':
+                  validate_any_key_specs_or_none}
 
 
 def _to_validation_type(validation_type):

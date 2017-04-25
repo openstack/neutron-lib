@@ -18,6 +18,7 @@ import netaddr
 
 from neutron_lib._i18n import _
 from neutron_lib.api import converters
+from neutron_lib.api.definitions import extra_dhcp_opt
 from neutron_lib.api import validators
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
@@ -209,7 +210,7 @@ class TestAttributeValidation(base.BaseTestCase):
         data = ["TEST01", "TEST02", "TEST01"]
         msg = validators.validate_list_of_unique_strings(data, None)
         self.assertEqual(
-            "Duplicate items in the list: 'TEST01, TEST02, TEST01'", msg)
+            "Duplicate items in the list: 'TEST01'", msg)
 
         data = ["12345678", "123456789"]
         msg = validators.validate_list_of_unique_strings(data, 8)
@@ -721,8 +722,7 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_subnet_list(['10.1.0.0/24',
                                                '10.2.0.0/24',
                                                '10.1.0.0/24'])
-        self.assertEqual(u"Duplicate items in the list: '10.1.0.0/24, "
-                         u"10.2.0.0/24, 10.1.0.0/24'", msg)
+        self.assertEqual(u"Duplicate items in the list: '10.1.0.0/24'", msg)
         msg = validators.validate_subnet_list(['10.1.0.0/24', '10.2.0.0'])
         self.assertEqual(u"'10.2.0.0' isn't a recognized IP subnet cidr, "
                          u"'10.2.0.0/32' is recommended", msg)
@@ -833,7 +833,7 @@ class TestAttributeValidation(base.BaseTestCase):
                            'e5069610-744b-42a7-8bd8-ceac1a229cd4']
         msg = validators._validate_list_of_items(mock.Mock(), duplicate_items)
         error = ("Duplicate items in the list: "
-                 "'%s'" % ', '.join(duplicate_items))
+                 "'e5069610-744b-42a7-8bd8-ceac1a229cd4'")
         self.assertEqual(error, msg)
 
         # check valid lists
@@ -1144,3 +1144,48 @@ class TestPortRangeValidation(base.BaseTestCase):
         result = validators.validate_port_range_or_none("80:888:8888")
         self.assertEqual(u"Port range must be two integers separated by a "
                          "colon.", result)
+
+
+class TestAnyKeySpecs(base.BaseTestCase):
+
+    def test_data_is_none(self):
+        self.assertIsNone(
+            validators.validate_any_key_specs_or_none(None, key_specs={}))
+
+    def test_data_is_not_list(self):
+        for t in [dict(), set(), 'abc', 1, True]:
+            self.assertRaises(
+                n_exc.InvalidInput,
+                validators.validate_any_key_specs_or_none, t, key_specs={})
+
+    def test_data_invalid_keys(self):
+        data = [{'opt_name': 'a', 'opt_value': 'A'},
+                {'opt_name': 'b', 'opt_valuee': 'B'}]
+        self.assertRaisesRegex(
+            n_exc.InvalidInput,
+            "No valid key specs",
+            validators.validate_any_key_specs_or_none,
+            data, key_specs=extra_dhcp_opt.EXTRA_DHCP_OPT_KEY_SPECS)
+
+    def test_data_optional_key(self):
+        data = [{'opt_name': 'a', 'opt_value': 'A'},
+                {'opt_name': 'b', 'opt_value': 'B', 'ip_version': '4'}]
+        self.assertIsNone(
+            validators.validate_any_key_specs_or_none(
+                data, key_specs=extra_dhcp_opt.EXTRA_DHCP_OPT_KEY_SPECS))
+
+    def test_data_optional_key_invalid(self):
+        data = [{'opt_name': 'a', 'opt_value': 'A'},
+                {'opt_name': 'b', 'opt_value': 'B', 'ip_version': '3'}]
+        self.assertRaisesRegex(
+            n_exc.InvalidInput,
+            "No valid key specs",
+            validators.validate_any_key_specs_or_none,
+            data, key_specs=extra_dhcp_opt.EXTRA_DHCP_OPT_KEY_SPECS)
+
+    def test_data_conditional_spec(self):
+        data = [{'opt_name': 'router', 'opt_value': None},
+                {'opt_name': 'b', 'opt_value': 'B', 'ip_version': '4'}]
+        self.assertIsNone(
+            validators.validate_any_key_specs_or_none(
+                data, key_specs=extra_dhcp_opt.EXTRA_DHCP_OPT_KEY_SPECS))
