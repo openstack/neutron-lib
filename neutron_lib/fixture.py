@@ -13,6 +13,7 @@
 import copy
 import fixtures
 
+from neutron_lib.api import attributes
 from neutron_lib.api import definitions
 from neutron_lib.callbacks import manager
 from neutron_lib.callbacks import registry
@@ -98,11 +99,29 @@ class APIDefinitionFixture(fixtures.Fixture):
     This fixture saves and restores 1 or more neutron-lib API definitions
     attribute maps. It should be used anywhere multiple tests can be run
     that might update an extension attribute map.
+
+    In addition the fixture backs up and restores the global attribute
+    RESOURCES base on the boolean value of its backup_global_resources
+    attribute.
     """
 
     def __init__(self, *api_definitions):
-        self.definitions = api_definitions
+        """Create a new instance.
+
+        Consumers can also control if the fixture should handle the global
+        attribute RESOURCE map using the backup_global_resources of the
+        fixture instance. If True the fixture will also handle
+        neutron_lib.api.attributes.RESOURCES.
+
+        :param api_definitions: Zero or more API definitions the fixture
+        should handle. If no api_definitions are passed, the default is
+        to handle all neutron_lib API definitions as well as the global
+        RESOURCES attribute map.
+        """
+        self.definitions = api_definitions or definitions._ALL_API_DEFINITIONS
         self._orig_attr_maps = {}
+        self._orig_resources = {}
+        self.backup_global_resources = True
 
     def _setUp(self):
         for api_def in self.definitions:
@@ -110,12 +129,17 @@ class APIDefinitionFixture(fixtures.Fixture):
                 api_def, api_def.RESOURCE_ATTRIBUTE_MAP)
             api_def.RESOURCE_ATTRIBUTE_MAP = copy.deepcopy(
                 api_def.RESOURCE_ATTRIBUTE_MAP)
+        if self.backup_global_resources:
+            for resource, attrs in attributes.RESOURCES.items():
+                self._orig_resources[resource] = copy.deepcopy(attrs)
         self.addCleanup(self._restore)
 
     def _restore(self):
         for alias, def_and_map in self._orig_attr_maps.items():
             api_def, attr_map = def_and_map[0], def_and_map[1]
             api_def.RESOURCE_ATTRIBUTE_MAP = attr_map
+        if self.backup_global_resources:
+            attributes.RESOURCES = self._orig_resources
 
     @classmethod
     def all_api_definitions_fixture(cls):

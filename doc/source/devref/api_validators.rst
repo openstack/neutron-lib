@@ -64,7 +64,6 @@ dictionary key for the validator. For example:
 
 ::
 
-  RESOURCE_ATTRIBUTE_MAP = {
       NETWORKS: {
           'id': {'allow_post': False, 'allow_put': False,
                  'validate': {'type:uuid': None},
@@ -72,7 +71,7 @@ dictionary key for the validator. For example:
                  'primary_key': True},
           'name': {'allow_post': True, 'allow_put': True,
                    'validate': {'type:string': NAME_MAX_LEN},
-                   'default': '', 'is_visible': True},
+                   'default': '', 'is_visible': True}}
 
 Here, the networks resource has an 'id' attribute with a UUID validator,
 as seen by the 'validate' key containing a dictionary with a key of
@@ -88,7 +87,7 @@ could have a validator defined as follows:
    'ip_version': {'allow_post': True, 'allow_put': False,
                   'convert_to': conversions.convert_to_int,
                   'validate': {'type:values': [4, 6]},
-                  'is_visible': True},
+                  'is_visible': True}}
 
 Here, the validate_values() method will take the list of values as the
 allowable values that can be specified for this attribute.
@@ -99,4 +98,3 @@ Test The Validator
 Do the right thing, and make sure you've created a unit test for any
 validator that you add to verify that it works as expected, even for
 simple validators.
-
