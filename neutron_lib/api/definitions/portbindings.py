@@ -13,6 +13,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from neutron_lib.api.definitions import port
 from neutron_lib import constants
 
 
@@ -137,10 +138,10 @@ DESCRIPTION = "Expose port bindings of a virtual port to external application"
 UPDATED_TIMESTAMP = "2014-02-03T10:00:00-00:00"
 
 # The name of the resource.
-RESOURCE_NAME = 'port'
+RESOURCE_NAME = port.RESOURCE_NAME
 
 # The plural for the resource.
-COLLECTION_NAME = 'ports'
+COLLECTION_NAME = port.COLLECTION_NAME
 
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {

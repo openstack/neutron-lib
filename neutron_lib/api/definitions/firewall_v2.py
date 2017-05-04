@@ -12,6 +12,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import constants as api_const
+from neutron_lib.api.definitions import port
 from neutron_lib.db import constants as db_const
 
 # The alias of the extension.
@@ -119,10 +120,11 @@ RESOURCE_ATTRIBUTE_MAP = {
                    'convert_to': converters.convert_to_boolean,
                    'is_visible': True, 'required_by_policy': True,
                    'enforce_policy': True},
-        'ports': {'allow_post': True, 'allow_put': True,
-                  'validate': {'type:uuid_list': None},
-                  'convert_to': converters.convert_none_to_empty_list,
-                  'default': None, 'is_visible': True},
+        port.COLLECTION_NAME: {'allow_post': True, 'allow_put': True,
+                               'validate': {'type:uuid_list': None},
+                               'convert_to':
+                                   converters.convert_none_to_empty_list,
+                               'default': None, 'is_visible': True},
         'tenant_id': {'allow_post': True, 'allow_put': False,
                       'required_by_policy': True,
                       'validate': {'type:string':
@@ -160,10 +162,11 @@ RESOURCE_ATTRIBUTE_MAP = {
                    'convert_to': converters.convert_to_boolean,
                    'is_visible': True, 'required_by_policy': True,
                    'enforce_policy': True},
-        'firewall_rules': {'allow_post': True, 'allow_put': True,
-                           'validate': {'type:uuid_list': None},
-                           'convert_to': converters.convert_none_to_empty_list,
-                           'default': None, 'is_visible': True},
+        api_const.FIREWALL_RULES: {'allow_post': True, 'allow_put': True,
+                                   'validate': {'type:uuid_list': None},
+                                   'convert_to':
+                                       converters.convert_none_to_empty_list,
+                                   'default': None, 'is_visible': True},
         'audited': {'allow_post': True, 'allow_put': True, 'default': False,
                     'convert_to': converters.convert_to_boolean,
                     'is_visible': True},

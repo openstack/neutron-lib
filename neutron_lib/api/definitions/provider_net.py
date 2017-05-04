@@ -13,6 +13,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
+from neutron_lib.api.definitions import network
 from neutron_lib import constants
 
 # The alias of the extension.
@@ -44,10 +45,10 @@ DESCRIPTION = "Expose mapping of virtual networks to physical networks"
 UPDATED_TIMESTAMP = "2012-09-07T10:00:00-00:00"
 
 # The name of the resource.
-RESOURCE_NAME = 'network'
+RESOURCE_NAME = network.RESOURCE_NAME
 
 # The plural for the resource.
-COLLECTION_NAME = 'networks'
+COLLECTION_NAME = network.COLLECTION_NAME
 
 NETWORK_TYPE = 'provider:network_type'
 PHYSICAL_NETWORK = 'provider:physical_network'

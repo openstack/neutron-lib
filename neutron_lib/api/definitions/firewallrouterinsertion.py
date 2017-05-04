@@ -10,6 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from neutron_lib.api.definitions import constants as api_const
 from neutron_lib import constants
 
 # The alias of the extension.
@@ -40,7 +41,7 @@ UPDATED_TIMESTAMP = "2016-01-01T10:00:00-00:00"
 RESOURCE_NAME = "firewall"
 
 # The plural for the resource
-COLLECTION_NAME = "firewalls"
+COLLECTION_NAME = api_const.FIREWALLS
 
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
