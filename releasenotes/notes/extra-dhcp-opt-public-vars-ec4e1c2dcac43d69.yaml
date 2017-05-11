@@ -1,0 +1,5 @@
+---
+features:
+  - The constants ``VALID_BLANK_EXTRA_DHCP_OPTS`` and ``DHCP_OPT_VALUE_MAX_LEN``
+    are now public in the ``neutron_lib.api.definitions.extra_dhcp_opt`` API
+    definition module.

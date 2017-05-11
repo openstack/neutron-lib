@@ -17,16 +17,16 @@ from neutron_lib.api import converters
 
 # Common definitions for maximum string field length
 DHCP_OPT_NAME_MAX_LEN = 64
-_VALID_BLANK_EXTRA_DHCP_OPTS = ('router', 'classless-static-route')
-_DHCP_OPT_VALUE_MAX_LEN = 255
+VALID_BLANK_EXTRA_DHCP_OPTS = ('router', 'classless-static-route')
+DHCP_OPT_VALUE_MAX_LEN = 255
 
 
 EXTRA_DHCP_OPT_KEY_SPECS = [
     # key spec for opt_name in _VALID_BLANK_EXTRA_DHCP_OPTS
-    {'opt_name': {'type:values': _VALID_BLANK_EXTRA_DHCP_OPTS,
+    {'opt_name': {'type:values': VALID_BLANK_EXTRA_DHCP_OPTS,
                   'required': True},
      'opt_value': {'type:string_or_none':
-                   _DHCP_OPT_VALUE_MAX_LEN,
+                   DHCP_OPT_VALUE_MAX_LEN,
                    'required': True},
      'ip_version': {'convert_to': converters.convert_to_int,
                     'type:values': [4, 6],
@@ -35,7 +35,7 @@ EXTRA_DHCP_OPT_KEY_SPECS = [
     {'opt_name': {'type:not_empty_string': DHCP_OPT_NAME_MAX_LEN,
                   'required': True},
      'opt_value': {'type:not_empty_string_or_none':
-                   _DHCP_OPT_VALUE_MAX_LEN,
+                   DHCP_OPT_VALUE_MAX_LEN,
                    'required': True},
      'ip_version': {'convert_to': converters.convert_to_int,
                     'type:values': [4, 6],
