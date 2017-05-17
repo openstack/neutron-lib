@@ -83,6 +83,7 @@ VIF_TYPE_DISTRIBUTED = 'distributed'
 VIF_TYPE_OVS = 'ovs'
 VIF_TYPE_BRIDGE = 'bridge'
 VIF_TYPE_OTHER = 'other'
+VIF_TYPE_TAP = 'tap'
 # vif_type_macvtap: Tells Nova that the macvtap vif_driver should be used to
 #                   create a vif. It does not require the VNIC_TYPE_MACVTAP,
 #                   which is defined further below. E.g. Macvtap agent uses
