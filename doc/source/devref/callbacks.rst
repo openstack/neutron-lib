@@ -82,7 +82,7 @@ removed in 'Queens') in favor of standardized event payload objects as
 described herein.
 
 The event payloads are defined in ``neutron_lib.callbacks.events`` and define a
-set of set of payload objects based on consumption pattern. The following event
+set of payload objects based on consumption pattern. The following event
 objects are defined today:
 
 - ``EventPayload``: Base object for all other payloads and define the common set
