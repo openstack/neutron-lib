@@ -13,6 +13,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
+from neutron_lib.api.definitions import port
 
 
 # Common definitions for maximum string field length
@@ -89,12 +90,12 @@ UPDATED_TIMESTAMP = "2013-03-17T12:00:00-00:00"
 # The name of the resource introduced or being extended
 # (in case it is defined by another extension, or it is
 # a core resource).
-RESOURCE_NAME = 'port'
+RESOURCE_NAME = port.RESOURCE_NAME
 
 # The plural for the resource introduced or being extended
 # (in case it is defined by another extension, or it is a
 # core resource).
-COLLECTION_NAME = 'ports'
+COLLECTION_NAME = port.COLLECTION_NAME
 
 # The resource attribute map for the extension. It is effectively the
 # bulk of the API contract alongside ACTION_MAP (mandatory).

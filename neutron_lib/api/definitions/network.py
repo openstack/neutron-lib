@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
+from neutron_lib.api.definitions import subnet
 from neutron_lib.db import constants as db_const
 
 
@@ -39,9 +40,9 @@ RESOURCE_ATTRIBUTE_MAP = {
                  'validate': {
                      'type:string': db_const.NAME_FIELD_SIZE},
                  'default': '', 'is_visible': True},
-        'subnets': {'allow_post': False, 'allow_put': False,
-                    'default': [],
-                    'is_visible': True},
+        subnet.COLLECTION_NAME: {'allow_post': False, 'allow_put': False,
+                                 'default': [],
+                                 'is_visible': True},
         'admin_state_up': {'allow_post': True, 'allow_put': True,
                            'default': True,
                            'convert_to': converters.convert_to_boolean,

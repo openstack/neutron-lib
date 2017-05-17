@@ -12,6 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from neutron_lib.api.definitions import port
 from neutron_lib import constants
 
 
@@ -42,10 +43,10 @@ DESCRIPTION = "Expose status of underlying data plane"
 UPDATED_TIMESTAMP = "2017-01-24T10:00:00-00:00"
 
 # The name of the resource introduced or being extended.
-RESOURCE_NAME = 'port'
+RESOURCE_NAME = port.RESOURCE_NAME
 
 # The plural for the resource introduced or being extended.
-COLLECTION_NAME = 'ports'
+COLLECTION_NAME = port.COLLECTION_NAME
 
 # The specific resources and/or attributes for the extension (optional).
 DATA_PLANE_STATUS = 'data_plane_status'
