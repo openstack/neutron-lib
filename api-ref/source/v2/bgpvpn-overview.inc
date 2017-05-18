@@ -5,8 +5,8 @@ BGP - MPLS VPN Overview
 The ``bgpvpn`` extension implements the BGP VPN Interconnection API
 which provides the ability to associate OpenStack networks and/or
 routers with Multiprotocol Label Switching (MPLS) Virtual Private
-Networks (VPNs) via Border Gateway Patrol (BGP) peering. BGP-MPLS VPNs
-are commonly provided by telecommuncations service providers to
+Networks (VPNs) via Border Gateway Protocol (BGP) peering. BGP-MPLS VPNs
+are commonly provided by telecommunications service providers to
 customers in addition to or instead of Internet connectivity for Wide
 Area Networking. This API enables the interconnection of with these
 WANs using *Route Targets* to indicate the desired network(s).
