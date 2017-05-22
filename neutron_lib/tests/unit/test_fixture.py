@@ -17,6 +17,7 @@ from oslo_db import options
 from oslotest import base
 
 from neutron_lib.api import attributes
+from neutron_lib.api.definitions import port
 from neutron_lib.callbacks import registry
 from neutron_lib.db import model_base
 from neutron_lib import fixture
@@ -92,3 +93,32 @@ class APIDefinitionFixtureTestCase(base.BaseTestCase):
 
     def test_all_api_definitions_fixture_with_global_backup(self):
         self._test_all_api_definitions_fixture(global_cleanup=True)
+
+    def test_global_resources_reference_updated(self):
+        resources_ref = attributes.RESOURCES
+        apis = fixture.APIDefinitionFixture()
+
+        apis.setUp()
+        attributes.RESOURCES['test_resource'] = {}
+        self.assertIn('test_resource', resources_ref)
+        attributes.RESOURCES[port.COLLECTION_NAME]['test_port_attr'] = {}
+        self.assertIn('test_port_attr',
+                      attributes.RESOURCES[port.COLLECTION_NAME])
+        apis.cleanUp()
+
+        self.assertNotIn('test_port_attr',
+                         attributes.RESOURCES[port.COLLECTION_NAME])
+        self.assertNotIn('test_resource', resources_ref)
+
+    def test_api_def_reference_updated(self):
+        api_def_ref = port.RESOURCE_ATTRIBUTE_MAP
+        apis = fixture.APIDefinitionFixture()
+
+        apis.setUp()
+        port.RESOURCE_ATTRIBUTE_MAP[port.COLLECTION_NAME]['test_attr'] = {}
+        self.assertIn('test_attr', api_def_ref[port.COLLECTION_NAME])
+        apis.cleanUp()
+
+        self.assertNotIn('test_attr',
+                         port.RESOURCE_ATTRIBUTE_MAP[port.COLLECTION_NAME])
+        self.assertNotIn('test_attr', api_def_ref[port.COLLECTION_NAME])
