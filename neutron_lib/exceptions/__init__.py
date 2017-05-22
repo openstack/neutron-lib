@@ -342,14 +342,14 @@ class TunnelIdInUse(InUse):
     A specialization of the InUse exception indicating network creation failed
     because a said tunnel ID is already in use.
 
-    :param tunnel_id: The ID of the tunnel that's areadly in use.
+    :param tunnel_id: The ID of the tunnel that's already in use.
     """
     message = _("Unable to create the network. "
                 "The tunnel ID %(tunnel_id)s is in use.")
 
 
 class ResourceExhausted(ServiceUnavailable):
-    """A service uavailable error indicating a resource is exhausted."""
+    """A service unavailable error indicating a resource is exhausted."""
     pass
 
 
@@ -464,7 +464,7 @@ class InvalidConfigurationOption(NeutronException):
 class NetworkTunnelRangeError(NeutronException):
     """An error due to an invalid network tunnel range.
 
-    An exception indicating an invalid netowrk tunnel range was specified.
+    An exception indicating an invalid network tunnel range was specified.
 
     :param tunnel_range: The invalid tunnel range. If specified in the
     start:end' format, they will be converted automatically.
