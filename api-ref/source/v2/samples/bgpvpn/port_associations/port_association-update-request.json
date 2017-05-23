@@ -1,0 +1,13 @@
+{
+    "port_association": {
+        "port_id": "46a1a80b-7c42-4c45-88fd-b531e636969f",
+        "routes": [
+            {
+                "type": "bgpvpn",
+                "bgpvpn_id": "180630e3-9eae-4ba7-9939-d5f47966e1f0",
+                "local_pref": 111
+            }
+        ],
+        "advertise_fixed_ips": false
+    }
+}

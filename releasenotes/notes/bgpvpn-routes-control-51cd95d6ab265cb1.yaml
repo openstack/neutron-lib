@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    The ``bgpvpn-routes-control`` API extension is introduced to enrich the
+    base ``bgpvpn`` extension.  It allows to control BGPVPN connectivity at
+    the granularity of a port and the advertisement into a BGPVPN of routes
+    corresponding to destination reachable via a given port (static routes,
+    BGPVPN route leaking).

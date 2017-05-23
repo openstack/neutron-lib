@@ -11,6 +11,7 @@
     "route_targets": ["64512:1444"],
     "type": "l3",
     "id": "4d627abf-06dd-45ab-920b-8e61422bb984",
-    "networks": []
+    "networks": [],
+    "local_pref": null
   }
 }

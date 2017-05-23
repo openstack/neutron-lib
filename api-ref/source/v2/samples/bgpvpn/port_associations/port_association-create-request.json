@@ -1,0 +1,11 @@
+{
+    "port_association": {
+        "port_id": "b58a6241-6e49-4b11-87c6-8e0606dde796",
+        "routes": [
+            {
+                "type": "prefix",
+                "prefix": "20.1.0.0/16"
+            }
+        ]
+    }
+}
