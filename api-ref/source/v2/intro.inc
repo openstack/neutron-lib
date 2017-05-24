@@ -125,17 +125,29 @@ For example, the following request returns all networks named ``foobar``:
 
     GET /v2.0/networks?name=foobar
 
-When you specify multiple filters, the Networking API v2.0 returns only objects
-that meet all filtering criteria. The operation applies an AND condition among
-the filters.
+When you specify multiple filters using different fields, the Networking API
+v2.0 returns only objects that meet all filtering criteria. The operation
+applies an AND condition among different filter fields.
+
+OpenStack Networking offers an OR mechanism for filters by repeating the field
+with the different OR criteria. For example, to find all networks named
+``foobar`` OR ``bizbaz``:
+
+.. code::
+
+    GET /v2.0/networks?name=foobar&name=bizbaz
+
+
+ORs and ANDs can be combined. For example, if you want all networks with
+admin_state_up=True and shared=True and named 'foobar' or 'bizbaz':
+
+.. code::
+
+    GET /v2.0/networks?name=foobar&name=bizbaz&admin_state_up=True&shared=True
+
 
 Note
 ----
-
-OpenStack Networking does not offer an OR mechanism for filters.
-
-Alternatively, you can issue a distinct request for each filter and build a
-response set from the received responses on the client-side.
 
 By default, OpenStack Networking returns all attributes for any show or list
 call. The Networking API v2.0 has a mechanism to limit the set of attributes
