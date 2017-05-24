@@ -132,20 +132,22 @@ class APIDefinitionFixture(fixtures.Fixture):
     def _setUp(self):
         for api_def in self.definitions:
             self._orig_attr_maps[api_def.ALIAS] = (
-                api_def, api_def.RESOURCE_ATTRIBUTE_MAP)
-            api_def.RESOURCE_ATTRIBUTE_MAP = copy.deepcopy(
-                api_def.RESOURCE_ATTRIBUTE_MAP)
+                api_def, {k: copy.deepcopy(v)
+                          for k, v in api_def.RESOURCE_ATTRIBUTE_MAP.items()})
         if self.backup_global_resources:
             for resource, attrs in attributes.RESOURCES.items():
                 self._orig_resources[resource] = copy.deepcopy(attrs)
         self.addCleanup(self._restore)
 
     def _restore(self):
+        # clear + repopulate so consumer refs don't change
         for alias, def_and_map in self._orig_attr_maps.items():
             api_def, attr_map = def_and_map[0], def_and_map[1]
-            api_def.RESOURCE_ATTRIBUTE_MAP = attr_map
+            api_def.RESOURCE_ATTRIBUTE_MAP.clear()
+            api_def.RESOURCE_ATTRIBUTE_MAP.update(attr_map)
         if self.backup_global_resources:
-            attributes.RESOURCES = self._orig_resources
+            attributes.RESOURCES.clear()
+            attributes.RESOURCES.update(self._orig_resources)
 
     @classmethod
     def all_api_definitions_fixture(cls):
