@@ -10,9 +10,7 @@ during resource creation.
 Users can check if flavor available by performing a GET on the
 /v2.0/extensions/flavors. If it is unavailable,there is an 404 error
 response (itemNotFound).
-Refer `Networking extensions <http://developer.openstack.org/api-ref
-/networking/v2/#show-extension-details>`_ for more details.
-for more information
+Refer `Show extension details <#show-extension-details>`__ for more details.
 
 List flavors
 ============
@@ -76,12 +74,12 @@ This operation establishes a new flavor.
 
 The service_type to which the flavor applies is a required
 parameter. The corresponding service plugin must have been
-activated as part of the configuration. See `Service providers
-<http://developer.openstack.org/api-ref-networking-v2.html#service-
-type>`_ for how to see currently loaded service types. Additionally
-the service plugin needs to support the use of flavors. For
-example, the LOADBALANCERV2 service type using the LBaaSv2 API
-currently supports Neutron service flavors.
+activated as part of the configuration.
+Check `Service providers <#list-service-providers>`__ for how to see
+currently loaded service types. Additionally the service plugin
+needs to support the use of flavors. For example, the LOADBALANCERV2
+service type using the LBaaSv2 API currently supports Neutron service
+flavors.
 
 Creation currently limited to administrators. Other users will
 receive a ``Forbidden 403`` response code with a response body
