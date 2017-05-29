@@ -1,0 +1,6 @@
+---
+features:
+  - The ``DNS Integration`` extension API definition has been added as
+    ``neutron_lib.api.definitions.dns``.
+  - The ``validate_dns_name``, ``validate_fip_dns_name``, and
+    ``validate_dns_domain`` are now available as neutron-lib validators.
