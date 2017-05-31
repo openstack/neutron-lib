@@ -13,6 +13,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
+from neutron_lib.db import constants as db_const
 
 
 # The alias of the extension.
@@ -55,12 +56,12 @@ RESOURCE_ATTRIBUTE_MAP = {
                'validate': {'type:uuid': None},
                'is_visible': True, 'primary_key': True},
         'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:string': 255},
+                 'validate': {'type:string': db_const.NAME_FIELD_SIZE},
                  'default': '', 'is_visible': True},
         'tenant_id': {'allow_post': True, 'allow_put': False,
                       'required_by_policy': True,
                       'validate':
-                          {'type:string': 255},
+                          {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
                       'is_visible': True},
         'port_id': {'allow_post': True, 'allow_put': False,
                     'required_by_policy': True,

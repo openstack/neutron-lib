@@ -14,6 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
+from neutron_lib.db import constants as db_const
 
 # Regular expression to validate an empty string
 EMPTY_REGEX = (r'^$')
@@ -84,13 +85,14 @@ RESOURCE_ATTRIBUTE_MAP = {
                'primary_key': True,
                'enforce_policy': True},
         'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:string': None},
+                      'validate': {
+                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
                       'required_by_policy': True,
                       'is_visible': True,
                       'enforce_policy': True},
         'name': {'allow_post': True, 'allow_put': True,
                  'default': '',
-                 'validate': {'type:string': None},
+                 'validate': {'type:string': db_const.NAME_FIELD_SIZE},
                  'is_visible': True,
                  'enforce_policy': True},
         'type': {'allow_post': True, 'allow_put': False,
@@ -145,7 +147,8 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                    'is_visible': True,
                    'primary_key': True},
             'tenant_id': {'allow_post': True, 'allow_put': False,
-                          'validate': {'type:string': None},
+                          'validate': {
+                              'type:string': db_const.PROJECT_ID_FIELD_SIZE},
                           'required_by_policy': True,
                           'is_visible': True,
                           'enforce_policy': True},
@@ -164,7 +167,8 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                    'is_visible': True,
                    'primary_key': True},
             'tenant_id': {'allow_post': True, 'allow_put': False,
-                          'validate': {'type:string': None},
+                          'validate': {
+                              'type:string': db_const.PROJECT_ID_FIELD_SIZE},
                           'required_by_policy': True,
                           'is_visible': True,
                           'enforce_policy': True},
