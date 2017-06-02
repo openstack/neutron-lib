@@ -21,3 +21,12 @@ LB_EXTENSION_DRIVER = 'linuxbridge'
 MACVTAP_EXTENSION_DRIVER = 'macvtap'
 # Extension driver type for SR-IOV mech driver
 SRIOV_EXTENSION_DRIVER = 'sriov'
+
+
+# Agent states as detected by server, used to reply on agent's state report
+# agent has just been registered
+AGENT_NEW = 'new'
+# agent is alive
+AGENT_ALIVE = 'alive'
+# agent has just returned to alive after being dead
+AGENT_REVIVED = 'revived'

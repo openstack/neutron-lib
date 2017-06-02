@@ -1,0 +1,6 @@
+---
+features:
+  - Constants from ``neutron.common.constants`` are now available in
+    neutron-lib. Note that consumers using ``ROUTER_STATUS_ACTIVE`` or
+    ``ROUTER_STATUS_ERROR`` should now just use ``ACTIVE`` and ``ERROR``
+    from ``neutron_lib.constants``.
