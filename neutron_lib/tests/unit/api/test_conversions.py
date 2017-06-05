@@ -223,7 +223,7 @@ class TestConvertStringToCaseInsensitive(base.BaseTestCase):
 
     def test_convert_string_to_lower(self):
         result = converters.convert_string_to_case_insensitive(u"THIS Is tEsT")
-        self.assertTrue(isinstance(result, six.string_types))
+        self.assertIsInstance(result, six.string_types)
 
     def test_assert_error_on_non_string(self):
         for invalid in [[], 123]:
