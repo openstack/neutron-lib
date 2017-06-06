@@ -1,0 +1,4 @@
+---
+features:
+  - The neutron versioned object exceptions from ``neutron.objects.exceptions``
+    are now available in ``neutron_lib.objects.exceptions``.
