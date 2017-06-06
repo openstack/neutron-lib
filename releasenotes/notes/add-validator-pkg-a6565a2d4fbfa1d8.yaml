@@ -1,0 +1,6 @@
+---
+features:
+  - A new ``neutron_lib.validators`` package is now available where the
+    existing definitions from the ``validators`` module are now in
+    ``neutron_lib.validators.__init__`` and subsequent per-component
+    validators can be created in their own validators sub-module.
