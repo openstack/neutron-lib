@@ -1102,6 +1102,10 @@ class TestPortRangeValidation(base.BaseTestCase):
         result = validators.validate_port_range_or_none("80")
         self.assertIsNone(result)
 
+    def test_valid_port_integer(self):
+        result = validators.validate_port_range_or_none(80)
+        self.assertIsNone(result)
+
     def test_valid_range(self):
         result = validators.validate_port_range_or_none("80:8888")
         self.assertIsNone(result)
@@ -1133,7 +1137,7 @@ class TestPortRangeValidation(base.BaseTestCase):
 
     def test_range_bad_input(self):
         result = validators.validate_port_range_or_none(['a', 'b', 'c'])
-        self.assertEqual(u"Port range must be a string.", result)
+        self.assertEqual(u"Invalid port: ['a', 'b', 'c'].", result)
 
     def test_range_colon(self):
         result = validators.validate_port_range_or_none(":")

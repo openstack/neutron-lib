@@ -925,10 +925,7 @@ def validate_port_range_or_none(data, valid_values=None):
     """
     if data is None:
         return
-    if validate_string_or_none(data):
-        msg = _("Port range must be a string.")
-        LOG.debug(msg)
-        return msg
+    data = str(data)
     ports = data.split(':')
     if len(ports) > 2:
         msg = _("Port range must be two integers separated by a colon.")
