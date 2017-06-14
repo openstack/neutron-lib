@@ -68,6 +68,8 @@ def receives(resource, events):
     @has_registry_receivers decorator to setup the __new__ method to
     actually register the instance methods after initialization.
     """
+    assert isinstance(events, (list, tuple, set)), 'events must be collection'
+
     def decorator(f):
         for e in events:
             _REGISTERED_CLASS_METHODS[f].append((resource, e))

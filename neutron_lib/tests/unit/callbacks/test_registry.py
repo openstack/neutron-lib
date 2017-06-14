@@ -13,6 +13,7 @@
 #    under the License.
 
 import mock
+import testtools
 
 from oslotest import base
 
@@ -98,6 +99,10 @@ class CallBacksManagerTestCase(base.BaseTestCase):
 
     def test_object_new_not_broken(self):
         CallbackClassWithParameters('dummy')
+
+    def test_no_strings_in_events_arg(self):
+        with testtools.ExpectedException(AssertionError):
+            registry.receives(resources.PORT, events.AFTER_CREATE)
 
 
 class TestCallbackRegistryDispatching(base.BaseTestCase):
