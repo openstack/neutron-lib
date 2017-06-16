@@ -1,0 +1,6 @@
+---
+features:
+  - The ``DriverBase`` class from ``neutron.services.qos.drivers.base`` is now
+    available in the ``neutron_lib.services.qos.base`` module.
+  - The constants defined in ``neutron.services.qos.qos_consts`` are now
+    available in ``neutron_lib.services.qos.constants``.
