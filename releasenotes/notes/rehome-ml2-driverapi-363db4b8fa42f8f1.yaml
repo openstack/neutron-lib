@@ -1,0 +1,4 @@
+---
+features:
+  - The public APIs from ``neutron.plugins.ml2.driver_api`` are now in
+    ``neutron_lib.plugins.ml2.api``.
