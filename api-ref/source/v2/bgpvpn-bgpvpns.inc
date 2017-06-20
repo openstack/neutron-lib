@@ -8,9 +8,11 @@ A new BGPVPN resource is introduced. It contains a set of parameters for a
 BGP-based VPN.
 
 A BGPVPN is created by the admin and given to a tenant who can then associate
-it to Networks or Routers.
+it to Networks, Routers or Ports (the latter when the ``bgpvpn-routes-control``
+extension is available).
 
-The BGP VPNs API lists, shows details for, creates, updates, and deletes BGP VPNs.
+The BGP VPNs API lists, shows details for, creates, updates, and deletes
+BGP VPNs.
 
 List BGP VPNs
 =============
@@ -51,6 +53,8 @@ Response Parameters
    - export_targets: bgpvpn-export_targets-required
    - networks: bgpvpn-networks-required
    - routers: bgpvpn-routers-required
+   - ports: bgpvpn-ports
+   - local_pref: bgpvpn-local_pref
    - tenant_id: project_id
    - project_id: project_id
 
@@ -82,6 +86,7 @@ Request
    - route_targets: bgpvpn-route_targets
    - import_targets: bgpvpn-import_targets
    - export_targets: bgpvpn-export_targets
+   - local_pref: bgpvpn-local_pref-request
    - tenant_id: tenant_id-request
    - project_id: project_id-request
    - type: bgpvpn-type
@@ -106,6 +111,8 @@ Response Parameters
    - export_targets: bgpvpn-export_targets-required
    - networks: bgpvpn-networks-required
    - routers: bgpvpn-routers-required
+   - ports: bgpvpn-ports
+   - local_pref: bgpvpn-local_pref
    - tenant_id: project_id
    - project_id: project_id
 
@@ -148,6 +155,8 @@ Response Parameters
    - export_targets: bgpvpn-export_targets-required
    - networks: bgpvpn-networks-required
    - routers: bgpvpn-routers-required
+   - ports: bgpvpn-ports
+   - local_pref: bgpvpn-local_pref
    - tenant_id: project_id
    - project_id: project_id
 
@@ -182,6 +191,7 @@ admin privileges.
    - route_targets: bgpvpn-route_targets
    - import_targets: bgpvpn-import_targets
    - export_targets: bgpvpn-export_targets
+   - local_pref: bgpvpn-local_pref-request
 
 Request Example
 ---------------
@@ -204,6 +214,8 @@ Response Parameters
    - export_targets: bgpvpn-export_targets-required
    - networks: bgpvpn-networks-required
    - routers: bgpvpn-routers-required
+   - ports: bgpvpn-ports
+   - local_pref: bgpvpn-local_pref
    - tenant_id: project_id
    - project_id: project_id
 
@@ -220,9 +232,9 @@ Delete BGP VPN
 
 Deletes a BGP VPN and its network and/or router associations.
 
-Normal response codes: 202
+Normal response codes: 204
 
-Error response codes: 400, 401, 403, 404
+Error response codes: 401, 403, 404
 
 Request
 -------

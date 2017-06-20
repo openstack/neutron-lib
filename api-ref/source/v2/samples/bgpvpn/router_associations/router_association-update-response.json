@@ -1,0 +1,8 @@
+{
+    "router_association": {
+        "id": "c63149a0-a0b3-4ca7-aba4-9aaa1b39d7f3",
+        "project_id": "b7549121395844bea941bb92feb3fad9",
+        "router_id": "46a1a80b-7c42-4c45-88fd-b531e636969f",
+        "advertise_extra_routes": false
+    }
+}

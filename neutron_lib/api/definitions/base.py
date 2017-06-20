@@ -121,6 +121,7 @@ KNOWN_EXTENSIONS = (
     'fwaasrouterinsertion',
     'fwaas_v2',
     'bgpvpn',  # https://git.openstack.org/cgit/openstack/networking-bgpvpn
+    'bgpvpn-routes-control',
 )
 
 KNOWN_KEYWORDS = (

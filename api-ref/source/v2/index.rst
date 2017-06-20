@@ -74,3 +74,4 @@ BGP/MPLS VPN Interconnection
 .. include:: bgpvpn-bgpvpns.inc
 .. include:: bgpvpn-network_associations.inc
 .. include:: bgpvpn-router_associations.inc
+.. include:: bgpvpn-port_associations.inc
