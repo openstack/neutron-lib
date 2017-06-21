@@ -305,6 +305,11 @@ GENEVE_ENCAP_MIN_OVERHEAD = 30
 GRE_ENCAP_OVERHEAD = 22
 VXLAN_ENCAP_OVERHEAD = 30
 
+# For DNS extension
+DNS_DOMAIN_DEFAULT = 'openstacklocal.'
+DNS_LABEL_MAX_LEN = 63
+DNS_LABEL_REGEX = "^[a-z0-9-]{1,%d}$" % DNS_LABEL_MAX_LEN
+
 
 class Sentinel(object):
     """A constant object that does not change even when copied."""
