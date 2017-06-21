@@ -52,6 +52,10 @@ VIF_DETAILS_MACVTAP_MODE = 'macvtap_mode'
 VIF_DETAILS_PHYSICAL_INTERFACE = 'physical_interface'
 VIF_DETAILS_BRIDGE_NAME = 'bridge_name'
 
+# OVS bridge datapath type: String value used to define if the bridge uses
+# kernel or userspace datapath.
+OVS_DATAPATH_TYPE = 'datapath_type'
+
 # The keys below are used in the VIF_DETAILS attribute to convey
 # information related to the configuration of the vhost-user VIF driver.
 
