@@ -705,7 +705,7 @@ bgpvpn-local_pref:
 bgpvpn-local_pref-request:
   description: |
       The default BGP LOCAL_PREF of routes that will be advertised to the
-      BGPVPN (unless overriden per-route).
+      BGPVPN (unless overriden per-route). Defaults to ``null``.
   in: body
   required: false
   type: integer

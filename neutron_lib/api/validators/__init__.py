@@ -325,6 +325,13 @@ def validate_range(data, valid_values=None):
         return msg
 
 
+def validate_range_or_none(data, valid_values=None):
+    """Check that the provided value is none or a ranged integer"""
+
+    if data is not None:
+        return validate_range(data, valid_values)
+
+
 def validate_no_whitespace(data):
     """Validates that input has no whitespace.
 
@@ -1025,6 +1032,7 @@ validators = {'type:dict': validate_dict,
               'type:non_negative': validate_non_negative,
               'type:port_range': validate_port_range_or_none,
               'type:range': validate_range,
+              'type:range_or_none': validate_range_or_none,
               'type:regex': validate_regex,
               'type:regex_or_none': validate_regex_or_none,
               'type:string': validate_string,

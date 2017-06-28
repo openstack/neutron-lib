@@ -1,0 +1,3 @@
+---
+features:
+  - Added validator ``range_or_none``.

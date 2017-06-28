@@ -319,6 +319,15 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_range(10, (validators.UNLIMITED, 9))
         self.assertEqual("'10' is too large - must be no larger than '9'", msg)
 
+    @mock.patch("neutron_lib.api.validators.validate_range")
+    def test_validate_range_or_none(self, mock_validate_range):
+        msg = validators.validate_range_or_none(None, [1, 9])
+        self.assertFalse(mock_validate_range.called)
+        self.assertIsNone(msg)
+
+        validators.validate_range_or_none(1, [1, 9])
+        mock_validate_range.assert_called_once_with(1, [1, 9])
+
     def _test_validate_mac_address(self, validator, allow_none=False):
         mac_addr = "ff:16:3e:4f:00:00"
         msg = validator(mac_addr)
