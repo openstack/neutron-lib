@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    The exception classes have migrated from neutron_fwaas
+    to neutron_lib as mentioned below:
+
+    * ``neutron_fwaas.extensions.firewall`` -> ``neutron_lib.exceptions.firewall_v1``
+    * ``neutron_fwaas.extensions.firewallrouterinsertion`` -> ``neutron_lib.exceptions.firewall_v1``
+    * ``neutron_fwaas.extensions.firewall_v2`` -> ``neutron_lib.exceptions.firewall_v2``
