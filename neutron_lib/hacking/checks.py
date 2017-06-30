@@ -14,8 +14,6 @@
 
 import re
 
-from debtcollector import removals
-
 from neutron_lib.hacking import translation_checks
 
 # Guidelines for writing new hacking checks
@@ -105,21 +103,6 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
             logical_line.replace('import', 'from').replace('.', ' import '),
             logical_line)
         return (0, msg_o or msg)
-
-
-@removals.remove(removal_version='P release')
-def check_oslo_namespace_imports(logical_line):
-    """N523 - Import oslo_ rather than oslo.
-
-    :param logical_line: The logical line to check.
-    :param filename: The file name where the logical line exists.
-    :returns: None if the logical line passes the check, otherwise a tuple
-    is yielded that contains the offending index in logical line and a
-    message describe the check validation failure.
-    """
-    x = _check_namespace_imports('N523', 'oslo', 'oslo_', logical_line)
-    if x is not None:
-        yield x
 
 
 def check_no_contextlib_nested(logical_line, filename):

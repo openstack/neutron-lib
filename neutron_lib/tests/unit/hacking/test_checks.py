@@ -80,14 +80,6 @@ class HackingTestCase(base.BaseTestCase):
                     "./neutron/plugins/ml2/drivers/openvswitch/agent/xenapi/"
                     "etc/xapi.d/plugins/netwrap"))))
 
-    def test_check_oslo_namespace_imports(self):
-        f = checks.check_oslo_namespace_imports
-        self.assertLinePasses(f, 'from oslo_utils import importutils')
-        self.assertLinePasses(f, 'import oslo_messaging')
-        self.assertLineFails(f, 'from oslo.utils import importutils')
-        self.assertLineFails(f, 'from oslo import messaging')
-        self.assertLineFails(f, 'import oslo.messaging')
-
     def test_check_contextlib_nested(self):
         f = checks.check_no_contextlib_nested
         self.assertLineFails(f, 'with contextlib.nested():', '')

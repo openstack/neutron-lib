@@ -1,0 +1,4 @@
+---
+other:
+  - The deprecated ``N523`` hacking check that ensures proper oslo namespace
+    imports has been removed.
