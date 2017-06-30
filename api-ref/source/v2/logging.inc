@@ -1,0 +1,271 @@
+.. -*- rst -*-
+
+============
+Log resource
+============
+
+The ``logging`` extension lists, creates, shows information for, and updates
+log resource.
+
+List logs
+=========
+
+.. rest_method::  GET /v2.0/log/logs
+
+Lists all log resources associated with your project.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
+
+The list might be empty.
+
+Normal response codes: 200
+
+Error response codes: 401
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - fields: fields
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - logs: logs
+   - id: log_id
+   - name: name
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - event: log_event
+   - resource_type: resource_log_type
+   - resource_id: resource_log_id
+   - target_id: resource_target_log_id
+   - enabled: log_enabled
+
+Response Example
+----------------
+
+.. literalinclude:: samples/logs/log-list-response.json
+   :language: javascript
+
+Create log
+==========
+
+.. rest_method::  POST /v2.0/log/logs
+
+Creates a log resource.
+
+Creates a log resource by using the configuration that you define in
+the request object. A response object is returned. The object
+contains a unique ID.
+
+If the caller is not an administrative user, this call returns the
+HTTP ``Forbidden (403)`` response code.
+
+Users with an administrative role can create policies on behalf of
+other projects by specifying a project ID that is different than
+their own.
+
+Normal response codes: 201
+
+Error response codes: 400, 401, 403, 409
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - log: log
+   - name: name-request
+   - description: description-request
+   - tenant_id: project_id-request
+   - project_id: project_id-request
+   - event: log_event-request
+   - resource_type: resource_log_type
+   - resource_id: resource_log_id-request
+   - target_id: resource_target_log_id-request
+   - enabled: log_enabled-request
+
+Request Example
+---------------
+
+.. literalinclude:: samples/logs/log-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - log: log
+   - id: log_id
+   - name: name
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - event: log_event
+   - resource_type: resource_log_type
+   - resource_id: resource_log_id
+   - target_id: resource_target_log_id
+   - enabled: log_enabled
+
+Request Example
+---------------
+
+.. literalinclude:: samples/logs/log-create-response.json
+   :language: javascript
+
+Show log
+========
+
+.. rest_method::  GET /v2.0/log/logs/{log_id}
+
+Shows details log resource.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - log_id: log_id-path
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - log: log
+   - id: log_id
+   - name: name
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - event: log_event
+   - resource_type: resource_log_type
+   - resource_id: resource_log_id
+   - target_id: resource_target_log_id
+   - enabled: log_enabled
+
+Response Example
+----------------
+
+.. literalinclude:: samples/logs/log-show-response.json
+   :language: javascript
+
+Update log
+==========
+
+.. rest_method::  PUT /v2.0/log/logs/{log_id}
+
+Updates a log resource.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - log_id: log_id-path
+   - log: log
+   - name: name-request
+   - description: description-request
+   - enabled: log_enabled-request-put
+
+Request Example
+---------------
+
+.. literalinclude:: samples/logs/log-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - log: log
+   - id: log_id
+   - name: name
+   - description: description
+   - tenant_id: project_id
+   - project_id: project_id
+   - event: log_event
+   - resource_type: resource_log_type
+   - resource_id: resource_log_id
+   - target_id: resource_target_log_id
+   - enabled: log_enabled
+
+Response Example
+----------------
+
+.. literalinclude:: samples/logs/log-update-response.json
+   :language: javascript
+
+Delete log
+==========
+
+.. rest_method::  DELETE /v2.0/log/logs/{log_id}
+
+Deletes a log resource.
+
+Normal response codes: 204
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - log_id: log_id-path
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
+=================
+Loggable resource
+=================
+
+List loggable resources
+=======================
+
+.. rest_method::  GET /v2.0/log/loggable-resources
+
+Lists all resource log types are supporting.
+
+Normal response codes: 200
+
+Error response codes: 401
+
+Request
+-------
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - loggable_resources: loggable_resources
+   - type: resource_log_type
+
+Response Example
+----------------
+
+.. literalinclude:: samples/logs/loggable_resources-list-response.json
+   :language: javascript

@@ -1,0 +1,14 @@
+{
+    "log": {
+        "name": "security group log",
+        "description": "Log for project demo.",
+        "id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
+        "project_id": "8d4c70a21fed4aeba121a1a429ba0d04",
+        "tenant_id": "8d4c70a21fed4aeba121a1a429ba0d04",
+        "enabled": true,
+        "resource_type": "security_group",
+        "resource_id": null,
+        "target_id": null,
+        "event": "ACCEPT"
+    }
+}
