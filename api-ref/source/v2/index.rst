@@ -33,6 +33,7 @@ Security
 ########
 .. include:: fwaas.inc
 .. include:: fwaas-v2.inc
+.. include:: rbac-policy.inc
 .. include:: security-group-rules.inc
 .. include:: security-groups.inc
 .. include:: vpnaas.inc
