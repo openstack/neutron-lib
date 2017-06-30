@@ -27,3 +27,8 @@ FQDN_FIELD_SIZE = 255
 # Alembic branches
 EXPAND_BRANCH = 'expand'
 CONTRACT_BRANCH = 'contract'
+
+# Maximum value integer can take in MySQL and PostgreSQL
+# In SQLite integer can be stored in 1, 2, 3, 4, 6, or 8 bytes,
+# but here it will be limited by this value for consistency.
+DB_INTEGER_MAX_VALUE = 2 ** 31 - 1
