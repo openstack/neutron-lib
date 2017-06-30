@@ -80,6 +80,7 @@ KNOWN_EXTENSIONS = (
     'data-plane-status',
     'default-subnetpools',
     'dhcp_agent_scheduler',
+    'dns-domain-ports',
     'dns-integration',
     'dvr',
     'ext-gw-mode',

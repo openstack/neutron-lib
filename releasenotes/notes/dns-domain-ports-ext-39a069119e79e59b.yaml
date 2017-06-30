@@ -1,0 +1,4 @@
+---
+features:
+  - The ``dns-domain-ports`` extension API definition has been added as
+    ``neutron_lib.api.definitions.dns_domain_ports``.
