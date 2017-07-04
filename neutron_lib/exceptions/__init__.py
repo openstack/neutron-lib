@@ -96,7 +96,7 @@ class AdminRequired(NotAuthorized):
     is required to carry out the operation or access a resource.
 
     :param reason: A message indicating additional details on why admin is
-    required for the operation access.
+        required for the operation access.
     """
     message = _("User does not have admin privileges: %(reason)s.")
 
@@ -195,8 +195,8 @@ class SubnetInUse(InUse):
 
     :param subnet_id: The UUID of the subnet requested.
     :param reason: Details on why the operation failed. If None, a default
-    reason is used indicating one or more ports still have IP allocations
-    on the subnet.
+        reason is used indicating one or more ports still have IP allocations
+        on the subnet.
     """
     message = _("Unable to complete operation on subnet %(subnet_id)s: "
                 "%(reason)s.")
@@ -216,7 +216,7 @@ class SubnetPoolInUse(InUse):
 
     :param subnet_pool_id: The UUID of the subnet pool requested.
     :param reason: Details on why the operation failed. If None a default
-    reason is used indicating two or more concurrent subnets are allocated.
+        reason is used indicating two or more concurrent subnets are allocated.
     """
     message = _("Unable to complete operation on subnet pool "
                 "%(subnet_pool_id)s. %(reason)s.")
@@ -390,7 +390,7 @@ class InvalidInput(BadRequest):
     specified.
 
     :param error_message: Details on the operation that failed due to bad
-    input.
+        input.
     """
     message = _("Invalid input for operation: %(error_message)s.")
 
@@ -454,7 +454,7 @@ class InvalidConfigurationOption(NeutronException):
     """An error due to an invalid configuration option value.
 
     :param opt_name: The name of the configuration option that has an invalid
-    value.
+        value.
     :param opt_value: The value that's invalid for the configuration option.
     """
     message = _("An invalid value was provided for %(opt_name)s: "
@@ -467,7 +467,7 @@ class NetworkTunnelRangeError(NeutronException):
     An exception indicating an invalid network tunnel range was specified.
 
     :param tunnel_range: The invalid tunnel range. If specified in the
-    start:end' format, they will be converted automatically.
+        start:end' format, they will be converted automatically.
     :param error: Additional details on why the range is invalid.
     """
     message = _("Invalid network tunnel range: "

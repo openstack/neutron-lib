@@ -44,7 +44,7 @@ def _verify_dict_keys(expected_keys, target_dict, strict=True):
     :param target_dict: The dictionary which should be verified.
     :param strict: Specifies whether additional keys are allowed to be present.
     :returns: None if the expected keys are found. Otherwise a human readable
-    message indicating why the validation failed.
+        message indicating why the validation failed.
     """
     if not isinstance(target_dict, dict):
         msg = (_("Invalid input. '%(target_dict)s' must be a dictionary "
@@ -72,9 +72,9 @@ def _collect_duplicates(data_list):
     """Collects duplicate items from a list and returns them.
 
     :param data_list: A list of items to check for duplicates. The list may
-    include dict items.
+        include dict items.
     :returns: A set of items that are duplicates in data_list. If no
-    duplicates are found, the returned set is empty.
+        duplicates are found, the returned set is empty.
     """
     seen = []
     dups = set()
@@ -91,7 +91,7 @@ def is_attr_set(attribute):
 
     :param attribute: The attribute value to check.
     :returns: False if the attribute value is None or ATTR_NOT_SPECIFIED,
-    otherwise True.
+        otherwise True.
     """
     return not (attribute is None or
                 attribute is constants.ATTR_NOT_SPECIFIED)
@@ -167,7 +167,8 @@ def validate_not_empty_string_or_none(data, max_len=None):
     :param data: The data to validate.
     :param max_len: An optional cap on the str length to validate.
     :returns: None if the data string is not None and is not an empty string,
-    otherwise a human readable message as to why the string data is invalid.
+        otherwise a human readable message as to why the string data is
+        invalid.
     """
     if data is not None:
         return validate_not_empty_string(data, max_len=max_len)
@@ -179,7 +180,7 @@ def validate_not_empty_string(data, max_len=None):
     :param data: The data to validate.
     :param max_len: An optional cap on the length of the string data.
     :returns: None if the data is non-empty/non-blank, otherwise a human
-    readable string message indicating why validation failed.
+        readable string message indicating why validation failed.
     """
     msg = validate_string(data, max_len=max_len)
     if msg:
@@ -196,7 +197,7 @@ def validate_string_or_none(data, max_len=None):
     :param data: The data to validate.
     :param max_len: An optional cap on the length of the string data.
     :returns: None if the data is None or a valid string, otherwise a human
-    readable message indicating why validation failed.
+        readable message indicating why validation failed.
     """
     if data is not None:
         return validate_string(data, max_len=max_len)
@@ -208,8 +209,8 @@ def validate_string(data, max_len=None):
     :param data: The data to validate.
     :param max_len: An optional cap on the length of the string.
     :returns: None if the data is a valid string type and (optionally) within
-    the given max_len. Otherwise a human readable message indicating why
-    the data is invalid.
+        the given max_len. Otherwise a human readable message indicating why
+        the data is invalid.
     """
     if not isinstance(data, six.string_types):
         msg = _("'%s' is not a valid string") % data
@@ -234,7 +235,7 @@ def validate_list_of_unique_strings(data, max_len=None):
     :param data: The data to validate.
     :param max_len: An optional cap on the length of the string.
     :returns: None if the data is a list of non-empty/non-blank strings,
-    otherwise a human readable message indicating why validation failed.
+        otherwise a human readable message indicating why validation failed.
     """
     return _validate_list_of_unique_strings(data, max_len=max_len)
 
@@ -245,7 +246,7 @@ def validate_boolean(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :return: None if the value can be converted to a bool, otherwise a
-    human readable message indicating why data is invalid.
+        human readable message indicating why data is invalid.
     """
     try:
         strutils.bool_from_string(data, strict=True)
@@ -264,7 +265,7 @@ def validate_integer(data, valid_values=None):
     :param data: The string or number to validate as integer.
     :param valid_values: values to limit the 'data' to.
     :returns: None if data is an integer, otherwise a human readable message
-    indicating why validation failed..
+        indicating why validation failed..
     """
 
     if valid_values is not None:
@@ -300,9 +301,9 @@ def validate_range(data, valid_values=None):
 
     :param data: The data to validate.
     :param valid_values: A list of 2 elements where element 0 is the min
-    value the int data can have and element 1 is the max.
+        value the int data can have and element 1 is the max.
     :returns: None if the data is a valid int in the given range, otherwise
-    a human readable message as to why validation failed.
+        a human readable message as to why validation failed.
     """
 
     min_value = valid_values[0]
@@ -329,7 +330,7 @@ def validate_no_whitespace(data):
     """Validates that input has no whitespace.
 
     :param data: The data to validate. Must be a python string type suitable
-    for searching via regex.
+        for searching via regex.
     :returns: The data itself.
     :raises InvalidInput: If the data contains whitespace.
     """
@@ -346,7 +347,7 @@ def validate_mac_address(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if the data is a valid MAC address, otherwise a human
-    readable message as to why validation failed.
+        readable message as to why validation failed.
     """
     try:
         valid_mac = netaddr.valid_mac(validate_no_whitespace(data))
@@ -371,7 +372,7 @@ def validate_mac_address_or_none(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if the data is None or a valid MAC address, otherwise
-    a human readable message indicating why validation failed.
+        a human readable message indicating why validation failed.
     """
     if data is not None:
         return validate_mac_address(data, valid_values)
@@ -383,7 +384,7 @@ def validate_ip_address(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is an IP address, otherwise a human readable
-    message indicating why data isn't an IP address.
+        message indicating why data isn't an IP address.
     """
     msg = None
     try:
@@ -425,10 +426,10 @@ def _validate_any_key_spec(data, key_specs=None):
 
     :param data: The dict to validate.
     :param key_specs: An iterable collection of key spec dicts used to validate
-    data.
+        data.
     :returns: None if at least 1 of the key_specs matches data, otherwise
-    a message is returned indicating data could not be matched with any
-    of the key_specs.
+        a message is returned indicating data could not be matched with any
+        of the key_specs.
     """
     for spec in key_specs:
         if validate_dict(data, spec) is None:
@@ -443,10 +444,10 @@ def validate_any_key_specs_or_none(data, key_specs=None):
 
     :param data: The list of dicts to validate.
     :param key_specs: An iterable collection of key spec dicts that is used
-    to check each dict in data.
+        to check each dict in data.
     :returns: None.
     :raises InvalidInput: If any of the dicts in data do not match at least
-    1 of the key_specs given.
+        1 of the key_specs given.
     """
     if data is None:
         return
@@ -467,10 +468,10 @@ def validate_ip_pools(data, valid_values=None):
     In addition to this the IP addresses will also be validated.
 
     :param data: The data to validate. Must be a list-like structure of
-    IP pool dicts that each have a 'start' and 'end' key value.
+        IP pool dicts that each have a 'start' and 'end' key value.
     :param valid_values: Not used!
     :returns: None if data is a valid list of IP pools, otherwise a message
-    indicating why the data is invalid.
+        indicating why the data is invalid.
     """
     if not isinstance(data, list):
         msg = _("Invalid data format for IP pool: '%s'") % data
@@ -497,7 +498,7 @@ def validate_fixed_ips(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is a valid list of fixed IP dicts. Otherwise a
-    human readable message is returned indicating why validation failed.
+        human readable message is returned indicating why validation failed.
     """
     if not isinstance(data, list):
         msg = _("Invalid data format for fixed IP: '%s'") % data
@@ -534,7 +535,7 @@ def validate_nameservers(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is a list of valid IP addresses, otherwise
-    a human readable message is returned indicating why validation failed.
+        a human readable message is returned indicating why validation failed.
     """
     if not hasattr(data, '__iter__'):
         msg = _("Invalid data format for nameserver: '%s'") % data
@@ -561,11 +562,11 @@ def validate_hostroutes(data, valid_values=None):
     """Validate a list of unique host route dicts.
 
     :param data: The data to validate. To be valid it must be a list like
-    structure of host route dicts, each containing 'destination' and 'nexthop'
-    key values.
+        structure of host route dicts, each containing 'destination' and
+        'nexthop' key values.
     :param valid_values: Not used!
     :returns: None if data is a valid list of unique host route dicts,
-    otherwise a human readable message indicating why validation failed.
+        otherwise a human readable message indicating why validation failed.
     """
     if not isinstance(data, list):
         msg = _("Invalid data format for hostroute: '%s'") % data
@@ -597,7 +598,7 @@ def validate_ip_address_or_none(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: An optional list of values data may take on.
     :return: None if data is None or a valid IP address, otherwise a
-    human readable message indicating why the data is invalid.
+        human readable message indicating why the data is invalid.
     """
     if data is not None:
         return validate_ip_address(data, valid_values)
@@ -609,8 +610,8 @@ def validate_ip_or_subnet_or_none(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :return: None if data is None or a valid IP address or a valid IP subnet,
-    otherwise a human readable message indicating why the data is neither an
-    IP address nor IP subnet.
+        otherwise a human readable message indicating why the data is neither
+        an IP address nor IP subnet.
     """
     msg_ip = validate_ip_address_or_none(data)
     msg_subnet = validate_subnet_or_none(data)
@@ -625,7 +626,7 @@ def validate_subnet(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is valid IP network address. Otherwise a human
-    readable message as to why data is invalid.
+        readable message as to why data is invalid.
     """
     msg = None
     try:
@@ -649,7 +650,7 @@ def validate_subnet_or_none(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: The optional list of values data may take on.
     :returns: None if data is None or a valid subnet, otherwise a human
-    readable message as to why data is invalid.
+        readable message as to why data is invalid.
     """
     if data is not None:
         return validate_subnet(data, valid_values)
@@ -666,7 +667,7 @@ def validate_subnet_list(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is a valid list of subnet dicts, otherwise a human
-    readable message as to why the data is invalid.
+        readable message as to why the data is invalid.
     """
     return _validate_subnet_list(data, valid_values)
 
@@ -676,9 +677,9 @@ def validate_regex(data, valid_values=None):
 
     :param data: The data to validate.
     :param valid_values: The regular expression to use with re.match on
-    the data.
+        the data.
     :returns: None if data contains matches for valid_values, otherwise a
-    human readable message as to why data is invalid.
+        human readable message as to why data is invalid.
     """
     try:
         if re.match(valid_values, data):
@@ -696,9 +697,9 @@ def validate_regex_or_none(data, valid_values=None):
 
     :param data: The data to validate.
     :param valid_values: The regular expression to use with re.match on
-    the data.
+        the data.
     :returns: None if data is None or contains matches for valid_values,
-    otherwise a human readable message as to why data is invalid.
+        otherwise a human readable message as to why data is invalid.
     """
     if data is not None:
         return validate_regex(data, valid_values)
@@ -709,9 +710,9 @@ def validate_list_of_regex_or_none(data, valid_values=None):
 
     :param data: A list of data to validate.
     :param valid_values: The regular expression to use with re.match on
-    each element of the data.
+        each element of the data.
     :returns: None if data is None or contains matches for valid_values,
-    otherwise a human readable message as to why data is invalid.
+        otherwise a human readable message as to why data is invalid.
     """
     if data is not None:
         return _validate_list_of_items(validate_regex, data, valid_values)
@@ -723,7 +724,7 @@ def validate_subnetpool_id(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is a valid subnet pool ID, otherwise a
-    human readable message as to why it's invalid.
+        human readable message as to why it's invalid.
     """
     if data != constants.IPV6_PD_POOL_ID:
         return validate_uuid_or_none(data, valid_values)
@@ -735,7 +736,7 @@ def validate_subnetpool_id_or_none(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is a valid subnet pool ID or None, otherwise a
-    human readable message as to why it's invalid.
+        human readable message as to why it's invalid.
     """
     if data is not None:
         return validate_subnetpool_id(data, valid_values)
@@ -747,7 +748,7 @@ def validate_uuid(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is UUID like in form, otherwise a human readable
-    message indicating why data is invalid.
+        message indicating why data is invalid.
     """
     if not uuidutils.is_uuid_like(data):
         msg = _("'%s' is not a valid UUID") % data
@@ -761,7 +762,7 @@ def validate_uuid_or_none(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is UUID like in form or None, otherwise a human
-    readable message indicating why data is invalid.
+        readable message indicating why data is invalid.
     """
     if data is not None:
         return validate_uuid(data)
@@ -778,7 +779,7 @@ def validate_uuid_list(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is an iterable that contains valid UUID values,
-    otherwise a message is returned indicating why validation failed.
+        otherwise a message is returned indicating why validation failed.
     """
     return _validate_uuid_list(data, valid_values)
 
@@ -813,10 +814,10 @@ def validate_dict(data, key_specs=None):
 
     :param data: The data to validate.
     :param key_specs: The optional list of keys that must be contained in
-    data.
+        data.
     :returns: None if data is a dict and (optionally) contains only key_specs.
-    Otherwise a human readable message is returned indicating why data is not
-    valid.
+        Otherwise a human readable message is returned indicating why data is
+        not valid.
     """
     if not isinstance(data, dict):
         msg = _("'%s' is not a dictionary") % data
@@ -856,10 +857,10 @@ def validate_dict_or_none(data, key_specs=None):
 
     :param data: The data to validate.
     :param key_specs: The optional list of keys that must be contained in
-    data.
+        data.
     :returns: None if data is None or a dict  that (optionally) contains
-    all key_specs. Otherwise a human readable message is returned indicating
-    why data is not valid.
+        all key_specs. Otherwise a human readable message is returned
+        indicating why data is not valid.
     """
     if data is not None:
         return validate_dict(data, key_specs)
@@ -870,10 +871,10 @@ def validate_dict_or_empty(data, key_specs=None):
 
     :param data: The data to validate.
     :param key_specs: The optional list of keys that must be contained in
-    data.
+        data.
     :returns: None if data is {} or a dict (optionally) containing
-    only key_specs. Otherwise a human readable message is returned indicating
-    why data is not valid.
+        only key_specs. Otherwise a human readable message is returned
+        indicating why data is not valid.
     """
     if data != {}:
         return validate_dict(data, key_specs)
@@ -884,10 +885,10 @@ def validate_dict_or_nodata(data, key_specs=None):
 
     :param data: The data to validate. May be None.
     :param key_specs: The optional list of keys that must be contained in
-    data.
+        data.
     :returns: None if no data/empty dict or a dict and (optionally) contains
-    all key_specs. Otherwise a human readable message is returned indicating
-    why data is not valid.
+        all key_specs. Otherwise a human readable message is returned
+        indicating why data is not valid.
     """
     if data:
         return validate_dict(data, key_specs)
@@ -899,7 +900,7 @@ def validate_non_negative(data, valid_values=None):
     :param data: The data to validate
     :param valid_values: Not used!
     :returns: None if data is an int and is positive, otherwise a human
-    readable message as to why data is invalid.
+        readable message as to why data is invalid.
     """
     try:
         data = int(data)
@@ -920,8 +921,8 @@ def validate_port_range_or_none(data, valid_values=None):
     :param data: The data to validate
     :param valid_values: Not used!
     :returns: None if data is an int between 0 and 65535, or two ints between 0
-    and 65535 with a colon between them, otherwise a human readable message as
-    to why data is invalid.
+        and 65535 with a colon between them, otherwise a human readable message
+        as to why data is invalid.
     """
     if data is None:
         return
@@ -953,8 +954,8 @@ def validate_subports(data, valid_values=None):
     :param data: The data to validate.
     :param valid_values: Not used!
     :returns: None if data is a list of subport dicts each with a unique valid
-    port_id, segmentation_id and segmentation_type. Otherwise a human readable
-    message is returned indicating why the data is invalid.
+        port_id, segmentation_id and segmentation_type. Otherwise a human
+        readable message is returned indicating why the data is invalid.
     """
     if not isinstance(data, list):
         msg = _("Invalid data format for subports: '%s' is not a list") % data
@@ -1060,7 +1061,7 @@ def get_validator(validation_type, default=None):
 
     :param validation_type: The type to retrieve the validator for.
     :param default: A default value to return if the validator is
-    not registered.
+        not registered.
     :return: The validator if registered, otherwise the default value.
     """
     return validators.get(_to_validation_type(validation_type), default)

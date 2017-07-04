@@ -24,8 +24,8 @@ def convert_to_boolean(data):
     """Convert a data value into a python bool.
 
     :param data: The data value to convert to a python bool. This function
-    supports string types, bools, and ints for conversion of representation
-    to python bool.
+        supports string types, bools, and ints for conversion of representation
+        to python bool.
     :returns: The bool value of 'data' if it can be coerced.
     :raises InvalidInput: If the value can't be coerced to a python bool.
     """
@@ -41,7 +41,7 @@ def convert_to_boolean_if_not_none(data):
 
     :param data: The data value to convert.
     :returns: The 'data' returned from convert_to_boolean() if 'data' is not
-    None. None is returned if data is None.
+        None. None is returned if data is None.
     """
     if data is not None:
         return convert_to_boolean(data)
@@ -51,7 +51,7 @@ def convert_to_int(data):
     """Convert a data value to a python int.
 
     :param data: The data value to convert to a python int via python's
-    built-in int() constructor.
+        built-in int() constructor.
     :returns: The int value of the data.
     :raises InvalidInput: If the value can't be converted to an int.
     """
@@ -67,7 +67,7 @@ def convert_to_int_if_not_none(data):
 
     :param data: The data value to convert.
     :returns: The 'data' returned from convert_to_int() if 'data' is not None.
-    None is returned if data is None.
+        None is returned if data is None.
     """
     if data is not None:
         return convert_to_int(data)
@@ -79,10 +79,10 @@ def convert_to_positive_float_or_none(val):
 
     :param val: The value to convert to a positive python float.
     :returns: The value as a python float. If the val is None, None is
-    returned.
+        returned.
     :raises ValueError, InvalidInput: A ValueError is raised if the 'val'
-    is a float, but is negative. InvalidInput is raised if 'val' can't be
-    converted to a python float.
+        is a float, but is negative. InvalidInput is raised if 'val' can't be
+        converted to a python float.
     """
     # NOTE(salv-orlando): This conversion function is currently used by
     # a vendor specific extension only at the moment  It is used for
@@ -119,7 +119,7 @@ def convert_kvp_list_to_dict(kvp_list):
     """Convert a list of 'key=value' strings to a dict.
 
     :param kvp_list: A list of key value pair strings. For more info on the
-    format see; convert_kvp_str_to_list().
+        format see; convert_kvp_str_to_list().
     :returns: A dict who's key value pairs are populated by parsing 'kvp_list'.
     :raises InvalidInput: If any of the key value strings are malformed.
     """
@@ -157,7 +157,7 @@ def convert_to_list(data):
 
     :param data: The value to convert.
     :return: A new list wrapped around 'data' whereupon the list is empty
-    if 'data' is None.
+        if 'data' is None.
     """
     if data is None:
         return []
@@ -175,6 +175,7 @@ def convert_ip_to_canonical_format(value):
               - 'value' if 'value' is IPv4 address,
               - 'value' if 'value' is not an IP Address
               - canonical IPv6 address if 'value' is IPv6 address.
+
     """
     try:
         ip = netaddr.IPAddress(value)
@@ -191,8 +192,8 @@ def convert_cidr_to_canonical_format(value):
     :param value: The CIDR which needs to be checked.
     :returns: - 'value' if 'value' is CIDR with IPv4 address,
               - CIDR with canonical IPv6 address if 'value' is IPv6 CIDR.
-    :raises:  - InvalidInput if 'value' is None, not a valid CIDR or
-                invalid IP Format.
+    :raises: InvalidInput if 'value' is None, not a valid CIDR or
+        invalid IP Format.
     """
     error_message = _("%s is not in a CIDR format") % value
     try:
@@ -210,7 +211,7 @@ def convert_string_to_case_insensitive(data):
 
     :param data: The value to convert.
     :return: The lower-cased string representation of the value, or None is
-    'data' is None.
+        'data' is None.
     :raises InvalidInput: If the value is not a string.
     """
     try:
@@ -228,11 +229,11 @@ def convert_to_protocol(data):
 
     :param data: The value to verify is an IP protocol.
     :returns: If data is an int between 0 and 255 or None, return that; if
-    data is a string then return it lower-cased if it matches one of the
-    allowed protocol names.
+        data is a string then return it lower-cased if it matches one of the
+        allowed protocol names.
     :raises exceptions.InvalidInput: If data is an int < 0, an
-    int > 255, or a string that does not match one of the allowed protocol
-    names.
+        int > 255, or a string that does not match one of the allowed protocol
+        names.
     """
 
     if data is None:

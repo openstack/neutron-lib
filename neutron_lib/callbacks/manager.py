@@ -115,10 +115,10 @@ class CallbacksManager(object):
         :param event: The event.
         :param trigger: The trigger. A reference to the sender of the event.
         :param payload: The optional event object to send to subscribers. If
-        passed this must be an instance of BaseEvent.
-        :raises Invalid, CallbackFailure: The Invalid exception is raised if
-        the payload object is not an instance of BaseEvent. CallbackFailure
-        is raise if the underlying callback has errors.
+            passed this must be an instance of BaseEvent.
+        :raises neutron_lib.callbacks.exceptions.Invalid: if
+            the payload object is not an instance of BaseEvent.
+        :raises CallbackFailure: if the underlying callback has errors.
         """
         if payload:
             if not isinstance(payload, events.EventPayload):
@@ -138,9 +138,9 @@ class CallbacksManager(object):
         :param event: The event.
         :param trigger: The trigger. A reference to the sender of the event.
         :param kwargs: (deprecated) Unstructured key/value pairs to invoke
-        the callback with. Using event objects with publish() is preferred.
+            the callback with. Using event objects with publish() is preferred.
         :raises CallbackFailure: CallbackFailure is raised if the underlying
-        callback has errors.
+            callback has errors.
         """
         errors = self._notify_loop(resource, event, trigger, **kwargs)
         if errors:

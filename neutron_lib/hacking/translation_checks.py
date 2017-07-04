@@ -41,8 +41,8 @@ def check_log_warn_deprecated(logical_line, filename):
     :param logical_line: The logical line to check.
     :param filename: The file name where the logical line exists.
     :returns: None if the logical line passes the check, otherwise a tuple
-    is yielded that contains the offending index in logical line and a
-    message describe the check validation failure.
+        is yielded that contains the offending index in logical line and a
+        message describe the check validation failure.
     """
     msg = "N532: Use LOG.warning due to compatibility with py3"
     if _log_warn.match(logical_line):
@@ -55,8 +55,8 @@ def check_raised_localized_exceptions(logical_line, filename):
     :param logical_line: The logical line to check.
     :param filename: The file name where the logical line exists.
     :returns: None if the logical line passes the check, otherwise a tuple
-    is yielded that contains the offending index in logical line and a
-    message describe the check validation failure.
+        is yielded that contains the offending index in logical line and a
+        message describe the check validation failure.
     """
     if _translation_checks_not_enforced(filename):
         return
@@ -84,8 +84,8 @@ def no_translate_logs(logical_line, filename):
     :param logical_line: The logical line to check.
     :param filename: The file name where the logical line exists.
     :returns: None if the logical line passes the check, otherwise a tuple
-    is yielded that contains the offending index in logical line and a
-    message describe the check validation failure.
+        is yielded that contains the offending index in logical line and a
+        message describe the check validation failure.
     """
     if _translation_checks_not_enforced(filename):
         return
