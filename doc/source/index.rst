@@ -11,8 +11,8 @@
       License for the specific language governing permissions and limitations
       under the License.
 
-Welcome to Neutron Lib developer documentation!
-===============================================
+Welcome to Neutron Lib documentation!
+=====================================
 
 Neutron-lib is an OpenStack library project used by Neutron, Advanced Services,
 and third-party projects that aims to provide common functionality across all
@@ -39,24 +39,10 @@ The `Neutron Development wiki`_ is also a good resource for new contributors.
 
 Enjoy!
 
-
-Programming HowTos and Tutorials
---------------------------------
 .. toctree::
-    :maxdepth: 3
+   :maxdepth: 2
 
-    conventions
-    installation
-    usage
-    review-guidelines
-    contributing
-    releasing
-
-
-Developer Docs
-==============
-
-.. toctree::
-   :maxdepth: 1
-
-   devref/index
+   install/index
+   user/index
+   contributor/index
+   reference/index

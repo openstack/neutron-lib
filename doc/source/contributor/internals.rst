@@ -19,16 +19,10 @@
       '''''''  Heading 4
       (Avoid deeper levels because they do not render well.)
 
-
-Developer Guide
-===============
-
-In the Developer Guide, you will find information on the Neutron Library
-components and in how to use them, from a development standpoint.
-
-
+=====================
 Neutron Lib Internals
----------------------
+=====================
+
 .. toctree::
    :maxdepth: 3
 
@@ -37,20 +31,3 @@ Neutron Lib Internals
    api_converters
    api_validators
    callbacks
-
-
-Module Reference
-----------------
-.. toctree::
-   :maxdepth: 3
-
-.. todo::
-
-    Add in all the big modules as automodule indexes.
-
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`search`

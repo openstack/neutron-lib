@@ -1,14 +1,6 @@
-========
-Usage
-========
-
-To use neutron-lib in a project::
-
-    import neutron_lib
-
-
+==============
 Hacking Checks
---------------
+==============
 
 The ``neutron_lib.hacking`` package implements a number of public
 `hacking checks <https://github.com/openstack-dev/hacking>`_ intended to help
