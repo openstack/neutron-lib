@@ -1,0 +1,4 @@
+---
+features:
+  - The ``net-mtu`` extension API definition has been added as
+    ``neutron_lib.api.definitions.network_mtu``.
