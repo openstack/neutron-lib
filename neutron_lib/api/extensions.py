@@ -14,6 +14,7 @@
 #    under the License.
 
 import abc
+
 import six
 
 from neutron_lib._i18n import _
