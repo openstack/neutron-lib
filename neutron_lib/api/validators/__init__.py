@@ -11,10 +11,10 @@
 #    under the License.
 
 import collections
-import re
-
 import functools
 import inspect
+import re
+
 import netaddr
 from oslo_log import log as logging
 from oslo_utils import netutils
