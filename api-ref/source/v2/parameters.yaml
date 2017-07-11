@@ -4377,6 +4377,44 @@ psk:
   in: body
   required: true
   type: string
+qos-rule-direction:
+  description: |
+    The direction of the traffic to which the QoS
+    rule is applied, as seen from the point of view
+    of the ``port``.
+    Valid values are ``egress`` and ``ingress``.
+    Default value is ``egress``.
+  in: body
+  required: false
+  type: string
+qos-rule-direction-response:
+  description: |
+    The direction of the traffic to which the QoS
+    rule is applied, as seen from the point of view
+    of the ``port``.
+    Valid values are ``egress`` and ``ingress``.
+    Default value is ``egress``.
+  in: body
+  required: true
+  type: string
+qos-rule-direction-update:
+  description: |
+    The direction of the traffic to which the QoS
+    rule is applied, as seen from the point of view
+    of the ``port``.
+    Valid values are ``egress`` and ``ingress``.
+  in: body
+  required: false
+  type: string
+qos-rule-direction-update-response:
+  description: |
+    The direction of the traffic to which the QoS
+    rule is applied, as seen from the point of view
+    of the ``port``.
+    Valid values are ``egress`` and ``ingress``.
+  in: body
+  required: true
+  type: string
 qos-rule-type:
   description: |
     The type of QoS rule.
