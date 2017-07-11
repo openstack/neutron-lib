@@ -15,7 +15,8 @@
 import re
 
 
-_all_log_levels = {'critical', 'error', 'exception', 'info', 'warning'}
+_all_log_levels = {'critical', 'error', 'exception', 'info',
+                   'warning', 'debug'}
 _all_hints = {'_LC', '_LE', '_LI', '_', '_LW'}
 
 
