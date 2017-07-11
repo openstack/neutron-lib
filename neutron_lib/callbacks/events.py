@@ -117,7 +117,7 @@ class DBEventPayload(EventPayload):
         """Determine if the resource for this event payload is persisted.
 
         :returns: True if this payload's resource is persisted, otherwise
-        False.
+            False.
         """
         return self.resource_id is not None and self.has_states
 
@@ -134,7 +134,7 @@ class DBEventPayload(EventPayload):
         """Returns the latest state for the event payload resource.
 
         :returns: If this payload has a desired_state its returned, otherwise
-        latest_state is returned.
+            latest_state is returned.
         """
         return (self.desired_state or
                 super(DBEventPayload, self).latest_state)

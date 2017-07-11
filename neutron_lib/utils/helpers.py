@@ -26,7 +26,7 @@ def parse_mappings(mapping_list, unique_values=True, unique_keys=True):
     :param mapping_list: A list of strings of the form '<key>:<value>'.
     :param unique_values: Values must be unique if True.
     :param unique_keys: Keys must be unique if True, else implies that keys
-    and values are not unique.
+        and values are not unique.
     :returns: A dict mapping keys to values or to list of values.
     :raises ValueError: Upon malformed data or duplicate keys.
     """
@@ -89,7 +89,7 @@ def dict2str(dic):
 
     :param dic: The dict to build a str representation for.
     :returns: The dict in str representation that is a k=v command list for
-    each item in dic.
+        each item in dic.
     """
     return ','.join("%s=%s" % (key, val)
                     for key, val in sorted(dic.items()))
@@ -127,7 +127,7 @@ def diff_list_of_dict(old_list, new_list):
     :param old_list: The old list of dicts to diff.
     :param new_list: The new list of dicts to diff.
     :returns: A tuple where the first item is a list of the added dicts in
-    the diff and the second item is the removed dicts.
+        the diff and the second item is the removed dicts.
     """
     new_set = set([dict2str(l) for l in new_list])
     old_set = set([dict2str(l) for l in old_list])
@@ -149,7 +149,7 @@ def camelize(s):
     """Camelize a str that uses _ as a camelize token.
 
     :param s: The str to camelize that contains a _ at each index where a new
-    camelized word starts.
+        camelized word starts.
     :returns: The camelized str.
     """
     return ''.join(s.replace('_', ' ').title().split())

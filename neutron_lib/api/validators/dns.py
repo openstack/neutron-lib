@@ -118,7 +118,7 @@ def validate_dns_name(data, max_len=db_constants.FQDN_FIELD_SIZE):
     :param data: The data to validate.
     :param max_len: An optional cap on the length of the string.
     :returns: None if data is valid, otherwise a human readable message
-    indicating why validation failed.
+        indicating why validation failed.
     """
     msg = _validate_dns_format(data, max_len)
     if msg:
@@ -138,7 +138,7 @@ def validate_fip_dns_name(data, max_len=db_constants.FQDN_FIELD_SIZE):
     :param data: The data to validate.
     :param max_len: An optional cap on the length of the string.
     :returns: None if data is valid, otherwise a human readable message
-    indicating why validation failed.
+        indicating why validation failed.
     """
     msg = validators.validate_string(data)
     if msg:
@@ -167,7 +167,7 @@ def validate_dns_domain(data, max_len=db_constants.FQDN_FIELD_SIZE):
     :param data: The data to validate.
     :param max_len: An optional cap on the length of the string.
     :returns: None if data is valid, otherwise a human readable message
-    indicating why validation failed.
+        indicating why validation failed.
     """
     msg = validators.validate_string(data)
     if msg:

@@ -28,7 +28,7 @@ def get_and_validate_sort_keys(sorts, model):
     :param model: A sqlalchemy ORM model class.
     :returns: A list of the extracted sort keys.
     :raises BadRequest: If a sort key attribute references another resource
-    and cannot be used in the sort.
+        and cannot be used in the sort.
     """
 
     sort_keys = [s[0] for s in sorts]
@@ -91,7 +91,7 @@ def reraise_as_retryrequest(function):
 
     :param function: The function to wrap/decorate.
     :returns: The 'function' wrapped in a try block that will reraise any
-    Exception's as a RetryRequest.
+        Exception's as a RetryRequest.
     :raises RetryRequest: If the wrapped function raises retriable exception.
     """
     @six.wraps(function)

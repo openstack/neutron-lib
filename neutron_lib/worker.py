@@ -29,6 +29,9 @@ class BaseWorker(service.ServiceBase):
     do this only once instead of in every API worker, for instance, it would
     define a BaseWorker class and the plugin would have get_workers return
     an array of BaseWorker instances. For example:
+
+    .. code-block:: python
+
         class MyPlugin(...):
             def get_workers(self):
                 return [MyPluginWorker()]

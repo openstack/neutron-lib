@@ -45,4 +45,8 @@ Enjoy!
    install/index
    user/index
    contributor/index
+
+.. toctree::
+   :maxdepth: 1
+
    reference/index

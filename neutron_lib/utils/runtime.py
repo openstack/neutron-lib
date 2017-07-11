@@ -34,7 +34,7 @@ def load_class_by_alias_or_classname(namespace, name):
     :param namespace: The namespace where the alias is defined.
     :param name: The alias or class name of the class to be loaded.
     :returns: Class if it can be loaded.
-    :raises ImportError if class cannot be loaded.
+    :raises ImportError: if class cannot be loaded.
     """
 
     if not name:

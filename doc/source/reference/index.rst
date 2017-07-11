@@ -25,10 +25,9 @@ Module Reference
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-.. todo::
-
-   Add in all the big modules as automodule indexes.
+   modules/*
 
 * :ref:`genindex`
 * :ref:`search`

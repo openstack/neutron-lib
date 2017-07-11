@@ -69,7 +69,7 @@ class MechanismDriver(object):
         """Allocate resources for a new network.
 
         :param context: NetworkContext instance describing the new
-        network.
+            network.
 
         Create a new network, allocating resources as necessary in the
         database. Called inside transaction context on session. Call
@@ -82,7 +82,7 @@ class MechanismDriver(object):
         """Create a network.
 
         :param context: NetworkContext instance describing the new
-        network.
+            network.
 
         Called after the transaction commits. Call can block, though
         will block the entire process so care should be taken to not
@@ -95,8 +95,8 @@ class MechanismDriver(object):
         """Update resources of a network.
 
         :param context: NetworkContext instance describing the new
-        state of the network, as well as the original state prior
-        to the update_network call.
+            state of the network, as well as the original state prior
+            to the update_network call.
 
         Update values of a network, updating the associated resources
         in the database. Called inside transaction context on session.
@@ -113,8 +113,8 @@ class MechanismDriver(object):
         """Update a network.
 
         :param context: NetworkContext instance describing the new
-        state of the network, as well as the original state prior
-        to the update_network call.
+            state of the network, as well as the original state prior
+            to the update_network call.
 
         Called after the transaction commits. Call can block, though
         will block the entire process so care should be taken to not
@@ -131,7 +131,7 @@ class MechanismDriver(object):
         """Delete resources for a network.
 
         :param context: NetworkContext instance describing the current
-        state of the network, prior to the call to delete it.
+            state of the network, prior to the call to delete it.
 
         Delete network resources previously allocated by this
         mechanism driver for a network. Called inside transaction
@@ -145,7 +145,7 @@ class MechanismDriver(object):
         """Delete a network.
 
         :param context: NetworkContext instance describing the current
-        state of the network, prior to the call to delete it.
+            state of the network, prior to the call to delete it.
 
         Called after the transaction commits. Call can block, though
         will block the entire process so care should be taken to not
@@ -159,7 +159,7 @@ class MechanismDriver(object):
         """Allocate resources for a new subnet.
 
         :param context: SubnetContext instance describing the new
-        subnet.
+            subnet.
 
         Create a new subnet, allocating resources as necessary in the
         database. Called inside transaction context on session. Call
@@ -172,7 +172,7 @@ class MechanismDriver(object):
         """Create a subnet.
 
         :param context: SubnetContext instance describing the new
-        subnet.
+            subnet.
 
         Called after the transaction commits. Call can block, though
         will block the entire process so care should be taken to not
@@ -185,8 +185,8 @@ class MechanismDriver(object):
         """Update resources of a subnet.
 
         :param context: SubnetContext instance describing the new
-        state of the subnet, as well as the original state prior
-        to the update_subnet call.
+            state of the subnet, as well as the original state prior
+            to the update_subnet call.
 
         Update values of a subnet, updating the associated resources
         in the database. Called inside transaction context on session.
@@ -203,8 +203,8 @@ class MechanismDriver(object):
         """Update a subnet.
 
         :param context: SubnetContext instance describing the new
-        state of the subnet, as well as the original state prior
-        to the update_subnet call.
+            state of the subnet, as well as the original state prior
+            to the update_subnet call.
 
         Called after the transaction commits. Call can block, though
         will block the entire process so care should be taken to not
@@ -221,7 +221,7 @@ class MechanismDriver(object):
         """Delete resources for a subnet.
 
         :param context: SubnetContext instance describing the current
-        state of the subnet, prior to the call to delete it.
+            state of the subnet, prior to the call to delete it.
 
         Delete subnet resources previously allocated by this
         mechanism driver for a subnet. Called inside transaction
@@ -235,7 +235,7 @@ class MechanismDriver(object):
         """Delete a subnet.
 
         :param context: SubnetContext instance describing the current
-        state of the subnet, prior to the call to delete it.
+            state of the subnet, prior to the call to delete it.
 
         Called after the transaction commits. Call can block, though
         will block the entire process so care should be taken to not
@@ -273,8 +273,8 @@ class MechanismDriver(object):
         """Update resources of a port.
 
         :param context: PortContext instance describing the new
-        state of the port, as well as the original state prior
-        to the update_port call.
+            state of the port, as well as the original state prior
+            to the update_port call.
 
         Called inside transaction context on session to complete a
         port update as defined by this mechanism driver. Raising an
@@ -290,8 +290,8 @@ class MechanismDriver(object):
         """Update a port.
 
         :param context: PortContext instance describing the new
-        state of the port, as well as the original state prior
-        to the update_port call.
+            state of the port, as well as the original state prior
+            to the update_port call.
 
         Called after the transaction completes. Call can block, though
         will block the entire process so care should be taken to not
@@ -308,7 +308,7 @@ class MechanismDriver(object):
         """Delete resources of a port.
 
         :param context: PortContext instance describing the current
-        state of the port, prior to the call to delete it.
+            state of the port, prior to the call to delete it.
 
         Called inside transaction context on session. Runtime errors
         are not expected, but raising an exception will result in
@@ -320,7 +320,7 @@ class MechanismDriver(object):
         """Delete a port.
 
         :param context: PortContext instance describing the current
-        state of the port, prior to the call to delete it.
+            state of the port, prior to the call to delete it.
 
         Called after the transaction completes. Call can block, though
         will block the entire process so care should be taken to not

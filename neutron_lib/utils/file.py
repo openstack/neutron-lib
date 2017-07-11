@@ -30,7 +30,7 @@ def ensure_dir(dir_path):
     :param dir_path: The directory path to ensure.
     :returns: None.
     :raises OSError: If the underlying call to makedirs raises an OSError
-    other than EEXIST.
+        other than EEXIST.
     """
     try:
         os.makedirs(dir_path, 0o755)

@@ -40,10 +40,10 @@ def populate_project_info(attributes):
     If neither are present then attributes is not updated.
 
     :param attributes: A dictionary of resource/API attributes
-    or API request/response dict.
+        or API request/response dict.
     :returns: attributes (updated with project_id if applicable).
     :raises: HTTPBadRequest if the attributes project_id and tenant_id
-    don't match.
+        don't match.
     """
     if 'tenant_id' in attributes and 'project_id' not in attributes:
         attributes['project_id'] = attributes['tenant_id']
@@ -70,9 +70,9 @@ class AttributeInfo(object):
         """Create a new instance that wraps the given resource attributes.
 
         :param resource_attrs: The resource's attributes that can be any
-        of the following types: an instance of AttributeInfo, an API definition
-        that contains a RESOURCE_ATTRIBUTE_MAP attribute or a dict of
-        attributes for the resource.
+            of the following types: an instance of AttributeInfo, an API
+            definition that contains a RESOURCE_ATTRIBUTE_MAP attribute or
+            a dict of attributes for the resource.
         """
         if isinstance(resource_attrs, AttributeInfo):
             resource_attrs = resource_attrs.attributes
@@ -102,11 +102,11 @@ class AttributeInfo(object):
 
         :param res_dict: The resource attributes from the request.
         :param exc_cls: Exception to be raised on error that must take
-        a single error message as it's only constructor arg.
+            a single error message as it's only constructor arg.
         :param check_allow_post: Raises an exception if a non-POST-able
-        attribute is specified.
+            attribute is specified.
         :raises: exc_cls If check_allow_post is True and this instance of
-        ResourceAttributes doesn't support POST.
+            ResourceAttributes doesn't support POST.
         """
         for attr, attr_vals in self.attributes.items():
             if attr_vals['allow_post']:
@@ -128,9 +128,9 @@ class AttributeInfo(object):
 
         :param res_dict: The resource attributes from the request.
         :param exc_cls: Exception to be raised on error that must take
-        a single error message as it's only constructor arg.
+            a single error message as it's only constructor arg.
         :raises: exc_cls If any errors occur converting/validating the
-        res_dict.
+            res_dict.
         """
         for attr, attr_vals in self.attributes.items():
             if (attr not in res_dict or
@@ -165,7 +165,7 @@ class AttributeInfo(object):
         :param attr_info: The attribute map for the resource.
         :param is_create: Is this a create request?
         :raises: HTTPBadRequest If neither the project_id nor tenant_id
-        are specified in the res_dict.
+            are specified in the res_dict.
 
         """
         populate_project_info(res_dict)
@@ -190,9 +190,9 @@ class AttributeInfo(object):
         attrs_to_verify before calling this method.
 
         :param attrs_to_verify: The attributes to verify against this
-        resource attributes.
+            resource attributes.
         :raises: HTTPBadRequest: If attrs_to_verify contains any unrecognized
-        for this resource attributes instance.
+            for this resource attributes instance.
         """
         extra_keys = set(attrs_to_verify.keys()) - set(self.attributes.keys())
         if extra_keys:

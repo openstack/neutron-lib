@@ -48,7 +48,7 @@ def is_port_trusted(port):
 
     :param port: The port dict to inspect the 'device_owner' for.
     :returns: True if the port dict's 'device_owner' value starts with the
-    networking prefix. False otherwise.
+        networking prefix. False otherwise.
     """
     return port['device_owner'].startswith(
         constants.DEVICE_OWNER_NETWORK_PREFIX)
