@@ -211,6 +211,12 @@ qos-rule_id:
   in: path
   required: true
   type: string
+rbac_policy_id-path:
+  description: |
+    The ID of the RBAC policy.
+  in: path
+  required: true
+  type: integer
 resource_id:
   description: |
     The ID of resource which the tag is set on.
@@ -3908,6 +3914,21 @@ networks:
   in: body
   required: true
   type: array
+object_id:
+  description: |
+    The ID of the ``object_type`` resource. An ``object_type`` of ``network``
+    returns a network ID and an ``object_type`` of ``qos-policy`` returns
+    a QoS ID.
+  in: body
+  required: true
+  type: integer
+object_type:
+  description: |
+    The type of the object that the RBAC policy affects. Types include
+    ``qos-policy`` or ``network``.
+  in: body
+  required: true
+  type: integer
 operating_status:
   description: |
     The operating status of the load balancer.  This
@@ -4564,6 +4585,19 @@ quotas:
   in: body
   required: true
   type: array
+rbac_action:
+  description: |
+    Action for the RBAC policy which is ``access_as_external`` or
+    ``access_as_shared``.
+  in: body
+  required: true
+  type: string
+rbac_policy_id:
+  description: |
+    The ID of the RBAC policy.
+  in: body
+  required: true
+  type: integer
 remote_group_id:
   description: |
     The remote group UUID to associate with this
@@ -5542,6 +5576,12 @@ tags:
   in: body
   required: true
   type: array
+target_tenant:
+  description: |
+    The ID of the tenant to which the RBAC policy will be enforced.
+  in: body
+  required: true
+  type: string
 tenant_id:
   description: |
     The ID of the project that owns the resource.

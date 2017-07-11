@@ -1,0 +1,8 @@
+{
+   "rbac_policy": {
+      "action": "access_as_shared",
+      "object_type": "network",
+      "target_tenant": "0670b690f27e47a58b6a479d26004715",
+      "object_id": "1f32f072-4d17-4811-b619-3623d018bd40"
+   }
+}
