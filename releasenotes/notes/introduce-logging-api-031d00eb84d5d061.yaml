@@ -1,0 +1,3 @@
+---
+features:
+  - API definition for the logging extension for ``security_group`` resource.

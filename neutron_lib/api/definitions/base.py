@@ -90,6 +90,7 @@ KNOWN_EXTENSIONS = (
     'flavors',
     'l3-ha',
     'l3_agent_scheduler',
+    'logging',
     'metering',
     'multi-provider',
     'net-mtu',
