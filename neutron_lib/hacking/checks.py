@@ -36,9 +36,9 @@ namespace_imports_from_root = re.compile(r"from[\s]+([\w]+)[\s]+import[\s]+")
 contextlib_nested = re.compile(r"^\s*with (contextlib\.)?nested\(")
 
 assert_equal_none_re = re.compile(
-    r"assertEqual\(.*?,\s+None\)|assertEqual\(None,")
+    r"assertEqual\(.*?,\s+None\)(( |\t)*#.*)?$|assertEqual\(None,")
 assert_is_none_re = re.compile(
-    r"assertIs(Not)?\(.*,\s+None\)|assertIs(Not)?\(None,")
+    r"assertIs(Not)?\(.*,\s+None\)(( |\t)*#.*)?$|assertIs(Not)?\(None,")
 
 
 def use_jsonutils(logical_line, filename):

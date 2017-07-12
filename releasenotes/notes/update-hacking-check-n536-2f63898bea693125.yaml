@@ -1,0 +1,5 @@
+---
+fixes:
+  - Update hacking check ``N536``. Current implementation recognizes
+    ``self.assertEqual((None, None), A)`` as invalid incorrectly while
+    ``(None, None)`` is not ``None``.
