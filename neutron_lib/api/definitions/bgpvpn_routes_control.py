@@ -57,7 +57,7 @@ RESOURCE_NAME = bgpvpn.RESOURCE_NAME
 COLLECTION_NAME = bgpvpn.COLLECTION_NAME
 
 LOCAL_PREF_KEY = 'local_pref'
-LOCAL_PREF_RANGE = [0, 2**32-1],  # RFC 4271, section 4.3 (p.18)
+LOCAL_PREF_RANGE = [0, 2**32-1]  # RFC 4271, section 4.3 (p.18)
 
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
@@ -68,7 +68,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_post': True, 'allow_put': True,
             'is_visible': True,
             'default': None,
-            'validate': {'type:range': LOCAL_PREF_RANGE},
+            'validate': {'type:range_or_none': LOCAL_PREF_RANGE},
             'enforce_policy': True}
     }
 }
@@ -129,7 +129,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                         'validate': {'type:uuid': None},
                         'is_visible': True,
                         'enforce_policy': True},
-            ROUTES: {'allow_post': True, 'allow_put': False,
+            ROUTES: {'allow_post': True, 'allow_put': True,
                      'default': [],
                      'convert_list_to': converters.convert_kvp_list_to_dict,
                      'validate': {
