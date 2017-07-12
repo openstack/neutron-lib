@@ -1,10 +1,10 @@
 .. -*- rst -*-
 
-==================
-QoS policies (qos)
-==================
+==============
+QoS rule types
+==============
 
-Lists, creates, shows information for, and updates QoS policies.
+List QoS rule types available in current deployment.
 
 List QoS rule types
 ===================
@@ -30,6 +30,12 @@ Response Example
 
 .. literalinclude:: samples/qos/rule_types-list-response.json
    :language: javascript
+
+==================
+QoS policies (qos)
+==================
+
+Lists, creates, deletes, shows information for, and updates QoS policies.
 
 List QoS policies
 =================
@@ -249,6 +255,12 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
+=========================
+QoS bandwidth limit rules
+=========================
+
+Lists, creates, deletes, shows information for, and updates QoS bandwidth limit rules.
+
 List bandwidth limit rules for QoS policy
 =========================================
 
@@ -439,6 +451,12 @@ Response
 --------
 
 There is no body content for the response of a successful DELETE request.
+
+======================
+QoS DSCP marking rules
+======================
+
+Lists, creates, deletes, shows information for, and updates QoS DSCP marking rules.
 
 List DSCP marking rules for QoS policy
 ======================================
