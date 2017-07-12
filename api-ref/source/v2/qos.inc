@@ -278,6 +278,7 @@ Response Parameters
    - max_kbps: max_kbps-response
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
+   - direction: qos-rule-direction-response
 
 Response Example
 ----------------
@@ -305,6 +306,7 @@ Request
    - bandwidth_limit_rule: bandwidth_limit_rule
    - max_kbps: max_kbps
    - max_burst_kbps: max_burst_kbps
+   - direction: qos-rule-direction
 
 Request Example
 ---------------
@@ -321,6 +323,7 @@ Response Parameters
    - max_kbps: max_kbps-response
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
+   - direction: qos-rule-direction-response
 
 Response Example
 ----------------
@@ -356,6 +359,7 @@ Response Parameters
    - max_kbps: max_kbps-response
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
+   - direction: qos-rule-direction-response
 
 Response Example
 ----------------
@@ -387,6 +391,7 @@ Request
    - bandwidth_limit_rule: bandwidth_limit_rule
    - max_kbps: max_kbps
    - max_burst_kbps: max_burst_kbps
+   - direction: qos-rule-direction-update
 
 Request Example
 ---------------
@@ -403,6 +408,7 @@ Response Parameters
    - max_kbps: max_kbps-response
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
+   - direction: qos-rule-direction-update-response
 
 Response Example
 ----------------
