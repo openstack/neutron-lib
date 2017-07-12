@@ -8,7 +8,7 @@
             ],
             "created_at": "2016-03-08T20:19:41",
             "id": "d32019d3-bc6e-4319-9c1d-6722fc136a22",
-            "mtu": 0,
+            "mtu": 1500,
             "name": "net1",
             "port_security_enabled": true,
             "project_id": "4fd44f30292945e481c7b8a0c8908869",
@@ -33,7 +33,7 @@
                 "nova"
             ],
             "id": "db193ab3-96e3-4cb3-8fc5-05f4296d0324",
-            "mtu": 0,
+            "mtu": 1450,
             "name": "net2",
             "port_security_enabled": true,
             "project_id": "26a7980765d0414dbc1fc1f88cdb7e6e",
@@ -49,9 +49,9 @@
                     "provider:segmentation_id": 2
                 },
                 {
-                    "provider:network_type": "stt",
+                    "provider:network_type": "vxlan",
                     "provider:physical_network": "default",
-                    "provider:segmentation_id": 0
+                    "provider:segmentation_id": 1000
                 }
             ],
             "shared": false,

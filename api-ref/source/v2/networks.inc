@@ -50,6 +50,13 @@ a VLAN transparecy of the network. If the service does not support VLAN
 transparency and a user requests a VLAN transparent network,
 the plug-in refuses to create one and returns an appropriate error to the user.
 
+MTU extension
+=============
+
+The ``net-mtu`` extension allows plug-ins to expose the MTU that is guaranteed
+to pass through the data path of the segments in the network. This extension
+introduces a read-only ``mtu`` attribute.
+
 Show network details
 ====================
 
