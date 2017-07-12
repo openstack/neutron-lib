@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    Contexts may now have transaction constraints set on them to be enforced
+    by the revision plugin in Neutron for generalized compare-and-swap updates.
+    Calling ``set_transaction_constraint`` on the context before performing a
+    resource mutation will setup the constraint. This is also exposed to users
+    via the HTTP API with ``if-match`` headers and the API layer sets the
+    constraint on the context.

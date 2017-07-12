@@ -213,3 +213,14 @@ class TestNeutronContext(_base.BaseTestCase):
         session1 = ctx.session
         session2 = ctx.session
         self.assertIs(session1, session2)
+
+    def test_add_get_remove_constraint(self):
+        ctx = context.Context('user_id', 'tenant_id')
+        self.assertIsNone(ctx.get_transaction_constraint())
+        ctx.set_transaction_constraint('networks', 'net_id', 44)
+        constraint = ctx.get_transaction_constraint()
+        self.assertEqual(44, constraint.if_revision_match)
+        self.assertEqual('networks', constraint.resource)
+        self.assertEqual('net_id', constraint.resource_id)
+        ctx.clear_transaction_constraint()
+        self.assertIsNone(ctx.get_transaction_constraint())
