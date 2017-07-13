@@ -1,0 +1,4 @@
+---
+features:
+  - The neutron ``address-scope`` extension's API definition is now available as
+    ``neutron_lib.api.definitions.address_scope``.
