@@ -98,6 +98,11 @@ VIF_TYPE_TAP = 'tap'
 #                   which is defined further below. E.g. Macvtap agent uses
 #                   vnic_type 'normal'.
 VIF_TYPE_MACVTAP = 'macvtap'
+# vif_type_agilio_ovs: Tells Nova that the Agilio OVS vif_driver should be
+#                      used to create a vif. In addition to the normal OVS
+#                      vif types exposed, VNIC_DIRECT and
+#                      VNIC_VIRTIO_FORWARDER are supported.
+VIF_TYPE_AGILIO_OVS = 'agilio_ovs'
 # SR-IOV VIF types
 VIF_TYPE_HW_VEB = 'hw_veb'
 VIF_TYPE_HOSTDEV_PHY = 'hostdev_physical'
@@ -110,8 +115,10 @@ VNIC_DIRECT = 'direct'
 VNIC_MACVTAP = 'macvtap'
 VNIC_BAREMETAL = 'baremetal'
 VNIC_DIRECT_PHYSICAL = 'direct-physical'
+VNIC_VIRTIO_FORWARDER = 'virtio-forwarder'
+
 VNIC_TYPES = [VNIC_NORMAL, VNIC_DIRECT, VNIC_MACVTAP, VNIC_BAREMETAL,
-              VNIC_DIRECT_PHYSICAL]
+              VNIC_DIRECT_PHYSICAL, VNIC_VIRTIO_FORWARDER]
 
 
 # The alias of the extension.

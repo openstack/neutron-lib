@@ -1,0 +1,5 @@
+---
+features:
+  - A VIF type for Agilio OVS (``VIF_TYPE_AGILIO_OVS``) has been added to
+    portbindings. This links the external Neutron plugin to the external
+    OS-VIF plugin in Nova.
