@@ -1,3 +1,4 @@
+# All rights reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -11,22 +12,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-# neutron-fwaas constants
-from neutron_lib import constants
+from neutron_lib.api.definitions import auto_allocated_topology
+from neutron_lib.tests.unit.api.definitions import base
 
-FIREWALL_GROUPS = 'firewall_groups'
-FIREWALL_POLICIES = 'firewall_policies'
-FIREWALL_RULES = 'firewall_rules'
-FIREWALLS = 'firewalls'
 
-FWAAS_ALLOW = "allow"
-FWAAS_DENY = "deny"
-FWAAS_REJECT = "reject"
-FW_VALID_ACTION_VALUES = [FWAAS_ALLOW, FWAAS_DENY, FWAAS_REJECT]
-
-# Firewall Protocol List
-
-FW_PROTOCOL_VALUES = list(constants.IPTABLES_PROTOCOL_MAP.keys()) + [None]
-
-# a default resource, such as auto allocated topology is_default network
-IS_DEFAULT = 'is_default'
+class AutoTopologyDefinitionTestCase(base.DefinitionBaseTestCase):
+    extension_module = auto_allocated_topology
+    extension_resources = (auto_allocated_topology.COLLECTION_NAME,)
+    extension_attributes = ()
