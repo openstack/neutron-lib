@@ -12,6 +12,7 @@
 
 """Context: context for security/db session."""
 
+import collections
 import copy
 import datetime
 
@@ -141,10 +142,15 @@ class ContextBaseWithSession(ContextBase):
     pass
 
 
+_TransactionConstraint = collections.namedtuple(
+    'TransactionConstraint', ['if_revision_match', 'resource', 'resource_id'])
+
+
 class Context(ContextBaseWithSession):
     def __init__(self, *args, **kwargs):
         super(Context, self).__init__(*args, **kwargs)
         self._session = None
+        self._txn_constraint = None
 
     @property
     def session(self):
@@ -156,6 +162,26 @@ class Context(ContextBaseWithSession):
             self._session = db_api.get_writer_session()
 
         return self._session
+
+    def set_transaction_constraint(self, resource, resource_id, rev_number):
+        """Set a revision constraint to enfore before resource_id is changed.
+
+        :param resource: collection name of resource (e.g. ports or networks)
+        :param resource_id: the primary key ID of the individiual resource that
+                            should have its revision number matched before
+                            allowing the transaction to proceed.
+        :param rev_number: the revision_number that the resource should be at.
+        """
+
+        self._txn_constraint = _TransactionConstraint(
+            if_revision_match=rev_number, resource=resource,
+            resource_id=resource_id)
+
+    def clear_transaction_constraint(self):
+        self._txn_constraint = None
+
+    def get_transaction_constraint(self):
+        return self._txn_constraint
 
 
 def get_admin_context():
