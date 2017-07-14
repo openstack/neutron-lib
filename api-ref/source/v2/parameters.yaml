@@ -211,6 +211,14 @@ qos-rule_id:
   in: path
   required: true
   type: string
+qos-rule_type:
+  description: |
+    The name of the QoS rule type. It should be one of the types
+    returned by the List QoS rule types API, for example
+    ``bandwidth_limit`` or ``dscp_marking``.
+  in: path
+  required: true
+  type: string
 rbac_policy_id-path:
   description: |
     The ID of the RBAC policy.
@@ -4377,6 +4385,24 @@ psk:
   in: body
   required: true
   type: string
+qos-backend-drivers:
+  description: |
+      List of loaded QoS drivers with supported
+      rule type parameters with possible values for each.
+      Each driver is represented by a dict with the keys
+      ``name`` and ``supported_parameters``.
+      Field ``name`` contains the name of a backend driver.
+      Field ``supported_parameters`` contains a list of dicts with
+      ``parameter_name``, ``parameter_type`` and ``parameter_values``
+      fields.
+      The valid values for ``parameter_type`` are ``choices`` or ``range``.
+      If ``parameter_type`` is ``choices`` then ``parameter_values``
+      contains a list of acceptable values, otherwise it contains
+      a dict with keys of ``start`` and ``end`` which define the range
+      of acceptable values.
+  in: body
+  required: true
+  type: list
 qos-rule-direction:
   description: |
     The direction of the traffic to which the QoS
