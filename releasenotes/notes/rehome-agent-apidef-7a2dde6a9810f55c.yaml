@@ -1,0 +1,4 @@
+---
+features:
+  - The neutron ``agent`` extension's API definition is now available as
+    ``neutron_lib.api.definitions.agent``.

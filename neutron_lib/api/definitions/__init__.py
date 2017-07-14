@@ -10,6 +10,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from neutron_lib.api.definitions import agent
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.api.definitions import bgpvpn_routes_control
 from neutron_lib.api.definitions import data_plane_status
@@ -37,6 +38,7 @@ from neutron_lib.api.definitions import trunk_details
 
 
 _ALL_API_DEFINITIONS = {
+    agent,
     bgpvpn,
     bgpvpn_routes_control,
     data_plane_status,
