@@ -1,7 +1,7 @@
 ---
 features:
   - The ``extra_dhcp_opt`` API extension definition from ``neutron.extensions``
-    has been rehomed to ``netron_lib.api.definitions`` with the same name.
+    has been rehomed to ``neutron_lib.api.definitions`` with the same name.
   - A new validator ``validate_any_key_specs_or_none`` has been added for
     the corresponding validation type ``type:list_of_any_key_specs_or_none``.
     This validator can be used to check that a list of dicts match at least 1
