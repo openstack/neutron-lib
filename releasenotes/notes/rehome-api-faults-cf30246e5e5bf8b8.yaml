@@ -1,0 +1,4 @@
+---
+features:
+  - The ``FAULT_MAP`` dictionary from ``neutron.api.v2.base``
+    has been rehomed to ``neutron_lib.api.faults`` with the same name.
