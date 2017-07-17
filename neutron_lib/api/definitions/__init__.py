@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import address_scope
 from neutron_lib.api.definitions import agent
+from neutron_lib.api.definitions import auto_allocated_topology
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.api.definitions import bgpvpn_routes_control
 from neutron_lib.api.definitions import data_plane_status
@@ -41,6 +42,7 @@ from neutron_lib.api.definitions import trunk_details
 _ALL_API_DEFINITIONS = {
     address_scope,
     agent,
+    auto_allocated_topology,
     bgpvpn,
     bgpvpn_routes_control,
     data_plane_status,

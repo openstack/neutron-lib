@@ -1,0 +1,4 @@
+---
+features:
+  - The neutron ``auto-allocated-topology`` extension's API definition is now
+    available as ``neutron_lib.api.definitions.auto_allocated_topology``.
