@@ -189,6 +189,14 @@ class HackingTestCase(base.BaseTestCase):
         self.assertEqual(len(list(checks.assert_equal_none(
             "self.assertEqual(None, A)  # Comment"))), 1)
         self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual((None, None), A)"))), 0)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual((None, None), A)  # Comment"))), 0)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual(A, (None, None))"))), 0)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "self.assertEqual(A, (None, None))  # Comment"))), 0)
+        self.assertEqual(len(list(checks.assert_equal_none(
             "assertIsNot(A, None)"))), 1)
         self.assertEqual(len(list(checks.assert_equal_none(
             "assertIsNot(A, None)  # Comment"))), 1)
@@ -196,6 +204,14 @@ class HackingTestCase(base.BaseTestCase):
             "assertIsNot(None, A)"))), 1)
         self.assertEqual(len(list(checks.assert_equal_none(
             "assertIsNot(None, A)  # Comment"))), 1)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot((None, None), A)"))), 0)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot((None, None), A)  # Comment"))), 0)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot(A, (None, None))"))), 0)
+        self.assertEqual(len(list(checks.assert_equal_none(
+            "assertIsNot(A, (None, None))  # Comment"))), 0)
         self.assertEqual(
             len(list(checks.assert_equal_none("self.assertIsNone(A)"))), 0)
         self.assertEqual(
