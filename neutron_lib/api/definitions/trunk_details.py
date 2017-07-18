@@ -40,6 +40,9 @@ DESCRIPTION = "Expose trunk port details"
 
 # A timestamp of when the extension was introduced.
 UPDATED_TIMESTAMP = "2016-01-01T10:00:00-00:00"
+# TODO(armax): to be removed when review
+# https://review.openstack.org/#/c/484058/ merges
+TIMESTAMP = UPDATED_TIMESTAMP
 
 # The name of the resource introduced or being extended.
 RESOURCE_NAME = port.RESOURCE_NAME
