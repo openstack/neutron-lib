@@ -38,7 +38,7 @@ NAME = 'Trunk port details'
 # The description of the extension.
 DESCRIPTION = "Expose trunk port details"
 
-# A timestamp of when the extension was introduced.
+# A timestamp of when the extension was last updated.
 UPDATED_TIMESTAMP = "2016-01-01T10:00:00-00:00"
 
 # The name of the resource introduced or being extended.
