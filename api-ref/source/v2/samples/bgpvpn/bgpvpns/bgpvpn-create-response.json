@@ -20,7 +20,6 @@
     ],
     "type": "l3",
     "id": "0f9d472a-908f-40f5-8574-b4e8a63ccbf0",
-    "networks": [],
-    "local_pref": null
+    "networks": []
   }
 }
