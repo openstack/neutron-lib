@@ -37,7 +37,7 @@ When reviewing neutron-lib changes, please be aware:
 
 * Public APIs should be documented using `reST style docstrings <https://www.python.org/dev/peps/pep-0287/>`_
   that include an overview as well as parameter and return documentation.
-  The format of docstrings can be found in the `OpenStack developer hacking docs <http://docs.openstack.org/developer/hacking/#docstrings>`_.
+  The format of docstrings can be found in the `OpenStack developer hacking docs <https://docs.openstack.org/hacking/latest/user/hacking.html#docstrings>`_.
   Note that public API documentation is a bonus, not a requirement.
 
 * Once public classes and methods are pushed to PyPI as part of a neutron-lib
@@ -59,7 +59,7 @@ When reviewing neutron-lib changes, please be aware:
   for a long time, so be careful.
 
 * Removing the code from neutron can be done without a temporary `debtcollector
-  <http://docs.openstack.org/developer/debtcollector>`_ notice by following
+  <https://docs.openstack.org/debtcollector/latest/>`_ notice by following
   the steps described in the 'Consume' phase of the
   `contributing doc <./contributing.html>`_.
 
@@ -68,12 +68,12 @@ When reviewing neutron-lib changes, please be aware:
 
   - eventlet
 
-* With respect to `Oslo config options <http://docs.openstack.org/developer/oslo.config/>`_:
+* With respect to `Oslo config options <https://docs.openstack.org/oslo.config/latest/>`_:
 
   - Config options should only be included in neutron-lib when the respective
     functionality that uses the options lives in neutron-lib. In this case the
     options will need to be exposed as entry points for
-    `config generation <http://docs.openstack.org/developer/oslo.config/generator.html>`_.
+    `config generation <https://docs.openstack.org/oslo.config/latest/cli/generator.html>`_.
   - Common functionality in neutron-lib that accesses config values should
     assume the caller has registered them and document such in the docstring for
     the respective functionality in neutron-lib.

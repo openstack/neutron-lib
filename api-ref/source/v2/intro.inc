@@ -29,7 +29,7 @@ Authentication and authorization
 ================================
 
 The Networking API v2.0 uses the `OpenStack Identity service
-<http://docs.openstack.org/developer/keystone/>`_ as the default authentication
+<https://docs.openstack.org/keystone/latest/>`_ as the default authentication
 service. When Keystone is enabled, users that submit requests to the OpenStack
 Networking service must provide an authentication token in **X-Auth-Token**
 request header. You obtain the token by authenticating to the Keystone

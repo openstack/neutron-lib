@@ -14,7 +14,7 @@
 #
 # INTERNAL INTERFACE: PLEASE NOTE THE LEADING _ ON THIS FILE. THIS IS
 # NOT A LIBRARY INTERFACE. IF YOU WISH TO USE OSLO_I18N, please refer
-# to http://docs.openstack.org/developer/oslo.i18n/usage.html
+# to https://docs.openstack.org/oslo.i18n/latest/user/usage.html
 
 import oslo_i18n
 

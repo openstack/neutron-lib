@@ -65,7 +65,7 @@ Phase 1: Rehome
    require adding additional tests if neutron was lacking in coverage.
 
 #. Submit and shepherd your patch through its neutron-lib review. Include a
-   `release note <http://docs.openstack.org/developer/reno/>`_ that describes the code's
+   `release note <https://docs.openstack.org/reno/latest/>`_ that describes the code's
    old neutron location and new neutron-lib location. Also note that in some cases it makes
    sense to prototype a change in a consumer project to better understand the impacts of
    the change, which can be done using the ``Depends-On:`` approach described in the
@@ -88,7 +88,7 @@ you can skip this step.
 
 Develop and shepherd the enhancements to the private rehomed code applicable at this time.
 Private APIs made public as part of this phase will also need
-`release notes <http://docs.openstack.org/developer/reno/>`_ indicating the new public
+`release notes <https://docs.openstack.org/reno/latest/>`_ indicating the new public
 functionality.
 
 Examples:
@@ -130,7 +130,7 @@ source.
   Ideally we can identify the main impacted subprojects by
   `grepping the OpenStack code <http://codesearch.openstack.org/>`_.
 - Prepare a neutron core patch to remove and update the rehomed code from its source.
-  This can be done without a `debtcollector <http://docs.openstack.org/developer/debtcollector>`_
+  This can be done without a `debtcollector <https://docs.openstack.org/debtcollector/latest/>`_
   notice by following the steps here. In the patch's commit message include the ``NeutronLibImpact``
   so that we can easily `query <https://review.openstack.org/#/q/status:open+message:%22NeutronLibImpact%22>`_
   for such changes. Mark the patch as a work in progress with a -1 workflow vote.
