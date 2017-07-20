@@ -87,10 +87,6 @@ VIF_TYPE_BINDING_FAILED = 'binding_failed'
 VIF_TYPE_DISTRIBUTED = 'distributed'
 VIF_TYPE_OVS = 'ovs'
 VIF_TYPE_BRIDGE = 'bridge'
-# - ovs-acceleration: The ovs acceleration interface type is a SR-IOV hostdev
-#                     interface which support switchdev mode provided by
-#                     kernel 4.8.
-VIF_TYPE_OVS_ACCELERATION = 'ovs_acceleration'
 VIF_TYPE_OTHER = 'other'
 VIF_TYPE_TAP = 'tap'
 # vif_type_macvtap: Tells Nova that the macvtap vif_driver should be used to
