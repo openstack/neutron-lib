@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    A new converter ``convert_to_string`` into ``neutron_lib.api.converters``.
+    This method can convert an argument which is not None into string value.

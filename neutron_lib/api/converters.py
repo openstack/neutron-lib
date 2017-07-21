@@ -252,3 +252,14 @@ def convert_to_protocol(data):
             raise n_exc.InvalidInput(error_message=error_message)
     except n_exc.InvalidInput:
         raise n_exc.InvalidInput(error_message=error_message)
+
+
+def convert_to_string(data):
+    """Convert a data value into a string.
+
+    :param data: The data value to convert to a string.
+    :returns: The string value of 'data' if data is not None
+    """
+
+    if data is not None:
+        return str(data)
