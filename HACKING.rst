@@ -2,7 +2,7 @@ neutron-lib Style Commandments
 ==============================
 
 - Step 1: Read the OpenStack Style Commandments
-  http://docs.openstack.org/developer/hacking/
+  https://docs.openstack.org/hacking/latest/
 - Step 2: Read on
 
 Neutron Library Specific Commandments
