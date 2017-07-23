@@ -68,7 +68,7 @@ class FirewallRuleSharingConflict(exceptions.NotFound):
     """
     message = _("Operation cannot be performed since firewall policy "
                 "%(firewall_policy_id)s could not find the firewall rule "
-                "%(firewall_rule_id)s. Please confirm if the firewall rule"
+                "%(firewall_rule_id)s. Please confirm if the firewall rule "
                 "exists and is shared.")
 
 
@@ -156,7 +156,7 @@ class FirewallRuleAlreadyAssociated(exceptions.Conflict):
     the rule is already associated with.
     """
     message = _("Operation cannot be performed since firewall rule "
-                "%(firewall_rule_id)s is already associated with firewall"
+                "%(firewall_rule_id)s is already associated with firewall "
                 "policy %(firewall_policy_id)s.")
 
 
