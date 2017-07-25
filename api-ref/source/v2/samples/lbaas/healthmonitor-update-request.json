@@ -1,5 +1,5 @@
 {
-    "health_monitor": {
+    "healthmonitor": {
         "admin_state_up": false,
         "delay": "2",
         "expected_codes": "200",

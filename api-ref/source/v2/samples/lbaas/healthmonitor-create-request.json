@@ -1,5 +1,5 @@
 {
-    "health_monitor": {
+    "healthmonitor": {
         "pool_id": "74aa2010-a59f-4d35-a436-60a6da882819",
         "admin_state_up": true,
         "delay": "1",
