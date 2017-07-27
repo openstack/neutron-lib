@@ -35,6 +35,7 @@ from neutron_lib.api.definitions import portbindings
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import subnet
+from neutron_lib.api.definitions import subnet_onboard
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
@@ -66,6 +67,7 @@ _ALL_API_DEFINITIONS = {
     provider_net,
     router_interface_fip,
     subnet,
+    subnet_onboard,
     subnetpool,
     trunk,
     trunk_details
