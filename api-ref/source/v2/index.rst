@@ -53,7 +53,6 @@ Quality of Service
 ##########################
 Load Balancer as a Service
 ##########################
-.. include:: lbaas-v1.inc
 .. include:: lbaas-v2.inc
 #####################################
 Logging Resource (networking-midonet)
