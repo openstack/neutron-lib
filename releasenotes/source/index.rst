@@ -7,4 +7,5 @@
 
    README.rst
    unreleased
+   pike
    ocata
