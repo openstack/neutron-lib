@@ -4,7 +4,7 @@
 QoS rule types
 ==============
 
-List QoS rule types available in current deployment.
+Lists and shows information for QoS rule types available in current deployment.
 
 List QoS rule types
 ===================
@@ -29,6 +29,47 @@ Response Example
 ----------------
 
 .. literalinclude:: samples/qos/rule_types-list-response.json
+   :language: javascript
+
+Show QoS rule type details
+==========================
+
+.. rest_method:: GET /v2.0/qos/rule-types/{rule_type}
+
+Shows details for an available QoS rule type.
+
+To determine if this API call is available, a user can check whether
+the ``qos-rule-type-details`` extension API is available.
+
+You can control which response parameters are returned by using the
+fields query parameter. For information, see `Filtering and column
+selection <http://specs.openstack.org/openstack/neutron-
+specs/specs/api/networking_general_api_information.html#filtering-
+and-column-selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - rule_type: qos-rule_type
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - type: qos-rule-type
+   - drivers: qos-backend-drivers
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/rule_type-details-response.json
    :language: javascript
 
 ==================
