@@ -1,0 +1,8 @@
+---
+features:
+  - The ``allowed-address-pairs`` API definition is now available in
+    ``neutron_lib.api.definitions.allowedaddresspairs``.
+  - The address pair validation is now available via the
+    ``type:allowed_address_pairs`` validation type.
+  - Address pair API definition exceptions are available in
+    ``neutron_lib.exceptions.allowedaddresspairs``.
