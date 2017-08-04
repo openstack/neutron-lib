@@ -16,6 +16,7 @@ from neutron_lib.api.definitions import auto_allocated_topology
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.api.definitions import bgpvpn_routes_control
 from neutron_lib.api.definitions import data_plane_status
+from neutron_lib.api.definitions import default_subnetpools
 from neutron_lib.api.definitions import dns
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import extra_dhcp_opt
@@ -46,6 +47,7 @@ _ALL_API_DEFINITIONS = {
     bgpvpn,
     bgpvpn_routes_control,
     data_plane_status,
+    default_subnetpools,
     dns,
     dns_domain_ports,
     extra_dhcp_opt,
