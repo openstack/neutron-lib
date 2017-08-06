@@ -3329,6 +3329,20 @@ metering_labels:
   in: body
   required: true
   type: array
+min_kbps:
+  description: |
+    The minimum KBPS (kilobits per second) value which should be available for
+    port.
+  in: body
+  required: true
+  type: integer
+min_kbps-response:
+  description: |
+    The minimum KBPS (kilobits per second) value which should be available for
+    port.
+  in: body
+  required: true
+  type: integer
 min_prefixlen:
   description: |
     The smallest prefix that can be allocated from a
@@ -3344,6 +3358,19 @@ min_prefixlen_1:
   in: body
   required: true
   type: integer
+minimum_bandwidth_rule:
+  description: |
+    A ``minimum_bandwidth_rule`` object.
+  in: body
+  required: true
+  type: object
+minimum_bandwidth_rules:
+  description: |
+    A list of ``minimum_bandwidth_rule`` objects associated with
+    the QoS policy.
+  in: body
+  required: true
+  type: array
 mtu:
   description: |
     The maximum transmission unit (MTU) value to
@@ -4359,6 +4386,12 @@ qos_bandwidth_limit_rule-id:
 qos_dscp_marking_rule-id:
   description: |
     The ID of the QoS DSCP marking rule.
+  in: body
+  required: true
+  type: string
+qos_minimum_bandwidth_rule-id:
+  description: |
+    The ID of the QoS minimum bandwidth rule.
   in: body
   required: true
   type: string

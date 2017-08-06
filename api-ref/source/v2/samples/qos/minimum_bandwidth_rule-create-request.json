@@ -1,0 +1,5 @@
+{
+    "minimum_bandwidth_rule": {
+        "min_kbps": "10000"
+    }
+}

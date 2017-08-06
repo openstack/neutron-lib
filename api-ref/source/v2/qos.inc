@@ -678,3 +678,199 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
+===========================
+QoS minimum bandwidth rules
+===========================
+
+Lists, creates, deletes, shows information for, and updates QoS minimum bandwidth rules.
+
+List minimum bandwidth rules for QoS policy
+===========================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/minimum_bandwidth_rules
+
+Lists all minimum bandwidth rules for a QoS policy.
+
+The list might be empty.
+
+You can control which response parameters are returned by using the
+fields query parameter. For information, see `Filtering and column
+selection <http://specs.openstack.org/openstack/neutron-
+specs/specs/api/networking_general_api_information.html#filtering-
+and-column-selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_bandwidth_rules: minimum_bandwidth_rules
+   - min_kbps: min_kbps-response
+   - id: qos_minimum_bandwidth_rule-id
+   - direction: qos-rule-direction-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_bandwidth_rules-list-response.json
+   :language: javascript
+
+Create minimum bandwidth rule
+=============================
+
+.. rest_method::  POST /v2.0/qos/policies/{policy_id}/minimum_bandwidth_rules
+
+Creates a minimum bandwidth rule for a QoS policy.
+
+Normal response codes: 201
+
+Error response codes: 400, 401, 404, 409
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - minimum_bandwidth_rule: minimum_bandwidth_rule
+   - min_kbps: min_kbps
+   - direction: qos-rule-direction
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/minimum_bandwidth_rule-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_bandwidth_rule: minimum_bandwidth_rule
+   - min_kbps: min_kbps-response
+   - id: qos_minimum_bandwidth_rule-id
+   - direction: qos-rule-direction-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_bandwidth_rule-create-response.json
+   :language: javascript
+
+Show minimum bandwidth rule details
+===================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/minimum_bandwidth_rules/{rule_id}
+
+Shows details for a minimum bandwidth rule for a QoS policy.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_bandwidth_rule: minimum_bandwidth_rule
+   - min_kbps: min_kbps-response
+   - id: qos_minimum_bandwidth_rule-id
+   - direction: qos-rule-direction-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_bandwidth_rule-show-response.json
+   :language: javascript
+
+Update minimum bandwidth rule
+=============================
+
+.. rest_method::  PUT /v2.0/qos/policies/{policy_id}/minimum_bandwidth_rules/{rule_id}
+
+Updates a minimum bandwidth rule for a QoS policy.
+
+If the request is valid, the service returns the ``Accepted (202)``
+response code.
+
+Normal response codes: 202
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+   - minimum_bandwidth_rule: minimum_bandwidth_rule
+   - min_kbps: min_kbps
+   - direction: qos-rule-direction-update
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/minimum_bandwidth_rule-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_bandwidth_rule: minimum_bandwidth_rule
+   - min_kbps: min_kbps-response
+   - id: qos_minimum_bandwidth_rule-id
+   - direction: qos-rule-direction-update-response
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_bandwidth_rule-update-response.json
+   :language: javascript
+
+Delete minimum bandwidth rule
+=============================
+
+.. rest_method::  DELETE /v2.0/qos/policies/{policy_id}/minimum_bandwidth_rules/{rule_id}
+
+Deletes a minimum bandwidth rule for a QoS policy.
+
+Normal response codes: 204
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
