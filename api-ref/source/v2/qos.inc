@@ -1,5 +1,7 @@
 .. -*- rst -*-
 
+.. _quality-of-service:
+
 ==============
 QoS rule types
 ==============
@@ -108,7 +110,8 @@ List QoS policies
 
 .. rest_method::  GET /v2.0/qos/policies
 
-Lists all QoS policies associated with your project.
+Lists all QoS policies associated with your project. One policy can contain
+more than one rule type.
 
 The list might be empty.
 
@@ -175,8 +178,8 @@ Create QoS policy
 Creates a QoS policy.
 
 Creates a QoS policy by using the configuration that you define in
-the request object. A response object is returned. The object
-contains a unique ID.
+the request object.
+A response object is returned. The object contains a unique ID.
 
 By the default policy configuration, if the caller is not an administrative
 user, this call returns the HTTP ``Forbidden (403)`` response code.
@@ -237,7 +240,7 @@ Show QoS policy details
 
 .. rest_method::  GET /v2.0/qos/policies/{policy_id}
 
-Shows details for a QoS policy.
+Shows details for a QoS policy. One policy can contain more than one rule type.
 
 Normal response codes: 200
 

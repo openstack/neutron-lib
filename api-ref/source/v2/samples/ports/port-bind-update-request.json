@@ -3,6 +3,7 @@
         "binding:host_id": "test_for_port_update_host",
         "device_id": "d90a13da-be41-461f-9f99-1dbcf438fdf2",
         "data_plane_status": "DOWN",
-        "device_owner": "compute:nova"
+        "device_owner": "compute:nova",
+        "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae"
     }
 }

@@ -36,6 +36,7 @@
             "status": "DOWN",
             "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
             "updated_at": "2016-03-08T20:19:41",
+            "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
             "port_security_enabled": false
         },
         {
@@ -75,6 +76,7 @@
             "status": "DOWN",
             "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
             "updated_at": "2016-03-08T20:19:41",
+            "qos_policy_id": null,
             "port_security_enabled": false
         }
     ]

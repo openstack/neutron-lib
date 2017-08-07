@@ -88,6 +88,14 @@ attribute to ports. If a ``port-security`` value is not specified during
 port creation, a port will inherit the ``port_security_enabled`` from the
 network its connected to.
 
+QoS extension
+=============
+
+The :ref:`QoS <quality-of-service>` extension (``qos``) makes it possible to
+define QoS policies and associate these to the ports by introducing the
+``qos_policy_id`` attribute. The policies should be created before they are
+associated to the ports.
+
 Resource timestamps
 ===================
 
@@ -150,6 +158,7 @@ Response Parameters
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - revision_number: revision_number
+   - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -222,6 +231,7 @@ Request
    - mac_address: mac_address-request-put
    - name: name-request
    - port_security_enabled: port_security_enabled-request
+   - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
 
 Request Example
@@ -267,6 +277,7 @@ Response Parameters
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - revision_number: revision_number
+   - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -396,6 +407,7 @@ Response Parameters
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - revision_number: revision_number
+   - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -450,6 +462,7 @@ Request
    - network_id: network_id
    - port_security_enabled: port_security_enabled-request
    - project_id: project_id-request
+   - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - tenant_id: project_id-request
 
@@ -496,6 +509,7 @@ Response Parameters
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - revision_number: revision_number
+   - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -549,6 +563,7 @@ Request
    - network_id: network_id
    - port_security_enabled: port_security_enabled-request
    - project_id: project_id-request
+   - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - tenant_id: project_id-request
 
@@ -589,6 +604,7 @@ Response Parameters
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - revision_number: revision_number
+   - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id

@@ -4268,11 +4268,29 @@ qos_policy_id:
   in: body
   required: true
   type: string
-qos_policy_id-request:
+qos_policy_id-network-request:
   description: |
-    The ID of the QoS policy.
+    The ID of the QoS policy associated with the network.
   in: body
   required: false
+  type: string
+qos_policy_id-network-response:
+  description: |
+    The ID of the QoS policy associated with the network.
+  in: body
+  required: true
+  type: string
+qos_policy_id-port-request:
+  description: |
+    QoS policy associated with the port.
+  in: body
+  required: false
+  type: string
+qos_policy_id-port-response:
+  description: |
+    The ID of the QoS policy associated with the port.
+  in: body
+  required: true
   type: string
 quota:
   description: |

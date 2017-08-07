@@ -5,6 +5,7 @@
         "dns_name": "myport",
         "name": "private-port",
         "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7",
+        "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
         "port_security_enabled": true,
         "allowed_address_pairs": [
             {

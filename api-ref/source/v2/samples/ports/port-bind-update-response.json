@@ -45,6 +45,7 @@
         "status": "DOWN",
         "tenant_id": "522eda8d23124b25bf03fe44f1986b74",
         "updated_at": "2016-03-08T20:19:41",
+        "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
         "port_security_enabled": false
     }
 }

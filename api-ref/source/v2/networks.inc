@@ -112,6 +112,14 @@ Most Networking plug-ins (e.g. ML2 Plugin) and drivers do not support updating
 any provider related attributes. Check your plug-in whether it supports
 updating.
 
+QoS extension
+=============
+
+The :ref:`QoS <quality-of-service>` extension (``qos``) makes it possible to
+define QoS policies and associate these to the networks by introducing the
+``qos_policy_id`` attribute. The policies should be created before they are
+associated to the networks.
+
 Resource timestamps
 ===================
 
@@ -175,7 +183,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
-   - qos_policy_id: qos_policy_id
+   - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
    - segments: segments
@@ -232,7 +240,7 @@ Request
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
-   - qos_policy_id: qos_policy_id-request
+   - qos_policy_id: qos_policy_id-network-request
    - router:external: router:external-request
    - segments: segments
    - shared: shared
@@ -279,7 +287,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
-   - qos_policy_id: qos_policy_id
+   - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
    - segments: segments
@@ -405,7 +413,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
-   - qos_policy_id: qos_policy_id
+   - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
    - segments: segments
@@ -465,7 +473,7 @@ Request
    - provider:network_type: provider:network_type-request
    - provider:physical_network: provider:physical_network-request
    - provider:segmentation_id: provider:segmentation_id-request
-   - qos_policy_id: qos_policy_id-request
+   - qos_policy_id: qos_policy_id-network-request
    - router:external: router:external-request
    - segments: segments-request
    - shared: shared
@@ -515,7 +523,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
-   - qos_policy_id: qos_policy_id
+   - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
    - segments: segments
@@ -577,7 +585,7 @@ Request
    - provider:network_type: provider:network_type-request
    - provider:physical_network: provider:physical_network-request
    - provider:segmentation_id: provider:segmentation_id-request
-   - qos_policy_id: qos_policy_id-request
+   - qos_policy_id: qos_policy_id-network-request
    - router:external: router:external-request
    - segments: segments-request
    - shared: shared
@@ -614,7 +622,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
-   - qos_policy_id: qos_policy_id
+   - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
    - segments: segments
