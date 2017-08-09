@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # Library constraint file contains this library version pin that is in conflict
-# with installing the library from source. We should replace the version pin in
-# the constraints file before applying it for from-source installation.
+# with installing the library from source.
 
 ZUUL_CLONER=/usr/zuul-env/bin/zuul-cloner
 BRANCH_NAME=master
@@ -46,7 +45,6 @@ fi
 # This is the main purpose of the script: Allow local installation of
 # the current repo. It is listed in constraints file and thus any
 # install will be constrained and we need to unconstrain it.
-edit-constraints $localfile -- $LIB_NAME "-e file://$PWD#egg=$LIB_NAME"
-
+edit-constraints $localfile $LIB_NAME
 $install_cmd -U $*
 exit $?
