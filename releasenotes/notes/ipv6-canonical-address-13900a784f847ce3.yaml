@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    The ``gateway`` , ``allocation_pools`` and ``cidr`` attributes of a Subnet with IPv6 addresses
+    are now converted to IPv6 canonical format to address.
+    `bug 1531103 <https://bugs.launchpad.net/neutron/+bug/1531103>`_
