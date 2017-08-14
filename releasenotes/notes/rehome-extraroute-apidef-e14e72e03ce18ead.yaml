@@ -1,0 +1,6 @@
+---
+features:
+  - The API defintion for the ``extraroute`` extension is now available in
+    ``neutron_lib.api.defintions.extraroute``.
+  - Exceptions related to the ``extraroute`` extension are now available in
+    ``neutron_lib.exceptions.extraroute``.
