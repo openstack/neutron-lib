@@ -1,0 +1,6 @@
+---
+features:
+  - The ``external-net`` API extension's API definition is now available in
+    ``neutron_lib.api.definitions.external_net``.
+  - External network related exceptions are now available in
+    ``neutron_lib.exceptions.external_net``.
