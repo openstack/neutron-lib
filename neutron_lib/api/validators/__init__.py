@@ -25,6 +25,8 @@ import six
 from neutron_lib._i18n import _
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
+from neutron_lib.plugins import directory
+
 
 LOG = logging.getLogger(__name__)
 
@@ -1015,6 +1017,20 @@ def validate_subports(data, valid_values=None):
             segmentations[segmentation_type].add(segmentation_id)
 
 
+def validate_service_plugin_type(data, valid_values=None):
+    """Validates data is a valid service plugin.
+
+    :param data: The service plugin type to validate.
+    :param valid_values: Not used.
+    :returns: None if data is a valid service plugin known to the plugin
+        directory.
+    :raises: InvalidServiceType if data is not a service known by the
+        plugin directory.
+    """
+    if not directory.get_plugin(data):
+        raise n_exc.InvalidServiceType(service_type=data)
+
+
 # Dictionary that maintains a list of validation functions
 validators = {'type:dict': validate_dict,
               'type:dict_or_none': validate_dict_or_none,
@@ -1055,7 +1071,8 @@ validators = {'type:dict': validate_dict,
               'type:integer': validate_integer,
               'type:list_of_unique_strings': validate_list_of_unique_strings,
               'type:list_of_any_key_specs_or_none':
-                  validate_any_key_specs_or_none}
+                  validate_any_key_specs_or_none,
+              'type:service_plugin_type': validate_service_plugin_type}
 
 
 def _to_validation_type(validation_type):

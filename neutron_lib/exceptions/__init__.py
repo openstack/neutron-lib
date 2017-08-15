@@ -531,3 +531,11 @@ class NetworkMacAddressGenerationFailure(ServiceUnavailable):
         :param net_id: The ID of the network MAC address generation failed on.
         """
     message = _("Unable to generate unique mac on network %(net_id)s.")
+
+
+class InvalidServiceType(InvalidInput):
+    """An error due to an invalid service type.
+
+    :param service_type: The service type that's invalid.
+    """
+    message = _("Invalid service type: %(service_type)s.")

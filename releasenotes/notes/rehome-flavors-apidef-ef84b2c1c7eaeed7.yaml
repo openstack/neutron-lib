@@ -1,0 +1,11 @@
+---
+features:
+  - The ``flavors`` API definition is now available in
+    ``neutron_lib.api.definitions.flavors``.
+  - A new ``type:service_plugin_type`` validator has been added that
+    allows a service plugin to be validated at runtime by checking
+    the ``neutron_lib.plugins.directory``.
+  - Exceptions related to the ``flavor`` API have been added to
+    ``neutron_lib.exceptions.flavors`` except for
+    ``InvalidFlavorServiceType`` which is now a generic
+    ``InvalidServiceType`` in ``neutron_lib.exceptions``.

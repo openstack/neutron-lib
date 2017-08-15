@@ -29,6 +29,7 @@ from neutron_lib.api.definitions import fip64
 from neutron_lib.api.definitions import firewall
 from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
+from neutron_lib.api.definitions import flavors
 from neutron_lib.api.definitions import ip_allocation
 from neutron_lib.api.definitions import l2_adjacency
 from neutron_lib.api.definitions import l3
@@ -80,6 +81,7 @@ _ALL_API_DEFINITIONS = {
     firewall,
     firewall_v2,
     firewallrouterinsertion,
+    flavors,
     ip_allocation,
     l2_adjacency,
     l3,
