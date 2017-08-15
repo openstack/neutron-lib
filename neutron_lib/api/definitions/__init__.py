@@ -23,6 +23,7 @@ from neutron_lib.api.definitions import fip64
 from neutron_lib.api.definitions import firewall
 from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
+from neutron_lib.api.definitions import l2_adjacency
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
@@ -53,6 +54,7 @@ _ALL_API_DEFINITIONS = {
     firewall,
     firewall_v2,
     firewallrouterinsertion,
+    l2_adjacency,
     l3,
     logging,
     logging_resource,
