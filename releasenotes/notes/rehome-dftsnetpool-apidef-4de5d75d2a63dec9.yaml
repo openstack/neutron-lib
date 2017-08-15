@@ -1,0 +1,4 @@
+---
+features:
+  - The API definition for neutron extension ``default-subnetpools`` is now
+    available in ``neutron_lib.api.definitions.default_subnetpools``.
