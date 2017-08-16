@@ -1,0 +1,4 @@
+---
+features:
+  - The API defintion for the ``ext-gw-mode`` extension is now available in
+    ``neutron_lib.api.definitions.l3_ext_gw_mode``.

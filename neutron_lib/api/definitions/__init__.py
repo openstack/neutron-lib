@@ -25,6 +25,7 @@ from neutron_lib.api.definitions import firewall
 from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
 from neutron_lib.api.definitions import l3
+from neutron_lib.api.definitions import l3_ext_gw_mode
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
 from neutron_lib.api.definitions import network
@@ -56,6 +57,7 @@ _ALL_API_DEFINITIONS = {
     firewall_v2,
     firewallrouterinsertion,
     l3,
+    l3_ext_gw_mode,
     logging,
     logging_resource,
     network,
