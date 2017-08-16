@@ -1,0 +1,6 @@
+---
+features:
+  - The ``metering`` extension's API is now available in
+    ``neutron_lib.api.definitions.metering``.
+  - Exceptions for the ``metering`` extension are available in
+    ``neutron_lib.exceptions.metering``.

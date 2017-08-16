@@ -27,6 +27,7 @@ from neutron_lib.api.definitions import firewallrouterinsertion
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
+from neutron_lib.api.definitions import metering
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import network_mtu
 from neutron_lib.api.definitions import port
@@ -58,6 +59,7 @@ _ALL_API_DEFINITIONS = {
     l3,
     logging,
     logging_resource,
+    metering,
     network,
     network_mtu,
     port,
