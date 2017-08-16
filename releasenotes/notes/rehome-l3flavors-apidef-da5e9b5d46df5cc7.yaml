@@ -1,0 +1,4 @@
+---
+features:
+  - The ``l3-flavors`` extension's API definition is now available in
+    ``neutron_lib.api.definitions.l3_flavors``.
