@@ -40,6 +40,7 @@ from neutron_lib.api.definitions import l3_flavors
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
 from neutron_lib.api.definitions import metering
+from neutron_lib.api.definitions import multiprovidernet
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import network_availability_zone
 from neutron_lib.api.definitions import network_ip_availability
@@ -93,6 +94,7 @@ _ALL_API_DEFINITIONS = {
     logging,
     logging_resource,
     metering,
+    multiprovidernet,
     network,
     network_availability_zone,
     network_ip_availability,
