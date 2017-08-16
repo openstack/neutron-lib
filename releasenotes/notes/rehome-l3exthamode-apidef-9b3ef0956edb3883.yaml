@@ -1,0 +1,6 @@
+---
+features:
+  - The ``l3-ha`` extension's API definition is now available in
+    ``neutron_lib.api.definitions.l3_ext_ha_mode``.
+  - Exceptions related to the ``l3-ha`` extension are available in
+    ``neutron_lib.api.exceptions.l3_ext_ha_mode``.
