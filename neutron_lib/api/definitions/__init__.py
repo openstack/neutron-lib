@@ -28,6 +28,7 @@ from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
 from neutron_lib.api.definitions import network
+from neutron_lib.api.definitions import network_ip_availability
 from neutron_lib.api.definitions import network_mtu
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_security
@@ -59,6 +60,7 @@ _ALL_API_DEFINITIONS = {
     logging,
     logging_resource,
     network,
+    network_ip_availability,
     network_mtu,
     port,
     port_security,
