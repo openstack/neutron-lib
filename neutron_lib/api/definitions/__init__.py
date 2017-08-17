@@ -29,6 +29,7 @@ from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import network_mtu
+from neutron_lib.api.definitions import pagination
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_security
 from neutron_lib.api.definitions import portbindings
@@ -60,6 +61,7 @@ _ALL_API_DEFINITIONS = {
     logging_resource,
     network,
     network_mtu,
+    pagination,
     port,
     port_security,
     portbindings,

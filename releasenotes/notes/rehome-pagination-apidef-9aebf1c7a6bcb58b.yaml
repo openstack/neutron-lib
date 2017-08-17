@@ -1,0 +1,4 @@
+---
+features:
+  - The ``pagination`` API extension's API definition is now available in
+    ``neutron_lib.api.definitions.pagination``.
