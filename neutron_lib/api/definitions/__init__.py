@@ -38,6 +38,7 @@ from neutron_lib.api.definitions import port_security
 from neutron_lib.api.definitions import portbindings
 from neutron_lib.api.definitions import portbindings_extended
 from neutron_lib.api.definitions import provider_net
+from neutron_lib.api.definitions import qos
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import subnet
@@ -76,6 +77,7 @@ _ALL_API_DEFINITIONS = {
     portbindings,
     portbindings_extended,
     provider_net,
+    qos,
     router_availability_zone,
     router_interface_fip,
     subnet,
