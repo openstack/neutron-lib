@@ -32,6 +32,20 @@ Supported data plane status values:
 - ``ACTIVE``: the underlying data plane is up and running
 - ``DOWN``: no traffic can flow from/to the port
 
+DNS integration
+===============
+
+The ``dns-integration`` extension adds the ``dns_name`` and ``dns_assignment``
+attributes to port resources. While the ``dns_name`` can be set on create and
+update operations, the ``dns_assignment`` is read-only and shows the
+``hostname``, ``ip_address`` and ``fqdn`` for the port's internal DNS
+assignment.
+
+To enable the ``dns_domain`` on port resources, the ``dns-domain-ports``
+extension must be used in conjunction with the ``dns-integration`` extension.
+When enabled and set, a port level ``dns_domain`` take precedence over a
+``dns_domain`` specified in the port's network allowing per-port DNS domains.
+
 
 Show port details
 =================
@@ -76,6 +90,9 @@ Response Parameters
    - description: description
    - device_id: device_id
    - device_owner: device_owner
+   - dns_assignment: dns_assignment
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
@@ -149,6 +166,8 @@ Request
    - description: description-request
    - device_id: device_id-request
    - device_owner: device_owner-request
+   - dns_domain: dns_domain-request
+   - dns_name: dns_name-request
    - extra_dhcp_opts: extra_dhcp_opts-request
    - fixed_ips: fixed_ips-request
    - mac_address: mac_address-request-put
@@ -186,6 +205,9 @@ Response Parameters
    - description: description
    - device_id: device_id
    - device_owner: device_owner
+   - dns_assignment: dns_assignment
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
@@ -283,6 +305,9 @@ Response Parameters
    - description: description
    - device_id: device_id
    - device_owner: device_owner
+   - dns_assignment: dns_assignment
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
@@ -336,6 +361,8 @@ Request
    - description: description-request
    - device_id: device_id-request
    - device_owner: device_owner-request
+   - dns_domain: dns_domain-request
+   - dns_name: dns_name-request
    - extra_dhcp_opts: extra_dhcp_opts-request
    - fixed_ips: fixed_ips-request
    - mac_address: mac_address-request
@@ -376,6 +403,9 @@ Response Parameters
    - description: description
    - device_id: device_id
    - device_owner: device_owner
+   - dns_assignment: dns_assignment
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
@@ -428,6 +458,8 @@ Request
    - description: description-request
    - device_id: device_id-request
    - device_owner: device_owner-request
+   - dns_domain: dns_domain-request
+   - dns_name: dns_name-request
    - extra_dhcp_opts: extra_dhcp_opts-request
    - fixed_ips: fixed_ips-request
    - mac_address: mac_address-request
@@ -462,6 +494,9 @@ Response Parameters
    - description: description
    - device_id: device_id
    - device_owner: device_owner
+   - dns_assignment: dns_assignment
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id

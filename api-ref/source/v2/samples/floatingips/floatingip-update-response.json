@@ -2,6 +2,8 @@
     "floatingip": {
         "created_at": "2016-12-21T10:55:50Z",
         "description": "floating ip for testing",
+        "dns_domain": "my-domain.org.",
+        "dns_name": "myfip",
         "fixed_ip_address": "10.0.0.4",
         "floating_ip_address": "172.24.4.228",
         "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",

@@ -57,6 +57,14 @@ The ``net-mtu`` extension allows plug-ins to expose the MTU that is guaranteed
 to pass through the data path of the segments in the network. This extension
 introduces a read-only ``mtu`` attribute.
 
+DNS integration
+===============
+
+The ``dns-integration`` extension adds the ``dns_domain`` attribute to networks.
+The ``dns_domain`` of a network in conjunction with the ``dns_name`` attribute
+of its ports will be published in an external DNS service when Neutron is
+configured to integrate with such a service.
+
 Show network details
 ====================
 
@@ -92,6 +100,7 @@ Response Parameters
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
    - created_at: created_at_resource
+   - dns_domain: dns_domain
    - id: network-id
    - mtu: mtu
    - name: network-name
@@ -148,6 +157,7 @@ Request
    - network_id: network_id-path
    - network: network
    - admin_state_up: network-admin_state_up-request
+   - dns_domain: dns_domain-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
    - provider:network_type: provider:network_type
@@ -186,6 +196,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - dns_domain: dns_domain
    - id: network-id
    - mtu: mtu
    - name: network-name
@@ -282,6 +293,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - dns_domain: dns_domain
    - id: network-id
    - mtu: mtu
    - name: network-name
@@ -339,6 +351,7 @@ Request
 
    - network: network
    - admin_state_up: network-admin_state_up-request
+   - dns_domain: dns_domain-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
    - project_id: project_id-request
@@ -380,6 +393,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - dns_domain: dns_domain
    - id: network-id
    - mtu: mtu
    - name: network-name
@@ -439,6 +453,7 @@ Request
 
    - networks: networks
    - admin_state_up: network-admin_state_up-request
+   - dns_domain: dns_domain-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
    - project_id: project_id-request
@@ -468,6 +483,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - dns_domain: dns_domain
    - id: network-id
    - mtu: mtu
    - name: network-name

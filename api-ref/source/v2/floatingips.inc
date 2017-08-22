@@ -2,6 +2,14 @@
 Floating IPs (floatingips)
 ==========================
 
+DNS integration
+===============
+
+The ``dns-integration`` extension adds the ``dns_name`` and ``dns_domain``
+attributes to floating IPs allowing them to be specified at creation time.
+The data in these attributes will be published in an external DNS service
+when Neutron is configured to integrate with such a service.
+
 List floating IPs
 =================
 
@@ -51,6 +59,8 @@ Response Parameters
    - updated_at: updated_at_resource
    - revision_number: revision_number
    - description: description
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - floating_network_id: floating_network_id
    - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -135,6 +145,8 @@ Request
    - port_id: floatingip-port_id-post-request
    - subnet_id: floatingip-subnet_id
    - description: description-request
+   - dns_domain: dns_domain-request
+   - dns_name: dns_name-request
 
 Request Example
 ---------------
@@ -151,6 +163,8 @@ Response Parameters
    - router_id: floatingip-router_id
    - status: floatingip-status
    - description: description
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - tenant_id: project_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
@@ -212,6 +226,8 @@ Response Parameters
    - router_id: floatingip-router_id
    - status: floatingip-status
    - description: description
+   - dns_domain: dns_domain
+   - dns_name: dns_name
    - tenant_id: project_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
@@ -291,6 +307,8 @@ Response Parameters
    - updated_at: updated_at_resource
    - revision_number: revision_number
    - description: description
+   - dns_domain: dns_domain
+   - dns_name: dns_name
 
 Response Example
 ----------------

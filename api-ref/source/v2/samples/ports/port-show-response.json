@@ -7,6 +7,13 @@
         "description": "",
         "device_id": "5e3898d7-11be-483e-9732-b2f5eccd2b2e",
         "device_owner": "network:router_interface",
+        "dns_assignment": {
+            "hostname": "myport",
+            "ip_address": "10.0.0.1",
+            "fqdn": "myport.my-domain.org"
+        },
+        "dns_domain": "my-domain.org.",
+        "dns_name": "myport",
         "extra_dhcp_opts": [],
         "fixed_ips": [
             {
