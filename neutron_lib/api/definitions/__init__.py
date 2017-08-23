@@ -33,6 +33,7 @@ from neutron_lib.api.definitions import network_mtu
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_security
 from neutron_lib.api.definitions import portbindings
+from neutron_lib.api.definitions import portbindings_extended
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import subnet
@@ -65,6 +66,7 @@ _ALL_API_DEFINITIONS = {
     port,
     port_security,
     portbindings,
+    portbindings_extended,
     provider_net,
     router_interface_fip,
     subnet,

@@ -104,8 +104,10 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
             self.skipTest('API definition is not related to standardattr.')
 
     def test_resource_map(self):
-        if not self.resource_map and not self.is_shim_extension:
-            self.fail('Missing resource map, what is this extension doing?')
+        if (not self.resource_map and not self.subresource_map
+                and not self.is_shim_extension):
+            self.fail('Missing resource and subresource map, '
+                      'what is this extension doing?')
         elif self.is_shim_extension:
             self.skipTest('Shim extension with no API changes.')
 
