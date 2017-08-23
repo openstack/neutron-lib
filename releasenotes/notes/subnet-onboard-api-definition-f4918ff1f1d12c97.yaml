@@ -1,0 +1,3 @@
+---
+features:
+    - Adds ``subnet_onboard`` API definition to neutron-lib.

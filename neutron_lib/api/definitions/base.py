@@ -112,6 +112,7 @@ KNOWN_EXTENSIONS = (
     'standard-attr-revisions',
     'standard-attr-timestamp',
     'subnet_allocation',
+    'subnet_onboard',
     'tag',
     'trunk',
     'trunk-details',
