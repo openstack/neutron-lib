@@ -1,5 +1,5 @@
 {
-    "health_monitor": {
+    "healthmonitor": {
         "admin_state_up": false,
         "project_id": "eabfefa3fd1740a88a47ad98e132d238",
         "tenant_id": "eabfefa3fd1740a88a47ad98e132d238",

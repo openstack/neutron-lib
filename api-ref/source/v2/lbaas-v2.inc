@@ -489,11 +489,11 @@ At a minimum, you must specify these listener attributes:
 - ``protocol``. The protocol for which the front end listens. Must
   be ``HTTP``, ``HTTPS``, ``TCP``, or ``TERMINATED_HTTPS``.
 
-Some attributes receive default values if you omit them from the
-request:
-
 - ``protocol_port``. The port on which the front end listens. Must
   be an integer from 1 to 65535.
+
+Some attributes receive default values if you omit them from the
+request:
 
 - ``default_tls_container_ref``. The reference to a container that
   holds TLS secrets. If you also specify ``sni_container_refs``,
@@ -776,8 +776,8 @@ Response Parameters
    - pools: pools-obj
    - admin_state_up: admin_state_up
    - description: description
-   - health_monitors: health_monitors-response
-   - health_monitors_status: health_monitors_status
+   - healthmonitors: healthmonitors-response
+   - healthmonitors_status: healthmonitors_status
    - id: pool-id-response
    - lb_algorithm: lb_algorithm
    - members: members
@@ -886,8 +886,8 @@ Response Parameters
    - pool: pool
    - admin_state_up: admin_state_up
    - description: description
-   - health_monitors: health_monitors-response
-   - health_monitors_status: health_monitors_status
+   - healthmonitors: healthmonitors-response
+   - healthmonitors_status: healthmonitors_status
    - id: pool-id-response
    - lb_algorithm: lb_algorithm
    - members: members
@@ -942,8 +942,8 @@ Response Parameters
    - pool: pool
    - admin_state_up: admin_state_up
    - description: description
-   - health_monitors: health_monitors-response
-   - health_monitors_status: health_monitors_status
+   - healthmonitors: healthmonitors-response
+   - healthmonitors_status: healthmonitors_status
    - lb_algorithm: lb_algorithm
    - members: members
    - id: pool-id-response
@@ -975,7 +975,7 @@ validation of the request, the service returns the HTTP ``Accepted
 (202)`` response code.
 
 Note: You cannot update the pool ID, ``project_id``,
-``listener_id``, ``listeners``, ``health_monitor_id``,
+``listener_id``, ``listeners``, ``healthmonitor_id``,
 ``protocol``, and ``members`` immutable attributes. If you try to
 update any of these attributes, the service returns the HTTP
 ``Immutable (422)`` response code   .
@@ -1013,8 +1013,8 @@ Response Parameters
    - pool: pool
    - admin_state_up: admin_state_up
    - description: description
-   - health_monitors: health_monitors-response
-   - health_monitors_status: health_monitors_status
+   - healthmonitors: healthmonitors-response
+   - healthmonitors_status: healthmonitors_status
    - id: pool-id-response
    - lb_algorithm: lb_algorithm
    - members: members
@@ -1383,12 +1383,12 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitors: health_monitors-obj
+   - healthmonitors: healthmonitors-obj
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes-response
    - http_method: http_method
-   - id: health_monitor-id
+   - id: healthmonitor-id
    - max_retries: max_retries
    - pools: pools
    - project_id: project_id
@@ -1406,7 +1406,7 @@ Response Example
 Create health monitor
 =====================
 
-.. rest_method::  POST /v2.0/lbaas/health_monitors
+.. rest_method::  POST /v2.0/lbaas/healthmonitors
 
 Creates a health monitor.
 
@@ -1472,7 +1472,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor: health_monitor
+   - healthmonitor: healthmonitor
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -1496,12 +1496,12 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor: health_monitor
+   - healthmonitor: healthmonitor
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes-response
    - http_method: http_method
-   - id: health_monitor-id
+   - id: healthmonitor-id
    - max_retries: max_retries
    - pools: pools
    - project_id: project_id
@@ -1519,7 +1519,7 @@ Response Example
 Show health monitor details
 ===========================
 
-.. rest_method::  GET /v2.0/lbaas/health_monitors/{health_monitor_id}
+.. rest_method::  GET /v2.0/lbaas/healthmonitors/{healthmonitor_id}
 
 Shows details for a health monitor.
 
@@ -1539,20 +1539,20 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor_id: health_monitor_id-path
+   - healthmonitor_id: healthmonitor_id-path
 
 Response Parameters
 -------------------
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor: health_monitor
+   - healthmonitor: healthmonitor
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes-response
    - http_method: http_method
    - max_retries: max_retries
-   - id: health_monitor-id
+   - id: healthmonitor-id
    - pools: pools
    - project_id: project_id
    - tenant_id: project_id
@@ -1569,7 +1569,7 @@ Response Example
 Update health monitor
 =====================
 
-.. rest_method::  PUT /v2.0/lbaas/health_monitors/{health_monitor_id}
+.. rest_method::  PUT /v2.0/lbaas/healthmonitors/{healthmonitor_id}
 
 Updates a health monitor.
 
@@ -1590,8 +1590,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor_id: health_monitor_id-path
-   - health_monitor: health_monitor
+   - healthmonitor_id: healthmonitor_id-path
+   - healthmonitor: healthmonitor
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes
@@ -1611,13 +1611,13 @@ Response Parameters
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor: health_monitor
+   - healthmonitor: healthmonitor
    - admin_state_up: admin_state_up
    - delay: delay
    - expected_codes: expected_codes-response
    - http_method: http_method
    - max_retries: max_retries
-   - id: health_monitor-id
+   - id: healthmonitor-id
    - pools: pools
    - project_id: project_id
    - tenant_id: project_id
@@ -1634,7 +1634,7 @@ Response Example
 Remove health monitor
 =====================
 
-.. rest_method::  DELETE /v2.0/lbaas/health_monitors/{health_monitor_id}
+.. rest_method::  DELETE /v2.0/lbaas/healthmonitors/{healthmonitor_id}
 
 Removes a health monitor and its associated configuration from the project.
 
@@ -1655,7 +1655,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - health_monitor_id: health_monitor_id-path
+   - healthmonitor_id: healthmonitor_id-path
 
 Response
 --------

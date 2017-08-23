@@ -103,6 +103,12 @@ health_monitor_id-path:
   in: path
   required: true
   type: string
+healthmonitor_id-path:
+  description: |
+    The ID for the health monitor.
+  in: path
+  required: true
+  type: string
 ikepolicy_id-path:
   description: |
     The ID of the IKE policy.
@@ -2558,16 +2564,43 @@ health_monitors_status:
   type: string
 healthmonitor:
   description: |
-    The associated healthmonitor, if any.
+    A ``healthmonitor`` object.
   in: body
   required: true
   type: object
-healthmonitor_id:
+healthmonitor-id:
   description: |
     The UUID of the health monitor.
   in: body
   required: false
   type: string
+healthmonitors-obj:
+  description: |
+    A list of ``healthmonitor`` objects.
+  in: body
+  required: true
+  type: array
+healthmonitors-request:
+  description: |
+    List of health monitors to be associated with the pool.
+    The default is an empty list.
+  in: body
+  required: false
+  type: array
+healthmonitors-response:
+  description: |
+    List of health monitors that are associated with the pool.
+  in: body
+  required: true
+  type: array
+healthmonitors_status:
+  description: |
+    A list of ``healthmonitors_status`` objects,
+    one per healthmonitor that contains a ``monitor_id``,
+    ``status`` and ``status_description``
+  in: body
+  required: true
+  type: array
 http_method:
   description: |
     The HTTP method that the monitor uses for requests.
@@ -4164,7 +4197,7 @@ protocol:
     The IP protocol. Valid value is ``icmp``,
     ``tcp``, ``udp``, or ``null``. No default.
   in: body
-  required: false
+  required: true
   type: string
 protocol-response:
   description: |
@@ -4212,7 +4245,7 @@ protocol_port-request:
   description: |
     The TCP or UDP port on which to listen.
   in: body
-  required: false
+  required: true
   type: integer
 provider:network_type:
   description: |

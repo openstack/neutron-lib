@@ -4,7 +4,7 @@
         "lb_algorithm": "ROUND_ROBIN",
         "protocol": "HTTP",
         "description": "",
-        "health_monitors": [
+        "healthmonitors": [
             "b7633ade-24dc-4d72-8475-06aa22be5412"
         ],
         "members": [
@@ -18,7 +18,7 @@
         "subnet_id": "aa547115-d710-4d6d-bb2c-b038d9c2704b",
         "project_id": "eabfefa3fd1740a88a47ad98e132d238",
         "tenant_id": "eabfefa3fd1740a88a47ad98e132d238",
-        "health_monitors_status": [
+        "healthmonitors_status": [
             {
                 "monitor_id": "b7633ade-24dc-4d72-8475-06aa22be5412",
                 "status": "ACTIVE",
