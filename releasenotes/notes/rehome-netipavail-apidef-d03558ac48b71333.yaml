@@ -1,0 +1,4 @@
+---
+features:
+  - The ``network-ip-availability`` extension's API definition is now available
+    in ``neutron_lib.api.definitions.network_ip_availability``.
