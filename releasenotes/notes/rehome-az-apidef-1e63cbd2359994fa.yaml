@@ -1,0 +1,10 @@
+---
+features:
+  - The ``availability_zone`` extension's API definition is now available
+    in ``neutron_lib.api.definitions.availability_zone``.
+  - A new API validation type ``type:availability_zone_hint_list`` has been
+    added and validates a list of availability zone hints.
+  - Exceptions for the ``availability_zone`` are now available in
+    ``neutron_lib.exceptions.availability_zone``.
+  - The constant ``AZ_HINTS_DB_LEN`` has been added to
+    ``neutron_lib.db.constants``.

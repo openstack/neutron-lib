@@ -23,6 +23,7 @@ IP_ADDR_FIELD_SIZE = 64  # large enough to hold a v4 or v6 address
 MAC_ADDR_FIELD_SIZE = 32
 RESOURCE_TYPE_FIELD_SIZE = 255
 FQDN_FIELD_SIZE = 255
+AZ_HINTS_DB_LEN = 255
 
 # Alembic branches
 EXPAND_BRANCH = 'expand'
