@@ -1,0 +1,4 @@
+---
+features:
+  - Neutron's ``router_availability_zone`` extension API definition is now
+    available in ``neutron_lib.api.definitions.router_availability_zone``.
