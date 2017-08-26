@@ -1,0 +1,4 @@
+---
+features:
+  - The API definition for neutron's ``qos`` extension is now available in
+    ``neutron_lib.api.definitions.qos``.
