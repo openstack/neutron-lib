@@ -7,6 +7,7 @@
                 "nova"
             ],
             "created_at": "2016-03-08T20:19:41",
+            "dns_domain": "",
             "id": "bc1a76cb-8767-4c3a-bb95-018b822f2130",
             "mtu": 1500,
             "name": "sample_network3",
@@ -28,6 +29,7 @@
                 "nova"
             ],
             "created_at": "2016-03-08T20:19:41",
+            "dns_domain": "",
             "id": "af374017-c9ae-4a1d-b799-ab73111476e2",
             "mtu": 1500,
             "name": "sample_network4",

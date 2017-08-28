@@ -7,6 +7,8 @@
             "description": "",
             "device_id": "",
             "device_owner": "",
+            "dns_domain": "",
+            "dns_name": "",
             "fixed_ips": [
                 {
                     "ip_address": "10.0.0.5",
@@ -31,6 +33,9 @@
             "description": "",
             "device_id": "",
             "device_owner": "",
+            "dns_assignment": {},
+            "dns_domain": "",
+            "dns_name": "",
             "fixed_ips": [
                 {
                     "ip_address": "10.0.0.6",

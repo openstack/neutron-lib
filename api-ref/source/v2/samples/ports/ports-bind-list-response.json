@@ -15,6 +15,13 @@
             "description": "",
             "device_id": "9ae135f4-b6e0-4dad-9e91-3c223e385824",
             "device_owner": "network:router_gateway",
+            "dns_assignment": {
+                "hostname": "myport",
+                "ip_address": "172.24.4.2",
+                "fqdn": "myport.my-domain.org"
+            },
+            "dns_domain": "my-domain.org.",
+            "dns_name": "myport",
             "extra_dhcp_opts": [],
             "fixed_ips": [
                 {
@@ -47,6 +54,13 @@
             "description": "",
             "device_id": "9ae135f4-b6e0-4dad-9e91-3c223e385824",
             "device_owner": "network:router_interface",
+            "dns_assignment": {
+                "hostname": "myport2",
+                "ip_address": "10.0.0.1",
+                "fqdn": "myport2.my-domain.org"
+            },
+            "dns_domain": "my-domain.org.",
+            "dns_name": "myport2",
             "extra_dhcp_opts": [],
             "fixed_ips": [
                 {

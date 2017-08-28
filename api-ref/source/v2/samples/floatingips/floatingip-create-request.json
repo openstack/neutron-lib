@@ -5,6 +5,8 @@
         "subnet_id": "278d9507-36e7-403c-bb80-1d7093318fe6",
         "fixed_ip_address": "10.0.0.3",
         "floating_ip_address": "172.24.4.228",
-        "description": "floating ip for testing"
+        "description": "floating ip for testing",
+        "dns_domain": "my-domain.org.",
+        "dns_name": "myfip"
     }
 }

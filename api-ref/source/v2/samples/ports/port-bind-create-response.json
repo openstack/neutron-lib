@@ -19,6 +19,13 @@
         "description": "",
         "device_id": "d90a13da-be41-461f-9f99-1dbcf438fdf2",
         "device_owner": "baremetal:none",
+        "dns_assignment": {
+            "hostname": "myport",
+            "ip_address": "10.0.0.2",
+            "fqdn": "myport.my-domain.org"
+        },
+        "dns_domain": "my-domain.org.",
+        "dns_name": "myport",
         "fixed_ips": [
             {
                 "ip_address": "10.0.0.2",

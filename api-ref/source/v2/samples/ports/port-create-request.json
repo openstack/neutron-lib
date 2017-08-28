@@ -1,6 +1,8 @@
 {
     "port": {
         "admin_state_up": true,
+        "dns_domain": "my-domain.org.",
+        "dns_name": "myport",
         "name": "private-port",
         "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7"
     }

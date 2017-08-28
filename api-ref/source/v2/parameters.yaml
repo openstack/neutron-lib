@@ -1434,6 +1434,37 @@ direction_2:
   in: body
   required: true
   type: string
+dns_assignment:
+  description: |
+    Data assigned to a port by the Networking internal DNS including the
+    ``hostname``, ``ip_address`` and ``fqdn``.
+  in: body
+  required: true
+  type: object
+dns_domain:
+  description: |
+    A valid DNS domain.
+  in: body
+  required: true
+  type: string
+dns_domain-request:
+  description: |
+    A valid DNS domain.
+  in: body
+  required: false
+  type: string
+dns_name:
+  description: |
+    A valid DNS name.
+  in: body
+  required: true
+  type: string
+dns_name-request:
+  description: |
+    A valid DNS name.
+  in: body
+  required: false
+  type: string
 dpd:
   description: |
     A dictionary with dead peer detection (DPD)
