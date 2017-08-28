@@ -1,0 +1,5 @@
+---
+features:
+  - The ``ExtensionDriver`` class in ``neutron_lib.plugins.ml2.api`` now
+    contains the ``extension_aliases`` property to match neutron's
+    implementation.
