@@ -12,14 +12,30 @@ code with 'invalid input for operation' error message.
 Tag Extension
 =============
 
+.. note::
+
+    NOTE: This extension is deprecated in favor of ``standard-attr-tag``.
+
 The ``tag`` extension allows users to set tags on their networks.
 This extension supports networks only.
 
 Enhanced Tag Extension
 ======================
 
+.. note::
+
+    NOTE: This extension is deprecated in favor of ``standard-attr-tag``.
+
 The ``tag-ext`` extension allows users to set tags on their resources.
 This extension supports subnets, ports, routers, and subnet pools.
+
+Standard Attributes Tag Extension
+=================================
+
+The ``standard-attr-tag`` extends tagging support to all resources that support
+standard attributes. This includes networks, ports, subnets, subnet pools,
+floating IPs, routers, logs, security groups/rules, network segments, QoS
+policies and trunks.
 
 Replace all tags
 ================
@@ -67,7 +83,7 @@ Remove all tags
 
 Removes all tags on the resource.
 
-Normal response codes: 204 
+Normal response codes: 204
 
 Error response codes: 401, 404
 
@@ -91,7 +107,7 @@ Confirm a tag
 
 Confirms a given tag is set on the resource.
 
-Normal response codes: 204 
+Normal response codes: 204
 
 Error response codes: 401, 404
 
@@ -116,7 +132,7 @@ Add a tag
 
 Adds a tag on the resource.
 
-Normal response codes: 201 
+Normal response codes: 201
 
 Error response codes: 401, 404
 
@@ -173,7 +189,7 @@ Remove a tag
 
 Removes a tag on the resource.
 
-Normal response codes: 204 
+Normal response codes: 204
 
 Error response codes: 401, 404
 
