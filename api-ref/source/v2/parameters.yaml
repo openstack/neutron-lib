@@ -5500,12 +5500,6 @@ subnet-obj:
   in: body
   required: true
   type: string
-subnet-revision_number:
-  description: |
-    The revision number of the subnet.
-  in: body
-  required: true
-  type: string
 subnet-segment_id:
   description: |
     The ID of a network segment the subnet is associated with.
@@ -5584,12 +5578,6 @@ subnetpool_is_default:
   in: body
   required: true
   type: boolean
-subnetpool_revision_number:
-  description: |
-    The revision number of the subnetpool.
-  in: body
-  required: true
-  type: string
 subnetpool_updated_at:
   description: |
     Time at which subnetpool has been updated.

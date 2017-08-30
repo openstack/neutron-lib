@@ -51,6 +51,7 @@ Response Parameters
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
+   - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
 
@@ -109,6 +110,7 @@ Response Parameters
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
+   - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
 
@@ -157,6 +159,7 @@ Response Parameters
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
+   - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
 

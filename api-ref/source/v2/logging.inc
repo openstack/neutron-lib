@@ -45,6 +45,7 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - event: log_event
+   - revision_number: revision_number
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id
@@ -112,6 +113,7 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - event: log_event
+   - revision_number: revision_number
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id
@@ -153,6 +155,7 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - event: log_event
+   - revision_number: revision_number
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id
@@ -204,6 +207,7 @@ Response Parameters
    - tenant_id: project_id
    - project_id: project_id
    - event: log_event
+   - revision_number: revision_number
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id

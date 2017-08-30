@@ -65,6 +65,7 @@ Response Parameters
    - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
    - port_id: floatingip-port_id
+   - revision_number: revision_number
 
 Response Example
 ----------------

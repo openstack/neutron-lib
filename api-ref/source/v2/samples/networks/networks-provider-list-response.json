@@ -16,6 +16,7 @@
             "provider:network_type": "vlan",
             "provider:physical_network": "public",
             "provider:segmentation_id": 3,
+            "revision_number": 1,
             "router:external": false,
             "shared": false,
             "status": "ACTIVE",
@@ -43,6 +44,7 @@
             "provider:physical_network": null,
             "provider:segmentation_id": null,
             "qos_policy_id": "bfdb6c39f71e4d44b1dfbda245c50819",
+            "revision_number": 2,
             "router:external": false,
             "segments": [
                 {

@@ -35,6 +35,7 @@
         "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7",
         "port_security_enabled": false,
         "project_id": "7e02058126cc4950b75f9970368ba177",
+        "revision_number": 1,
         "security_groups": [],
         "status": "ACTIVE",
         "tenant_id": "7e02058126cc4950b75f9970368ba177",

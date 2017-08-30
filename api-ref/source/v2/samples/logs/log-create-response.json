@@ -8,6 +8,7 @@
         "enabled": true,
         "resource_type": "security_group",
         "resource_id": null,
+        "revision_number": 1,
         "target_id": null,
         "event": "ALL"
     }

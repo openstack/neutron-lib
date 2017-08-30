@@ -110,6 +110,7 @@ Response Parameters
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
+   - revision_number: revision_number
    - router:external: router:external
    - segments: segments
    - shared: network-shared
@@ -206,6 +207,7 @@ Response Parameters
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
+   - revision_number: revision_number
    - router:external: router:external
    - segments: segments
    - shared: network-shared
@@ -303,6 +305,7 @@ Response Parameters
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
+   - revision_number: revision_number
    - router:external: router:external
    - segments: segments
    - shared: network-shared
@@ -403,6 +406,7 @@ Response Parameters
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
+   - revision_number: revision_number
    - router:external: router:external
    - segments: segments
    - shared: network-shared
@@ -493,6 +497,7 @@ Response Parameters
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
    - qos_policy_id: qos_policy_id
+   - revision_number: revision_number
    - router:external: router:external
    - segments: segments
    - shared: network-shared

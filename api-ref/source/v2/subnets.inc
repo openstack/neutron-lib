@@ -59,7 +59,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
-   - revision_number: subnet-revision_number
+   - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
@@ -169,7 +169,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
-   - revision_number: subnet-revision_number
+   - revision_number: revision_number
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
    - segment_id: subnet-segment_id
@@ -246,7 +246,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
-   - revision_number: subnet-revision_number
+   - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
@@ -301,7 +301,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
-   - revision_number: subnet-revision_number
+   - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
@@ -369,7 +369,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
-   - revision_number: subnet-revision_number
+   - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id

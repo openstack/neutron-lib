@@ -6,6 +6,7 @@
         "project_id": "8d4c70a21fed4aeba121a1a429ba0d04",
         "tenant_id": "8d4c70a21fed4aeba121a1a429ba0d04",
         "enabled": true,
+        "revision_number": 1,
         "resource_type": "security_group",
         "resource_id": null,
         "target_id": null,

@@ -55,6 +55,7 @@ Response Parameters
    - network_id: router-network_id
    - enable_snat: router-enable_snat
    - external_fixed_ips: router-external_fixed_ips
+   - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
    - nexthop: router-nexthop
@@ -132,6 +133,7 @@ Response Parameters
    - network_id: router-network_id
    - enable_snat: router-enable_snat
    - external_fixed_ips: router-external_fixed_ips
+   - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
    - nexthop: router-nexthop
@@ -188,6 +190,7 @@ Response Parameters
    - network_id: router-network_id
    - enable_snat: router-enable_snat
    - external_fixed_ips: router-external_fixed_ips
+   - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
    - nexthop: router-nexthop
@@ -254,6 +257,7 @@ Response Parameters
    - network_id: router-network_id
    - enable_snat: router-enable_snat
    - external_fixed_ips: router-external_fixed_ips
+   - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
    - nexthop: router-nexthop

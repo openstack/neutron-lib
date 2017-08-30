@@ -53,7 +53,7 @@ Response Parameters
    - max_prefixlen: max_prefixlen
    - description: description
    - is_default: subnetpool_is_default
-   - revision_number: subnetpool_revision_number
+   - revision_number: revision_number
 
 Response Example
 ----------------
@@ -118,7 +118,7 @@ Response Parameters
    - max_prefixlen: max_prefixlen
    - description: description
    - is_default: subnetpool_is_default
-   - revision_number: subnetpool_revision_number
+   - revision_number: revision_number
 
 Response Example
 ----------------
@@ -201,7 +201,7 @@ Response Parameters
    - max_prefixlen: max_prefixlen
    - description: description
    - is_default: subnetpool_is_default
-   - revision_number: subnetpool_revision_number
+   - revision_number: revision_number
 
 Response Example
 ----------------
@@ -266,7 +266,7 @@ Response Parameters
    - max_prefixlen: max_prefixlen
    - description: description
    - is_default: subnetpool_is_default
-   - revision_number: subnetpool_revision_number
+   - revision_number: revision_number
 
 Response Example
 ----------------
