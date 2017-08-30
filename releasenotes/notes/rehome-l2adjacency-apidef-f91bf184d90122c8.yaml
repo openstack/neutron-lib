@@ -1,0 +1,4 @@
+---
+features:
+  - The ``l2_adjacency`` extension's API definition is now available in
+    ``neutron_lib.api.definitions.l2_adjacency``.
