@@ -50,12 +50,16 @@ a VLAN transparecy of the network. If the service does not support VLAN
 transparency and a user requests a VLAN transparent network,
 the plug-in refuses to create one and returns an appropriate error to the user.
 
-MTU extension
-=============
+MTU extensions
+==============
 
 The ``net-mtu`` extension allows plug-ins to expose the MTU that is guaranteed
 to pass through the data path of the segments in the network. This extension
 introduces a read-only ``mtu`` attribute.
+
+A newer ``net-mtu-writable`` extension enhances ``net-mtu`` in that now the
+``mtu`` attribute is available for write (both when creating as well as
+updating networks).
 
 DNS integration
 ===============
@@ -158,6 +162,7 @@ Request
    - network: network
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
+   - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
    - provider:network_type: provider:network_type
@@ -352,6 +357,7 @@ Request
    - network: network
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
+   - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
    - project_id: project_id-request
@@ -454,6 +460,7 @@ Request
    - networks: networks
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
+   - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
    - project_id: project_id-request
