@@ -1,0 +1,6 @@
+---
+features:
+  - The new ``net-mtu-writable`` extension API definition has been added as
+    ``neutron_lib.api.definitions.network_mtu_writable``. The new extension
+    indicates that the network ``mtu`` attribute is writeable.  Plugins
+    supporting the new extension are expected to also support ``net-mtu``.
