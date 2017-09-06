@@ -60,3 +60,8 @@ class NeutronSyntheticFieldMultipleForeignKeys(exceptions.NeutronException):
 
 class NeutronSyntheticFieldsForeignKeysNotFound(exceptions.NeutronException):
     message = _("%(child)s does not define a foreign key for %(parent)s")
+
+
+class NeutronObjectValidatorException(exceptions.NeutronException):
+    message = _("Synthetic field(s) %(fields)s undefined, misspelled, or "
+                "otherwise invalid")
