@@ -40,6 +40,7 @@ Response Parameters
    - network_id: network_id
    - physical_network: provider:physical_network
    - network_type: network_type
+   - revision_number: revision_number
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description
@@ -85,6 +86,7 @@ Response Parameters
    - network_id: network_id
    - physical_network: provider:physical_network
    - network_type: network_type
+   - revision_number: revision_number
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description
@@ -150,6 +152,7 @@ Response Parameters
    - network_id: network_id
    - physical_network: provider:physical_network
    - network_type: network_type
+   - revision_number: revision_number
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description
@@ -198,6 +201,7 @@ Response Parameters
    - network_id: network_id
    - physical_network: provider:physical_network
    - network_type: network_type
+   - revision_number: revision_number
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description

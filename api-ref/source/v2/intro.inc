@@ -443,3 +443,19 @@ following errors:
 
 -  403 Forbidden - If the user cannot access a specific resource or perform the
    requested operation.
+
+
+Revisions
+=========
+
+The ``Resource revision numbers`` extension (``standard-attr-revisions``) adds
+the ``revision_number`` attribute to all API resources that support standard
+attributes. This includes networks, ports, subnets, subnet pools, floating IPs,
+routers, logs, security groups/rules, network segments, QoS policies and trunks.
+As you'd expect, the ``revision_number`` indicates the number of updates a
+particular resource has undergone and is read-only.
+
+In addition, the ``If-Match constraints based on revision_number`` extension
+(``revision-if-match``) allows API consumers to leverage the ``If-Match`` HTTP
+header to conditionally update/delete a resource when the HTTP ``If-Match``
+header matches the ``revision_number`` of the said resource.

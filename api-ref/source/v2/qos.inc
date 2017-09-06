@@ -113,6 +113,7 @@ Response Parameters
    - description: description
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - shared: qos-shared
    - id: qos_policy_id
    - rules: qos-rules
@@ -173,6 +174,7 @@ Response Parameters
    - description: description
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - shared: qos-shared
    - rules: qos-rules
    - id: qos_policy_id
@@ -211,6 +213,7 @@ Response Parameters
    - description: description
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - shared: qos-shared
    - rules: qos-rules
    - id: qos_policy_id
@@ -262,6 +265,7 @@ Response Parameters
    - description: description
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - shared: qos-shared
    - id: qos_policy_id
    - rules: qos-rules

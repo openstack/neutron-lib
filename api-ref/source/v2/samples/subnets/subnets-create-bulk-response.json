@@ -23,7 +23,7 @@
             "description": "",
             "ipv6_address_mode": null,
             "ipv6_ra_mode": null,
-            "revision_number": 2,
+            "revision_number": 1,
             "service_types": [],
             "subnetpool_id": null,
             "updated_at": "2016-10-10T14:35:47Z"
@@ -51,7 +51,7 @@
             "description": "",
             "ipv6_address_mode": null,
             "ipv6_ra_mode": null,
-            "revision_number": 2,
+            "revision_number": 1,
             "service_types": [],
             "subnetpool_id": null,
             "updated_at": "2016-10-10T14:35:34Z"

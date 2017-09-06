@@ -101,6 +101,7 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
+   - revision_number: revision_number
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -216,6 +217,7 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
+   - revision_number: revision_number
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -316,6 +318,7 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
+   - revision_number: revision_number
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -414,6 +417,7 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
+   - revision_number: revision_number
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
@@ -505,6 +509,7 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
+   - revision_number: revision_number
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id

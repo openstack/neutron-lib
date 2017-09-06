@@ -43,6 +43,7 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - name: name
    - description: description
    - security_group_rules: security_group_rules
@@ -93,6 +94,7 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - name: name
    - description: description
    - security_group_rules: security_group_rules
@@ -140,6 +142,7 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - name: name
    - description: description
    - security_group_rules: security_group_rules
@@ -186,6 +189,7 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - revision_number: revision_number
    - name: name
    - description: description
    - security_group_rules: security_group_rules
