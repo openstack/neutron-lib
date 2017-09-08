@@ -1,5 +1,5 @@
 ---
 features:
-  - The API defintion for neutron's ``network_availability_zone`` extension
+  - The API definition for neutron's ``network_availability_zone`` extension
     is now available in
     ``neutron_lib.api.definitions.network_availability_zone``.
