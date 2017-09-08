@@ -5114,7 +5114,17 @@ segmentation_id:
   type: integer
 segmentation_type:
   description: |
-    The segmentation type for the subport.
+    The segmentation type for the subport. Possible values include ``vlan``
+    and ``inherit``. When ``inherit`` is specified, a port gets its
+    segmentation type from the network its connected to.
+  in: body
+  required: true
+  type: string
+segmentation_type-request:
+  description: |
+    The segmentation type for the subport. Possible values include ``vlan``
+    and ``inherit``. When ``inherit`` is specified, a port gets its
+    segmentation type from the network its connected to.
   in: body
   required: false
   type: string

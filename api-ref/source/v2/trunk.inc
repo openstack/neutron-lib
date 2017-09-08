@@ -157,7 +157,7 @@ Request
 
    - trunk_id: trunk_id
    - segmentation_id: segmentation_id
-   - segmentation_type: segmentation_type
+   - segmentation_type: segmentation_type-request
    - port_id: port_id_subport
 
 Request Example
