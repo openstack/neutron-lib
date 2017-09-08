@@ -4496,6 +4496,15 @@ quota:
   in: body
   required: true
   type: object
+quota-detail:
+  description: |
+    A ``quota`` detail object. Each key in the object corresponds to a resource
+    type (``network``, ``port``, etc.) having a quota. The value for each
+    resource type is itself an object (the quota set) containing the quota's
+    ``used``, ``limit`` and ``reserved`` integer values.
+  in: body
+  required: true
+  type: object
 quota-floatingip:
   description: |
     The number of floating IP addresses allowed for
