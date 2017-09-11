@@ -36,6 +36,7 @@ from neutron_lib.api.definitions import l3_ext_ha_mode
 from neutron_lib.api.definitions import l3_flavors
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
+from neutron_lib.api.definitions import metering
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import network_availability_zone
 from neutron_lib.api.definitions import network_ip_availability
@@ -85,6 +86,7 @@ _ALL_API_DEFINITIONS = {
     l3_flavors,
     logging,
     logging_resource,
+    metering,
     network,
     network_availability_zone,
     network_ip_availability,
