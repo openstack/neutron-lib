@@ -1,0 +1,5 @@
+---
+upgrade:
+  - The deprecated ``neutron_libutils.file.ensure_dir`` function is removed.
+    Consumers can use ``ensure_tree(path, 0o755)`` from
+    ``oslo_utils.fileutils`` instead.

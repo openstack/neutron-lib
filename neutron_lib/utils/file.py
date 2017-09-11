@@ -13,31 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import errno
 import os
 import tempfile
-
-from debtcollector import removals
-
-
-@removals.remove(
-    message="use ensure_tree(path, 0o755) from oslo_utils.fileutils",
-    version="Ocata",
-    removal_version="Queens")
-def ensure_dir(dir_path):
-    """Ensure a directory with 755 permissions mode.
-
-    :param dir_path: The directory path to ensure.
-    :returns: None.
-    :raises OSError: If the underlying call to makedirs raises an OSError
-        other than EEXIST.
-    """
-    try:
-        os.makedirs(dir_path, 0o755)
-    except OSError as e:
-        # If the directory already existed, don't raise the error.
-        if e.errno != errno.EEXIST:
-            raise
 
 
 def replace_file(file_name, data, file_mode=0o644):

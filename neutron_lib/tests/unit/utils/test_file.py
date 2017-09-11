@@ -11,39 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import errno
 import os.path
 import stat
 
-import mock
-
 from neutron_lib.tests import _base as base
 from neutron_lib.utils import file
-
-
-class TestEnsureDir(base.BaseTestCase):
-
-    @mock.patch('os.makedirs')
-    def test_ensure_dir_no_fail_if_exists(self, makedirs):
-        error = OSError()
-        error.errno = errno.EEXIST
-        makedirs.side_effect = error
-        file.ensure_dir("/etc/create/concurrently")
-
-    @mock.patch('os.makedirs')
-    def test_ensure_dir_oserr(self, makedirs):
-        error = OSError()
-        error.errno = errno.EPERM
-        makedirs.side_effect = error
-        self.assertRaises(OSError,
-                          file.ensure_dir,
-                          "/etc/create/directory")
-        makedirs.assert_called_once_with("/etc/create/directory", 0o755)
-
-    @mock.patch('os.makedirs')
-    def test_ensure_dir_calls_makedirs(self, makedirs):
-        file.ensure_dir("/etc/create/directory")
-        makedirs.assert_called_once_with("/etc/create/directory", 0o755)
 
 
 class TestReplaceFile(base.BaseTestCase):
