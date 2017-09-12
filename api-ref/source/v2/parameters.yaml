@@ -1,6 +1,12 @@
  # variables in header
 
 # variables in path
+agent_id-path:
+  description: |
+    The ID of the agent.
+  in: path
+  required: true
+  type: string
 bgpvpn-id-path:
   description: |
       The ID of the BGP VPN.
@@ -562,6 +568,24 @@ admin_state_up_trunk:
   in: body
   required: false
   type: boolean
+agent:
+  description: |
+    An ``agent`` object.
+  in: body
+  required: true
+  type: object
+agent_type:
+  description: |
+    The type of agent such as ``Open vSwitch agent`` or ``DHCP agent``.
+  in: body
+  required: true
+  type: string
+agents:
+  description: |
+    A list of ``agent`` objects.
+  in: body
+  required: true
+  type: array
 alias:
   description: |
     The alias for the extension. For example,
@@ -570,6 +594,12 @@ alias:
   in: body
   required: true
   type: string
+alive:
+  description: |
+    Indicates the agent is alive and running.
+  in: body
+  required: true
+  type: boolean
 allowed_address_pairs:
   description: |
     A set of zero or more allowed address pair objects each where address pair
@@ -962,6 +992,13 @@ bgpvpns:
   in: body
   required: true
   type: array
+binary:
+  description: |
+    The executable command used to start the agent such as
+    ``neutron-openvswitch-agent`` or ``neutron-dhcp-agent``.
+  in: body
+  required: true
+  type: string
 binding:host_id:
   description: |
     The ID of the host where the port resides.
@@ -1047,6 +1084,13 @@ cidr:
   in: body
   required: true
   type: string
+configurations:
+  description: |
+    An object containing configuration specific key/value pairs; the semantics
+    of which are determined by the binary name and type.
+  in: body
+  required: true
+  type: object
 connection_id-body-response:
   description: |
     The ID of the IPSec site-to-site connection.
@@ -1084,7 +1128,7 @@ connection_limit_3:
   type: integer
 created_at:
   description: |
-    Time at which port has been created.
+    Time at which the resource was created.
   in: body
   required: true
   type: string
@@ -2765,6 +2809,18 @@ healthmonitors_status:
   in: body
   required: true
   type: array
+heartbeat_timestamp:
+  description: |
+    Time at which the last heartbeat was received.
+  in: body
+  required: true
+  type: string
+host:
+  description: |
+    The hostname of the system the agent is running on.
+  in: body
+  required: true
+  type: string
 http_method:
   description: |
     The HTTP method that the monitor uses for requests.
@@ -5476,6 +5532,12 @@ source_port_1:
   in: body
   required: true
   type: string
+started_at:
+  description: |
+    Time at which the agent was started.
+  in: body
+  required: true
+  type: string
 status_description:
   description: |
     Human-readable description of the status.
@@ -6022,6 +6084,14 @@ timeout:
   in: body
   required: true
   type: integer
+topic:
+  description: |
+    The name of AMQP topic the agent is listening on such as
+    ``dhcp_agent``. A special value of ``N/A`` is used when the
+    agent doesn't use an AMQP topic.
+  in: body
+  required: true
+  type: string
 total_ips:
   description: |
     The total number of IP addresses in a network.
