@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The ``bgpvpn-vni`` API extension adds the ``vni`` optional attribute to
+    ``bgpvpn`` objects to control the VXLAN VNI when VXLAN encapsulation
+    is used.

@@ -13,6 +13,7 @@
        "networks": [
          "a4f2b8df-cb42-4893-a333-d0b5c36ade17"
        ],
-       "local_pref": null
+       "local_pref": null,
+       "vni": 1000
     }
 }

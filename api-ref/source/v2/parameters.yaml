@@ -945,6 +945,18 @@ bgpvpn-type-required:
   in: body
   required: true
   type: string
+bgpvpn-vni:
+  description: |
+      The globally-assigned VXLAN ``vni`` for the BGP VPN.
+  in: body
+  required: false
+  type: integer
+bgpvpn-vni-required:
+  description: |
+      The globally-assigned VXLAN ``vni`` for the BGP VPN.
+  in: body
+  required: true
+  type: integer
 bgpvpns:
   description: |
     A list of ``bgpvpn`` objects. Each ``bgpvpn`` object represents an
