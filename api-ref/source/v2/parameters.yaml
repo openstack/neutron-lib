@@ -6004,6 +6004,12 @@ url_path-response:
   in: body
   required: true
   type: string
+use_default_subnetpool:
+  description: |
+    Whether to allocate this subnet from the default subnet pool.
+  in: body
+  required: false
+  type: boolean
 used_ips:
   description: |
     The number of used IP addresses of all subnets in
