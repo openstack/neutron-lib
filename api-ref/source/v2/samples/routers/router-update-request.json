@@ -8,6 +8,12 @@
                     "ip_address": "172.24.4.6",
                     "subnet_id": "b930d7f6-ceb7-40a0-8b81-a425dd994ccf"
                 }
+            ],
+            "routes": [
+                {
+                    "destination": "179.24.1.0/24",
+                    "nexthop": "172.24.3.99"
+                }
             ]
         }
     }
