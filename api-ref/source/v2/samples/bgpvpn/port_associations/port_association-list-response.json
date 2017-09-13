@@ -1,0 +1,16 @@
+{
+    "port_associations": [
+        {
+            "id": "95277be7-a231-4e96-9625-8f9fe41de9d6",
+            "port_id": "61222227-49eb-4dcc-b2d6-66bbfb2fdd7a",
+            "project_id": "b7549121395844bea941bb92feb3fad9",
+            "routes": [
+                {
+                    "type": "prefix",
+                    "prefix": "20.1.0.0/16"
+                }
+            ],
+            "advertise_fixed_ips": true
+        }
+    ]
+}
