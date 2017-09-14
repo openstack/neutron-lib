@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    Fixes BGPVPN Interconnection API to not allow the definition of an empty
+    string Route Target (allowing it was simply wrong and unintentional).
