@@ -1,0 +1,8 @@
+---
+features:
+  - The API defintion for the ``dvr`` extension is now available in
+    ``neutron_lib.api.defintions.dvr``.
+  - The two ``MacAddressGenerationFailure`` exceptions are now available
+    as ``HostMacAddressGenerationFailure`` and
+    ``NetworkMacAddressGenerationFailure`` for host and network MAC address
+    generation errors respectively.

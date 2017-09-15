@@ -515,3 +515,19 @@ class MultipleExceptions(Exception):
         """
         super(MultipleExceptions, self).__init__(*args, **kwargs)
         self.inner_exceptions = exceptions
+
+
+class HostMacAddressGenerationFailure(ServiceUnavailable):
+    """MAC address generation failure for a host.
+
+    :param host: The host MAC address generation failed for.
+    """
+    message = _("Unable to generate unique DVR mac for host %(host)s.")
+
+
+class NetworkMacAddressGenerationFailure(ServiceUnavailable):
+    """An error related to MAC address generation on a network.
+
+        :param net_id: The ID of the network MAC address generation failed on.
+        """
+    message = _("Unable to generate unique mac on network %(net_id)s.")
