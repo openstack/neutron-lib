@@ -10,6 +10,13 @@ appropriate external gateway.
 
 This resource is provided when ``router`` extension is enabled.
 
+Extra routes extension (``extraroute``)
+=======================================
+
+The extra route extension (``extraroute``) extends ``router`` resources adding
+a ``routes`` attribute that contains an array of route objects. Each route
+object has a ``destination`` and ``nexthop`` attribute representing the route.
+
 List routers
 ============
 
@@ -233,6 +240,7 @@ Request
    - external_fixed_ips: router-external_fixed_ips
    - router_id: router_id
    - description: description-request
+   - routes: router-routes-request
 
 Request Example
 ---------------
