@@ -44,6 +44,7 @@ Resource Management
 .. include:: metering.inc
 .. include:: network-ip-availability.inc
 .. include:: quotas.inc
+.. include:: quota_details.inc
 .. include:: service-providers.inc
 .. include:: tags.inc
 ##################
