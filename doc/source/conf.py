@@ -233,3 +233,10 @@ html_last_updated_fmt = '%Y-%m-%d %H:%M'
 repository_name = 'openstack/neutron-lib'
 bug_project = 'neutron'
 bug_tag = 'doc'
+
+linkcheck_anchors_ignore = [
+    # skip gerrit anchors
+    '\/q\/.*',
+    'q\,.*',
+    '\/c\/.*'
+]
