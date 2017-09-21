@@ -512,7 +512,8 @@ How is the notifying object expected to interact with the subscribing objects?
 Is the registry thread-safe?
 
   Short answer is no: it is not safe to make mutations while callbacks are being called (more
-  details as to why can be found `here <https://hg.python.org/releasing/2.7.9/file/753a8f457ddc/Objects/dictobject.c#l937>`_).
+  details as to why can be found line 937 of
+  `dictobject <https://hg.python.org/releasing/2.7.9/file/753a8f457ddc/Objects/dictobject.c>`_).
   A mutation could happen if a 'subscribe'/'unsubscribe' operation interleaves with the execution
   of the notify loop. Albeit there is a possibility that things may end up in a bad state, the
   registry works correctly under the assumption that subscriptions happen at the very beginning
