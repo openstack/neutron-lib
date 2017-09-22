@@ -164,13 +164,13 @@ class Context(ContextBaseWithSession):
         return self._session
 
     def set_transaction_constraint(self, resource, resource_id, rev_number):
-        """Set a revision constraint to enfore before resource_id is changed.
+        """Set a revision constraint to enforce before resource_id is changed.
 
-        :param resource: collection name of resource (e.g. ports or networks)
-        :param resource_id: the primary key ID of the individiual resource that
+        :param resource: Collection name of resource (e.g. ports or networks)
+        :param resource_id: The primary key ID of the individual resource that
                             should have its revision number matched before
                             allowing the transaction to proceed.
-        :param rev_number: the revision_number that the resource should be at.
+        :param rev_number: The revision_number that the resource should be at.
         """
 
         self._txn_constraint = _TransactionConstraint(
