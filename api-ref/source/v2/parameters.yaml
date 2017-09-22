@@ -13,6 +13,12 @@ bgpvpn-network_association_id-path:
   in: path
   required: true
   type: string
+bgpvpn-port_association_id-path:
+  description: |
+      The ID of an association between a port and a BGP VPN.
+  in: path
+  required: true
+  type: string
 bgpvpn-router_association_id-path:
   description: |
       The ID of an association between a router and a BGP VPN.
@@ -656,6 +662,35 @@ bgpvpn:
   in: body
   required: true
   type: object
+bgpvpn-advertise_extra_routes:
+  description: |
+      Boolean flag controlling whether or not the routes specified in the
+      ``routes`` attribute of the router will be advertised to the BGPVPN.
+  in: body
+  required: true
+  type: boolean
+bgpvpn-advertise_extra_routes-request:
+  description: |
+      Boolean flag controlling whether or not the routes specified in the
+      ``routes`` attribute of the router will be advertised to the BGPVPN
+      (default: true).
+  in: body
+  required: false
+  type: boolean
+bgpvpn-advertise_fixed_ips:
+  description: |
+      Boolean flag controlling whether or not the fixed IPs of a port will
+      be advertised to the BGPVPN.
+  in: body
+  required: true
+  type: boolean
+bgpvpn-advertise_fixed_ips-request:
+  description: |
+      Boolean flag controlling whether or not the fixed IPs of a port will
+      be advertised to the BGPVPN (default: true).
+  in: body
+  required: false
+  type: boolean
 bgpvpn-export_targets:
   description: |
       Additional Route Targets that will be used for export.
@@ -686,6 +721,20 @@ bgpvpn-import_targets-required:
   in: body
   required: true
   type: array
+bgpvpn-local_pref:
+  description: |
+      The default BGP LOCAL_PREF of routes that will be advertised to the
+      BGPVPN (unless overriden per-route).
+  in: body
+  required: true
+  type: integer
+bgpvpn-local_pref-request:
+  description: |
+      The default BGP LOCAL_PREF of routes that will be advertised to the
+      BGPVPN (unless overriden per-route). Defaults to ``null``.
+  in: body
+  required: false
+  type: integer
 bgpvpn-name:
   description: |
       The user meaningful name of the BGP VPN.
@@ -735,6 +784,40 @@ bgpvpn-networks-required:
   description: |
        This read-only list of network IDs reflects the associations defined by
        Network association API resources.
+  in: body
+  required: true
+  type: array
+bgpvpn-port_association:
+  description: |
+    A ``port_association`` object represents the binding of a BGP VPN
+    to a Neutron port.
+  in: body
+  required: true
+  type: object
+bgpvpn-port_association_id:
+  description: |
+      The ID of an association between a port and a BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-port_associations:
+  description: |
+    A list of ``port_association`` objects which represent bindings
+    of MPLS networks to Neutron ports.
+  in: body
+  required: true
+  type: array
+bgpvpn-port_id:
+  description: |
+      The ID of a Neutron port with which to associate the BGP VPN.
+  in: body
+  required: true
+  type: string
+bgpvpn-ports:
+  description: |
+      This read-only list of port IDs reflects the associations defined by Port
+      association API resources (only present if the ``bgpvpn-routes-control``
+      API extension is enabled).
   in: body
   required: true
   type: array
@@ -803,6 +886,46 @@ bgpvpn-routers-required:
       Router association API resources.
   in: body
   required: true
+  type: array
+bgpvpn-routes:
+  description: |
+      List of routes, each route being a dict with at least a ``type`` key,
+      which can be ``prefix`` or ``bgpvpn``.
+
+      For the ``prefix`` type, the IP prefix (v4 or v6) to advertise
+      is specified in the ``prefix`` key.
+
+      For the ``bgpvpn`` type, the ``bgpvpn_id`` key specifies the BGPVPN from
+      which routes will be readvertised with the association port as the
+      nexthop (any route carrying an RT among ``route_targets`` or
+      ``import_targets`` of this BGPVPN, will be re-announced toward the RTs
+      of the associated BGPVPN (``export_targets`` + ``route_targets``), with
+      their next-hop/label pointing to this port).
+
+      For both types, the ``local_pref`` key can be used to control the
+      value of the BGP LOCAL_PREF of the routes that will be advertised.
+  in: body
+  required: true
+  type: array
+bgpvpn-routes-request:
+  description: |
+      List of routes, each route being a dict with at least a ``type`` key,
+      which can be ``prefix`` or ``bgpvpn``.
+
+      For the ``prefix`` type, the IP prefix (v4 or v6) to advertise
+      is specified in the ``prefix`` key.
+
+      For the ``bgpvpn`` type, the ``bgpvpn_id`` key specifies the BGPVPN from
+      which routes will be readvertised with the association port as the
+      nexthop (any route carrying an RT among ``route_targets`` or
+      ``import_targets`` of this BGPVPN, will be re-announced toward the RTs
+      of the associated BGPVPN (``export_targets`` + ``route_targets``), with
+      their next-hop/label pointing to this port).
+
+      For both types, the ``local_pref`` key can be used to control the
+      value of the BGP LOCAL_PREF of the routes that will be advertised.
+  in: body
+  required: false
   type: array
 bgpvpn-type:
   description: |
