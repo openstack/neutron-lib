@@ -16,8 +16,6 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib.db import constants as db_const
 
-# Regular expression to validate an empty string
-EMPTY_REGEX = (r'^$')
 # Regular expression to validate 32 bits unsigned int
 UINT32_REGEX = (r'(0|[1-9]\d{0,8}|[1-3]\d{9}|4[01]\d{8}|42[0-8]\d{7}'
                 r'|429[0-3]\d{6}|4294[0-8]\d{5}|42949[0-5]\d{4}'
@@ -34,10 +32,9 @@ IP4_REGEX = (r'(%s\.%s\.%s\.%s)') % (UINT8_REGEX, UINT8_REGEX, UINT8_REGEX,
 # Regular expression to validate Route Target list format
 # Support of the Type 0, Type 1 and Type 2, cf. chapter 4.2 in RFC 4364
 # Also validates Route Distinguisher list format
-RTRD_REGEX = (r'%s|^(%s:%s|%s:%s|%s:%s)$') % (EMPTY_REGEX, UINT16_REGEX,
-                                              UINT32_REGEX, IP4_REGEX,
-                                              UINT16_REGEX, UINT32_REGEX,
-                                              UINT16_REGEX)
+RTRD_REGEX = (r'^(%s:%s|%s:%s|%s:%s)$') % (UINT16_REGEX, UINT32_REGEX,
+                                           IP4_REGEX, UINT16_REGEX,
+                                           UINT32_REGEX, UINT16_REGEX)
 
 # The alias of the extension.
 ALIAS = 'bgpvpn'
