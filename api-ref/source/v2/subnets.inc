@@ -7,6 +7,15 @@ Subnets
 Lists, shows details for, creates, updates, and deletes subnet
 resources.
 
+Default subnetpool extension
+============================
+
+The default subnetpool extension (``default-subnetpools``) allows
+administrative users to specify default subnetpools (one per
+IP version). Then users can specify the ``use_default_subnetpool``
+attribute when creating a subnet, instead of having to specify the
+``subnetpool_id`` attribute referencing the default subnetpool.
+
 List subnets
 ============
 
@@ -140,6 +149,7 @@ Request
    - ipv6_ra_mode: subnet-ipv6_ra_mode-request
    - segment_id: subnet-segment_id-request
    - subnetpool_id: subnet-subnetpool_id-request
+   - use_default_subnetpool: use_default_subnetpool
 
 Request Example
 ---------------
@@ -217,6 +227,7 @@ Request
    - ipv6_ra_mode: subnet-ipv6_ra_mode-request
    - segment_id: subnet-segment_id-request
    - subnetpool_id: subnet-subnetpool_id-request
+   - use_default_subnetpool: use_default_subnetpool
 
 Request Example
 ---------------
