@@ -50,8 +50,8 @@ API extensions consist of the following high-level constructs:
   implements the extension's behavior and should carry out the operations
   defined by the extension. This code resides under its respective project
   repository, not in ``neutron-lib``. For more details see the `neutron api
-  extension dev-ref <https://github.com/openstack/neutron/blob/master/doc/
-  source/devref/api_extensions.rst>`_.
+  extension dev-ref <https://docs.openstack.org/neutron/latest/contributor/
+  internals/api_extensions.html>`_.
 
 
 Using neutron-lib's base extension classes

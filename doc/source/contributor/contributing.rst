@@ -46,7 +46,7 @@ Phase 1: Rehome
 
    - Refactor/enhance the code as part of the initial neutron-lib patch. If this change
      will be disruptive to consumers, clearly communicate the change via email list or
-     `meeting topic <https://wiki.openstack.org/wiki/Network/Meetings#Neutron-lib_and_planned_neutron_refactoring>`_.
+     `meeting topic <https://wiki.openstack.org/wiki/Network/Meetings>`_.
    - Leave the refactoring to the next (Enhance) phase. In this rehome phase, copy the code
      as-is into a private module according to our `conventions <./conventions.html>`_. This
      approach is slower, but may be necessary in some cases.
@@ -124,7 +124,7 @@ source.
 
 - If the change to consume the code from neutron-lib is widespread and/or "important",
   introduce your intentions for the change via the Neutron team
-  `meeting slot <https://wiki.openstack.org/wiki/Network/Meetings#Neutron-lib_and_planned_neutron_refactoring>`_
+  `meeting slot <https://wiki.openstack.org/wiki/Network/Meetings>`_
   for neutron-lib. Subsequently follow-up with an email to openstack-dev list using a
   subject with ``[neutron] neutron-lib impact`` providing additional details as necessary.
   Ideally we can identify the main impacted subprojects by
