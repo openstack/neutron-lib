@@ -29,3 +29,7 @@ dashboard can give you a glimpse into the sanity of the integration between
 neutron-lib and the Stadium projects, and can be considered the quick check
 before going ahead with a full blown sentinel patch. Periodic failures can be
 debugged by viewing the `periodic logs <http://logs.openstack.org/periodic>`_
+
+In addition, both the API reference as well as the project docs should be
+validated to ensure there are no dead links. To do so run
+``tox -e linkcheck`` and address the errors.

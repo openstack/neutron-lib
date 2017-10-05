@@ -228,3 +228,10 @@ latex_documents = [
 
 # If false, no module index is generated.
 # latex_use_modindex = True
+
+linkcheck_anchors_ignore = [
+    # skip gerrit anchors
+    '\/q\/.*',
+    'q\,.*',
+    '\/c\/.*'
+]
