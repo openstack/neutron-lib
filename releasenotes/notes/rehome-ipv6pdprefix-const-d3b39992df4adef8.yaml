@@ -1,0 +1,4 @@
+---
+features:
+  - The ``PROVISIONAL_IPV6_PD_PREFIX`` constant is now available in
+    ``neutron_lib.constants``.

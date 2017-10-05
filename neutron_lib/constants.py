@@ -320,6 +320,8 @@ INGRESS_DIRECTION = 'ingress'
 EGRESS_DIRECTION = 'egress'
 VALID_DIRECTIONS = (INGRESS_DIRECTION, EGRESS_DIRECTION)
 
+PROVISIONAL_IPV6_PD_PREFIX = '::/64'
+
 
 class Sentinel(object):
     """A constant object that does not change even when copied."""
