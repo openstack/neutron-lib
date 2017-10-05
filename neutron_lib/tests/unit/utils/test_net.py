@@ -33,34 +33,16 @@ class TestGetHostname(base.BaseTestCase):
 
 class TestGetRandomMac(base.BaseTestCase):
 
-    def test_full_prefix_does_nothing(self):
-        mac = net.get_random_mac(['aa', 'bb', 'cc', 'dd', 'ee', 'ff'])
-
-        self.assertEqual('aa:bb:cc:dd:ee:ff', mac)
-
-    @mock.patch.object(random, 'randint', side_effect=[0x11])
-    def test_5_octets_prefix_replaces_1_part(self, mock_rnd):
-        mac = net.get_random_mac(['aa', 'bb', 'cc', 'dd', 'ee', '00'])
-
-        self.assertEqual('aa:bb:cc:dd:ee:11', mac)
-
-        mock_rnd.assert_called_with(0x00, 0xff)
-
-    @mock.patch.object(random, 'randint',
-                       side_effect=[0x01, 0x02, 0x03, 0x04, 0x05])
-    def test_1_octets_prefix_replaces_5_parts(self, mock_rnd):
-        mac = net.get_random_mac(['aa', '00', '00', '00', '00', '00'])
-
-        self.assertEqual('aa:01:02:03:04:05', mac)
-
+    @mock.patch.object(random, 'randint', return_value=0xa2)
+    def test_first_4_octets_unchanged(self, mock_rnd):
+        mac = net.get_random_mac(['aa', 'bb', '00', 'dd', 'ee', 'ff'])
+        self.assertEqual('aa:bb:00:dd:a2:a2', mac)
         mock_rnd.assert_called_with(0x00, 0xff)
 
     @mock.patch.object(random, 'randint', return_value=0xa2)
-    def test_no_prefix_replaces_all_parts(self, mock_rnd):
-        mac = net.get_random_mac(['00', '00', '00', '00', '00', '00'])
-
-        self.assertEqual('a2:a2:a2:a2:a2:a2', mac)
-
+    def test_first_4th_octet_generated(self, mock_rnd):
+        mac = net.get_random_mac(['aa', 'bb', 'cc', '00', 'ee', 'ff'])
+        self.assertEqual('aa:bb:cc:a2:a2:a2', mac)
         mock_rnd.assert_called_with(0x00, 0xff)
 
 

@@ -1,0 +1,6 @@
+---
+fixes:
+  - Bug `1720046 <https://bugs.launchpad.net/neutron/+bug/1720046>`_ is fixed
+    by reverting the logic of ``neutron_lib.utils.net.get_random_mac`` to its
+    original behavior from commit `If2539f94b5479f0d6afa64c973082cbe8c5309ac
+    <https://review.openstack.org/#/c/400408/>`_.
