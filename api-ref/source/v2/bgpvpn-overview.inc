@@ -50,6 +50,27 @@ Valid strings for a Route Target or a Route Distinguisher are the following:
 - <4-byte AS#>:<16bit-number>
 - <4-byte IPv4>:<16bit-number>
 
+On VXLAN VNI
+============
+
+.. note:: This feature is under development in the Queens release
+
+VXLAN is one option among others that could be used for BGP E-VPNs.
+When VXLAN is used on a hardware platform the use of a locally-assigned id
+may not be always possible which introduces the need to configure a
+globally-assigned VXLAN VNI.
+
+The optional ``vni`` attribute is an admin-only parameter and allows the
+admin to enforce the use of a chosen globally-assigned VXLAN VNI for the
+said BGPVPN.
+
+The default when no VNI is specified and the VXLAN encapsulation is used, is
+to let the backend choose the VNI in advertised routes, and use the VNI in
+received routes for transmitted traffic. The backend will conform to
+E-VPN overlay specs.
+
+Valid range for the ``vni`` attribute is [1, 2\ :sup:`24`\ -1].
+
 Control of routes advertised to BGPVPNs
 =======================================
 

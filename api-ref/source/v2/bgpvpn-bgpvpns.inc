@@ -55,6 +55,7 @@ Response Parameters
    - routers: bgpvpn-routers-required
    - ports: bgpvpn-ports
    - local_pref: bgpvpn-local_pref
+   - vni: bgpvpn-vni-required
    - tenant_id: project_id
    - project_id: project_id
 
@@ -87,6 +88,7 @@ Request
    - import_targets: bgpvpn-import_targets
    - export_targets: bgpvpn-export_targets
    - local_pref: bgpvpn-local_pref-request
+   - vni: bgpvpn-vni
    - tenant_id: tenant_id-request
    - project_id: project_id-request
    - type: bgpvpn-type
@@ -113,6 +115,7 @@ Response Parameters
    - routers: bgpvpn-routers-required
    - ports: bgpvpn-ports
    - local_pref: bgpvpn-local_pref
+   - vni: bgpvpn-vni-required
    - tenant_id: project_id
    - project_id: project_id
 
@@ -157,6 +160,7 @@ Response Parameters
    - routers: bgpvpn-routers-required
    - ports: bgpvpn-ports
    - local_pref: bgpvpn-local_pref
+   - vni: bgpvpn-vni-required
    - tenant_id: project_id
    - project_id: project_id
 
@@ -216,6 +220,7 @@ Response Parameters
    - routers: bgpvpn-routers-required
    - ports: bgpvpn-ports
    - local_pref: bgpvpn-local_pref
+   - vni: bgpvpn-vni-required
    - tenant_id: project_id
    - project_id: project_id
 

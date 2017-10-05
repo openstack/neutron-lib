@@ -12,6 +12,7 @@
     "type": "l3",
     "id": "4d627abf-06dd-45ab-920b-8e61422bb984",
     "networks": [],
-    "local_pref": null
+    "local_pref": null,
+    "vni": 1000
   }
 }

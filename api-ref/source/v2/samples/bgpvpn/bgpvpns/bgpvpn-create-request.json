@@ -5,6 +5,7 @@
     "import_targets": "64512:1555",
     "export_targets": "64512:1666",
     "route_distinguishers": ["64512:1777", "64512:1888", "64512:1999"],
-    "type": "l3"
+    "type": "l3",
+    "vni": 1000
   }
 }
