@@ -4,6 +4,13 @@
         "dns_domain": "my-domain.org.",
         "dns_name": "myport",
         "name": "private-port",
-        "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7"
+        "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7",
+        "port_security_enabled": true,
+        "allowed_address_pairs": [
+            {
+                "ip_address": "12.12.11.12",
+                "mac_address": "fa:14:2a:b3:cb:f0"
+            }
+        ]
     }
 }

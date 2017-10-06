@@ -35,6 +35,7 @@
             "ce0179d6-8a94-4f7c-91c2-f3038e2acbd0"
         ],
         "status": "DOWN",
-        "tenant_id": "522eda8d23124b25bf03fe44f1986b74"
+        "tenant_id": "522eda8d23124b25bf03fe44f1986b74",
+        "port_security_enabled": false
     }
 }

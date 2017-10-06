@@ -1,7 +1,12 @@
 {
     "port": {
         "admin_state_up": true,
-        "allowed_address_pairs": [],
+        "allowed_address_pairs": [
+            {
+                "ip_address": "12.12.11.12",
+                "mac_address": "fa:14:2a:b3:cb:f0"
+            }
+        ],
         "created_at": "2016-03-08T20:19:41",
         "data_plane_status": null,
         "description": "",

@@ -572,27 +572,25 @@ alias:
   type: string
 allowed_address_pairs:
   description: |
-    A set of zero or more allowed address pairs.
-    An address pair consists of an IP address range and MAC address
-    with the format of
-    ``{"ip_address": "<IP address or CIDR>", "mac_address": "<MAC address>"}``.
-    A server connected to the port can send a packet with source address
-    which matches one of the specified allowed address pairs.
+    A set of zero or more allowed address pair objects each where address pair
+    object contains an ``ip_address`` and ``mac_address``. While the
+    ``ip_address`` is required, the ``mac_address`` will be taken from the
+    port if not specified. The value of ``ip_address`` can be an IP Address
+    or a CIDR (if supported by the underlying extension plugin).
+    A server connected to the port can send a packet with source address which
+    matches one of the specified allowed address pairs.
   in: body
   required: true
   type: array
 allowed_address_pairs-request:
   description: |
-    A set of zero or more allowed address pairs.
-    An address pair consists of an IP address range and MAC address
-    with the format of
-    ``{"ip_address": "<IP address or CIDR>", "mac_address": "<MAC address>"}``.
-    A server connected to the port can send a packet with source address
-    which matches one of the specified allowed address pairs.
-    The default is an empty list.
-    For each address pair, ``ip_address`` is required and IP address or
-    CIDR can be specified. ``mac_address`` is optional and if unspecified
-    the MAC address of the port is used as default.
+    A set of zero or more allowed address pair objects each where address pair
+    object contains an ``ip_address`` and ``mac_address``. While the
+    ``ip_address`` is required, the ``mac_address`` will be taken from the
+    port if not specified. The value of ``ip_address`` can be an IP Address
+    or a CIDR (if supported by the underlying extension plugin).
+    A server connected to the port can send a packet with source address which
+    matches one of the specified allowed address pairs.
   in: body
   required: false
   type: array
