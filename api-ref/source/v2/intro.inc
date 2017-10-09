@@ -8,21 +8,21 @@
 API guide
 =========
 
-This section introduces readers to OpenStack Networking (v2) API, providers
+This section introduces readers to OpenStack Networking (v2) API, provides
 guidelines on how to use it, and describes common features available to users
 throughout all Networking APIs.
 
 General information
 ===================
 
-The Networking API v2.0 is a ReSTful HTTP service that uses all aspects of the
+The Networking API v2.0 is a RESTful HTTP service that uses all aspects of the
 HTTP protocol including methods, URIs, media types, response codes, and so on.
 Providers can use existing features of the protocol including caching,
 persistent connections, and content compression. For example, providers who
-employ a caching layer can respond with a 203 code instead of a 200 code when a
-request is served from the cache.  Additionally, providers can offer support
-for conditional **GET** requests by using ETags, or they may send a redirect in
-response to a **GET** request. Create clients so that these differences are
+employ a caching layer can respond with a ``203`` code instead of a ``200`` code
+when a request is served from the cache.  Additionally, providers can offer support
+for conditional ``GET`` requests by using ETags, or they may send a redirect in
+response to a ``GET`` request. Create clients so that these differences are
 accounted for.
 
 Authentication and authorization
@@ -31,7 +31,7 @@ Authentication and authorization
 The Networking API v2.0 uses the `OpenStack Identity service
 <https://docs.openstack.org/keystone/latest/>`_ as the default authentication
 service. When Keystone is enabled, users that submit requests to the OpenStack
-Networking service must provide an authentication token in **X-Auth-Token**
+Networking service must provide an authentication token in ``X-Auth-Token``
 request header. You obtain the token by authenticating to the Keystone
 endpoint.
 
@@ -94,9 +94,9 @@ Query extension
     A ``.json`` extension can be added to the request URI. For example, the
     ``.json`` extension in the following requests are equivalent:
 
-    - **GET** *publicURL*/networks
+    - ``GET`` *publicURL*/networks
 
-    - **GET** *publicURL*/networks.json
+    - ``GET`` *publicURL*/networks.json
 
 Tenant and project attributes in responses
 ------------------------------------------
@@ -139,7 +139,7 @@ with the different OR criteria. For example, to find all networks named
 
 
 ORs and ANDs can be combined. For example, if you want all networks with
-admin_state_up=True and shared=True and named 'foobar' or 'bizbaz':
+admin_state_up=True and shared=True and named ``foobar`` or ``bizbaz``:
 
 .. code::
 
@@ -172,16 +172,16 @@ Networking plug-in to communicate with the underlying infrastructure to ensure
 packet forwarding is consistent with the logical model. A plug-in might perform
 these operations asynchronously.
 
-When an API client modifies the logical model by issuing an HTTP **POST**,
-**PUT**, or **DELETE** request, the API call might return before the plug-in
+When an API client modifies the logical model by issuing an HTTP ``POST``,
+``PUT``, or ``DELETE`` request, the API call might return before the plug-in
 modifies underlying virtual and physical switching devices. However, an API
 client is guaranteed that all subsequent API calls properly reflect the changed
 logical model.
 
-For example, if a client issues an HTTP **PUT** request to set the attachment
+For example, if a client issues an HTTP ``PUT`` request to set the attachment
 for a port, there is no guarantee that packets sent by the interface named in
 the attachment are forwarded immediately when the HTTP call returns. However,
-it is guaranteed that a subsequent HTTP **GET** request to view the attachment
+it is guaranteed that a subsequent HTTP ``GET`` request to view the attachment
 on that port returns the new attachment value.
 
 You can use the ``status`` attribute with the network and port resources to
@@ -203,15 +203,15 @@ behavior so that users can expect the same behavior regardless of the
 particular plug-in running in the background.
 
 OpenStack Networking might be deployed without support for bulk operations and
-when the client attempts a bulk create operation, a 400 Bad request error is
+when the client attempts a bulk create operation, a ``400`` Bad request error is
 returned.
 
 Pagination
 ==========
 
 To reduce load on the service, list operations will return a maximum number of
-items at a time. To navigate the collection, the parameters limit, marker and
-page\_reverse can be set in the URI. For example:
+items at a time. To navigate the collection, the parameters ``limit``, ``marker``
+and ``page_reverse`` can be set in the URI. For example:
 
 .. code::
 
@@ -223,11 +223,11 @@ the page direction. These parameters are optional. If the client requests a
 limit beyond the maximum limit configured by the deployment, the server returns
 the maximum limit number of items.
 
-For convenience, list responses contain atom "next" links and "previous" links.
-The last page in the list requested with 'page\_reverse=False' will not contain
-"next" link, and the last page in the list requested with 'page\_reverse=True'
-will not contain "previous" link. The following examples illustrate two pages
-with three items. The first page was retrieved through:
+For convenience, list responses contain atom ``next`` links and ``previous``
+links. The last page in the list requested with ``page_reverse=False`` will not
+contain ``next`` link, and the last page in the list requested with
+``page_reverse=True`` will not contain ``previous`` link. The following examples
+illustrate two pages with three items. The first page was retrieved through:
 
 .. code::
 
@@ -304,7 +304,7 @@ To determine if pagination is supported, a user can check whether the
     }
 
 
-The last page won't show the "next" links
+The last page won't show the ``next`` links
 
 **Example Network collection, last page: JSON request**
 
@@ -385,13 +385,13 @@ The purpose of Networking API v2.0 extensions is to:
 -  Act as a proving ground for experimental functionalities that might be
    included in a future version of the API.
 
-To programmatically determine which extensions are available, issue a **GET**
-request on the **v2.0/extensions** URI.
+To programmatically determine which extensions are available, issue a ``GET``
+request on the ``v2.0/extensions`` URI.
 
-To query extensions individually by unique alias, issue a **GET** request on
+To query extensions individually by unique alias, issue a ``GET`` request on
 the ``/v2.0/extensions/*alias_name*`` URI. Use this method to easily
 determine if an extension is available. If the extension is not available, a
-404 Not Found response is returned.
+``404 Not Found`` response is returned.
 
 You can extend existing core API resources with new actions or extra
 attributes. Also, you can add new resources as extensions. Extensions usually
@@ -406,13 +406,13 @@ Faults
 
 The Networking API v2.0 returns an error response if a failure occurs while
 processing a request. OpenStack Networking uses only standard HTTP error codes.
-4\ *nn* errors indicate problems in the particular request being sent from
+``4nn`` errors indicate problems in the particular request being sent from
 the client.
 
 +-------+--------------------------------------------------------------+
 | Error | Description                                                  |
 +=======+==============================================================+
-| 400   | Bad request                                                  |
+|``400``| Bad request                                                  |
 |       | Malformed request URI or body requested admin state invalid  |
 |       | Invalid values entered                                       |
 |       | Bulk operations disallowed                                   |
@@ -420,29 +420,29 @@ the client.
 |       | Method not allowed for request body (such as trying to       |
 |       | update attributes that can be specified at create-time only) |
 +-------+--------------------------------------------------------------+
-| 404   | Not Found                                                    |
+|``404``| Not Found                                                    |
 |       | Non existent URI                                             |
 |       | Resource not found                                           |
 +-------+--------------------------------------------------------------+
-| 409   | Conflict                                                     |
+|``409``| Conflict                                                     |
 |       | Port configured on network                                   |
 |       | IP allocated on subnet                                       |
 |       | Conflicting IP allocation pools for subnet                   |
 +-------+--------------------------------------------------------------+
-| 500   | Internal server error                                        |
+|``500``| Internal server error                                        |
 |       | Internal OpenStack Networking error                          |
 +-------+--------------------------------------------------------------+
-| 503   | Service unavailable                                          |
+|``503``| Service unavailable                                          |
 |       | Failure in Mac address generation                            |
 +-------+--------------------------------------------------------------+
 
 Users submitting requests to the Networking API v2.0 might also receive the
 following errors:
 
--  401 Unauthorized - If invalid credentials are provided.
+-  ``401 Unauthorized`` - If invalid credentials are provided.
 
--  403 Forbidden - If the user cannot access a specific resource or perform the
-   requested operation.
+-  ``403 Forbidden`` - If the user cannot access a specific resource or perform
+   the requested operation.
 
 
 Revisions
