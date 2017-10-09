@@ -41,6 +41,7 @@ ONBOARD_SUBNETS_SPECS = {
 RESOURCE_ATTRIBUTE_MAP = {
     subnetpool_def.COLLECTION_NAME: {
         subnet_def.COLLECTION_NAME: {
+            'allow_post': True, 'allow_put': True,
             'validate': {
                 'type:list_of_any_key_specs_or_none': ONBOARD_SUBNETS_SPECS
             }

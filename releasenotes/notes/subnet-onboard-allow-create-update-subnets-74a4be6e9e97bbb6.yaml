@@ -1,0 +1,4 @@
+---
+features:
+  - The ``subnet_onboard`` API definition now supports creating and updating
+    subnets
