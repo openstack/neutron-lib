@@ -33,17 +33,17 @@ class TestGetHostname(base.BaseTestCase):
 
 class TestGetRandomMac(base.BaseTestCase):
 
-    @mock.patch.object(random, 'randint', return_value=0xa2)
+    @mock.patch.object(random, 'getrandbits', return_value=0xa2)
     def test_first_4_octets_unchanged(self, mock_rnd):
         mac = net.get_random_mac(['aa', 'bb', '00', 'dd', 'ee', 'ff'])
         self.assertEqual('aa:bb:00:dd:a2:a2', mac)
-        mock_rnd.assert_called_with(0x00, 0xff)
+        mock_rnd.assert_called_with(8)
 
-    @mock.patch.object(random, 'randint', return_value=0xa2)
+    @mock.patch.object(random, 'getrandbits', return_value=0xa2)
     def test_first_4th_octet_generated(self, mock_rnd):
         mac = net.get_random_mac(['aa', 'bb', 'cc', '00', 'ee', 'ff'])
         self.assertEqual('aa:bb:cc:a2:a2:a2', mac)
-        mock_rnd.assert_called_with(0x00, 0xff)
+        mock_rnd.assert_called_with(8)
 
 
 class TestPortDeviceOwner(base.BaseTestCase):

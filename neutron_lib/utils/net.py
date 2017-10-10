@@ -36,8 +36,8 @@ def get_random_mac(base_mac):
     """
 
     mac = [int(base_mac[0], 16), int(base_mac[1], 16),
-           int(base_mac[2], 16), random.randint(0x00, 0xff),
-           random.randint(0x00, 0xff), random.randint(0x00, 0xff)]
+           int(base_mac[2], 16), random.getrandbits(8),
+           random.getrandbits(8), random.getrandbits(8)]
     if base_mac[3] != '00':
         mac[3] = int(base_mac[3], 16)
     return ':'.join(["%02x" % x for x in mac])
