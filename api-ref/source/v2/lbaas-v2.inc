@@ -34,6 +34,10 @@ members of a pool, and health monitors and view status of a resource.
 
 .. ============================================================
 
+==============
+Load balancers
+==============
+
 List load balancers
 ===================
 
@@ -356,6 +360,10 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
+======================
+Load balancer statuses
+======================
+
 Show load balancer status tree
 ==============================
 
@@ -405,6 +413,10 @@ Response Example
    :language: javascript
 
 .. ============================================================
+
+=========
+Listeners
+=========
 
 List listeners
 ==============
@@ -740,6 +752,10 @@ There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
+=====
+Pools
+=====
+
 List pools
 ==========
 
@@ -1066,6 +1082,10 @@ There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
 
+============
+Pool members
+============
+
 List pool members
 =================
 
@@ -1348,6 +1368,10 @@ Response
 There is no body content for the response of a successful DELETE request.
 
 .. ============================================================
+
+===============
+Health monitors
+===============
 
 List health monitors
 ====================
