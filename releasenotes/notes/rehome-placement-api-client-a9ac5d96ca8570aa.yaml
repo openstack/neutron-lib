@@ -1,0 +1,6 @@
+---
+features:
+  - The neutron placement API client is now available as
+    ``neutron_lib.clients.placement``.
+  - A new fixture for testing placement API calls has been added as
+    ``neutron_lib.fixtures.PlacementAPIClientFixture``.
