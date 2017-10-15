@@ -1,0 +1,7 @@
+---
+features:
+  - A new ``PORT_BINDING`` resource definition has been added to
+    ``neutron_lib.callbacks.resources``, to enable the multiple port
+    binding service plugin to notify the core plugin and other
+    subscribers when create, update and delete operations are performed
+    on a port binding.
