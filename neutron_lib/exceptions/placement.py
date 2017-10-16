@@ -37,3 +37,8 @@ class PlacementInventoryUpdateConflict(exceptions.Conflict):
 class PlacementAggregateNotFound(exceptions.NotFound):
     message = _("Aggregate not found for resource provider "
                 "%(resource_provider)s.")
+
+
+class PlacementAPIVersionIncorrect(exceptions.NotFound):
+    message = _("Placement API version %(current_version)s, do not meet the"
+                "needed version %(needed_version)s.")

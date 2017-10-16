@@ -1,0 +1,13 @@
+features:
+  - Added ``list_resource_providers`` function to the Placement API client, which
+    allows to retrieve a list of Resource Providers filtering by UUID or parent
+    UUID.
+    It requires at least version ``1.3`` of placement API for listing resource
+    providers that are members of any of the list of aggregates provided.
+    It requires at least version ``1.14`` of placement API for listing nested
+    resource providers.
+  - Added ``get_resource_provider`` function to the Placement API client, which
+    allows to retrieve an specific Resource Provider by its UUID.
+  - Added ``PlacementAPIVersionIncorrect`` exception class which can be raised
+    when requested placement API version is incorect and doesn't support
+    requested API feature.

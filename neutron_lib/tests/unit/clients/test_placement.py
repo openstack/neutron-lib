@@ -33,7 +33,8 @@ class TestPlacementAPIClient(base.BaseTestCase):
         super(TestPlacementAPIClient, self).setUp()
         config = mock.Mock()
         config.region_name = 'region_name'
-        self.openstack_api_version = 'version 1.1'
+        self.openstack_api_version = (
+            placement.PLACEMENT_API_WITH_NESTED_RESOURCES)
         self.placement_api_client = placement.PlacementAPIClient(
             config, self.openstack_api_version)
         self.placement_fixture = self.useFixture(
@@ -50,6 +51,50 @@ class TestPlacementAPIClient(base.BaseTestCase):
             RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_delete.assert_called_once_with(
             '/resource_providers/%s' % RESOURCE_PROVIDER_UUID)
+
+    def test_get_resource_provider(self):
+        headers = {'OpenStack-API-Version': self.openstack_api_version}
+        self.placement_api_client.get_resource_provider(RESOURCE_PROVIDER_UUID)
+        self.placement_fixture.mock_get.assert_called_once_with(
+            '/resource_providers/%s' % RESOURCE_PROVIDER_UUID,
+            headers=headers)
+
+    def test_get_resource_provider_no_resource_provider(self):
+        self.placement_fixture.mock_get.side_effect = ks_exc.NotFound()
+        self.assertRaises(n_exc.PlacementResourceProviderNotFound,
+                          self.placement_api_client.get_resource_provider,
+                          RESOURCE_PROVIDER_UUID)
+
+    def test_list_resource_providers(self):
+        headers = {'OpenStack-API-Version': self.openstack_api_version}
+        filter_1 = {'name': 'name1', 'in_tree': 'tree1_uuid'}
+        self.placement_api_client.list_resource_providers(**filter_1)
+        self.placement_fixture.mock_get.assert_called_once_with(
+            '/resource_providers', headers=headers, **filter_1)
+
+        filter_2 = {'member_of': ['aggregate_uuid'], 'uuid': 'uuid_1',
+                    'resources': {'r_class1': 'value1'}}
+        self.placement_fixture.mock_get.reset_mock()
+        self.placement_api_client.list_resource_providers(**filter_2)
+        self.placement_fixture.mock_get.assert_called_once_with(
+            '/resource_providers', headers=headers, **filter_2)
+
+        filter_1.update(filter_2)
+        self.placement_fixture.mock_get.reset_mock()
+        self.placement_api_client.list_resource_providers(**filter_1)
+        self.placement_fixture.mock_get.assert_called_once_with(
+            '/resource_providers', headers=headers, **filter_1)
+
+    def test_list_resource_providers_placement_api_version_too_low(self):
+        self.placement_api_client._target_version = (1, 1)
+        self.assertRaises(
+            n_exc.PlacementAPIVersionIncorrect,
+            self.placement_api_client.list_resource_providers,
+            member_of=['aggregate_uuid'])
+        self.assertRaises(
+            n_exc.PlacementAPIVersionIncorrect,
+            self.placement_api_client.list_resource_providers,
+            in_tree='tree1_uuid')
 
     def test_create_inventory(self):
         inventory = mock.ANY
