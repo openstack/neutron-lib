@@ -29,7 +29,8 @@
             "revision_number": 1,
             "security_groups": [],
             "status": "ACTIVE",
-            "tenant_id": ""
+            "tenant_id": "",
+            "port_security_enabled": false
         },
         {
             "admin_state_up": true,
@@ -60,7 +61,8 @@
             "revision_number": 1,
             "security_groups": [],
             "status": "ACTIVE",
-            "tenant_id": "d397de8a63f341818f198abb0966f6f3"
+            "tenant_id": "d397de8a63f341818f198abb0966f6f3",
+            "port_security_enabled": false
         }
     ]
 }

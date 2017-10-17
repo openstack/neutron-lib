@@ -25,7 +25,8 @@
                 "f0ac4394-7e4a-4409-9701-ba8be283dbc3"
             ],
             "status": "DOWN",
-            "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa"
+            "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
+            "port_security_enabled": false
         },
         {
             "admin_state_up": false,
@@ -53,7 +54,8 @@
                 "f0ac4394-7e4a-4409-9701-ba8be283dbc3"
             ],
             "status": "DOWN",
-            "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa"
+            "tenant_id": "d6700c0c9ffa4f1cb322cd4a1f3906fa",
+            "port_security_enabled": false
         }
     ]
 }

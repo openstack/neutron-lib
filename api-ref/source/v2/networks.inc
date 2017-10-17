@@ -69,6 +69,19 @@ The ``dns_domain`` of a network in conjunction with the ``dns_name`` attribute
 of its ports will be published in an external DNS service when Neutron is
 configured to integrate with such a service.
 
+Port security
+=============
+
+The ``port-security`` extension adds the ``port_security_enabled`` boolean
+attribute to networks. At the network level, ``port_security_enabled``
+defines the default value for new ports attached to the network; they will
+inherit the value of their network's ``port_security_enabled`` unless
+explicitly set on the port itself. While the default value for
+``port_security_enabled`` is ``true``, this can be changed by updating the
+respective network. Note that changing a value of ``port_security_enabled``
+on a network, does not cascade the value to ports attached to the network.
+
+
 Show network details
 ====================
 
