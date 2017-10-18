@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    A new abstract method ``ha_state_change`` has been added to ``L3AgentExtension``.
