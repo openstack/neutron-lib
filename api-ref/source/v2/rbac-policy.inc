@@ -174,7 +174,6 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - rbac_policy_id: rbac_policy_id-path
    - target_tenant: target_tenant
    - object_type: object_type
    - object_id: object_id
