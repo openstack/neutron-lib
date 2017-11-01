@@ -4228,40 +4228,22 @@ port_id_subport:
 port_range_max:
   description: |
     The maximum port number in the range that is
-    matched by the security group rule. The ``port_range_min``
-    attribute constrains the ``port_range_max`` attribute. If the
-    protocol is ICMP, this value must be an ICMP type.
+    matched by the security group rule. If the protocol is TCP, UDP,
+    DCCP, SCTP or UDP-Lite this value must be greater than or equal to
+    the ``port_range_min`` attribute value. If the protocol is ICMP,
+    this value must be an ICMP type.
   in: body
   required: false
-  type: integer
-port_range_max_1:
-  description: |
-    The maximum port number in the range that is
-    matched by the security group rule. The ``port_range_min``
-    attribute constrains the ``port_range_max`` attribute. If the
-    protocol is ICMP, this value must be an ICMP type.
-  in: body
-  required: true
   type: integer
 port_range_min:
   description: |
     The minimum port number in the range that is
-    matched by the security group rule. If the protocol is TCP or UDP,
-    this value must be less than or equal to the ``port_range_max``
-    attribute value. If the protocol is ICMP, this value must be an
-    ICMP type.
+    matched by the security group rule. If the protocol is TCP, UDP,
+    DCCP, SCTP or UDP-Lite this value must be less than or equal to
+    the ``port_range_max`` attribute value. If the protocol is ICMP,
+    this value must be an ICMP type.
   in: body
   required: false
-  type: integer
-port_range_min_1:
-  description: |
-    The minimum port number in the range that is
-    matched by the security group rule. If the protocol is TCP or UDP,
-    this value must be less than or equal to the ``port_range_max``
-    attribute value. If the protocol is ICMP, this value must be an
-    ICMP type.
-  in: body
-  required: true
   type: integer
 port_security_enabled:
   description: |
