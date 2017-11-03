@@ -1024,6 +1024,13 @@ class TestAttributeValidation(base.BaseTestCase):
         ]
         self.assertIsNotNone(validators.validate_subports(body))
 
+    def test_validate_subports_with_segmentation_id_0(self):
+        body = [
+            {'port_id': '00000000-ffff-ffff-ffff-000000000000',
+             'segmentation_id': '0', 'segmentation_type': 'vlan'}
+        ]
+        self.assertIsNone(validators.validate_subports(body))
+
     def test_validate_subports_inherit_segmentation_details(self):
         body = [
             {'port_id': '00000000-ffff-ffff-ffff-000000000000',

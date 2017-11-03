@@ -1001,7 +1001,8 @@ def validate_subports(data, valid_values=None):
         if segmentation_type == 'inherit':
             return
         segmentation_id = subport.get("segmentation_id")
-        if (not segmentation_type or not segmentation_id) and len(subport) > 1:
+        if ((not segmentation_type or segmentation_id is None)
+                and len(subport) > 1):
             msg = _("Invalid subport details '%s': missing segmentation "
                     "information. Must specify both segmentation_id and "
                     "segmentation_type") % subport
@@ -1013,7 +1014,7 @@ def validate_subports(data, valid_values=None):
                                  "subport": subport["port_id"]}
             LOG.debug(msg)
             return msg
-        if segmentation_id:
+        if segmentation_id is not None:
             segmentations[segmentation_type].add(segmentation_id)
 
 
