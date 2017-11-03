@@ -1,0 +1,8 @@
+---
+features:
+  - The ``multi-provider`` extension's API definition is available in
+    ``neutron_lib.api.defintions.multiprovidernet``.
+  - Exceptions for the ``multi-provider`` extension can be found in
+    ``neutron_lib.exceptions.multiprovidernet``.
+  - The validation type ``type:network_segments`` is now available for
+    API attribute validation.
