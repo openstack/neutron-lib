@@ -1,0 +1,53 @@
+{
+    "agent": {
+        "binary": "neutron-openvswitch-agent",
+        "description": null,
+        "availability_zone": null,
+        "heartbeat_timestamp": "2017-09-12 19:40:38",
+        "admin_state_up": true,
+        "alive": true,
+        "id": "04c62b91-b799-48b7-9cd5-2982db6df9c6",
+        "topic": "N/A",
+        "host": "agenthost1",
+        "agent_type": "Open vSwitch agent",
+        "started_at": "2017-09-12 19:35:38",
+        "created_at": "2017-09-12 19:35:38",
+        "configurations": {
+            "ovs_hybrid_plug": true,
+            "in_distributed_mode": false,
+            "datapath_type": "system",
+            "vhostuser_socket_dir": "/var/run/openvswitch",
+            "tunneling_ip": "172.16.78.191",
+            "arp_responder_enabled": false,
+            "devices": 0,
+            "ovs_capabilities": {
+                "datapath_types": [
+                    "netdev",
+                    "system"
+                ],
+                "iface_types": [
+                    "geneve",
+                    "gre",
+                    "internal",
+                    "ipsec_gre",
+                    "lisp",
+                    "patch",
+                    "stt",
+                    "system",
+                    "tap",
+                    "vxlan"
+                ]
+            },
+            "log_agent_heartbeats": false,
+            "l2_population": false,
+            "tunnel_types": [
+                "vxlan"
+            ],
+            "extensions": [],
+            "enable_distributed_routing": false,
+            "bridge_mappings": {
+                "public": "br-ex"
+            }
+        }
+    }
+}
