@@ -1018,9 +1018,9 @@ class TestAttributeValidation(base.BaseTestCase):
     def test_validate_subports_invalid_duplicate_segmentation_id(self):
         body = [
             {'port_id': '00000000-ffff-ffff-ffff-000000000000',
-             'segmentation_id': '3', 'segmentation_type': 'vlan'},
+             'segmentation_id': 0, 'segmentation_type': 'vlan'},
             {'port_id': '11111111-ffff-ffff-ffff-000000000000',
-             'segmentation_id': '3', 'segmentation_type': 'vlan'}
+             'segmentation_id': 0, 'segmentation_type': 'vlan'}
         ]
         self.assertIsNotNone(validators.validate_subports(body))
 
