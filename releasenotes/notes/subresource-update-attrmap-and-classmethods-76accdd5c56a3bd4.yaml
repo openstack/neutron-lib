@@ -1,0 +1,11 @@
+---
+features:
+  - All methods defined in ``APIExtensionDescriptor`` are now class methods.
+    This allows consumers to call them without a reference to an actual
+    extension object instance.
+fixes:
+  - The ``get_extended_resources`` method of the ``APIExtensionDescriptor``
+    was updated to also include the underlying API definition's
+    ``SUB_RESOURCE_ATTRIBUTE_MAP`` in the returned dict. As a result, the
+    ``update_attributes_map`` method now also includes the sub-resources if no
+    ``extension_attrs_map`` is passed to it.

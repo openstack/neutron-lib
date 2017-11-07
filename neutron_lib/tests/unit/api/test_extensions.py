@@ -119,6 +119,7 @@ class TestAPIExtensionDescriptor(base.BaseTestCase):
     DESCRIPTION = 'A test API definition'
     UPDATED_TIMESTAMP = '2017-02-01T10:00:00-00:00'
     RESOURCE_ATTRIBUTE_MAP = {'ports': {}}
+    SUB_RESOURCE_ATTRIBUTE_MAP = {'ports': {'debug': {}}}
     REQUIRED_EXTENSIONS = ['l3']
     OPTIONAL_EXTENSIONS = ['fw']
 
@@ -162,8 +163,10 @@ class TestAPIExtensionDescriptor(base.BaseTestCase):
         self.assertRaises(NotImplementedError, _EmptyAPIDefinition.get_updated)
 
     def test_get_extended_resources_v2(self):
-        self.assertEqual(self.RESOURCE_ATTRIBUTE_MAP,
-                         self.extn.get_extended_resources('2.0'))
+        self.assertEqual(
+            dict(list(self.RESOURCE_ATTRIBUTE_MAP.items()) +
+                 list(self.SUB_RESOURCE_ATTRIBUTE_MAP.items())),
+            self.extn.get_extended_resources('2.0'))
 
     def test_get_extended_resources_v2_unset(self):
         self.assertRaises(NotImplementedError,
