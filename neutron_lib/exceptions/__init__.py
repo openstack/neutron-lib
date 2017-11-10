@@ -522,7 +522,7 @@ class HostMacAddressGenerationFailure(ServiceUnavailable):
 
     :param host: The host MAC address generation failed for.
     """
-    message = _("Unable to generate unique DVR mac for host %(host)s.")
+    message = _("Unable to generate unique mac for host %(host)s.")
 
 
 class NetworkMacAddressGenerationFailure(ServiceUnavailable):
