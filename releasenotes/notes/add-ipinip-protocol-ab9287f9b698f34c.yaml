@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Adds the IP-in-IP protocol under the name ``ipip`` to the
+    list of protocols supported in security group rules.
