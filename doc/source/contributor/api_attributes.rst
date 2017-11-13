@@ -87,4 +87,5 @@ The following are the defined keys for attribute maps:
 ``is_visible``          the attribute is returned in ``GET`` responses
 ``required_by_policy``  the attribute is required by the policy engine and should therefore be filled by the API layer even if not present in request body
 ``enforce_policy``      the attribute is actively part of the policy enforcing mechanism, ie: there might be rules which refer to this attribute
+``primary_key``         Mark the attribute as a unique key.
 ======================  ======
