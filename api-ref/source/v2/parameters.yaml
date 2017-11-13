@@ -191,7 +191,7 @@ pool_id-request:
   description: |
     The ID for the pool.
   in: path
-  required: truee
+  required: true
   type: string
 port_id-path:
   description: |
