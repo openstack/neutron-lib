@@ -1,0 +1,4 @@
+---
+features:
+  - The ``rbac-policy`` callback resource now available
+    as ``neutron_lib.callbacks.resources.RBAC_POLICY``.
