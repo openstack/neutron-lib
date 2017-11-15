@@ -94,7 +94,7 @@ ADV_EXTRA_ROUTES = 'advertise_extra_routes'
 LOCAL_PREF_KEY_SPEC = {'type:range': LOCAL_PREF_RANGE,
                        'required': False}
 
-ROUTE_SPECS = EXTRA_DHCP_OPT_KEY_SPECS = [
+ROUTE_SPECS = [
     {'type': {'type:values': [PREFIX_TYPE],
               'required': True},
      'prefix': {'type:subnet': None,
