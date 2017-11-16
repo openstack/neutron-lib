@@ -1,0 +1,5 @@
+---
+features:
+  - The ``dhcp_agent_scheduler`` extension's API defintion is now available
+    in ``neutron_lib.api.definitions.dhcpagentscheduler`` and the corresponding
+    exceptions in ``neutron_lib.exceptions.dhcpagentscheduler``.
