@@ -220,32 +220,50 @@ class APIExtensionDescriptor(ExtensionDescriptor):
         cls._assert_api_definition('UPDATED_TIMESTAMP')
         return cls.api_definition.UPDATED_TIMESTAMP
 
-    def get_extended_resources(self, version):
-        """Retrieve the resource attribute map for the API definition."""
+    @classmethod
+    def get_extended_resources(cls, version):
+        """Retrieve the extended resource map for the API definition.
+
+        :param version: The API version to retrieve the resource attribute
+            map for.
+        :returns: The extended resource map for the underlying API definition
+            if the version is 2.0. The extended resource map returned includes
+            both the API definition's RESOURCE_ATTRIBUTE_MAP and
+            SUB_RESOURCE_ATTRIBUTE_MAP where applicable. If the version is
+            not 2.0, an empty dict is returned.
+        """
         if version == "2.0":
-            self._assert_api_definition('RESOURCE_ATTRIBUTE_MAP')
-            return self.api_definition.RESOURCE_ATTRIBUTE_MAP
+            cls._assert_api_definition('RESOURCE_ATTRIBUTE_MAP')
+            cls._assert_api_definition('SUB_RESOURCE_ATTRIBUTE_MAP')
+            # support api defs that use None for sub attr map
+            sub_attrs = cls.api_definition.SUB_RESOURCE_ATTRIBUTE_MAP or {}
+            return dict(
+                list(cls.api_definition.RESOURCE_ATTRIBUTE_MAP.items()) +
+                list(sub_attrs.items()))
         else:
             return {}
 
-    def get_required_extensions(self):
+    @classmethod
+    def get_required_extensions(cls):
         """Returns the API definition's required extensions."""
-        self._assert_api_definition('REQUIRED_EXTENSIONS')
-        return self.api_definition.REQUIRED_EXTENSIONS
+        cls._assert_api_definition('REQUIRED_EXTENSIONS')
+        return cls.api_definition.REQUIRED_EXTENSIONS
 
-    def get_optional_extensions(self):
+    @classmethod
+    def get_optional_extensions(cls):
         """Returns the API definition's optional extensions."""
-        self._assert_api_definition('OPTIONAL_EXTENSIONS')
-        return self.api_definition.OPTIONAL_EXTENSIONS
+        cls._assert_api_definition('OPTIONAL_EXTENSIONS')
+        return cls.api_definition.OPTIONAL_EXTENSIONS
 
-    def update_attributes_map(self, attributes, extension_attrs_map=None):
+    @classmethod
+    def update_attributes_map(cls, attributes, extension_attrs_map=None):
         """Update attributes map for this extension.
 
         Behaves like ExtensionDescriptor.update_attributes_map(), but
-        if extension_attrs_map is not given the extension's API
-        definition RESOURCE_ATTRIBUTE_MAP is used.
+        if extension_attrs_map is not given the dict returned from
+        self.get_extended_resources('2.0') is used.
         """
         if extension_attrs_map is None:
-            extension_attrs_map = self.get_extended_resources('2.0')
-        super(APIExtensionDescriptor, self).update_attributes_map(
+            extension_attrs_map = cls.get_extended_resources('2.0')
+        super(APIExtensionDescriptor, cls()).update_attributes_map(
             attributes, extension_attrs_map=extension_attrs_map)
