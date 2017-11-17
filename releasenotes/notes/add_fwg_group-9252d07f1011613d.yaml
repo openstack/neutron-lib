@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Updated fwaas API extension definition to include  previously missing
+    ability to specify remote firewall groups for ingress and egress traffic.
+    When a firewall group rule specifies a remote group, for example an
+    ingress rule in fwgA specifies a remote group of fwgB, that means only
+    packets from fwgB could match this ingress rule.
