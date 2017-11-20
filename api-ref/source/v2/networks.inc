@@ -81,6 +81,13 @@ explicitly set on the port itself. While the default value for
 respective network. Note that changing a value of ``port_security_enabled``
 on a network, does not cascade the value to ports attached to the network.
 
+External network
+================
+
+The ``external-net`` extension adds the ``router:external`` attribute to
+networks. This boolean attribute indicates the network has an external
+routing facility that's not managed by the networking service.
+
 
 Show network details
 ====================
