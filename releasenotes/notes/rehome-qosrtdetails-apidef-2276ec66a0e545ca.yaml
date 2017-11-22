@@ -1,0 +1,4 @@
+---
+features:
+  - The ``qos-rule-type-details`` extension's API definition is now available
+    in ``neutron_lib.api.definitions.qos_rule_type_details``.
