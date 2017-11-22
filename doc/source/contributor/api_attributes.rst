@@ -89,3 +89,21 @@ The following are the defined keys for attribute maps:
 ``enforce_policy``      the attribute is actively part of the policy enforcing mechanism, ie: there might be rules which refer to this attribute
 ``primary_key``         Mark the attribute as a unique key.
 ======================  ======
+
+When extending existing sub-resources, the sub-attribute map must define all
+extension attributes under the ``parameters`` object. This instructs the API
+internals to add the attributes to the existing sub-resource rather than
+overwrite its existing definition. For example:
+
+.. code-block:: python
+
+        SUB_RESOURCE_ATTRIBUTE_MAP = {
+            'existing_subresource_to_extend': {
+                'parameters': {
+                    'new_attr1': {
+                        'allow_post': False,
+                        # etc..
+                    }
+                }
+            }
+        }
