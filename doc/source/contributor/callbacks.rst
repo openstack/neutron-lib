@@ -456,6 +456,17 @@ The output is:
   Notifying...
 
 
+Subscribing events using registry decorator
+-------------------------------------------
+
+Now neutron-lib supports using registry decorators to subscribe events.
+There are two decorators ``has_registry_receivers``, which sets up the
+class ``__new__`` method to subscribe the bound method in the callback registry
+after object instantiation. ``receives`` use to decorate callback method
+which must defines the resource and events.
+Any class use ``receives`` must be decorated with ``has_registry_receivers``.
+
+
 Testing with callbacks
 ----------------------
 
