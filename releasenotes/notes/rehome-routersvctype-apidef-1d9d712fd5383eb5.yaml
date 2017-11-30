@@ -1,0 +1,4 @@
+---
+features:
+  - The ``router-service-type`` extension's API definition is now available in
+    ``neutron_lib.api.definitions.routerservicetype``.

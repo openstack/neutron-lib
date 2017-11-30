@@ -57,6 +57,7 @@ from neutron_lib.api.definitions import qos
 from neutron_lib.api.definitions import qos_default
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_interface_fip
+from neutron_lib.api.definitions import routerservicetype
 from neutron_lib.api.definitions import servicetype
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_onboard
@@ -113,6 +114,7 @@ _ALL_API_DEFINITIONS = {
     qos_default,
     router_availability_zone,
     router_interface_fip,
+    routerservicetype,
     servicetype,
     subnet,
     subnet_onboard,
