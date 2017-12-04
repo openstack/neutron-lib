@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add ``ip-substring-filtering`` API extension. This extension provides
+    the ability to filter ports with an IP address substring.
