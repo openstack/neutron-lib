@@ -60,6 +60,7 @@ from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import routerservicetype
+from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import servicetype
 from neutron_lib.api.definitions import sorting
 from neutron_lib.api.definitions import subnet
@@ -121,6 +122,7 @@ _ALL_API_DEFINITIONS = {
     router_availability_zone,
     router_interface_fip,
     routerservicetype,
+    segment,
     servicetype,
     sorting,
     subnet,
