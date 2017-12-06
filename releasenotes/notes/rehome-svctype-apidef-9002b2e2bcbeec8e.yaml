@@ -1,0 +1,4 @@
+---
+features:
+  - The ``service-type`` extension's API definition is now available in
+    ``neutron_lib.api.definitions.servicetype``.
