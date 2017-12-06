@@ -1,0 +1,4 @@
+---
+features:
+  - The ``sorting`` extension's API definition is now available in
+    ``neutron_lib.api.definitions.sorting``.
