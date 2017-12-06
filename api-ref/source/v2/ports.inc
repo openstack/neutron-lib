@@ -6,14 +6,17 @@ Ports
 
 Lists, shows details for, creates, updates, and deletes ports.
 
-Port binding extended attributes
-================================
+Allowed address pairs
+=====================
 
-The port binding extension (``binding``) allows administrative users
-to specify and retrieve physical binding information of ports.
-The extension defines several attributes whose names have a prefix
-``binding:`` including ``binding:host_id``, ``binding:vnic_type``,
-``binding:vif_type``, ``binding:vif_details``, and ``binding:profile``.
+The ``allowed-address-pairs`` extension adds an ``allowed_address_pairs``
+attribute to ports. The value of ``allowed_address_pairs`` is an array of
+allowed address pair objects, each having an ``ip_address`` and a
+``mac_address``. The set of allowed address pairs defines IP and MAC address
+that the port can use when sending packets if ``port_security_enabled`` is
+``true`` (see the ``port-security`` extension). Note that while the
+``ip_address`` is required in each allowed address pair, the ``mac_address``
+is optional and will be taken from the port if not specified.
 
 Data plane status extension
 ===========================
@@ -29,6 +32,20 @@ Supported data plane status values:
 - ``null``: no status being reported; default value
 - ``ACTIVE``: the underlying data plane is up and running
 - ``DOWN``: no traffic can flow from/to the port
+
+DNS integration
+===============
+
+The ``dns-integration`` extension adds the ``dns_name`` and ``dns_assignment``
+attributes to port resources. While the ``dns_name`` can be set on create and
+update operations, the ``dns_assignment`` is read-only and shows the
+``hostname``, ``ip_address`` and ``fqdn`` for the port's internal DNS
+assignment.
+
+To enable the ``dns_domain`` on port resources, the ``dns-domain-ports``
+extension must be used in conjunction with the ``dns-integration`` extension.
+When enabled and set, a port level ``dns_domain`` take precedence over a
+``dns_domain`` specified in the port's network allowing per-port DNS domains.
 
 Extra DHCP option (``extra_dhcp_opt``) extension
 ================================================
@@ -48,19 +65,20 @@ The IP allocation extension (``ip_allocation``) adds a new read-only attribute
 ``ip_allocation`` that indicates when ports use deferred, immediate or
 no IP allocation.
 
-DNS integration
-===============
+IP Substring Filtering
+======================
 
-The ``dns-integration`` extension adds the ``dns_name`` and ``dns_assignment``
-attributes to port resources. While the ``dns_name`` can be set on create and
-update operations, the ``dns_assignment`` is read-only and shows the
-``hostname``, ``ip_address`` and ``fqdn`` for the port's internal DNS
-assignment.
+The ``ip-substring-filtering`` extension adds support for filtering ports by
+using part of an IP address.
 
-To enable the ``dns_domain`` on port resources, the ``dns-domain-ports``
-extension must be used in conjunction with the ``dns-integration`` extension.
-When enabled and set, a port level ``dns_domain`` take precedence over a
-``dns_domain`` specified in the port's network allowing per-port DNS domains.
+Port binding extended attributes
+================================
+
+The port binding extension (``binding``) allows administrative users
+to specify and retrieve physical binding information of ports.
+The extension defines several attributes whose names have a prefix
+``binding:`` including ``binding:host_id``, ``binding:vnic_type``,
+``binding:vif_type``, ``binding:vif_details``, and ``binding:profile``.
 
 Port security
 =============
@@ -69,24 +87,6 @@ The ``port-security`` extension adds the ``port_security_enabled`` boolean
 attribute to ports. If a ``port-security`` value is not specified during
 port creation, a port will inherit the ``port_security_enabled`` from the
 network its connected to.
-
-Allowed address pairs
-=====================
-
-The ``allowed-address-pairs`` extension adds an ``allowed_address_pairs``
-attribute to ports. The value of ``allowed_address_pairs`` is an array of
-allowed address pair objects, each having an ``ip_address`` and a
-``mac_address``. The set of allowed address pairs defines IP and MAC address
-that the port can use when sending packets if ``port_security_enabled`` is
-``true`` (see the ``port-security`` extension). Note that while the
-``ip_address`` is required in each allowed address pair, the ``mac_address``
-is optional and will be taken from the port if not specified.
-
-IP Substring Filtering
-======================
-
-The ``ip-substring-filtering`` extension adds support for filtering ports by
-using part of an IP address.
 
 Show port details
 =================
