@@ -25,6 +25,7 @@
         ],
         "shared": false,
         "id": "4e8e5957-649f-477b-9e5b-f1f75b21c03c",
-        "description": ""
+        "description": "",
+        "is_default": false
     }
 }

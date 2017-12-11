@@ -22,7 +22,8 @@
             "updated_at": "2016-03-08T20:19:41",
             "vlan_transparent": false,
             "description": "",
-            "port_security_enabled": true
+            "port_security_enabled": true,
+            "is_default": false
         },
         {
             "admin_state_up": true,
@@ -46,7 +47,8 @@
             "updated_at": "2016-03-08T20:19:41",
             "vlan_transparent": false,
             "description": "",
-            "port_security_enabled": true
+            "port_security_enabled": true,
+            "is_default": false
         }
     ]
 }
