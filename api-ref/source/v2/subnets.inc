@@ -28,6 +28,25 @@ Subnet allocation extension
 Subnet allocation extension (``subnet_allocation``) enables allocation of
 subnets from a subnet pool.
 
+Segment extension
+=================
+
+The `Segments`_ (``segment``) extension makes it possible to associate a
+subnet with a specific L2 segment on the network, instead of spanning all the
+segments in the network. The association between network and subnet remains,
+but an optional ``segment_id`` field is added to the subnet so that it can be
+associated with a particular segment on the network. With multiple subnets on a
+network the ``segment_id`` is used to determine if the subnets are l2-adjacent
+or not. Subnets within a network are either all associated to segments, or
+none of them are associated to segments.
+
+Subnet segment_id writable extension
+====================================
+
+The subnet segment_id writable (``subnet-segmentid-writable``) extension
+enhances the `Segments`_ (``segment``) extension in that now the ``segment_id``
+attribute is also available for write when a subnet is updated.
+
 Subnet service types extension
 ==============================
 
@@ -399,6 +418,7 @@ Request
    - gateway_ip: subnet-gateway_ip-request
    - description: description-request
    - service_types: subnet-service_types-optional
+   - segment_id: subnet-segment_id-request
 
 Request Example
 ---------------
