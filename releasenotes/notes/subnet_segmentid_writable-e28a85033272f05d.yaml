@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Make ``segment_id`` of subnet resource writable. Enables the possibility to
+    migrate a non-routed network to a routed network.

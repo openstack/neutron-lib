@@ -67,6 +67,7 @@ from neutron_lib.api.definitions import servicetype
 from neutron_lib.api.definitions import sorting
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_onboard
+from neutron_lib.api.definitions import subnet_segmentid_writable
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
@@ -131,6 +132,7 @@ _ALL_API_DEFINITIONS = {
     sorting,
     subnet,
     subnet_onboard,
+    subnet_segmentid_writable,
     subnetpool,
     trunk,
     trunk_details,
