@@ -96,7 +96,7 @@ def convert_to_positive_float_or_none(val):
         if val < 0:
             raise ValueError()
     except (ValueError, TypeError):
-        msg = _("'%s' must be a non negative decimal.") % val
+        msg = _("'%s' must be a non negative decimal") % val
         raise n_exc.InvalidInput(error_message=msg)
     return val
 
