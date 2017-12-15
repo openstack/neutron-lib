@@ -1,0 +1,5 @@
+---
+fixes:
+  - Bug `1738371 <https://bugs.launchpad.net/neutron/+bug/1738371>`_ is fixed
+    by comparing min port and max port in port range specification as integers
+    instead of strings, during port range validation.

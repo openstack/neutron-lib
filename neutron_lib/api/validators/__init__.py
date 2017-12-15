@@ -950,7 +950,7 @@ def validate_port_range_or_none(data, valid_values=None):
             msg = _("Invalid port: %s.") % p
             LOG.debug(msg)
             return msg
-    if len(ports) > 1 and ports[0] > ports[1]:
+    if len(ports) > 1 and int(ports[0]) > int(ports[1]):
         msg = _("First port in a port range must be lower than the second "
                 "port.")
         LOG.debug(msg)

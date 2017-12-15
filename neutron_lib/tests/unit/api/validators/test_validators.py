@@ -1125,7 +1125,9 @@ class TestPortRangeValidation(base.BaseTestCase):
         self.assertIsNone(result)
 
     def test_valid_range(self):
-        result = validators.validate_port_range_or_none("80:8888")
+        # NOTE(huntxu): This case would fail when ports are compared as
+        # strings, since '9' > '1111'.
+        result = validators.validate_port_range_or_none("9:1111")
         self.assertIsNone(result)
 
     def test_port_too_high(self):
@@ -1145,7 +1147,9 @@ class TestPortRangeValidation(base.BaseTestCase):
         self.assertEqual(u"Invalid port: -1.", result)
 
     def test_range_wrong_way(self):
-        result = validators.validate_port_range_or_none("8888:80")
+        # NOTE(huntxu): This case would fail when ports are compared as
+        # strings, since '1111' < '9'.
+        result = validators.validate_port_range_or_none("1111:9")
         self.assertEqual(u"First port in a port range must be lower than the "
                          "second port.", result)
 
