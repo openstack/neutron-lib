@@ -58,6 +58,7 @@ RESOURCE_ATTRIBUTE_MAP = {
     bgpvpn.COLLECTION_NAME: {
         VNI: {'allow_post': True, 'allow_put': False,
               'convert_to': lib_converters.convert_to_int_if_not_none,
+              'default': None,
               'validate': {'type:range_or_none': [constants.MIN_VXLAN_VNI,
                                                   constants.MAX_VXLAN_VNI]
                            },
