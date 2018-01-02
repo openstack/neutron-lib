@@ -23,12 +23,11 @@ or -2, if you have the right access permissions.
 
 It is also worth noting that every Stadium project will have a periodic job
 running unit tests and pep8 against the master version of neutron-lib
-(`periodic-neutron-py35-with-neutron-lib-master <http://logs.openstack.org/periodic/periodic-neutron-py35-with-neutron-lib-master/>`_
-being an example). Checking Grafana's `periodic <http://grafana.openstack.org/dashboard/db/neutron-lib-failure-rate?panelId=4&fullscreen>`_
+Checking Grafana's `periodic <http://grafana.openstack.org/dashboard/db/neutron-lib-failure-rate?panelId=6&fullscreen>`_
 dashboard can give you a glimpse into the sanity of the integration between
 neutron-lib and the Stadium projects, and can be considered the quick check
 before going ahead with a full blown sentinel patch. Periodic failures can be
-debugged by viewing the `periodic logs <http://logs.openstack.org/periodic>`_
+debugged by viewing the `periodic logs <http://logs.openstack.org/periodic/git.openstack.org/openstack/>`_
 
 In addition, both the API reference as well as the project docs should be
 validated to ensure there are no dead links. To do so run
