@@ -6,6 +6,7 @@
         "delay": 1,
         "expected_codes": "200,201,202",
         "max_retries": 5,
+        "name": "healthmonitor1",
         "http_method": "GET",
         "timeout": 1,
         "pools": [],
