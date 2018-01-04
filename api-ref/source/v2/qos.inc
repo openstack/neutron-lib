@@ -6,12 +6,27 @@ QoS rule types
 
 Lists and shows information for QoS rule types available in current deployment.
 
+Rule type details
+=================
+
+The ``qos-rule-type-details`` extension adds the ``drivers`` attribute to
+QoS rule types. The ``drivers`` attribute's value is a list of driver objects.
+Each driver object represents a loaded backend QoS driver and includes the
+driver's ``name`` as well as a list of its ``supported_parameters`` and
+acceptable values.
+
 List QoS rule types
 ===================
 
 .. rest_method::  GET /v2.0/qos/rule-types
 
 Lists available qos rule types.
+
+Use the ``fields`` query parameter to control which fields are
+returned in the response body. Additionally, you can filter results
+by using query string parameters. For information, see `Filtering
+and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
+-specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
 
@@ -37,9 +52,6 @@ Show QoS rule type details
 .. rest_method:: GET /v2.0/qos/rule-types/{rule_type}
 
 Shows details for an available QoS rule type.
-
-To determine if this API call is available, a user can check whether
-the ``qos-rule-type-details`` extension API is available.
 
 You can control which response parameters are returned by using the
 fields query parameter. For information, see `Filtering and column
