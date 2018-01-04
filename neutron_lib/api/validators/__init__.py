@@ -808,7 +808,7 @@ def _validate_dict_item(key, key_validator, data):
             try:
                 val_func = validators[k]
             except KeyError:
-                msg = _("Validator '%s' does not exist.") % k
+                msg = _("Validator '%s' does not exist") % k
                 LOG.debug(msg)
                 return msg
             val_params = v
@@ -938,21 +938,21 @@ def validate_port_range_or_none(data, valid_values=None):
     data = str(data)
     ports = data.split(':')
     if len(ports) > 2:
-        msg = _("Port range must be two integers separated by a colon.")
+        msg = _("Port range must be two integers separated by a colon")
         LOG.debug(msg)
         return msg
     for p in ports:
         if len(p) == 0:
-            msg = _("Port range must be two integers separated by a colon.")
+            msg = _("Port range must be two integers separated by a colon")
             LOG.debug(msg)
             return msg
         if not netutils.is_valid_port(p):
-            msg = _("Invalid port: %s.") % p
+            msg = _("Invalid port: %s") % p
             LOG.debug(msg)
             return msg
     if len(ports) > 1 and int(ports[0]) > int(ports[1]):
         msg = _("First port in a port range must be lower than the second "
-                "port.")
+                "port")
         LOG.debug(msg)
         return msg
 
