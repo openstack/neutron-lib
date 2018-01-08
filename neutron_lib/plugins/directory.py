@@ -16,7 +16,7 @@ import weakref
 
 from oslo_concurrency import lockutils
 
-from neutron_lib import constants
+from neutron_lib.plugins import constants
 
 
 _synchronized = lockutils.synchronized_with_prefix("neutron-")

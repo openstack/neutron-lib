@@ -1,0 +1,5 @@
+---
+upgrade:
+  - The ``CORE`` and ``L3`` service type name constants have been removed
+    from ``neutron_lib.constants``. These constants are duplicates of those
+    in ``neutron_lib.plugin.constants`` and consumers should use the latter.
