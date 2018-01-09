@@ -45,8 +45,8 @@ VLAN transparency extension
 
 The ``vlan-transparent`` extension enables plug-ins that support VLAN
 transparency to deliver VLAN transparent trunk networks.
-This extension introduces ``vlan_transparent`` attribute to control
-a VLAN transparecy of the network. If the service does not support VLAN
+This extension introduces a ``vlan_transparent`` attribute to control
+the VLAN transparency of the network. If the service does not support VLAN
 transparency and a user requests a VLAN transparent network,
 the plug-in refuses to create one and returns an appropriate error to the user.
 
