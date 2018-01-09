@@ -539,3 +539,17 @@ class InvalidServiceType(InvalidInput):
     :param service_type: The service type that's invalid.
     """
     message = _("Invalid service type: %(service_type)s.")
+
+
+class NetworkVlanRangeError(NeutronException):
+    message = _("Invalid network VLAN range: '%(vlan_range)s' - '%(error)s'.")
+
+    def __init__(self, **kwargs):
+        # Convert vlan_range tuple to 'start:end' format for display
+        if isinstance(kwargs['vlan_range'], tuple):
+            kwargs['vlan_range'] = "%d:%d" % kwargs['vlan_range']
+        super(NetworkVlanRangeError, self).__init__(**kwargs)
+
+
+class PhysicalNetworkNameError(NeutronException):
+    message = _("Empty physical network name.")

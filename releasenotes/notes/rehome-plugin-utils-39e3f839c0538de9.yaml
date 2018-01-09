@@ -1,0 +1,6 @@
+---
+features:
+  - The publically consumed API's from ``neutron.plugins.common.utils`` are
+    now available in ``neutron_lib.plugins.utils``.
+  - The ``NetworkVlanRangeError`` and ``PhysicalNetworkNameError`` exception
+    classes are now available in ``neutron_lib.exceptions``.
