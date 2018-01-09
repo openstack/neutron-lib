@@ -1,0 +1,6 @@
+---
+features:
+  - The ``vlan-transparent`` extension's API definition is now available in
+    ``neutron_lib.api.definitions.vlantransparent``.
+  - The ``get_vlan_transparent`` function from the ``vlan-transparent``
+    extension is available in ``neutron_lib.api.definitions.vlantransparent``.

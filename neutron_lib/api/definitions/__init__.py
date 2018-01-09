@@ -63,6 +63,7 @@ from neutron_lib.api.definitions import subnet_onboard
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
+from neutron_lib.api.definitions import vlantransparent
 
 
 _ALL_API_DEFINITIONS = {
@@ -118,5 +119,6 @@ _ALL_API_DEFINITIONS = {
     subnet_onboard,
     subnetpool,
     trunk,
-    trunk_details
+    trunk_details,
+    vlantransparent
 }
