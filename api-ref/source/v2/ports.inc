@@ -64,6 +64,12 @@ that the port can use when sending packets if ``port_security_enabled`` is
 ``ip_address`` is required in each allowed address pair, the ``mac_address``
 is optional and will be taken from the port if not specified.
 
+IP Substring Filtering
+======================
+
+The ``ip-substring-filtering`` extension adds support for filtering ports by
+using part of an IP address.
+
 Show port details
 =================
 
@@ -294,6 +300,12 @@ returned in the response body. Additionally, you can filter results
 by using query string parameters. For information, see `Filtering
 and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
 -specification#Filtering_and_Column_Selection>`__.
+
+If the ``ip-substring-filtering`` extension is enabled, the Neutron API
+supports IP address substring filtering on the ``fixed_ips`` attribute.
+If you specify an IP address substring (``ip_address_substr``) in
+an entry of the ``fixed_ips`` attribute, the Neutron API will list all
+ports that have an IP address matching the substring.
 
 Normal response codes: 200
 

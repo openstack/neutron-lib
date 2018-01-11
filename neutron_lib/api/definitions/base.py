@@ -88,6 +88,7 @@ KNOWN_EXTENSIONS = (
     'extra_dhcp_opt',
     'extraroute',
     'flavors',
+    'ip-substring-filtering',
     'l3-ha',
     'l3_agent_scheduler',
     'logging',

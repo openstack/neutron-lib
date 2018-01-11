@@ -32,6 +32,7 @@ from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
 from neutron_lib.api.definitions import flavors
 from neutron_lib.api.definitions import ip_allocation
+from neutron_lib.api.definitions import ip_substring_port_filtering
 from neutron_lib.api.definitions import l2_adjacency
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
@@ -89,6 +90,7 @@ _ALL_API_DEFINITIONS = {
     firewallrouterinsertion,
     flavors,
     ip_allocation,
+    ip_substring_port_filtering,
     l2_adjacency,
     l3,
     l3_ext_gw_mode,
