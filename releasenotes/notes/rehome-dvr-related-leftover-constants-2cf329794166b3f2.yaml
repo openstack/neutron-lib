@@ -1,0 +1,5 @@
+---
+features:
+  - Moving the leftover DVR related constants from ``neutron.common.constants``.
+    The constants ``L3_AGENT_MODE_DVR_NO_EXTERNAL`` and ``DVR_SNAT_BOUND`` are
+    now available in ``neutron_lib.constants``.
