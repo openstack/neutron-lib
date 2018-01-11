@@ -13,6 +13,7 @@
 # under the License.
 
 from neutron_lib.api import converters
+from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 
 
@@ -51,7 +52,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'type:string': db_const.PROJECT_ID_FIELD_SIZE},
             'is_visible': True
         },
-        'shared': {
+        constants.SHARED: {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': False,
             'convert_to': converters.convert_to_boolean

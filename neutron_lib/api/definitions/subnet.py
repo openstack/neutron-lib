@@ -100,13 +100,15 @@ RESOURCE_ATTRIBUTE_MAP = {
                               'validate': {
                                   'type:values': constants.IPV6_MODES},
                               'is_visible': True},
-        'shared': {'allow_post': False,
-                   'allow_put': False,
-                   'default': False,
-                   'convert_to': converters.convert_to_boolean,
-                   'is_visible': False,
-                   'required_by_policy': True,
-                   'enforce_policy': True},
+        constants.SHARED: {
+            'allow_post': False,
+            'allow_put': False,
+            'default': False,
+            'convert_to': converters.convert_to_boolean,
+            'is_visible': False,
+            'required_by_policy': True,
+            'enforce_policy': True
+        }
     }
 }
 

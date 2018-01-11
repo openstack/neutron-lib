@@ -10,6 +10,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from neutron_lib import constants
+
+
 KNOWN_ATTRIBUTES = (
     'admin_state_up',
     'allocation_pools',
@@ -38,7 +41,7 @@ KNOWN_ATTRIBUTES = (
     'prefixes',
     'prefixlen',
     'project_id',
-    'shared',
+    constants.SHARED,
     'status',
     'subnets',
     'subnetpool_id',
