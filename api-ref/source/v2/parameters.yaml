@@ -1510,6 +1510,18 @@ description_resource:
   in: body
   required: true
   type: string
+destination_firewall_group_id-body-optional:
+  description: |
+    The ID of the remote destination firewall group.
+  in: body
+  required: false
+  type: string
+destination_firewall_group_id-body-required:
+  description: |
+    The ID of the remote destination firewall group.
+  in: body
+  required: true
+  type: string
 destination_ip_address:
   description: |
     The destination IPv4 or IPv6 address or CIDR. No
@@ -5504,6 +5516,18 @@ sni_container_refs-response:
   in: body
   required: true
   type: array
+source_firewall_group_id-body-optional:
+  description: |
+    The ID  of the remote source firewall group.
+  in: body
+  required: no
+  type: string
+source_firewall_group_id-body-required:
+  description: |
+    The ID  of the remote source firewall group.
+  in: body
+  required: true
+  type: string
 source_ip_address:
   description: |
     The source IPv4 or IPv6 address or CIDR.

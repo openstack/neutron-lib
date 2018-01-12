@@ -100,6 +100,14 @@ RESOURCE_ATTRIBUTE_MAP = {
         'enabled': {'allow_post': True, 'allow_put': True,
                     'convert_to': converters.convert_to_boolean,
                     'default': True, 'is_visible': True},
+        'source_firewall_group_id': {'allow_post': True, 'allow_put': True,
+                                     'validate': {'type:uuid_or_none': None},
+                                     'is_visible': True, 'default': None},
+        'destination_firewall_group_id': {'allow_post': True,
+                                          'allow_put': True,
+                                          'validate':
+                                              {'type:uuid_or_none': None},
+                                          'is_visible': True, 'default': None},
     },
     api_const.FIREWALL_GROUPS: {
         'id': {'allow_post': False, 'allow_put': False,

@@ -2,6 +2,7 @@
     "firewall_rule": {
         "action": "allow",
         "description": "",
+        "destination_firewall_group_id": null,
         "destination_ip_address": null,
         "destination_port": "80",
         "enabled": true,
@@ -13,6 +14,7 @@
         "project_id": "45977fa2dbd7482098dd68d0d8970117",
         "protocol": "tcp",
         "shared": false,
+        "source_firewall_group_id": null,
         "source_ip_address": null,
         "source_port": null,
         "tenant_id": "45977fa2dbd7482098dd68d0d8970117"
