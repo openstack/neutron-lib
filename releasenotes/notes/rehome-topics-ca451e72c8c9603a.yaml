@@ -1,0 +1,5 @@
+---
+features:
+  - The public constants and ``get_topic_name`` function from
+    ``neutron.common.topics`` are now available in
+    ``neutron_lib.agent.topics``.
