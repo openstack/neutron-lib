@@ -16,6 +16,16 @@ IP version). Then users can specify the ``use_default_subnetpool``
 attribute when creating a subnet, instead of having to specify the
 ``subnetpool_id`` attribute referencing the default subnetpool.
 
+Subnet service types extension
+==============================
+
+Subnet service types extension (``subnet-service-types``) allows administrative
+users to set the desired port types for a subnet by adding the
+``service_types`` attributes to ``subnets``.
+(For example, the ``network:floatingip_agent_gateway`` service type enables
+DVR floating IP agent gateway ports to use the subnet to minimize public
+IP address consumption).
+
 List subnets
 ============
 
@@ -150,6 +160,7 @@ Request
    - segment_id: subnet-segment_id-request
    - subnetpool_id: subnet-subnetpool_id-request
    - use_default_subnetpool: use_default_subnetpool
+   - service_types: subnet-service_types-optional
 
 Request Example
 ---------------
@@ -228,6 +239,7 @@ Request
    - segment_id: subnet-segment_id-request
    - subnetpool_id: subnet-subnetpool_id-request
    - use_default_subnetpool: use_default_subnetpool
+   - service_types: subnet-service_types-optional
 
 Request Example
 ---------------
@@ -351,6 +363,7 @@ Request
    - host_routes: subnet-host_routes-request
    - gateway_ip: subnet-gateway_ip-request
    - description: description-request
+   - service_types: subnet-service_types-optional
 
 Request Example
 ---------------
