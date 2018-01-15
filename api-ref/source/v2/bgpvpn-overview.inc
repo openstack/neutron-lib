@@ -94,7 +94,7 @@ a way to:
   is implemented thanks to the ``advertise_fixed_ips`` attribute of a BGPVPN
   port association
 
-- explictly control whether extra routes of a router are to be advertised
+- explicitly control whether extra routes of a router are to be advertised
   to a BGPVPN; this is implemented thanks to the ``advertise_extra_routes``
   attribute of a BGPVPN router association
 
