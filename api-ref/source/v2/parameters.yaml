@@ -4431,35 +4431,6 @@ protocol-response:
   in: body
   required: true
   type: string
-protocol_1:
-  description: |
-    The protocol to load balance. A valid value is
-    ``HTTP``, ``HTTPS``, ``TCP``, or ``TERMINATED_HTTPS``.
-  in: body
-  required: true
-  type: string
-protocol_3:
-  description: |
-    The protocol that is matched by the security
-    group rule. Valid values are null, tcp, udp, and icmp.
-  in: body
-  required: false
-  type: string
-protocol_4:
-  description: |
-    The protocol that is matched by the security
-    group rule. Value is ``null``, ``icmp``, ``icmpv6``, ``tcp``, or
-    ``udp``.
-  in: body
-  required: true
-  type: string
-protocol_6:
-  description: |
-    The IP protocol. Value is ``icmp``, ``tcp``,
-    ``udp``, or ``null``.
-  in: body
-  required: true
-  type: string
 protocol_port:
   description: |
     The TCP or UDP port on which to listen.
