@@ -14,6 +14,15 @@
         "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
         "status": "ACTIVE",
         "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
-        "updated_at": "2016-12-22T03:13:49Z"
+        "updated_at": "2016-12-22T03:13:49Z",
+        "port_details": {
+            "status": "ACTIVE",
+            "name": "",
+            "admin_state_up": true,
+            "network_id": "02dd8479-ef26-4398-a102-d19d0a7b3a1f",
+            "device_owner": "compute:nova",
+            "mac_address": "fa:16:3e:b1:3b:30",
+            "device_id": "8e3941b4-a6e9-499f-a1ac-2a4662025cba"
+        }
     }
 }

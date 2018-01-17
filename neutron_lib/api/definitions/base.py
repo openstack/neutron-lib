@@ -90,6 +90,7 @@ KNOWN_EXTENSIONS = (
     'external-net',
     'extra_dhcp_opt',
     'extraroute',
+    'fip-port-details',
     'flavors',
     'ip-substring-filtering',
     'l3-ha',
