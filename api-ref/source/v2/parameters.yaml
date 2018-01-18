@@ -4409,14 +4409,18 @@ project_id-request:
 protocol:
   description: |
     The IP protocol can be represented by a string, an integer, or ``null``.
-    Valid string or integer values are ``ah`` or ``51``, ``dccp`` or ``33``,
-    ``egp`` or ``8``, ``esp`` or ``50``, ``gre`` or ``47``, ``icmp`` or ``1``,
-    ``icmpv6`` or ``58``, ``igmp`` or ``2``, ``ipv6-encap`` or ``41``,
+    Valid string or integer values are ``any`` or ``0``, ``ah`` or ``51``,
+    ``dccp`` or ``33``, ``egp`` or ``8``, ``esp`` or ``50``, ``gre`` or ``47``,
+    ``icmp`` or ``1``, ``icmpv6`` or ``58``, ``igmp`` or ``2``,
+    ``ipip`` or ``4``, ``ipv6-encap`` or ``41``,
     ``ipv6-frag`` or ``44``, ``ipv6-icmp`` or ``58``, ``ipv6-nonxt`` or ``59``,
     ``ipv6-opts`` or ``60``, ``ipv6-route`` or ``43``, ``ospf`` or ``89``,
     ``pgm`` or ``113``, ``rsvp`` or ``46``, ``sctp`` or ``132``,
     ``tcp`` or ``6``, ``udp`` or ``17``, ``udplite`` or ``136``,
-    ``vrrp`` or ``112``.
+    ``vrrp`` or ``112``. Additionally, any integer value between [0-255] is
+    also valid. The string ``any`` (or integer ``0``) means ``all`` IP
+    protocols. See the constants in ``neutron_lib.constants`` for the most
+    up-to-date list of supported strings.
   in: body
   required: true
   type: string
