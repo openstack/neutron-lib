@@ -176,7 +176,7 @@ Updates a log resource.
 
 Normal response codes: 200
 
-Error response codes: 400, 401, 404
+Error response codes: 400, 401, 404, 412
 
 Request
 -------
@@ -228,7 +228,7 @@ Deletes a log resource.
 
 Normal response codes: 204
 
-Error response codes: 400, 401, 404
+Error response codes: 400, 401, 404, 412
 
 Request
 -------

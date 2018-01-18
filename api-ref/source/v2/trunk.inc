@@ -282,7 +282,7 @@ that it prevents operations such as as adding/removing subports.
 
 Normal response codes: 200
 
-Error response codes: 400, 401, 404, 409
+Error response codes: 400, 401, 404, 409, 412
 
 Request
 -------
@@ -384,7 +384,7 @@ Deletes a trunk, if its state allows it.
 
 Normal response codes: 204
 
-Error response codes: 401, 404, 409
+Error response codes: 401, 404, 409, 412
 
 Request
 -------
