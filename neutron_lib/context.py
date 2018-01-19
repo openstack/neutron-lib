@@ -33,14 +33,14 @@ class ContextBase(oslo_context.RequestContext):
     def __init__(self, user_id=None, tenant_id=None, is_admin=None,
                  timestamp=None, tenant_name=None, user_name=None,
                  is_advsvc=None, **kwargs):
-        # NOTE(jamielennox): We maintain these arguments in order for tests
-        # that pass arguments positionally.
-        kwargs.setdefault('user', user_id)
-        kwargs.setdefault('tenant', tenant_id)
+        # NOTE(jamielennox): We maintain this argument in order for tests that
+        # pass arguments positionally.
+        kwargs.setdefault('project_id', tenant_id)
         # prefer project_name, as that's what's going to be set by
         # keystone. Fall back to tenant_name if for some reason it's blank.
         kwargs.setdefault('project_name', tenant_name)
-        super(ContextBase, self).__init__(is_admin=is_admin, **kwargs)
+        super(ContextBase, self).__init__(
+            is_admin=is_admin, user_id=user_id, **kwargs)
 
         self.user_name = user_name
 
@@ -54,16 +54,12 @@ class ContextBase(oslo_context.RequestContext):
             self.is_admin = policy.check_is_admin(self)
 
     @property
-    def project_id(self):
-        return self.tenant
-
-    @property
     def tenant_id(self):
-        return self.tenant
+        return self.project_id
 
     @tenant_id.setter
     def tenant_id(self, tenant_id):
-        self.tenant = tenant_id
+        self.project_id = tenant_id
 
     @property
     def tenant_name(self):
@@ -73,19 +69,11 @@ class ContextBase(oslo_context.RequestContext):
     def tenant_name(self, tenant_name):
         self.project_name = tenant_name
 
-    @property
-    def user_id(self):
-        return self.user
-
-    @user_id.setter
-    def user_id(self, user_id):
-        self.user = user_id
-
     def to_dict(self):
         context = super(ContextBase, self).to_dict()
         context.update({
             'user_id': self.user_id,
-            'tenant_id': self.tenant_id,
+            'tenant_id': self.project_id,
             'project_id': self.project_id,
             'timestamp': str(self.timestamp),
             'tenant_name': self.project_name,
@@ -96,18 +84,18 @@ class ContextBase(oslo_context.RequestContext):
 
     def to_policy_values(self):
         values = super(ContextBase, self).to_policy_values()
-        values['tenant_id'] = self.tenant_id
+        values['tenant_id'] = self.project_id
         values['is_admin'] = self.is_admin
 
         # NOTE(jamielennox): These are almost certainly unused and non-standard
         # but kept for backwards compatibility. Remove them in Pike
         # (oslo.context from Ocata release already issues deprecation warnings
         # for non-standard keys).
-        values['user'] = self.user
-        values['tenant'] = self.tenant
-        values['domain'] = self.domain
-        values['user_domain'] = self.user_domain
-        values['project_domain'] = self.project_domain
+        values['user'] = self.user_id
+        values['tenant'] = self.project_id
+        values['domain'] = self.domain_id
+        values['user_domain'] = self.user_domain_id
+        values['project_domain'] = self.project_domain_id
         values['tenant_name'] = self.project_name
         values['project_name'] = self.project_name
         values['user_name'] = self.user_name
