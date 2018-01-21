@@ -23,6 +23,13 @@ The extra route extension (``extraroute``) extends ``router`` resources adding
 a ``routes`` attribute that contains an array of route objects. Each route
 object has a ``destination`` and ``nexthop`` attribute representing the route.
 
+L3 flavors extension (``l3-flavors``)
+=====================================
+
+The router flavor extension (``l3-flavors``) adds the ``flavor_id`` attribute
+to routers, allowing requests to be dispatched to different drivers depending
+on the flavor associated with a given router.
+
 Router availability zone extension
 ==================================
 
@@ -104,6 +111,7 @@ Response Parameters
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
+   - flavor_id: router-flavor_id
 
 Response Example
 ----------------
@@ -151,6 +159,7 @@ Request
    - ha: router-ha-request
    - availability_zone_hints: router-availability_zone_hints-request
    - service_type_id: router-service_type_id-request
+   - flavor_id: router-flavor_id-optional
 
 Request Example
 ---------------
@@ -184,6 +193,7 @@ Response Parameters
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
+   - flavor_id: router-flavor_id
 
 Response Example
 ----------------
@@ -242,6 +252,7 @@ Response Parameters
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
+   - flavor_id: router-flavor_id
 
 Response Example
 ----------------
@@ -312,6 +323,7 @@ Response Parameters
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
+   - flavor_id: router-flavor_id
 
 Response Example
 ----------------
