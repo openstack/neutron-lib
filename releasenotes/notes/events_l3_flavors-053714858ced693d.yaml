@@ -1,0 +1,4 @@
+---
+features:
+  - This adds two new events ``PRECOMMIT_ADD_ASSOCIATION``,
+    ``PRECOMMIT_DELETE_ASSOCIATIONS`` and a resource ``ROUTER_CONTROLLER``.

@@ -19,6 +19,8 @@ BEFORE_DELETE = 'before_delete'
 PRECOMMIT_CREATE = 'precommit_create'
 PRECOMMIT_UPDATE = 'precommit_update'
 PRECOMMIT_DELETE = 'precommit_delete'
+PRECOMMIT_ADD_ASSOCIATION = 'precommit_add_association'
+PRECOMMIT_DELETE_ASSOCIATIONS = 'precommit_delete_associations'
 
 AFTER_CREATE = 'after_create'
 AFTER_READ = 'after_read'
