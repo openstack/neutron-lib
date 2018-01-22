@@ -350,6 +350,8 @@ UUID_PATTERN = '-'.join([HEX_ELEM + '{8}', HEX_ELEM + '{4}',
                          HEX_ELEM + '{4}', HEX_ELEM + '{4}',
                          HEX_ELEM + '{12}'])
 
+SHARED = 'shared'
+
 
 ##########################
 # Device related constants

@@ -12,6 +12,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import subnet
+from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 
 
@@ -54,13 +55,15 @@ RESOURCE_ATTRIBUTE_MAP = {
                           'type:string': db_const.PROJECT_ID_FIELD_SIZE},
                       'required_by_policy': True,
                       'is_visible': True},
-        'shared': {'allow_post': True,
-                   'allow_put': True,
-                   'default': False,
-                   'convert_to': converters.convert_to_boolean,
-                   'is_visible': True,
-                   'required_by_policy': True,
-                   'enforce_policy': True},
+        constants.SHARED: {
+            'allow_post': True,
+            'allow_put': True,
+            'default': False,
+            'convert_to': converters.convert_to_boolean,
+            'is_visible': True,
+            'required_by_policy': True,
+            'enforce_policy': True
+        }
     }
 }
 

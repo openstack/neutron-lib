@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import firewall_v2
+from neutron_lib import constants
 from neutron_lib.tests.unit.api.definitions import base
 
 
@@ -23,7 +24,7 @@ class FirewallDefinitionTestCase(base.DefinitionBaseTestCase):
                             'egress_firewall_policy_id', 'enabled',
                             'firewall_policy_id', 'firewall_rules',
                             'ingress_firewall_policy_id', 'ip_version',
-                            'ports', 'position', 'protocol', 'shared',
+                            'ports', 'position', 'protocol', constants.SHARED,
                             'source_ip_address', 'source_port',
                             'source_firewall_group_id',
                             'destination_firewall_group_id')

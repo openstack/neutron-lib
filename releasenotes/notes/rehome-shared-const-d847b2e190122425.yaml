@@ -1,0 +1,4 @@
+---
+features:
+  - The ``SHARED`` constant is now available in
+    ``neutron_lib.constants``.

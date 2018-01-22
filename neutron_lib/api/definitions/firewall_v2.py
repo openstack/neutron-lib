@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import constants as api_const
 from neutron_lib.api.definitions import port
+from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 
 # The alias of the extension.
@@ -62,10 +63,12 @@ RESOURCE_ATTRIBUTE_MAP = {
         'firewall_policy_id': {'allow_post': False, 'allow_put': False,
                                'validate': {'type:uuid_or_none': None},
                                'is_visible': True},
-        'shared': {'allow_post': True, 'allow_put': True,
-                   'default': False, 'is_visible': True,
-                   'convert_to': converters.convert_to_boolean,
-                   'required_by_policy': True, 'enforce_policy': True},
+        constants.SHARED: {
+            'allow_post': True, 'allow_put': True,
+            'default': False, 'is_visible': True,
+            'convert_to': converters.convert_to_boolean,
+            'required_by_policy': True, 'enforce_policy': True
+        },
         'protocol': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': None,
@@ -126,10 +129,12 @@ RESOURCE_ATTRIBUTE_MAP = {
                            'convert_to': converters.convert_to_boolean},
         'status': {'allow_post': False, 'allow_put': False,
                    'is_visible': True},
-        'shared': {'allow_post': True, 'allow_put': True, 'default': False,
-                   'convert_to': converters.convert_to_boolean,
-                   'is_visible': True, 'required_by_policy': True,
-                   'enforce_policy': True},
+        constants.SHARED: {
+            'allow_post': True, 'allow_put': True, 'default': False,
+            'convert_to': converters.convert_to_boolean,
+            'is_visible': True, 'required_by_policy': True,
+            'enforce_policy': True
+        },
         port.COLLECTION_NAME: {'allow_post': True, 'allow_put': True,
                                'validate': {'type:uuid_list': None},
                                'convert_to':
@@ -168,10 +173,12 @@ RESOURCE_ATTRIBUTE_MAP = {
                         'validate': {'type:string':
                                      db_const.DESCRIPTION_FIELD_SIZE},
                         'is_visible': True, 'default': ''},
-        'shared': {'allow_post': True, 'allow_put': True, 'default': False,
-                   'convert_to': converters.convert_to_boolean,
-                   'is_visible': True, 'required_by_policy': True,
-                   'enforce_policy': True},
+        constants.SHARED: {
+            'allow_post': True, 'allow_put': True, 'default': False,
+            'convert_to': converters.convert_to_boolean,
+            'is_visible': True, 'required_by_policy': True,
+            'enforce_policy': True
+        },
         api_const.FIREWALL_RULES: {'allow_post': True, 'allow_put': True,
                                    'validate': {'type:uuid_list': None},
                                    'convert_to':

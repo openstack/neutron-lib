@@ -79,13 +79,15 @@ RESOURCE_ATTRIBUTE_MAP = {
                        'is_visible': True,
                        'required_by_policy': True,
                        'enforce_policy': True},
-        'shared': {'allow_post': True,
-                   'allow_put': False,
-                   'default': False,
-                   'convert_to': converters.convert_to_boolean,
-                   'is_visible': True,
-                   'required_by_policy': True,
-                   'enforce_policy': True},
+        constants.SHARED: {
+            'allow_post': True,
+            'allow_put': False,
+            'default': False,
+            'convert_to': converters.convert_to_boolean,
+            'is_visible': True,
+            'required_by_policy': True,
+            'enforce_policy': True
+        }
     }
 }
 
