@@ -1,0 +1,1265 @@
+# Lucas Palm <lapalm@us.ibm.com>, 2015. #zanata
+# OpenStack Infra <zanata@openstack.org>, 2015. #zanata
+# Andreas Jaeger <jaegerandi@gmail.com>, 2016. #zanata
+# Lucas Palm <lapalm@us.ibm.com>, 2016. #zanata
+# Frank Wang <wangpeihui@inspur.com>, 2018. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: neutron-lib VERSION\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
+"POT-Creation-Date: 2018-01-21 08:22+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2018-01-19 11:13+0000\n"
+"Last-Translator: Frank Wang <wangpeihui@inspur.com>\n"
+"Language-Team: Chinese (China)\n"
+"Language: zh-CN\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#, python-format
+msgid "%(child)s does not define a foreign key for %(parent)s"
+msgstr "%(child)s 没有为 %(parent)s定义外键"
+
+#, python-format
+msgid "%(data)s is not in %(valid_values)s"
+msgstr "“%(data)s”不在 %(valid_values)s 中"
+
+#, python-format
+msgid "%(driver)s: Internal driver error."
+msgstr "%(driver)s：内部驱动错误。"
+
+#, python-format
+msgid "%(id)s is not a valid %(type)s identifier"
+msgstr "%(id)s 是无效 %(type)s 标识"
+
+#, python-format
+msgid "%(param)s are not allowed when protocol is set to ICMP."
+msgstr "协议设为ICMP时%(param)s不被允许。"
+
+#, python-format
+msgid "%s is not a valid VLAN tag"
+msgstr "%s 是无效 VLAN 标记"
+
+#, python-format
+msgid "%s is not in a CIDR format"
+msgstr "%s不是CIDR格式"
+
+#, python-format
+msgid ""
+"'%(data)s' contains %(length)s characters. Adding a domain name will cause "
+"it to exceed the maximum length of a FQDN of '%(max_len)s'"
+msgstr ""
+"“%(data)s”包含%(length)s个字符。添加域名将导致它超出 FQDN 的最大长"
+"度“%(max_len)s”"
+
+#, python-format
+msgid ""
+"'%(data)s' contains %(length)s characters. Adding a sub-domain will cause it "
+"to exceed the maximum length of a FQDN of '%(max_len)s'"
+msgstr ""
+"“%(data)s”包含%(length)s个字符。添加子域将导致它超出 FQDN 的最大长"
+"度“%(max_len)s”"
+
+#, python-format
+msgid "'%(data)s' exceeds maximum length of %(max_len)s"
+msgstr "“%(data)s”超过最大长度 %(max_len)s"
+
+#, python-format
+msgid "'%(data)s' is neither a valid IP address, nor is it a valid IP subnet"
+msgstr "“%(data)s”不是一个合法的IP地址，也不是一个合法的IP子网"
+
+#, python-format
+msgid "'%(data)s' is not an accepted IP address, '%(ip)s' is recommended"
+msgstr "“%(data)s”并非已接受 IP 地址。建议使用“%(ip)s”"
+
+#, python-format
+msgid "'%(data)s' is too large - must be no larger than '%(limit)d'"
+msgstr "'%(data)s' 太大 - 必须不能大于 '%(limit)d'"
+
+#, python-format
+msgid "'%(data)s' is too small - must be at least '%(limit)d'"
+msgstr "'%(data)s' 太小 - 必须至少 '%(limit)d'"
+
+#, python-format
+msgid "'%(data)s' isn't a recognized IP subnet cidr, '%(cidr)s' is recommended"
+msgstr "'%(data)s' 不是一个可识别的IP子网CIDR， 建议'%(cidr)s' "
+
+#, python-format
+msgid "'%(data)s' not a valid PQDN or FQDN. Reason: %(reason)s"
+msgstr "“%(data)s”是无效 PQDN 或 FQDN。原因：%(reason)s"
+
+#, python-format
+msgid "'%(host)s' is not a valid nameserver. %(msg)s"
+msgstr "'%(host)s' 不是合法的nameserver %(msg)s"
+
+#, python-format
+msgid "'%(trimmed)s' exceeds the %(maxlen)s character FQDN limit"
+msgstr "“%(trimmed)s”超过了 %(maxlen)s字符这一 FQDN 限制"
+
+#, python-format
+msgid "'%s' Blank strings are not permitted"
+msgstr "'%s' 不允许空白字符串"
+
+#, python-format
+msgid "'%s' cannot be converted to boolean"
+msgstr "无法将“%s”转换为布尔值"
+
+#, python-format
+msgid "'%s' contains whitespace"
+msgstr "'%s' 包含空格"
+
+#, python-format
+msgid "'%s' is a FQDN. It should be a relative domain name"
+msgstr "“%s”为 FQDN。它应该是相对域名"
+
+#, python-format
+msgid "'%s' is an invalid attribute for sort key"
+msgstr "%s 对于 sort_keys 是无效属性"
+
+#, python-format
+msgid "'%s' is not a FQDN"
+msgstr "“%s”并非 FQDN"
+
+#, python-format
+msgid "'%s' is not a dictionary"
+msgstr "“%s”不是字典"
+
+#, python-format
+msgid "'%s' is not a list"
+msgstr "“%s”不是列表"
+
+#, python-format
+msgid "'%s' is not a valid IP address"
+msgstr "“%s”是无效 IP 地址"
+
+#, python-format
+msgid "'%s' is not a valid IP subnet"
+msgstr "“%s”是无效 IP 子网"
+
+#, python-format
+msgid "'%s' is not a valid MAC address"
+msgstr "“%s”是无效 MAC 地址"
+
+#, python-format
+msgid "'%s' is not a valid UUID"
+msgstr "“%s”是无效 UUID"
+
+#, python-format
+msgid "'%s' is not a valid boolean value"
+msgstr "'%s' 不是一个有效的布尔值"
+
+#, python-format
+msgid "'%s' is not a valid input"
+msgstr "“%s”不是有效的输入"
+
+#, python-format
+msgid "'%s' is not a valid string"
+msgstr "“%s”是无效字符串"
+
+#, python-format
+msgid "'%s' is not an integer"
+msgstr "“%s”不是整数"
+
+#, python-format
+msgid "'%s' is not an integer:boolean"
+msgstr "“%s”不是一个整数：布尔"
+
+#, python-format
+msgid "'%s' is not of the form <key>=[value]"
+msgstr "“%s”没有采用格式 <key>=[value]"
+
+#, python-format
+msgid "'%s' must be a non negative decimal"
+msgstr "“%s”必须为非负十进制数"
+
+#, python-format
+msgid "'%s' should be non-negative"
+msgstr "“%s”应该为非负"
+
+#, python-format
+msgid ""
+"'data' of type '%(typedata)s' and 'valid_values'of type '%(typevalues)s' are "
+"not compatible for comparison"
+msgstr ""
+"“%(typedata)s”的“data”类型和“%(typevalues)s”的“valid_values”的类型是不兼容的"
+"比较"
+
+msgid "'project_id' and 'tenant_id' do not match"
+msgstr "“project_id”与“tenant_id”不匹配"
+
+msgid "'valid_values' does not support membership operations"
+msgstr "“valid_values”不支持会员操作"
+
+msgid "A valid port UUID must be specified"
+msgstr "必须指定一个有效的端口UUID"
+
+#, python-format
+msgid ""
+"Action %(action)s is not supported. Only action values %(values)s are "
+"supported."
+msgstr "行为%(action)s不被支持。仅行为数值%(values)s被支持。"
+
+#, python-format
+msgid "Address scope %(address_scope_id)s could not be found."
+msgstr "找不到地址范围 %(address_scope_id)s。"
+
+#, python-format
+msgid "Agent %(id)s could not be found."
+msgstr "找不到 Agent %(id)s"
+
+#, python-format
+msgid ""
+"Agent with agent_type=%(agent_type)s and host=%(host)s could not be found."
+msgstr "找不到符合以下条件的代理：agent_type=%(agent_type)s 且 host=%(host)s。"
+
+#, python-format
+msgid "Aggregate not found for resource provider %(resource_provider)s."
+msgstr "资源提供者 %(resource_provider)s没有发现聚合。"
+
+msgid "Allowed address pairs must be a list."
+msgstr "允许的地址对必须是列表。"
+
+msgid "AllowedAddressPair must contain ip_address"
+msgstr "AllowedAddressPair 必须包含 ip_address"
+
+#, python-format
+msgid "An invalid value was provided for %(opt_name)s: %(opt_value)s."
+msgstr "对于 %(opt_name)s，已提供的值无效：%(opt_value)s。"
+
+msgid "An invalid value was provided for which muppet: big bird."
+msgstr "对于 muppet，已提供的值无效：big brid。"
+
+msgid "An unknown exception occurred."
+msgstr "发生未知异常。"
+
+#, python-format
+msgid ""
+"Attribute '%(attr)s' references another resource and cannot be used to sort "
+"'%(resource)s' resources"
+msgstr "属性“%(attr)s”是对其他资源的引用，无法由排序“%(resource)s”使用"
+
+#, python-format
+msgid "Attribute '%s' not allowed in POST"
+msgstr "属性“%s”不允许进行POST操作"
+
+#, python-format
+msgid "AvailabilityZone %(availability_zone)s could not be found."
+msgstr "找不到 AvailabilityZone %(availability_zone)s。"
+
+msgid "Backend does not support VLAN Transparency."
+msgstr "后端不支持 VLAN 透明。"
+
+#, python-format
+msgid "Bad %(resource)s request: %(msg)s."
+msgstr "%(resource)s 请求不正确：%(msg)s。"
+
+msgid "Bad A request: B."
+msgstr "错误请求"
+
+#, python-format
+msgid ""
+"Cannot associate floating IP %(floating_ip_address)s (%(fip_id)s) with port "
+"%(port_id)s using fixed IP %(fixed_ip)s, as that fixed IP already has a "
+"floating IP on external network %(net_id)s."
+msgstr ""
+"无法使浮动 IP %(floating_ip_address)s (%(fip_id)s) 与使用固定 IP "
+"%(fixed_ip)s 的端口 %(port_id)s 关联，因为该固定 IP 已具有外部网络 "
+"%(net_id)s 上的浮动 IP。"
+
+msgid "Class not found."
+msgstr "找不到类。"
+
+#, python-format
+msgid "Creation failed. %(dev_name)s already exists."
+msgstr "创建失败。%(dev_name)s 已存在。"
+
+msgid "Creation failed. hal9000 already exists."
+msgstr "创建失败。hal9000已存在。"
+
+msgid ""
+"Default firewall group already exists. 'default' is the reserved name for "
+"firewall group."
+msgstr "默认防火墙组已经存在。“default”已经被防火墙组预留。"
+
+msgid "Deleting default firewall group not allowed."
+msgstr "正在删除的缺省安全组内容不被允许。"
+
+#, python-format
+msgid "Device '%(device_name)s' does not exist."
+msgstr "设备“%(device_name)s”不存在。"
+
+msgid "Device 'device' does not exist."
+msgstr "设备“device”不存在。"
+
+#, python-format
+msgid ""
+"Distributed Virtual Router Mac Address for host %(host)s does not exist."
+msgstr "主机 %(host)s 的分布式虚拟路由器 MAC 地址不存在。"
+
+#, python-format
+msgid "Domain %(dns_domain)s not found in the external DNS service"
+msgstr "在外部 DNS 服务中找不到域 %(dns_domain)s"
+
+#, python-format
+msgid "Duplicate IP address '%s'"
+msgstr "IP 地址“%s”重复"
+
+msgid "Duplicate Metering Rule in POST."
+msgstr "POST 中的测量规则重复。"
+
+#, python-format
+msgid "Duplicate hostroute '%s'"
+msgstr "主机路由“%s”重复"
+
+#, python-format
+msgid "Duplicate items in the list: '%s'"
+msgstr "列表“%s”中的项重复"
+
+#, python-format
+msgid "Duplicate nameserver '%s'"
+msgstr "名称服务器“%s”重复"
+
+msgid "Duplicate segment entry in request."
+msgstr "请求中的分段条目重复。"
+
+msgid "Empty physical network name."
+msgstr "空的物理网络名。"
+
+msgid "Encountered an empty component"
+msgstr "遇到空组件"
+
+msgid "End of VLAN range is less than start of VLAN range"
+msgstr "VLAN 范围结束值比开始值小"
+
+msgid "End of tunnel range is less than start of tunnel range"
+msgstr "隧道范围的结束小于隧道范围的起始"
+
+#, python-format
+msgid "Error %(reason)s while attempting the operation."
+msgstr "尝试执行该操作时发生错误 %(reason)s。"
+
+#, python-format
+msgid "Extension module API definition does not define '%s'"
+msgstr "扩展模块API中没有定义“%s”"
+
+msgid "Extension module API definition not set."
+msgstr "扩展模块API定义未设置"
+
+#, python-format
+msgid "External DNS driver %(driver)s could not be found."
+msgstr "找不到外部 DNS 驱动程序 %(driver)s。"
+
+#, python-format
+msgid ""
+"External network %(external_network_id)s is not reachable from subnet "
+"%(subnet_id)s.  Therefore, cannot associate Port %(port_id)s with a Floating "
+"IP."
+msgstr ""
+"无法从子网 %(subnet_id)s 访问外部网络 %(external_network_id)s。因此，无法使端"
+"口 %(port_id)s 与浮动 IP 关联。"
+
+#, python-format
+msgid ""
+"External network %(net_id)s cannot be updated to be made non-external, since "
+"it has existing gateway ports."
+msgstr "无法将外部网络 %(net_id)s 更新为非外部网络，因为它包含现有的网关端口。"
+
+#, python-format
+msgid ""
+"Failed to allocate a VRID in the network %(network_id)s for the router "
+"%(router_id)s after %(max_tries)s tries."
+msgstr ""
+"在 %(max_tries)s 次尝试之后，未能在网络 %(network_id)s 中为路由器 "
+"%(router_id)s 分配 VRID。"
+
+#, python-format
+msgid "Failed to check policy %(policy)s because %(reason)s."
+msgstr "无法检查策略 %(policy)s，因为 %(reason)s。"
+
+msgid "Failed to check policy policy because reason."
+msgstr "无法检查策略 policy，因为reason。"
+
+#, python-format
+msgid ""
+"Failed to create a duplicate %(object_type)s: for attribute(s) "
+"%(attributes)s with value(s) %(values)s"
+msgstr ""
+"对于具有值 %(values)s 的属性 %(attributes)s，未能创建重复的 %(object_type)s"
+
+#, python-format
+msgid "Failed to initialize policy %(policy)s because %(reason)s."
+msgstr "无法初始化策略 %(policy)s，因为 %(reason)s。"
+
+msgid "Failed to initialize policy policy because reason."
+msgstr "无法初始化策略 policy，因为reason。"
+
+#, python-format
+msgid "Failed to parse request. Required attribute '%s' not specified"
+msgstr "未能解析请求。未指定必需属性“%s”"
+
+#, python-format
+msgid "Firewall %(firewall_id)s could not be found."
+msgstr "防火墙%(firewall_id)s没有找到。"
+
+#, python-format
+msgid "Firewall %(firewall_id)s is still active."
+msgstr "防火墙%(firewall_id)s仍处于active状态。"
+
+#, python-format
+msgid "Firewall group %(firewall_id)s could not be found."
+msgstr "没有发现防火墙组%(firewall_id)s。"
+
+#, python-format
+msgid "Firewall group %(firewall_id)s is still active."
+msgstr "防火墙组%(firewall_id)s仍处于active状态。"
+
+#, python-format
+msgid "Firewall policy %(firewall_policy_id)s could not be found."
+msgstr "没有发现防火墙策略%(firewall_policy_id)s。"
+
+#, python-format
+msgid "Firewall policy %(firewall_policy_id)s is being used."
+msgstr "防火墙%(firewall_policy_id)s正在使用"
+
+#, python-format
+msgid "Firewall rule %(firewall_rule_id)s could not be found."
+msgstr "没有发现防火墙规则%(firewall_rule_id)s。"
+
+#, python-format
+msgid "Firewall rule %(firewall_rule_id)s is being used."
+msgstr "防火墙规则%(firewall_rule_id)s正在使用。"
+
+#, python-format
+msgid ""
+"Firewall rule %(firewall_rule_id)s is not associated with firewall policy "
+"%(firewall_policy_id)s."
+msgstr ""
+"防火墙规则%(firewall_rule_id)s没有关联防火墙策略%(firewall_policy_id)s。"
+
+#, python-format
+msgid ""
+"Firewall rule action %(action)s is not supported. Only action values "
+"%(values)s are supported."
+msgstr "防火墙规则行为%(action)s不被支持。仅行为数值%(values)s被支持。"
+
+#, python-format
+msgid ""
+"Firewall rule protocol %(protocol)s is not supported. Only protocol values "
+"%(values)s and their integer representation (0 to 255) are supported."
+msgstr ""
+"防火墙规则协议%(protocol)s不被支持。仅支持协议数值%(values)s的整数类型范围"
+"(0-255)。"
+
+msgid "First port in a port range must be lower than the second port"
+msgstr "端口范围的第一个端口必须小于第二个端口"
+
+#, python-format
+msgid "Flavor %(flavor_id)s could not be found."
+msgstr "找不到 flavor %(flavor_id)s。"
+
+#, python-format
+msgid "Flavor %(flavor_id)s is used by some service instance."
+msgstr "类型 %(flavor_id)s 已被某个服务实例使用。"
+
+msgid "Flavor is not enabled."
+msgstr "类型未启用。"
+
+#, python-format
+msgid "Floating IP %(floatingip_id)s could not be found"
+msgstr "找不到浮动 IP %(floatingip_id)s"
+
+#, python-format
+msgid "For class %(object_type)s missing primary keys: %(missing_keys)s"
+msgstr "对于类 %(object_type)s，缺少主键：%(missing_keys)s"
+
+#, python-format
+msgid ""
+"Gateway cannot be updated for router %(router_id)s, since a gateway to "
+"external network %(net_id)s is required by one or more floating IPs."
+msgstr ""
+"无法为路由器 %(router_id)s 更新网关，因为一个或多个浮动 IP 需要指向外部网络 "
+"%(net_id)s 的网关。"
+
+#, python-format
+msgid ""
+"IP address %(ip_address)s is not a valid IP for any of the subnets on the "
+"specified network."
+msgstr "对于所指定网络上的任何子网，IP 地址 %(ip_address)s 不是有效 IP。"
+
+#, python-format
+msgid "IP address %(ip_address)s is not a valid IP for the specified subnet."
+msgstr "对于所指定子网，IP 地址 %(ip_address)s 是无效 IP。"
+
+msgid "IP address 300.400.500.600 is not a valid IP for the specified subnet."
+msgstr "对于所指定子网，IP 地址300.400.500.600 是无效 IP。"
+
+msgid ""
+"IP address shazam! is not a valid IP for any of the subnets on the specified "
+"network."
+msgstr "对于所指定网络上的任何子网，IP 地址shazam是无效 IP。"
+
+#, python-format
+msgid ""
+"IP protocol '%s' is not supported. Only protocol names and their integer "
+"representation (0 to 255) are supported"
+msgstr "不支持IP协议“%s”。仅支持协议名称及它们的整数类型表示(0-255)。"
+
+#, python-format
+msgid "Incorrect range limits specified: start = %(start)s, end = %(end)s"
+msgstr "指定了错误的限制范围：开始= %(start)s，结束= %(end)s"
+
+#, python-format
+msgid "Input value %s must be string type"
+msgstr "输入值%s必须为字符串"
+
+#, python-format
+msgid "Invalid UUID for subport: '%s'"
+msgstr "无效的子端口UUID：“%s”"
+
+#, python-format
+msgid "Invalid content type %(content_type)s."
+msgstr "无效的内容类型 %(content_type)s。"
+
+msgid "Invalid content type porn."
+msgstr "无效的内容类型 porn。"
+
+#, python-format
+msgid "Invalid data format for IP pool: '%s'"
+msgstr "IP 池的数据格式无效：“%s”"
+
+#, python-format
+msgid "Invalid data format for fixed IP: '%s'"
+msgstr "固定 IP 的数据格式无效：“%s”"
+
+#, python-format
+msgid "Invalid data format for hostroute: '%s'"
+msgstr "主机路由“%s”的数据格式无效"
+
+#, python-format
+msgid "Invalid data format for nameserver: '%s'"
+msgstr "名称服务器“%s”的数据格式无效"
+
+#, python-format
+msgid "Invalid data format for subport: '%s' is not a dict"
+msgstr "子端口无效的数据格式：“%s”不是一个字典"
+
+#, python-format
+msgid "Invalid data format for subports: '%s' is not a list"
+msgstr "子端口无效的数据格式：“%s”不是一个列表"
+
+#, python-format
+msgid "Invalid format for routes: %(routes)s, %(reason)s"
+msgstr "路由 %(routes)s 的格式无效，%(reason)s"
+
+msgid "Invalid input - IP addresses do not agree with IP Version."
+msgstr "无效输入-IP地址与IP版本不一致。"
+
+#, python-format
+msgid "Invalid input for %(attr)s. Reason: %(reason)s."
+msgstr "输入对于 %(attr)s 无效。原因：%(reason)s。"
+
+#, python-format
+msgid "Invalid input for operation: %(error_message)s."
+msgstr "针对操作的输入无效：%(error_message)s。"
+
+msgid "Invalid input for operation: warp core breach."
+msgstr "针对操作的输入无效：warp core breach。"
+
+#, python-format
+msgid ""
+"Invalid input. '%(target_dict)s' must be a dictionary with keys: "
+"%(expected_keys)s"
+msgstr "输入无效。“%(target_dict)s”必须是具有以下键的字典：%(expected_keys)s"
+
+#, python-format
+msgid "Invalid mapping: '%s'"
+msgstr "映射无效：“%s”"
+
+#, python-format
+msgid "Invalid network VLAN range: '%(vlan_range)s' - '%(error)s'."
+msgstr "无效网络 VLAN 范围：“%(vlan_range)s”-“%(error)s”。"
+
+#, python-format
+msgid "Invalid network tunnel range: '%(tunnel_range)s' - %(error)s."
+msgstr "网络隧道范围“%(tunnel_range)s”无效 - %(error)s。"
+
+msgid "Invalid network tunnel range: '3:4' - present."
+msgstr "网络隧道范围“3:4”无效。"
+
+msgid "Invalid network tunnel range: 'rats' - present."
+msgstr "网络隧道范围“rats”无效。"
+
+#, python-format
+msgid "Invalid port: %s"
+msgstr "无效端口：'%s'"
+
+#, python-format
+msgid "Invalid service type: %(service_type)s."
+msgstr "无效服务类型： %(service_type)s 。"
+
+#, python-format
+msgid ""
+"Invalid subport details '%s': missing segmentation information. Must specify "
+"both segmentation_id and segmentation_type"
+msgstr ""
+"无效的子端口信息“%s”：没有的段信息。必须指定segmentation_id和"
+"segmentation_type"
+
+#, python-format
+msgid "Invalid value for port %(port)s."
+msgstr "端口%(port)s数值无效。"
+
+#, python-format
+msgid "Key %(key)s in mapping: '%(mapping)s' not unique"
+msgstr "映射“%(mapping)s”中的键 %(key)s 不唯一"
+
+#, python-format
+msgid "Metering label '%(label_id)s' does not exist."
+msgstr "测量标签规则 “%(label_id)s ” 不存在"
+
+#, python-format
+msgid "Metering label rule '%(rule_id)s' does not exist."
+msgstr "测量标签规则 “%(rule_id)s ” 不存在"
+
+#, python-format
+msgid ""
+"Metering label rule with remote_ip_prefix '%(remote_ip_prefix)s' overlaps "
+"another."
+msgstr ""
+"带有 remote_ip_prefix “%(remote_ip_prefix)s” 的测量标签规则与另一测量标签规则"
+"重叠"
+
+#, python-format
+msgid "Missing key in mapping: '%s'"
+msgstr "映射中缺少键：“%s”"
+
+msgid "Missing rule info argument for insert/remove rule operation."
+msgstr "插入/删除规则操作缺省规则信息参数。"
+
+#, python-format
+msgid "Missing value in mapping: '%s'"
+msgstr "映射中缺少值：“%s”"
+
+msgid "More than one external network exists."
+msgstr "存在多个外部网络。"
+
+#, python-format
+msgid "Multiple agents with agent_type=%(agent_type)s and host=%(host)s found."
+msgstr ""
+"找到多个符合以下条件的代理：agent_type=%(agent_type)s 且 host=%(host)s。"
+
+#, python-format
+msgid "Name %(dns_name)s is duplicated in the external DNS service"
+msgstr "名称 %(dns_name)s 在外部 DNS 服务中重复"
+
+#, python-format
+msgid ""
+"Name '%s' must be 1-63 characters long, each of which can only be "
+"alphanumeric or a hyphen"
+msgstr ""
+"名称“%s”的长度必须在 1 到 63 个字符之间，其中每个字符只能是字母数字或连字符"
+
+#, python-format
+msgid "Name '%s' must not start or end with a hyphen"
+msgstr "名称“%s”不能以连字符开头或结尾"
+
+msgid "Need exactly two values for VLAN range"
+msgstr "VLAN范围需要两个数值"
+
+#, python-format
+msgid "Network %(net_id)s could not be found."
+msgstr "找不到网络 %(net_id)s。"
+
+#, python-format
+msgid "Network for tenant %(tenant_id)s concurrently deleted."
+msgstr "租户 %(tenant_id)s网络被并发删除。"
+
+msgid "Network spam could not be found."
+msgstr "网络未找到。"
+
+#, python-format
+msgid "NeutronDbObject not found by model %(model)s."
+msgstr "NeutronDbObject 未通过模型 %(model)s发现。"
+
+msgid "No inventory of class"
+msgstr "无库存类"
+
+#, python-format
+msgid "No more IP addresses available on network %(net_id)s."
+msgstr "在网络 %(net_id)s 上，没有更多 IP 地址可用。"
+
+msgid "No more IP addresses available on network nuke."
+msgstr "在网络 nuke上，没有更多 IP 地址可用。"
+
+#, python-format
+msgid ""
+"No more Virtual Router Identifier (VRID) available when creating router "
+"%(router_id)s. The limit of number of HA Routers per tenant is 254."
+msgstr ""
+"当创建路由器 %(router_id)s 时，没有更多虚拟路由器标识 (VRID) 可用。每个租户"
+"的 HA 路由器数的限制为 254。"
+
+#, python-format
+msgid "No valid key specs matched for: %s"
+msgstr "“%s”没有匹配的有效使用者"
+
+#, python-format
+msgid "Non unique UUID for subport: '%s'"
+msgstr "不唯一的子端口UUID：“%s”"
+
+msgid "Not authorized."
+msgstr "未授权。"
+
+#, python-format
+msgid "Object %(id)s not found."
+msgstr "找不到对象 %(id)s。"
+
+msgid "Object fallout tato not found."
+msgstr "相关对象未找到。"
+
+msgid "One or more ports have an IP allocation from this subnet"
+msgstr "一个或多个端口具有从此子网进行的 IP 分配"
+
+#, python-format
+msgid ""
+"Operation cannot be performed as port %(port_id)s is in an invalid project "
+"%(project_id)s."
+msgstr ""
+"相关操作不能执行，因为端口 %(port_id)s在一个无效的租户 %(project_id)s中"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since associated firewall %(firewall_id)s is "
+"in %(pending_state)s."
+msgstr "相关联防火墙%(firewall_id)s处于%(pending_state)s，因此操作不会执行。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since associated firewall group "
+"%(firewall_id)s is in %(pending_state)s."
+msgstr "相关联防火墙组%(firewall_id)s处于%(pending_state)s，因此操作不会执行。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since firewall policy %(firewall_policy_id)s "
+"could not find the firewall rule %(firewall_rule_id)s. Please confirm if the "
+"firewall rule exists and is shared."
+msgstr ""
+"相关操作不能执行，因为租户的防火墙策略 %(firewall_policy_id)s找不到防火墙规"
+"则 %(firewall_rule_id)s。请确认防火墙规则是否存在并且是共享的 。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since firewall policy %(firewall_policy_id)s "
+"for your project could not be found. Please confirm if the firewall policy "
+"exists and is shared."
+msgstr ""
+"相关操作不能执行，因为租户的防火墙策略 %(firewall_policy_id)s未找到。请确认防"
+"火墙策略是否存在并且是共享的 。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since firewall policy %(firewall_policy_id)s "
+"is not shared and does not belong to your project."
+msgstr ""
+"由于防火墙策略%(firewall_policy_id)s不共享，不属于您的租户，因此操作无法执"
+"行。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since firewall policy %(firewall_policy_id)s "
+"is shared but firewall rule %(firewall_rule_id)s is not shared."
+msgstr ""
+"防火墙策略%(firewall_policy_id)s共享，但防火墙规则%(firewall_rule_id)s不共"
+"享，因此操作无法执行。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since firewall rule %(firewall_rule_id)s is "
+"already associated with firewall policy %(firewall_policy_id)s."
+msgstr ""
+"由于防火墙规则%(firewall_rule_id)s已关联至防火墙策略%(firewall_policy_id)s，"
+"因此操作无法执行。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed since firewall rule %(firewall_rule_id)s is "
+"not shared and belongs to another project %(project_id)s."
+msgstr ""
+"操作无法执行，防火墙规则%(firewall_rule_id)s属于另一租户%(project_id)s不被共"
+"享。"
+
+#, python-format
+msgid ""
+"Operation cannot be performed. Before sharing firewall policy "
+"%(firewall_policy_id)s, share associated firewall rule %(firewall_rule_id)s."
+msgstr ""
+"操作无法执行。共享防火墙策略%(firewall_policy_id)s前首先共享关联的防火墙规"
+"则%(firewall_rule_id)s。"
+
+msgid "Placement API endpoint not found."
+msgstr "没有发现Placement API服务站点。"
+
+#, python-format
+msgid ""
+"Placement inventory not found for resource provider %(resource_provider)s, "
+"resource class %(resource_class)s."
+msgstr ""
+"Placement库存没有发现对应的资源提供者 %(resource_provider)s，资源类 "
+"%(resource_class)s。"
+
+#, python-format
+msgid ""
+"Placement inventory update conflict for resource provider "
+"%(resource_provider)s, resource class %(resource_class)s."
+msgstr ""
+"Placement库存对应的资源提供者 %(resource_provider)s更新冲突，资源类 "
+"%(resource_class)s。"
+
+#, python-format
+msgid "Placement resource provider not found %(resource_provider)s."
+msgstr "没有发现Placement资源提供者 %(resource_provider)s。"
+
+#, python-format
+msgid ""
+"Port %(port_id)s cannot be deleted directly via the port API: %(reason)s."
+msgstr "无法直接通过端口 API 删除端口 %(port_id)s：%(reason)s。"
+
+#, python-format
+msgid "Port %(port_id)s could not be found on network %(net_id)s."
+msgstr "在网络 %(net_id)s 上找不到端口 %(port_id)s。"
+
+#, python-format
+msgid "Port %(port_id)s could not be found."
+msgstr "端口 %(port_id)s 无法被发现。"
+
+#, python-format
+msgid "Port %(port_id)s of firewall group is invalid."
+msgstr "防火墙组的端口 %(port_id)s无效 。"
+
+msgid ""
+"Port Security must be enabled in order to have allowed address pairs on a "
+"port."
+msgstr "必须启用端口安全性，以便在端口上具有所允许的地址对。"
+
+msgid "Port harbor cannot be deleted directly via the port API: docking."
+msgstr "端口不能直接通过API删除。"
+
+msgid "Port harbor could not be found."
+msgstr "端口未找到。"
+
+msgid ""
+"Port has security group associated. Cannot disable port security or IP "
+"address until security group is removed."
+msgstr "端口已使安全组关联。直到除去安全组，才能禁用端口安全性或 IP 地址。"
+
+msgid "Port range must be two integers separated by a colon"
+msgstr "端口范围必须是用冒号分隔的两个整数。"
+
+msgid ""
+"Port security must be enabled and port must have an IP address in order to "
+"use security groups."
+msgstr "必须启用端口安全性，并且端口必须具有 IP 地址以使用安全组。"
+
+msgid "Port serial could not be found on network USB."
+msgstr "网络USB上找不到端口"
+
+#, python-format
+msgid ""
+"Port(s) %(port_ids)s provided already associated with other firewall "
+"group(s)."
+msgstr "提供的端口%(port_ids)s已关联至其他防火墙组。"
+
+#, python-format
+msgid ""
+"Protocol %(protocol)s is not supported. Only protocol values %(values)s and "
+"their integer representation (0 to 255) are supported."
+msgstr ""
+"协议%(protocol)s不被支持。仅支持协议数值%(values)s的整数类型范围(0-255)。"
+
+#, python-format
+msgid "Quota exceeded for resources: %(overs)s."
+msgstr "资源超过了配额：%(overs)s。"
+
+msgid "Quota exceeded for resources: tube socks."
+msgstr "资源超过了配额：tube socks。"
+
+#, python-format
+msgid ""
+"Request contains duplicate address pair: mac_address %(mac_address)s "
+"ip_address %(ip_address)s."
+msgstr ""
+"请求包含重复地址对：mac_address %(mac_address)s ip_address %(ip_address)s。"
+
+#, python-format
+msgid "Router %(router_id)s %(reason)s"
+msgstr "路由器 %(router_id)s %(reason)s"
+
+#, python-format
+msgid "Router %(router_id)s could not be found"
+msgstr "找不到路由器 %(router_id)s"
+
+#, python-format
+msgid "Router %(router_id)s does not have an interface with id %(port_id)s"
+msgstr "路由器 %(router_id)s 没有具有标识 %(port_id)s 的接口"
+
+#, python-format
+msgid "Router %(router_id)s has no interface on subnet %(subnet_id)s"
+msgstr "路由器 %(router_id)s 在子网 %(subnet_id)s 上没有任何接口"
+
+#, python-format
+msgid ""
+"Router interface for subnet %(subnet_id)s on router %(router_id)s cannot be "
+"deleted, as it is required by one or more floating IPs."
+msgstr ""
+"无法删除路由器 %(router_id)s 上用于子网 %(subnet_id)s 的路由器接口，因为一个"
+"或多个浮动 IP 需要该接口。"
+
+#, python-format
+msgid ""
+"Router interface for subnet %(subnet_id)s on router %(router_id)s cannot be "
+"deleted, as it is required by one or more routes."
+msgstr ""
+"无法删除路由器 %(router_id)s 上用于子网 %(subnet_id)s 的路由器接口，因为一个"
+"或多个路由需要该接口。"
+
+#, python-format
+msgid ""
+"Router(s) %(router_ids)s provided already associated with other firewall(s)."
+msgstr "路由%(router_ids)s已关联至其他防火墙。"
+
+msgid "Running without keystone AuthN requires that tenant_id is specified"
+msgstr "在没有 keystone AuthN 的情况下运行要求指定 tenant_id"
+
+#, python-format
+msgid "Segmentation ID '%(seg_id)s' for '%(subport)s' is not unique"
+msgstr "“%(subport)s” 的段ID “%(seg_id)s”不是唯一的"
+
+msgid "Segments and provider values cannot both be set."
+msgstr "无法同时设置段和提供程序值。"
+
+#, python-format
+msgid "Service Profile %(sp_id)s could not be found."
+msgstr "找不到服务概要文件 %(sp_id)s。"
+
+#, python-format
+msgid "Service Profile %(sp_id)s is already associated with flavor %(fl_id)s."
+msgstr "服务概要文件 %(sp_id)s 已与类型 %(fl_id)s 相关联。"
+
+#, python-format
+msgid "Service Profile %(sp_id)s is not associated with flavor %(fl_id)s."
+msgstr "服务概要文件 %(sp_id)s 未与类型 %(fl_id)s 相关联。"
+
+#, python-format
+msgid "Service Profile %(sp_id)s is used by some service instance."
+msgstr "服务概要文件 %(sp_id)s 已被某个服务实例使用。"
+
+#, python-format
+msgid "Service Profile driver %(driver)s could not be found."
+msgstr "找不到服务概要文件驱动程序 %(driver)s。"
+
+msgid "Service Profile is not enabled."
+msgstr "服务概要文件未启用。"
+
+msgid "Service Profile needs either a driver or metainfo."
+msgstr "服务概要文件需要驱动程序或元信息。"
+
+msgid "Source/destination port requires a protocol."
+msgstr "源/目的端口需要一个协议。"
+
+msgid ""
+"Specifying 'project_id' or 'tenant_id' other than the authenticated project "
+"in request requires admin privileges"
+msgstr "在请求中指定除了已认证租户之外的“project_id”或“tenant_id”需要管理特权"
+
+#, python-format
+msgid "Subnet %(subnet_id)s could not be found."
+msgstr "找不到子网 %(subnet_id)s。"
+
+#, python-format
+msgid ""
+"Subnet on port %(port_id)s does not match the requested subnet %(subnet_id)s."
+msgstr "端口 %(port_id)s 上的子网与所请求子网 %(subnet_id)s 不匹配。"
+
+msgid "Subnet on port porter does not match the requested subnet submit."
+msgstr "端口 porter上的子网与所请求子网 submit不匹配。"
+
+msgid "Subnet root could not be found."
+msgstr "根子网未找到。"
+
+#, python-format
+msgid "Synthetic field %(field)s shouldn't have more than one foreign key"
+msgstr "合成域 %(field)s 最多有一个外键"
+
+#, python-format
+msgid ""
+"Synthetic field(s) %(fields)s undefined, misspelled, or otherwise invalid"
+msgstr "合成域 %(fields)s 未定义，未定义或者无效"
+
+#, python-format
+msgid "TLD '%s' must not be all numeric"
+msgstr "TLD“%s”不能全部为数字"
+
+#, python-format
+msgid ""
+"The HA Network CIDR specified in the configuration file isn't valid; "
+"%(cidr)s."
+msgstr "配置文件中指定的 HA 网络 CIDR 无效；%(cidr)s。"
+
+#, python-format
+msgid ""
+"The dns_name passed is a FQDN. Its higher level labels must be equal to the "
+"dns_domain option in neutron.conf, that has been set to '%(dns_domain)s'. It "
+"must also include one or more valid DNS labels to the left of "
+"'%(dns_domain)s'"
+msgstr ""
+"所传递的 dns_name 为 FQDN。它的更高级别的标签必须与neutron.conf 中的 "
+"dns_domain 选项相同，该选项已设置为“%(dns_domain)s”。它还必须"
+"在“%(dns_domain)s”的左边包括一个或多个有效 DNS 标签"
+
+#, python-format
+msgid ""
+"The dns_name passed is a PQDN and its size is '%(dns_name_len)s'. The "
+"dns_domain option in neutron.conf is set to %(dns_domain)s, with a length of "
+"'%(higher_labels_len)s'. When the two are concatenated to form a FQDN (with "
+"a '.' at the end), the resulting length exceeds the maximum size of "
+"'%(fqdn_max_len)s'"
+msgstr ""
+"所传递的 dns_name 为 PQDN，其大小为“%(dns_name_len)s”。neutron.conf 中的 "
+"dns_domain 选项设置为 %(dns_domain)s，长度为“%(higher_labels_len)s”。当这两者"
+"合并以组成 FQDN 时（末尾为“.”），最终获得的长度超过了最大大"
+"小“%(fqdn_max_len)s”"
+
+#, python-format
+msgid "The number of allowed address pair exceeds the maximum %(quota)s."
+msgstr "允许的地址对数超过最大值 %(quota)s。"
+
+msgid "The resource is in use."
+msgstr "资源正在使用。"
+
+msgid "The service is unavailable."
+msgstr "服务不可用。"
+
+#, python-format
+msgid "The value '%(value)s' for %(element)s is not valid."
+msgstr "%(element)s 的值“%(value)s”无效。"
+
+msgid ""
+"Too long prefix provided. New name would exceed given length for an "
+"interface name."
+msgstr "提供的前缀太长。新名称将超出接口名称的给定长度。"
+
+msgid "Too many availability_zone_hints specified"
+msgstr "指定了过多 availability_zone_hints"
+
+msgid "Two or more concurrent subnets allocated"
+msgstr "两个或多个子网并发申请"
+
+#, python-format
+msgid ""
+"Unable to complete operation for %(router_id)s. The number of routes exceeds "
+"the maximum %(quota)s."
+msgstr "对于 %(router_id)s，无法完成操作。路由数超过最大值 %(quota)s。"
+
+#, python-format
+msgid ""
+"Unable to complete operation for network %(net_id)s. The IP address "
+"%(ip_address)s is in use."
+msgstr "对于网络 %(net_id)s，无法完成操作。IP 地址 %(ip_address)s 在使用中。"
+
+#, python-format
+msgid ""
+"Unable to complete operation for network %(net_id)s. The mac address %(mac)s "
+"is in use."
+msgstr "对于网络 %(net_id)s，无法完成操作。MAC 地址 %(mac)s 在使用中。"
+
+msgid ""
+"Unable to complete operation for network boredom. The IP address crazytown "
+"is in use."
+msgstr "对于网络 boredom，无法完成操作。IP 地址 crazytown 在使用中。"
+
+msgid ""
+"Unable to complete operation for network nutters. The mac address grill is "
+"in use."
+msgstr "对于网络 nutter，无法完成操作。MAC 地址grill 在使用中。"
+
+#, python-format
+msgid ""
+"Unable to complete operation on address scope %(address_scope_id)s. There "
+"are one or more subnet pools in use on the address scope."
+msgstr ""
+"无法对地址范围 %(address_scope_id)s 完成操作。在该地址范围内，正在使用一个或"
+"多个子网池。"
+
+#, python-format
+msgid ""
+"Unable to complete operation on network %(net_id)s. There are one or more "
+"ports still in use on the network."
+msgstr ""
+"无法在网络 %(net_id)s 上完成操作。在该网络上，一个或多个端口仍然在使用中。"
+
+msgid ""
+"Unable to complete operation on network foo. There are one or more ports "
+"still in use on the network."
+msgstr "无法在网络 foo上完成操作。在该网络上，一个或多个端口仍然在使用中。"
+
+#, python-format
+msgid ""
+"Unable to complete operation on port %(port_id)s for network %(net_id)s. "
+"Port already has an attached device %(device_id)s."
+msgstr ""
+"对于网络 %(net_id)s，无法在端口 %(port_id)s 上完成操作。端口已具有连接的设备 "
+"%(device_id)s。"
+
+#, python-format
+msgid ""
+"Unable to complete operation on port %(port_id)s, port is already bound, "
+"port type: %(vif_type)s, old_mac %(old_mac)s, new_mac %(new_mac)s."
+msgstr ""
+"无法在端口 %(port_id)s 上完成操作，端口已绑定，端口类型：%(vif_type)s，"
+"old_mac %(old_mac)s，new_mac %(new_mac)s。"
+
+msgid ""
+"Unable to complete operation on port a for network c. Port already has an "
+"attached device b."
+msgstr "无法完成对在网络c上的端口a的操作：端口已经添加到设备b上。"
+
+msgid ""
+"Unable to complete operation on port bigmac, port is already bound, port "
+"type: ketchup, old_mac onions, new_mac salt."
+msgstr ""
+"无法完成对端口bigmac操作，端口已经绑定，端口类型：ketchup，旧mac：onions，新"
+"mac: salt。"
+
+#, python-format
+msgid "Unable to complete operation on subnet %(subnet_id)s: %(reason)s."
+msgstr "无法在子网 %(subnet_id)s上完成操作：%(reason)s。"
+
+msgid ""
+"Unable to complete operation on subnet garbage: One or more ports have an IP "
+"allocation from this subnet."
+msgstr "无法在子网garbage上完成操作：有多个端口从这个子网申请了IP地址"
+
+msgid "Unable to complete operation on subnet garbage: not full."
+msgstr "无法在子网garbage上完成操作。"
+
+#, python-format
+msgid ""
+"Unable to complete operation on subnet pool %(subnet_pool_id)s. %(reason)s."
+msgstr "无法在子网 %(subnet_pool_id)s上完成操作：%(reason)s。"
+
+msgid ""
+"Unable to complete operation on subnet pool ymca. Two or more concurrent "
+"subnets allocated."
+msgstr "无法在子网池ymca完成操作：有两个以上的子网被申请了。"
+
+msgid "Unable to complete operation on subnet pool ymca. because."
+msgstr "无法在子网池ymca完成操作。"
+
+msgid ""
+"Unable to create the network. No tenant network is available for allocation."
+msgstr "无法创建该网络。没有任何租户网络可用于分配。"
+
+#, python-format
+msgid ""
+"Unable to create the network. The VLAN %(vlan_id)s on physical network "
+"%(physical_network)s is in use."
+msgstr ""
+"无法创建该网络。物理网络 %(physical_network)s 上的 VLAN %(vlan_id)s 在使用"
+"中。"
+
+msgid ""
+"Unable to create the network. The VLAN virtual on physical network phys is "
+"in use."
+msgstr "无法创建该网络。物理网络 phys上的 VLAN virtual在使用中。"
+
+#, python-format
+msgid "Unable to create the network. The tunnel ID %(tunnel_id)s is in use."
+msgstr "无法创建该网络。隧道标识 %(tunnel_id)s 在使用中。"
+
+msgid "Unable to create the network. The tunnel ID sewer is in use."
+msgstr "无法创建该网络。隧道标识 sewer 在使用中。"
+
+#, python-format
+msgid "Unable to find any IP address on external network %(net_id)s."
+msgstr "在外部网络上找不到任何 IP 地址%(net_id)s."
+
+msgid "Unable to find any IP address on external network darpanet."
+msgstr "在外部网络darpanet上找不到任何 IP 地址。"
+
+#, python-format
+msgid "Unable to generate unique mac for host %(host)s."
+msgstr "无法为主机 %(host)s 生成唯一 MAC。"
+
+#, python-format
+msgid "Unable to generate unique mac on network %(net_id)s."
+msgstr "无法在网络 %(net_id)s 上生成唯一 MAC。"
+
+#, python-format
+msgid "Unable to update address scope %(address_scope_id)s : %(reason)s."
+msgstr "无法更新地址范围 %(address_scope_id)s：%(reason)s。"
+
+#, python-format
+msgid "Unable to update the following object fields: %(fields)s"
+msgstr "无法更新下列对象字段：%(fields)s"
+
+#, python-format
+msgid "Unexpected keys supplied: %s"
+msgstr "提供未预期keys：%s"
+
+#, python-format
+msgid "Unknown attribute '%s'."
+msgstr "属性“%s”未知。"
+
+#, python-format
+msgid "Unrecognized attribute(s) '%s'"
+msgstr "无法识别属性“%s”"
+
+msgid "Updating default firewall group not allowed."
+msgstr "正在更新的缺省防火墙内容不被允许。"
+
+#, python-format
+msgid "User does not have admin privileges: %(reason)s."
+msgstr "用户没有管理员特权：%(reason)s。"
+
+msgid "User does not have admin privileges: hoser."
+msgstr "用户没有管理员特权"
+
+#, python-format
+msgid ""
+"Validation of dictionary's keys failed. Expected keys: %(expected_keys)s "
+"Provided keys: %(provided_keys)s"
+msgstr ""
+"对字典的键进行的验证失败。期望的键是 %(expected_keys)s，提供的键是 "
+"%(provided_keys)s"
+
+#, python-format
+msgid "Validator '%s' does not exist"
+msgstr "验证器“%s”不存在"
+
+#, python-format
+msgid "Validator type %s is already defined"
+msgstr "验证器类型 %s已经定义"
+
+#, python-format
+msgid "Value %(value)s in mapping: '%(mapping)s' not unique"
+msgstr "映射“%(mapping)s”中的值 %(value)s 不唯一"
+
+#, python-format
+msgid ""
+"Value of %(parameter)s has to be multiple of %(number)s, with maximum value "
+"of %(maximum)s and minimum value of %(minimum)s"
+msgstr ""
+"%(parameter)s 的值必须是 %(number)s 的倍数，最大值为 %(maximum)s，最小值为 "
+"%(minimum)s"
+
+#, python-format
+msgid ""
+"max_l3_agents_per_router %(max_agents)s config parameter is not valid as it "
+"cannot be negative. It must be 1 or greater. Alternatively, it can be 0 to "
+"mean unlimited."
+msgstr ""
+"max_l3_agents_per_router %(max_agents)s 配置参数无效。因为它不能为负数。它必"
+"须大于等于1。另外，如果它为0意味着不限制。"
