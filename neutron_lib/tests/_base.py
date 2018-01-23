@@ -124,13 +124,7 @@ class BaseTestCase(testtools.TestCase):
         mock.patch.object(exceptions.NeutronException, 'use_fatal_exceptions',
                           return_value=True).start()
 
-        # Update the default QueuePool parameters. These can be tweaked by the
-        # conf variables - max_pool_size, max_overflow and pool_timeout
-        db_options.set_defaults(
-            cfg.CONF,
-            connection='sqlite://',
-            max_pool_size=10,
-            max_overflow=20, pool_timeout=10)
+        db_options.set_defaults(cfg.CONF, connection='sqlite://')
 
         self.useFixture(fixtures.MonkeyPatch(
             'oslo_config.cfg.find_config_files',
