@@ -7,5 +7,6 @@
 
    README.rst
    unreleased
+   queens
    pike
    ocata
