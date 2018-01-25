@@ -2966,6 +2966,12 @@ id_9:
   in: body
   required: true
   type: string
+id_autotopology:
+  description: |
+    The ID of the network for the auto allocated topology.
+  in: body
+  required: true
+  type: string
 id_resource:
   description: |
     The ID for the resource.
@@ -4077,6 +4083,18 @@ network_ip_availability-subnet_id:
   in: body
   required: true
   type: string
+network_is_default:
+  description: |
+    The network is default pool or not.
+  in: body
+  required: true
+  type: boolean
+network_is_default-request:
+  description: |
+    The network is default or not.
+  in: body
+  required: false
+  type: boolean
 network_type:
   description: |
     The type of physical network that maps to this
@@ -4383,6 +4401,12 @@ prefixes_2:
 project_id:
   description: |
     The ID of the project.
+  in: body
+  required: true
+  type: string
+project_id-autotopology:
+  description: |
+    The ID of the project owning the auto allocated topology.
   in: body
   required: true
   type: string

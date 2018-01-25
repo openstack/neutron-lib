@@ -84,3 +84,7 @@ Logging
 Networking Agents
 #################
 .. include:: agents.inc
+#######################
+Auto Allocated Topology
+#######################
+.. include:: auto-topology.inc

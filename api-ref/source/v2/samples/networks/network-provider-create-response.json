@@ -18,6 +18,7 @@
         "id": "4e8e5957-649f-477b-9e5b-f1f75b21c03c",
         "provider:segmentation_id": 2,
         "description": "",
-        "port_security_enabled": true
+        "port_security_enabled": true,
+        "is_default": false
     }
 }

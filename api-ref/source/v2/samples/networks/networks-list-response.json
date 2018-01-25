@@ -24,7 +24,8 @@
             "tenant_id": "4fd44f30292945e481c7b8a0c8908869",
             "updated_at": "2016-03-08T20:19:41",
             "vlan_transparent": true,
-            "description": ""
+            "description": "",
+            "is_default": false
         },
         {
             "admin_state_up": true,
@@ -49,7 +50,8 @@
             "tenant_id": "26a7980765d0414dbc1fc1f88cdb7e6e",
             "updated_at": "2016-03-08T20:19:41",
             "vlan_transparent": false,
-            "description": ""
+            "description": "",
+            "is_default": false
         }
     ]
 }

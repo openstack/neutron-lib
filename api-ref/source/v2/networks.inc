@@ -88,6 +88,12 @@ The ``external-net`` extension adds the ``router:external`` attribute to
 networks. This boolean attribute indicates the network has an external
 routing facility that's not managed by the networking service.
 
+Auto Allocated Topology
+=======================
+
+The ``auto-allocated-topology`` extension adds the ``is_default`` boolean
+attribute to networks. This value indicates the network should be used when
+auto allocating topologies.
 
 Show network details
 ====================
@@ -144,6 +150,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - vlan_transparent: vlan_transparent
    - description: description
+   - is_default: network_is_default
 
 Response Example
 ----------------
@@ -194,6 +201,7 @@ Request
    - segments: segments
    - shared: network-shared-request
    - description: description-request
+   - is_default: network_is_default-request
 
 Request Example
 ---------------
@@ -240,6 +248,7 @@ Response Parameters
    - subnets: network-subnets
    - tenant_id: project_id
    - description: description
+   - is_default: network_is_default
 
 Response Example
 ----------------
@@ -339,6 +348,7 @@ Response Parameters
    - tenant_id: project_id
    - vlan_transparent: vlan_transparent
    - description: description
+   - is_default: network_is_default
 
 Response Example
 ----------------
@@ -394,6 +404,7 @@ Request
    - tenant_id: project_id-request
    - vlan_transparent: vlan_transparent-request
    - description: description-request
+   - is_default: network_is_default-request
 
 Request Example
 ---------------
@@ -441,6 +452,7 @@ Response Parameters
    - tenant_id: project_id
    - vlan_transparent: vlan_transparent
    - description: description
+   - is_default: network_is_default
 
 Response Example
 ----------------
@@ -533,6 +545,7 @@ Response Parameters
    - tenant_id: project_id
    - vlan_transparent: vlan_transparent
    - description: description
+   - is_default: network_is_default
 
 Response Example
 ----------------
