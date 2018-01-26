@@ -1,8 +1,8 @@
 .. -*- rst -*-
 
-===================================================================================================================================================================================================
-VPNaaS 2.0 (`UNMAINTAINED <http://lists.openstack.org/pipermail/openstack-dev/2016-November/107384.html>`_) (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-groups, ipsec-site-connections)
-===================================================================================================================================================================================================
+==================================================================================================
+VPNaaS 2.0 (vpn, vpnservices, ikepolicies, ipsecpolicies, endpoint-groups, ipsec-site-connections)
+==================================================================================================
 
 The Virtual-Private-Network-as-a-Service (VPNaaS) extension enables
 OpenStack projects to extend private networks across the public
@@ -17,7 +17,7 @@ This initial implementation of the VPNaaS extension provides:
 - IKEv1 policy support with 3des, aes-128, aes-256, or aes-192
   encryption.
 
-- IPSec policy support with 3des, aes-128, aes-192, or aes-256
+- IPsec policy support with 3des, aes-128, aes-192, or aes-256
   encryption, sha1 authentication, ESP, AH, or AH-ESP transform
   protocol, and tunnel or transport mode encapsulation.
 
@@ -41,9 +41,20 @@ This extension introduces these resources:
   connection, including the peer CIDRs, MTU, authentication mode,
   peer address, DPD settings, and status.
 
-- ``endpoint-groups``. Defines one or more endpoints of a specific type,
-  and can be used to specify both local and peer endpoints for
-  IPSec Connections.
+VPN Endpoint Groups
+===================
+
+The ``endpoint-groups`` extension adds support for defining one or more
+endpoints of a specific type, and can be used to specify both local
+and peer endpoints for IPsec connections.
+
+VPN Flavors
+===========
+
+The ``vpn-flavors`` extension adds the ``flavor_id`` attribute
+to ``vpnservices`` resources. During vpnservice creation, if a ``flavor_id``
+is passed, it is used to find the provider for the driver which would
+handle the newly created vpnservice.
 
 List IKE policies
 =================
@@ -75,8 +86,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - ikepolicies: ikepolicies
-   - name: name
-   - description: description
+   - name: name-request
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -116,8 +127,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - ikepolicy: ikepolicy
-   - name: name
-   - description: description
+   - name: name-request
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -142,8 +153,8 @@ Response Parameters
 
    - ikepolicies: ikepolicies
    - ikepolicy: ikepolicy
-   - name: name
-   - description: description
+   - name: name-request
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -187,8 +198,8 @@ Response Parameters
 
    - ikepolicies: ikepolicies
    - ikepolicy: ikepolicy
-   - name: name
-   - description: description
+   - name: name-request
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -225,9 +236,9 @@ Request
 
    - ikepolicy_id: ikepolicy_id-path
    - ikepolicy: ikepolicy
-   - description: description
+   - description: description-request
    - auth_algorithm: auth_algorithm
-   - name: name
+   - name: name-request
    - encryption_algorithm: encryption_algorithm
    - pfs: pfs
    - value: value
@@ -249,11 +260,11 @@ Response Parameters
 
    - ikepolicies: ikepolicies
    - ikepolicy: ikepolicy
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
-   - name: name
+   - name: name-request
    - encryption_algorithm: encryption_algorithm
    - pfs: pfs
    - value: value
@@ -292,12 +303,12 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
-List IPSec policies
+List IPsec policies
 ===================
 
 .. rest_method::  GET /v2.0/vpn/ipsecpolicies
 
-Lists all IPSec policies.
+Lists all IPsec policies.
 
 Use the ``fields`` query parameter to control which fields are
 returned in the response body. Additionally, you can filter results
@@ -322,7 +333,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - ipsecpolicies: ipsecpolicies
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -334,7 +345,7 @@ Response Parameters
    - units: units
    - lifetime: lifetime
    - id: ipsecpolicy_id-body-response
-   - name: name
+   - name: name-request
 
 Response Example
 ----------------
@@ -342,12 +353,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsecpolicies-list-response.json
    :language: javascript
 
-Create IPSec policy
+Create IPsec policy
 ===================
 
 .. rest_method::  POST /v2.0/vpn/ipsecpolicies
 
-Creates an IP security (IPSec) policy.
+Creates an IP security (IPsec) policy.
 
 The IPsec policy specifies the authentication and encryption
 algorithms and encapsulation mode to use for the established VPN
@@ -363,7 +374,7 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - ipsecpolicy: ipsecpolicy
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -374,7 +385,7 @@ Request
    - transform_protocol: transform_protocol
    - units: units
    - lifetime: lifetime
-   - name: name
+   - name: name-request
 
 Request Example
 ---------------
@@ -389,7 +400,7 @@ Response Parameters
 
    - ipsecpolicies: ipsecpolicies
    - ipsecpolicy: ipsecpolicy
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -401,7 +412,7 @@ Response Parameters
    - units: units
    - lifetime: lifetime
    - id: ipsecpolicy_id-body-response
-   - name: name
+   - name: name-request
 
 Response Example
 ----------------
@@ -409,12 +420,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsecpolicy-create-response.json
    :language: javascript
 
-Show IPSec policy
+Show IPsec policy
 =================
 
 .. rest_method::  GET /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
 
-Shows details for an IPSec policy.
+Shows details for an IPsec policy.
 
 Normal response codes: 200
 
@@ -434,7 +445,7 @@ Response Parameters
 
    - ipsecpolicies: ipsecpolicies
    - ipsecpolicy: ipsecpolicy
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -446,7 +457,7 @@ Response Parameters
    - units: units
    - lifetime: lifetime
    - id: ipsecpolicy_id-body-response
-   - name: name
+   - name: name-request
 
 Response Example
 ----------------
@@ -454,12 +465,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsecpolicy-show-response.json
    :language: javascript
 
-Update IPSec policy
+Update IPsec policy
 ===================
 
 .. rest_method::  PUT /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
 
-Updates policy settings in an IPSec policy.
+Updates policy settings in an IPsec policy.
 
 Normal response codes: 200
 
@@ -472,7 +483,7 @@ Request
 
    - ipsecpolicy_id: ipsecpolicy_id-path
    - ipsecpolicy: ipsecpolicy
-   - description: description
+   - description: description-request
    - transform_protocol: transform_protocol
    - auth_algorithm: auth_algorithm
    - encapsulation_mode: encapsulation_mode
@@ -481,7 +492,7 @@ Request
    - value: value
    - units: units
    - lifetime: lifetime
-   - name: name
+   - name: name-request
 
 Request Example
 ---------------
@@ -496,7 +507,7 @@ Response Parameters
 
    - ipsecpolicies: ipsecpolicies
    - ipsecpolicy: ipsecpolicy
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
    - auth_algorithm: auth_algorithm
@@ -508,7 +519,7 @@ Response Parameters
    - units: units
    - lifetime: lifetime
    - id: ipsecpolicy_id-body-response
-   - name: name
+   - name: name-request
 
 Response Example
 ----------------
@@ -516,12 +527,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsecpolicy-update-response.json
    :language: javascript
 
-Remove IPSec policy
+Remove IPsec policy
 ===================
 
 .. rest_method::  DELETE /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
 
-Removes an IPSec policy.
+Removes an IPsec policy.
 
 Normal response codes: 204
 
@@ -539,12 +550,12 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
-List IPSec connections
+List IPsec connections
 ======================
 
 .. rest_method::  GET /v2.0/vpn/ipsec-site-connections
 
-Lists all IPSec connections.
+Lists all IPsec connections.
 
 Use the ``fields`` query parameter to control which fields are
 returned in the response body. For information, see `Filtering and
@@ -579,10 +590,10 @@ Response Parameters
    - peer_id: peer_id
    - status: ipsec_site_connection-status
    - psk: psk
-   - description: description
+   - description: description-request
    - initiator: initiator
    - peer_cidrs: peer_cidrs
-   - name: name
+   - name: name-request
    - admin_state_up: admin_state_up
    - tenant_id: project_id
    - project_id: project_id
@@ -600,12 +611,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsec-site-connections-list-response.json
    :language: javascript
 
-Create IPSec connection
+Create IPsec connection
 =======================
 
 .. rest_method::  POST /v2.0/vpn/ipsec-site-connections
 
-Creates a site-to-site IPSec connection for a service.
+Creates a site-to-site IPsec connection for a service.
 
 Normal response codes: 201
 
@@ -626,10 +637,10 @@ Request
    - ipsecpolicy_id: ipsecpolicy_id-body-request
    - peer_id: peer_id
    - psk: psk
-   - description: description
+   - description: description-request
    - initiator: initiator
    - peer_cidrs: peer_cidrs
-   - name: name
+   - name: name-request
    - admin_state_up: admin_state_up
    - tenant_id: project_id
    - project_id: project_id
@@ -664,10 +675,10 @@ Response Parameters
    - peer_id: peer_id
    - status: ipsec_site_connection-status
    - psk: psk
-   - description: description
+   - description: description-request
    - initiator: initiator
    - peer_cidrs: peer_cidrs
-   - name: name
+   - name: name-request
    - admin_state_up: admin_state_up
    - tenant_id: project_id
    - project_id: project_id
@@ -685,12 +696,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsec-site-connection-create-response.json
    :language: javascript
 
-Show IPSec connection
+Show IPsec connection
 =====================
 
 .. rest_method::  GET /v2.0/vpn/ipsec-site-connections/{connection_id}
 
-Shows details for an IPSec connection.
+Shows details for an IPsec connection.
 
 Normal response codes: 200
 
@@ -720,10 +731,10 @@ Response Parameters
    - peer_id: peer_id
    - status: ipsec_site_connection-status
    - psk: psk
-   - description: description
+   - description: description-request
    - initiator: initiator
    - peer_cidrs: peer_cidrs
-   - name: name
+   - name: name-request
    - admin_state_up: admin_state_up
    - tenant_id: project_id
    - project_id: project_id
@@ -741,12 +752,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsec-site-connection-show-response.json
    :language: javascript
 
-Update IPSec connection
+Update IPsec connection
 =======================
 
 .. rest_method::  PUT /v2.0/vpn/ipsec-site-connections/{connection_id}
 
-Updates connection settings for an IPSec connection.
+Updates connection settings for an IPsec connection.
 
 Normal response codes: 200
 
@@ -761,7 +772,7 @@ Request
    - ipsec_site_connection: ipsec_site_connection
    - psk: psk
    - initiator: initiator
-   - description: description
+   - description: description-request
    - admin_state_up: admin_state_up
    - interval: interval
    - peer_cidrs: peer_cidrs
@@ -773,7 +784,7 @@ Request
    - action: ipsec_site_connection-action
    - peer_address: peer_address
    - peer_id: peer_id
-   - name: name
+   - name: name-request
    - local_id: local_id
 
 Request Example
@@ -799,10 +810,10 @@ Response Parameters
    - peer_id: peer_id
    - status: ipsec_site_connection-status
    - psk: psk
-   - description: description
+   - description: description-request
    - initiator: initiator
    - peer_cidrs: peer_cidrs
-   - name: name
+   - name: name-request
    - admin_state_up: admin_state_up
    - tenant_id: project_id
    - project_id: project_id
@@ -820,12 +831,12 @@ Response Example
 .. literalinclude:: samples/vpn/ipsec-site-connection-update-response.json
    :language: javascript
 
-Remove IPSec connection
+Remove IPsec connection
 =======================
 
 .. rest_method::  DELETE /v2.0/vpn/ipsec-site-connections/{connection_id}
 
-Removes an IPSec connection.
+Removes an IPsec connection.
 
 Normal response codes: 204
 
@@ -873,11 +884,11 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - endpoints: endpoints
-   - name: name
-   - description: description
+   - name: name-request
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type
+   - type: type_2
    - id: endpoint_group_id-body-response
 
 Response Example
@@ -908,9 +919,9 @@ Request
    - tenant_id: project_id
    - project_id: project_id
    - endpoints: endpoints
-   - type: type
-   - description: description
-   - name: name
+   - type: type_2
+   - description: description-request
+   - name: name-request
 
 Request Example
 ---------------
@@ -924,12 +935,12 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - endpoints: endpoints
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type
+   - type: type_2
    - id: endpoint_group_id-body-response
-   - name: name
+   - name: name-request
 
 Response Example
 ----------------
@@ -961,12 +972,12 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - endpoints: endpoints
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type
+   - type: type_2
    - id: endpoint_group_id-body-response
-   - name: name
+   - name: name-request
 
 Response Example
 ----------------
@@ -990,8 +1001,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - description: description
-   - name: name
+   - description: description-request
+   - name: name-request
    - endpoint_group_id: endpoint_group_id-path
 
 Request Example
@@ -1006,12 +1017,12 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - endpoints: endpoints
-   - description: description
+   - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type
+   - type: type_2
    - id: endpoint_group_id-body-response
-   - name: name
+   - name: name-request
 
 Response Example
 ----------------
@@ -1076,7 +1087,7 @@ Response Parameters
    - vpnservices: vpnservices
    - router_id: router_id
    - status: vpnservice-status
-   - name: name
+   - name: name-request
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
@@ -1084,7 +1095,8 @@ Response Parameters
    - project_id: project_id
    - external_v4_ip: external_v4_ip
    - id: vpnservice_id-body-response
-   - description: description
+   - description: description-request
+   - flavor_id: flavor-id-response
 
 Response Example
 ----------------
@@ -1102,6 +1114,13 @@ Creates a VPN service.
 The service is associated with a router. After you create the
 service, it can contain multiple VPN connections.
 
+An optional ``flavor_id`` attribute can be passed to enable dynamic
+selection of an appropriate provider if configured by the operator.
+It is only available when ``vpn-flavors`` extension is enabled.
+The basic selection algorithm chooses the provider in the first
+service profile currently associated with flavor. This option can
+only be set in ``POST`` operation.
+
 Normal response codes: 201
 
 Error response codes: 400, 401
@@ -1113,12 +1132,13 @@ Request
 
    - vpnservice: vpnservice
    - router_id: router_id
-   - description: description
+   - description: description-request
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
    - tenant_id: project_id
    - project_id: project_id
-   - name: name
+   - name: name-request
+   - flavor_id: flavor-id-request
 
 Request Example
 ---------------
@@ -1134,7 +1154,7 @@ Response Parameters
    - vpnservice: vpnservice
    - router_id: router_id
    - status: vpnservice-status
-   - name: name
+   - name: name-request
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
@@ -1142,7 +1162,8 @@ Response Parameters
    - project_id: project_id
    - external_v4_ip: external_v4_ip
    - id: vpnservice_id-body-response
-   - description: description
+   - description: description-request
+   - flavor_id: flavor-id-response
 
 Response Example
 ----------------
@@ -1180,7 +1201,7 @@ Response Parameters
    - vpnservice: vpnservice
    - router_id: router_id
    - status: vpnservice-status
-   - name: name
+   - name: name-request
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
@@ -1188,7 +1209,8 @@ Response Parameters
    - project_id: project_id
    - external_v4_ip: external_v4_ip
    - id: vpnservice_id-body-response
-   - description: description
+   - description: description-request
+   - flavor_id: flavor-id-response
 
 Response Example
 ----------------
@@ -1216,8 +1238,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - vpnservice: vpnservice
-   - description: description
-   - name: name
+   - description: description-request
+   - name: name-request
    - admin_state_up: admin_state_up
    - service_id: vpnservice_id-path
 
@@ -1235,7 +1257,7 @@ Response Parameters
    - vpnservice: vpnservice
    - router_id: router_id
    - status: vpnservice-status
-   - name: name
+   - name: name-request
    - external_v6_ip: external_v6_ip
    - admin_state_up: admin_state_up
    - subnet_id: subnet_id
@@ -1243,7 +1265,8 @@ Response Parameters
    - project_id: project_id
    - external_v4_ip: external_v4_ip
    - id: vpnservice_id-body-response
-   - description: description
+   - description: description-request
+   - flavor_id: flavor-id-response
 
 Response Example
 ----------------

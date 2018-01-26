@@ -33,7 +33,7 @@ bgpvpn-router_association_id-path:
   type: string
 connection_id-path:
   description: |
-    The ID of the IPSec site-to-site connection.
+    The ID of the IPsec site-to-site connection.
   in: path
   required: false
   type: string
@@ -47,7 +47,7 @@ endpoint_group_id-path:
   description: |
     The ID of the VPN endpoint group.
   in: path
-  required: false
+  required: true
   type: string
 extensions-alias-path:
   description: |
@@ -129,7 +129,7 @@ ikepolicy_id-path:
   type: string
 ipsecpolicy_id-path:
   description: |
-    The ID of the IPSec policy.
+    The ID of the IPsec policy.
   in: path
   required: false
   type: string
@@ -425,7 +425,7 @@ admin_state_up_13:
   type: boolean
 admin_state_up_14:
   description: |
-    The administrative state of the IPSec connection,
+    The administrative state of the IPsec connection,
     which is up (``true``) or down (``false``). If down, the
     connection does not forward packets.
   in: body
@@ -506,7 +506,7 @@ admin_state_up_25:
   type: boolean
 admin_state_up_26:
   description: |
-    The administrative state of the IPSec connection,
+    The administrative state of the IPsec connection,
     which is up (``true``) or down (``false``). If down, the
     connection does not forward packets.
   in: body
@@ -1093,7 +1093,7 @@ configurations:
   type: object
 connection_id-body-response:
   description: |
-    The ID of the IPSec site-to-site connection.
+    The ID of the IPsec site-to-site connection.
   in: body
   required: false
   type: string
@@ -1382,7 +1382,7 @@ description_22:
   type: string
 description_23:
   description: |
-    A human-readable description for the IPSec
+    A human-readable description for the IPsec
     connection.
   in: body
   required: true
@@ -1475,13 +1475,13 @@ description_4:
   type: string
 description_5:
   description: |
-    A human-readable description for the IPSec policy.
+    A human-readable description for the IPsec policy.
   in: body
   required: true
   type: string
 description_6:
   description: |
-    A human-readable description for the IPSec
+    A human-readable description for the IPsec
     connection.
   in: body
   required: false
@@ -3113,7 +3113,7 @@ ipsec_site_connection-action:
   type: string
 ipsec_site_connection-status:
   description: |
-    Indicates whether the IPSec connection is
+    Indicates whether the IPsec connection is
     currently operational. Values are ``ACTIVE``, ``DOWN``, ``BUILD``,
     ``ERROR``, ``PENDING_CREATE``, ``PENDING_UPDATE``, or
     ``PENDING_DELETE``.
@@ -3142,13 +3142,13 @@ ipsecpolicy:
   type: object
 ipsecpolicy_id-body-request:
   description: |
-    The ID of the IPSec policy.
+    The ID of the IPsec policy.
   in: body
   required: false
   type: string
 ipsecpolicy_id-body-response:
   description: |
-    The ID of the IPSec policy.
+    The ID of the IPsec policy.
   in: body
   required: true
   type: string
@@ -3784,7 +3784,7 @@ name_24:
   type: string
 name_25:
   description: |
-    Human-readable name for the IPSec connection.
+    Human-readable name for the IPsec connection.
     Does not have to be unique.
   in: body
   required: true
@@ -3922,14 +3922,14 @@ name_43:
   type: string
 name_5:
   description: |
-    A human-readable name for the IPSec policy. Does
+    A human-readable name for the IPsec policy. Does
     not have to be unique.
   in: body
   required: true
   type: string
 name_6:
   description: |
-    Human-readable name for the IPSec connection.
+    Human-readable name for the IPsec connection.
     Does not have to be unique.
   in: body
   required: false
@@ -6080,14 +6080,14 @@ tenant_id_6:
   type: string
 tenant_id_7:
   description: |
-    Owner of the IPSec policy. Only administrative
+    Owner of the IPsec policy. Only administrative
     users can specify a tenant UUID other than their own.
   in: body
   required: true
   type: string
 tenant_id_8:
   description: |
-    Owner of the IPSec connection. Only
+    Owner of the IPsec connection. Only
     administrative users can specify a tenant UUID other than their
     own.
   in: body
@@ -6161,7 +6161,8 @@ type_2:
   description: |
     The type of the endpoints in the group. A valid
     value is ``subnet``, ``cidr``, ``network``, ``router``, or
-    ``vlan``.
+    ``vlan``. Only ``subnet`` and ``cidr`` are supported
+    at this moment.
   in: body
   required: true
   type: string
@@ -6441,7 +6442,7 @@ vpnservice:
   type: object
 vpnservice-status:
   description: |
-    Indicates whether IPSec VPN service is currently
+    Indicates whether IPsec VPN service is currently
     operational. Values are ``ACTIVE``, ``DOWN``, ``BUILD``, ``ERROR``,
     ``PENDING_CREATE``, ``PENDING_UPDATE``, or ``PENDING_DELETE``.
   in: body
