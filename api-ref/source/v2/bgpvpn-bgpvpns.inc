@@ -89,7 +89,7 @@ Request
    - export_targets: bgpvpn-export_targets
    - local_pref: bgpvpn-local_pref-request
    - vni: bgpvpn-vni
-   - tenant_id: tenant_id-request
+   - tenant_id: project_id-request
    - project_id: project_id-request
    - type: bgpvpn-type
 

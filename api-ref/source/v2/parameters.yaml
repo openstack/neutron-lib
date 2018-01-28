@@ -109,12 +109,6 @@ floatingip-id-path:
   in: path
   required: true
   type: string
-health_monitor_id-path:
-  description: |
-    The ID for the health monitor.
-  in: path
-  required: true
-  type: string
 healthmonitor_id-path:
   description: |
     The ID for the health monitor.
@@ -297,12 +291,6 @@ trunk_id:
   in: path
   required: true
   type: string
-vip_id-path:
-  description: |
-    The ID for the VIP.
-  in: path
-  required: true
-  type: string
 vpnservice_id-path:
   description: |
     The ID of the VPN service.
@@ -346,13 +334,6 @@ action-response:
   in: body
   required: true
   type: string
-action_2:
-  description: |
-    The action that the API performs on traffic that
-    matches the firewall rule. Value is ``allow`` or ``deny``.
-  in: body
-  required: true
-  type: string
 address:
   description: |
     The IP address of the member.
@@ -366,12 +347,6 @@ address_scope_id:
   in: body
   required: false
   type: string
-address_scope_id_1:
-  description: |
-    The address scope.
-  in: body
-  required: true
-  type: string
 admin_state_up:
   description: |
     The administrative state of the resource, which is
@@ -384,180 +359,6 @@ admin_state_up-request:
     The administrative state of the resource, which is
     up (``true``) or down (``false``).
     Default is ``true``.
-  in: body
-  required: false
-  type: boolean
-admin_state_up_1:
-  description: |
-    The administrative status of the port, which is
-    up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_10:
-  description: |
-    The administrative state of the VIP. A valid
-    value is up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_11:
-  description: |
-    The administrative state of the VPN service,
-    which is up (``true``) or down (``false``). If down, connections
-    on service are not active.
-  in: body
-  required: false
-  type: boolean
-admin_state_up_12:
-  description: |
-    The administrative state of the firewall, which
-    is up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_13:
-  description: |
-    The administrative state of the health monitor,
-    which is up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_14:
-  description: |
-    The administrative state of the IPsec connection,
-    which is up (``true``) or down (``false``). If down, the
-    connection does not forward packets.
-  in: body
-  required: true
-  type: boolean
-admin_state_up_15:
-  description: |
-    The administrative state of the listener, which
-    is up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_16:
-  description: |
-    The administrative state of the load balancer,
-    which is up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_17:
-  description: |
-    The administrative state of the member. A valid
-    value is up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_19:
-  description: |
-    The administrative state of the pool, which is up
-    (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_20:
-  description: |
-    The administrative state of the router, which is
-    up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_21:
-  description: |
-    The administrative state of the VIP. A valid
-    value is up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_22:
-  description: |
-    The administrative state of the VPN service,
-    which is up (``true``) or down (``false``). If down, the port does
-    not forward packets.
-  in: body
-  required: true
-  type: boolean
-admin_state_up_23:
-  description: |
-    The administrative state of the firewall, which
-    is up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_24:
-  description: |
-    The administrative state of the health monitor. A
-    valid value is up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_25:
-  description: |
-    The administrative state of the load balancer,
-    which is up (``true``) or down (``false``).  Set this attribute to
-    ``false`` to create the listener in an administratively down
-    state.
-  in: body
-  required: false
-  type: boolean
-admin_state_up_26:
-  description: |
-    The administrative state of the IPsec connection,
-    which is up (``true``) or down (``false``). If down, the
-    connection does not forward packets.
-  in: body
-  required: false
-  type: boolean
-admin_state_up_3:
-  description: |
-    The administrative state of the port, which is up
-    (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_4:
-  description: |
-    The administrative state of the load balancer,
-    which is up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_5:
-  description: |
-    The administrative state of the member, which is
-    up (``true``) or down (``false``).
-  in: body
-  required: true
-  type: boolean
-admin_state_up_6:
-  description: |
-    The administrative state of the member. A valid
-    value is up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_7:
-  description: |
-    The administrative state of the network, which is
-    up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_8:
-  description: |
-    The administrative state of the pool. A valid
-    value is up (``true``) or down (``false``).
-  in: body
-  required: false
-  type: boolean
-admin_state_up_9:
-  description: |
-    The administrative state of the router, which is
-    up (``true``) or down (``false``).
   in: body
   required: false
   type: boolean
@@ -630,16 +431,6 @@ audited:
     associated rules are changed, the API sets this attribute to
     ``false``. To audit the policy, explicitly set this attribute to
     ``true``.
-  in: body
-  required: true
-  type: boolean
-audited_1:
-  description: |
-    Indicates whether the policy has been audited.
-    Each time that the firewall policy or its associated rules are
-    changed, the API sets this attribute to ``false``. To audit the
-    policy, the policy owner must explicitly update the policy to set
-    this attribute to ``true``.
   in: body
   required: true
   type: boolean
@@ -1112,29 +903,9 @@ connection_limit-response:
   in: body
   required: true
   type: integer
-connection_limit_2:
-  description: |
-    The maximum number of connections permitted for
-    this load balancer. Default is infinite.
-  in: body
-  required: true
-  type: integer
-connection_limit_3:
-  description: |
-    The maximum number of connections allowed for the
-    VIP. Default is ``-1``, meaning no limit.
-  in: body
-  required: true
-  type: integer
 created_at:
   description: |
     Time at which the resource was created.
-  in: body
-  required: true
-  type: string
-created_at_1:
-  description: |
-    Time at which subnetpool has been created.
   in: body
   required: true
   type: string
@@ -1187,14 +958,6 @@ default_prefixlen:
   in: body
   required: false
   type: integer
-default_prefixlen_1:
-  description: |
-    The size of the prefix to allocate when the
-    ``cidr`` or ``prefixlen`` attributes are omitted when you create
-    the subnet.
-  in: body
-  required: true
-  type: integer
 default_quota:
   description: |
     A per-project quota on the prefix space that can
@@ -1204,31 +967,6 @@ default_quota:
     IPv6 subnet pools, ``default_quota`` is measured units of /64. All
     projects that use the subnet pool have the same prefix quota
     applied.
-  in: body
-  required: false
-  type: integer
-default_quota_1:
-  description: |
-    A per-project quota on the prefix space that can
-    be allocated from the subnet pool for project subnets. For IPv4
-    subnet pools, ``default_quota`` is measured in units of /32. For
-    IPv6 subnet pools, ``default_quota`` is measured units of /64. All
-    projects that use the subnet pool have the same prefix quota
-    applied.
-  in: body
-  required: true
-  type: integer
-default_quota_2:
-  description: |
-    A per-project quota on the prefix space that can
-    be allocated from the subnet pool for project subnets. Default is
-    no quota is enforced on allocations from the subnet pool. For IPv4
-    subnet pools, ``default_quota`` is measured in units of /32. For
-    IPv6 subnet pools, ``default_quota`` is measured units of /64. All
-    projects that use the subnet pool have the same prefix quota
-    applied.  Updating this parameter has no effect on existing subnet
-    allocations. The existing subnet allocations for each project are
-    counted against the updated prefix space quota.
   in: body
   required: false
   type: integer
@@ -1251,20 +989,6 @@ delay:
   in: body
   required: true
   type: integer
-delay_1:
-  description: |
-    The amount of time, in seconds, between sending
-    probes to members.
-  in: body
-  required: true
-  type: integer
-delay_2:
-  description: |
-    The amount of time, in seconds, between sending
-    probes to members.
-  in: body
-  required: false
-  type: integer
 description:
   description: |
     A human-readable description for the resource.
@@ -1281,226 +1005,6 @@ description-request:
 description-request-put:
   description: |
     A human-readable description for the resource.
-  in: body
-  required: false
-  type: string
-description_1:
-  description: |
-    A human-readable description for the firewall rule.
-    The maximum length is 1024 characters. No default.
-  in: body
-  required: false
-  type: string
-description_10:
-  description: |
-    The QoS policy description.
-  in: body
-  required: false
-  type: string
-description_11:
-  description: |
-    A human-readable description for the pool.
-  in: body
-  required: false
-  type: string
-description_12:
-  description: |
-    The security group description.
-  in: body
-  required: false
-  type: string
-description_13:
-  description: |
-    A human-readable description for the service
-    profile.
-  in: body
-  required: false
-  type: string
-description_14:
-  description: |
-    A human-readable description for the VIP.
-  in: body
-  required: false
-  type: string
-description_15:
-  description: |
-    A human-readable description for the VPN endpoint
-    group.
-  in: body
-  required: false
-  type: string
-description_16:
-  description: |
-    A human-readable description for the VPN service.
-  in: body
-  required: false
-  type: string
-description_17:
-  description: |
-    A human-readable description for the firewall
-    policy.
-  in: body
-  required: true
-  type: string
-description_18:
-  description: |
-    The extension description.
-  in: body
-  required: true
-  type: string
-description_19:
-  description: |
-    A human-readable description for the firewall rule.
-  in: body
-  required: true
-  type: string
-description_2:
-  description: |
-    A human-readable description for the firewall
-    service.
-  in: body
-  required: false
-  type: string
-description_20:
-  description: |
-    A human-readable description for the firewall
-    service.
-  in: body
-  required: true
-  type: string
-description_21:
-  description: |
-    A human-readable description for the flavor.
-  in: body
-  required: true
-  type: string
-description_22:
-  description: |
-    A human-readable description for the IKE policy.
-  in: body
-  required: true
-  type: string
-description_23:
-  description: |
-    A human-readable description for the IPsec
-    connection.
-  in: body
-  required: true
-  type: string
-description_24:
-  description: |
-    Detailed description of the listener.
-  in: body
-  required: true
-  type: string
-description_25:
-  description: |
-    The load balancer description.
-  in: body
-  required: true
-  type: string
-description_26:
-  description: |
-    Description for the metering label.
-  in: body
-  required: true
-  type: string
-description_27:
-  description: |
-    The description of the QoS policy.
-  in: body
-  required: true
-  type: string
-description_28:
-  description: |
-    The description for the pool.
-  in: body
-  required: true
-  type: string
-description_29:
-  description: |
-    The security group description.
-  in: body
-  required: true
-  type: string
-description_3:
-  description: |
-    A human-readable description for the flavor.
-  in: body
-  required: false
-  type: string
-description_30:
-  description: |
-    A human-readable description for the service
-    profile.
-  in: body
-  required: true
-  type: string
-description_31:
-  description: |
-    A human-readable description for the VIP.
-  in: body
-  required: true
-  type: string
-description_32:
-  description: |
-    A human-readable description for the VPN endpoint
-    group.
-  in: body
-  required: true
-  type: string
-description_33:
-  description: |
-    A human-readable description for the VPN service.
-  in: body
-  required: true
-  type: string
-description_34:
-  description: |
-    New human-readable description for the flavor.
-  in: body
-  required: false
-  type: string
-description_35:
-  description: |
-    Security group description.
-  in: body
-  required: false
-  type: string
-description_4:
-  description: |
-    A human-readable description for the IKE policy.
-  in: body
-  required: false
-  type: string
-description_5:
-  description: |
-    A human-readable description for the IPsec policy.
-  in: body
-  required: true
-  type: string
-description_6:
-  description: |
-    A human-readable description for the IPsec
-    connection.
-  in: body
-  required: false
-  type: string
-description_7:
-  description: |
-    Detailed description of the listener.
-  in: body
-  required: false
-  type: string
-description_8:
-  description: |
-    The load balancer description.
-  in: body
-  required: false
-  type: string
-description_9:
-  description: |
-    The description for the metering label.
   in: body
   required: false
   type: string
@@ -1536,12 +1040,6 @@ destination_ip_address-response:
   in: body
   required: true
   type: string
-destination_ip_address_1:
-  description: |
-    The destination IPv4 or IPv6 address or CIDR.
-  in: body
-  required: true
-  type: string
 destination_port:
   description: |
     The destination port or port range.  A valid
@@ -1557,12 +1055,6 @@ destination_port-response:
     value is a port number, as an integer, or a port range, in the
     format of a ``:`` separated range. For a port range, include both
     ends of the range. For example, ``80:90``.
-  in: body
-  required: true
-  type: string
-destination_port_1:
-  description: |
-    The destination port or port range.
   in: body
   required: true
   type: string
@@ -1600,26 +1092,6 @@ direction:
   description: |
     Ingress or egress, which is the direction in
     which the metering rule is applied.
-  in: body
-  required: true
-  type: string
-direction_1:
-  description: |
-    Ingress or egress: The direction in which the
-    security group rule is applied. For a compute instance, an ingress
-    security group rule is applied to incoming (ingress) traffic for
-    that instance. An egress rule is applied to traffic leaving the
-    instance.
-  in: body
-  required: true
-  type: string
-direction_2:
-  description: |
-    Ingress or egress: the direction in which the
-    security group rule is applied. For a compute instance, an ingress
-    security group rule is applied to incoming (ingress) traffic for
-    that instance. An egress rule is applied to traffic leaving the
-    instance.
   in: body
   required: true
   type: string
@@ -1665,19 +1137,6 @@ driver:
   description: |
     Provider driver to use for this profile. Example:
     ``neutron_lbaas.drivers.octavia.driver.OctaviaDriver``
-  in: body
-  required: false
-  type: string
-driver_1:
-  description: |
-    Driver to associate with profile.
-  in: body
-  required: true
-  type: string
-driver_2:
-  description: |
-    Provider driver to use for this profile. Ex:
-    neutron_lbaas.drivers.octavia.driver.OctaviaDriver.
   in: body
   required: false
   type: string
@@ -1742,55 +1201,6 @@ enabled-response:
   in: body
   required: true
   type: boolean
-enabled_1:
-  description: |
-    Indicates whether this flavor is enabled or
-    disabled. Default ``true``.
-  in: body
-  required: false
-  type: boolean
-enabled_2:
-  description: |
-    Indicates whether this service profile is enabled
-    or disabled. Default ``true``.
-  in: body
-  required: false
-  type: boolean
-enabled_3:
-  description: |
-    Indicates whether this rule is enabled or
-    disabled in the firewall policy.
-  in: body
-  required: true
-  type: boolean
-enabled_4:
-  description: |
-    Indicates whether this flavor is enabled or
-    disabled.
-  in: body
-  required: true
-  type: boolean
-enabled_5:
-  description: |
-    Indicates whether this service profile is enabled
-    or disabled.
-  in: body
-  required: true
-  type: boolean
-enabled_6:
-  description: |
-    Indicates whether this flavor is enabled or
-    disabled.
-  in: body
-  required: false
-  type: boolean
-enabled_7:
-  description: |
-    Indicates whether this service profile is enabled
-    or disabled. Default true.
-  in: body
-  required: false
-  type: boolean
 encapsulation_mode:
   description: |
     The encapsulation mode. A valid value is
@@ -1826,13 +1236,6 @@ ethertype:
   in: body
   required: false
   type: string
-ethertype_1:
-  description: |
-    Must be IPv4 or IPv6, and addresses represented
-    in CIDR must match the ingress or egress rules.
-  in: body
-  required: true
-  type: string
 excluded:
   description: |
     Indicates whether to count the traffic of a
@@ -1840,14 +1243,6 @@ excluded:
     is ``false``.
   in: body
   required: false
-  type: boolean
-'excluded ':
-  description: |
-    Indicates whether to count the traffic of a
-    specific IP address with the ``remote_ip_prefix`` value. Default
-    is ``false``.
-  in: body
-  required: true
   type: boolean
 expected_codes:
   description: |
@@ -1965,15 +1360,6 @@ firewall-status:
   in: body
   required: true
   type: string
-firewall_audited-body-required:
-  description: |
-    Each time that the firewall policy or its
-    associated rules are changed, the API sets this attribute to
-    ``false``. To audit the policy, explicitly set this attribute to
-    ``true``.
-  in: body
-  required: true
-  type: boolean
 firewall_group_admin_state_up-body-optional:
   description: |
     The administrative state of the firewall group, which
@@ -2006,13 +1392,6 @@ firewall_group_id-body-required:
   in: body
   required: true
   type: string
-firewall_group_list-body-required:
-  description: |
-    A list of the IDs of firewall groups associated with
-    the firewall policy.
-  in: body
-  required: true
-  type: array
 firewall_group_name-body-optional:
   description: |
     A human-readable name for the firewall group.
@@ -2175,25 +1554,6 @@ firewall_policy_id-body:
 firewall_policy_id-body-required:
   description: |
     The ID of the firewall policy.
-  in: body
-  required: true
-  type: string
-firewall_policy_id_3:
-  description: |
-    The ID of the policy that is associated with
-    the firewall.
-  in: body
-  required: false
-  type: string
-firewall_policy_id_description-body-optional:
-  description: |
-    A human-readable description of the firewall policy.
-  in: body
-  required: false
-  type: string
-firewall_policy_id_description-body-required:
-  description: |
-    A human-readable description of the firewall policy.
   in: body
   required: true
   type: string
@@ -2377,26 +1737,6 @@ firewall_rule_object:
   in: body
   required: true
   type: object
-firewall_rule_position-body-optional:
-  description: |
-    Read-only attribute that the API assigns to this
-    rule when it associates it with a firewall policy. This value
-    indicates the position of this rule in that firewall policy. This
-    position number starts at 1. If the firewall rule is not
-    associated with any policy, the position is ``null``.
-  in: body
-  required: false
-  type: integer
-firewall_rule_position-body-required:
-  description: |
-    Read-only attribute that the API assigns to this
-    rule when it associates it with a firewall policy. This value
-    indicates the position of this rule in that firewall policy. This
-    position number starts at 1. If the firewall rule is not
-    associated with any policy, the position is ``null``.
-  in: body
-  required: true
-  type: integer
 firewall_rule_protocol-body-optional:
   description: |
     The IP protocol for the firewall rule. Possible values are ``icmp``, ``tcp``,
@@ -2495,12 +1835,6 @@ firewalls:
   in: body
   required: true
   type: array
-firewalls_1:
-  description: |
-    A list of ``firewall`` objects.
-  in: body
-  required: true
-  type: array
 fixed_ips:
   description: |
     The IP addresses for the port. If the port has multiple IP addresses,
@@ -2594,29 +1928,11 @@ flavor-service_profiles:
   in: body
   required: true
   type: array
-flavor-service_profiles-request:
-  description: |
-    Service profile UUIDs associated with this flavor.
-  in: body
-  required: false
-  type: array
 flavor-service_type:
   description: |
     Service type for the flavor. Example: LOADBALANCERV2.
   in: body
   required: true
-  type: string
-flavor_1:
-  description: |
-    The UUID of a flavor.
-  in: body
-  required: false
-  type: string
-flavor_2:
-  description: |
-    The UUID of a flavor if set.
-  in: body
-  required: false
   type: string
 flavors:
   description: |
@@ -2744,44 +2060,6 @@ fw_event-request-put:
   in: body
   required: false
   type: string
-health_monitor:
-  description: |
-    A ``health_monitor`` object.
-  in: body
-  required: true
-  type: object
-health_monitor-id:
-  description: |
-    The ID of the associated health monitor.
-  in: body
-  required: true
-  type: string
-health_monitors-obj:
-  description: |
-    A list of ``health_monitor`` objects.
-  in: body
-  required: true
-  type: array
-health_monitors-request:
-  description: |
-    List of health monitors to be associated with the pool.
-    The default is an empty list.
-  in: body
-  required: false
-  type: array
-health_monitors-response:
-  description: |
-    List of health monitors that are associated with the pool.
-  in: body
-  required: true
-  type: array
-health_monitors_status:
-  description: |
-    The statuses of the health monitors that are
-    associated with the pool.
-  in: body
-  required: true
-  type: string
 healthmonitor:
   description: |
     A ``healthmonitor`` object.
@@ -2799,13 +2077,6 @@ healthmonitors-obj:
     A list of ``healthmonitor`` objects.
   in: body
   required: true
-  type: array
-healthmonitors-request:
-  description: |
-    List of health monitors to be associated with the pool.
-    The default is an empty list.
-  in: body
-  required: false
   type: array
 healthmonitors-response:
   description: |
@@ -2839,130 +2110,9 @@ http_method:
   in: body
   required: true
   type: string
-http_method-request:
-  description: |
-    The HTTP method that the monitor uses for requests.
-    The default is ``GET``.
-  in: body
-  required: false
-  type: string
 id:
   description: |
     The ID of the resource.
-  in: body
-  required: true
-  type: string
-id_1:
-  description: |
-    The UUID of the port.
-  in: body
-  required: true
-  type: string
-id_12:
-  description: |
-    The UUID of the listener.
-  in: body
-  required: true
-  type: string
-id_14:
-  description: |
-    The UUID for the member.
-  in: body
-  required: true
-  type: string
-id_15:
-  description: |
-    The UUID for the metering label rule.
-  in: body
-  required: true
-  type: string
-id_16:
-  description: |
-    The UUID of the metering label.
-  in: body
-  required: true
-  type: string
-id_17:
-  description: |
-    The UUID of the network.
-  in: body
-  required: true
-  type: string
-id_19:
-  description: |
-    The UUID for the pool.
-  in: body
-  required: true
-  type: string
-id_2:
-  description: |
-    The UUID for the health monitor.
-  in: body
-  required: true
-  type: string
-id_20:
-  description: |
-    The UUID of the security group rule.
-  in: body
-  required: true
-  type: string
-id_21:
-  description: |
-    The UUID of the subnet pool.
-  in: body
-  required: true
-  type: string
-id_22:
-  description: |
-    The UUID for the VIP.
-  in: body
-  required: true
-  type: string
-id_25:
-  description: |
-    The UUID of network.
-  in: body
-  required: true
-  type: string
-id_26:
-  description: |
-    The UUID of the security group.
-  in: body
-  required: true
-  type: string
-id_3:
-  description: |
-    The UUID of the QoS policy rule.
-  in: body
-  required: true
-  type: string
-id_4:
-  description: |
-    The UUID for the firewall policy.
-  in: body
-  required: true
-  type: string
-id_5:
-  description: |
-    The generated UUID for the firewall rule object.
-  in: body
-  required: true
-  type: string
-id_6:
-  description: |
-    The UUID for the firewall service.
-  in: body
-  required: true
-  type: string
-id_7:
-  description: |
-    The UUID of the flavor.
-  in: body
-  required: true
-  type: string
-id_9:
-  description: |
-    The UUID for the IKE policy.
   in: body
   required: true
   type: string
@@ -3051,24 +2201,11 @@ interval:
   in: body
   required: false
   type: integer
-interval_1:
-  description: |
-    The dead peer detection (DPD) interval, in
-    seconds. A valid value is a positive integer. Default is 30.
-  in: body
-  required: true
-  type: integer
 ip_address:
   description: |
     The IP address of an allowed address pair.
   in: body
   required: false
-  type: string
-ip_address_1:
-  description: |
-    The fixed IP address of the port.
-  in: body
-  required: true
   type: string
 ip_version:
   description: |
@@ -3081,19 +2218,6 @@ ip_version-response:
   description: |
     The IP protocol version. Valid value is ``4`` or
     ``6``. Default is ``4``.
-  in: body
-  required: true
-  type: integer
-ip_version_1:
-  description: |
-    The IP address family of the list of prefixes
-    passed to the ``prefixes`` attribute.
-  in: body
-  required: true
-  type: integer
-ip_version_3:
-  description: |
-    The IP version (4 or 6) of the subnet.
   in: body
   required: true
   type: integer
@@ -3162,28 +2286,6 @@ lb_algorithm:
     algorithm must be supported.
   in: body
   required: true
-  type: string
-lb_method:
-  description: |
-    The load-balancer algorithm, which is round-robin
-    (``ROUND_ROBIN``), least-connections (``LEAST_CONNECTIONS``),
-    source IP (``SOURCE_IP``), and so on, that is used to distribute
-    traffic to the pool members. This value, which must be supported,
-    is dependent on the load-balancer provider. The round-robin
-    algorithm must be supported.
-  in: body
-  required: true
-  type: string
-lb_method-request-put:
-  description: |
-    The load-balancer algorithm, which is round-robin
-    (``ROUND_ROBIN``), least-connections (``LEAST_CONNECTIONS``),
-    source IP (``SOURCE_IP``), and so on, that is used to distribute
-    traffic to the pool members. This value, which must be supported,
-    is dependent on the load-balancer provider. The round-robin
-    algorithm must be supported.
-  in: body
-  required: false
   type: string
 lifetime:
   description: |
@@ -3443,13 +2545,6 @@ max_prefixlen:
   in: body
   required: false
   type: integer
-max_prefixlen_1:
-  description: |
-    The maximum prefix size that can be allocated
-    from the subnet pool.
-  in: body
-  required: true
-  type: integer
 max_retries:
   description: |
     The number of allowed connection failures before
@@ -3467,25 +2562,6 @@ member:
 member-id-response:
   description: |
     The ID of the member.
-  in: body
-  required: true
-  type: string
-member-pool_id:
-  description: |
-    The ID of the pool which the member belongs to.
-  in: body
-  required: true
-  type: string
-member-pool_id-request:
-  description: |
-    The ID of the pool which the member belongs to.
-  in: body
-  required: false
-  type: string
-member-status:
-  description: |
-    The status of the member. Indicates whether the
-    member is operational.
   in: body
   required: true
   type: string
@@ -3519,29 +2595,11 @@ members:
   in: body
   required: true
   type: array
-members-obj:
-  description: |
-    A list of ``member`` objects.
-  in: body
-  required: true
-  type: array
-members_2:
-  description: |
-    The associated members, if any.
-  in: body
-  required: true
-  type: array
 metainfo:
   description: |
     JSON-formatted meta information.
   in: body
   required: false
-  type: string
-metainfo_1:
-  description: |
-    JSON metainfo to associate with profile.
-  in: body
-  required: true
   type: string
 metering_label:
   description: |
@@ -3622,13 +2680,6 @@ min_prefixlen:
   in: body
   required: false
   type: integer
-min_prefixlen_1:
-  description: |
-    The smallest prefix that can be allocated from a
-    subnet pool.
-  in: body
-  required: true
-  type: integer
 minimum_bandwidth_rule:
   description: |
     A ``minimum_bandwidth_rule`` object.
@@ -3683,276 +2734,6 @@ name-segment:
   in: body
   required: false
   type: string
-name_1:
-  description: |
-    A symbolic name for the port.
-  in: body
-  required: false
-  type: string
-name_11:
-  description: |
-    The QoS policy name.
-  in: body
-  required: false
-  type: string
-name_12:
-  description: |
-    The pool name. Does not have to be unique.
-  in: body
-  required: false
-  type: string
-name_14:
-  description: |
-    A symbolic name for the security group. Does not
-    have to be unique.
-  in: body
-  required: true
-  type: string
-name_15:
-  description: |
-    A name for the subnet pool.
-  in: body
-  required: true
-  type: string
-name_16:
-  description: |
-    Human-readable name for the VIP. Does not have to
-    be unique.
-  in: body
-  required: false
-  type: string
-name_17:
-  description: |
-    Human-readable name for the VPN endpoint group.
-    Does not have to be unique.
-  in: body
-  required: false
-  type: string
-name_18:
-  description: |
-    Human-readable name for the VPN service. Does not
-    have to be unique.
-  in: body
-  required: false
-  type: string
-name_19:
-  description: |
-    Human-readable name for the firewall policy. Does
-    not have to be unique.
-  in: body
-  required: true
-  type: string
-name_2:
-  description: |
-    The network name.
-  in: body
-  required: true
-  type: string
-name_20:
-  description: |
-    The name of the extension. For example, "Fox In
-    Socks."
-  in: body
-  required: true
-  type: string
-name_21:
-  description: |
-    A human-readable name for the firewall rule.
-  in: body
-  required: true
-  type: string
-name_22:
-  description: |
-    Human-readable name for the firewall service.
-    Does not have to be unique.
-  in: body
-  required: true
-  type: string
-name_23:
-  description: |
-    Human-readable name for the flavor. Can be "" and
-    non-unique.
-  in: body
-  required: true
-  type: string
-name_24:
-  description: |
-    Human-readable name for the IKE policy. Does not
-    have to be unique.
-  in: body
-  required: true
-  type: string
-name_25:
-  description: |
-    Human-readable name for the IPsec connection.
-    Does not have to be unique.
-  in: body
-  required: true
-  type: string
-name_26:
-  description: |
-    The load balancer name.
-  in: body
-  required: true
-  type: string
-name_27:
-  description: |
-    The network name.
-  in: body
-  required: true
-  type: string
-name_28:
-  description: |
-    The name of the subnet.
-  in: body
-  required: true
-  type: string
-name_29:
-  description: |
-    The name of the QoS policy.
-  in: body
-  required: true
-  type: string
-name_3:
-  description: |
-    The port name.
-  in: body
-  required: true
-  type: string
-name_30:
-  description: |
-    The pool name. Does not have to be unique.
-  in: body
-  required: true
-  type: string
-name_31:
-  description: |
-    The router name.
-  in: body
-  required: true
-  type: string
-name_32:
-  description: |
-    The security group name.
-  in: body
-  required: true
-  type: string
-name_33:
-  description: |
-    The subnet pool name.
-  in: body
-  required: true
-  type: string
-name_34:
-  description: |
-    Human-readable name for the VIP. Does not have to
-    be unique.
-  in: body
-  required: true
-  type: string
-name_35:
-  description: |
-    Human-readable name for the VPN endpoint group.
-    Does not have to be unique.
-  in: body
-  required: true
-  type: string
-name_36:
-  description: |
-    Human-readable name for the VPN service. Does not
-    have to be unique.
-  in: body
-  required: true
-  type: string
-name_37:
-  description: |
-    New human-readable name for the flavor. Can be ""
-    and non-unique.
-  in: body
-  required: false
-  type: string
-name_38:
-  description: |
-    Human-readable name for the pool. Does not have
-    to be unique.
-  in: body
-  required: false
-  type: string
-name_39:
-  description: |
-    Human-readable name for the firewall policy. Does
-    not have to be unique.
-  in: body
-  required: false
-  type: string
-name_4:
-  description: |
-    User-facing provider name.
-  in: body
-  required: true
-  type: string
-name_40:
-  description: |
-    A human-readable name for the firewall rule.
-    Maximum length is 255 characters. Does not have to be unique. No
-    default.
-  in: body
-  required: false
-  type: string
-name_41:
-  description: |
-    A human-readable name for the flavor. Can be "" and
-    non-unique.
-  in: body
-  required: false
-  type: string
-name_42:
-  description: |
-    A human-readable name for the firewall service.
-    Does not have to be unique.
-  in: body
-  required: false
-  type: string
-name_43:
-  description: |
-    Human-readable name for the IKE policy. Does not
-    have to be unique.
-  in: body
-  required: false
-  type: string
-name_5:
-  description: |
-    A human-readable name for the IPsec policy. Does
-    not have to be unique.
-  in: body
-  required: true
-  type: string
-name_6:
-  description: |
-    Human-readable name for the IPsec connection.
-    Does not have to be unique.
-  in: body
-  required: false
-  type: string
-name_7:
-  description: |
-    The listener name.
-  in: body
-  required: true
-  type: string
-name_8:
-  description: |
-    The load balancer name. Does not have to be
-    unique.
-  in: body
-  required: false
-  type: string
-name_9:
-  description: |
-    The name of the metering label.
-  in: body
-  required: true
-  type: string
 name_resource:
   description: |
     The name of the resource.
@@ -3979,18 +2760,6 @@ network-admin_state_up-request:
   in: body
   required: false
   type: boolean
-network-count:
-  description: |
-    The number of networks allowed for each tenant.
-  in: body
-  required: true
-  type: integer
-network-count-request:
-  description: |
-    The number of networks allowed for each tenant.
-  in: body
-  required: false
-  type: integer
 network-id:
   description: |
     The ID of the network.
@@ -4204,25 +2973,6 @@ pool-id-response:
   in: body
   required: true
   type: string
-pool-protocol:
-  description: |
-    The protocol of the pool, which is ``TCP``,
-    ``HTTP``, or ``HTTPS``.
-  in: body
-  required: true
-  type: string
-pool-provider:
-  description: |
-    The provider name of the load balancer pool.
-  in: body
-  required: true
-  type: string
-pool-provider-request:
-  description: |
-    The provider name of the load balancer pool.
-  in: body
-  required: false
-  type: string
 pool-status:
   description: |
     The status of the pool. Indicates whether the
@@ -4253,12 +3003,6 @@ pools:
 pools-obj:
   description: |
     A list of ``pool`` objects.
-  in: body
-  required: true
-  type: array
-pools_2:
-  description: |
-    The associated pools, if any.
   in: body
   required: true
   type: array
@@ -4298,12 +3042,6 @@ port_id-request:
     The ID of the port.
   in: body
   required: false
-  type: string
-port_id_4:
-  description: |
-    The UUID of the port.
-  in: body
-  required: true
   type: string
 port_id_subport:
   description: |
@@ -4374,27 +3112,6 @@ prefixes:
     prefix.  Each subnet prefix must be unique among all subnet
     prefixes in all subnet pools that are associated with the address
     scope.
-  in: body
-  required: true
-  type: array
-prefixes_1:
-  description: |
-    A list of subnet prefixes that are assigned to
-    the subnet pool. The API merges adjacent prefixes and treats them
-    as a single prefix.
-  in: body
-  required: true
-  type: array
-prefixes_2:
-  description: |
-    A list of subnet prefixes to assign to the subnet
-    pool. The API merges adjacent prefixes and treats them as a single
-    prefix.  To update the subnet prefixes, pass a list that contains
-    the existing set of prefixes and the new set of prefixes. You
-    cannot shrink the prefix list of a subnet pool. You can only add
-    prefixes to it to expand it.  Ensure that each subnet prefix is
-    unique among all subnet prefixes in all subnet pools that are
-    associated with the address scope.
   in: body
   required: true
   type: array
@@ -4517,18 +3234,6 @@ provider:segmentation_id-request:
   in: body
   required: false
   type: integer
-provider_1:
-  description: |
-    The load-balancer provider.
-  in: body
-  required: true
-  type: string
-provider_2:
-  description: |
-    The name of the provider.
-  in: body
-  required: true
-  type: string
 provisioning_status:
   description: |
     The provisioning status of the load balancer.
@@ -4655,12 +3360,6 @@ qos_policy-name:
   required: false
   type: string
 qos_policy_id:
-  description: |
-    The ID of the QoS policy.
-  in: body
-  required: true
-  type: string
-qos_policy_id-body:
   description: |
     The ID of the QoS policy.
   in: body
@@ -4843,39 +3542,10 @@ remote_group_id:
   in: body
   required: false
   type: string
-remote_group_id_1:
-  description: |
-    The remote group UUID to associate with this
-    security group rule. You can specify either the
-    ``remote_group_id`` or ``remote_ip_prefix`` attribute in the
-    request body.
-  in: body
-  required: true
-  type: string
 remote_ip_prefix:
   description: |
     The remote IP prefix to associate with this
     metering rule packet.
-  in: body
-  required: true
-  type: string
-remote_ip_prefix_1:
-  description: |
-    The remote IP prefix to associate with this
-    security group rule. You can specify either the
-    ``remote_group_id`` or ``remote_ip_prefix`` attribute in the
-    request body. This attribute matches the IP prefix as the source
-    IP address of the IP packet.
-  in: body
-  required: false
-  type: string
-remote_ip_prefix_2:
-  description: |
-    The remote IP prefix to associate with this
-    security group rule. You can specify either the
-    ``remote_group_id`` or ``remote_ip_prefix`` attribute in the
-    request body. This attribute value matches the IP prefix as the
-    source IP address of the IP packet.
   in: body
   required: true
   type: string
@@ -4957,13 +3627,6 @@ route_mode:
     which is the default.
   in: body
   required: false
-  type: string
-route_mode_1:
-  description: |
-    The route mode. A valid value is ``static``,
-    which is the default.
-  in: body
-  required: true
   type: string
 router:
   description: |
@@ -5087,12 +3750,6 @@ router-id-body:
   in: body
   required: true
   type: string
-router-name-request:
-  description: |
-    The router name.
-  in: body
-  required: false
-  type: string
 router-network_id:
   description: |
     Network ID which the router gateway is connected to.
@@ -5189,39 +3846,12 @@ router:external-request:
   in: body
   required: false
   type: boolean
-router_id_1:
-  description: |
-    The UUID of the router.
-  in: body
-  required: true
-  type: string
-router_id_2:
-  description: |
-    The UUID of the router to which the VPN service
-    is inserted.
-  in: body
-  required: true
-  type: string
-router_id_3:
-  description: |
-    The UUID of the router into which the VPN service
-    is inserted.
-  in: body
-  required: true
-  type: string
 router_ids:
   description: |
     A list of IDs for routers that are associated
     with the firewall.
   in: body
   required: false
-  type: array
-router_ids-1:
-  description: |
-    A list of IDs for routers that are associated
-    with the firewall.
-  in: body
-  required: true
   type: array
 router_ids-response:
   description: |
@@ -5404,12 +4034,6 @@ service_profiles:
   in: body
   required: true
   type: array
-service_profiles_1:
-  description: |
-    A list of ``service_profile`` objects.
-  in: body
-  required: true
-  type: array
 service_providers:
   description: |
     A list of ``service_provider`` objects.
@@ -5424,12 +4048,6 @@ service_type:
   in: body
   required: true
   type: string
-service_type_1:
-  description: |
-    Service type (ex: LOADBALANCERV2) for the flavor.
-  in: body
-  required: true
-  type: string
 shared:
   description: |
     Admin-only. Indicates whether this network is
@@ -5441,65 +4059,6 @@ shared-response:
   description: |
     Admin-only. Indicates whether this network is
     shared across all tenants.
-  in: body
-  required: true
-  type: boolean
-shared_11:
-  description: |
-    Indicates whether this subnet pool is shared
-    across all projects.
-  in: body
-  required: true
-  type: boolean
-shared_12:
-  description: |
-    Set to ``true`` to make this firewall policy
-    visible to other projects. Default is ``false``.
-  in: body
-  required: false
-  type: boolean
-shared_13:
-  description: |
-    Set to ``true`` to share this firewall rule with
-    other projects. Other projects can use a shared rule in firewall
-    policies that this project does not own. Valid value is ``true`` or
-    ``false``. Default is ``false``.
-  in: body
-  required: false
-  type: boolean
-shared_3:
-  description: |
-    Admin-only. Indicates whether this network is
-    shared across all projects.
-  in: body
-  required: true
-  type: boolean
-shared_5:
-  description: |
-    Admin-only. Indicates whether this subnet pool is
-    shared across all projects.
-  in: body
-  required: false
-  type: boolean
-shared_6:
-  description: |
-    Indicates whether the firewall policy is shared
-    across all projects.
-  in: body
-  required: true
-  type: boolean
-shared_7:
-  description: |
-    Indicates whether this firewall rule is shared
-    with other projects. Other projects can use a shared rule in
-    firewall policies that this project does not own.
-  in: body
-  required: true
-  type: boolean
-shared_9:
-  description: |
-    Indicates whether this network is shared across
-    all projects.
   in: body
   required: true
   type: boolean
@@ -5550,12 +4109,6 @@ source_port-response:
     range. For example, ``80:90``.
   in: body
   required: false
-  type: string
-source_port_1:
-  description: |
-    The source port or port range.
-  in: body
-  required: true
   type: string
 started_at:
   description: |
@@ -5806,12 +4359,6 @@ subnetpool_is_default:
   in: body
   required: true
   type: boolean
-subnetpool_updated_at:
-  description: |
-    Time at which subnetpool has been updated.
-  in: body
-  required: true
-  type: string
 subnetpools:
   description: |
     A list of ``subnetpool`` objects.
@@ -5833,271 +4380,6 @@ tags:
 target_tenant:
   description: |
     The ID of the tenant to which the RBAC policy will be enforced.
-  in: body
-  required: true
-  type: string
-tenant_id:
-  description: |
-    The ID of the project that owns the resource.
-  in: body
-  required: false
-  type: string
-tenant_id-request:
-  description: |
-    The ID of the tenant who owns the resource.
-    Only administrative users can specify a tenant ID other than their own.
-    You cannot change this value through authorization policies.
-  in: body
-  required: false
-  type: string
-tenant_id_1:
-  description: |
-    The UUID of the tenant.
-  in: body
-  required: true
-  type: string
-tenant_id_10:
-  description: |
-    The UUID of the tenant who owns the load
-    balancer. Only administrative users can specify a tenant UUID
-    other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_11:
-  description: |
-    The UUID of the tenant who owns the member. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_12:
-  description: |
-    The UUID of the tenant who owns the member. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_13:
-  description: |
-    The tenant UUID for the metering label.
-  in: body
-  required: true
-  type: string
-tenant_id_15:
-  description: |
-    The tenant UUID of QoS policy owner. Only
-    administrative users can specify a tenant UUID other than their
-    own. You cannot change this value through authorization policies.
-  in: body
-  required: false
-  type: string
-tenant_id_16:
-  description: |
-    The UUID of the tenant who owns the pool. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_17:
-  description: |
-    The UUID of the tenant who owns the security
-    group rule. Only administrative users can specify a tenant UUID
-    other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_18:
-  description: |
-    The UUID of the tenant who owns the security
-    group. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_19:
-  description: |
-    The UUID of the tenant who owns the subnet pool.
-    Only administrative users can specify a tenant UUID other than
-    their own. You cannot change this value through authorization
-    policies.
-  in: body
-  required: false
-  type: string
-tenant_id_20:
-  description: |
-    The UUID of the tenant who owns the VIP. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_21:
-  description: |
-    Owner of the VPN endpoint group. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_22:
-  description: |
-    Owner of the VPN service. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_23:
-  description: |
-    The UUID of the tenant who owns the firewall
-    policy.
-  in: body
-  required: true
-  type: string
-tenant_id_24:
-  description: |
-    The UUID of the tenant who owns the firewall
-    rule.
-  in: body
-  required: true
-  type: string
-tenant_id_25:
-  description: |
-    The UUID of the tenant who owns the health
-    monitor. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_26:
-  description: |
-    The owner of the VPN service. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_27:
-  description: |
-    Owner of the VPN service. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_28:
-  description: |
-    The UUID of the tenant who owns the VIP. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_29:
-  description: |
-    The UUID of the tenant who owns the network.
-  in: body
-  required: true
-  type: string
-tenant_id_3:
-  description: |
-    The owner of the firewall service. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_30:
-  description: |
-    The UUID of tenant or project.
-  in: body
-  required: true
-  type: string
-tenant_id_31:
-  description: |
-    The UUID of the tenant who owns the QoS policy.
-  in: body
-  required: true
-  type: string
-tenant_id_32:
-  description: |
-    The UUID of the tenant who owns the pool. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_34:
-  description: |
-    The UUID of the tenant who owns the subnet pool.
-  in: body
-  required: true
-  type: string
-tenant_id_35:
-  description: |
-    The UUID of the tenant.
-  in: body
-  required: true
-  type: string
-tenant_id_36:
-  description: |
-    The owner of the firewall policy. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: false
-  type: string
-tenant_id_37:
-  description: |
-    The UUID of the tenant who owns the firewall
-    rule. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_4:
-  description: |
-    The UUID of the tenant. Only administrative users
-    can specify a tenant UUID other than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_5:
-  description: |
-    The UUID of the tenant who owns the health
-    monitor. Only administrative users can specify a tenant UUID other
-    than their own.
-  in: body
-  required: false
-  type: string
-tenant_id_6:
-  description: |
-    The owner of the IKE policy. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_7:
-  description: |
-    Owner of the IPsec policy. Only administrative
-    users can specify a tenant UUID other than their own.
-  in: body
-  required: true
-  type: string
-tenant_id_8:
-  description: |
-    Owner of the IPsec connection. Only
-    administrative users can specify a tenant UUID other than their
-    own.
-  in: body
-  required: true
-  type: string
-tenant_id_9:
-  description: |
-    The UUID of the tenant who owns the listener.
-    Only administrative users can specify a tenant UUID other than
-    their own.
   in: body
   required: true
   type: string
@@ -6157,23 +4439,6 @@ type:
   in: body
   required: true
   type: string
-type_2:
-  description: |
-    The type of the endpoints in the group. A valid
-    value is ``subnet``, ``cidr``, ``network``, ``router``, or
-    ``vlan``. Only ``subnet`` and ``cidr`` are supported
-    at this moment.
-  in: body
-  required: true
-  type: string
-type_3:
-  description: |
-    The type of probe sent by the load balancer to
-    verify the member state, which is ``PING``, ``TCP``, ``HTTP``, or
-    ``HTTPS``.
-  in: body
-  required: true
-  type: string
 units:
   description: |
     The units for the lifetime of the security
@@ -6193,12 +4458,6 @@ updated:
 updated_at:
   description: |
     Time at which port has been updated.
-  in: body
-  required: true
-  type: string
-updated_at_2:
-  description: |
-    Time at which subnetpool has been updated.
   in: body
   required: true
   type: string
@@ -6246,15 +4505,6 @@ value:
   in: body
   required: false
   type: integer
-value_1:
-  description: |
-    The lifetime value, as a positive integer. The
-    lifetime consists of a unit and integer value. You can omit either
-    the unit or value portion of the lifetime. Default unit is seconds
-    and default value is 3600.
-  in: body
-  required: true
-  type: integer
 version-href:
   description: |
     Link to the API.
@@ -6297,100 +4547,12 @@ vip:
   in: body
   required: true
   type: object
-vip-address:
-  description: |
-    The IP address of the VIP.
-  format: ipv4
-  in: body
-  required: true
-  type: string
-vip-address-request:
-  description: |
-    The IP address of the VIP.
-  format: ipv4
-  in: body
-  required: false
-  type: string
-vip-id:
-  description: |
-    The ID of the virtual IP (VIP) address.
-  in: body
-  required: true
-  type: string
-vip-pool_id:
-  description: |
-    The ID of the pool which the VIP belongs to.
-  in: body
-  required: true
-  type: string
-vip-pool_id-request:
-  description: |
-    The ID of the pool which the VIP belongs to.
-  in: body
-  required: false
-  type: string
-vip-port_id:
-  description: |
-    The ID of the VIP port.
-  in: body
-  required: true
-  type: string
-vip-protocol:
-  description: |
-    The protocol of the virtual IP (VIP) address. A
-    valid value is ``TCP``, ``HTTP``, or ``HTTPS``.
-  in: body
-  required: true
-  type: string
-vip-session_persistence:
-  description: |
-    Session persistence parameters for the VIP. Omit
-    the ``session_persistence`` parameter to prevent session
-    persistence. When no session persistence is used, the
-    ``session_persistence`` parameter does not appear in the API
-    response.
-  in: body
-  required: true
-  type: object
-vip-session_persistence-request:
-  description: |
-    Session persistence parameters for the VIP. Omit
-    the ``session_persistence`` parameter to prevent session
-    persistence. When no session persistence is used, the
-    ``session_persistence`` parameter does not appear in the API
-    response. To clear session persistence for the VIP, set the
-    ``session_persistence`` parameter to ``null`` in a VIP update
-    request. The default is no session persistence.
-  in: body
-  required: false
-  type: object
-vip-status:
-  description: |
-    The status of the VIP. Indicates whether the VIP
-    is operational.
-  in: body
-  required: true
-  type: string
-vip-subnet_id:
-  description: |
-    The ID of the subnet on which to allocate the
-    virtual IP (VIP) address.
-  in: body
-  required: true
-  type: string
 vip_address:
   description: |
     The IP address of the VIP .
   format: ipv4
   in: body
   required: true
-  type: string
-vip_address-request:
-  description: |
-    The IP address of the VIP .
-  format: ipv4
-  in: body
-  required: false
   type: string
 vip_id:
   description: |
@@ -6414,12 +4576,6 @@ vip_subnet_id:
   in: body
   required: false
   type: string
-vips:
-  description: |
-    A list of ``vip`` objects.
-  in: body
-  required: true
-  type: array
 vlan_transparent:
   description: |
     Indicates the VLAN transparency mode of the network, which is
@@ -6434,6 +4590,15 @@ vlan_transparent-request:
   in: body
   required: false
   type: boolean
+vpn_endpoint_type:
+  description: |
+    The type of the endpoints in the group. A valid
+    value is ``subnet``, ``cidr``, ``network``, ``router``, or
+    ``vlan``. Only ``subnet`` and ``cidr`` are supported
+    at this moment.
+  in: body
+  required: true
+  type: string
 vpnservice:
   description: |
     A ``vpnservice`` object.

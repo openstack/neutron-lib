@@ -888,7 +888,7 @@ Response Parameters
    - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type_2
+   - type: vpn_endpoint_type
    - id: endpoint_group_id-body-response
 
 Response Example
@@ -919,7 +919,7 @@ Request
    - tenant_id: project_id
    - project_id: project_id
    - endpoints: endpoints
-   - type: type_2
+   - type: vpn_endpoint_type
    - description: description-request
    - name: name-request
 
@@ -938,7 +938,7 @@ Response Parameters
    - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type_2
+   - type: vpn_endpoint_type
    - id: endpoint_group_id-body-response
    - name: name-request
 
@@ -975,7 +975,7 @@ Response Parameters
    - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type_2
+   - type: vpn_endpoint_type
    - id: endpoint_group_id-body-response
    - name: name-request
 
@@ -1020,7 +1020,7 @@ Response Parameters
    - description: description-request
    - tenant_id: project_id
    - project_id: project_id
-   - type: type_2
+   - type: vpn_endpoint_type
    - id: endpoint_group_id-body-response
    - name: name-request
 

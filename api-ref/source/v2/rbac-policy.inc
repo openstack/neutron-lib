@@ -36,7 +36,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - target_tenant: target_tenant
-   - tenant_id: tenant_id
+   - tenant_id: project_id-body-optional
    - object_type: object_type
    - object_id: object_id
    - action: rbac_action
@@ -80,7 +80,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - target_tenant: target_tenant
-   - tenant_id: tenant_id
+   - tenant_id: project_id-body-optional
    - object_type: object_type
    - object_id: object_id
    - action: rbac_action
@@ -145,7 +145,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - target_tenant: target_tenant
-   - tenant_id: tenant_id
+   - tenant_id: project_id-body-optional
    - object_type: object_type
    - object_id: object_id
    - action: rbac_action
@@ -191,7 +191,7 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - target_tenant: target_tenant
-   - tenant_id: tenant_id
+   - tenant_id: project_id-body-optional
    - object_type: object_type
    - object_id: object_id
    - action: rbac_action
