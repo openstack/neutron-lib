@@ -22,7 +22,13 @@
         },
         "dns_domain": "my-domain.org.",
         "dns_name": "myport",
-        "extra_dhcp_opts": [],
+        "extra_dhcp_opts": [
+            {
+                "opt_value": "pxelinux.0",
+                "ip_version": 4,
+                "opt_name": "bootfile-name"
+            }
+        ],
         "fixed_ips": [
             {
                 "ip_address": "10.0.0.1",
