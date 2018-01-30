@@ -41,6 +41,13 @@ DHCP option objects, where each object contains an ``opt_name`` and
 ``opt_value`` (string values) as well as an optional ``ip_version``
 (the acceptable values are either the integer ``4`` or ``6``).
 
+IP allocation extension
+=======================
+
+The IP allocation extension (``ip_allocation``) adds a new read-only attribute
+``ip_allocation`` that indicates when ports use deferred, immediate or
+no IP allocation.
+
 DNS integration
 ===============
 
@@ -130,6 +137,7 @@ Response Parameters
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
+   - ip_allocation: ip_allocation
    - mac_address: mac_address
    - name: name
    - network_id: network_id
@@ -246,6 +254,7 @@ Response Parameters
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
+   - ip_allocation: ip_allocation
    - mac_address: mac_address
    - name: name
    - network_id: network_id
@@ -353,6 +362,7 @@ Response Parameters
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
+   - ip_allocation: ip_allocation
    - mac_address: mac_address
    - name: name
    - network_id: network_id
@@ -452,6 +462,7 @@ Response Parameters
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
+   - ip_allocation: ip_allocation
    - mac_address: mac_address
    - name: name
    - network_id: network_id
@@ -544,6 +555,7 @@ Response Parameters
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
    - id: id
+   - ip_allocation: ip_allocation
    - mac_address: mac_address
    - name: name
    - network_id: network_id

@@ -30,6 +30,7 @@
                 }
             ],
             "id": "d80b1a3b-4fc1-49f3-952e-1e2ab7081d8b",
+            "ip_allocation": "immediate",
             "mac_address": "fa:16:3e:58:42:ed",
             "name": "",
             "network_id": "70c1db1f-b701-45bd-96e0-a313ee3430b3",
@@ -70,6 +71,7 @@
                 }
             ],
             "id": "f71a6703-d6de-4be1-a91a-a570ede1d159",
+            "ip_allocation": "immediate",
             "mac_address": "fa:16:3e:bb:3c:e4",
             "name": "",
             "network_id": "f27aa545-cbdd-4907-b0c6-c9e8b039dcc2",

@@ -2213,6 +2213,13 @@ ip_address:
   in: body
   required: false
   type: string
+ip_allocation:
+  description: |
+    Indicates when ports use either ``deferred``, ``immediate`` or no IP
+    allocation (``none``).
+  in: body
+  required: true
+  type: string
 ip_version:
   description: |
     The IP protocol version. Valid value is ``4`` or
