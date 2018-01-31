@@ -4300,7 +4300,13 @@ subnet-service_types:
     The service types associated with the subnet.
   in: body
   required: true
-  type: string
+  type: array
+subnet-service_types-optional:
+  description: |
+    The service types associated with the subnet.
+  in: body
+  required: false
+  type: array
 subnet-subnetpool_id:
   description: |
     The ID of the subnet pool associated with the subnet.
