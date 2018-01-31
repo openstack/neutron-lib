@@ -61,6 +61,13 @@ A newer ``net-mtu-writable`` extension enhances ``net-mtu`` in that now the
 ``mtu`` attribute is available for write (both when creating as well as
 updating networks).
 
+Network availability zone extension
+===================================
+
+The ``network_availability_zone`` extension provides support of availability
+zone for networks, exposing ``availability_zone_hints``
+and ``availability_zones`` attributes.
+
 DNS integration
 ===============
 
@@ -405,6 +412,7 @@ Request
    - vlan_transparent: vlan_transparent-request
    - description: description-request
    - is_default: network_is_default-request
+   - availability_zone_hints: availability_zone_hints-request
 
 Request Example
 ---------------
@@ -510,6 +518,7 @@ Request
    - tenant_id: project_id-request
    - vlan_transparent: vlan_transparent-request
    - description: description-request
+   - availability_zone_hints: availability_zone_hints-request
 
 Request Example
 ---------------

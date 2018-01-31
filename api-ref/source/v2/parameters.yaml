@@ -455,6 +455,12 @@ availability_zone_hints:
   in: body
   required: true
   type: array
+availability_zone_hints-request:
+  description: |
+    The availability zone candidate for the network.
+  in: body
+  required: false
+  type: array
 availability_zones:
   description: |
     The availability zone for the network.
