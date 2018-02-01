@@ -10,11 +10,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import mock
+
 from oslo_db.sqlalchemy import models
 import sqlalchemy as sa
 from sqlalchemy.ext import declarative
 from sqlalchemy import orm
 
+from neutron_lib.api import attributes
 from neutron_lib.db import utils
 from neutron_lib import exceptions as n_exc
 
@@ -61,3 +64,26 @@ class TestUtils(base.BaseTestCase):
         sorts = [('gw_port', True)]
         self.assertRaises(n_exc.BadRequest,
                           utils.get_and_validate_sort_keys, sorts, FakeRouter)
+
+    def test_get_marker_obj(self):
+        plugin = mock.Mock()
+        plugin._get_myr.return_value = 'obj'
+        obj = utils.get_marker_obj(plugin, 'ctx', 'myr', 10, mock.ANY)
+        self.assertEqual('obj', obj)
+        plugin._get_myr.assert_called_once_with('ctx', mock.ANY)
+
+    def test_get_marker_obj_no_limit_and_marker(self):
+        self.assertIsNone(utils.get_marker_obj(
+            mock.Mock(), 'ctx', 'myr', 0, mock.ANY))
+        self.assertIsNone(utils.get_marker_obj(
+            mock.Mock(), 'ctx', 'myr', 10, None))
+
+    @mock.patch.object(attributes, 'populate_project_info')
+    def test_resource_fields(self, mock_populate):
+        r = {
+            'name': 'n',
+            'id': '1',
+            'desc': None
+        }
+        utils.resource_fields(r, ['name'])
+        mock_populate.assert_called_once_with({'name': 'n'})

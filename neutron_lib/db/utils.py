@@ -12,13 +12,15 @@
 
 import six
 
-from neutron_lib import exceptions as n_exc
+from oslo_db import exception as db_exc
+from oslo_utils import excutils
+from sqlalchemy.ext import associationproxy
+from sqlalchemy.orm import exc
 from sqlalchemy.orm import properties
 
 from neutron_lib._i18n import _
-from oslo_db import exception as db_exc
-from oslo_utils import excutils
-from sqlalchemy.orm import exc
+from neutron_lib.api import attributes
+from neutron_lib import exceptions as n_exc
 
 
 def get_and_validate_sort_keys(sorts, model):
@@ -104,3 +106,64 @@ def reraise_as_retryrequest(function):
                     ctx.reraise = False
                     raise db_exc.RetryRequest(e)
     return _wrapped
+
+
+def get_marker_obj(plugin, context, resource, limit, marker):
+    """Retrieve a resource marker object.
+
+    This function is used to invoke
+    plugin._get_<resource>(context, marker) and is used for pagination.
+
+    :param plugin: The plugin processing the request.
+    :param context: The request context.
+    :param resource: The resource name.
+    :param limit: Indicates if pagination is in effect.
+    :param marker: The id of the marker object.
+    :returns: The marker object associated with the plugin if limit and marker
+        are given.
+    """
+    if limit and marker:
+        return getattr(plugin, '_get_%s' % resource)(context, marker)
+
+
+def resource_fields(resource, fields):
+    """Return only the resource items that are in fields.
+
+    :param resource: A resource dict.
+    :param fields: A list of fields to select from the resource.
+    :returns: A new dict that contains only fields from resource as well
+        as its attribute project info.
+    """
+    if fields:
+        resource = {key: item for key, item in resource.items()
+                    if key in fields}
+    return attributes.populate_project_info(resource)
+
+
+def filter_non_model_columns(data, model):
+    """Return the attributes from data which are model columns.
+
+    :param data: The dict containing the data to filter.
+    :param model: The model who's column names are used when filtering data.
+    :returns: A new dict who's keys are columns in model or are association
+        proxies of the model.
+    """
+    columns = [c.name for c in model.__table__.columns]
+    return dict((k, v) for (k, v) in
+                data.items() if k in columns or
+                isinstance(getattr(model, k, None),
+                           associationproxy.AssociationProxy))
+
+
+def model_query_scope_is_project(context, model):
+    """Determine if a model should be scoped to a project.
+
+    :param context: The context to check for admin and advsvc rights.
+    :param model: The model to check the project_id of.
+    :returns: True if the context is not admin and not advsvc and the model
+        has a project_id. False otherwise.
+    """
+    # Unless a context has 'admin' or 'advanced-service' rights the
+    # query will be scoped to a single project_id
+    return ((not context.is_admin and hasattr(model, 'project_id')) and
+            (not context.is_advsvc and hasattr(model, 'project_id')))

@@ -1,0 +1,5 @@
+---
+features:
+  - The database utility functions ``get_marker_obj``,
+    ``filter_non_model_columns``, ``model_query_scope_is_project`` and
+    ``resource_fields`` are now available in ``neutron_lib.db.utils``.
