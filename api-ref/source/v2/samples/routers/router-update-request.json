@@ -1,5 +1,6 @@
 {
     "router": {
+        "distributed": false,
         "external_gateway_info": {
             "network_id": "ae34051f-aa6c-4c75-abf5-50dc9ac99ef3",
             "enable_snat": true,

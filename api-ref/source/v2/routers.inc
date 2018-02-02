@@ -25,6 +25,11 @@ and ``availability_zone_hints`` attributes to ``routers``, allowing scheduling
 based on availability zones and hints.
 This extension requires ``router`` and ``availability_zone`` extensions.
 
+Distributed virtual router extension (``dvr``)
+==============================================
+The ``dvr`` extension enables the functionality of configuring a router as a
+distributed virtual router, adding ``distributed`` parameter.
+
 List routers
 ============
 
@@ -249,6 +254,7 @@ Request
    - router_id: router_id
    - description: description-request
    - routes: router-routes-request
+   - distributed: router-distributed-request
 
 Request Example
 ---------------
