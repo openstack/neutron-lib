@@ -30,6 +30,17 @@ Supported data plane status values:
 - ``ACTIVE``: the underlying data plane is up and running
 - ``DOWN``: no traffic can flow from/to the port
 
+Extra DHCP option (``extra_dhcp_opt``) extension
+================================================
+
+The extra DHCP option (``extra_dhcp_opt``) extension enables extra
+DHCP configuration options on ``ports``. For example, PXE boot
+options to DHCP clients can be specified (e.g. tftp-server, server-ip-address,
+bootfile-name). The value of the ``extra_dhcp_opt`` attribute is an array of
+DHCP option objects, where each object contains an ``opt_name`` and
+``opt_value`` (string values) as well as an optional ``ip_version``
+(the acceptable values are either the integer ``4`` or ``6``).
+
 DNS integration
 ===============
 
