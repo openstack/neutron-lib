@@ -4,6 +4,7 @@
             "project_id": "8d4c70a21fed4aeba121a1a429ba0d04",
             "tenant_id": "8d4c70a21fed4aeba121a1a429ba0d04",
             "id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
+            "is_default": false,
             "name": "10Mbit",
             "description": "This policy limits the ports to 10Mbit max.",
             "revision_number": 3,

@@ -90,6 +90,13 @@ QoS policies (qos)
 
 Lists, creates, deletes, shows information for, and updates QoS policies.
 
+QoS default extension
+=====================
+The QoS default extension (``qos-default``) allows a per project
+default QoS policy by adding the ``is_default`` attribute
+to ``policy`` resources.
+
+
 List QoS policies
 =================
 
@@ -128,6 +135,7 @@ Response Parameters
    - revision_number: revision_number
    - shared: qos-shared
    - id: qos_policy_id
+   - is_default: qos_is_default
    - rules: qos-rules
    - name: name
 
@@ -169,6 +177,7 @@ Request
    - tenant_id: project_id-request
    - project_id: project_id-request
    - shared: qos-shared-request
+   - is_default: qos_is_default-request
    - name: qos_policy-name
 
 Request Example
@@ -190,6 +199,7 @@ Response Parameters
    - shared: qos-shared
    - rules: qos-rules
    - id: qos_policy_id
+   - is_default: qos_is_default
    - name: name
 
 Response Example
@@ -229,6 +239,7 @@ Response Parameters
    - shared: qos-shared
    - rules: qos-rules
    - id: qos_policy_id
+   - is_default: qos_is_default
    - name: name
 
 Response Example
@@ -259,6 +270,7 @@ Request
    - policy_id: qos-policy-id-path
    - policy: policy
    - description: description-request
+   - is_default: qos_is_default-request
    - shared: qos-shared-request
    - name: qos_policy-name
 
@@ -280,6 +292,7 @@ Response Parameters
    - revision_number: revision_number
    - shared: qos-shared
    - id: qos_policy_id
+   - is_default: qos_is_default
    - rules: qos-rules
    - name: name
 
