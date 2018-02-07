@@ -9,6 +9,7 @@
         "name": "net1",
         "admin_state_up": true,
         "dns_domain": "",
+        "l2_adjacency": true,
         "mtu": 1500,
         "port_security_enabled": true,
         "project_id": "9bacb3c5d39d41a79512987f338cf177",

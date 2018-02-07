@@ -68,6 +68,17 @@ The ``network_availability_zone`` extension provides support of availability
 zone for networks, exposing ``availability_zone_hints``
 and ``availability_zones`` attributes.
 
+L2 adjacency extension
+======================
+
+The ``l2_adjacency`` extension provides display of L2 Adjacency
+for ``networks`` by adding the read-only ``l2_adjacency`` attribute.
+This is a boolean value where ``true`` means that you can expect
+L2 connectivity throughout the Network and ``false`` means that there
+is no guarantee of L2 connectivity.
+This value is read-only and is derived from the current state of
+``segments`` within the ``network``.
+
 DNS integration
 ===============
 
@@ -139,6 +150,7 @@ Response Parameters
    - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
+   - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -239,6 +251,7 @@ Response Parameters
    - availability_zones: availability_zones
    - dns_domain: dns_domain
    - id: network-id
+   - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -338,6 +351,7 @@ Response Parameters
    - availability_zones: availability_zones
    - dns_domain: dns_domain
    - id: network-id
+   - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -443,6 +457,7 @@ Response Parameters
    - availability_zones: availability_zones
    - dns_domain: dns_domain
    - id: network-id
+   - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -537,6 +552,7 @@ Response Parameters
    - availability_zones: availability_zones
    - dns_domain: dns_domain
    - id: network-id
+   - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
