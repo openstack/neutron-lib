@@ -18,9 +18,12 @@ import testtools
 from oslotest import base
 
 from neutron_lib.callbacks import events
+from neutron_lib.callbacks import priority_group
 from neutron_lib.callbacks import registry
 from neutron_lib.callbacks import resources
 from neutron_lib import fixture
+
+PRI_CALLBACK = 20
 
 
 @registry.has_registry_receivers
@@ -51,7 +54,7 @@ class AnotherObjectWithDecoratedCallback(ObjectWithDecoratedCallback,
         super(AnotherObjectWithDecoratedCallback, self).__init__()
         self.counter2 = 0
 
-    @registry.receives(resources.NETWORK, [events.AFTER_DELETE])
+    @registry.receives(resources.NETWORK, [events.AFTER_DELETE], PRI_CALLBACK)
     def callback2(self, *args, **kwargs):
         self.counter2 += 1
 
@@ -89,10 +92,14 @@ class CallBacksManagerTestCase(base.BaseTestCase):
 
     def test_object_inheriting_others_no_double_subscribe(self):
         with mock.patch.object(registry, 'subscribe') as sub:
-            AnotherObjectWithDecoratedCallback()
+            callback = AnotherObjectWithDecoratedCallback()
             # there are 3 methods (2 in parent and one in child) and 1
             # subscribes to 2 events, so we expect 4 subscribes
+            priority_call = [mock.call(
+                callback.callback2,
+                resources.NETWORK, events.AFTER_DELETE, PRI_CALLBACK)]
             self.assertEqual(4, len(sub.mock_calls))
+            sub.assert_has_calls(priority_call)
 
     def test_new_inheritance_not_broken(self):
         self.assertTrue(AnotherObjectWithDecoratedCallback().new_called)
@@ -117,7 +124,14 @@ class TestCallbackRegistryDispatching(base.BaseTestCase):
     def test_subscribe(self):
         registry.subscribe(my_callback, 'my-resource', 'my-event')
         self.callback_manager.subscribe.assert_called_with(
-            my_callback, 'my-resource', 'my-event')
+            my_callback, 'my-resource', 'my-event',
+            priority_group.PRIORITY_DEFAULT)
+
+    def test_subscribe_explicit_priority(self):
+        registry.subscribe(my_callback, 'my-resource', 'my-event',
+                           PRI_CALLBACK)
+        self.callback_manager.subscribe.assert_called_with(
+            my_callback, 'my-resource', 'my-event', PRI_CALLBACK)
 
     def test_unsubscribe(self):
         registry.unsubscribe(my_callback, 'my-resource', 'my-event')

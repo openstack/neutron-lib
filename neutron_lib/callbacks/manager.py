@@ -11,12 +11,14 @@
 #    under the License.
 
 import collections
+import itertools
 
 from oslo_log import log as logging
 from oslo_utils import reflection
 
 from neutron_lib.callbacks import events
 from neutron_lib.callbacks import exceptions
+from neutron_lib.callbacks import priority_group
 from neutron_lib.db import utils as db_utils
 
 LOG = logging.getLogger(__name__)
@@ -28,7 +30,8 @@ class CallbacksManager(object):
     def __init__(self):
         self.clear()
 
-    def subscribe(self, callback, resource, event):
+    def subscribe(self, callback, resource, event,
+                  priority=priority_group.PRIORITY_DEFAULT):
         """Subscribe callback for a resource event.
 
         The same callback may register for more than one event.
@@ -36,22 +39,39 @@ class CallbacksManager(object):
         :param callback: the callback. It must raise or return a boolean.
         :param resource: the resource. It must be a valid resource.
         :param event: the event. It must be a valid event.
+        :param priority: the priority. Callbacks are sorted by priority
+                         to be called. Smaller one is called earlier.
         """
-        LOG.debug("Subscribe: %(callback)s %(resource)s %(event)s",
-                  {'callback': callback, 'resource': resource, 'event': event})
+        LOG.debug("Subscribe: %(callback)s %(resource)s %(event)s "
+                  "%(priority)d",
+                  {'callback': callback, 'resource': resource, 'event': event,
+                   'priority': priority})
 
         callback_id = _get_id(callback)
-        try:
-            self._callbacks[resource][event][callback_id] = callback
-        except KeyError:
-            # Initialize the registry for unknown resources and/or events
-            # prior to enlisting the callback.
-            self._callbacks[resource][event] = {}
-            self._callbacks[resource][event][callback_id] = callback
+        callbacks_list = self._callbacks[resource].setdefault(event, [])
+        for pc_pair in callbacks_list:
+            if pc_pair[0] == priority:
+                pri_callbacks = pc_pair[1]
+                break
+        else:
+            pri_callbacks = {}
+            callbacks_list.append((priority, pri_callbacks))
+            callbacks_list.sort(key=lambda x: x[0])
+        pri_callbacks[callback_id] = callback
+
         # We keep a copy of callbacks to speed the unsubscribe operation.
         if callback_id not in self._index:
             self._index[callback_id] = collections.defaultdict(set)
         self._index[callback_id][resource].add(event)
+
+    def _del_callback(self, callbacks_list, callback_id):
+        for pc_pair in callbacks_list:
+            pri_callbacks = pc_pair[1]
+            if callback_id in pri_callbacks:
+                del pri_callbacks[callback_id]
+                if not pri_callbacks:
+                    callbacks_list.remove(pc_pair)
+                break
 
     def unsubscribe(self, callback, resource, event):
         """Unsubscribe callback from the registry.
@@ -68,7 +88,7 @@ class CallbacksManager(object):
             LOG.debug("Callback %s not found", callback_id)
             return
         if resource and event:
-            del self._callbacks[resource][event][callback_id]
+            self._del_callback(self._callbacks[resource][event], callback_id)
             self._index[callback_id][resource].discard(event)
             if not self._index[callback_id][resource]:
                 del self._index[callback_id][resource]
@@ -88,7 +108,8 @@ class CallbacksManager(object):
         if callback_id:
             if resource in self._index[callback_id]:
                 for event in self._index[callback_id][resource]:
-                    del self._callbacks[resource][event][callback_id]
+                    self._del_callback(self._callbacks[resource][event],
+                                       callback_id)
                 del self._index[callback_id][resource]
                 if not self._index[callback_id]:
                     del self._index[callback_id]
@@ -103,7 +124,8 @@ class CallbacksManager(object):
         if callback_id:
             for resource, resource_events in self._index[callback_id].items():
                 for event in resource_events:
-                    del self._callbacks[resource][event][callback_id]
+                    self._del_callback(self._callbacks[resource][event],
+                                       callback_id)
             del self._index[callback_id]
 
     def publish(self, resource, event, trigger, payload=None):
@@ -162,7 +184,11 @@ class CallbacksManager(object):
     def _notify_loop(self, resource, event, trigger, **kwargs):
         """The notification loop."""
         errors = []
-        callbacks = list(self._callbacks[resource].get(event, {}).items())
+        # NOTE(yamahata): Since callback may unsubscribe it,
+        # convert iterator to list to avoid runtime error.
+        callbacks = list(itertools.chain(
+            *[pri_callbacks.items() for (priority, pri_callbacks)
+              in self._callbacks[resource].get(event, [])]))
         LOG.debug("Notify callbacks %s for %s, %s",
                   [c[0] for c in callbacks], resource, event)
         # TODO(armax): consider using a GreenPile
