@@ -3360,6 +3360,18 @@ qos_dscp_marking_rule-id:
   in: body
   required: true
   type: string
+qos_is_default:
+  description: |
+    If ``true``, the QoS ``policy`` is the default policy.
+  in: body
+  required: true
+  type: boolean
+qos_is_default-request:
+  description: |
+    If ``true``, the QoS ``policy`` is the default policy.
+  in: body
+  required: false
+  type: boolean
 qos_minimum_bandwidth_rule-id:
   description: |
     The ID of the QoS minimum bandwidth rule.
