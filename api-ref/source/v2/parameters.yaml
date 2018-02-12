@@ -298,6 +298,19 @@ vpnservice_id-path:
   required: false
   type: string
 # variables in query
+admin_state_up-query:
+  description: |
+    Filter the list result by the administrative state of the resource,
+    which is up (``true``) or down (``false``).
+  in: query
+  required: false
+  type: boolean
+description-query:
+  description: |
+    Filter the list result by the human-readable description of the resource.
+  in: query
+  required: false
+  type: string
 fields:
   description: |
     The fields that you want the server to return.
@@ -310,9 +323,130 @@ fields:
   in: query
   required: false
   type: string
+id-query:
+  description: |
+    Filter the list result by the ID of the resource.
+  in: query
+  required: false
+  type: string
+mtu-query:
+  description: |
+    Filter the network list result by the maximum transmission unit (MTU)
+    value to address fragmentation. Minimum value is ``68`` for IPv4,
+    and ``1280`` for IPv6.
+  in: query
+  required: false
+  type: integer
+name-query:
+  description: |
+    Filter the list result by the human-readable name of the resource.
+  in: query
+  required: false
+  type: string
+network-shared-query:
+  description: |
+    Filter the network list result based on if the network is shared across
+    all tenants.
+  in: query
+  required: false
+  type: boolean
+network-status-query:
+  description: |
+    Filter the network list result by network status. Values are ``ACTIVE``,
+    ``DOWN``, ``BUILD`` or ``ERROR``.
+  in: query
+  required: false
+  type: string
+network_is_default-query:
+  description: |
+    Filter the network list result based on if the network is default pool
+    or not.
+  in: query
+  required: false
+  type: boolean
+not-tags-any-query:
+  description: |
+    A list of tags to filter the list result by.
+    Resources that match any tag in this list will be excluded.
+    Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
+not-tags-query:
+  description: |
+    A list of tags to filter the list result by.
+    Resources that match all tags in this list will be excluded.
+    Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
+project_id-query:
+  description: |
+    Filter the list result by the ID of the project that owns the resource.
+  in: query
+  required: false
+  type: string
+provider:network_type-query:
+  description: |
+    Filter the network list result by the type of physical network that
+    this network is mapped to. For example, ``flat``, ``vlan``, ``vxlan``,
+    or ``gre``. Valid values depend on a networking back-end.
+  in: query
+  required: false
+  type: string
+provider:physical_network-query:
+  description: |
+    Filter the network list result by the physical network where
+    this network is implemented.
+  in: query
+  required: false
+  type: string
+provider:segmentation_id-query:
+  description: |
+    Filter the network list result by the ID of the isolated segment
+    on the physical network.
+  in: query
+  required: false
+  type: integer
+revision_number-query:
+  description: |
+    Filter the list result by the revision number of the resource.
+  in: query
+  required: false
+  type: integer
+router:external-query:
+  description: |
+    Filter the network list result based on whether the network has an
+    external routing facility that's not managed by the networking service.
+  in: query
+  required: false
+  type: boolean
+tags-any-query:
+  description: |
+    A list of tags to filter the list result by.
+    Resources that match any tag in this list will be returned.
+    Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
+tags-query:
+  description: |
+    A list of tags to filter the list result by.
+    Resources that match all tags in this list will be returned.
+    Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
 verbose:
   description: |
     Show detailed information.
+  in: query
+  required: false
+  type: boolean
+vlan_transparent-query:
+  description: |
+    Filter the network list by the VLAN transparency mode of the network,
+    which is VLAN transparent (``true``) or not VLAN transparent (``false``).
   in: query
   required: false
   type: boolean

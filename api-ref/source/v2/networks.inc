@@ -325,6 +325,26 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - admin_state_up: admin_state_up-query
+   - id: id-query
+   - mtu: mtu-query
+   - name: name-query
+   - project_id: project_id-query
+   - provider:network_type: provider:network_type-query
+   - provider:physical_network: provider:physical_network-query
+   - provider:segmentation_id: provider:segmentation_id-query
+   - revision_number: revision_number-query
+   - router:external: router:external-query
+   - shared: network-shared-query
+   - status: network-status-query
+   - tenant_id: project_id-query
+   - vlan_transparent: vlan_transparent-query
+   - description: description-query
+   - is_default: network_is_default-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters
