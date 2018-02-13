@@ -54,6 +54,25 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - name: name-query
+   - enable_dhcp: subnet-enable_dhcp-query
+   - network_id: subnet-network_id-query
+   - ip_version: subnet-ip_version-query
+   - gateway_ip: subnet-gateway_ip-query
+   - cidr: cidr-query
+   - description: description-query
+   - ipv6_address_mode: subnet-ipv6_address_mode-query
+   - ipv6_ra_mode: subnet-ipv6_ra_mode-query
+   - revision_number: revision_number-query
+   - segment_id: subnet-segment_id-query
+   - subnetpool_id: subnet-subnetpool_id-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters
