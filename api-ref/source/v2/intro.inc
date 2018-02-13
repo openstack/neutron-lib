@@ -429,6 +429,9 @@ the client.
 |       | IP allocated on subnet                                       |
 |       | Conflicting IP allocation pools for subnet                   |
 +-------+--------------------------------------------------------------+
+|``412``| Precondition failed                                          |
+|       | The revision number is mismatched                            |
++-------+--------------------------------------------------------------+
 |``500``| Internal server error                                        |
 |       | Internal OpenStack Networking error                          |
 +-------+--------------------------------------------------------------+
@@ -459,3 +462,9 @@ In addition, the ``If-Match constraints based on revision_number`` extension
 (``revision-if-match``) allows API consumers to leverage the ``If-Match`` HTTP
 header to conditionally update/delete a resource when the HTTP ``If-Match``
 header matches the ``revision_number`` of the said resource.
+
+If the HTTP ``If-Match`` header doesn't match the ``revision_number`` of the
+resource, users will receive the following errors:
+
+-  ``412 Precondition failed`` - Update/Delete the target resource has been
+   denied due to the mismatch of revision number.

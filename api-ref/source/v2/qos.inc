@@ -260,7 +260,7 @@ response code.
 
 Normal response codes: 202
 
-Error response codes: 400, 401, 404
+Error response codes: 400, 401, 404, 412
 
 Request
 -------
@@ -311,7 +311,7 @@ Deletes a QoS policy.
 
 Normal response codes: 204
 
-Error response codes: 400, 401, 404
+Error response codes: 400, 401, 404, 412
 
 Request
 -------

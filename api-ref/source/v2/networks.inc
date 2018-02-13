@@ -186,7 +186,7 @@ Updates a network.
 
 Normal response codes: 200
 
-Error response codes: 400, 401, 403, 404
+Error response codes: 400, 401, 403, 404, 412
 
 Request
 -------
@@ -277,7 +277,7 @@ Deletes a network and its associated resources.
 
 Normal response codes: 204
 
-Error response codes: 401, 404, 409
+Error response codes: 401, 404, 409, 412
 
 Request
 -------

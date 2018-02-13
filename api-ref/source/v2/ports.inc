@@ -191,7 +191,7 @@ Only admins and users with a specific role can update the data plane status
 
 Normal response codes: 200
 
-Error response codes: 400, 401, 403, 404, 409
+Error response codes: 400, 401, 403, 404, 409, 412
 
 Request
 -------
@@ -290,7 +290,7 @@ the respective subnets allocation pools.
 
 Normal response codes: 204
 
-Error response codes: 401, 403, 404
+Error response codes: 401, 403, 404, 412
 
 Request
 -------

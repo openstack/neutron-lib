@@ -178,7 +178,7 @@ Deletes a rule from an OpenStack Networking security group.
 
 Normal response codes: 204
 
-Error response codes: 401, 404
+Error response codes: 401, 404, 412
 
 Request
 -------
