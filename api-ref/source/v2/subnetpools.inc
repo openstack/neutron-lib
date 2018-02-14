@@ -177,6 +177,24 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - name: name-query
+   - default_quota: default_quota-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - min_prefixlen: min_prefixlen-query
+   - address_scope_id: address_scope_id-query
+   - ip_version: ip_version-query
+   - shared: shared-query
+   - default_prefixlen: default_prefixlen-query
+   - max_prefixlen: max_prefixlen-query
+   - description: description-query
+   - is_default: subnetpool_is_default-query
+   - revision_number: revision_number-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters
