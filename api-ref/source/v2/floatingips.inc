@@ -42,6 +42,21 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - router_id: floatingip-router_id-query
+   - status: floatingip-status-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - revision_number: revision_number-query
+   - description: description-query
+   - floating_network_id: floating_network_id-query
+   - fixed_ip_address: floatingip-fixed_ip_address-query
+   - floating_ip_address: floating_ip_address-query
+   - port_id: floatingip-port_id-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters
