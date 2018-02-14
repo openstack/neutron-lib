@@ -206,7 +206,7 @@ Request
    - qos_policy_id: qos_policy_id-request
    - router:external: router:external-request
    - segments: segments
-   - shared: network-shared-request
+   - shared: shared
    - description: description-request
    - is_default: network_is_default-request
 
@@ -407,7 +407,7 @@ Request
    - qos_policy_id: qos_policy_id-request
    - router:external: router:external-request
    - segments: segments-request
-   - shared: network-shared-request
+   - shared: shared
    - tenant_id: project_id-request
    - vlan_transparent: vlan_transparent-request
    - description: description-request
@@ -514,7 +514,7 @@ Request
    - qos_policy_id: qos_policy_id-request
    - router:external: router:external-request
    - segments: segments-request
-   - shared: network-shared-request
+   - shared: shared
    - tenant_id: project_id-request
    - vlan_transparent: vlan_transparent-request
    - description: description-request
