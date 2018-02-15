@@ -2289,6 +2289,13 @@ ipsecpolicy_id-body-response:
   in: body
   required: true
   type: string
+l2_adjacency:
+  description: |
+    Indicates whether L2 connectivity is available throughout
+    the ``network``.
+  in: body
+  required: true
+  type: boolean
 lb_algorithm:
   description: |
     The load-balancer algorithm, which is round-robin

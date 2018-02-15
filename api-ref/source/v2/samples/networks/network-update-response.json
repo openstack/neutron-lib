@@ -8,6 +8,7 @@
         "created_at": "2016-03-08T20:19:41",
         "dns_domain": "my-domain.org.",
         "id": "1f370095-98f6-4079-be64-6d3d4a6adcc6",
+        "l2_adjacency": false,
         "mtu": 1300,
         "name": "sample_network_5_updated",
         "port_security_enabled": true,
