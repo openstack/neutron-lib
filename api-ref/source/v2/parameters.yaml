@@ -35,7 +35,7 @@ connection_id-path:
   description: |
     The ID of the IPsec site-to-site connection.
   in: path
-  required: false
+  required: true
   type: string
 dscp_rule_id:
   description: |
@@ -125,7 +125,7 @@ ipsecpolicy_id-path:
   description: |
     The ID of the IPsec policy.
   in: path
-  required: false
+  required: true
   type: string
 listener-id-path:
   description: |
@@ -295,7 +295,7 @@ vpnservice_id-path:
   description: |
     The ID of the VPN service.
   in: path
-  required: false
+  required: true
   type: string
 # variables in query
 fields:
