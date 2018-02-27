@@ -2,8 +2,6 @@
 Port Associations
 =================
 
-.. note:: this feature is under development in the Queens release
-
 Port associations are available if the ``bgpvpn-routes-control`` extension
 is available.
 
