@@ -31,6 +31,14 @@ and ``availability_zone_hints`` attributes to ``routers``, allowing scheduling
 based on availability zones and hints.
 This extension requires ``router`` and ``availability_zone`` extensions.
 
+Router service type extension (``router-service-type``)
+=======================================================
+
+The ``router-service-type`` extension enables associating a service type with a
+router by introducing the ``service_type_id`` parameter that can be
+used to associate the router with an existing ``service-provider``,
+see `Service providers`_.
+
 List routers
 ============
 
@@ -95,6 +103,7 @@ Response Parameters
    - ha: router-ha
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
+   - service_type_id: router-service_type_id
 
 Response Example
 ----------------
@@ -141,6 +150,7 @@ Request
    - distributed: router-distributed-request
    - ha: router-ha-request
    - availability_zone_hints: router-availability_zone_hints-request
+   - service_type_id: router-service_type_id-request
 
 Request Example
 ---------------
@@ -173,6 +183,7 @@ Response Parameters
    - ha: router-ha
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
+   - service_type_id: router-service_type_id
 
 Response Example
 ----------------
@@ -230,6 +241,7 @@ Response Parameters
    - ha: router-ha
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
+   - service_type_id: router-service_type_id
 
 Response Example
 ----------------
@@ -299,6 +311,7 @@ Response Parameters
    - ha: router-ha
    - availability_zone_hints: router-availability_zone_hints
    - availability_zones: router-availability_zones
+   - service_type_id: router-service_type_id
 
 Response Example
 ----------------
