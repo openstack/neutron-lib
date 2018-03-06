@@ -20,6 +20,7 @@ from neutron_lib.api.definitions import bgpvpn_routes_control
 from neutron_lib.api.definitions import bgpvpn_vni
 from neutron_lib.api.definitions import data_plane_status
 from neutron_lib.api.definitions import default_subnetpools
+from neutron_lib.api.definitions import dhcpagentscheduler
 from neutron_lib.api.definitions import dns
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import dvr
@@ -83,6 +84,7 @@ _ALL_API_DEFINITIONS = {
     bgpvpn_vni,
     data_plane_status,
     default_subnetpools,
+    dhcpagentscheduler,
     dns,
     dns_domain_ports,
     dvr,
