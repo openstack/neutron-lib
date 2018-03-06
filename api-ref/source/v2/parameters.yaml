@@ -382,6 +382,47 @@ fixed_ips-query:
   in: query
   required: false
   type: array
+floating_ip_address-query:
+  description: |
+    Filter the floating IP list result by the floating IP address.
+  in: query
+  required: false
+  type: string
+floating_network_id-query:
+  description: |
+    Filter the floating IP list result by the ID of the network associated
+    with the floating IP.
+  in: query
+  required: false
+  type: string
+floatingip-fixed_ip_address-query:
+  description: |
+    Filter the floating IP list result by the fixed IP address that
+    is associated with the floating IP address.
+  in: query
+  required: false
+  type: string
+floatingip-port_id-query:
+  description: |
+    Filter the floating IP list result by the ID of a port associated with
+    the floating IP.
+  in: query
+  required: false
+  type: string
+floatingip-router_id-query:
+  description: |
+    Filter the floating IP list result by the ID of the router for the
+    floating IP.
+  in: query
+  required: false
+  type: string
+floatingip-status-query:
+  description: |
+    Filter the floating IP list result by the status of the floating IP.
+    Values are ``ACTIVE``, ``DOWN`` and ``ERROR``.
+  in: query
+  required: false
+  type: string
 id-query:
   description: |
     Filter the list result by the ID of the resource.
