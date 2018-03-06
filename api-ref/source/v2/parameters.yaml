@@ -311,6 +311,12 @@ binding:host_id-query:
   in: query
   required: false
   type: string
+cidr-query:
+  description: |
+    Filter the subnet list result by the CIDR of the subnet.
+  in: query
+  required: false
+  type: string
 description-query:
   description: |
     Filter the list result by the human-readable description of the resource.
@@ -478,6 +484,64 @@ router:external-query:
   in: query
   required: false
   type: boolean
+subnet-enable_dhcp-query:
+  description: |
+    Filter the subnet list result based on if is enabled or disabled
+    for the subnet.
+  in: query
+  required: false
+  type: boolean
+subnet-gateway_ip-query:
+  description: |
+    Filter the subnet list result by the gateway IP of this subnet.
+  in: query
+  required: false
+  type: string
+subnet-ip_version-query:
+  description: |
+    Filter the subnet list result by the IP protocol version.
+    Value is ``4`` or ``6``.
+  in: query
+  required: false
+  type: integer
+subnet-ipv6_address_mode-query:
+  description: |
+    Filter the subnet list result by the IPv6 address modes specifies
+    mechanisms for assigning IP addresses.
+    Value is ``slaac``, ``dhcpv6-stateful``, ``dhcpv6-stateless`` or ``null``.
+  in: query
+  required: false
+  type: string
+subnet-ipv6_ra_mode-query:
+  description: |
+    Filter the subnet list result by the IPv6 router advertisement specifies
+    whether the networking service should transmit ICMPv6 packets for a subnet.
+    Value is ``slaac``, ``dhcpv6-stateful``, ``dhcpv6-stateless`` or ``null``.
+  in: query
+  required: false
+  type: string
+subnet-network_id-query:
+  description: |
+    Filter the subnet list result by the ID of the network to which
+    the subnet belongs.
+  in: query
+  required: false
+  type: string
+subnet-segment_id-query:
+  description: |
+    Filter the subnet list result by the ID of a network segment the subnet
+    is associated with.
+    It is available when ``segment`` extension is enabled.
+  in: query
+  required: false
+  type: string
+subnet-subnetpool_id-query:
+  description: |
+    Filter the subnet list result by the ID of the subnet pool associated
+    with the subnet.
+  in: query
+  required: false
+  type: string
 tags-any-query:
   description: |
     A list of tags to filter the list result by.
