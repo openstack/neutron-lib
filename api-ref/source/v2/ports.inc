@@ -336,6 +336,25 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - admin_state_up: admin_state_up-query
+   - binding:host_id: binding:host_id-query
+   - description: description-query
+   - device_id: device_id-query
+   - device_owner: device_owner-query
+   - fixed_ips: fixed_ips-query
+   - id: id-query
+   - ip_allocation: ip_allocation-query
+   - mac_address: mac_address-query
+   - name: name-query
+   - network_id: network_id-query
+   - project_id: project_id-query
+   - revision_number: revision_number-query
+   - status: port-status-query
+   - tenant_id: project_id-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters

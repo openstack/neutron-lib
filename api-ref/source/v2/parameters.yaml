@@ -305,9 +305,30 @@ admin_state_up-query:
   in: query
   required: false
   type: boolean
+binding:host_id-query:
+  description: |
+    Filter the port list result by the ID of the host where the port resides.
+  in: query
+  required: false
+  type: string
 description-query:
   description: |
     Filter the list result by the human-readable description of the resource.
+  in: query
+  required: false
+  type: string
+device_id-query:
+  description: |
+    Filter the port list result by the ID of the device that uses this port.
+    For example, a server instance or a logical router.
+  in: query
+  required: false
+  type: string
+device_owner-query:
+  description: |
+    Filter the port result list by the entity type that uses this port.
+    For example, ``compute:nova`` (server instance), ``network:dhcp``
+    (DHCP agent) or ``network:router_interface`` (router interface).
   in: query
   required: false
   type: string
@@ -323,9 +344,32 @@ fields:
   in: query
   required: false
   type: string
+fixed_ips-query:
+  description: |
+    Filter the port list result by the IP addresses for the port.
+    This field has one or multiple entries.
+    Each entry consists of IP address (``ip_address``), IP address substring
+    (``ip_address_substr``) and/or the subnet ID from which
+    the IP address is assigned (``subnet_id``).
+  in: query
+  required: false
+  type: array
 id-query:
   description: |
     Filter the list result by the ID of the resource.
+  in: query
+  required: false
+  type: string
+ip_allocation-query:
+  description: |
+    Filter the port list result based on if the ports use ``deferred``,
+    ``immediate`` or no IP allocation (``none``).
+  in: query
+  required: false
+  type: string
+mac_address-query:
+  description: |
+    Filter the port list result by the MAC address of the port.
   in: query
   required: false
   type: string
@@ -357,6 +401,12 @@ network-status-query:
   in: query
   required: false
   type: string
+network_id-query:
+  description: |
+    Filter the list result by the ID of the attached network.
+  in: query
+  required: false
+  type: string
 network_is_default-query:
   description: |
     Filter the network list result based on if the network is default pool
@@ -377,6 +427,13 @@ not-tags-query:
     A list of tags to filter the list result by.
     Resources that match all tags in this list will be excluded.
     Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
+port-status-query:
+  description: |
+    Filter the port list result by the port status.
+    Values are ``ACTIVE``, ``DOWN``, ``BUILD`` and ``ERROR``.
   in: query
   required: false
   type: string
