@@ -53,8 +53,6 @@ Valid strings for a Route Target or a Route Distinguisher are the following:
 On VXLAN VNI
 ============
 
-.. note:: This feature is under development in the Queens release
-
 VXLAN is one option among others that could be used for BGP E-VPNs.
 When VXLAN is used on a hardware platform the use of a locally-assigned id
 may not be always possible which introduces the need to configure a
@@ -73,8 +71,6 @@ Valid range for the ``vni`` attribute is [1, 2\ :sup:`24`\ -1].
 
 Control of routes advertised to BGPVPNs
 =======================================
-
-.. note:: this feature is under development in the Queens release
 
 With the ``bgpvpn`` extension, when associations between networks or routers
 and BGVPNs are defined, the routes corresponding to fixed IPs of neutron ports
@@ -96,7 +92,9 @@ a way to:
 
 - explicitly control whether extra routes of a router are to be advertised
   to a BGPVPN; this is implemented thanks to the ``advertise_extra_routes``
-  attribute of a BGPVPN router association
+  attribute of a BGPVPN router association.
+
+  .. note:: This feature is under development for the Rocky release
 
 - optionally control the value of the LOCAL_PREF BGP attribute of advertised
   routes, for all routes of a BGPVPN (thanks to the ``local_pref`` attribute
