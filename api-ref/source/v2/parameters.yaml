@@ -298,6 +298,13 @@ vpnservice_id-path:
   required: true
   type: string
 # variables in query
+address_scope_id-query:
+  description: |
+    Filter the subnet pool list result by the address scope that is assigned
+    to the subnet pool.
+  in: query
+  required: false
+  type: string
 admin_state_up-query:
   description: |
     Filter the list result by the administrative state of the resource,
@@ -317,6 +324,21 @@ cidr-query:
   in: query
   required: false
   type: string
+default_prefixlen-query:
+  description: |
+    Filter the subnet pool list result by the size of the prefix to allocate
+    when the ``cidr`` or ``prefixlen`` attributes are omitted when you create
+    the subnet. Default is ``min_prefixlen``.
+  in: query
+  required: false
+  type: integer
+default_quota-query:
+  description: |
+    Filter the subnet pool list result by the quota on the prefix space
+    that can be allocated from the subnet pool for project subnets.
+  in: query
+  required: false
+  type: integer
 description-query:
   description: |
     Filter the list result by the human-readable description of the resource.
@@ -373,12 +395,33 @@ ip_allocation-query:
   in: query
   required: false
   type: string
+ip_version-query:
+  description: |
+    Filter the list result by the IP protocol version.
+    Valid value is ``4`` or ``6``.
+  in: query
+  required: false
+  type: integer
 mac_address-query:
   description: |
     Filter the port list result by the MAC address of the port.
   in: query
   required: false
   type: string
+max_prefixlen-query:
+  description: |
+    Filter the subnet pool list result by the maximum prefix size that can be
+    allocated from the subnet pool.
+  in: query
+  required: false
+  type: integer
+min_prefixlen-query:
+  description: |
+    Filter the subnet pool list result by the smallest prefix that can be
+    allocated from a subnet pool.
+  in: query
+  required: false
+  type: integer
 mtu-query:
   description: |
     Filter the network list result by the maximum transmission unit (MTU)
@@ -484,6 +527,13 @@ router:external-query:
   in: query
   required: false
   type: boolean
+shared-query:
+  description: |
+    Admin-only. Filter the list result based on whether the resource is
+    shared across all projects.
+  in: query
+  required: false
+  type: boolean
 subnet-enable_dhcp-query:
   description: |
     Filter the subnet list result based on if is enabled or disabled
@@ -542,6 +592,12 @@ subnet-subnetpool_id-query:
   in: query
   required: false
   type: string
+subnetpool_is_default-query:
+  description: |
+    Filter the subnet pool list result based on if it is a default pool or not.
+  in: query
+  required: false
+  type: boolean
 tags-any-query:
   description: |
     A list of tags to filter the list result by.
