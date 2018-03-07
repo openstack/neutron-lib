@@ -9,22 +9,51 @@ Networks
 
 Lists, shows details for, creates, updates, and deletes networks.
 
-provider extended attributes
-============================
+Auto Allocated Topology
+=======================
 
-The ``provider`` extension allows administrative users to define a physical
-binding of a logical network. This extension provides three additional
-attributes: ``provider:network_type``, ``provider:physical_network`` and
-``provider:segmentation_id``. The validation rules for these attributes
-vary across ``provider:network_type``. For example, ``vlan`` and ``flat``
-network types require ``provider:physical_network`` attribute, but ``vxlan``
-network type does not.
+The ``auto-allocated-topology`` extension adds the ``is_default`` boolean
+attribute to networks. This value indicates the network should be used when
+auto allocating topologies.
 
-Most Networking plug-ins (e.g. ML2 Plugin) and drivers do not support updating
-any provider related attributes. Check your plug-in whether it supports
-updating.
+DNS integration
+===============
 
-multiple provider extension
+The ``dns-integration`` extension adds the ``dns_domain`` attribute to networks.
+The ``dns_domain`` of a network in conjunction with the ``dns_name`` attribute
+of its ports will be published in an external DNS service when Neutron is
+configured to integrate with such a service.
+
+External network
+================
+
+The ``external-net`` extension adds the ``router:external`` attribute to
+networks. This boolean attribute indicates the network has an external
+routing facility that's not managed by the networking service.
+
+L2 adjacency extension
+======================
+
+The ``l2_adjacency`` extension provides display of L2 Adjacency
+for ``networks`` by adding the read-only ``l2_adjacency`` attribute.
+This is a boolean value where ``true`` means that you can expect
+L2 connectivity throughout the Network and ``false`` means that there
+is no guarantee of L2 connectivity.
+This value is read-only and is derived from the current state of
+``segments`` within the ``network``.
+
+MTU extensions
+==============
+
+The ``net-mtu`` extension allows plug-ins to expose the MTU that is guaranteed
+to pass through the data path of the segments in the network. This extension
+introduces a read-only ``mtu`` attribute.
+
+A newer ``net-mtu-writable`` extension enhances ``net-mtu`` in that now the
+``mtu`` attribute is available for write (both when creating as well as
+updating networks).
+
+Multiple provider extension
 ===========================
 
 The ``multi-provider`` extension allows administrative users to define multiple
@@ -40,52 +69,12 @@ validation rules are applied to each element in the ``segments`` list.
 Note that you cannot use the provider extension and the multiple provider
 extension for a single logical network.
 
-VLAN transparency extension
-===========================
-
-The ``vlan-transparent`` extension enables plug-ins that support VLAN
-transparency to deliver VLAN transparent trunk networks.
-This extension introduces a ``vlan_transparent`` attribute to control
-the VLAN transparency of the network. If the service does not support VLAN
-transparency and a user requests a VLAN transparent network,
-the plug-in refuses to create one and returns an appropriate error to the user.
-
-MTU extensions
-==============
-
-The ``net-mtu`` extension allows plug-ins to expose the MTU that is guaranteed
-to pass through the data path of the segments in the network. This extension
-introduces a read-only ``mtu`` attribute.
-
-A newer ``net-mtu-writable`` extension enhances ``net-mtu`` in that now the
-``mtu`` attribute is available for write (both when creating as well as
-updating networks).
-
 Network availability zone extension
 ===================================
 
 The ``network_availability_zone`` extension provides support of availability
 zone for networks, exposing ``availability_zone_hints``
 and ``availability_zones`` attributes.
-
-L2 adjacency extension
-======================
-
-The ``l2_adjacency`` extension provides display of L2 Adjacency
-for ``networks`` by adding the read-only ``l2_adjacency`` attribute.
-This is a boolean value where ``true`` means that you can expect
-L2 connectivity throughout the Network and ``false`` means that there
-is no guarantee of L2 connectivity.
-This value is read-only and is derived from the current state of
-``segments`` within the ``network``.
-
-DNS integration
-===============
-
-The ``dns-integration`` extension adds the ``dns_domain`` attribute to networks.
-The ``dns_domain`` of a network in conjunction with the ``dns_name`` attribute
-of its ports will be published in an external DNS service when Neutron is
-configured to integrate with such a service.
 
 Port security
 =============
@@ -99,19 +88,30 @@ explicitly set on the port itself. While the default value for
 respective network. Note that changing a value of ``port_security_enabled``
 on a network, does not cascade the value to ports attached to the network.
 
-External network
-================
+Provider extended attributes
+============================
 
-The ``external-net`` extension adds the ``router:external`` attribute to
-networks. This boolean attribute indicates the network has an external
-routing facility that's not managed by the networking service.
+The ``provider`` extension allows administrative users to define a physical
+binding of a logical network. This extension provides three additional
+attributes: ``provider:network_type``, ``provider:physical_network`` and
+``provider:segmentation_id``. The validation rules for these attributes
+vary across ``provider:network_type``. For example, ``vlan`` and ``flat``
+network types require ``provider:physical_network`` attribute, but ``vxlan``
+network type does not.
 
-Auto Allocated Topology
-=======================
+Most Networking plug-ins (e.g. ML2 Plugin) and drivers do not support updating
+any provider related attributes. Check your plug-in whether it supports
+updating.
 
-The ``auto-allocated-topology`` extension adds the ``is_default`` boolean
-attribute to networks. This value indicates the network should be used when
-auto allocating topologies.
+VLAN transparency extension
+===========================
+
+The ``vlan-transparent`` extension enables plug-ins that support VLAN
+transparency to deliver VLAN transparent trunk networks.
+This extension introduces a ``vlan_transparent`` attribute to control
+the VLAN transparency of the network. If the service does not support VLAN
+transparency and a user requests a VLAN transparent network,
+the plug-in refuses to create one and returns an appropriate error to the user.
 
 Show network details
 ====================
