@@ -4665,6 +4665,14 @@ subnet-obj:
   in: body
   required: true
   type: string
+subnet-prefixlen-request:
+  description: |
+    The prefix length to use for subnet allocation from a subnet pool.
+    If not specified, the ``default_prefixlen`` value of the subnet pool
+    will be used.
+  in: body
+  required: false
+  type: integer
 subnet-segment_id:
   description: |
     The ID of a network segment the subnet is associated with.

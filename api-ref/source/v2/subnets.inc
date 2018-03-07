@@ -173,6 +173,7 @@ Request
    - ip_version: subnet-ip_version
    - gateway_ip: subnet-gateway_ip-request
    - cidr: cidr
+   - prefixlen: subnet-prefixlen-request
    - description: description-request
    - ipv6_address_mode: subnet-ipv6_address_mode-request
    - ipv6_ra_mode: subnet-ipv6_ra_mode-request
@@ -252,6 +253,7 @@ Request
    - ip_version: subnet-ip_version
    - gateway_ip: subnet-gateway_ip-request
    - cidr: cidr
+   - prefixlen: subnet-prefixlen-request
    - description: description-request
    - ipv6_address_mode: subnet-ipv6_address_mode-request
    - ipv6_ra_mode: subnet-ipv6_ra_mode-request
