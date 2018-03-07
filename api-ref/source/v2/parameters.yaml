@@ -3175,13 +3175,6 @@ network-shared:
   in: body
   required: true
   type: boolean
-network-shared-request:
-  description: |
-    Indicates whether this network is shared across all tenants. By default,
-    only administrative users can change this value.
-  in: body
-  required: false
-  type: boolean
 network-status:
   description: |
     The network status. Values are ``ACTIVE``, ``DOWN``, ``BUILD`` or ``ERROR``.
@@ -4434,15 +4427,14 @@ service_type:
   type: string
 shared:
   description: |
-    Admin-only. Indicates whether this network is
-    shared across all projects.
+    Indicates whether this resource is shared across all projects.
+    By default, only administrative users can change this value.
   in: body
   required: false
   type: boolean
 shared-response:
   description: |
-    Admin-only. Indicates whether this network is
-    shared across all tenants.
+    Indicates whether this resource is shared across all projects.
   in: body
   required: true
   type: boolean
@@ -4739,7 +4731,7 @@ subnetpool:
   type: object
 subnetpool_id_body:
   description: |
-    The ID of the subnet.
+    The ID of the subnet pool.
   in: body
   required: true
   type: string
