@@ -443,6 +443,20 @@ ip_version-query:
   in: query
   required: false
   type: integer
+log_enabled-query:
+  description: |
+    Filter the log list result based on this log object is enabled (``true``)
+    or disabled (``false``).
+  in: query
+  required: false
+  type: boolean
+log_event-query:
+  description: |
+    Filter the log list result by the type of security events,
+    which is ``ACCEPT``, ``DROP``, or ``ALL``.
+  in: query
+  required: false
+  type: string
 mac_address-query:
   description: |
     Filter the port list result by the MAC address of the port.
@@ -555,6 +569,25 @@ provider:segmentation_id-query:
   in: query
   required: false
   type: integer
+resource_log_id-query:
+  description: |
+    Filter the log list result by the ID of resource (e.g security group ID).
+  in: query
+  required: false
+  type: string
+resource_log_type-query:
+  description: |
+    Filter the log list result by the resource type such as ``security_group``.
+  in: query
+  required: false
+  type: string
+resource_target_log_id-query:
+  description: |
+    Filter the log list result by the ID of resource that is the
+    logging target.
+  in: query
+  required: false
+  type: string
 revision_number-query:
   description: |
     Filter the list result by the revision number of the resource.
