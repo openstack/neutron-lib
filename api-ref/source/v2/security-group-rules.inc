@@ -33,6 +33,18 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - remote_group_id: remote_group_id-query
+   - direction: direction-query
+   - protocol: protocol-query
+   - ethertype: ethertype-query
+   - port_range_max: port_range_max-query
+   - security_group_id: security_group_rule-security_group_id-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - port_range_min: port_range_min-query
+   - revision_number: revision_number-query
+   - id: id-query
+   - description: description-query
    - fields: fields
 
 Response Parameters

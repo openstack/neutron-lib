@@ -32,6 +32,16 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - revision_number: revision_number-query
+   - name: name-query
+   - description: description-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters

@@ -360,6 +360,20 @@ device_owner-query:
   in: query
   required: false
   type: string
+direction-query:
+  description: |
+    Filter the security group rule list result by the direction in
+    which the metering rule is applied, which is ``ingress`` or ``egress``.
+  in: query
+  required: false
+  type: string
+ethertype-query:
+  description: |
+    Filter the security group rule list result by the ethertype of
+    network traffic. The value must be ``IPv4`` or ``IPv6``.
+  in: query
+  required: false
+  type: string
 fields:
   description: |
     The fields that you want the server to return.
@@ -541,9 +555,29 @@ port-status-query:
   in: query
   required: false
   type: string
+port_range_max-query:
+  description: |
+    Filter the security group rule list result by the maximum port number
+    in the range that is matched by the security group rule.
+  in: query
+  required: false
+  type: integer
+port_range_min-query:
+  description: |
+    Filter the security group rule list result by the minimum port number
+    in the range that is matched by the security group rule.
+  in: query
+  required: false
+  type: integer
 project_id-query:
   description: |
     Filter the list result by the ID of the project that owns the resource.
+  in: query
+  required: false
+  type: string
+protocol-query:
+  description: |
+    Filter the security group rule list result by the IP protocol.
   in: query
   required: false
   type: string
@@ -569,6 +603,13 @@ provider:segmentation_id-query:
   in: query
   required: false
   type: integer
+remote_group_id-query:
+  description: |
+    Filter the security group rule list result by the ID of the remote group
+    that associates with this security group rule.
+  in: query
+  required: false
+  type: string
 resource_log_id-query:
   description: |
     Filter the log list result by the ID of resource (e.g security group ID).
@@ -601,6 +642,13 @@ router:external-query:
   in: query
   required: false
   type: boolean
+security_group_rule-security_group_id-query:
+  description: |
+    Filter the security group rule list result by the ID of the security group
+    that associates with this security group rule.
+  in: query
+  required: false
+  type: string
 shared-query:
   description: |
     Admin-only. Filter the list result based on whether the resource is
