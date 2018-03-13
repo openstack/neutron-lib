@@ -1168,7 +1168,7 @@ binding:profile:
     The networking API does not define a specific format of this field.
   in: body
   required: true
-  type: string
+  type: object
 binding:profile-request:
   description: |
     A dictionary that enables the application running on the specific host to
@@ -1177,7 +1177,7 @@ binding:profile-request:
     The default is an empty dictionary.
   in: body
   required: false
-  type: string
+  type: object
 binding:vif_details:
   description: |
     A dictionary which contains additional information on the port.
