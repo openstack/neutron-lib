@@ -121,6 +121,18 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - description: description-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - revision_number: revision_number-query
+   - shared: qos-shared-query
+   - id: id-query
+   - is_default: qos_is_default-query
+   - name: name-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters
@@ -350,6 +362,10 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - policy_id: qos-policy-id-path
+   - max_kbps: max_kbps-response-query
+   - id: id-query
+   - max_burst_kbps: max_burst_kbps-query
+   - direction: qos-rule-direction-query
 
 Response Parameters
 -------------------
@@ -547,6 +563,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - policy_id: qos-policy-id-path
+   - dscp_mark: dscp_mark-query
+   - id: id-query
 
 Response Parameters
 -------------------
@@ -738,6 +756,9 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - policy_id: qos-policy-id-path
+   - min_kbps: min_kbps-query
+   - id: id-query
+   - direction: qos-rule-direction-query
 
 Response Parameters
 -------------------
