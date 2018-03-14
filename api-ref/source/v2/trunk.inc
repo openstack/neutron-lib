@@ -42,6 +42,25 @@ Normal response codes: 200
 
 Error response codes: 401, 404
 
+Request Parameters
+------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - admin_state_up: admin_state_up_trunk-query
+   - description: description-query
+   - id: id-query
+   - name: name-query
+   - port_id: trunk_port_id-query
+   - revision_number: revision_number-query
+   - status: trunk-status-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
+
 Response Parameters
 -------------------
 

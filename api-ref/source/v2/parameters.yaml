@@ -312,6 +312,13 @@ admin_state_up-query:
   in: query
   required: false
   type: boolean
+admin_state_up_trunk-query:
+  description: |
+    Filter the trunk list result by the administrative state of the trunk,
+    which is up (``true``) or down (``false``).
+  in: query
+  required: false
+  type: boolean
 binding:host_id-query:
   description: |
     Filter the port list result by the ID of the host where the port resides.
@@ -779,6 +786,19 @@ tags-query:
     A list of tags to filter the list result by.
     Resources that match all tags in this list will be returned.
     Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
+trunk-status-query:
+  description: |
+    Filter the trunk list result by the status for the trunk. Possible values
+    are  ``ACTIVE``, ``DOWN``, ``BUILD``, ``DEGRADED``, and ``ERROR``.
+  in: query
+  required: false
+  type: string
+trunk_port_id-query:
+  description: |
+    Filter the trunk list result by the ID of the parent port.
   in: query
   required: false
   type: string
