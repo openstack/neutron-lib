@@ -141,6 +141,14 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - network_id: network_id-query
+   - physical_network: provider:physical_network-query
+   - network_type: provider:network_type-query
+   - revision_number: revision_number-query
+   - segmentation_id: provider:segmentation_id-query
+   - name: name-query
+   - description: description-query
    - fields: fields
 
 Response Parameters

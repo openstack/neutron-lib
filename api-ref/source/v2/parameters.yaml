@@ -583,22 +583,22 @@ protocol-query:
   type: string
 provider:network_type-query:
   description: |
-    Filter the network list result by the type of physical network that
-    this network is mapped to. For example, ``flat``, ``vlan``, ``vxlan``,
+    Filter the list result by the type of physical network that this
+    network/segment is mapped to. For example, ``flat``, ``vlan``, ``vxlan``,
     or ``gre``. Valid values depend on a networking back-end.
   in: query
   required: false
   type: string
 provider:physical_network-query:
   description: |
-    Filter the network list result by the physical network where
-    this network is implemented.
+    Filter the list result by the physical network where
+    this network/segment is implemented.
   in: query
   required: false
   type: string
 provider:segmentation_id-query:
   description: |
-    Filter the network list result by the ID of the isolated segment
+    Filter the list result by the ID of the isolated segment
     on the physical network.
   in: query
   required: false
@@ -3648,7 +3648,7 @@ provider:network_type-request:
   type: string
 provider:physical_network:
   description: |
-    The physical network where this network is implemented.
+    The physical network where this network/segment is implemented.
   in: body
   required: true
   type: string
