@@ -367,6 +367,12 @@ direction-query:
   in: query
   required: false
   type: string
+dscp_mark-query:
+  description: |
+    Filter the list result by the DSCP mark value.
+  in: query
+  required: false
+  type: integer
 ethertype-query:
   description: |
     Filter the security group rule list result by the ethertype of
@@ -477,10 +483,29 @@ mac_address-query:
   in: query
   required: false
   type: string
+max_burst_kbps-query:
+  description: |
+    Filter the list result by the maximum burst size (in kilobits).
+  in: query
+  required: false
+  type: integer
+max_kbps-response-query:
+  description: |
+    Filter the list result by the maximum KBPS (kilobits per second) value.
+  in: query
+  required: false
+  type: integer
 max_prefixlen-query:
   description: |
     Filter the subnet pool list result by the maximum prefix size that can be
     allocated from the subnet pool.
+  in: query
+  required: false
+  type: integer
+min_kbps-query:
+  description: |
+    Filter the list result by the minimum KBPS (kilobits per second) value
+    which should be available for port.
   in: query
   required: false
   type: integer
@@ -603,6 +628,27 @@ provider:segmentation_id-query:
   in: query
   required: false
   type: integer
+qos-rule-direction-query:
+  description: |
+    Filter the list result by the direction of the traffic to which the QoS
+    rule is applied. Valid values are ``egress`` and ``ingress``.
+  in: query
+  required: false
+  type: string
+qos-shared-query:
+  description: |
+    Filter the QoS policy list result based on whether this policy is shared
+    across all projects.
+  in: query
+  required: false
+  type: boolean
+qos_is_default-query:
+  description: |
+    Filter the QoS policy list result based on whether this policy is the
+    default policy.
+  in: query
+  required: false
+  type: boolean
 remote_group_id-query:
   description: |
     Filter the security group rule list result by the ID of the remote group
