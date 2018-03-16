@@ -31,6 +31,17 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - name: name-query
+   - description: description-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - event: log_event-query
+   - revision_number: revision_number-query
+   - resource_type: resource_log_type-query
+   - resource_id: resource_log_id-query
+   - target_id: resource_target_log_id-query
+   - enabled: log_enabled-query
    - fields: fields
 
 Response Parameters
