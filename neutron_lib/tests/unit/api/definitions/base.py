@@ -58,6 +58,7 @@ ASSERT_FUNCTIONS = {
     'convert_list_to': assert_converter,
     'default': assert_converter,
     'enforce_policy': assert_bool,
+    'is_filter': assert_bool,
     'is_visible': assert_bool,
     'primary_key': assert_true,
     'required_by_policy': assert_bool,

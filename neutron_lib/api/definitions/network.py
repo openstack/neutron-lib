@@ -36,24 +36,27 @@ RESOURCE_ATTRIBUTE_MAP = {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},
                'is_visible': True,
+               'is_filter': True,
                'primary_key': True},
         'name': {'allow_post': True, 'allow_put': True,
                  'validate': {
                      'type:string': db_const.NAME_FIELD_SIZE},
-                 'default': '', 'is_visible': True},
+                 'default': '', 'is_visible': True, 'is_filter': True},
         subnet.COLLECTION_NAME: {'allow_post': False, 'allow_put': False,
                                  'default': [],
                                  'is_visible': True},
         'admin_state_up': {'allow_post': True, 'allow_put': True,
                            'default': True,
                            'convert_to': converters.convert_to_boolean,
+                           'is_filter': True,
                            'is_visible': True},
         'status': {'allow_post': False, 'allow_put': False,
-                   'is_visible': True},
+                   'is_visible': True, 'is_filter': True},
         'tenant_id': {'allow_post': True, 'allow_put': False,
                       'validate': {
                           'type:string': db_const.PROJECT_ID_FIELD_SIZE},
                       'required_by_policy': True,
+                      'is_filter': True,
                       'is_visible': True},
         constants.SHARED: {
             'allow_post': True,
@@ -61,6 +64,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'default': False,
             'convert_to': converters.convert_to_boolean,
             'is_visible': True,
+            'is_filter': True,
             'required_by_policy': True,
             'enforce_policy': True
         }
