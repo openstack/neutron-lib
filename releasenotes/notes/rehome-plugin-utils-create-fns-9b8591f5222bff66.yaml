@@ -1,0 +1,5 @@
+---
+features:
+  - The ``create_network``, ``create_subnet`` and ``create_port`` functions
+    from ``neutron.plugins.common.utils`` are now available in
+    ``neutron_lib.plugins.utils``.

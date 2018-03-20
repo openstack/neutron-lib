@@ -16,6 +16,7 @@ import hashlib
 
 import mock
 from oslo_utils import excutils
+from oslo_utils import uuidutils
 
 from neutron_lib import constants
 from neutron_lib import exceptions
@@ -207,3 +208,43 @@ class TestUtils(base.BaseTestCase):
         self.assertEqual(12, len(utils.get_interface_name(LONG_NAME1,
                                                           prefix="pre-",
                                                           max_len=12)))
+
+    def test_create_network(self):
+        mock_plugin = mock.Mock()
+        mock_plugin.create_network = lambda c, n: n
+        mock_ctx = mock.Mock()
+        mock_ctx.project_id = 'p1'
+        net = utils.create_network(
+            mock_plugin, mock_ctx, {'network': {'name': 'n1'}})
+        self.assertDictEqual(
+            {'project_id': 'p1', 'admin_state_up': True, 'shared': False,
+             'tenant_id': 'p1', 'name': 'n1'},
+            net['network'])
+
+    def test_create_subnet(self):
+        mock_plugin = mock.Mock()
+        mock_plugin.create_subnet = lambda c, s: s
+        mock_ctx = mock.Mock()
+        mock_ctx.project_id = 'p1'
+        net_id = uuidutils.generate_uuid()
+        snet = utils.create_subnet(
+            mock_plugin, mock_ctx,
+            {'subnet': {'network_id': net_id, 'ip_version': 4}})
+        self.assertEqual('p1', snet['subnet']['tenant_id'])
+        self.assertEqual('p1', snet['subnet']['project_id'])
+        self.assertEqual(4, snet['subnet']['ip_version'])
+        self.assertEqual(net_id, snet['subnet']['network_id'])
+
+    def test_create_port(self):
+        mock_plugin = mock.Mock()
+        mock_plugin.create_port = lambda c, p: p
+        mock_ctx = mock.Mock()
+        mock_ctx.project_id = 'p1'
+        net_id = uuidutils.generate_uuid()
+        port = utils.create_port(
+            mock_plugin, mock_ctx,
+            {'port': {'network_id': net_id, 'name': 'aport'}})
+        self.assertEqual('p1', port['port']['tenant_id'])
+        self.assertEqual('p1', port['port']['project_id'])
+        self.assertEqual('aport', port['port']['name'])
+        self.assertEqual(net_id, port['port']['network_id'])

@@ -19,8 +19,13 @@ import hashlib
 from oslo_log import log as logging
 from oslo_utils import encodeutils
 from oslo_utils import excutils
+from webob import exc as web_exc
 
 from neutron_lib._i18n import _
+from neutron_lib.api import attributes
+from neutron_lib.api.definitions import network as net_apidef
+from neutron_lib.api.definitions import port as port_apidef
+from neutron_lib.api.definitions import subnet as subnet_apidef
 from neutron_lib import constants
 from neutron_lib import exceptions
 
@@ -286,3 +291,43 @@ def get_interface_name(name, prefix='', max_len=constants.DEVICE_NAME_MAX_LEN):
              {'requested_name': requested_name,
               'limit': max_len, 'new_name': new_name})
     return new_name
+
+
+def _fixup_res_dict(context, attr_name, res_dict, check_allow_post=True):
+    attr_info = attributes.RESOURCES[attr_name]
+    attr_ops = attributes.AttributeInfo(attr_info)
+    try:
+        attr_ops.populate_project_id(context, res_dict, True)
+        attributes.populate_project_info(attr_info)
+        attr_ops.verify_attributes(res_dict)
+    except web_exc.HTTPBadRequest as e:
+        # convert webob exception into ValueError as these functions are
+        # for internal use. webob exception doesn't make sense.
+        raise ValueError(e.detail)
+    attr_ops.fill_post_defaults(res_dict, check_allow_post=check_allow_post)
+    attr_ops.convert_values(res_dict)
+    return res_dict
+
+
+def create_network(core_plugin, context, net, check_allow_post=True):
+    net_data = _fixup_res_dict(context, net_apidef.COLLECTION_NAME,
+                               net.get(net_apidef.RESOURCE_NAME, {}),
+                               check_allow_post=check_allow_post)
+    return core_plugin.create_network(
+        context, {net_apidef.RESOURCE_NAME: net_data})
+
+
+def create_subnet(core_plugin, context, subnet, check_allow_post=True):
+    subnet_data = _fixup_res_dict(context, subnet_apidef.COLLECTION_NAME,
+                                  subnet.get(subnet_apidef.RESOURCE_NAME, {}),
+                                  check_allow_post=check_allow_post)
+    return core_plugin.create_subnet(
+        context, {subnet_apidef.RESOURCE_NAME: subnet_data})
+
+
+def create_port(core_plugin, context, port, check_allow_post=True):
+    port_data = _fixup_res_dict(context, port_apidef.COLLECTION_NAME,
+                                port.get(port_apidef.RESOURCE_NAME, {}),
+                                check_allow_post=check_allow_post)
+    return core_plugin.create_port(
+        context, {port_apidef.RESOURCE_NAME: port_data})
