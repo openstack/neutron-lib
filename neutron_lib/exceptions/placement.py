@@ -49,6 +49,14 @@ class PlacementAggregateNotFound(exceptions.NotFound):
                 "%(resource_provider)s.")
 
 
+class PlacementTraitNotFound(exceptions.NotFound):
+    message = _("Placement trait not found %(trait)s.")
+
+
+class PlacementResourceClassNotFound(exceptions.NotFound):
+    message = _("Placement resource class not found %(resource_class)s")
+
+
 class PlacementAPIVersionIncorrect(exceptions.NotFound):
     message = _("Placement API version %(current_version)s, do not meet the"
                 "needed version %(needed_version)s.")
