@@ -1,0 +1,19 @@
+---
+prelude: >
+    Change create_inventory in placement client to
+    update_resource_provider_inventories and update_inventory to
+    update_resource_provider_inventory
+issues:
+  - Placement API has no POST method for creating resource provider inventories
+    but instead has PUT to update the inventories of a resource provider.
+  - Placement API has method to update the inventory for a given
+    resource_provider.
+fixes:
+  - Change the method name create_inventory in clients/placement.py to
+    update_resource_provider_inventories as that represents what is on the
+    placement side.
+  - Change the POST call to /resource_providers/{uuid}/inventories to
+    PUT.
+  - Change the method name update_inventory in clients/placement.py to
+    update_resource_provider_inventory as that represents that the method
+    updates the inventory of a resource_provider.

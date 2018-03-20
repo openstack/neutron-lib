@@ -20,8 +20,18 @@ class PlacementEndpointNotFound(exceptions.NotFound):
     message = _("Placement API endpoint not found.")
 
 
+class PlacementResourceNotFound(exceptions.NotFound):
+    message = _("Placement resource not found on url: %(url)s.")
+
+
 class PlacementResourceProviderNotFound(exceptions.NotFound):
     message = _("Placement resource provider not found %(resource_provider)s.")
+
+
+class PlacementResourceProviderGenerationConflict(exceptions.Conflict):
+    message = _("Placement resource provider generation does not match with "
+                "the server side for resource provider: "
+                "%(resource_provider)s with generation %(generation)s.")
 
 
 class PlacementInventoryNotFound(exceptions.NotFound):

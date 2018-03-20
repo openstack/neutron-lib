@@ -30,6 +30,7 @@ LOG = logging.getLogger(__name__)
 API_VERSION_REQUEST_HEADER = 'OpenStack-API-Version'
 PLACEMENT_API_WITH_MEMBER_OF = 'placement 1.3'
 PLACEMENT_API_WITH_NESTED_RESOURCES = 'placement 1.14'
+PLACEMENT_API_LATEST_SUPPORTED = PLACEMENT_API_WITH_NESTED_RESOURCES
 
 
 def _check_placement_api_available(f):
@@ -71,7 +72,7 @@ class PlacementAPIClient(object):
     """Client class for placement ReST API."""
 
     def __init__(self, conf,
-                 openstack_api_version=PLACEMENT_API_WITH_NESTED_RESOURCES):
+                 openstack_api_version=PLACEMENT_API_LATEST_SUPPORTED):
         self._openstack_api_version = openstack_api_version
         self._target_version = _get_version(openstack_api_version)
         self._conf = conf
@@ -115,7 +116,9 @@ class PlacementAPIClient(object):
                                   (required) and the uuid (required).
         """
         url = '/resource_providers'
-        self._post(url, resource_provider)
+        self._post(url, resource_provider,
+                   headers={API_VERSION_REQUEST_HEADER:
+                            self._openstack_api_version})
 
     @_check_placement_api_available
     def delete_resource_provider(self, resource_provider_uuid):
@@ -193,17 +196,46 @@ class PlacementAPIClient(object):
                          **filters).json()
 
     @_check_placement_api_available
-    def create_inventory(self, resource_provider_uuid, inventory):
-        """Create an inventory.
+    def update_resource_provider_inventories(
+            self, resource_provider_uuid, inventories,
+            resource_provider_generation):
+        """Update resource provider inventories.
 
         :param resource_provider_uuid: UUID of the resource provider.
-        :param inventory: The inventory. A dict with resource_class (required),
-                          total (required), reserved (required), min_unit
-                          (required), max_unit (required), step_size
-                          (required) and allocation_ratio (required).
+        :param inventories: The inventories. A dict in the format (see:
+                            Placement API ref: https://goo.gl/F22mtk)
+                            {resource_class(required):
+                            {allocation_ratio(required):
+                            total(required):
+                            max_unit(required):
+                            min_unit(required):
+                            reserved(required):
+                            step_size(required):
+                            }}
+        :param resource_provider_generation: The generation of the resource
+                                             provider.
+        :raises PlacementResourceProviderNotFound: if the resource provider
+                                                   is not found.
+        :raises PlacementResourceProviderGenerationConflict: if the generation
+                                                             of the resource
+                                                             provider does not
+                                                             match with the
+                                                             server side.
         """
         url = '/resource_providers/%s/inventories' % resource_provider_uuid
-        self._post(url, inventory)
+        body = {
+            'resource_provider_generation': resource_provider_generation,
+            'inventories': inventories
+        }
+        try:
+            return self._put(url, body).json()
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceProviderNotFound(
+                resource_provider=resource_provider_uuid)
+        except ks_exc.Conflict:
+            raise n_exc.PlacementResourceProviderGenerationConflict(
+                resource_provider=resource_provider_uuid,
+                generation=resource_provider_generation)
 
     @_check_placement_api_available
     def get_inventory(self, resource_provider_uuid, resource_class):
@@ -231,21 +263,30 @@ class PlacementAPIClient(object):
                 raise
 
     @_check_placement_api_available
-    def update_inventory(self, resource_provider_uuid, inventory,
-                         resource_class):
-        """Update an inventory.
+    def update_resource_provider_inventory(
+            self, resource_provider_uuid, inventory, resource_class,
+            resource_provider_generation):
+        """Update resource provider inventory.
 
         :param resource_provider_uuid: UUID of the resource provider.
-        :param inventory: The inventory, in a dictionary.
-        :param resource_class: The resource class of the inventory to update.
-        :raises PlacementInventoryUpdateConflict: For failure to update
-                                                  inventory due to outdated
-                                                  resource_provider_generation.
+        :param inventory: The inventory to be updated for the resource class.
+        :param resource_class: The name of the resource class.
+        :param resource_provider_generation: The generation of the resource
+                                             provider.
+        :raises PlacementResourceNotFound: If the resource provider or the
+                                           resource class is not found.
+        :raises PlacementInventoryUpdateConflict: If the resource provider
+                                                  generation does not match
+                                                  with the server side.
         """
         url = '/resource_providers/%s/inventories/%s' % (
             resource_provider_uuid, resource_class)
+        inventory['resource_provider_generation'] = \
+            resource_provider_generation
         try:
-            self._put(url, inventory)
+            return self._put(url, inventory).json()
+        except ks_exc.NotFound as e:
+            raise n_exc.PlacementResourceNotFound(url=e.url)
         except ks_exc.Conflict:
             raise n_exc.PlacementInventoryUpdateConflict(
                 resource_provider=resource_provider_uuid,
