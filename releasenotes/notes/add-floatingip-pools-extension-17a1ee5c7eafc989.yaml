@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add ``floatingip-pools`` API extension. This extension provides
+    API endpoint for listing floatingip pools.
