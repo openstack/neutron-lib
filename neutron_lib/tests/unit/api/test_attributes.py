@@ -138,6 +138,17 @@ class TestAttributeInfo(base.BaseTestCase):
         self.assertRaises(self._EXC_CLS, attr_inst.fill_post_defaults,
                           {'key': 'X'}, self._EXC_CLS)
 
+    def test_fill_none_overridden_by_default(self):
+        attr_info = {
+            'key': {
+                'allow_post': True,
+                'default': 42,
+                'default_overrides_none': True,
+            },
+        }
+        attr_inst = attributes.AttributeInfo(attr_info)
+        self._test_fill_default_value(attr_inst, {'key': 42}, {'key': None})
+
     def _test_convert_value(self, attr_inst, expected, res_dict):
         attr_inst.convert_values(res_dict)
         self.assertEqual(expected, res_dict)

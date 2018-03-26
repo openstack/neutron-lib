@@ -58,6 +58,18 @@ def populate_project_info(attributes):
     return attributes
 
 
+def _fill_default(res_dict, attr_name, attr_spec):
+    # update res_dict[attr_name] record with the default value
+    # specified in attr_spec, taking into account default_overrides_none
+    if attr_spec.get('default_overrides_none'):
+        if res_dict.get(attr_name) is None:
+            res_dict[attr_name] = attr_spec.get('default')
+            return
+
+    res_dict[attr_name] = res_dict.get(attr_name,
+                                       attr_spec.get('default'))
+
+
 class AttributeInfo(object):
     """Provides operations on a resource's attribute map.
 
@@ -114,8 +126,7 @@ class AttributeInfo(object):
                     msg = _("Failed to parse request. Required "
                             "attribute '%s' not specified") % attr
                     raise exc_cls(msg)
-                res_dict[attr] = res_dict.get(attr,
-                                              attr_vals.get('default'))
+                _fill_default(res_dict, attr, attr_vals)
             elif check_allow_post:
                 if attr in res_dict:
                     msg = _("Attribute '%s' not allowed in POST") % attr

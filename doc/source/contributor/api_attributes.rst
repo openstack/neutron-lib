@@ -77,20 +77,21 @@ that the subnet does not have a gateway IP.
 
 The following are the defined keys for attribute maps:
 
-======================  ======
-``default``             default value of the attribute (if missing, the attribute becomes mandatory)
-``allow_post``          the attribute can be used on ``POST`` requests
-``allow_put``           the attribute can be used on ``PUT`` requests
-``validate``            specifies rules for validating data in the attribute
-``convert_to``          transformation to apply to the value before it is returned
-``convert_list_to``     if the value is a list, apply this transformation to the value before it is returned
-``is_filter``           the attribute can be used in ``GET`` requests as filter
-``is_sort_key``         the attribute can be used in ``GET`` requests as sort_key
-``is_visible``          the attribute is returned in ``GET`` responses
-``required_by_policy``  the attribute is required by the policy engine and should therefore be filled by the API layer even if not present in request body
-``enforce_policy``      the attribute is actively part of the policy enforcing mechanism, ie: there might be rules which refer to this attribute
-``primary_key``         Mark the attribute as a unique key.
-======================  ======
+==========================  ======
+``default``                 default value of the attribute (if missing, the attribute becomes mandatory)
+``allow_post``              the attribute can be used on ``POST`` requests
+``allow_put``               the attribute can be used on ``PUT`` requests
+``validate``                specifies rules for validating data in the attribute
+``convert_to``              transformation to apply to the value before it is returned
+``convert_list_to``         if the value is a list, apply this transformation to the value before it is returned
+``is_filter``               the attribute can be used in ``GET`` requests as filter
+``is_sort_key``             the attribute can be used in ``GET`` requests as sort_key
+``is_visible``              the attribute is returned in ``GET`` responses
+``required_by_policy``      the attribute is required by the policy engine and should therefore be filled by the API layer even if not present in request body
+``enforce_policy``          the attribute is actively part of the policy enforcing mechanism, ie: there might be rules which refer to this attribute
+``primary_key``             Mark the attribute as a unique key.
+``default_overrides_none``  if set, if the value passed is None, it will be replaced by the ``default`` value
+==========================  ======
 
 When extending existing sub-resources, the sub-attribute map must define all
 extension attributes under the ``parameters`` object. This instructs the API
