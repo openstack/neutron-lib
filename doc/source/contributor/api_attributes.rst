@@ -91,6 +91,7 @@ The following are the defined keys for attribute maps:
 ``enforce_policy``          the attribute is actively part of the policy enforcing mechanism, ie: there might be rules which refer to this attribute
 ``primary_key``             Mark the attribute as a unique key.
 ``default_overrides_none``  if set, if the value passed is None, it will be replaced by the ``default`` value
+``dict_populate_defaults``  if set, the ``default`` values of keys inside dict attributes, will be filled if not specified
 ==========================  ======
 
 When extending existing sub-resources, the sub-attribute map must define all
