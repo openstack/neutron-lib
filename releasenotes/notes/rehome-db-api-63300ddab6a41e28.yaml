@@ -1,0 +1,15 @@
+---
+features:
+  - The public APIs from ``neutron.db.api`` are now available in
+    the ``neutron_lib.db.api`` module.
+  - The ``CONTEXT_READER`` and ``CONTEXT_WRITER`` global database contexts
+    are available in ``neutron_lib.db.api`` for convenient access as
+    decorators.
+  - The ``DBRetryErrorsFixture`` and ``DBAPIContextManagerFixture`` test
+    fixtures are now available in ``neutron_lib.fixture`` allowing consumers
+    to patch out retry error values and the gobal context manager.
+upgrade:
+  - Consumers using the global ``context_manager`` from ``neutron.db.api``
+    should now use the ``get_context_manager()`` function in
+    the ``neutron_lib.db.api`` module or the global ``CONTEXT_READER``
+    and ``CONTEXT_WRITER`` if needed.
