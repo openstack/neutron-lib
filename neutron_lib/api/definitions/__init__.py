@@ -72,6 +72,9 @@ from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
 from neutron_lib.api.definitions import vlantransparent
+from neutron_lib.api.definitions import vpn
+from neutron_lib.api.definitions import vpn_endpoint_groups
+from neutron_lib.api.definitions import vpn_flavors
 
 
 _ALL_API_DEFINITIONS = {
@@ -136,5 +139,8 @@ _ALL_API_DEFINITIONS = {
     subnetpool,
     trunk,
     trunk_details,
-    vlantransparent
+    vlantransparent,
+    vpn,
+    vpn_endpoint_groups,
+    vpn_flavors,
 }

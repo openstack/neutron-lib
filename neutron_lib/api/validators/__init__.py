@@ -681,6 +681,18 @@ def validate_subnet_list(data, valid_values=None):
     return _validate_subnet_list(data, valid_values)
 
 
+def validate_subnet_list_or_none(data, key_specs=None):
+    """Validate data is a list of subnet dicts or None.
+
+    :param data: The data to validate.
+    :param key_specs: Not used!
+    :returns: None if data is None or a valid list of subnet dicts, otherwise
+        a human readable message as to why the data is invalid.
+    """
+    if data is not None:
+        return validate_subnet_list(data, key_specs)
+
+
 def validate_regex(data, valid_values=None):
     """Validate data is matched against a regex.
 
@@ -1073,7 +1085,9 @@ validators = {'type:dict': validate_dict,
               'type:list_of_unique_strings': validate_list_of_unique_strings,
               'type:list_of_any_key_specs_or_none':
                   validate_any_key_specs_or_none,
-              'type:service_plugin_type': validate_service_plugin_type}
+              'type:service_plugin_type': validate_service_plugin_type,
+              'type:subnet_list_or_none': validate_subnet_list_or_none,
+              }
 
 
 def _to_validation_type(validation_type):

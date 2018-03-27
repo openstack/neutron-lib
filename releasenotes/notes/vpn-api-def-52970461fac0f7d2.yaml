@@ -1,0 +1,8 @@
+---
+features:
+  - Adds ``neutron-vpnaas`` API definitions to neutron-lib, including
+    ``vpnaas``, ``vpn-endpoint-groups`` and ``vpn-flavors``.
+  - Migrate user facing exceptions into neutron-lib along with the API
+    definitions.
+  - A new validator for type ``type:subnet_list_or_none`` to validate
+    data is a list of subnet dicts or ``None`` is added too.
