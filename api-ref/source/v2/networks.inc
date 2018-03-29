@@ -103,6 +103,12 @@ Most Networking plug-ins (e.g. ML2 Plugin) and drivers do not support updating
 any provider related attributes. Check your plug-in whether it supports
 updating.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 VLAN transparency extension
 ===========================
 
@@ -249,6 +255,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
    - l2_adjacency: l2_adjacency
@@ -267,6 +274,7 @@ Response Parameters
    - status: network-status
    - subnets: network-subnets
    - tenant_id: project_id
+   - updated_at: updated_at_resource
    - description: description
    - is_default: network_is_default
 
@@ -369,6 +377,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
    - l2_adjacency: l2_adjacency
@@ -387,6 +396,7 @@ Response Parameters
    - status: network-status
    - subnets: network-subnets
    - tenant_id: project_id
+   - updated_at: updated_at_resource
    - vlan_transparent: vlan_transparent
    - description: description
    - is_default: network_is_default
@@ -475,6 +485,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
    - l2_adjacency: l2_adjacency
@@ -493,6 +504,7 @@ Response Parameters
    - status: network-status
    - subnets: network-subnets
    - tenant_id: project_id
+   - updated_at: updated_at_resource
    - vlan_transparent: vlan_transparent
    - description: description
    - is_default: network_is_default
@@ -570,6 +582,7 @@ Response Parameters
    - admin_state_up: network-admin_state_up
    - availability_zone_hints: availability_zone_hints
    - availability_zones: availability_zones
+   - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
    - l2_adjacency: l2_adjacency
@@ -588,6 +601,7 @@ Response Parameters
    - status: network-status
    - subnets: network-subnets
    - tenant_id: project_id
+   - updated_at: updated_at_resource
    - vlan_transparent: vlan_transparent
    - description: description
    - is_default: network_is_default
