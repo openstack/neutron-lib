@@ -20,7 +20,6 @@ from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import network
 
 ALIAS = 'auto-allocated-topology'
-LABEL = ALIAS
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Auto Allocated Topology Services'

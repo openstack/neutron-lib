@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    The ``LABEL`` variable, which was uselessly duplicating ``ALIAS``, has been
+    removed from API definition modules.

@@ -20,10 +20,6 @@ from neutron_lib.db import constants as db_const
 # The alias of the extension.
 ALIAS = 'bgpvpn-routes-control'
 
-# The label to lookup the plugin in the plugin directory. It can match the
-# alias, as required.
-LABEL = ALIAS
-
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map (mandatory).
 IS_SHIM_EXTENSION = False

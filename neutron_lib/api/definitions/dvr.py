@@ -19,7 +19,6 @@ from neutron_lib import constants
 DISTRIBUTED = 'distributed'
 
 ALIAS = constants.L3_DISTRIBUTED_EXT_ALIAS
-LABEL = ALIAS
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Distributed Virtual Router'

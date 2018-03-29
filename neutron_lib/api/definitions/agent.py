@@ -17,7 +17,6 @@ from neutron_lib.api import converters
 from neutron_lib.db import constants
 
 ALIAS = 'agent'
-LABEL = ALIAS
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = ALIAS
