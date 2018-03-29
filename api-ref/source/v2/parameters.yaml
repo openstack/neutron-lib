@@ -544,6 +544,21 @@ network-shared-query:
   in: query
   required: false
   type: boolean
+network-sort_key:
+  description: |
+    Sorts by a network attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``admin_state_up``
+    - ``availability_zone_hints``
+    - ``id``
+    - ``mtu``
+    - ``name``
+    - ``status``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 network-status-query:
   description: |
     Filter the network list result by network status. Values are ``ACTIVE``,
@@ -709,6 +724,14 @@ shared-query:
   in: query
   required: false
   type: boolean
+sort_dir:
+  description: |
+    Sort direction. A valid value is ``asc`` (ascending) or ``desc``
+    (descending). You can specify multiple pairs of sort key and
+    sort direction query parameters.
+  in: query
+  required: false
+  type: string
 subnet-enable_dhcp-query:
   description: |
     Filter the subnet list result based on if is enabled or disabled
