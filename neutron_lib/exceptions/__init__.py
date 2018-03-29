@@ -553,3 +553,7 @@ class NetworkVlanRangeError(NeutronException):
 
 class PhysicalNetworkNameError(NeutronException):
     message = _("Empty physical network name.")
+
+
+class TenantIdProjectIdFilterConflict(BadRequest):
+    message = _("Both tenant_id and project_id passed as filters.")

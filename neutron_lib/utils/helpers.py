@@ -14,6 +14,7 @@
 import collections
 import decimal
 import random
+import weakref
 
 import six
 
@@ -176,3 +177,32 @@ def safe_decode_utf8(s):
     if six.PY3 and isinstance(s, bytes):
         return s.decode('utf-8', 'surrogateescape')
     return s
+
+
+try:
+    # PY3
+    weak_method = weakref.WeakMethod
+except AttributeError:
+    # PY2
+    import weakrefmethod
+    weak_method = weakrefmethod.WeakMethod
+
+
+def make_weak_ref(f):
+    """Make a weak reference to a function accounting for bound methods.
+
+    :param f: The callable to make a weak ref for.
+    :returns: A weak ref to f.
+    """
+    return weak_method(f) if hasattr(f, '__self__') else weakref.ref(f)
+
+
+def resolve_ref(ref):
+    """Handles dereference of weakref.
+
+    :param ref: The weak ref to resolve.
+    :returns: The resolved reference.
+    """
+    if isinstance(ref, weakref.ref):
+        ref = ref()
+    return ref
