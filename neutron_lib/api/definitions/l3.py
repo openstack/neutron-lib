@@ -18,10 +18,6 @@ from neutron_lib.db import constants
 # The alias of the extension.
 ALIAS = 'router'
 
-# The label to lookup the plugin in the plugin directory. It can match the
-# alias, as required.
-LABEL = 'router'
-
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map.
 IS_SHIM_EXTENSION = False

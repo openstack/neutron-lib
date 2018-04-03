@@ -38,7 +38,6 @@ RTRD_REGEX = (r'^(%s:%s|%s:%s|%s:%s)$') % (UINT16_REGEX, UINT32_REGEX,
 
 # The alias of the extension.
 ALIAS = 'bgpvpn'
-LABEL = 'BGPVPN'
 
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map.

@@ -50,10 +50,6 @@ DHCP_OPT_CLIENT_ID = "client-id"
 # The alias of the extension.
 ALIAS = 'extra_dhcp_opt'
 
-# The label to lookup the plugin in the plugin directory. It can match the
-# alias, as required.
-LABEL = 'extra_dhcp_opt'
-
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map (mandatory).
 IS_SHIM_EXTENSION = False

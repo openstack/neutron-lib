@@ -120,10 +120,6 @@ VNIC_TYPES = [VNIC_NORMAL, VNIC_DIRECT, VNIC_MACVTAP, VNIC_BAREMETAL,
 # The alias of the extension.
 ALIAS = 'binding'
 
-# The label to lookup the plugin in the plugin directory. It can match the
-# alias, as required.
-LABEL = 'binding'
-
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map.
 IS_SHIM_EXTENSION = False

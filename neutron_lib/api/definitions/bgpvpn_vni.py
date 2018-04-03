@@ -24,10 +24,6 @@ VNI = 'vni'
 # The alias of the extension.
 ALIAS = 'bgpvpn-vni'
 
-# The label to lookup the plugin in the plugin directory. It can match the
-# alias, as required.
-LABEL = ALIAS
-
 # Whether or not this extension is simply signaling behavior to the user
 # or it actively modifies the attribute map.
 IS_SHIM_EXTENSION = False

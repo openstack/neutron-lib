@@ -24,7 +24,6 @@ validators.add_validator('allowed_address_pairs',
 
 ADDRESS_PAIRS = 'allowed_address_pairs'
 ALIAS = 'allowed-address-pairs'
-LABEL = ALIAS
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Allowed Address Pairs'
