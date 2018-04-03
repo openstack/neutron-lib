@@ -1,0 +1,4 @@
+---
+features:
+  - The ``qos-bw-limit-direction`` extension's API definition is now available
+    in ``neutron_lib.api.definitions.qos_bw_limit_direction``.
