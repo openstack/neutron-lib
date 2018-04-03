@@ -18,6 +18,8 @@
             "ip_version": 6,
             "shared": false,
             "description": "",
+            "created_at": "2016-03-08T20:19:41",
+            "updated_at": "2016-03-08T20:19:41",
             "revision_number": 2
         },
         {
@@ -38,6 +40,8 @@
             "ip_version": 4,
             "shared": false,
             "description": "",
+            "created_at": "2016-03-08T20:19:41",
+            "updated_at": "2016-03-08T20:19:41",
             "revision_number": 2
         }
     ]

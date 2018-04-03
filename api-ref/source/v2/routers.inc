@@ -36,6 +36,12 @@ The router flavor extension (``l3-flavors``) adds the ``flavor_id`` attribute
 to routers, allowing requests to be dispatched to different drivers depending
 on the flavor associated with a given router.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 Router availability zone extension
 ==================================
 
@@ -120,6 +126,8 @@ Response Parameters
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
    - flavor_id: router-flavor_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -202,6 +210,8 @@ Response Parameters
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
    - flavor_id: router-flavor_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -261,6 +271,8 @@ Response Parameters
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
    - flavor_id: router-flavor_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -333,6 +345,8 @@ Response Parameters
    - availability_zones: router-availability_zones
    - service_type_id: router-service_type_id
    - flavor_id: router-flavor_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------

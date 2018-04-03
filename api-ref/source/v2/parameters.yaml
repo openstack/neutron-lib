@@ -1676,12 +1676,6 @@ connection_limit-response:
   in: body
   required: true
   type: integer
-created_at:
-  description: |
-    Time at which the resource was created.
-  in: body
-  required: true
-  type: string
 created_at_resource:
   description: |
     Time at which the resource has been created (in UTC ISO8601 format).
@@ -4996,12 +4990,6 @@ subnet-allocation_pools-request:
   in: body
   required: false
   type: array
-subnet-created_at:
-  description: |
-    Time at which the subnet has been created.
-  in: body
-  required: true
-  type: string
 subnet-dns_nameservers:
   description: |
     List of dns name servers associated with the subnet.
@@ -5178,12 +5166,6 @@ subnet-subnetpool_id-request:
   in: body
   required: false
   type: string
-subnet-updated_at:
-  description: |
-    Time at which the subnet has been updated.
-  in: body
-  required: true
-  type: string
 subnet_id:
   description: |
     If you specify only a subnet UUID, OpenStack
@@ -5317,12 +5299,6 @@ updated:
   description: |
     The date and time stamp when the extension was
     last updated.
-  in: body
-  required: true
-  type: string
-updated_at:
-  description: |
-    Time at which port has been updated.
   in: body
   required: true
   type: string

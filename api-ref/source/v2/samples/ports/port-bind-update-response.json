@@ -7,6 +7,7 @@
         "binding:vif_details": {},
         "binding:vif_type": "binding_failed",
         "binding:vnic_type": "normal",
+        "created_at": "2016-03-08T20:19:41",
         "data_plane_status": "DOWN",
         "description": "",
         "device_id": "d90a13da-be41-461f-9f99-1dbcf438fdf2",
@@ -43,6 +44,7 @@
         ],
         "status": "DOWN",
         "tenant_id": "522eda8d23124b25bf03fe44f1986b74",
+        "updated_at": "2016-03-08T20:19:41",
         "port_security_enabled": false
     }
 }

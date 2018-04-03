@@ -14,6 +14,12 @@ The ``address-scope`` extension adds the ``address_scope_id`` attribute to
 subnet pools. ``address_scope_id`` is the ID of the address scope that the
 subnet pool belongs to.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 Show subnet pool
 ================
 
@@ -49,8 +55,8 @@ Response Parameters
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
-   - created_at: created_at
-   - updated_at: updated_at
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
    - address_scope_id: address_scope_id
@@ -114,8 +120,8 @@ Response Parameters
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
-   - created_at: created_at
-   - updated_at: updated_at
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
    - address_scope_id: address_scope_id
@@ -217,8 +223,8 @@ Response Parameters
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
-   - created_at: created_at
-   - updated_at: updated_at
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
    - address_scope_id: address_scope_id
@@ -282,8 +288,8 @@ Response Parameters
    - default_quota: default_quota
    - tenant_id: project_id
    - project_id: project_id
-   - created_at: created_at
-   - updated_at: updated_at
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - prefixes: prefixes
    - min_prefixlen: min_prefixlen
    - address_scope_id: address_scope_id

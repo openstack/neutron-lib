@@ -7,6 +7,12 @@ Segments
 Lists, shows details for, creates, updates, and deletes segments. The
 segments API is admin-only.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 Show segment details
 ====================
 
@@ -44,6 +50,8 @@ Response Parameters
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -90,6 +98,8 @@ Response Parameters
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -166,6 +176,8 @@ Response Parameters
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -215,6 +227,8 @@ Response Parameters
    - segmentation_id: provider:segmentation_id
    - name: name
    - description: description
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------

@@ -16,12 +16,17 @@ IP version). Then users can specify the ``use_default_subnetpool``
 attribute when creating a subnet, instead of having to specify the
 ``subnetpool_id`` attribute referencing the default subnetpool.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 Subnet allocation extension
 ===========================
 
 Subnet allocation extension (``subnet_allocation``) enables allocation of
 subnets from a subnet pool.
-
 
 Subnet service types extension
 ==============================
@@ -102,7 +107,7 @@ Response Parameters
    - ip_version: subnet-ip_version
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
-   - created_at: subnet-created_at
+   - created_at: created_at_resource
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
@@ -110,7 +115,7 @@ Response Parameters
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
-   - updated_at: subnet-updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -215,7 +220,7 @@ Response Parameters
    - ip_version: subnet-ip_version
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
-   - created_at: subnet-created_at
+   - created_at: created_at_resource
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
@@ -223,7 +228,7 @@ Response Parameters
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
    - segment_id: subnet-segment_id
-   - updated_at: subnet-updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -295,7 +300,7 @@ Response Parameters
    - ip_version: subnet-ip_version
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
-   - created_at: subnet-created_at
+   - created_at: created_at_resource
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
@@ -303,7 +308,7 @@ Response Parameters
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
-   - updated_at: subnet-updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -340,7 +345,7 @@ Response Parameters
    - id: subnet-id-body
    - tenant_id: project_id
    - project_id: project_id
-   - created_at: subnet-created_at
+   - created_at: created_at_resource
    - name: subnet-name
    - enable_dhcp: subnet-enable_dhcp
    - network_id: subnet-network_id
@@ -350,7 +355,7 @@ Response Parameters
    - ip_version: subnet-ip_version
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
-   - updated_at: subnet-updated_at
+   - updated_at: updated_at_resource
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
@@ -419,7 +424,7 @@ Response Parameters
    - ip_version: subnet-ip_version
    - gateway_ip: subnet-gateway_ip
    - cidr: cidr
-   - created_at: subnet-created_at
+   - created_at: created_at_resource
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
@@ -427,7 +432,7 @@ Response Parameters
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
-   - updated_at: subnet-updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------

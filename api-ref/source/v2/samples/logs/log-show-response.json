@@ -5,6 +5,8 @@
         "id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
         "project_id": "8d4c70a21fed4aeba121a1a429ba0d04",
         "tenant_id": "8d4c70a21fed4aeba121a1a429ba0d04",
+        "created_at": "2018-04-03T21:03:04Z",
+        "updated_at": "2018-04-03T21:03:04Z",
         "enabled": true,
         "revision_number": 1,
         "resource_type": "security_group",
