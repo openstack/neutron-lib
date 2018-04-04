@@ -7,6 +7,13 @@ Subnet pools extension (subnetpools)
 Lists, creates, shows details for, updates, and deletes subnet
 pools.
 
+Address Scopes Extension
+========================
+
+The ``address-scope`` extension adds the ``address_scope_id`` attribute to
+subnet pools. ``address_scope_id`` is the ID of the address scope that the
+subnet pool belongs to.
+
 Show subnet pool
 ================
 

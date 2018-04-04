@@ -8,6 +8,8 @@
         "created_at": "2016-03-08T20:19:41",
         "dns_domain": "my-domain.org.",
         "id": "4e8e5957-649f-477b-9e5b-f1f75b21c03c",
+        "ipv4_address_scope": null,
+        "ipv6_address_scope": null,
         "l2_adjacency": false,
         "mtu": 1500,
         "name": "net1",

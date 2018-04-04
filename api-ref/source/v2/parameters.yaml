@@ -1,6 +1,12 @@
  # variables in header
 
 # variables in path
+address_scope_id-path:
+  description: |
+    The ID of the address scope.
+  in: path
+  required: true
+  type: string
 agent_id-path:
   description: |
     The ID of the agent.
@@ -863,12 +869,30 @@ address:
   in: body
   required: true
   type: string
+address_scope:
+  description: |
+    An ``address scope`` object.
+  in: body
+  required: true
+  type: object
 address_scope_id:
   description: |
     An address scope to assign to the subnet pool.
   in: body
   required: false
+  type: object
+address_scope_id_body:
+  description: |
+    The ID of the address scope.
+  in: body
+  required: true
   type: string
+address_scopes:
+  description: |
+    A list of ``address scope`` objects.
+  in: body
+  required: true
+  type: array
 admin_state_up:
   description: |
     The administrative state of the resource, which is
@@ -2749,6 +2773,12 @@ ip_version:
   in: body
   required: false
   type: integer
+ip_version-required:
+  description: |
+    The IP protocol version. Valid value is ``4`` or ``6``.
+  in: body
+  required: true
+  type: integer
 ip_version-response:
   description: |
     The IP protocol version. Valid value is ``4`` or
@@ -2808,6 +2838,18 @@ ipsecpolicy_id-body-request:
 ipsecpolicy_id-body-response:
   description: |
     The ID of the IPsec policy.
+  in: body
+  required: true
+  type: string
+ipv4_address_scope:
+  description: |
+    The ID of the IPv4 address scope that the network is associated with.
+  in: body
+  required: true
+  type: string
+ipv6_address_scope:
+  description: |
+    The ID of the IPv6 address scope that the network is associated with.
   in: body
   required: true
   type: string

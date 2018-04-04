@@ -1,0 +1,9 @@
+{
+    "address_scope": {
+        "name": "address-scope-2",
+        "tenant_id": "a7a7fa10fd7a4c80acb7e4b224480495",
+        "ip_version": 4,
+        "shared": true,
+        "project_id": "a7a7fa10fd7a4c80acb7e4b224480495"
+    }
+}
