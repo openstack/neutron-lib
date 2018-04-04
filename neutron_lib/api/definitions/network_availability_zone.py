@@ -31,6 +31,7 @@ RESOURCE_ATTRIBUTE_MAP = {
         },
         az_def.AZ_HINTS: {
             'allow_post': True, 'allow_put': False, 'is_visible': True,
+            'is_sort_key': True,
             'validate': {'type:availability_zone_hint_list': None},
             'default': []
         }
