@@ -6,7 +6,6 @@ Babel==2.3.4
 cachetools==2.0.0
 contextlib2==0.4.0
 coverage==4.0
-debtcollector==1.2.0
 decorator==3.4.0
 docutils==0.11
 dulwich==0.15.0
