@@ -72,7 +72,10 @@ RESOURCE_ATTRIBUTE_MAP = {
 # The subresource attribute map for the extension. It adds child resources
 # to main extension's resource. The subresource map must have a parent and
 # a parameters entry. If an extension does not need such a map, None can
-# be specified (mandatory). For example:
+# be specified (mandatory).
+# Note that if an existing sub-resource is being extended, the
+# existing resources to extend the new extension attributes must be
+# defined under the 'parameters' key.
 SUB_RESOURCE_ATTRIBUTE_MAP = {
     'subfoo': {
         'parent': {

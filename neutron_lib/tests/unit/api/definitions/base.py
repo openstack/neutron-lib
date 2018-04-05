@@ -132,23 +132,36 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
                          resource[attribute],
                          keyword, value)
 
+    def _assert_subresource(self, subresource):
+        self.assertIn(
+            self.subresource_map[subresource]['parent']['collection_name'],
+            base.KNOWN_RESOURCES + self.extension_resources,
+            'Sub-resource parent is unknown, check for typos.')
+        self.assertIn('member_name',
+                      self.subresource_map[subresource]['parent'],
+                      'Incorrect parent definition, check for typos.')
+        self.assertParams(self.subresource_map[subresource]['parameters'])
+
     def test_subresource_map(self):
         if not self.subresource_map:
             self.skipTest('API extension has no subresource map.')
         for subresource in self.subresource_map:
             self.assertIn(
-                subresource, self.extension_subresources,
+                subresource,
+                self.extension_subresources + base.KNOWN_RESOURCES,
                 'Sub-resource is unknown, check for typos.')
-            for attribute in self.subresource_map[subresource]:
-                self.assertIn(attribute, ('parent', 'parameters'))
-            self.assertIn(
-                self.subresource_map[subresource]['parent']['collection_name'],
-                base.KNOWN_RESOURCES + self.extension_resources,
-                'Sub-resource parent is unknown, check for typos.')
-            self.assertIn('member_name',
-                          self.subresource_map[subresource]['parent'],
-                          'Incorrect parent definition, check for typos.')
-            self.assertParams(self.subresource_map[subresource]['parameters'])
+            sub_attrmap = self.subresource_map[subresource]
+            if 'parent' in sub_attrmap:
+                self.assertEqual(2, len(sub_attrmap.keys()))
+                self.assertIn('parent', sub_attrmap)
+                self.assertIn('parameters', sub_attrmap)
+                self._assert_subresource(subresource)
+            else:
+                self.assertEqual(
+                    ['parameters'], [p for p in sub_attrmap.keys()],
+                    'When extending sub-resources only use the parameters '
+                    'keyword')
+                self.assertParams(sub_attrmap['parameters'])
 
     def test_action_map(self):
         self.assertIsInstance(self.action_map, dict)
