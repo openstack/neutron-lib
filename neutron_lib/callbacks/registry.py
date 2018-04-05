@@ -14,6 +14,7 @@ import collections
 import inspect
 
 from neutron_lib.callbacks import manager
+from neutron_lib.callbacks import priority_group
 
 
 # TODO(armax): consider adding locking
@@ -31,8 +32,9 @@ def _get_callback_manager():
     return _CALLBACK_MANAGER
 
 
-def subscribe(callback, resource, event):
-    _get_callback_manager().subscribe(callback, resource, event)
+def subscribe(callback, resource, event,
+              priority=priority_group.PRIORITY_DEFAULT):
+    _get_callback_manager().subscribe(callback, resource, event, priority)
 
 
 def unsubscribe(callback, resource, event):
@@ -61,7 +63,7 @@ def clear():
     _get_callback_manager().clear()
 
 
-def receives(resource, events):
+def receives(resource, events, priority=priority_group.PRIORITY_DEFAULT):
     """Use to decorate methods on classes before initialization.
 
     Any classes that use this must themselves be decorated with the
@@ -72,7 +74,7 @@ def receives(resource, events):
 
     def decorator(f):
         for e in events:
-            _REGISTERED_CLASS_METHODS[f].append((resource, e))
+            _REGISTERED_CLASS_METHODS[f].append((resource, e, priority))
         return f
     return decorator
 
@@ -112,9 +114,9 @@ def has_registry_receivers(klass):
             func = getattr(unbound_method, 'im_func', unbound_method)
             if func not in _REGISTERED_CLASS_METHODS:
                 continue
-            for resource, event in _REGISTERED_CLASS_METHODS[func]:
+            for resource, event, priority in _REGISTERED_CLASS_METHODS[func]:
                 # subscribe the bound method
-                subscribe(getattr(instance, name), resource, event)
+                subscribe(getattr(instance, name), resource, event, priority)
         setattr(instance, '_DECORATED_METHODS_SUBSCRIBED', True)
         return instance
     klass.__new__ = replacement_new

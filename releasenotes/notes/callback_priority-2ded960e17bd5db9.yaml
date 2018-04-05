@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Introduced priority to callback subscription. An integer value can be
+    associated with each callback so that callbacks can be executed in
+    specified order for same resources and events. Every callback will have
+    priority value by default. To execute callbacks in specified order, priorities
+    should be defined explicitly, lower priority value would be executed first.

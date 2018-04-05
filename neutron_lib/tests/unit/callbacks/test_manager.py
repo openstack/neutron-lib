@@ -20,7 +20,13 @@ from oslotest import base
 from neutron_lib.callbacks import events
 from neutron_lib.callbacks import exceptions
 from neutron_lib.callbacks import manager
+from neutron_lib.callbacks import priority_group
 from neutron_lib.callbacks import resources
+
+
+PRI_HIGH = 0
+PRI_MED = 5000
+PRI_LOW = 10000
 
 
 class ObjectWithCallback(object):
@@ -101,8 +107,12 @@ class CallBacksManagerTestCase(base.BaseTestCase):
             callback_2, resources.PORT, events.BEFORE_CREATE)
         self.assertEqual(2, len(self.manager._index))
         self.assertEqual(
-            2,
+            1,
             len(self.manager._callbacks[resources.PORT][events.BEFORE_CREATE]))
+        self.assertEqual(
+            2,
+            len(self.manager._callbacks
+                [resources.PORT][events.BEFORE_CREATE][0][1]))
 
     def test_unsubscribe_during_iteration(self):
         unsub = lambda r, e, *a, **k: self.manager.unsubscribe(unsub, r, e)
@@ -157,12 +167,17 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.manager.subscribe(
             callback_2, resources.PORT, events.BEFORE_DELETE)
         self.manager.unsubscribe_by_resource(callback_1, resources.PORT)
-        self.assertNotIn(
-            callback_id_1,
-            self.manager._callbacks[resources.PORT][events.BEFORE_CREATE])
+        self.assertEqual(
+            0,
+            len(self.manager._callbacks
+                [resources.PORT][events.BEFORE_CREATE]))
+        self.assertEqual(
+            1,
+            len(self.manager._callbacks[resources.PORT][events.BEFORE_DELETE]))
         self.assertIn(
             callback_id_2,
-            self.manager._callbacks[resources.PORT][events.BEFORE_DELETE])
+            self.manager._callbacks
+            [resources.PORT][events.BEFORE_DELETE][0][1])
         self.assertNotIn(callback_id_1, self.manager._index)
 
     def test_unsubscribe_all(self):
@@ -265,6 +280,52 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.manager.clear()
         self.assertEqual(0, len(self.manager._callbacks))
         self.assertEqual(0, len(self.manager._index))
+
+    def test_callback_priority(self):
+        pri_first = priority_group.PRIORITY_DEFAULT - 100
+        pri_last = priority_group.PRIORITY_DEFAULT + 100
+        # lowest priority value should be first in the _callbacks
+        self.manager.subscribe(callback_1, 'my-resource', 'my-event')
+        self.manager.subscribe(callback_2, 'my-resource',
+                               'my-event', pri_last)
+        self.manager.subscribe(callback_3, 'my-resource',
+                               'my-event', pri_first)
+        callbacks = self.manager._callbacks['my-resource']['my-event']
+        # callbacks should be sorted based on priority for resource and event
+        self.assertEqual(3, len(callbacks))
+        self.assertEqual(pri_first, callbacks[0][0])
+        self.assertEqual(priority_group.PRIORITY_DEFAULT, callbacks[1][0])
+        self.assertEqual(pri_last, callbacks[2][0])
+
+    @mock.patch('neutron_lib.callbacks.manager.CallbacksManager._del_callback')
+    def test_del_callback_called_on_unsubscribe(self, mock_cb):
+        self.manager.subscribe(callback_1, 'my-resource', 'my-event')
+        callback_id = self.manager._find(callback_1)
+        callbacks = self.manager._callbacks['my-resource']['my-event']
+        self.assertEqual(1, len(callbacks))
+        self.manager.unsubscribe(callback_1, 'my-resource', 'my-event')
+        mock_cb.assert_called_once_with(callbacks, callback_id)
+
+    @mock.patch("neutron_lib.callbacks.manager.LOG")
+    def test_callback_order(self, _logger):
+        self.manager.subscribe(callback_1, 'my-resource', 'my-event', PRI_MED)
+        self.manager.subscribe(callback_2, 'my-resource', 'my-event', PRI_HIGH)
+        self.manager.subscribe(callback_3, 'my-resource', 'my-event', PRI_LOW)
+        self.assertEqual(
+            3, len(self.manager._callbacks['my-resource']['my-event']))
+        self.manager.unsubscribe(callback_3, 'my-resource', 'my-event')
+        self.manager.notify('my-resource', 'my-event', mock.ANY)
+        # callback_3 should be deleted and not executed
+        self.assertEqual(
+            2, len(self.manager._callbacks['my-resource']['my-event']))
+        self.assertEqual(0, callback_3.counter)
+        # executed callbacks should have counter incremented
+        self.assertEqual(1, callback_2.counter)
+        self.assertEqual(1, callback_1.counter)
+        callback_ids = _logger.debug.mock_calls[4][1][1]
+        # callback_2 should be first in exceution as it has higher priority
+        self.assertEqual(callback_id_2, callback_ids[0])
+        self.assertEqual(callback_id_1, callback_ids[1])
 
     @mock.patch("neutron_lib.callbacks.manager.LOG")
     def test__notify_loop_skip_log_errors(self, _logger):
