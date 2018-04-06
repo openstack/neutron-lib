@@ -1,0 +1,6 @@
+---
+upgrade:
+  - The ``neutron_lib.api.utils`` module has been removed. The single
+    ``populate_project_info`` function therein is available in
+    ``neutron_lib.api.attributes`` and has been marked as a moved function
+    in the ``utils`` module for some time now.
