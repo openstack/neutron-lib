@@ -366,6 +366,8 @@ Request
    - tags-any: tags-any-query
    - not-tags: not-tags-query
    - not-tags-any: not-tags-any-query
+   - sort_dir: sort_dir
+   - sort_key: network-sort_key
    - fields: fields
 
 Response Parameters
