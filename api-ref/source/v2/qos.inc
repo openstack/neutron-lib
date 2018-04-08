@@ -343,6 +343,14 @@ QoS bandwidth limit rules
 
 Lists, creates, deletes, shows information for, and updates QoS bandwidth limit rules.
 
+Bandwidth limit direction
+=========================
+
+The ``qos-bw-limit-direction`` extension adds the ``direction`` attribute to
+QoS rule types. The ``direction`` attribute allows to configure QoS bandwidth
+limit rule with specific direction: ``ingress`` or ``egress``.
+Default is ``egress``.
+
 List bandwidth limit rules for QoS policy
 =========================================
 
