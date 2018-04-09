@@ -110,3 +110,11 @@ class TestNamespacedPlugins(base.BaseTestCase):
         plugins.new_plugin_instance('b')
         mock_epa.plugin.assert_called_once_with('c', 'd', karg='kval')
         mock_epb.plugin.assert_called_once_with()
+
+
+class TestListPackageModules(base.BaseTestCase):
+
+    def test_list_package_modules(self):
+        # mainly just to ensure we can import modules for both PY2/PY3
+        self.assertTrue(
+            len(runtime.list_package_modules('neutron_lib.exceptions')) > 3)

@@ -32,3 +32,4 @@ Neutron Lib Internals
    api_validators
    callbacks
    db_model_query
+   rpc_api

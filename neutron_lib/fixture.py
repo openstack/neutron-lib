@@ -14,6 +14,8 @@ import copy
 
 import fixtures
 import mock
+from oslo_config import cfg
+from oslo_messaging import conffixture
 
 from neutron_lib.api import attributes
 from neutron_lib.api import definitions
@@ -23,6 +25,11 @@ from neutron_lib.db import api as db_api
 from neutron_lib.db import model_base
 from neutron_lib.db import model_query
 from neutron_lib.plugins import directory
+from neutron_lib import rpc
+from neutron_lib.tests.unit import fake_notifier
+
+
+CONF = cfg.CONF
 
 
 class PluginDirectoryFixture(fixtures.Fixture):
@@ -244,3 +251,22 @@ class DBQueryHooksFixture(fixtures.Fixture):
 
     def _restore(self):
         model_query._model_query_hooks = self._backup
+
+
+class RPCFixture(fixtures.Fixture):
+
+    def _setUp(self):
+        # don't actually start RPC listeners when testing
+        mock.patch.object(rpc.Connection, 'consume_in_threads',
+                          return_value=[]).start()
+        self.useFixture(fixtures.MonkeyPatch(
+            'oslo_messaging.Notifier', fake_notifier.FakeNotifier))
+
+        self.messaging_conf = conffixture.ConfFixture(CONF)
+        self.messaging_conf.transport_driver = 'fake'
+        # NOTE(russellb) We want all calls to return immediately.
+        self.messaging_conf.response_timeout = 0
+        self.useFixture(self.messaging_conf)
+
+        self.addCleanup(rpc.cleanup)
+        rpc.init(CONF)

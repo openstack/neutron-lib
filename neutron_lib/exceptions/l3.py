@@ -71,3 +71,23 @@ class RouterExternalGatewayInUseByFloatingIp(exceptions.InUse):
 
 class RouterInterfaceAttachmentConflict(exceptions.Conflict):
     message = _("Error %(reason)s while attempting the operation.")
+
+
+class RouterNotCompatibleWithAgent(exceptions.NeutronException):
+    message = _("Router '%(router_id)s' is not compatible with this agent.")
+
+
+class FloatingIpSetupException(exceptions.NeutronException):
+    def __init__(self, message=None):
+        self.message = message
+        super(FloatingIpSetupException, self).__init__()
+
+
+class AbortSyncRouters(exceptions.NeutronException):
+    message = _("Aborting periodic_sync_routers_task due to an error.")
+
+
+class IpTablesApplyException(exceptions.NeutronException):
+    def __init__(self, message=None):
+        self.message = message
+        super(IpTablesApplyException, self).__init__()

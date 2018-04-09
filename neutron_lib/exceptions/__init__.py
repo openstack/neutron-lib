@@ -557,3 +557,227 @@ class PhysicalNetworkNameError(NeutronException):
 
 class TenantIdProjectIdFilterConflict(BadRequest):
     message = _("Both tenant_id and project_id passed as filters.")
+
+
+class SubnetPoolNotFound(NotFound):
+    message = _("Subnet pool %(subnetpool_id)s could not be found.")
+
+
+class StateInvalid(BadRequest):
+    message = _("Unsupported port state: %(port_state)s.")
+
+
+class DhcpPortInUse(InUse):
+    message = _("Port %(port_id)s is already acquired by another DHCP agent")
+
+
+class HostRoutesExhausted(BadRequest):
+    # NOTE(xchenum): probably make sense to use quota exceeded exception?
+    message = _("Unable to complete operation for %(subnet_id)s. "
+                "The number of host routes exceeds the limit %(quota)s.")
+
+
+class DNSNameServersExhausted(BadRequest):
+    # NOTE(xchenum): probably make sense to use quota exceeded exception?
+    message = _("Unable to complete operation for %(subnet_id)s. "
+                "The number of DNS nameservers exceeds the limit %(quota)s.")
+
+
+class FlatNetworkInUse(InUse):
+    message = _("Unable to create the flat network. "
+                "Physical network %(physical_network)s is in use.")
+
+
+class NoNetworkFoundInMaximumAllowedAttempts(ServiceUnavailable):
+    message = _("Unable to create the network. "
+                "No available network found in maximum allowed attempts.")
+
+
+class MalformedRequestBody(BadRequest):
+    message = _("Malformed request body: %(reason)s.")
+
+
+class InvalidAllocationPool(BadRequest):
+    message = _("The allocation pool %(pool)s is not valid.")
+
+
+class UnsupportedPortDeviceOwner(Conflict):
+    message = _("Operation %(op)s is not supported for device_owner "
+                "%(device_owner)s on port %(port_id)s.")
+
+
+class OverlappingAllocationPools(Conflict):
+    message = _("Found overlapping allocation pools: "
+                "%(pool_1)s %(pool_2)s for subnet %(subnet_cidr)s.")
+
+
+class OutOfBoundsAllocationPool(BadRequest):
+    message = _("The allocation pool %(pool)s spans "
+                "beyond the subnet cidr %(subnet_cidr)s.")
+
+
+class BridgeDoesNotExist(NeutronException):
+    message = _("Bridge %(bridge)s does not exist.")
+
+
+class QuotaResourceUnknown(NotFound):
+    message = _("Unknown quota resources %(unknown)s.")
+
+
+class QuotaMissingTenant(BadRequest):
+    message = _("Tenant-id was missing from quota request.")
+
+
+class InvalidQuotaValue(Conflict):
+    message = _("Change would make usage less than 0 for the following "
+                "resources: %(unders)s.")
+
+
+class InvalidSharedSetting(Conflict):
+    message = _("Unable to reconfigure sharing settings for network "
+                "%(network)s. Multiple tenants are using it.")
+
+
+class ExtensionsNotFound(NotFound):
+    message = _("Extensions not found: %(extensions)s.")
+
+
+class GatewayConflictWithAllocationPools(InUse):
+    message = _("Gateway ip %(ip_address)s conflicts with "
+                "allocation pool %(pool)s.")
+
+
+class GatewayIpInUse(InUse):
+    message = _("Current gateway ip %(ip_address)s already in use "
+                "by port %(port_id)s. Unable to update.")
+
+
+class NetworkVxlanPortRangeError(NeutronException):
+    message = _("Invalid network VXLAN port range: '%(vxlan_range)s'.")
+
+
+class VxlanNetworkUnsupported(NeutronException):
+    message = _("VXLAN network unsupported.")
+
+
+class DuplicatedExtension(NeutronException):
+    message = _("Found duplicate extension: %(alias)s.")
+
+
+class DriverCallError(MultipleExceptions):
+    def __init__(self, exc_list=None):
+        super(DriverCallError, self).__init__(exc_list or [])
+
+
+class DeviceIDNotOwnedByTenant(Conflict):
+    message = _("The following device_id %(device_id)s is not owned by your "
+                "tenant or matches another tenants router.")
+
+
+class InvalidCIDR(BadRequest):
+    message = _("Invalid CIDR %(input)s given as IP prefix.")
+
+
+class FailToDropPrivilegesExit(SystemExit):
+    """Exit exception raised when a drop privileges action fails."""
+    code = 99
+
+
+class NetworkIdOrRouterIdRequiredError(NeutronException):
+    message = _('Both network_id and router_id are None. '
+                'One must be provided.')
+
+
+class EmptySubnetPoolPrefixList(BadRequest):
+    message = _("Empty subnet pool prefix list.")
+
+
+class PrefixVersionMismatch(BadRequest):
+    message = _("Cannot mix IPv4 and IPv6 prefixes in a subnet pool.")
+
+
+class UnsupportedMinSubnetPoolPrefix(BadRequest):
+    message = _("Prefix '%(prefix)s' not supported in IPv%(version)s pool.")
+
+
+class IllegalSubnetPoolPrefixBounds(BadRequest):
+    message = _("Illegal prefix bounds: %(prefix_type)s=%(prefixlen)s, "
+                "%(base_prefix_type)s=%(base_prefixlen)s.")
+
+
+class IllegalSubnetPoolPrefixUpdate(BadRequest):
+    message = _("Illegal update to prefixes: %(msg)s.")
+
+
+class SubnetAllocationError(NeutronException):
+    message = _("Failed to allocate subnet: %(reason)s.")
+
+
+class AddressScopePrefixConflict(Conflict):
+    message = _("Failed to associate address scope: subnetpools "
+                "within an address scope must have unique prefixes.")
+
+
+class IllegalSubnetPoolAssociationToAddressScope(BadRequest):
+    message = _("Illegal subnetpool association: subnetpool %(subnetpool_id)s "
+                "cannot be associated with address scope "
+                "%(address_scope_id)s.")
+
+
+class IllegalSubnetPoolIpVersionAssociationToAddressScope(BadRequest):
+    message = _("Illegal subnetpool association: subnetpool %(subnetpool_id)s "
+                "cannot associate with address scope %(address_scope_id)s "
+                "because subnetpool ip_version is not %(ip_version)s.")
+
+
+class IllegalSubnetPoolUpdate(BadRequest):
+    message = _("Illegal subnetpool update : %(reason)s.")
+
+
+class MinPrefixSubnetAllocationError(BadRequest):
+    message = _("Unable to allocate subnet with prefix length %(prefixlen)s, "
+                "minimum allowed prefix is %(min_prefixlen)s.")
+
+
+class MaxPrefixSubnetAllocationError(BadRequest):
+    message = _("Unable to allocate subnet with prefix length %(prefixlen)s, "
+                "maximum allowed prefix is %(max_prefixlen)s.")
+
+
+class SubnetPoolDeleteError(BadRequest):
+    message = _("Unable to delete subnet pool: %(reason)s.")
+
+
+class SubnetPoolQuotaExceeded(OverQuota):
+    message = _("Per-tenant subnet pool prefix quota exceeded.")
+
+
+class NetworkSubnetPoolAffinityError(BadRequest):
+    message = _("Subnets hosted on the same network must be allocated from "
+                "the same subnet pool.")
+
+
+class ObjectActionError(NeutronException):
+    message = _('Object action %(action)s failed because: %(reason)s.')
+
+
+class CTZoneExhaustedError(NeutronException):
+    message = _("IPtables conntrack zones exhausted, iptables rules cannot "
+                "be applied.")
+
+
+class TenantQuotaNotFound(NotFound):
+    message = _("Quota for tenant %(tenant_id)s could not be found.")
+
+
+class MultipleFilterIDForIPFound(Conflict):
+    message = _("Multiple filter IDs for IP %(ip)s found.")
+
+
+class FilterIDForIPNotFound(NotFound):
+    message = _("Filter ID for IP %(ip)s could not be found.")
+
+
+class FailedToAddQdiscToDevice(NeutronException):
+    message = _("Failed to add %(direction)s qdisc "
+                "to device %(device)s.")

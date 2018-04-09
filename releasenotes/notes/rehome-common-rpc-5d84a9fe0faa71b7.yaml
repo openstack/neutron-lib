@@ -1,0 +1,15 @@
+---
+features:
+  - The ``neutron.common.rpc`` module is now available as ``neutron_lib.rpc``
+    and automatically exposes all exception modules from
+    ``neutron_lib.exceptions`` for RPC usage.
+  - Exceptions from ``neutron.common.exceptions`` are now available
+    in the ``neutron_lib.exceptions`` package whereupon exceptions are now
+    in their respective module (e.g. L3 exceptions are in
+    ``neutron_lib.exceptions.l3``, etc.).
+  - The ``neutron.tests.fake_notifier`` is now available as
+    ``neutron_lib.tests.unit.fake_notifier``.
+  - The ``neutron_lib.utils.runtime.list_package_modules`` function is now
+    available for listing all modules in a said package.
+  - The ``RPCFixture`` is now available in ``neutron_lib.fixtures`` for setting
+    up RPC based unit tests.
