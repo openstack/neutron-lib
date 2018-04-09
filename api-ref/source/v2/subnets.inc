@@ -16,6 +16,13 @@ IP version). Then users can specify the ``use_default_subnetpool``
 attribute when creating a subnet, instead of having to specify the
 ``subnetpool_id`` attribute referencing the default subnetpool.
 
+Subnet allocation extension
+===========================
+
+Subnet allocation extension (``subnet_allocation``) enables allocation of
+subnets from a subnet pool.
+
+
 Subnet service types extension
 ==============================
 
