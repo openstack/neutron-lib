@@ -56,6 +56,7 @@ from neutron_lib.api.definitions import portbindings_extended
 from neutron_lib.api.definitions import project_id
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import qos
+from neutron_lib.api.definitions import qos_bw_limit_direction
 from neutron_lib.api.definitions import qos_default
 from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import revisionifmatch
@@ -124,6 +125,7 @@ _ALL_API_DEFINITIONS = {
     project_id,
     provider_net,
     qos,
+    qos_bw_limit_direction,
     qos_default,
     qos_rule_type_details,
     revisionifmatch,
