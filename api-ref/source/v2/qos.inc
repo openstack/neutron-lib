@@ -104,6 +104,13 @@ The QoS default extension (``qos-default``) allows a per project
 default QoS policy by adding the ``is_default`` attribute
 to ``policy`` resources.
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
 
 List QoS policies
 =================
@@ -163,6 +170,7 @@ Response Parameters
    - name: name
    - created_at: created_at_resource
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -406,6 +414,7 @@ Response Parameters
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
    - direction: qos-rule-direction-response
+   - tags: tags
 
 Response Example
 ----------------
@@ -451,6 +460,7 @@ Response Parameters
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
    - direction: qos-rule-direction-response
+   - tags: tags
 
 Response Example
 ----------------
@@ -487,6 +497,7 @@ Response Parameters
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
    - direction: qos-rule-direction-response
+   - tags: tags
 
 Response Example
 ----------------
@@ -536,6 +547,7 @@ Response Parameters
    - id: qos_bandwidth_limit_rule-id
    - max_burst_kbps: max_burst_kbps-response
    - direction: qos-rule-direction-update-response
+   - tags: tags
 
 Response Example
 ----------------
@@ -605,6 +617,7 @@ Response Parameters
    - dscp_marking_rules: dscp_marking_rules
    - dscp_mark: dscp_mark-response
    - id: qos_dscp_marking_rule-id
+   - tags: tags
 
 Response Example
 ----------------
@@ -646,6 +659,7 @@ Response Parameters
    - dscp_marking_rule: dscp_marking_rule
    - dscp_mark: dscp_mark-response
    - id: qos_dscp_marking_rule-id
+   - tags: tags
 
 Response Example
 ----------------
@@ -680,6 +694,7 @@ Response Parameters
    - dscp_marking_rule: dscp_marking_rule
    - dscp_mark: dscp_mark
    - id: qos_dscp_marking_rule-id
+   - tags: tags
 
 Response Example
 ----------------
@@ -725,6 +740,7 @@ Response Parameters
    - dscp_marking_rule: dscp_marking_rule
    - dscp_mark: dscp_mark-response
    - id: qos_dscp_marking_rule-id
+   - tags: tags
 
 Response Example
 ----------------
@@ -802,6 +818,7 @@ Response Parameters
    - min_kbps: min_kbps-response
    - id: qos_minimum_bandwidth_rule-id
    - direction: qos-rule-direction-response
+   - tags: tags
 
 Response Example
 ----------------
@@ -845,6 +862,7 @@ Response Parameters
    - min_kbps: min_kbps-response
    - id: qos_minimum_bandwidth_rule-id
    - direction: qos-rule-direction-response
+   - tags: tags
 
 Response Example
 ----------------
@@ -880,6 +898,7 @@ Response Parameters
    - min_kbps: min_kbps-response
    - id: qos_minimum_bandwidth_rule-id
    - direction: qos-rule-direction-response
+   - tags: tags
 
 Response Example
 ----------------
@@ -927,6 +946,7 @@ Response Parameters
    - min_kbps: min_kbps-response
    - id: qos_minimum_bandwidth_rule-id
    - direction: qos-rule-direction-update-response
+   - tags: tags
 
 Response Example
 ----------------

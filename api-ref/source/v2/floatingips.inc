@@ -23,6 +23,13 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
 List floating IPs
 =================
 
@@ -96,6 +103,7 @@ Response Parameters
    - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
    - port_id: floatingip-port_id
+   - tags: tags
 
 Response Example
 ----------------
@@ -207,6 +215,7 @@ Response Parameters
    - floating_ip_address: floating_ip_address
    - port_id: floatingip-port_id
    - id: floatingip-id
+   - tags: tags
 
 Response Example
 ----------------
@@ -271,6 +280,7 @@ Response Parameters
    - floating_ip_address: floating_ip_address
    - port_id: floatingip-port_id
    - id: floatingip-id
+   - tags: tags
 
 Response Example
 ----------------
@@ -349,6 +359,7 @@ Response Parameters
    - dns_domain: dns_domain
    - dns_name: dns_name
    - port_details: floating_port_details
+   - tags: tags
 
 Response Example
 ----------------

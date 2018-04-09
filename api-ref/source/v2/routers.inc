@@ -68,6 +68,14 @@ router by introducing the ``service_type_id`` parameter that can be
 used to associate the router with an existing ``service-provider``,
 see `Service providers`_.
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
+
 List routers
 ============
 
@@ -135,6 +143,7 @@ Response Parameters
    - flavor_id: router-flavor_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -213,6 +222,7 @@ Response Parameters
    - flavor_id: router-flavor_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -271,6 +281,7 @@ Response Parameters
    - flavor_id: router-flavor_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -340,6 +351,7 @@ Response Parameters
    - flavor_id: router-flavor_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -462,6 +474,7 @@ Response Parameters
    - project_id: router-project_id-interface
    - port_id: router-port_id
    - network_id: router-network_id-interface
+   - tags: tags
 
 Response Example
 ----------------
@@ -536,6 +549,7 @@ Response Parameters
    - project_id: router-project_id-interface
    - port_id: router-port_id
    - network_id: router-network_id-interface
+   - tags: tags
 
 Response Example
 ----------------

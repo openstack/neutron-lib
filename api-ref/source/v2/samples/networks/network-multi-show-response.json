@@ -35,6 +35,7 @@
         "subnets": [
             "54d6f61d-db07-451c-9ab3-b9609b6b6f0b"
         ],
+        "tags": ["tag1,tag2"],
         "tenant_id": "4fd44f30292945e481c7b8a0c8908869",
         "updated_at": "2016-03-08T20:19:41",
         "vlan_transparent": false,

@@ -102,6 +102,14 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
+
 Show port details
 =================
 
@@ -161,6 +169,7 @@ Response Parameters
    - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
+   - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
 
@@ -280,6 +289,7 @@ Response Parameters
    - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
+   - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
 
@@ -410,6 +420,7 @@ Response Parameters
    - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
+   - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
 
@@ -464,6 +475,7 @@ Request
    - project_id: project_id-request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
+   - tags: tags
    - tenant_id: project_id-request
 
 Request Example
@@ -512,6 +524,7 @@ Response Parameters
    - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
+   - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
 
@@ -607,6 +620,7 @@ Response Parameters
    - qos_policy_id: qos_policy_id-port-response
    - security_groups: port-security_groups
    - status: port-status
+   - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
 

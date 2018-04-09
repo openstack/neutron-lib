@@ -17,6 +17,7 @@
                     "security_group_id": "85cc3048-abc3-43cc-89b3-377341426ac5",
                     "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "revision_number": 1,
+                    "tags": ["tag1,tag2"],
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
@@ -34,6 +35,7 @@
                     "security_group_id": "85cc3048-abc3-43cc-89b3-377341426ac5",
                     "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "revision_number": 2,
+                    "tags": ["tag1,tag2"],
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
@@ -51,6 +53,7 @@
                     "security_group_id": "85cc3048-abc3-43cc-89b3-377341426ac5",
                     "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "revision_number": 1,
+                    "tags": ["tag1,tag2"],
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
@@ -68,6 +71,7 @@
                     "security_group_id": "85cc3048-abc3-43cc-89b3-377341426ac5",
                     "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "revision_number": 1,
+                    "tags": ["tag1,tag2"],
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
@@ -78,6 +82,7 @@
             "revision_number": 8,
             "created_at": "2018-03-19T19:16:56Z",
             "updated_at": "2018-03-19T19:16:56Z",
+            "tags": ["tag1,tag2"],
             "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550"
         }
     ]

@@ -28,6 +28,14 @@ The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
+
 List trunks
 ===========
 
@@ -86,6 +94,7 @@ Response Parameters
    - project_id: project_id-request
    - sub_ports: sub_ports
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -161,6 +170,7 @@ Response Parameters
    - project_id: project_id
    - sub_ports: sub_ports
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -210,6 +220,7 @@ Response Parameters
    - project_id: project_id
    - sub_ports: sub_ports
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -258,6 +269,7 @@ Response Parameters
    - project_id: project_id
    - sub_ports: sub_ports
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -290,6 +302,7 @@ Response Parameters
    - port_id: port_id_subport
    - segmentation_type: segmentation_type
    - segmentation_id: segmentation_id
+   - tags: tags
 
 Response Example
 ----------------
@@ -345,6 +358,7 @@ Response Parameters
    - project_id: project_id
    - sub_ports: sub_ports
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -394,6 +408,7 @@ Response Parameters
    - project_id: project_id
    - sub_ports: sub_ports
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------

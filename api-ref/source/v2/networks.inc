@@ -126,6 +126,13 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
 VLAN transparency extension
 ===========================
 
@@ -195,6 +202,7 @@ Response Parameters
    - vlan_transparent: vlan_transparent
    - description: description
    - is_default: network_is_default
+   - tags: tags
 
 Response Example
 ----------------
@@ -298,6 +306,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - description: description
    - is_default: network_is_default
+   - tags: tags
 
 Response Example
 ----------------
@@ -425,6 +434,7 @@ Response Parameters
    - vlan_transparent: vlan_transparent
    - description: description
    - is_default: network_is_default
+   - tags: tags
 
 Response Example
 ----------------
@@ -535,6 +545,7 @@ Response Parameters
    - vlan_transparent: vlan_transparent
    - description: description
    - is_default: network_is_default
+   - tags: tags
 
 Response Example
 ----------------
@@ -634,6 +645,7 @@ Response Parameters
    - vlan_transparent: vlan_transparent
    - description: description
    - is_default: network_is_default
+   - tags: tags
 
 Response Example
 ----------------

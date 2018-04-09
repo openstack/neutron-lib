@@ -13,6 +13,14 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
+
 List security groups
 ====================
 
@@ -67,6 +75,7 @@ Response Parameters
    - name: name
    - description: description
    - security_group_rules: security_group_rules
+   - tags: tags
 
 Response Example
 ----------------
@@ -120,6 +129,7 @@ Response Parameters
    - name: name
    - description: description
    - security_group_rules: security_group_rules
+   - tags: tags
 
 Response Example
 ----------------
@@ -170,6 +180,7 @@ Response Parameters
    - name: name
    - description: description
    - security_group_rules: security_group_rules
+   - tags: tags
 
 Response Example
 ----------------
@@ -219,6 +230,7 @@ Response Parameters
    - name: name
    - description: description
    - security_group_rules: security_group_rules
+   - tags: tags
 
 Response Example
 ----------------

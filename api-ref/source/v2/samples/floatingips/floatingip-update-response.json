@@ -13,6 +13,7 @@
         "revision_number": 3,
         "router_id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
         "status": "ACTIVE",
+        "tags": ["tag1,tag2"],
         "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
         "updated_at": "2016-12-22T03:13:49Z",
         "port_details": {
