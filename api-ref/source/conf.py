@@ -25,6 +25,8 @@
 import os
 import sys
 
+from neutron_lib.version import version_info
+
 extensions = [
     'os_api_ref',
     'openstackdocstheme',
@@ -70,7 +72,6 @@ bug_tag = 'api-ref'
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-from neutron_lib.version import version_info
 # The full version, including alpha/beta/rc tags.
 release = version_info.release_string()
 # The short X.Y version.
