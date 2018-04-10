@@ -4353,6 +4353,18 @@ router-routes-request:
   in: body
   required: false
   type: array
+router-service_type_id:
+  description: |
+    The ID of the service type associated with the router.
+  in: body
+  required: true
+  type: string
+router-service_type_id-request:
+  description: |
+    The ID of the service type associated with the router.
+  in: body
+  required: false
+  type: string
 router-status:
   description: |
     The router status.
