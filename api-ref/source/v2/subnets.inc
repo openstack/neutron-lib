@@ -68,6 +68,8 @@ Request
    - ipv6_ra_mode: subnet-ipv6_ra_mode-query
    - revision_number: revision_number-query
    - segment_id: subnet-segment_id-query
+   - sort_dir: sort_dir
+   - sort_key: subnet-sort_key
    - subnetpool_id: subnet-subnetpool_id-query
    - tags: tags-query
    - tags-any: tags-any-query

@@ -72,6 +72,8 @@ Request
    - description: description-query
    - admin_state_up: admin_state_up-query
    - revision_number: revision_number-query
+   - sort_dir: sort_dir
+   - sort_key: router-sort_key
    - tags: tags-query
    - tags-any: tags-any-query
    - not-tags: not-tags-query

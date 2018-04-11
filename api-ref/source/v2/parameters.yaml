@@ -443,6 +443,21 @@ floatingip-router_id-query:
   in: query
   required: false
   type: string
+floatingip-sort_key:
+  description: |
+    Sorts by a floatingip attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``fixed_ip_address``
+    - ``floating_ip_address``
+    - ``floating_network_id``
+    - ``id``
+    - ``router_id``
+    - ``status``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 floatingip-status-query:
   description: |
     Filter the floating IP list result by the status of the floating IP.
@@ -703,6 +718,20 @@ revision_number-query:
   in: query
   required: false
   type: integer
+router-sort_key:
+  description: |
+    Sorts by a router attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``admin_state_up``
+    - ``flavor_id``
+    - ``id``
+    - ``name``
+    - ``status``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 router:external-query:
   description: |
     Filter the network list result based on whether the network has an
@@ -783,10 +812,49 @@ subnet-segment_id-query:
   in: query
   required: false
   type: string
+subnet-sort_key:
+  description: |
+    Sorts by a subnet attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``cidr``
+    - ``enable_dhcp``
+    - ``gateway_ip``
+    - ``id``
+    - ``ip_version``
+    - ``ipv6_address_mode``
+    - ``ipv6_ra_mode``
+    - ``name``
+    - ``network_id``
+    - ``segment_id``
+    - ``subnetpool_id``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 subnet-subnetpool_id-query:
   description: |
     Filter the subnet list result by the ID of the subnet pool associated
     with the subnet.
+  in: query
+  required: false
+  type: string
+subnetpool-sort_key:
+  description: |
+    Sorts by a subnetpool attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``address_scope_id``
+    - ``default_prefixlen``
+    - ``default_quota``
+    - ``id``
+    - ``ip_version``
+    - ``is_default``
+    - ``max_prefixlen``
+    - ``min_prefixlen``
+    - ``name``
+    - ``shared``
+    - ``tenant_id``
   in: query
   required: false
   type: string

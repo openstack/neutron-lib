@@ -191,6 +191,8 @@ Request
    - description: description-query
    - is_default: subnetpool_is_default-query
    - revision_number: revision_number-query
+   - sort_dir: sort_dir
+   - sort_key: subnetpool-sort_key
    - tags: tags-query
    - tags-any: tags-any-query
    - not-tags: not-tags-query
