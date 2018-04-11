@@ -349,6 +349,8 @@ Request
    - network_id: network_id-query
    - project_id: project_id-query
    - revision_number: revision_number-query
+   - sort_dir: sort_dir
+   - sort_key: port-sort_key
    - status: port-status-query
    - tenant_id: project_id-query
    - tags: tags-query
