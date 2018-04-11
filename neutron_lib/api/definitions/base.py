@@ -147,6 +147,7 @@ KNOWN_KEYWORDS = (
     'default',
     'enforce_policy',
     'is_visible',
+    'is_filter',
     'primary_key',
     'required_by_policy',
     'validate',

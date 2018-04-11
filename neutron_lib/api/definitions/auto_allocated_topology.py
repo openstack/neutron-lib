@@ -42,6 +42,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_post': True,
             'allow_put': True,
             'default': False,
+            'is_filter': True,
             'is_visible': True,
             'convert_to': converters.convert_to_boolean,
             'enforce_policy': True,

@@ -84,6 +84,7 @@ The following are the defined keys for attribute maps:
 ``validate``            specifies rules for validating data in the attribute
 ``convert_to``          transformation to apply to the value before it is returned
 ``convert_list_to``     if the value is a list, apply this transformation to the value before it is returned
+``is_filter``           the attribute can be used in ``GET`` requests as filter
 ``is_visible``          the attribute is returned in ``GET`` responses
 ``required_by_policy``  the attribute is required by the policy engine and should therefore be filled by the API layer even if not present in request body
 ``enforce_policy``      the attribute is actively part of the policy enforcing mechanism, ie: there might be rules which refer to this attribute

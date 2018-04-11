@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add a new keyword ``is_filter`` to attribute maps. This keyword indicates
+    that the attribute can be used for filtering result on list requests.

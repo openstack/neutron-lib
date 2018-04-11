@@ -49,7 +49,8 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_put': False,
             'convert_to': converters.convert_to_boolean,
             'default': constants.ATTR_NOT_SPECIFIED,
-            'is_visible': True
+            'is_visible': True,
+            'is_filter': True
         }
     }
 }

@@ -65,17 +65,20 @@ RESOURCE_ATTRIBUTE_MAP = {
                        'validate': {'type:string': NETWORK_TYPE_MAX_LEN},
                        'default': constants.ATTR_NOT_SPECIFIED,
                        'enforce_policy': True,
+                       'is_filter': True,
                        'is_visible': True},
         PHYSICAL_NETWORK: {'allow_post': True, 'allow_put': True,
                            'validate': {'type:string':
                                         PHYSICAL_NETWORK_MAX_LEN},
                            'default': constants.ATTR_NOT_SPECIFIED,
                            'enforce_policy': True,
+                           'is_filter': True,
                            'is_visible': True},
         SEGMENTATION_ID: {'allow_post': True, 'allow_put': True,
                           'convert_to': converters.convert_to_int,
                           'enforce_policy': True,
                           'default': constants.ATTR_NOT_SPECIFIED,
+                          'is_filter': True,
                           'is_visible': True},
     }
 }
