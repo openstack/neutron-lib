@@ -137,6 +137,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - sort_dir: sort_dir
+   - sort_key: rbac-sort_key
    - fields: fields
 
 Response Parameters

@@ -671,6 +671,19 @@ qos_is_default-query:
   in: query
   required: false
   type: boolean
+rbac-sort_key:
+  description: |
+    Sorts by a RBAC policy attribute. You can specify multiple pairs of sort
+    key and sort direction query parameters. The sort keys are limited to:
+
+    - ``action``
+    - ``id``
+    - ``object_id``
+    - ``target_tenant``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 remote_group_id-query:
   description: |
     Filter the security group rule list result by the ID of the remote group
@@ -710,10 +723,39 @@ router:external-query:
   in: query
   required: false
   type: boolean
+security_group-sort_key:
+  description: |
+    Sorts by a security group attribute. You can specify multiple pairs of
+    sort key and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``name``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 security_group_rule-security_group_id-query:
   description: |
     Filter the security group rule list result by the ID of the security group
     that associates with this security group rule.
+  in: query
+  required: false
+  type: string
+security_group_rule-sort_key:
+  description: |
+    Sorts by a security group rule attribute. You can specify multiple pairs of
+    sort key and sort direction query parameters. The sort keys are limited to:
+
+    - ``direction``
+    - ``ethertype``
+    - ``id``
+    - ``port_range_max``
+    - ``port_range_min``
+    - ``protocol``
+    - ``remote_group_id```
+    - ``remote_ip_prefix``
+    - ``security_group_id``
+    - ``tenant_id``
   in: query
   required: false
   type: string
