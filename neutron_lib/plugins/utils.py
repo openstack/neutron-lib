@@ -16,6 +16,7 @@ import collections
 import contextlib
 import hashlib
 
+from oslo_config import cfg
 from oslo_log import log as logging
 from oslo_utils import encodeutils
 from oslo_utils import excutils
@@ -331,3 +332,19 @@ def create_port(core_plugin, context, port, check_allow_post=True):
                                 check_allow_post=check_allow_post)
     return core_plugin.create_port(
         context, {port_apidef.RESOURCE_NAME: port_data})
+
+
+def get_deployment_physnet_mtu():
+    """Retrieves global physical network MTU setting.
+
+    Plugins should use this function to retrieve the MTU set by the operator
+    that is equal to or less than the MTU of their nodes' physical interfaces.
+    Note that it is the responsibility of the plugin to deduct the value of
+    any encapsulation overhead required before advertising it to VMs.
+
+    Note that this function depends on the global_physnet_mtu config option
+    being registered in the global CONF.
+
+    :returns: The global_physnet_mtu from the global CONF.
+    """
+    return cfg.CONF.global_physnet_mtu

@@ -1,0 +1,4 @@
+---
+features:
+  - The ``neutron.plugins.common.utils.get_deployment_physnet_mtu`` function
+    is now available in ``neutron_lib.plugins.utils`` with the same name.
