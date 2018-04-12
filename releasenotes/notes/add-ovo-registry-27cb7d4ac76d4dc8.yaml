@@ -1,0 +1,9 @@
+---
+features:
+  - The ``neutron_lib.utils.runtime.NamespacedPlugins`` class is now available
+    and wraps a stevedore namespace of plugins.
+  - The ``neutron_lib.objects.registry`` module is now available for loading
+    neutron versioned object classes registered as entry points with the
+    ``NEUTRON_OBJECT_NAMESPACE`` namespace therein. This global registry can
+    be used by consumers to access references to neutron versioned object
+    classes and instances so there's no need to import ``neutron.objects``.
