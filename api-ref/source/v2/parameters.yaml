@@ -4277,6 +4277,18 @@ router-external_gateway_info-request:
   in: body
   required: false
   type: object
+router-flavor_id:
+  description: |
+    The ID of the flavor associated with the router.
+  in: body
+  required: true
+  type: string
+router-flavor_id-optional:
+  description: |
+    The ID of the flavor associated with the router.
+  in: body
+  required: false
+  type: string
 router-ha:
   description: |
     ``true`` indicates a highly-available router.
