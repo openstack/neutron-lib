@@ -415,6 +415,19 @@ fixed_ips-query:
   in: query
   required: false
   type: array
+flavor-sort_key:
+  description: |
+    Sorts by a flavor attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``description``
+    - ``enabled``
+    - ``id``
+    - ``name``
+    - ``service_type``
+  in: query
+  required: false
+  type: string
 floating_ip_address-query:
   description: |
     Filter the floating IP list result by the floating IP address.
@@ -546,6 +559,32 @@ max_prefixlen-query:
   in: query
   required: false
   type: integer
+metering_label-sort_key:
+  description: |
+    Sorts by a metering label attribute. You can specify multiple pairs of
+    sort key and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``shared``
+    - ``name``
+    - ``description``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
+metering_label_rule-sort_key:
+  description: |
+    Sorts by a metering label attribute. You can specify multiple pairs of
+    sort key and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``metering_label_id``
+    - ``excluded``
+    - ``remote_ip_prefix``
+    - ``direction``
+  in: query
+  required: false
+  type: string
 min_kbps-query:
   description: |
     Filter the list result by the minimum KBPS (kilobits per second) value
@@ -887,6 +926,19 @@ segment-sort_key:
     - ``network_type``
     - ``physical_network``
     - ``segmentation_id``
+  in: query
+  required: false
+  type: string
+service_profile-sort_key:
+  description: |
+    Sorts by a service profile attribute. You can specify multiple pairs of
+    sort key and sort direction query parameters. The sort keys are limited to:
+
+    - ``description``
+    - ``driver``
+    - ``enabled``
+    - ``id``
+    - ``metainfo``
   in: query
   required: false
   type: string

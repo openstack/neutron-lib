@@ -42,6 +42,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - sort_dir: sort_dir
+   - sort_key: flavor-sort_key
    - fields: fields
 
 Response Parameters
@@ -338,6 +340,11 @@ Error response codes: 401
 
 Request
 -------
+
+.. rest_parameters:: parameters.yaml
+
+   - sort_dir: sort_dir
+   - sort_key: service_profile-sort_key
 
 Response Parameters
 -------------------
