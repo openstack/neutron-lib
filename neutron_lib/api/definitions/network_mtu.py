@@ -49,7 +49,7 @@ UPDATED_TIMESTAMP = "2015-03-25T10:00:00-00:00"
 RESOURCE_ATTRIBUTE_MAP = {
     network.COLLECTION_NAME: {
         MTU: {'allow_post': False, 'allow_put': False,
-              'is_visible': True, 'is_filter': True},
+              'is_visible': True, 'is_filter': True, 'is_sort_key': True},
     },
 }
 

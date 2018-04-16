@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add a new keyword ``is_sort_key`` to attribute maps. This keyword indicates
+    that the attribute can be used as a sort key for sorting list result.
