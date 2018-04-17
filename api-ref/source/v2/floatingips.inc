@@ -303,6 +303,12 @@ Request Example
 .. literalinclude:: samples/floatingips/floatingip-update-request.json
    :language: javascript
 
+Request Example (disassociate)
+------------------------------
+
+.. literalinclude:: samples/floatingips/floatingip-disassociate-request.json
+   :language: javascript
+
 Response Parameters
 -------------------
 
@@ -329,6 +335,12 @@ Response Example
 ----------------
 
 .. literalinclude:: samples/floatingips/floatingip-update-response.json
+   :language: javascript
+
+Response Example (disassociate)
+-------------------------------
+
+.. literalinclude:: samples/floatingips/floatingip-disassociate-response.json
    :language: javascript
 
 Delete floating IP
