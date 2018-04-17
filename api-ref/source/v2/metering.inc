@@ -70,10 +70,10 @@ Request
 
    - metering_label: metering_label
    - shared: metering_label-shared-request
-   - description: description
-   - name: name
-   - tenant_id: project_id
-   - project_id: project_id
+   - description: description-request
+   - name: name-request
+   - tenant_id: project_id-request
+   - project_id: project_id-request
 
 Request Example
 ---------------
@@ -207,7 +207,7 @@ Response Parameters
    - direction: direction
    - remote_ip_prefix: remote_ip_prefix
    - excluded : excluded
-   - metering_label_id: metering_label-id-response-body
+   - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
 
 Response Example
@@ -235,8 +235,8 @@ Request
    - metering_label_rule: metering_label_rule
    - remote_ip_prefix: remote_ip_prefix
    - direction: direction
-   - metering_label_id: metering_label-id-response-body
-   - excluded: excluded
+   - metering_label_id: metering_label-id-body
+   - excluded: excluded-request
 
 Request Example
 ---------------
@@ -253,7 +253,7 @@ Response Parameters
    - direction: direction
    - remote_ip_prefix: remote_ip_prefix
    - excluded : excluded
-   - metering_label_id: metering_label-id-response-body
+   - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
 
 Response Example
@@ -308,7 +308,7 @@ Response Paramters
    - direction: direction
    - remote_ip_prefix: remote_ip_prefix
    - excluded : excluded
-   - metering_label_id: metering_label-id-response-body
+   - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
 
 Response Example
