@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    Add a shim extension ``standard-attr-segment`` to indicate if segment
+    resource contains standard attributes.
