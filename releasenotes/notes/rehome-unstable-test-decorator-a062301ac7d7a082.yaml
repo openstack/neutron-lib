@@ -1,0 +1,4 @@
+---
+features:
+  - The ``unstable_test`` decorator from ``neutron.tests.base`` is now
+    available in neutron-lib in ``neutron_lib.utils.test``.
