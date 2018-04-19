@@ -133,6 +133,8 @@ Request
    - tags-any: tags-any-query
    - not-tags: not-tags-query
    - not-tags-any: not-tags-any-query
+   - sort_dir: sort_dir
+   - sort_key: qos-sort_key
    - fields: fields
 
 Response Parameters
@@ -374,6 +376,8 @@ Request
    - id: id-query
    - max_burst_kbps: max_burst_kbps-query
    - direction: qos-rule-direction-query
+   - sort_dir: sort_dir
+   - sort_key: qos_bandwidth_limit_rule-sort_key
 
 Response Parameters
 -------------------
@@ -573,6 +577,8 @@ Request
    - policy_id: qos-policy-id-path
    - dscp_mark: dscp_mark-query
    - id: id-query
+   - sort_dir: sort_dir
+   - sort_key: qos_dscp_marking_rule-sort_key
 
 Response Parameters
 -------------------
@@ -767,6 +773,8 @@ Request
    - min_kbps: min_kbps-query
    - id: id-query
    - direction: qos-rule-direction-query
+   - sort_dir: sort_dir
+   - sort_key: qos_minimum_bandwidth_rule-sort_key
 
 Response Parameters
 -------------------
