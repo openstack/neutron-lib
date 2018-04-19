@@ -198,3 +198,37 @@ class PlacementAPIClientFixture(fixtures.Fixture):
         self._mock_post.stop()
         self._mock_put.stop()
         self._mock_delete.stop()
+
+
+class DBRetryErrorsFixture(fixtures.Fixture):
+
+    def __init__(self, **retry_kwargs):
+        self._retry_kwargs = retry_kwargs
+        self._patchers = []
+
+    def _setUp(self):
+        for k, v in self._retry_kwargs.items():
+            patcher = mock.patch.object(db_api._retry_db_errors, k, new=v)
+            patcher.start()
+            self._patchers.append(patcher)
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        for p in self._patchers:
+            p.stop()
+
+
+class DBAPIContextManagerFixture(fixtures.Fixture):
+
+    def __init__(self, mock_context_manager=mock.ANY):
+        self.cxt_manager = (mock.Mock() if mock_context_manager == mock.ANY
+                            else mock_context_manager)
+        self._backup_mgr = None
+
+    def _setUp(self):
+        self._backup_mgr = db_api._CTX_MANAGER
+        db_api._CTX_MANAGER = self.cxt_manager
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        db_api._CTX_MANAGER = self._backup_mgr
