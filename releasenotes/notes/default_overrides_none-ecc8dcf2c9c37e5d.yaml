@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    A new flag can be used in API definition: ``default_overrides_none``.
+    When enabled, the default value for the attribute will
+    be used, including if the attribute was explicitly defined
+    as ``null``.

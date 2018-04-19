@@ -64,6 +64,7 @@ ASSERT_FUNCTIONS = {
     'primary_key': assert_true,
     'required_by_policy': assert_bool,
     'validate': assert_validator,
+    'default_overrides_none': assert_bool,
 }
 
 

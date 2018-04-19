@@ -152,4 +152,5 @@ KNOWN_KEYWORDS = (
     'primary_key',
     'required_by_policy',
     'validate',
+    'default_overrides_none',
 )
