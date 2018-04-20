@@ -1767,6 +1767,13 @@ ethertype:
 excluded:
   description: |
     Indicates whether to count the traffic of a
+    specific IP address with the ``remote_ip_prefix`` value.
+  in: body
+  required: true
+  type: boolean
+excluded-request:
+  description: |
+    Indicates whether to count the traffic of a
     specific IP address with the ``remote_ip_prefix`` value. Default
     is ``false``.
   in: body
@@ -3155,9 +3162,9 @@ metering_label-id:
   in: body
   required: true
   type: string
-metering_label-id-response-body:
+metering_label-id-body:
   description: |
-    The metering label ID to associate with this
+    The metering label ID associated with this
     metering rule.
   in: body
   required: true
@@ -3174,7 +3181,7 @@ metering_label-shared-request:
     Indicates whether this metering label is shared
     across all projects.
   in: body
-  required: true
+  required: false
   type: boolean
 metering_label_rule:
   description: |
