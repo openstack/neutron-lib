@@ -470,7 +470,7 @@ Any class use ``receives`` must be decorated with ``has_registry_receivers``.
 Testing with callbacks
 ----------------------
 
-A python `fixture <https://pypi.python.org/pypi/fixtures>`_ is provided for implementations that need to
+A python `fixture <https://pypi.org/project/fixtures>`_ is provided for implementations that need to
 unit test and mock the callback registry. This can be used for example, when your code publishes callback events
 that you need to verify. Consumers can use ``neutron_lib.tests.unit.callbacks.base.CallbackRegistryFixture``
 in their unit test classes with the ``useFixture()`` method passing along a ``CallbackRegistryFixture`` instance.
