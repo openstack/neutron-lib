@@ -23,6 +23,12 @@ The extra route extension (``extraroute``) extends ``router`` resources adding
 a ``routes`` attribute that contains an array of route objects. Each route
 object has a ``destination`` and ``nexthop`` attribute representing the route.
 
+HA capability for router extension (``l3-ha``)
+=======================================================
+
+The L3 HA extension ``l3-ha``, adds the ``ha`` attribute which enables
+HA capability to routers when set to ``true``.
+
 L3 flavors extension (``l3-flavors``)
 =====================================
 
@@ -283,6 +289,7 @@ Request
    - router: router
    - external_gateway_info: router-external_gateway_info
    - enable_snat: router-enable_snat
+   - ha: router-ha-request
    - name: name
    - admin_state_up: admin_state_up
    - external_fixed_ips: router-external_fixed_ips
