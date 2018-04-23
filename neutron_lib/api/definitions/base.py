@@ -153,4 +153,5 @@ KNOWN_KEYWORDS = (
     'required_by_policy',
     'validate',
     'default_overrides_none',
+    'dict_populate_defaults',
 )

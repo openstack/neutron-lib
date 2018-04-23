@@ -345,6 +345,8 @@ class Sentinel(object):
 
 ATTR_NOT_SPECIFIED = Sentinel()
 
+DICT_POPULATE_DEFAULTS = 'dict_populate_defaults'
+
 HEX_ELEM = '[0-9A-Fa-f]'
 UUID_PATTERN = '-'.join([HEX_ELEM + '{8}', HEX_ELEM + '{4}',
                          HEX_ELEM + '{4}', HEX_ELEM + '{4}',

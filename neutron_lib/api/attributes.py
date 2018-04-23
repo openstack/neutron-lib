@@ -70,6 +70,72 @@ def _fill_default(res_dict, attr_name, attr_spec):
                                        attr_spec.get('default'))
 
 
+def _dict_populate_defaults(attr_value, attr_spec):
+    # attr_value: dict
+    # attr_spec: an attribute specification dict e.g.
+    # {
+    #      ...
+    #      'dict_populate_defaults': True,
+    #      'default_overrides_none': ,
+    #      'validate': {
+    #                 'type:dict': {
+    #                     'foo': {
+    #                         'default': FOO_DEFAULT,
+    #                         'type:values': [42, 43]
+    #                     },
+    #                     'bar': {
+    #                         'default': BAR_DEFAULT,
+    #                         'convert_to': converters.convert_to_boolean
+    #                     }
+    #                     'baz': {
+    #                         'dict_populate_defaults': True
+    #                         'default_overrides_none': True,
+    #                         'type:dict': {
+    #                             'baz_bar: {
+    #                                 'default': 77,
+    #                                 'type:boolean'
+    #                             },
+    #                             'baz_foo': {
+    #                                 'default': 88,
+    #                                 'type:boolean'
+    #                             }
+    #                         }
+    #                     }
+    #             }
+    #      }
+    # }
+    if not attr_spec.get(constants.DICT_POPULATE_DEFAULTS):
+        return attr_value
+
+    if attr_value is None or attr_value is constants.ATTR_NOT_SPECIFIED:
+        attr_value = {}
+
+    for rule_type, rule_content in attr_spec['validate'].items():
+        # we only recursively apply defaults for dict rules
+        if 'dict' not in rule_type:
+            continue
+        for key, key_validator in rule_content.items():
+            validator_name, _dummy, validator_params = (
+                validators._extract_validator(key_validator))
+
+            # recurse if required:
+            if 'dict' in validator_name:
+                value = _dict_populate_defaults(
+                    attr_value.get(key),
+                    {
+                        constants.DICT_POPULATE_DEFAULTS: key_validator.get(
+                            constants.DICT_POPULATE_DEFAULTS),
+                        'validate': {validator_name: validator_params}
+                    }
+                )
+                if value is not None:
+                    attr_value[key] = value
+
+            _fill_default(attr_value, key, key_validator)
+
+    return attr_value
+
+
 class AttributeInfo(object):
     """Provides operations on a resource's attribute map.
 
@@ -122,10 +188,17 @@ class AttributeInfo(object):
         """
         for attr, attr_vals in self.attributes.items():
             if attr_vals['allow_post']:
+                value = _dict_populate_defaults(
+                    res_dict.get(attr, constants.ATTR_NOT_SPECIFIED),
+                    attr_vals)
+                if value is not constants.ATTR_NOT_SPECIFIED:
+                    res_dict[attr] = value
+
                 if 'default' not in attr_vals and attr not in res_dict:
                     msg = _("Failed to parse request. Required "
                             "attribute '%s' not specified") % attr
                     raise exc_cls(msg)
+
                 _fill_default(res_dict, attr, attr_vals)
             elif check_allow_post:
                 if attr in res_dict:
@@ -155,8 +228,8 @@ class AttributeInfo(object):
                 continue
             for rule in attr_vals['validate']:
                 validator = validators.get_validator(rule)
-                res = validator(res_dict[attr], attr_vals['validate'][rule])
-
+                res = validator(res_dict[attr],
+                                attr_vals['validate'][rule])
                 if res:
                     msg_dict = dict(attr=attr, reason=res)
                     msg = _("Invalid input for %(attr)s. "

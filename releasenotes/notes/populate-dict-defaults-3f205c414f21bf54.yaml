@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    A new ``dict_populate_defaults`` flag can be used in API definition for
+    a dictionary attribute, which will results in default values for the keys
+    to be filled in. This can also be used on values of a dictionary attribute
+    if they are dictionaries as well.

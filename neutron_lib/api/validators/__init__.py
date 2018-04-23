@@ -805,29 +805,39 @@ def validate_uuid_list(data, valid_values=None):
     return _validate_uuid_list(data, valid_values)
 
 
+def _extract_validator(key_validator):
+    # Find validator function in key validation spec
+    #
+    # TODO(salv-orlando): Structure of dict attributes should be improved
+    # to avoid iterating over items
+    for (k, v) in key_validator.items():
+        if k.startswith('type:'):
+            (validator_name, validator_params) = (k, v)
+            try:
+                return (validator_name,
+                        validators[validator_name],
+                        validator_params)
+            except KeyError:
+                raise UndefinedValidator(validator_name)
+    return None, None, None
+
+
 def _validate_dict_item(key, key_validator, data):
     # Find conversion function, if any, and apply it
     conv_func = key_validator.get('convert_to')
     if conv_func:
         data[key] = conv_func(data.get(key))
-    # Find validator function
-    # TODO(salv-orlando): Structure of dict attributes should be improved
-    # to avoid iterating over items
-    val_func = val_params = None
-    for (k, v) in key_validator.items():
-        if k.startswith('type:'):
-            # ask forgiveness, not permission
-            try:
-                val_func = validators[k]
-            except KeyError:
-                msg = _("Validator '%s' does not exist") % k
-                LOG.debug(msg)
-                return msg
-            val_params = v
-            break
-    # Process validation
-    if val_func:
-        return val_func(data.get(key), val_params)
+    try:
+        dummy_, val_func, val_params = _extract_validator(key_validator)
+        if val_func:
+            return val_func(data.get(key), val_params)
+        # NOTE(tmorin): here we silently omit to validate a key for which
+        # no type validator has been defined
+    except UndefinedValidator as e:
+        # NOTE(tmorin): Should we really return an API error on such
+        # an issue. Wouldn't InternalServer error be more natural ?
+        LOG.debug(e.message)
+        return e.message
 
 
 def validate_dict(data, key_specs=None):
@@ -1088,6 +1098,13 @@ validators = {'type:dict': validate_dict,
               'type:service_plugin_type': validate_service_plugin_type,
               'type:subnet_list_or_none': validate_subnet_list_or_none,
               }
+
+
+class UndefinedValidator(Exception):
+
+    def __init__(self, validator_name):
+        self.validator_name = validator_name
+        self.message = _("Validator '%s' does not exist") % self.validator_name
 
 
 def _to_validation_type(validation_type):

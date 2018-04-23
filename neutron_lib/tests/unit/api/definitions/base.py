@@ -28,7 +28,8 @@ def assert_bool(tester, attribute, attribute_dict, keyword, value):
 
 def assert_converter(tester, attribute, attribute_dict, keyword, value):
     if ('default' not in attribute_dict or
-            attribute_dict['default'] is constants.ATTR_NOT_SPECIFIED):
+            attribute_dict['default'] is constants.ATTR_NOT_SPECIFIED or
+            attribute_dict.get(constants.DICT_POPULATE_DEFAULTS)):
         return
     try:
         attribute_dict['convert_to'](attribute_dict['default'])
@@ -65,6 +66,7 @@ ASSERT_FUNCTIONS = {
     'required_by_policy': assert_bool,
     'validate': assert_validator,
     'default_overrides_none': assert_bool,
+    'dict_populate_defaults': assert_bool,
 }
 
 
