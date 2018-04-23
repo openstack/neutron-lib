@@ -1086,7 +1086,7 @@ validators = {'type:dict': validate_dict,
               'type:list_of_any_key_specs_or_none':
                   validate_any_key_specs_or_none,
               'type:service_plugin_type': validate_service_plugin_type,
-              'type:subnet_list_or_none': validate_subnet_list_or_none,
+              'type:list_of_subnets_or_none': validate_subnet_list_or_none,
               }
 
 

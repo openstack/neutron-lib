@@ -220,7 +220,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                     'is_visible': True},
         'peer_cidrs': {'allow_post': True, 'allow_put': True,
                        'convert_to': converters.convert_to_list,
-                       'validate': {'type:subnet_list_or_none': None},
+                       'validate': {'type:list_of_subnets_or_none': None},
                        'is_visible': True,
                        'default': None},
         'local_ep_group_id': {'allow_post': True, 'allow_put': True,
