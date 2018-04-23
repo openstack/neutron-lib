@@ -53,6 +53,8 @@ Request
    - fixed_ip_address: floatingip-fixed_ip_address-query
    - floating_ip_address: floating_ip_address-query
    - port_id: floatingip-port_id-query
+   - sort_dir: sort_dir
+   - sort_key: floatingip-sort_key
    - tags: tags-query
    - tags-any: tags-any-query
    - not-tags: not-tags-query
