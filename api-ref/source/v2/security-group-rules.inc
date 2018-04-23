@@ -45,6 +45,8 @@ Request
    - revision_number: revision_number-query
    - id: id-query
    - description: description-query
+   - sort_dir: sort_dir
+   - sort_key: security_group_rule-sort_key
    - fields: fields
 
 Response Parameters

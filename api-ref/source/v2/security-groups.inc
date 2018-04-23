@@ -38,6 +38,8 @@ Request
    - revision_number: revision_number-query
    - name: name-query
    - description: description-query
+   - sort_dir: sort_dir
+   - sort_key: security_group-sort_key
    - tags: tags-query
    - tags-any: tags-any-query
    - not-tags: not-tags-query
