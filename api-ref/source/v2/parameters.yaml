@@ -230,7 +230,7 @@ rbac_policy_id-path:
     The ID of the RBAC policy.
   in: path
   required: true
-  type: integer
+  type: string
 resource_id:
   description: |
     The ID of resource which the tag is set on.
@@ -3427,14 +3427,14 @@ object_id:
     a QoS ID.
   in: body
   required: true
-  type: integer
+  type: string
 object_type:
   description: |
     The type of the object that the RBAC policy affects. Types include
     ``qos-policy`` or ``network``.
   in: body
   required: true
-  type: integer
+  type: string
 operating_status:
   description: |
     The operating status of the load balancer.  This
@@ -4086,7 +4086,7 @@ rbac_policy_id:
     The ID of the RBAC policy.
   in: body
   required: true
-  type: integer
+  type: string
 remote_group_id:
   description: |
     The remote group UUID to associate with this
