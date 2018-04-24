@@ -56,6 +56,8 @@ Request Parameters
    - status: trunk-status-query
    - tenant_id: project_id-query
    - project_id: project_id-query
+   - sort_dir: sort_dir
+   - sort_key: trunk-sort_key
    - tags: tags-query
    - tags-any: tags-any-query
    - not-tags: not-tags-query

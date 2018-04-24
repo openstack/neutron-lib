@@ -632,6 +632,25 @@ not-tags-query:
   in: query
   required: false
   type: string
+port-sort_key:
+  description: |
+    Sorts by a port attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``admin_state_up``
+    - ``device_id``
+    - ``device_owner``
+    - ``id``
+    - ``ip_allocation``
+    - ``mac_address``
+    - ``name``
+    - ``network_id``
+    - ``project_id``
+    - ``status``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 port-status-query:
   description: |
     Filter the port list result by the port status.
@@ -857,6 +876,20 @@ security_group_rule-sort_key:
   in: query
   required: false
   type: string
+segment-sort_key:
+  description: |
+    Sorts by a segment attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``name``
+    - ``network_id``
+    - ``network_type``
+    - ``physical_network``
+    - ``segmentation_id``
+  in: query
+  required: false
+  type: string
 shared-query:
   description: |
     Admin-only. Filter the list result based on whether the resource is
@@ -988,6 +1021,21 @@ tags-query:
     A list of tags to filter the list result by.
     Resources that match all tags in this list will be returned.
     Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
+trunk-sort_key:
+  description: |
+    Sorts by a trunk attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``admin_state_up``
+    - ``id``
+    - ``name``
+    - ``port_id``
+    - ``project_id``
+    - ``status``
+    - ``tenant_id``
   in: query
   required: false
   type: string

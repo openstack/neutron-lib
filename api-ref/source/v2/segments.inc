@@ -149,6 +149,8 @@ Request
    - segmentation_id: provider:segmentation_id-query
    - name: name-query
    - description: description-query
+   - sort_dir: sort_dir
+   - sort_key: segment-sort_key
    - fields: fields
 
 Response Parameters
