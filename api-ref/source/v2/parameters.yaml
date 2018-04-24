@@ -485,6 +485,22 @@ ip_version-query:
   in: query
   required: false
   type: integer
+log-sort_key:
+  description: |
+    Sorts by a log attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``enabled``
+    - ``event``
+    - ``id``
+    - ``name``
+    - ``project_id``
+    - ``resource_id``
+    - ``resource_type``
+    - ``target_id``
+  in: query
+  required: false
+  type: string
 log_enabled-query:
   description: |
     Filter the log list result based on this log object is enabled (``true``)

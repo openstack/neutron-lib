@@ -42,6 +42,8 @@ Request
    - resource_id: resource_log_id-query
    - target_id: resource_target_log_id-query
    - enabled: log_enabled-query
+   - sort_dir: sort_dir
+   - sort_key: log-sort_key
    - fields: fields
 
 Response Parameters
