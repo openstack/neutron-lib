@@ -10,6 +10,8 @@
         "name": "net1",
         "admin_state_up": true,
         "dns_domain": "",
+        "ipv4_address_scope": null,
+        "ipv6_address_scope": null,
         "l2_adjacency": true,
         "mtu": 1500,
         "port_security_enabled": true,

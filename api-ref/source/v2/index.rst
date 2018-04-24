@@ -24,6 +24,7 @@ Layer 2 Networking
 ##################
 Layer 3 Networking
 ##################
+.. include:: address-scopes.inc
 .. include:: floatingips.inc
 .. include:: routers.inc
 .. include:: subnetpools.inc

@@ -9,6 +9,15 @@ Networks
 
 Lists, shows details for, creates, updates, and deletes networks.
 
+Address Scopes Extension
+========================
+
+The ``address-scope`` extension adds the ``ipv4_address_scope`` and
+``ipv6_address_scope`` attributes to networks. ``ipv4_address_scope``
+is the ID of the IPv4 address scope that the network is associated with.
+``ipv6_address_scope`` is the ID of the IPv6 address scope that the network
+is associated with.
+
 Auto Allocated Topology
 =======================
 
@@ -156,6 +165,8 @@ Response Parameters
    - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
+   - ipv4_address_scope: ipv4_address_scope
+   - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
@@ -258,6 +269,8 @@ Response Parameters
    - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
+   - ipv4_address_scope: ipv4_address_scope
+   - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
@@ -382,6 +395,8 @@ Response Parameters
    - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
+   - ipv4_address_scope: ipv4_address_scope
+   - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
@@ -490,6 +505,8 @@ Response Parameters
    - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
+   - ipv4_address_scope: ipv4_address_scope
+   - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name
@@ -587,6 +604,8 @@ Response Parameters
    - created_at: created_at_resource
    - dns_domain: dns_domain
    - id: network-id
+   - ipv4_address_scope: ipv4_address_scope
+   - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
    - mtu: mtu
    - name: network-name

@@ -1,0 +1,6 @@
+{
+    "address_scope": {
+        "name": "address-scope-ip4",
+        "shared": true
+    }
+}
