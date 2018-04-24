@@ -25,9 +25,6 @@ Module Reference
 
 .. toctree::
    :maxdepth: 1
-   :glob:
-
-   modules/*
 
 * :ref:`genindex`
 * :ref:`search`

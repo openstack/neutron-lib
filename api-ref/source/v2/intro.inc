@@ -91,12 +91,12 @@ The Networking API v2.0 always responds with the JSON data serialization
 format. The ``Accept`` header is ignored.
 
 Query extension
-    A ``.json`` extension can be added to the request URI. For example, the
-    ``.json`` extension in the following requests are equivalent:
+A ``.json`` extension can be added to the request URI. For example, the
+``.json`` extension in the following requests are equivalent:
 
-    - ``GET`` *publicURL*/networks
+- GET *publicURL*/networks
 
-    - ``GET`` *publicURL*/networks.json
+- GET *publicURL*/networks.json
 
 Tenant and project attributes in responses
 ------------------------------------------
