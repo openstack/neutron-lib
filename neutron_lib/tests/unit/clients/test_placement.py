@@ -24,7 +24,13 @@ from neutron_lib.tests import _base as base
 
 
 RESOURCE_PROVIDER_UUID = uuidutils.generate_uuid()
+RESOURCE_PROVIDER_GENERATION = 1
 RESOURCE_CLASS_NAME = 'resource_class_name'
+INVENTORY = {
+    RESOURCE_CLASS_NAME: {
+        'total': 42
+    }
+}
 
 
 class TestPlacementAPIClient(base.BaseTestCase):
@@ -34,17 +40,20 @@ class TestPlacementAPIClient(base.BaseTestCase):
         config = mock.Mock()
         config.region_name = 'region_name'
         self.openstack_api_version = (
-            placement.PLACEMENT_API_WITH_NESTED_RESOURCES)
+            placement.PLACEMENT_API_LATEST_SUPPORTED)
         self.placement_api_client = placement.PlacementAPIClient(
             config, self.openstack_api_version)
         self.placement_fixture = self.useFixture(
             fixture.PlacementAPIClientFixture(self.placement_api_client))
+        self.headers = {'OpenStack-API-Version': self.openstack_api_version}
 
     def test_create_resource_provider(self):
         self.placement_api_client.create_resource_provider(
             RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_post.assert_called_once_with(
-            '/resource_providers', RESOURCE_PROVIDER_UUID)
+            '/resource_providers',
+            RESOURCE_PROVIDER_UUID,
+            headers=self.headers)
 
     def test_delete_resource_provider(self):
         self.placement_api_client.delete_resource_provider(
@@ -53,11 +62,10 @@ class TestPlacementAPIClient(base.BaseTestCase):
             '/resource_providers/%s' % RESOURCE_PROVIDER_UUID)
 
     def test_get_resource_provider(self):
-        headers = {'OpenStack-API-Version': self.openstack_api_version}
         self.placement_api_client.get_resource_provider(RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_get.assert_called_once_with(
             '/resource_providers/%s' % RESOURCE_PROVIDER_UUID,
-            headers=headers)
+            headers=self.headers)
 
     def test_get_resource_provider_no_resource_provider(self):
         self.placement_fixture.mock_get.side_effect = ks_exc.NotFound()
@@ -66,24 +74,23 @@ class TestPlacementAPIClient(base.BaseTestCase):
                           RESOURCE_PROVIDER_UUID)
 
     def test_list_resource_providers(self):
-        headers = {'OpenStack-API-Version': self.openstack_api_version}
         filter_1 = {'name': 'name1', 'in_tree': 'tree1_uuid'}
         self.placement_api_client.list_resource_providers(**filter_1)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers', headers=headers, **filter_1)
+            '/resource_providers', headers=self.headers, **filter_1)
 
         filter_2 = {'member_of': ['aggregate_uuid'], 'uuid': 'uuid_1',
                     'resources': {'r_class1': 'value1'}}
         self.placement_fixture.mock_get.reset_mock()
         self.placement_api_client.list_resource_providers(**filter_2)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers', headers=headers, **filter_2)
+            '/resource_providers', headers=self.headers, **filter_2)
 
         filter_1.update(filter_2)
         self.placement_fixture.mock_get.reset_mock()
         self.placement_api_client.list_resource_providers(**filter_1)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers', headers=headers, **filter_1)
+            '/resource_providers', headers=self.headers, **filter_1)
 
     def test_list_resource_providers_placement_api_version_too_low(self):
         self.placement_api_client._target_version = (1, 1)
@@ -96,13 +103,24 @@ class TestPlacementAPIClient(base.BaseTestCase):
             self.placement_api_client.list_resource_providers,
             in_tree='tree1_uuid')
 
-    def test_create_inventory(self):
-        inventory = mock.ANY
-        self.placement_api_client.create_inventory(RESOURCE_PROVIDER_UUID,
-                                                   inventory)
-        self.placement_fixture.mock_post.assert_called_once_with(
+    def test_update_resource_provider_inventories(self):
+        expected_body = {
+            'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
+            'inventories': INVENTORY
+        }
+        self.placement_api_client.update_resource_provider_inventories(
+            RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_PROVIDER_GENERATION)
+        self.placement_fixture.mock_put.assert_called_once_with(
             '/resource_providers/%s/inventories' % RESOURCE_PROVIDER_UUID,
-            inventory)
+            expected_body)
+
+    def test_update_resource_provider_inventories_no_rp(self):
+        self.placement_fixture.mock_put.side_effect = ks_exc.NotFound()
+
+        self.assertRaises(
+            n_exc.PlacementResourceProviderNotFound,
+            self.placement_api_client.update_resource_provider_inventories,
+            RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_PROVIDER_GENERATION)
 
     def test_get_inventory(self):
         self.placement_api_client.get_inventory(RESOURCE_PROVIDER_UUID,
@@ -136,38 +154,50 @@ class TestPlacementAPIClient(base.BaseTestCase):
                           self.placement_api_client.get_inventory,
                           RESOURCE_PROVIDER_UUID, RESOURCE_CLASS_NAME)
 
-    def test_update_inventory(self):
-        inventory = mock.ANY
-        self.placement_api_client.update_inventory(
-            RESOURCE_PROVIDER_UUID, inventory, RESOURCE_CLASS_NAME)
+    def test_update_resource_provider_inventory(self):
+        expected_body = {
+            'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
+        }
+        expected_body.update(INVENTORY)
+        self.placement_api_client.update_resource_provider_inventory(
+            RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_CLASS_NAME,
+            resource_provider_generation=1)
         self.placement_fixture.mock_put.assert_called_once_with(
             '/resource_providers/%(rp_uuid)s/inventories/%(rc_name)s' %
             {'rp_uuid': RESOURCE_PROVIDER_UUID,
              'rc_name': RESOURCE_CLASS_NAME},
-            inventory)
+            expected_body)
 
-    def test_update_inventory_conflict_exception(self):
-        inventory = mock.ANY
+    def test_update_resource_inventory_inventory_conflict_exception(self):
         self.placement_fixture.mock_put.side_effect = ks_exc.Conflict()
-        self.assertRaises(n_exc.PlacementInventoryUpdateConflict,
-                          self.placement_api_client.update_inventory,
-                          RESOURCE_PROVIDER_UUID, inventory,
-                          RESOURCE_CLASS_NAME)
+        self.assertRaises(
+            n_exc.PlacementInventoryUpdateConflict,
+            self.placement_api_client.update_resource_provider_inventory,
+            RESOURCE_PROVIDER_UUID, INVENTORY,
+            RESOURCE_CLASS_NAME, resource_provider_generation=1)
+
+    def test_update_resource_provider_inventory_not_found(self):
+        # Test the resource provider not found case
+        self.placement_fixture.mock_put.side_effect = ks_exc.NotFound(
+            details="No resource provider with uuid")
+        self.assertRaises(
+            n_exc.PlacementResourceNotFound,
+            self.placement_api_client.update_resource_provider_inventory,
+            RESOURCE_PROVIDER_UUID, INVENTORY,
+            RESOURCE_CLASS_NAME, RESOURCE_PROVIDER_GENERATION)
 
     def test_associate_aggregates(self):
-        headers = {'OpenStack-API-Version': self.openstack_api_version}
         self.placement_api_client.associate_aggregates(RESOURCE_PROVIDER_UUID,
                                                        mock.ANY)
         self.placement_fixture.mock_put.assert_called_once_with(
             '/resource_providers/%s/aggregates' % RESOURCE_PROVIDER_UUID,
-            mock.ANY, headers=headers)
+            mock.ANY, headers=self.headers)
 
     def test_list_aggregates(self):
-        headers = {'OpenStack-API-Version': self.openstack_api_version}
         self.placement_api_client.list_aggregates(RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_get.assert_called_once_with(
             '/resource_providers/%s/aggregates' % RESOURCE_PROVIDER_UUID,
-            headers=headers)
+            headers=self.headers)
 
     def test_list_aggregates_no_resource_provider(self):
         self.placement_fixture.mock_get.side_effect = ks_exc.NotFound()

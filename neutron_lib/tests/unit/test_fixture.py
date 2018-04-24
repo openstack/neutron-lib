@@ -139,8 +139,10 @@ class PlacementAPIClientFixtureTestCase(base.BaseTestCase):
         p_fixture.mock_post.assert_called_once()
 
     def test_put(self):
+        inventory = {'total': 42}
         p_client, p_fixture = self._create_client_and_fixture()
-        p_client.update_inventory('resource', mock.ANY, 'class_name')
+        p_client.update_resource_provider_inventory('resource', inventory,
+                                                    'class_name', 1)
         p_fixture.mock_put.assert_called_once()
 
     def test_delete(self):
