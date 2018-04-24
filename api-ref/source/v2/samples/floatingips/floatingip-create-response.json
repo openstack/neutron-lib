@@ -14,6 +14,15 @@
         "dns_name": "myfip",
         "created_at": "2016-12-21T01:36:04Z",
         "updated_at": "2016-12-21T01:36:04Z",
-        "revision_number": 1
+        "revision_number": 1,
+        "port_details": {
+            "status": "ACTIVE",
+            "name": "",
+            "admin_state_up": true,
+            "network_id": "02dd8479-ef26-4398-a102-d19d0a7b3a1f",
+            "device_owner": "compute:nova",
+            "mac_address": "fa:16:3e:b1:3b:30",
+            "device_id": "8e3941b4-a6e9-499f-a1ac-2a4662025cba"
+        }
     }
 }

@@ -28,6 +28,7 @@ from neutron_lib.api.definitions import external_net
 from neutron_lib.api.definitions import extra_dhcp_opt
 from neutron_lib.api.definitions import extraroute
 from neutron_lib.api.definitions import fip64
+from neutron_lib.api.definitions import fip_port_details
 from neutron_lib.api.definitions import firewall
 from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
@@ -100,6 +101,7 @@ _ALL_API_DEFINITIONS = {
     firewall,
     firewall_v2,
     firewallrouterinsertion,
+    fip_port_details,
     flavors,
     ip_allocation,
     ip_substring_port_filtering,

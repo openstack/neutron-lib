@@ -10,6 +10,13 @@ attributes to floating IPs allowing them to be specified at creation time.
 The data in these attributes will be published in an external DNS service
 when Neutron is configured to integrate with such a service.
 
+Floating IP port details
+========================
+
+The ``fip-port-details`` extension adds the ``port_details`` attribute to
+floating IPs. The value of this attribute contains information of the
+associated port.
+
 List floating IPs
 =================
 
@@ -78,6 +85,7 @@ Response Parameters
    - description: description
    - dns_domain: dns_domain
    - dns_name: dns_name
+   - port_details: floating_port_details
    - floating_network_id: floating_network_id
    - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -182,6 +190,7 @@ Response Parameters
    - description: description
    - dns_domain: dns_domain
    - dns_name: dns_name
+   - port_details: floating_port_details
    - tenant_id: project_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
@@ -245,6 +254,7 @@ Response Parameters
    - description: description
    - dns_domain: dns_domain
    - dns_name: dns_name
+   - port_details: floating_port_details
    - tenant_id: project_id
    - created_at: created_at_resource
    - updated_at: updated_at_resource
@@ -332,6 +342,7 @@ Response Parameters
    - description: description
    - dns_domain: dns_domain
    - dns_name: dns_name
+   - port_details: floating_port_details
 
 Response Example
 ----------------

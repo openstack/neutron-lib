@@ -2691,6 +2691,17 @@ floating_network_id:
   in: body
   required: true
   type: string
+floating_port_details:
+  description: |
+    The information of the port that this floating IP associates with.
+    In particular, if the floating IP is associated with a port, this field
+    contains some attributes of the associated port, including ``name``,
+    ``network_id``, ``mac_address``, ``admin_state_up``, ``status``,
+    ``device_id`` and ``device_owner``. If the floating IP is not associated
+    with a port, this field is ``null``.
+  in: body
+  required: true
+  type: string
 floatingip:
   description: |
     A ``floatingip`` object. When you associate a

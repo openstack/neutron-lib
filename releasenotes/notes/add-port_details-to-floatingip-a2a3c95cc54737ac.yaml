@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add ``fip-port-details`` API extension. This extension add ``port_details``
+    attribute to the Floating IP resource.
