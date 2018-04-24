@@ -695,6 +695,41 @@ qos-shared-query:
   in: query
   required: false
   type: boolean
+qos-sort_key:
+  description: |
+    Sorts by a QOS policy attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``name``
+    - ``project_id``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
+qos_bandwidth_limit_rule-sort_key:
+  description: |
+    Sorts by a bandwidth limit rule attribute. You can specify multiple pairs
+    of sort key and sort direction query parameters. The sort keys are limited
+    to:
+
+    - ``direction``
+    - ``id``
+    - ``max_burst_kbps``
+    - ``max_kbps``
+  in: query
+  required: false
+  type: string
+qos_dscp_marking_rule-sort_key:
+  description: |
+    Sorts by a DSCP marking rule attribute. You can specify multiple pairs of
+    sort key and sort direction query parameters. The sort keys are limited to:
+
+    - ``dscp_mark``
+    - ``id``
+  in: query
+  required: false
+  type: string
 qos_is_default-query:
   description: |
     Filter the QoS policy list result based on whether this policy is the
@@ -702,6 +737,18 @@ qos_is_default-query:
   in: query
   required: false
   type: boolean
+qos_minimum_bandwidth_rule-sort_key:
+  description: |
+    Sorts by a minimum bandwidth rule attribute. You can specify multiple pairs
+    of sort key and sort direction query parameters. The sort keys are limited
+    to:
+
+    - ``direction``
+    - ``id``
+    - ``min_kbps``
+  in: query
+  required: false
+  type: string
 rbac-sort_key:
   description: |
     Sorts by a RBAC policy attribute. You can specify multiple pairs of sort
