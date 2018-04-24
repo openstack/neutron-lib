@@ -1,0 +1,14 @@
+---
+features:
+  - The public functions of ``neutron.db._model_query`` are now available in
+    ``neutron_lib.db.model_query`` with the same name. While these modules can
+    be used, forward looking projects should start moving to versioned objects
+    and after which point we can remove this module.
+  - A new fixture named ``DBQueryHooksFixture`` is provided for testing
+    purposes allowing consumers to patch-out the model_query filter hooks.
+  - The ``make_weak_ref`` and ``resolve_ref`` functions from neutron are now
+    available in ``neutron_lib.utils.helpers``.
+  - The ``TenantIdProjectIdFilterConflict`` exception is now available in
+    ``neutron_lib.exceptions``.
+  - The ``neutron.objects.utils`` module is now available in
+    ``neutron_lib.objects.utils``.

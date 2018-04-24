@@ -21,6 +21,7 @@ from neutron_lib.callbacks import manager
 from neutron_lib.callbacks import registry
 from neutron_lib.db import api as db_api
 from neutron_lib.db import model_base
+from neutron_lib.db import model_query
 from neutron_lib.plugins import directory
 
 
@@ -232,3 +233,14 @@ class DBAPIContextManagerFixture(fixtures.Fixture):
 
     def _restore(self):
         db_api._CTX_MANAGER = self._backup_mgr
+
+
+class DBQueryHooksFixture(fixtures.Fixture):
+
+    def _setUp(self, query_hooks=None):
+        self._backup = model_query._model_query_hooks
+        model_query._model_query_hooks = query_hooks or {}
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        model_query._model_query_hooks = self._backup
