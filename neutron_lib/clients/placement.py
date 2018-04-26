@@ -78,6 +78,8 @@ class PlacementAPIClient(object):
         self._conf = conf
         self._ks_filter = {'service_type': 'placement',
                            'region_name': self._conf.placement.region_name}
+        self._api_version_header = {API_VERSION_REQUEST_HEADER:
+                                    self._openstack_api_version}
         self._client = None
 
     def _create_client(self):
@@ -92,19 +94,32 @@ class PlacementAPIClient(object):
             self._conf, 'placement', auth=auth_plugin,
             additional_headers={'accept': 'application/json'})
 
+    def _extend_header_with_api_version(self, **kwargs):
+        headers = kwargs.get('headers', {})
+        if API_VERSION_REQUEST_HEADER not in headers:
+            if 'headers' not in kwargs:
+                kwargs['headers'] = self._api_version_header
+            else:
+                kwargs['headers'].update(self._api_version_header)
+        return kwargs
+
     def _get(self, url, **kwargs):
+        kwargs = self._extend_header_with_api_version(**kwargs)
         return self._client.get(url, endpoint_filter=self._ks_filter,
                                 **kwargs)
 
     def _post(self, url, data, **kwargs):
+        kwargs = self._extend_header_with_api_version(**kwargs)
         return self._client.post(url, json=data,
                                  endpoint_filter=self._ks_filter, **kwargs)
 
     def _put(self, url, data, **kwargs):
+        kwargs = self._extend_header_with_api_version(**kwargs)
         return self._client.put(url, json=data,
                                 endpoint_filter=self._ks_filter, **kwargs)
 
     def _delete(self, url, **kwargs):
+        kwargs = self._extend_header_with_api_version(**kwargs)
         return self._client.delete(url, endpoint_filter=self._ks_filter,
                                    **kwargs)
 
@@ -116,9 +131,7 @@ class PlacementAPIClient(object):
                                   (required) and the uuid (required).
         """
         url = '/resource_providers'
-        self._post(url, resource_provider,
-                   headers={API_VERSION_REQUEST_HEADER:
-                            self._openstack_api_version})
+        self._post(url, resource_provider)
 
     @_check_placement_api_available
     def delete_resource_provider(self, resource_provider_uuid):
@@ -141,8 +154,7 @@ class PlacementAPIClient(object):
         """
         url = '/resource_providers/%s' % resource_provider_uuid
         try:
-            return self._get(url, headers={API_VERSION_REQUEST_HEADER:
-                                           self._openstack_api_version}).json()
+            return self._get(url).json()
         except ks_exc.NotFound:
             raise n_exc.PlacementResourceProviderNotFound(
                 resource_provider=resource_provider_uuid)
@@ -191,9 +203,7 @@ class PlacementAPIClient(object):
             filters['in_tree'] = in_tree
         if uuid:
             filters['uuid'] = uuid
-        return self._get(url, headers={API_VERSION_REQUEST_HEADER:
-                                       self._openstack_api_version},
-                         **filters).json()
+        return self._get(url, **filters).json()
 
     @_check_placement_api_available
     def update_resource_provider_inventories(
@@ -236,6 +246,48 @@ class PlacementAPIClient(object):
             raise n_exc.PlacementResourceProviderGenerationConflict(
                 resource_provider=resource_provider_uuid,
                 generation=resource_provider_generation)
+
+    @_check_placement_api_available
+    def delete_resource_provider_inventories(self, resource_provider_uuid):
+        """Delete all inventory records for the resource provider.
+
+        :param resource_provider_uuid: UUID of the resource provider.
+        :raises PlacementResourceProviderNotFound: If the resource provider
+                                                   is not found.
+        """
+        url = '/resource_providers/%s/inventories' % (
+            resource_provider_uuid)
+        try:
+            self._delete(url)
+        except ks_exc.NotFound as e:
+            if "No resource provider with uuid" in e.details:
+                raise n_exc.PlacementResourceProviderNotFound(
+                    resource_provider=resource_provider_uuid)
+            else:
+                raise
+
+    @_check_placement_api_available
+    def delete_resource_provider_inventory(self, resource_provider_uuid,
+                                           resource_class):
+        """Delete inventory of the resource class for a resource provider.
+
+        :param resource_provider_uuid: UUID of the resource provider.
+        :param resource_class: The name of the resource class
+        """
+        url = '/resource_providers/%s/inventories/%s' % (
+            resource_provider_uuid, resource_class)
+        try:
+            self._delete(url)
+        except ks_exc.NotFound as e:
+            if "No resource provider with uuid" in e.details:
+                raise n_exc.PlacementResourceProviderNotFound(
+                    resource_provider=resource_provider_uuid)
+            elif "No inventory of class" in e.details:
+                raise n_exc.PlacementInventoryNotFound(
+                    resource_provider=resource_provider_uuid,
+                    resource_class=resource_class)
+            else:
+                raise
 
     @_check_placement_api_available
     def get_inventory(self, resource_provider_uuid, resource_class):
@@ -301,9 +353,7 @@ class PlacementAPIClient(object):
                            provider.
         """
         url = '/resource_providers/%s/aggregates' % resource_provider_uuid
-        self._put(url, aggregates,
-                  headers={API_VERSION_REQUEST_HEADER:
-                           self._openstack_api_version})
+        self._put(url, aggregates)
 
     @_check_placement_api_available
     def list_aggregates(self, resource_provider_uuid):
@@ -315,9 +365,155 @@ class PlacementAPIClient(object):
         """
         url = '/resource_providers/%s/aggregates' % resource_provider_uuid
         try:
-            return self._get(
-                url, headers={API_VERSION_REQUEST_HEADER:
-                              self._openstack_api_version}).json()
+            return self._get(url).json()
         except ks_exc.NotFound:
             raise n_exc.PlacementAggregateNotFound(
                 resource_provider=resource_provider_uuid)
+
+    @_check_placement_api_available
+    def list_traits(self):
+        """List all traits."""
+        url = '/traits'
+        return self._get(url).json()
+
+    @_check_placement_api_available
+    def get_trait(self, name):
+        """Check if a given trait exists
+
+        :param name: name of the trait to check.
+        :raises PlacementTraitNotFound: If the trait name not found.
+        """
+        url = '/traits/%s' % name
+        try:
+            return self._get(url)
+        except ks_exc.NotFound:
+            raise n_exc.PlacementTraitNotFound(trait=name)
+
+    @_check_placement_api_available
+    def update_trait(self, name):
+        """Insert a single custom trait.
+
+        :param name: name of the trait to create.
+        """
+        url = '/traits/%s' % (name)
+        return self._put(url, None)
+
+    @_check_placement_api_available
+    def delete_trait(self, name):
+        """Delete the specified trait.
+
+        :param name: the name of the trait to be deleted.
+        """
+        url = '/traits/%s' % (name)
+        try:
+            self._delete(url)
+        except ks_exc.NotFound:
+            raise n_exc.PlacementTraitNotFound(trait=name)
+
+    @_check_placement_api_available
+    def update_resource_provider_traits(
+            self, resource_provider_uuid, traits,
+            resource_provider_generation):
+        """Update resource provider traits
+
+        :param resource_provider_uuid: UUID of the resource provider for which
+                                       to set the traits
+        :param traits: a list of traits.
+        :param resource_provider_generation: The generation of the resource
+                                             provider.
+        :raises PlacementResourceProviderNotFound: If the resource provider
+                                                   is not found.
+        :raises PlacementTraitNotFound: If any of the specified traits are not
+                                        valid.
+        """
+        url = '/resource_providers/%s/traits' % (resource_provider_uuid)
+        body = {
+            'resource_provider_generation': resource_provider_generation,
+            'traits': traits
+        }
+        try:
+            return self._put(url, body).json()
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceProviderNotFound(
+                resource_provider=resource_provider_uuid)
+        except ks_exc.BadRequest:
+            raise n_exc.PlacementTraitNotFound(trait=traits)
+
+    @_check_placement_api_available
+    def list_resource_provider_traits(self, resource_provider_uuid):
+        """List all traits associated with a resource provider
+
+        :param resource_provider_uuid: UUID of the resource provider for which
+                                       the traits will be listed
+        :raises PlacementResourceProviderNotFound: If the resource provider
+                                                   is not found.
+        """
+        url = '/resource_providers/%s/traits' % (resource_provider_uuid)
+        try:
+            return self._get(url).json()
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceProviderNotFound(
+                resource_provider=resource_provider_uuid)
+
+    @_check_placement_api_available
+    def delete_resource_provider_traits(self, resource_provider_uuid):
+        """Delete resource provider traits.
+
+        :param resource_provider_uuid: The UUID of the resource provider for
+                                       which to delete all the traits.
+        """
+        url = '/resource_providers/%s/traits' % (resource_provider_uuid)
+        try:
+            self._delete(url)
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceProviderNotFound(
+                resource_provider=resource_provider_uuid)
+
+    @_check_placement_api_available
+    def list_resource_classes(self):
+        """List resource classes"""
+        url = '/resource_classes'
+        return self._get(url).json()
+
+    @_check_placement_api_available
+    def get_resource_class(self, name):
+        """Show resource class.
+
+        :param name: The name of the resource class to show
+        """
+        url = '/resource_classes/%s' % (name)
+        try:
+            return self._get(url).json()
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceClassNotFound(resource_class=name)
+
+    @_check_placement_api_available
+    def create_resource_class(self, name):
+        """Create a custom resource class
+
+        :param name: the name of the resource class
+        """
+        url = '/resource_classes'
+        body = {'name': name}
+        self._post(url, body)
+
+    @_check_placement_api_available
+    def update_resource_class(self, name):
+        """Create or validate the existence of the resource custom class.
+
+        :param name: the name of the resource class to be updated or validated
+        """
+        url = '/resource_classes/%s' % name
+        self._put(url)
+
+    @_check_placement_api_available
+    def delete_resource_class(self, name):
+        """Delete a custom resource class.
+
+        :param name: The name of the resource class to be deleted.
+        """
+        url = '/resource_classes/%s' % (name)
+        try:
+            self._delete(url)
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceClassNotFound(resource_class=name)
