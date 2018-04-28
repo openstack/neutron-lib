@@ -31,6 +31,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - sort_dir: sort_dir
+   - sort_key: metering_label-sort_key
    - fields: fields
 
 Response Parameters
@@ -196,6 +198,8 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - sort_dir: sort_dir
+   - sort_key: metering_label_rule-sort_key
    - fields: fields
 
 Response Parameters
