@@ -1,0 +1,5 @@
+---
+features:
+  - New ``PORT_BINDING``, ``ACTIVATE`` and ``DEACTIVATE`` definitions have been
+    added to ``neutron_lib.agent.topics``, to enable plug-ins to notify agents
+    when a port binding has been activated or de-activated.

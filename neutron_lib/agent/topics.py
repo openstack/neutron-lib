@@ -15,12 +15,14 @@
 
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import port
+from neutron_lib.api.definitions import portbindings_extended
 from neutron_lib.api.definitions import subnet
 
 
 NETWORK = network.RESOURCE_NAME
 SUBNET = subnet.RESOURCE_NAME
 PORT = port.RESOURCE_NAME
+PORT_BINDING = portbindings_extended.RESOURCE_NAME
 SECURITY_GROUP = 'security_group'
 L2POPULATION = 'l2population'
 DVR = 'dvr'
@@ -29,6 +31,8 @@ RESOURCES = 'resources'
 CREATE = 'create'
 DELETE = 'delete'
 UPDATE = 'update'
+ACTIVATE = 'activate'
+DEACTIVATE = 'deactivate'
 
 AGENT = 'q-agent-notifier'
 PLUGIN = 'q-plugin'
