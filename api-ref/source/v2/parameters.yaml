@@ -671,6 +671,21 @@ not-tags-query:
   in: query
   required: false
   type: string
+object_id-query:
+  description: |
+    Filter the RBAC policy list result by the ID of the ``object_type``
+    resource. An ``object_type`` of ``network`` returns a network ID and
+    an ``object_type`` of ``qos-policy`` returns a QoS policy ID.
+  in: query
+  required: false
+  type: string
+object_type-query:
+  description: |
+    Filter the RBAC policy list result by the type of the object that the
+    RBAC policy affects. Types include ``qos-policy`` or ``network``.
+  in: query
+  required: false
+  type: string
 port-sort_key:
   description: |
     Sorts by a port attribute. You can specify multiple pairs of sort key
@@ -823,6 +838,13 @@ rbac-sort_key:
     - ``object_id``
     - ``target_tenant``
     - ``tenant_id``
+  in: query
+  required: false
+  type: string
+rbac_action-query:
+  description: |
+    Filter the RBAC policy list result by the action for the RBAC policy
+    which is ``access_as_external`` or ``access_as_shared``.
   in: query
   required: false
   type: string
@@ -1073,6 +1095,13 @@ tags-query:
     A list of tags to filter the list result by.
     Resources that match all tags in this list will be returned.
     Tags in query must be separated by comma.
+  in: query
+  required: false
+  type: string
+target_tenant-query:
+  description: |
+    Filter the RBAC policy list result by the ID of the tenant to which the
+    RBAC policy will be enforced.
   in: query
   required: false
   type: string

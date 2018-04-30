@@ -137,6 +137,13 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - target_tenant: target_tenant-query
+   - tenant_id: project_id-query
+   - object_type: object_type-query
+   - object_id: object_id-query
+   - action: rbac_action-query
+   - project_id: project_id-query
+   - id: id-query
    - sort_dir: sort_dir
    - sort_key: rbac-sort_key
    - fields: fields
