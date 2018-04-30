@@ -1,0 +1,28 @@
+{
+    "agents": [
+        {
+            "binary": "neutron-dhcp-agent",
+            "description": null,
+            "availability_zone": "nova",
+            "heartbeat_timestamp": "2018-04-08 07:32:42",
+            "admin_state_up": true,
+            "alive": true,
+            "topic": "dhcp_agent",
+            "host": "mkm-instance01",
+            "ha_state": null,
+            "agent_type": "DHCP agent",
+            "resource_versions": {},
+            "created_at": "2018-03-11 08:10:58",
+            "started_at": "2018-03-11 08:10:58",
+            "id": "b64f5c61-2210-41a6-869f-b51d7914511e",
+            "configurations": {
+              "subnets": 1,
+              "dhcp_lease_duration": 86400,
+              "dhcp_driver": "neutron.agent.linux.dhcp.Dnsmasq",
+              "ports": 2,
+              "log_agent_heartbeats": false,
+              "networks": 1
+            }
+        }
+    ]
+}
