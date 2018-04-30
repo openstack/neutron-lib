@@ -86,6 +86,7 @@ KNOWN_EXTENSIONS = (
     'dns-domain-ports',
     'dns-integration',
     'dvr',
+    'empty-string-filtering',
     'ext-gw-mode',
     'external-net',
     'extra_dhcp_opt',
