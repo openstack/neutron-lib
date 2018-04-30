@@ -4,6 +4,8 @@
         "project_id": "a52cdb9cc7854a39a23d3af73a40899e",
         "revision_number": 4,
         "tenant_id": "a52cdb9cc7854a39a23d3af73a40899e",
+        "created_at": "2018-03-19T19:16:56Z",
+        "updated_at": "2018-03-19T19:16:56Z",
         "id": "01fbade5-b664-42f6-83ae-4e214f4263fa",
         "name": "mysecgroup",
         "description": "my security group"

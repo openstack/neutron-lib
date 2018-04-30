@@ -7,6 +7,12 @@ Log resource
 The ``logging`` extension lists, creates, shows information for, and updates
 log resource.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 List logs
 =========
 
@@ -54,6 +60,7 @@ Response Parameters
    - logs: logs
    - id: log_id
    - name: name
+   - created_at: created_at_resource
    - description: description
    - tenant_id: project_id
    - project_id: project_id
@@ -62,6 +69,7 @@ Response Parameters
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id
+   - updated_at: updated_at_resource
    - enabled: log_enabled
 
 Response Example
@@ -122,6 +130,7 @@ Response Parameters
    - log: log
    - id: log_id
    - name: name
+   - created_at: created_at_resource
    - description: description
    - tenant_id: project_id
    - project_id: project_id
@@ -130,6 +139,7 @@ Response Parameters
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id
+   - updated_at: updated_at_resource
    - enabled: log_enabled
 
 Request Example
@@ -164,6 +174,7 @@ Response Parameters
    - log: log
    - id: log_id
    - name: name
+   - created_at: created_at_resource
    - description: description
    - tenant_id: project_id
    - project_id: project_id
@@ -172,6 +183,7 @@ Response Parameters
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id
+   - updated_at: updated_at_resource
    - enabled: log_enabled
 
 Response Example
@@ -216,6 +228,7 @@ Response Parameters
    - log: log
    - id: log_id
    - name: name
+   - created_at: created_at_resource
    - description: description
    - tenant_id: project_id
    - project_id: project_id
@@ -224,6 +237,7 @@ Response Parameters
    - resource_type: resource_log_type
    - resource_id: resource_log_id
    - target_id: resource_target_log_id
+   - updated_at: updated_at_resource
    - enabled: log_enabled
 
 Response Example

@@ -9,6 +9,12 @@ Security group rules (security-group-rules)
 Lists, creates, shows information for, and deletes security group
 rules.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 List security group rules
 =========================
 
@@ -65,6 +71,8 @@ Response Parameters
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
@@ -124,6 +132,8 @@ Response Parameters
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
@@ -173,6 +183,8 @@ Response Parameters
    - project_id: project_id
    - port_range_min: port_range_min
    - remote_ip_prefix: remote_ip_prefix
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - revision_number: revision_number
    - id: security_group_rule-id
    - description: description

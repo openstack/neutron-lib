@@ -88,6 +88,12 @@ attribute to ports. If a ``port-security`` value is not specified during
 port creation, a port will inherit the ``port_security_enabled`` from the
 network its connected to.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 Show port details
 =================
 
@@ -126,7 +132,7 @@ Response Parameters
    - binding:vif_details: binding:vif_details
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
-   - created_at: created_at
+   - created_at: created_at_resource
    - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
@@ -147,7 +153,7 @@ Response Parameters
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
-   - updated_at: updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -243,7 +249,7 @@ Response Parameters
    - binding:vif_details: binding:vif_details
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
-   - created_at: created_at
+   - created_at: created_at_resource
    - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
@@ -264,7 +270,7 @@ Response Parameters
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
-   - updated_at: updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -372,7 +378,7 @@ Response Parameters
    - binding:vif_details: binding:vif_details
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
-   - created_at: created_at
+   - created_at: created_at_resource
    - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
@@ -393,7 +399,7 @@ Response Parameters
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
-   - updated_at: updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -472,7 +478,7 @@ Response Parameters
    - binding:vif_details: binding:vif_details
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
-   - created_at: created_at
+   - created_at: created_at_resource
    - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
@@ -493,7 +499,7 @@ Response Parameters
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
-   - updated_at: updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -565,7 +571,7 @@ Response Parameters
    - binding:vif_details: binding:vif_details
    - binding:vif_type: binding:vif_type
    - binding:vnic_type: binding:vnic_type
-   - created_at: created_at
+   - created_at: created_at_resource
    - data_plane_status: data_plane_status
    - description: description
    - device_id: device_id
@@ -586,7 +592,7 @@ Response Parameters
    - security_groups: port-security_groups
    - status: port-status
    - tenant_id: project_id
-   - updated_at: updated_at
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------

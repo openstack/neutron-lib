@@ -90,6 +90,12 @@ QoS policies (qos)
 
 Lists, creates, deletes, shows information for, and updates QoS policies.
 
+Resource timestamps extension
+=============================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 QoS default extension
 =====================
 The QoS default extension (``qos-default``) allows a per project
@@ -152,6 +158,8 @@ Response Parameters
    - is_default: qos_is_default
    - rules: qos-rules
    - name: name
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -215,6 +223,8 @@ Response Parameters
    - id: qos_policy_id
    - is_default: qos_is_default
    - name: name
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -255,6 +265,8 @@ Response Parameters
    - id: qos_policy_id
    - is_default: qos_is_default
    - name: name
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------
@@ -309,6 +321,8 @@ Response Parameters
    - is_default: qos_is_default
    - rules: qos-rules
    - name: name
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
 
 Response Example
 ----------------

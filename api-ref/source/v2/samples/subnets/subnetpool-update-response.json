@@ -17,6 +17,8 @@
         "id": "03f761e6-eee0-43fc-a921-8acf64c14988",
         "max_prefixlen": 64,
         "description": "",
+        "created_at": "2016-03-08T20:19:41",
+        "updated_at": "2016-03-08T20:19:41",
         "revision_number": 2
     }
 }

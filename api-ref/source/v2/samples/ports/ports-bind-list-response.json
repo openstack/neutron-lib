@@ -11,6 +11,7 @@
             },
             "binding:vif_type": "ovs",
             "binding:vnic_type": "normal",
+            "created_at": "2016-03-08T20:19:41",
             "data_plane_status": null,
             "description": "",
             "device_id": "9ae135f4-b6e0-4dad-9e91-3c223e385824",
@@ -39,7 +40,8 @@
             "revision_number": 1,
             "security_groups": [],
             "status": "ACTIVE",
-            "tenant_id": ""
+            "tenant_id": "",
+            "updated_at": "2016-03-08T20:19:41"
         },
         {
             "admin_state_up": true,
@@ -52,6 +54,7 @@
             },
             "binding:vif_type": "ovs",
             "binding:vnic_type": "normal",
+            "created_at": "2016-03-08T20:19:41",
             "data_plane_status": null,
             "description": "",
             "device_id": "9ae135f4-b6e0-4dad-9e91-3c223e385824",
@@ -80,7 +83,8 @@
             "revision_number": 2,
             "security_groups": [],
             "status": "ACTIVE",
-            "tenant_id": "d397de8a63f341818f198abb0966f6f3"
+            "tenant_id": "d397de8a63f341818f198abb0966f6f3",
+            "updated_at": "2016-03-08T20:19:41"
         }
     ]
 }

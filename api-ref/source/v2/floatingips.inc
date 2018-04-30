@@ -17,6 +17,12 @@ The ``fip-port-details`` extension adds the ``port_details`` attribute to
 floating IPs. The value of this attribute contains information of the
 associated port.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 List floating IPs
 =================
 

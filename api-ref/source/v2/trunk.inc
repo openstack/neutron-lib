@@ -21,6 +21,12 @@ In more details, the extension introduces the following resources:
 - **sub_port**. An association to a neutron logical port with attributes
   segmentation_id and segmentation_type.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 
 List trunks
 ===========

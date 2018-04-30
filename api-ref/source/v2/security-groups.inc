@@ -7,6 +7,12 @@ Security groups (security-groups)
 Lists, creates, shows information for, updates, and deletes
 security groups.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
 List security groups
 ====================
 
@@ -55,6 +61,8 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - revision_number: revision_number
    - name: name
    - description: description
@@ -106,6 +114,8 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - revision_number: revision_number
    - name: name
    - description: description
@@ -154,6 +164,8 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - revision_number: revision_number
    - name: name
    - description: description
@@ -201,6 +213,8 @@ Response Parameters
    - id: security_group-id
    - tenant_id: project_id
    - project_id: project_id
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
    - revision_number: revision_number
    - name: name
    - description: description

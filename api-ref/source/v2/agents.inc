@@ -41,7 +41,7 @@ Response Parameters
    - alive: alive
    - binary: binary
    - configurations: configurations
-   - created_at: created_at
+   - created_at: created_at_resource
    - description: description
    - heartbeat_timestamp: heartbeat_timestamp
    - host: host
@@ -86,7 +86,7 @@ Response Parameters
    - alive: alive
    - binary: binary
    - configurations: configurations
-   - created_at: created_at
+   - created_at: created_at_resource
    - description: description
    - heartbeat_timestamp: heartbeat_timestamp
    - host: host
@@ -138,7 +138,7 @@ Response Parameters
    - alive: alive
    - binary: binary
    - configurations: configurations
-   - created_at: created_at
+   - created_at: created_at_resource
    - description: description
    - heartbeat_timestamp: heartbeat_timestamp
    - host: host
