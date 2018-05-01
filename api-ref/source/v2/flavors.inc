@@ -42,6 +42,11 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - service_type: flavor-service_type-query
+   - name: name-query
+   - description: description-query
+   - enabled: flavor-enabled-query
    - sort_dir: sort_dir
    - sort_key: flavor-sort_key
    - fields: fields
@@ -343,6 +348,10 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - id: id-query
+   - enabled: service_profile-enabled-query
+   - driver: service_profile-driver-query
+   - description: description-query
    - sort_dir: sort_dir
    - sort_key: service_profile-sort_key
 

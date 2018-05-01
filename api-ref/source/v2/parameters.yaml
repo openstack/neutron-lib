@@ -393,6 +393,14 @@ ethertype-query:
   in: query
   required: false
   type: string
+excluded-query:
+  description: |
+    Filter the metering rule list result based on whether the metering
+    rule exclude the traffic of a specific IP address with the
+    ``remote_ip_prefix`` value.
+  in: query
+  required: false
+  type: boolean
 fields:
   description: |
     The fields that you want the server to return.
@@ -415,6 +423,19 @@ fixed_ips-query:
   in: query
   required: false
   type: array
+flavor-enabled-query:
+  description: |
+    Filter the flavor list result based on whether the flavor is enabled or
+    not.
+  in: query
+  required: false
+  type: boolean
+flavor-service_type-query:
+  description: |
+    Filter the flavor list result by the type of the flavor.
+  in: query
+  required: false
+  type: string
 flavor-sort_key:
   description: |
     Sorts by a flavor attribute. You can specify multiple pairs of sort key
@@ -559,6 +580,13 @@ max_prefixlen-query:
   in: query
   required: false
   type: integer
+metering_label-id-query:
+  description: |
+    Filter the metering rule list result by the ID of the metering label
+    associated with this metering rule.
+  in: query
+  required: false
+  type: string
 metering_label-sort_key:
   description: |
     Sorts by a metering label attribute. You can specify multiple pairs of
@@ -569,6 +597,20 @@ metering_label-sort_key:
     - ``name``
     - ``description``
     - ``tenant_id``
+  in: query
+  required: false
+  type: string
+metering_label_rule-direction-query:
+  description: |
+    Filter the metering rule list result by the direction in
+    which the metering rule is applied, which is ``ingress`` or ``egress``.
+  in: query
+  required: false
+  type: string
+metering_label_rule-remote_ip_prefix-query:
+  description: |
+    Filter the metering rule list result by the remote IP prefix that
+    the metering rule associates with.
   in: query
   required: false
   type: string
@@ -958,6 +1000,20 @@ segment-sort_key:
   in: query
   required: false
   type: string
+service_profile-driver-query:
+  description: |
+    Filter the service profile list result by the driver that this profile
+    uses.
+  in: query
+  required: false
+  type: string
+service_profile-enabled-query:
+  description: |
+    Filter the service profile list result based on whether this service
+    profile is enabled or not.
+  in: query
+  required: false
+  type: boolean
 service_profile-sort_key:
   description: |
     Sorts by a service profile attribute. You can specify multiple pairs of
