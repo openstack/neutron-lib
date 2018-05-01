@@ -375,8 +375,8 @@ device_owner-query:
   type: string
 direction-query:
   description: |
-    Filter the security group rule list result by the direction in
-    which the metering rule is applied, which is ``ingress`` or ``egress``.
+    Filter the security group rule list result by the direction in which
+    the security group rule is applied, which is ``ingress`` or ``egress``.
   in: query
   required: false
   type: string
@@ -855,6 +855,13 @@ remote_group_id-query:
   in: query
   required: false
   type: string
+remote_ip_prefix-query:
+  description: |
+    Filter the list result by the remote IP prefix that is matched by
+    this security group rule.
+  in: query
+  required: false
+  type: string
 resource_log_id-query:
   description: |
     Filter the log list result by the ID of resource (e.g security group ID).
@@ -930,7 +937,7 @@ security_group_rule-sort_key:
     - ``port_range_max``
     - ``port_range_min``
     - ``protocol``
-    - ``remote_group_id```
+    - ``remote_group_id``
     - ``remote_ip_prefix``
     - ``security_group_id``
     - ``tenant_id``
@@ -1939,7 +1946,7 @@ device_owner-request:
 direction:
   description: |
     Ingress or egress, which is the direction in
-    which the metering rule is applied.
+    which the security group rule is applied.
   in: body
   required: true
   type: string
@@ -2078,6 +2085,13 @@ endpoints:
   required: true
   type: array
 ethertype:
+  description: |
+    Must be IPv4 or IPv6, and addresses represented
+    in CIDR must match the ingress or egress rules.
+  in: body
+  required: true
+  type: string
+ethertype-request:
   description: |
     Must be IPv4 or IPv6, and addresses represented
     in CIDR must match the ingress or egress rules.
@@ -3538,9 +3552,22 @@ metering_label_rule:
   in: body
   required: true
   type: object
+metering_label_rule-direction:
+  description: |
+    Ingress or egress, which is the direction in
+    which the metering rule is applied.
+  in: body
+  required: true
+  type: string
 metering_label_rule-id:
   description: |
     The ID of the metering label rule.
+  in: body
+  required: true
+  type: string
+metering_label_rule-remote_ip_prefix:
+  description: |
+    The remote IP prefix that is matched by this metering rule.
   in: body
   required: true
   type: string
@@ -3948,9 +3975,29 @@ port_range_max:
     the ``port_range_min`` attribute value. If the protocol is ICMP,
     this value must be an ICMP type.
   in: body
+  required: true
+  type: integer
+port_range_max-request:
+  description: |
+    The maximum port number in the range that is
+    matched by the security group rule. If the protocol is TCP, UDP,
+    DCCP, SCTP or UDP-Lite this value must be greater than or equal to
+    the ``port_range_min`` attribute value. If the protocol is ICMP,
+    this value must be an ICMP type.
+  in: body
   required: false
   type: integer
 port_range_min:
+  description: |
+    The minimum port number in the range that is
+    matched by the security group rule. If the protocol is TCP, UDP,
+    DCCP, SCTP or UDP-Lite this value must be less than or equal to
+    the ``port_range_max`` attribute value. If the protocol is ICMP,
+    this value must be an ICMP type.
+  in: body
+  required: true
+  type: integer
+port_range_min-request:
   description: |
     The minimum port number in the range that is
     matched by the security group rule. If the protocol is TCP, UDP,
@@ -4055,6 +4102,24 @@ protocol:
     up-to-date list of supported strings.
   in: body
   required: true
+  type: string
+protocol-request:
+  description: |
+    The IP protocol can be represented by a string, an integer, or ``null``.
+    Valid string or integer values are ``any`` or ``0``, ``ah`` or ``51``,
+    ``dccp`` or ``33``, ``egp`` or ``8``, ``esp`` or ``50``, ``gre`` or ``47``,
+    ``icmp`` or ``1``, ``icmpv6`` or ``58``, ``igmp`` or ``2``,
+    ``ipip`` or ``4``, ``ipv6-encap`` or ``41``,
+    ``ipv6-frag`` or ``44``, ``ipv6-icmp`` or ``58``, ``ipv6-nonxt`` or ``59``,
+    ``ipv6-opts`` or ``60``, ``ipv6-route`` or ``43``, ``ospf`` or ``89``,
+    ``pgm`` or ``113``, ``rsvp`` or ``46``, ``sctp`` or ``132``,
+    ``tcp`` or ``6``, ``udp`` or ``17``, ``udplite`` or ``136``,
+    ``vrrp`` or ``112``. Additionally, any integer value between [0-255] is
+    also valid. The string ``any`` (or integer ``0``) means ``all`` IP
+    protocols. See the constants in ``neutron_lib.constants`` for the most
+    up-to-date list of supported strings.
+  in: body
+  required: false
   type: string
 protocol-response:
   description: |
@@ -4443,14 +4508,28 @@ remote_group_id:
     ``remote_group_id`` or ``remote_ip_prefix`` attribute in the
     request body.
   in: body
+  required: true
+  type: string
+remote_group_id-request:
+  description: |
+    The remote group UUID to associate with this
+    security group rule. You can specify either the
+    ``remote_group_id`` or ``remote_ip_prefix`` attribute in the
+    request body.
+  in: body
   required: false
   type: string
 remote_ip_prefix:
   description: |
-    The remote IP prefix to associate with this
-    metering rule packet.
+    The remote IP prefix that is matched by this security group rule.
   in: body
   required: true
+  type: string
+remote_ip_prefix-request:
+  description: |
+    The remote IP prefix that is matched by this security group rule.
+  in: body
+  required: false
   type: string
 resource-collection:
   description: |

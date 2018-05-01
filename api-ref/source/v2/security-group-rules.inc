@@ -48,6 +48,7 @@ Request
    - tenant_id: project_id-query
    - project_id: project_id-query
    - port_range_min: port_range_min-query
+   - remote_ip_prefix: remote_ip_prefix-query
    - revision_number: revision_number-query
    - id: id-query
    - description: description-query
@@ -100,14 +101,14 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - security_group_rule: security_group_rule
-   - remote_group_id: remote_group_id
+   - remote_group_id: remote_group_id-request
    - direction: direction
-   - protocol: protocol
-   - ethertype: ethertype
-   - port_range_max: port_range_max
+   - protocol: protocol-request
+   - ethertype: ethertype-request
+   - port_range_max: port_range_max-request
    - security_group_id: security_group_rule-security_group_id
-   - port_range_min: port_range_min
-   - remote_ip_prefix: remote_ip_prefix
+   - port_range_min: port_range_min-request
+   - remote_ip_prefix: remote_ip_prefix-request
    - description: description-request
 
 Request Example

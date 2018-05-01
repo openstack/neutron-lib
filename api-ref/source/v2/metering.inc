@@ -208,8 +208,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - metering_label_rules: metering_label_rules
-   - direction: direction
-   - remote_ip_prefix: remote_ip_prefix
+   - direction: metering_label_rule-direction
+   - remote_ip_prefix: metering_label_rule-remote_ip_prefix
    - excluded : excluded
    - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
@@ -237,8 +237,8 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - metering_label_rule: metering_label_rule
-   - remote_ip_prefix: remote_ip_prefix
-   - direction: direction
+   - remote_ip_prefix: metering_label_rule-remote_ip_prefix
+   - direction: metering_label_rule-direction
    - metering_label_id: metering_label-id-body
    - excluded: excluded-request
 
@@ -254,8 +254,8 @@ Response Parameters
 .. rest_parameters:: parameters.yaml
 
    - metering_label_rule: metering_label_rule
-   - direction: direction
-   - remote_ip_prefix: remote_ip_prefix
+   - direction: metering_label_rule-direction
+   - remote_ip_prefix: metering_label_rule-remote_ip_prefix
    - excluded : excluded
    - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
@@ -309,8 +309,8 @@ Response Paramters
 .. rest_parameters:: parameters.yaml
 
    - metering_label_rule: metering_label_rule
-   - direction: direction
-   - remote_ip_prefix: remote_ip_prefix
+   - direction: metering_label_rule-direction
+   - remote_ip_prefix: metering_label_rule-remote_ip_prefix
    - excluded : excluded
    - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
