@@ -28,6 +28,14 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - admin_state_up: admin_state_up-query
+   - agent_type: agent_type-query
+   - alive: alive-query
+   - binary: binary-query
+   - description: description-query
+   - host: host-query
+   - id: id-query
+   - topic: topic-query
    - fields: fields
 
 Response Parameters

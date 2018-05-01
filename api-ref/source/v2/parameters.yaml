@@ -325,6 +325,26 @@ admin_state_up_trunk-query:
   in: query
   required: false
   type: boolean
+agent_type-query:
+  description: |
+    Filter the list result by the type of agent such as ``Open vSwitch agent``
+    or ``DHCP agent``.
+  in: query
+  required: false
+  type: string
+alive-query:
+  description: |
+    Filter the list result based on whether the agent is alive and running.
+  in: query
+  required: false
+  type: boolean
+binary-query:
+  description: |
+    Filter the list result by the executable command used to start the agent
+    such as ``neutron-openvswitch-agent`` or ``neutron-dhcp-agent``.
+  in: query
+  required: false
+  type: string
 binding:host_id-query:
   description: |
     Filter the port list result by the ID of the host where the port resides.
@@ -502,6 +522,13 @@ floatingip-status-query:
   description: |
     Filter the floating IP list result by the status of the floating IP.
     Values are ``ACTIVE``, ``DOWN`` and ``ERROR``.
+  in: query
+  required: false
+  type: string
+host-query:
+  description: |
+    Filter the list result by the hostname of the system the agent is running
+    on.
   in: query
   required: false
   type: string
@@ -1165,6 +1192,13 @@ target_tenant-query:
   description: |
     Filter the RBAC policy list result by the ID of the tenant to which the
     RBAC policy will be enforced.
+  in: query
+  required: false
+  type: string
+topic-query:
+  description: |
+    Filter the list result by the name of AMQP topic the agent is listening on
+    such as ``dhcp_agent``.
   in: query
   required: false
   type: string
