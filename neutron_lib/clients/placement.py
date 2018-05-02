@@ -20,6 +20,7 @@ from keystoneauth1 import exceptions as ks_exc
 from keystoneauth1 import loading as keystone
 from oslo_log import log as logging
 from oslo_utils import versionutils
+from six.moves.urllib.parse import urlencode
 
 from neutron_lib._i18n import _
 from neutron_lib.exceptions import placement as n_exc
@@ -203,7 +204,8 @@ class PlacementAPIClient(object):
             filters['in_tree'] = in_tree
         if uuid:
             filters['uuid'] = uuid
-        return self._get(url, **filters).json()
+        url = '%s?%s' % (url, urlencode(filters))
+        return self._get(url).json()
 
     @_check_placement_api_available
     def update_resource_provider_inventories(
