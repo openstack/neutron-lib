@@ -29,6 +29,16 @@ HA capability for router extension (``l3-ha``)
 The L3 HA extension ``l3-ha``, adds the ``ha`` attribute which enables
 HA capability to routers when set to ``true``.
 
+L3 external gateway mode extension (``ext-gw-mode``)
+=======================================================
+
+The ``ext-gw-mode`` extension of the router abstraction for specifying whether
+SNAT should occur on the external gateway.
+The ``ext-gw-mode`` extension allows enabling configurable external gateway
+modes, adds the ``external_gateway_info`` attribute to ``routers``
+and allows definitions for ``network_id``, ``enable_snat`` and
+``external_fixed_ips``.
+
 L3 flavors extension (``l3-flavors``)
 =====================================
 
@@ -113,9 +123,6 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
-   - network_id: router-network_id
-   - enable_snat: router-enable_snat
-   - external_fixed_ips: router-external_fixed_ips
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
@@ -168,9 +175,6 @@ Request
    - description: description-request
    - admin_state_up: admin_state_up-request
    - external_gateway_info: router-external_gateway_info-request
-   - network_id: router-network_id
-   - enable_snat: router-enable_snat-request
-   - external_fixed_ips: router-external_fixed_ips-request
    - distributed: router-distributed-request
    - ha: router-ha-request
    - availability_zone_hints: router-availability_zone_hints-request
@@ -197,9 +201,6 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
-   - network_id: router-network_id
-   - enable_snat: router-enable_snat
-   - external_fixed_ips: router-external_fixed_ips
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
@@ -258,9 +259,6 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
-   - network_id: router-network_id
-   - enable_snat: router-enable_snat
-   - external_fixed_ips: router-external_fixed_ips
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
@@ -301,12 +299,10 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - router: router
-   - external_gateway_info: router-external_gateway_info
-   - enable_snat: router-enable_snat
+   - external_gateway_info: router-external_gateway_info-request
    - ha: router-ha-request
    - name: name
    - admin_state_up: admin_state_up
-   - external_fixed_ips: router-external_fixed_ips
    - router_id: router_id
    - description: description-request
    - routes: router-routes-request
@@ -332,9 +328,6 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
-   - network_id: router-network_id
-   - enable_snat: router-enable_snat
-   - external_fixed_ips: router-external_fixed_ips
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
