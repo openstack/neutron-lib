@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add ``empty-string-filtering`` API extension. This extension indicates
+    if the server supports filtering attributes with empty value.
