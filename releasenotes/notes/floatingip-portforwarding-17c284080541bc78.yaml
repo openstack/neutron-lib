@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The ``portforwarding`` API definition for ``FloatingIP``is introduced,
+    which allows a ``FloatingIP:Port`` to forward packets back to a VM's
+    ``Internal IP:Port`` .

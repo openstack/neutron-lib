@@ -93,6 +93,7 @@ KNOWN_EXTENSIONS = (
     'extraroute',
     'fip-port-details',
     'flavors',
+    'floating-ip-port-forwarding',
     'ip-substring-filtering',
     'l3-ha',
     'l3_agent_scheduler',
