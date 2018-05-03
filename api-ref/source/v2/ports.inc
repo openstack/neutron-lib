@@ -96,6 +96,14 @@ define QoS policies and associate these to the ports by introducing the
 ``qos_policy_id`` attribute. The policies should be created before they are
 associated to the ports.
 
+Regenerate mac address extension
+================================
+
+The Port MAC address regenerate extension (``port-mac-address-regenerate``)
+makes it possible to regenerate the mac address of a port. When passing
+``'null'`` (``None``) as the ``mac_address`` on port update, a new mac address
+will be generated and set on the port.
+
 Resource timestamps
 ===================
 

@@ -24,6 +24,8 @@ UPDATED_TIMESTAMP = "2012-01-01T10:00:00-00:00"
 RESOURCE_NAME = 'port'
 COLLECTION_NAME = 'ports'
 
+PORT_MAC_ADDRESS = 'mac_address'
+
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
@@ -50,13 +52,13 @@ RESOURCE_ATTRIBUTE_MAP = {
                            'is_filter': True,
                            'is_sort_key': True,
                            'is_visible': True},
-        'mac_address': {'allow_post': True, 'allow_put': True,
-                        'default': constants.ATTR_NOT_SPECIFIED,
-                        'validate': {'type:mac_address': None},
-                        'enforce_policy': True,
-                        'is_filter': True,
-                        'is_sort_key': True,
-                        'is_visible': True},
+        PORT_MAC_ADDRESS: {'allow_post': True, 'allow_put': True,
+                           'default': constants.ATTR_NOT_SPECIFIED,
+                           'validate': {'type:mac_address': None},
+                           'enforce_policy': True,
+                           'is_filter': True,
+                           'is_sort_key': True,
+                           'is_visible': True},
         'fixed_ips': {'allow_post': True, 'allow_put': True,
                       'default': constants.ATTR_NOT_SPECIFIED,
                       'convert_list_to':
