@@ -236,15 +236,18 @@ more uniform and straightforward:
 ::
 
   # B and C ask I to be notified when A is done creating the resource
-
+  # Suppose D another entity want subscription with higher priority
+  # notification
   # ...
   # A is done creating the resource
   # A gets hold of the reference to the intermediary I
   # A calls I
   I->notify()
 
-Since B and C will have expressed interest in knowing about A's business, 'I' will
-deliver the messages to B and C. If B and C changes, A and 'I' do not need to change.
+Since B and C will have expressed interest in knowing about A's business, and D also
+subscribed for router creation with higher priority, 'I' will deliver the messages to D
+first and then to B and C in any order.
+If B, C and D change, A and 'I' do not need to change.
 
 In practical terms this scenario would be translated in the code below:
 
@@ -263,6 +266,12 @@ In practical terms this scenario would be translated in the code below:
       print('Callback2 called by trigger: ', trigger)
       print('payload: ', payload)
 
+  def callbackhighproirity(resource, event, trigger, payload):
+      print("Prepared data for entities")
+
+  # A is using event in case for some callback or internal operations
+  registry.subscribe(callbackhighpriority, resources.ROUTER,
+                     events.BEFORE_CREATE, priority=0)
 
   # B and C express interest with I
   registry.subscribe(callback1, resources.ROUTER, events.BEFORE_CREATE)
@@ -286,13 +295,24 @@ The output is:
 
   > Subscribed
   > Notifying...
+  > callbackhighpriority called by trigger: <function do_notify at 0x7f2a5d663410>
+  > payload: <neutron_lib._callbacks.events.EventPayload object at 0x7ff9ed253510>
   > Callback2 called by trigger:  <function do_notify at 0x7f2a5d663410>
   > payload: <neutron_lib._callbacks.events.EventPayload object at 0x7ff9ed253510>
   > Callback1 called by trigger:  <function do_notify at 0x7f2a5d663410>
   > payload: <neutron_lib._callbacks.events.EventPayload object at 0x7ff9ed253510>
 
-Thanks to the intermediary existence throughout the life of the system, A, B, and C
-are flexible to evolve their internals, dynamics, and lifecycles.
+Thanks to the intermediary existence throughout the life of the system, A, B, C and
+D are flexible to evolve their internals, dynamics, and lifecycles.
+
+Since different entities can subscribe to same events of a resource, the callback
+priority mechanism is in place to guarantee the order of execution for callbacks, entities
+have to subscribe events with a priority number of Integer type, lower the priority number
+is higher would be priority of callback. The following adds more details:
+
+* Priorities for callbacks should be coded in `neutron_lib/callbacks/priority_group.py`
+* If no priority is assigned during subscription then a default value will be used.
+* For callbacks having same priority, the execution order will be arbitary.
 
 
 Subscribing and aborting events
@@ -504,11 +524,10 @@ What is the relationship between Callbacks and Taskflow?
 
 Is there any ordering guarantee during notifications?
 
-  No, the ordering in which callbacks are notified is completely arbitrary by design: callbacks
-  should know nothing about each other, and ordering should not matter; a callback will always be
-  notified and its outcome should always be the same regardless as to in which order is it
-  notified. Priorities can be a future extension, if a use case arises that require enforced
-  ordering.
+  Depends, if the prorities are defined or passed during subscription, then yes callbacks will be
+  executed in order, meaning the callback having the lowest integer value for priority will be
+  executed first and so on. When priorities are not explicitly defined during subscription, all
+  the callbacks will have default priority and will be executed in an arbitary order.
 
 How is the notifying object expected to interact with the subscribing objects?
 
