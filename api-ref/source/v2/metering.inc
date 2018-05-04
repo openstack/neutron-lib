@@ -31,6 +31,12 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - description: description-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - shared: shared-query
+   - id: id-query
+   - name: name-query
    - sort_dir: sort_dir
    - sort_key: metering_label-sort_key
    - fields: fields
@@ -198,6 +204,11 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+   - direction: metering_label_rule-direction-query
+   - remote_ip_prefix: metering_label_rule-remote_ip_prefix-query
+   - excluded : excluded-query
+   - metering_label_id: metering_label-id-query
+   - id: id-query
    - sort_dir: sort_dir
    - sort_key: metering_label_rule-sort_key
    - fields: fields
