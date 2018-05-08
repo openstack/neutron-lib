@@ -304,6 +304,20 @@ vpnservice_id-path:
   required: true
   type: string
 # variables in query
+address_scope-sort_key:
+  description: |
+    Sorts by an address scope attribute. You can specify multiple pairs of sort
+    key and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``ip_version``
+    - ``name``
+    - ``project_id``
+    - ``shared``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 address_scope_id-query:
   description: |
     Filter the subnet pool list result by the address scope that is assigned
