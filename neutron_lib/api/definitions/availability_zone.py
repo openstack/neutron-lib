@@ -32,13 +32,13 @@ RESOURCE_NAME = 'availability_zone'
 COLLECTION_NAME = RESOURCE_NAME + 's'
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
-        'name': {'is_visible': True},
-        'resource': {'is_visible': True},
-        'state': {'is_visible': True}
+        'name': {'is_visible': True, 'is_filter': True},
+        'resource': {'is_visible': True, 'is_filter': True},
+        'state': {'is_visible': True, 'is_filter': True}
     },
     agent.COLLECTION_NAME: {
         RESOURCE_NAME: {
-            'allow_post': False, 'allow_put': False,
+            'allow_post': False, 'allow_put': False, 'is_filter': True,
             'is_visible': True}
     }
 }

@@ -38,6 +38,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'allow_post': True,
                 'allow_put': True,
                 'is_visible': True,
+                'is_filter': True,
                 'default': constants.EGRESS_DIRECTION,
                 'validate': {
                     'type:values': constants.VALID_DIRECTIONS

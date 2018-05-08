@@ -32,6 +32,7 @@ _QOS_RULE_COMMON_FIELDS = {
         'allow_post': False, 'allow_put': False,
         'validate': {'type:uuid': None},
         'is_visible': True,
+        'is_filter': True,
         'primary_key': True
     },
     'tenant_id': {
@@ -53,21 +54,25 @@ RESOURCE_ATTRIBUTE_MAP = {
         'id': {
             'allow_post': False, 'allow_put': False,
             'validate': {'type:uuid': None},
+            'is_filter': True,
             'is_visible': True, 'primary_key': True
         },
         'name': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
+            'is_filter': True,
             'validate': {'type:string': db_const.NAME_FIELD_SIZE}},
         constants.SHARED: {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': False,
+            'is_filter': True,
             'convert_to': converters.convert_to_boolean
         },
         'tenant_id': {
             'allow_post': True, 'allow_put': False,
             'required_by_policy': True,
             'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'is_filter': True,
             'is_visible': True
         },
         'rules': {
@@ -114,12 +119,14 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'allow_post': True, 'allow_put': True,
                 'convert_to': converters.convert_to_int,
                 'is_visible': True,
+                'is_filter': True,
                 'validate': {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
             },
                 'max_burst_kbps': {
                     'allow_post': True, 'allow_put': True,
                     'is_visible': True, 'default': 0,
+                    'is_filter': True,
                     'convert_to': converters.convert_to_int,
                     'validate': {
                         'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}}}),
@@ -132,6 +139,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'allow_post': True, 'allow_put': True,
                 'convert_to': converters.convert_to_int,
                 'is_visible': True,
+                'is_filter': True,
                 'validate': {
                     'type:values': constants.VALID_DSCP_MARKS}}})
     },
@@ -142,12 +150,14 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
             **{'min_kbps': {
                 'allow_post': True, 'allow_put': True,
                 'is_visible': True,
+                'is_filter': True,
                 'convert_to': converters.convert_to_int,
                 'validate': {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}},
                 'direction': {
                     'allow_post': True, 'allow_put': True,
                     'is_visible': True, 'default': constants.EGRESS_DIRECTION,
+                    'is_filter': True,
                     'validate': {
                         'type:values': [constants.EGRESS_DIRECTION]}}})
     }
