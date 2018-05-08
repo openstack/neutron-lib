@@ -35,6 +35,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_post': False,
             'allow_put': False,
             'is_filter': True,
+            'is_sort_key': True,
             'is_visible': True
         }
     }
