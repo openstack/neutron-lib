@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add new extension `qos-gateway-ip` which extends the `router_gw_info`
+    with new attribute `qos_policy_id`.
