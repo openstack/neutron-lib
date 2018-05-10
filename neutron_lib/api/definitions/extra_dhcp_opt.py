@@ -46,6 +46,8 @@ EXTRA_DHCP_OPT_KEY_SPECS = [
 EXTRADHCPOPTS = 'extra_dhcp_opts'
 DHCP_OPT_CLIENT_ID = "client-id"
 
+# client-id option value as defined in RFC 4776
+DHCP_OPT_CLIENT_ID_NUM = 61
 
 # The alias of the extension.
 ALIAS = 'extra_dhcp_opt'
