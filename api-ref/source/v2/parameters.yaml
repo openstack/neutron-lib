@@ -515,6 +515,7 @@ floatingip-sort_key:
     - ``router_id``
     - ``status``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -624,6 +625,7 @@ metering_label-sort_key:
     - ``name``
     - ``description``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -701,6 +703,7 @@ network-sort_key:
     - ``name``
     - ``status``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -907,6 +910,7 @@ rbac-sort_key:
     - ``object_id``
     - ``target_tenant``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -967,6 +971,7 @@ router-sort_key:
     - ``name``
     - ``status``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -985,6 +990,7 @@ security_group-sort_key:
     - ``id``
     - ``name``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -1010,6 +1016,7 @@ security_group_rule-sort_key:
     - ``remote_ip_prefix``
     - ``security_group_id``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -1024,6 +1031,8 @@ segment-sort_key:
     - ``network_type``
     - ``physical_network``
     - ``segmentation_id``
+    - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -1137,6 +1146,7 @@ subnet-sort_key:
     - ``segment_id``
     - ``subnetpool_id``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
@@ -1163,6 +1173,7 @@ subnetpool-sort_key:
     - ``name``
     - ``shared``
     - ``tenant_id``
+    - ``project_id``
   in: query
   required: false
   type: string
