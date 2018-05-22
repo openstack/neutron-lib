@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Add API extensions to advertise the support of standard attributes with
+    BGPVPN resources: ``standard-attr-bgpvpn``,
+    ``standard-attr-bgpvpn-network-association``,
+    ``standard-attr-bgpvpn-router-association`` and
+    ``standard-attr-bgpvpn-port-association``.

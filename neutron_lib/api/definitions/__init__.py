@@ -17,6 +17,10 @@ from neutron_lib.api.definitions import auto_allocated_topology
 from neutron_lib.api.definitions import availability_zone
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.api.definitions import bgpvpn_routes_control
+from neutron_lib.api.definitions import bgpvpn_stdattrs
+from neutron_lib.api.definitions import bgpvpn_stdattrs_net_assoc
+from neutron_lib.api.definitions import bgpvpn_stdattrs_port_assoc
+from neutron_lib.api.definitions import bgpvpn_stdattrs_router_assoc
 from neutron_lib.api.definitions import bgpvpn_vni
 from neutron_lib.api.definitions import data_plane_status
 from neutron_lib.api.definitions import default_subnetpools
@@ -91,6 +95,10 @@ _ALL_API_DEFINITIONS = {
     availability_zone,
     bgpvpn,
     bgpvpn_routes_control,
+    bgpvpn_stdattrs,
+    bgpvpn_stdattrs_net_assoc,
+    bgpvpn_stdattrs_port_assoc,
+    bgpvpn_stdattrs_router_assoc,
     bgpvpn_vni,
     data_plane_status,
     default_subnetpools,
