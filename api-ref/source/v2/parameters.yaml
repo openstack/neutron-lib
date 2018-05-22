@@ -255,6 +255,12 @@ router_id:
   in: path
   required: true
   type: string
+router_name:
+  description: |
+    The name of the router.
+  in: path
+  required: true
+  type: string
 security_group-id-path:
   description: |
     The ID of the security group.
@@ -1331,6 +1337,7 @@ agent:
   in: body
   required: true
   type: object
+  type: string
 agent_type:
   description: |
     The type of agent such as ``Open vSwitch agent`` or ``DHCP agent``.
@@ -3175,6 +3182,12 @@ insert_before:
   in: body
   required: false
   type: string
+interfaces:
+  description: |
+    Router interfaces
+  in: body
+  required: true
+  type: string
 interval:
   description: |
     The dead peer detection (DPD) interval, in
@@ -3415,6 +3428,12 @@ log:
   in: body
   required: true
   type: object
+log_agent_heartbeats:
+  description: |
+    Log agent heartbeats configuration.
+  in: body
+  required: true
+  type: boolean
 log_enabled:
   description: |
     Indicates whether this log object is enabled or disabled.
@@ -4710,6 +4729,12 @@ resource_target_log_id-request:
   in: body
   required: false
   type: string
+resource_versions:
+  description: |
+    version resource
+  in: body
+  required: true
+  type: string
 resources:
   description: |
     List of resource objects.
@@ -4831,6 +4856,18 @@ router-external_gateway_info-request:
   in: body
   required: false
   type: object
+router-external_gateway_ports:
+  description: |
+    The external gateway ports.
+  in: body
+  required: true
+  type: string
+router-external_network_bridge:
+  description: |
+   Router external network bridge
+  in: body
+  required: true
+  type: string
 router-flavor_id:
   description: |
     The ID of the flavor associated with the router.
@@ -4842,6 +4879,18 @@ router-flavor_id-optional:
     The ID of the flavor associated with the router.
   in: body
   required: false
+  type: string
+router-floating_ips:
+  description: |
+    Number of floating IPs
+  in: body
+  required: true
+  type: string
+router-gw-port-id:
+  description: |
+    router gateway port ID
+  in: body
+  required: true
   type: string
 router-ha:
   description: |
@@ -4857,9 +4906,35 @@ router-ha-request:
   in: body
   required: false
   type: boolean
+router-ha-vr-id:
+  description: |
+    router VR ID.
+  in: body
+  required: true
+  type: string
+router-ha_state:
+  description: |
+    router ha state.
+  in: body
+  required: true
+  type: string
+router-handle_internal_only_routers:
+  description: |
+    Router configuration to handle internal
+    only routers.
+  in: body
+  required: true
+  type: boolean
 router-id-body:
   description: |
     The ID of the router.
+  in: body
+  required: true
+  type: string
+router-interface_driver:
+  description: |
+    Type of interface driver,
+    i.e. ``neutron.agent.linux.interface.OVSInterfaceDriver``.
   in: body
   required: true
   type: string

@@ -1,0 +1,32 @@
+{
+    "agents": [
+        {
+            "binary": "neutron-l3-agent",
+            "description": null,
+            "availability_zone": "nova",
+            "heartbeat_timestamp": "2018-04-08 07:32:42",
+            "admin_state_up": true,
+            "alive": true,
+            "topic": "l3_agent",
+            "host": "mkm-instance01",
+            "ha_state": null,
+            "agent_type": "L3 agent",
+            "resource_versions": {},
+            "created_at": "2018-03-11 08:10:58",
+            "started_at": "2018-03-11 08:10:58",
+            "id": "b64f5c61-2210-41a6-869f-b51d7914511e",
+            "configurations": {
+                "agent_mode": "legacy",
+                "gateway_external_network_id": "",
+                "handle_internal_only_routers": true,
+                "routers": 3,
+                "interfaces": 1,
+                "floating_ips": 0,
+                "interface_driver": "openvswitch",
+                "log_agent_heartbeats": false,
+                "external_network_bridge": "",
+                "ex_gw_ports": 1
+            }
+        }
+    ]
+}
