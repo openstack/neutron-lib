@@ -60,6 +60,9 @@ DESCRIPTION = "Provides support for BGP VPN interconnections"
 # A timestamp of when the extension was introduced.
 UPDATED_TIMESTAMP = "2014-06-10T17:00:00-00:00"
 
+API_PREFIX = '/bgpvpn'
+
+
 # The specific resources and/or attributes for the extension (optional).
 RESOURCE_NAME = 'bgpvpn'
 COLLECTION_NAME = 'bgpvpns'
