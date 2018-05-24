@@ -148,6 +148,7 @@ Request
    - project_id: project_id-query
    - ip_version: ip_version-query
    - shared: shared-query
+   - sort_key: address_scope-sort_key
    - fields: fields
 
 Response Parameters
