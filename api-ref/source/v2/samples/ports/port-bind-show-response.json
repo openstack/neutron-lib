@@ -45,6 +45,7 @@
         "revision_number": 1,
         "security_groups": [],
         "status": "ACTIVE",
+        "tags": ["tag1,tag2"],
         "tenant_id": "7e02058126cc4950b75f9970368ba177",
         "updated_at": "2016-03-08T20:19:41",
         "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae"

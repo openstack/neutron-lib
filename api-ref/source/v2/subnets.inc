@@ -38,6 +38,14 @@ users to set the desired port types for a subnet by adding the
 DVR floating IP agent gateway ports to use the subnet to minimize public
 IP address consumption).
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
+
 List subnets
 ============
 
@@ -116,6 +124,7 @@ Response Parameters
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -229,6 +238,7 @@ Response Parameters
    - subnetpool_id: subnet-subnetpool_id
    - segment_id: subnet-segment_id
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -309,6 +319,7 @@ Response Parameters
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -363,6 +374,7 @@ Response Parameters
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
+   - tags: tags
 
 Response Example
 ----------------
@@ -433,6 +445,7 @@ Response Parameters
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
    - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------

@@ -25,6 +25,7 @@
         "ipv6_ra_mode": null,
         "revision_number": 2,
         "service_types": [],
-        "subnetpool_id": null
+        "subnetpool_id": null,
+        "tags": ["tag1,tag2"]
     }
 }

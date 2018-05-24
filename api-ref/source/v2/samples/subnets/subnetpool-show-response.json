@@ -19,6 +19,7 @@
         "ip_version": 6,
         "shared": false,
         "description": "",
-        "revision_number": 2
+        "revision_number": 2,
+        "tags": ["tag1,tag2"]
     }
 }

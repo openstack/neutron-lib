@@ -24,6 +24,7 @@
                 "dscp_mark": 26,
                 "type": "dscp_marking"
             }
-        ]
+        ],
+        "tags": ["tag1,tag2"]
     }
 }

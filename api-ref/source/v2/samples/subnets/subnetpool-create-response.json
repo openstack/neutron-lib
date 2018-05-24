@@ -19,6 +19,7 @@
         "shared": false,
         "created_at": "2016-03-08T20:19:41",
         "updated_at": "2016-03-08T20:19:41",
+        "tags": ["tag1,tag2"],
         "tenant_id": "9fadcee8aa7c40cdb2114fff7d569c08"
     }
 }

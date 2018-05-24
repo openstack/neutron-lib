@@ -26,6 +26,7 @@
             "revision_number": 2,
             "service_types": [],
             "subnetpool_id": null,
+            "tags": ["tag1,tag2"],
             "updated_at": "2016-10-10T14:35:34Z"
         },
         {
@@ -54,6 +55,7 @@
             "revision_number": 2,
             "service_types": [],
             "subnetpool_id": null,
+            "tags": ["tag1,tag2"],
             "updated_at": "2016-10-10T14:35:47Z"
         }
     ]

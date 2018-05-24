@@ -20,6 +20,13 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds Tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
 Show subnet pool
 ================
 
@@ -67,6 +74,7 @@ Response Parameters
    - description: description
    - is_default: subnetpool_is_default
    - revision_number: revision_number
+   - tags: tags
 
 Response Example
 ----------------
@@ -132,6 +140,7 @@ Response Parameters
    - description: description
    - is_default: subnetpool_is_default
    - revision_number: revision_number
+   - tags: tags
 
 Response Example
 ----------------
@@ -235,6 +244,7 @@ Response Parameters
    - description: description
    - is_default: subnetpool_is_default
    - revision_number: revision_number
+   - tags: tags
 
 Response Example
 ----------------
@@ -300,6 +310,7 @@ Response Parameters
    - description: description
    - is_default: subnetpool_is_default
    - revision_number: revision_number
+   - tags: tags
 
 Response Example
 ----------------

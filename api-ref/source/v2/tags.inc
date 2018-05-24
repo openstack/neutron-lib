@@ -34,7 +34,8 @@ Standard Attributes Tag Extension
 
 The ``standard-attr-tag`` extends tagging support to some resources that support
 standard attributes. This includes networks, ports, subnets, subnet pools,
-floating IPs, routers, security groups, QoS policies and trunks.
+floating IPs, routers, security groups, security group rules, QoS policies and
+trunks.
 
 Replace all tags
 ================
