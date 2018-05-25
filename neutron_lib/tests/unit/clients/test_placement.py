@@ -75,21 +75,28 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_list_resource_providers(self):
         filter_1 = {'name': 'name1', 'in_tree': 'tree1_uuid'}
         self.placement_api_client.list_resource_providers(**filter_1)
-        self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers', **filter_1)
+        args = str(self.placement_fixture.mock_get.call_args)
+        self.placement_fixture.mock_get.assert_called_once()
+        self.assertIn('name=name1', args)
+        self.assertIn('in_tree=tree1_uuid', args)
 
         filter_2 = {'member_of': ['aggregate_uuid'], 'uuid': 'uuid_1',
                     'resources': {'r_class1': 'value1'}}
         self.placement_fixture.mock_get.reset_mock()
         self.placement_api_client.list_resource_providers(**filter_2)
-        self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers', **filter_2)
+        args = str(self.placement_fixture.mock_get.call_args)
+        self.placement_fixture.mock_get.assert_called_once()
+        self.assertIn('member_of', args)
+        self.assertIn('uuid', args)
+        self.assertIn('resources', args)
 
         filter_1.update(filter_2)
         self.placement_fixture.mock_get.reset_mock()
         self.placement_api_client.list_resource_providers(**filter_1)
-        self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers', **filter_1)
+        args = str(self.placement_fixture.mock_get.call_args)
+        self.placement_fixture.mock_get.assert_called_once()
+        for key in filter_1:
+            self.assertIn(key, args)
 
     def test_list_resource_providers_placement_api_version_too_low(self):
         self.placement_api_client._target_version = (1, 1)
