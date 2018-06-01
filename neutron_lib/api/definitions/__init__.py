@@ -81,6 +81,7 @@ from neutron_lib.api.definitions import subnet_segmentid_writable
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
+from neutron_lib.api.definitions import uplink_status_propagation
 from neutron_lib.api.definitions import vlantransparent
 from neutron_lib.api.definitions import vpn
 from neutron_lib.api.definitions import vpn_endpoint_groups
@@ -159,6 +160,7 @@ _ALL_API_DEFINITIONS = {
     subnetpool,
     trunk,
     trunk_details,
+    uplink_status_propagation,
     vlantransparent,
     vpn,
     vpn_endpoint_groups,
