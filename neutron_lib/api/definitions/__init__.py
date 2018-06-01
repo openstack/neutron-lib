@@ -75,6 +75,7 @@ from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import servicetype
 from neutron_lib.api.definitions import sfc
 from neutron_lib.api.definitions import sorting
+from neutron_lib.api.definitions import standard_attr_segment
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_onboard
 from neutron_lib.api.definitions import subnet_segmentid_writable
@@ -153,6 +154,7 @@ _ALL_API_DEFINITIONS = {
     servicetype,
     sfc,
     sorting,
+    standard_attr_segment,
     subnet,
     subnet_onboard,
     subnet_segmentid_writable,
