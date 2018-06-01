@@ -34,6 +34,7 @@ RESOURCE_ATTRIBUTE_MAP = {
         IP_ALLOCATION: {
             'allow_post': False,
             'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         }
     }

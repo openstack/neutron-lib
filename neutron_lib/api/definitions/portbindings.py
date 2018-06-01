@@ -169,6 +169,7 @@ RESOURCE_ATTRIBUTE_MAP = {
         HOST_ID: {'allow_post': True, 'allow_put': True,
                   'default': constants.ATTR_NOT_SPECIFIED,
                   'is_visible': True,
+                  'is_filter': True,
                   'enforce_policy': True},
         PROFILE: {'allow_post': True, 'allow_put': True,
                   'default': constants.ATTR_NOT_SPECIFIED,

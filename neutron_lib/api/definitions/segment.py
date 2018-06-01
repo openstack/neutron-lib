@@ -43,6 +43,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'validate': {
                 'type:uuid': None
             },
+            'is_filter': True,
             'is_visible': True,
             'primary_key': True
         },
@@ -59,6 +60,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'validate': {
                 'type:uuid': None
             },
+            'is_filter': True,
             'is_visible': True
         },
         PHYSICAL_NETWORK: {
@@ -68,6 +70,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'validate': {
                 'type:string': provider_net.PHYSICAL_NETWORK_MAX_LEN
             },
+            'is_filter': True,
             'is_visible': True
         },
         NETWORK_TYPE: {
@@ -76,6 +79,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'validate': {
                 'type:string': provider_net.NETWORK_TYPE_MAX_LEN
             },
+            'is_filter': True,
             'is_visible': True
         },
         SEGMENTATION_ID: {
@@ -92,6 +96,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'validate': {
                 'type:string_or_none': NAME_LEN
             },
+            'is_filter': True,
             'is_visible': True
         },
         'description': {
@@ -112,6 +117,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'validate': {
                 'type:uuid_or_none': None
             },
+            'is_filter': True,
             'is_visible': True
         }
     }
