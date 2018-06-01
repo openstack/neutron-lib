@@ -30,6 +30,7 @@ RESOURCE_ATTRIBUTE_MAP = {
         FLAVOR_ID: {
             'allow_post': True, 'allow_put': False,
             'default': constants.ATTR_NOT_SPECIFIED,
+            'is_sort_key': True,
             'is_visible': True, 'enforce_policy': True
         }
     }

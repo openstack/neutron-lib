@@ -33,19 +33,20 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_post': False, 'allow_put': False,
             'is_visible': True,
             'is_filter': True,
+            'is_sort_key': True,
             'primary_key': True
         },
         'name': {
             'allow_post': True, 'allow_put': False,
             'validate': {'type:string': db_const.NAME_FIELD_SIZE},
-            'is_filter': True,
+            'is_filter': True, 'is_sort_key': True,
             'is_visible': True, 'default': ''
         },
         'description': {
             'allow_post': True, 'allow_put': False,
             'validate': {
                 'type:string': db_const.LONG_DESCRIPTION_FIELD_SIZE},
-            'is_filter': True,
+            'is_filter': True, 'is_sort_key': True,
             'is_visible': True, 'default': ''
         },
         'tenant_id': {
@@ -53,12 +54,12 @@ RESOURCE_ATTRIBUTE_MAP = {
             'required_by_policy': True,
             'validate': {
                 'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-            'is_filter': True,
+            'is_filter': True, 'is_sort_key': True,
             'is_visible': True
         },
         constants.SHARED: {
             'allow_post': True, 'allow_put': False,
-            'is_filter': True,
+            'is_filter': True, 'is_sort_key': True,
             'is_visible': True, 'default': False,
             'convert_to': converters.convert_to_boolean
         }
@@ -67,29 +68,30 @@ RESOURCE_ATTRIBUTE_MAP = {
         'id': {
             'allow_post': False, 'allow_put': False,
             'is_visible': True, 'is_filter': True,
-            'primary_key': True
+            'is_sort_key': True, 'primary_key': True
         },
         'metering_label_id': {
             'allow_post': True, 'allow_put': False,
             'validate': {'type:uuid': None},
-            'is_filter': True,
+            'is_filter': True, 'is_sort_key': True,
             'is_visible': True, 'required_by_policy': True
         },
         'direction': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'is_filter': True,
+            'is_sort_key': True,
             'validate': {'type:values': ['ingress', 'egress']}
         },
         'excluded': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': False,
-            'is_filter': True,
+            'is_filter': True, 'is_sort_key': True,
             'convert_to': converters.convert_to_boolean
         },
         'remote_ip_prefix': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'required_by_policy': True,
-            'is_filter': True,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:subnet': None}
         },
         'tenant_id': {
