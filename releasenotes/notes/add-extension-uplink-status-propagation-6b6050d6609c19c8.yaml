@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Add an API extension ``uplink-status-propagation`` to indicate if the
+    server support propagating uplink status. This extension adds an attribute
+    ``propagate_uplink_status`` to port. This attribute can be implemented
+    for VF port. If it is set to ``True``, the VF link state can follow that
+    of PF. The default is ``False`` which is the current behavior.
