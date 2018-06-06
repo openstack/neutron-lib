@@ -45,7 +45,7 @@ class NeutronException(Exception):
 
     if six.PY2:
         def __unicode__(self):
-            return unicode(self.msg)
+            return unicode(self.msg)  # noqa
 
     def __str__(self):
         return self.msg
