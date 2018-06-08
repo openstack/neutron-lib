@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Add two fields ``columns`` and ``value`` to exception
+    ``NeutronDbObjectDuplicateEntry``. These two fields are populated
+    from the corresponding db exception.
