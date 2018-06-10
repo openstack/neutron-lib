@@ -59,7 +59,7 @@ class NamespacedPlugins(object):
             raise KeyError(msg)
 
         LOG.debug("Loaded plugin '%s' from namespace: %s",
-                  (ext.name, self.namespace))
+                  ext.name, self.namespace)
         self._extensions[ext.name] = ext
 
     def _assert_plugin_loaded(self, plugin_name):
