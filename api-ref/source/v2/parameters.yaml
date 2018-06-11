@@ -5487,7 +5487,7 @@ subnet-obj:
     A ``subnet`` object.
   in: body
   required: true
-  type: string
+  type: object
 subnet-prefixlen-request:
   description: |
     The prefix length to use for subnet allocation from a subnet pool.
