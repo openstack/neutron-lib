@@ -47,6 +47,17 @@ The subnet segment_id writable (``subnet-segmentid-writable``) extension
 enhances the `Segments`_ (``segment``) extension in that now the ``segment_id``
 attribute is also available for write when a subnet is updated.
 
+Segment peer subnet host routes extension
+=========================================
+
+The segment peer subnet host routes extension (
+``segments-peer-subnet-host-routes``) extension enhances the `Segments`_
+(``segment``) extension in that now the ``host_routes`` property of the
+different `Subnets`_ (``subnets``) in a routed network gets routes to the peer
+subnets on different segments added automatically. This ensures that traffic
+within an L3 routed network stays within the network even when the default
+route is on a different host interface.
+
 Subnet service types extension
 ==============================
 
