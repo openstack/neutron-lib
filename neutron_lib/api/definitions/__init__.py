@@ -72,6 +72,7 @@ from neutron_lib.api.definitions import revisionifmatch
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import routerservicetype
+from neutron_lib.api.definitions import security_groups_port_filtering
 from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import servicetype
 from neutron_lib.api.definitions import sfc
@@ -153,6 +154,7 @@ _ALL_API_DEFINITIONS = {
     router_availability_zone,
     router_interface_fip,
     routerservicetype,
+    security_groups_port_filtering,
     segment,
     servicetype,
     sfc,

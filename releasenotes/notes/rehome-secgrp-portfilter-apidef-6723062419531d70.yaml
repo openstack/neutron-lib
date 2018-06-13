@@ -1,0 +1,5 @@
+---
+features:
+  - The API defintion for the ``port-security-groups-filtering`` extension is
+    now available in
+    ``neutron_lib.api.definitions.security_groups_port_filtering``.
