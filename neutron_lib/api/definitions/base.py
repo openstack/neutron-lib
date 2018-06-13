@@ -94,6 +94,7 @@ KNOWN_EXTENSIONS = (
     'fip-port-details',
     'flavors',
     'floating-ip-port-forwarding',
+    'floatingip-pools',
     'ip-substring-filtering',
     'l3-ha',
     'l3_agent_scheduler',

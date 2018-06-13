@@ -1,5 +1,3 @@
-# All Rights Reserved.
-#
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
 #    a copy of the License at
@@ -12,16 +10,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-# Well-known service type constants:
-LOADBALANCER = "LOADBALANCER"
-LOADBALANCERV2 = "LOADBALANCERV2"
-FIREWALL = "FIREWALL"
-VPN = "VPN"
-METERING = "METERING"
-FLAVORS = "FLAVORS"
-QOS = "QOS"
-CORE = 'CORE'
-L3 = 'L3_ROUTER_NAT'
-LOG_API = "LOGGING"
-PORTFORWARDING = "PORTFORWARDING"
-FLOATINGIPPOOL = "FLOATINGIPPOOL"
+from neutron_lib.api.definitions import floatingip_pools
+from neutron_lib.tests.unit.api.definitions import base
+
+
+class FloatingIPPoolDefinitionTestCase(base.DefinitionBaseTestCase):
+    extension_module = floatingip_pools
+    extension_resources = (floatingip_pools.FLOATINGIP_POOLS,)
+    extension_attributes = ('subnet_id', 'subnet_name',)
