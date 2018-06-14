@@ -345,4 +345,7 @@ def _load_one_to_manys(session):
                 continue
             if relationship_attr.key not in state.dict:
                 getattr(new_object, relationship_attr.key)
-                assert relationship_attr.key in state.dict
+                if relationship_attr.key not in state.dict:
+                    msg = ("Relationship %s attributes must be loaded in db "
+                           "object %s" % (relationship_attr.key, state.dict))
+                    raise AssertionError(msg)
