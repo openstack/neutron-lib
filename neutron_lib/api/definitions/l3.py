@@ -114,7 +114,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                'primary_key': True},
         'floating_ip_address': {'allow_post': True, 'allow_put': False,
                                 'validate': {'type:ip_address_or_none': None},
-                                'is_sort_key': True,
+                                'is_sort_key': True, 'is_filter': True,
                                 'is_visible': True, 'default': None,
                                 'enforce_policy': True},
         'subnet_id': {'allow_post': True, 'allow_put': False,

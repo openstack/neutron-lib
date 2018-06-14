@@ -107,6 +107,7 @@ Request
    - ipv6_ra_mode: subnet-ipv6_ra_mode-query
    - revision_number: revision_number-query
    - segment_id: subnet-segment_id-query
+   - shared: shared-query
    - sort_dir: sort_dir
    - sort_key: subnet-sort_key
    - subnetpool_id: subnet-subnetpool_id-query
