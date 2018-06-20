@@ -17,6 +17,7 @@ Neutron shared routines and utilities
 * Documentation: https://docs.openstack.org/neutron-lib/latest/
 * Source: https://git.openstack.org/cgit/openstack/neutron-lib
 * Bugs: https://bugs.launchpad.net/neutron
+* Release notes: https://docs.openstack.org/releasenotes/neutron-lib/
 
 Features
 --------
