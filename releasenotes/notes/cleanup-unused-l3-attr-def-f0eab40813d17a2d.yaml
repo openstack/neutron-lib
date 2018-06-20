@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    The ``convert_list_to`` and ``default`` parameters of external_fixed_ips
+    have been removed from l3 and l3_ext_gw_mode API definitions.
