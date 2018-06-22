@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    Add a shim extension ``availability_zone_filter`` to indicate
+    if ``availability_zone`` resource supports filter parameters.
