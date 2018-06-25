@@ -122,6 +122,7 @@ KNOWN_EXTENSIONS = (
     'sorting',
     'standard-attr-description',
     'standard-attr-revisions',
+    'standard-attr-segment',
     'standard-attr-timestamp',
     'subnet_allocation',
     'subnet_onboard',

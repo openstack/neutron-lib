@@ -104,15 +104,6 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_filter': True,
             'is_sort_key': True,
             'is_visible': True
-        },
-        'description': {
-            'allow_post': True,
-            'allow_put': True,
-            'default': constants.ATTR_NOT_SPECIFIED,
-            'validate': {
-                'type:string_or_none': DESC_LEN
-            },
-            'is_visible': True
         }
     },
     subnet.COLLECTION_NAME: {
@@ -131,6 +122,11 @@ RESOURCE_ATTRIBUTE_MAP = {
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
-REQUIRED_EXTENSIONS = []
-OPTIONAL_EXTENSIONS = []
+REQUIRED_EXTENSIONS = [
+    'standard-attr-description'
+]
+OPTIONAL_EXTENSIONS = [
+    # Use string instead of constant to avoid circulated import
+    'standard-attr-segment'
+]
 ACTION_STATUS = {}
