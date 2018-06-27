@@ -128,6 +128,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'default': False,
             'convert_to': converters.convert_to_boolean,
             'is_visible': False,
+            'is_filter': True,
             'required_by_policy': True,
             'enforce_policy': True
         }
