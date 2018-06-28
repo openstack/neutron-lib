@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Introduced ``expose-port-forwarding-in-fip`` API extension for exposing
+    ``port_forwardings`` field in ``FloatingIP`` API response. This extension
+    requires the ``router`` and ``port_forwarding`` service plugins.

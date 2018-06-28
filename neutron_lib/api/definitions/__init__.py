@@ -30,6 +30,7 @@ from neutron_lib.api.definitions import dns
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import dvr
 from neutron_lib.api.definitions import empty_string_filtering
+from neutron_lib.api.definitions import expose_port_forwarding_in_fip
 from neutron_lib.api.definitions import external_net
 from neutron_lib.api.definitions import extra_dhcp_opt
 from neutron_lib.api.definitions import extraroute
@@ -115,6 +116,7 @@ _ALL_API_DEFINITIONS = {
     dns_domain_ports,
     dvr,
     empty_string_filtering,
+    expose_port_forwarding_in_fip,
     external_net,
     extra_dhcp_opt,
     extraroute,

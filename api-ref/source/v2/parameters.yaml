@@ -2992,6 +2992,18 @@ floatingip-id:
   in: body
   required: true
   type: string
+floatingip-port_forwardings:
+  description: |
+    The associated port forwarding resources for the floating IP. If the
+    floating IP has multiple port forwarding resources, this field has
+    multiple entries. Each entry consists of network IP protocol
+    (``protocol``), the fixed IP address of internal neutron port
+    (``internal_ip_address``), the TCP or UDP port used by internal
+    neutron port (``internal_port``) and the TCP or UDP port used by
+    floating IP (``external_port``).
+  in: body
+  required: true
+  type: array
 floatingip-port_id:
   description: |
     The ID of a port associated with the floating IP.
