@@ -76,6 +76,7 @@ from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import routerservicetype
 from neutron_lib.api.definitions import security_groups_port_filtering
 from neutron_lib.api.definitions import segment
+from neutron_lib.api.definitions import segments_peer_subnet_host_routes
 from neutron_lib.api.definitions import servicetype
 from neutron_lib.api.definitions import sfc
 from neutron_lib.api.definitions import sorting
@@ -160,6 +161,7 @@ _ALL_API_DEFINITIONS = {
     routerservicetype,
     security_groups_port_filtering,
     segment,
+    segments_peer_subnet_host_routes,
     servicetype,
     sfc,
     sorting,

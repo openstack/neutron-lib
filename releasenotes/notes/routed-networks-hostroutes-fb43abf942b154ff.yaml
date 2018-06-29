@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Adds api-extension ``segments-peer-subnet-host-routes``. Adds host routes
+    to subnets on a routed network (segments). `RFE: 1766380
+    <https://bugs.launchpad.net/neutron/+bug/1766380>`_.
