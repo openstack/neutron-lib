@@ -42,9 +42,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                                     'convert_to':
                                         converters.convert_to_boolean},
                     'external_fixed_ips': {
-                        'convert_list_to': converters.convert_kvp_list_to_dict,
                         'type:fixed_ips': None,
-                        'default': None,
                         'required': False
                     }
                 }

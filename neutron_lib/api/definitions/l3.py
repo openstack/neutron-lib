@@ -96,10 +96,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                                    'network_id': {'type:uuid': None,
                                                   'required': True},
                                    'external_fixed_ips': {
-                                       'convert_list_to':
-                                           converters.convert_kvp_list_to_dict,
                                        'type:fixed_ips': None,
-                                       'default': None,
                                        'required': False,
                                    }
                                }
