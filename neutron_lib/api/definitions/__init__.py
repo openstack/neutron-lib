@@ -33,6 +33,7 @@ from neutron_lib.api.definitions import empty_string_filtering
 from neutron_lib.api.definitions import external_net
 from neutron_lib.api.definitions import extra_dhcp_opt
 from neutron_lib.api.definitions import extraroute
+from neutron_lib.api.definitions import filter_validation
 from neutron_lib.api.definitions import fip64
 from neutron_lib.api.definitions import fip_port_details
 from neutron_lib.api.definitions import firewall
@@ -118,6 +119,7 @@ _ALL_API_DEFINITIONS = {
     external_net,
     extra_dhcp_opt,
     extraroute,
+    filter_validation,
     fip64,
     firewall,
     firewall_v2,
