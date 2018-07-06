@@ -60,3 +60,8 @@ class PlacementResourceClassNotFound(exceptions.NotFound):
 class PlacementAPIVersionIncorrect(exceptions.NotFound):
     message = _("Placement API version %(current_version)s, do not meet the"
                 "needed version %(needed_version)s.")
+
+
+class PlacementResourceProviderNameNotUnique(exceptions.Conflict):
+    message = _("Another resource provider exists with the provided name: "
+                "%(name)s.")
