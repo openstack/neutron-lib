@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    neutron-lib now has a new module: ``neutron_lib.placement.utils``.
+    This module contains logic that is to be shared between in-tree
+    Neutron components and possibly out-of-tree Neutron agents that want
+    to support features involving the Placement service (for example
+    guaranteed minimum bandwidth).
