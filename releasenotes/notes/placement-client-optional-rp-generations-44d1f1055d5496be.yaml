@@ -1,0 +1,12 @@
+---
+other:
+  - |
+    The ``resource_provider_generation`` parameters of the following
+    methods of ``PlacementAPIClient`` are now optional:
+    ``update_resource_provider_inventories``,
+    ``update_resource_provider_inventory`` and
+    ``update_resource_provider_traits``.
+    You may call the methods without this parameter or pass ``None``
+    with the meaning to ignore resource provider generations. That is the
+    client will (in quick succession) get the object and update it supplying
+    the same generation.

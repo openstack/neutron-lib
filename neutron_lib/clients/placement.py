@@ -254,7 +254,7 @@ class PlacementAPIClient(object):
     @_check_placement_api_available
     def update_resource_provider_inventories(
             self, resource_provider_uuid, inventories,
-            resource_provider_generation):
+            resource_provider_generation=None):
         """Update resource provider inventories.
 
         :param resource_provider_uuid: UUID of the resource provider.
@@ -269,7 +269,7 @@ class PlacementAPIClient(object):
                             step_size(required):
                             }}
         :param resource_provider_generation: The generation of the resource
-                                             provider.
+                                             provider. Optional.
         :raises PlacementResourceProviderNotFound: if the resource provider
                                                    is not found.
         :raises PlacementResourceProviderGenerationConflict: if the generation
@@ -278,6 +278,9 @@ class PlacementAPIClient(object):
                                                              match with the
                                                              server side.
         """
+        if resource_provider_generation is None:
+            resource_provider_generation = self.get_resource_provider(
+                resource_provider_uuid=resource_provider_uuid)['generation']
         url = '/resource_providers/%s/inventories' % resource_provider_uuid
         body = {
             'resource_provider_generation': resource_provider_generation,
@@ -363,20 +366,23 @@ class PlacementAPIClient(object):
     @_check_placement_api_available
     def update_resource_provider_inventory(
             self, resource_provider_uuid, inventory, resource_class,
-            resource_provider_generation):
+            resource_provider_generation=None):
         """Update resource provider inventory.
 
         :param resource_provider_uuid: UUID of the resource provider.
         :param inventory: The inventory to be updated for the resource class.
         :param resource_class: The name of the resource class.
         :param resource_provider_generation: The generation of the resource
-                                             provider.
+                                             provider. Optional.
         :raises PlacementResourceNotFound: If the resource provider or the
                                            resource class is not found.
         :raises PlacementInventoryUpdateConflict: If the resource provider
                                                   generation does not match
                                                   with the server side.
         """
+        if resource_provider_generation is None:
+            resource_provider_generation = self.get_resource_provider(
+                resource_provider_uuid=resource_provider_uuid)['generation']
         url = '/resource_providers/%s/inventories/%s' % (
             resource_provider_uuid, resource_class)
         inventory['resource_provider_generation'] = \
@@ -460,19 +466,22 @@ class PlacementAPIClient(object):
     @_check_placement_api_available
     def update_resource_provider_traits(
             self, resource_provider_uuid, traits,
-            resource_provider_generation):
+            resource_provider_generation=None):
         """Update resource provider traits
 
         :param resource_provider_uuid: UUID of the resource provider for which
                                        to set the traits
         :param traits: a list of traits.
         :param resource_provider_generation: The generation of the resource
-                                             provider.
+                                             provider. Optional.
         :raises PlacementResourceProviderNotFound: If the resource provider
                                                    is not found.
         :raises PlacementTraitNotFound: If any of the specified traits are not
                                         valid.
         """
+        if resource_provider_generation is None:
+            resource_provider_generation = self.get_resource_provider(
+                resource_provider_uuid=resource_provider_uuid)['generation']
         url = '/resource_providers/%s/traits' % (resource_provider_uuid)
         body = {
             'resource_provider_generation': resource_provider_generation,

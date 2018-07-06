@@ -142,13 +142,27 @@ class TestPlacementAPIClient(base.BaseTestCase):
             self.placement_api_client.list_resource_providers,
             in_tree='tree1_uuid')
 
-    def test_update_resource_provider_inventories(self):
+    def test_update_resource_provider_inventories_generation(self):
         expected_body = {
             'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
             'inventories': INVENTORY
         }
         self.placement_api_client.update_resource_provider_inventories(
             RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_PROVIDER_GENERATION)
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/resource_providers/%s/inventories' % RESOURCE_PROVIDER_UUID,
+            expected_body)
+
+    def test_update_resource_provider_inventories_no_generation(self):
+        expected_body = {
+            'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
+            'inventories': INVENTORY
+        }
+        with mock.patch.object(
+                self.placement_api_client, 'get_resource_provider',
+                return_value={'generation': RESOURCE_PROVIDER_GENERATION}):
+            self.placement_api_client.update_resource_provider_inventories(
+                RESOURCE_PROVIDER_UUID, INVENTORY)
         self.placement_fixture.mock_put.assert_called_once_with(
             '/resource_providers/%s/inventories' % RESOURCE_PROVIDER_UUID,
             expected_body)
@@ -214,7 +228,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
                           self.placement_api_client.get_inventory,
                           RESOURCE_PROVIDER_UUID, RESOURCE_CLASS_NAME)
 
-    def test_update_resource_provider_inventory(self):
+    def test_update_resource_provider_inventory_generation(self):
         expected_body = {
             'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
         }
@@ -222,6 +236,22 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.update_resource_provider_inventory(
             RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_CLASS_NAME,
             resource_provider_generation=1)
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/resource_providers/%(rp_uuid)s/inventories/%(rc_name)s' %
+            {'rp_uuid': RESOURCE_PROVIDER_UUID,
+             'rc_name': RESOURCE_CLASS_NAME},
+            expected_body)
+
+    def test_update_resource_provider_inventory_no_generation(self):
+        expected_body = {
+            'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
+        }
+        expected_body.update(INVENTORY)
+        with mock.patch.object(
+                self.placement_api_client, 'get_resource_provider',
+                return_value={'generation': RESOURCE_PROVIDER_GENERATION}):
+            self.placement_api_client.update_resource_provider_inventory(
+                RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_CLASS_NAME)
         self.placement_fixture.mock_put.assert_called_once_with(
             '/resource_providers/%(rp_uuid)s/inventories/%(rc_name)s' %
             {'rp_uuid': RESOURCE_PROVIDER_UUID,
@@ -286,14 +316,29 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_fixture.mock_put.assert_called_once_with(
             '/traits/%s' % TRAIT_NAME, None)
 
-    def test_update_resource_provider_traits(self):
+    def test_update_resource_provider_traits_generation(self):
         traits = [TRAIT_NAME]
         self.placement_api_client.update_resource_provider_traits(
-            RESOURCE_PROVIDER_UUID, traits, resource_provider_generation=0)
+            RESOURCE_PROVIDER_UUID, traits,
+            resource_provider_generation=RESOURCE_PROVIDER_GENERATION)
         self.placement_fixture.mock_put.assert_called_once_with(
             '/resource_providers/%(rp_uuid)s/traits' %
             {'rp_uuid': RESOURCE_PROVIDER_UUID},
-            {'resource_provider_generation': 0, 'traits': traits})
+            {'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
+             'traits': traits})
+
+    def test_update_resource_provider_traits_no_generation(self):
+        traits = [TRAIT_NAME]
+        with mock.patch.object(
+                self.placement_api_client, 'get_resource_provider',
+                return_value={'generation': RESOURCE_PROVIDER_GENERATION}):
+            self.placement_api_client.update_resource_provider_traits(
+                RESOURCE_PROVIDER_UUID, traits)
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/resource_providers/%(rp_uuid)s/traits' %
+            {'rp_uuid': RESOURCE_PROVIDER_UUID},
+            {'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
+             'traits': traits})
 
     def test_update_resource_provider_traits_no_rp(self):
         traits = [TRAIT_NAME]
