@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    New constants module for Placement: ``neutron_lib.placement.constants``.
