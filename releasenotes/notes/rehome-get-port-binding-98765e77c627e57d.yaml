@@ -1,0 +1,4 @@
+---
+features:
+  - The ``get_port_binding_by_status_and_host`` function is now available
+    in ``neutron_lib.plugins.utils``.
