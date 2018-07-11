@@ -79,6 +79,7 @@ from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import segments_peer_subnet_host_routes
 from neutron_lib.api.definitions import servicetype
 from neutron_lib.api.definitions import sfc
+from neutron_lib.api.definitions import sort_key_validation
 from neutron_lib.api.definitions import sorting
 from neutron_lib.api.definitions import standard_attr_segment
 from neutron_lib.api.definitions import subnet
@@ -164,6 +165,7 @@ _ALL_API_DEFINITIONS = {
     segments_peer_subnet_host_routes,
     servicetype,
     sfc,
+    sort_key_validation,
     sorting,
     standard_attr_segment,
     subnet,

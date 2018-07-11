@@ -1,0 +1,12 @@
+---
+features:
+  - |
+    Add API extension ``sort-key-validation``. This extension indicates if the
+    server supports validation on sorting.
+other:
+  - |
+    API extension ``sort-key-validation`` relies on the ``is_sort_key`` keyword
+    in the ``RESOURCE_ATTRIBUTE_MAP`` to judge if an attribute can be used as
+    sort key. Neutron plugins which want to support sort key validation
+    needs to set ``is_sort_key`` to ``True`` for each attribute in their
+    resource attribute map.
