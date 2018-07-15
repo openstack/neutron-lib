@@ -14,6 +14,7 @@
         "updated_at": "2016-12-22T03:13:49Z",
         "revision_number": 3,
         "port_details": null,
-        "tags": ["tag1,tag2"]
+        "tags": ["tag1,tag2"],
+        "port_forwardings": []
     }
 }

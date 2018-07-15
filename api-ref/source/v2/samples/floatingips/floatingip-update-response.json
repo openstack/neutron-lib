@@ -24,6 +24,7 @@
             "device_owner": "compute:nova",
             "mac_address": "fa:16:3e:b1:3b:30",
             "device_id": "8e3941b4-a6e9-499f-a1ac-2a4662025cba"
-        }
+        },
+        "port_forwardings": []
     }
 }

@@ -17,6 +17,13 @@ The ``fip-port-details`` extension adds the ``port_details`` attribute to
 floating IPs. The value of this attribute contains information of the
 associated port.
 
+Floating IP port forwardings
+============================
+
+The ``expose-port-forwarding-in-fip`` extension adds the ``port_forwardings``
+attribute to floating IPs. The value of this attribute contains the
+information of associated port forwarding resources.
+
 Resource timestamps
 ===================
 
@@ -104,6 +111,7 @@ Response Parameters
    - floating_ip_address: floating_ip_address
    - port_id: floatingip-port_id
    - tags: tags
+   - port_forwardings: floatingip-port_forwardings
 
 Response Example
 ----------------
@@ -216,6 +224,7 @@ Response Parameters
    - port_id: floatingip-port_id
    - id: floatingip-id
    - tags: tags
+   - port_forwardings: floatingip-port_forwardings
 
 Response Example
 ----------------
@@ -281,6 +290,7 @@ Response Parameters
    - port_id: floatingip-port_id
    - id: floatingip-id
    - tags: tags
+   - port_forwardings: floatingip-port_forwardings
 
 Response Example
 ----------------
@@ -360,6 +370,7 @@ Response Parameters
    - dns_name: dns_name
    - port_details: floating_port_details
    - tags: tags
+   - port_forwardings: floatingip-port_forwardings
 
 Response Example
 ----------------

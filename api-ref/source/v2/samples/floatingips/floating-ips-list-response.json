@@ -25,7 +25,8 @@
                 "mac_address": "fa:16:3e:b1:3b:30",
                 "device_id": "8e3941b4-a6e9-499f-a1ac-2a4662025cba"
             },
-            "tags": ["tag1,tag2"]
+            "tags": ["tag1,tag2"],
+            "port_forwardings": []
         },
         {
             "router_id": null,
@@ -44,7 +45,40 @@
             "id": "61cea855-49cb-4846-997d-801b70c71bdd",
             "status": "DOWN",
             "port_details": null,
-            "tags": ["tag1,tag2"]
+            "tags": ["tag1,tag2"],
+            "port_forwardings": []
+        },
+        {
+            "router_id": "0303bf18-2c52-479c-bd68-e0ad712a1639",
+            "description": "for test with port forwarding",
+            "dns_domain": "my-domain.org.",
+            "dns_name": "myfip3",
+            "created_at": "2018-06-15T02:12:48Z",
+            "updated_at": "2018-06-15T02:12:57Z",
+            "revision_number": 1,
+            "project_id": "4969c491a3c74ee4af974e6d800c62de",
+            "tenant_id": "4969c491a3c74ee4af974e6d800c62de",
+            "floating_network_id": "376da547-b977-4cfe-9cba-275c80debf57",
+            "fixed_ip_address": null,
+            "floating_ip_address": "172.24.4.42",
+            "port_id": null,
+            "id": "898b198e-49f7-47d6-a7e1-53f626a548e6",
+            "status": "ACTIVE",
+            "tags": [],
+            "port_forwardings": [
+                {
+                    "protocol": "tcp",
+                    "internal_ip_address": "10.0.0.19",
+                    "internal_port": 25,
+                    "external_port": 2225
+                },
+                {
+                    "protocol": "tcp",
+                    "internal_ip_address": "10.0.0.18",
+                    "internal_port": 16666,
+                    "external_port": 8786
+                }
+            ]
         }
     ]
 }

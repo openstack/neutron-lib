@@ -87,6 +87,7 @@ KNOWN_EXTENSIONS = (
     'dns-integration',
     'dvr',
     'empty-string-filtering',
+    'expose-port-forwarding-in-fip',
     'ext-gw-mode',
     'external-net',
     'extra_dhcp_opt',
