@@ -116,6 +116,7 @@ KNOWN_EXTENSIONS = (
     'security-group',
     'segment',
     'service-type',
+    'sort-key-validation',
     'sorting',
     'standard-attr-description',
     'standard-attr-revisions',

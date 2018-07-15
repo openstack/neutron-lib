@@ -378,6 +378,12 @@ the background.
 To determine if sorting is supported, a user can check whether the 'sorting'
 extension API is available.
 
+Starting from Rocky release, the Networking API performs validation on
+sorting attributes if the API extension ``sort-key-validation`` is available.
+If an API request contains an unknown or unsupported sort key,
+the server will return a ``400`` response instead of silently ignoring
+the invalid input.
+
 
 .. _Extensions:
 
