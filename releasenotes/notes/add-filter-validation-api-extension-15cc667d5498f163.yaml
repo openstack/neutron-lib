@@ -1,0 +1,12 @@
+---
+features:
+  - |
+    Add API extension ``filter-validation``. This extension indicates if the
+    server supports validation on filter parameters of the list requests.
+other:
+  - |
+    API extension ``filter-validation`` relies on the ``is_filter`` keyword
+    in the ``RESOURCE_ATTRIBUTE_MAP`` to judge if an attribute can be used as
+    filter. Neutron plugins which want to support filter validation
+    needs to set ``is_filter`` to ``True`` for each attribute in their
+    resource attribute map.

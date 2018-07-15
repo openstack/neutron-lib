@@ -156,6 +156,12 @@ that have ``device_id`` attribute with empty value (which are unbound ports).
 To determine if this feature is supported, a user can check whether the
 ``empty-string-filtering`` extension API is available.
 
+Starting from Rocky release, the Networking API will perform validation
+on filtering attributes if the API extension ``filter-validation`` is
+available. If an API request contains an unknown or unsupported
+parameter, the server will return a ``400`` response instead of silently
+ignoring the invalid input.
+
 Note
 ----
 
