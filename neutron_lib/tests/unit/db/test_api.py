@@ -129,9 +129,42 @@ class TestDeadLockDecorator(_base.BaseTestCase):
         e = db_exc.DBConnectionError()
         mock.patch('time.sleep').start()
         with testtools.ExpectedException(db_exc.DBConnectionError):
-            # after 10 failures, the inner retry should give up and
+            # after 20 failures, the inner retry should give up and
             # the exception should be tagged to prevent the outer retry
-            self._alt_context_function(context, 11, e)
+            self._alt_context_function(context, db_api.MAX_RETRIES + 1, e)
+
+    def _test_retry_time_cost(self, exc_to_raise):
+        worst_case = [0.5, 1, 2, 4, 8,
+                      10, 10, 10, 10, 10,
+                      10, 10, 10, 10, 10,
+                      10, 10, 10, 10, 10]
+
+        class FakeTime(object):
+            def __init__(self):
+                self.counter = 0
+
+            def sleep(self, t):
+                self.counter += t
+
+        fake_timer = FakeTime()
+
+        def fake_sleep(t):
+            fake_timer.sleep(t)
+
+        e = exc_to_raise()
+        mock.patch('time.sleep', side_effect=fake_sleep).start()
+        with testtools.ExpectedException(exc_to_raise):
+            self._decorated_function(db_api.MAX_RETRIES + 1, e)
+        if exc_to_raise == db_exc.DBDeadlock:
+            self.assertEqual(True, (fake_timer.counter <= sum(worst_case)))
+        else:
+            self.assertEqual(sum(worst_case), fake_timer.counter)
+
+    def test_all_deadlock_time_elapsed(self):
+        self._test_retry_time_cost(db_exc.DBDeadlock)
+
+    def test_not_deadlock_time_elapsed(self):
+        self._test_retry_time_cost(db_exc.DBConnectionError)
 
     def test_retry_if_session_inactive_args_not_mutated_after_retries(self):
         context = mock.Mock()

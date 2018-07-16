@@ -1,0 +1,10 @@
+---
+fixes:
+  - |
+    Increase the DB retry interval and max retry times for the
+    ``retry_db_errors`` decorator in ``neutron_lib.db.api`` to
+    0.5 seconds and 20 times, respectively. For those actions
+    which have a higher chance for DBDeadlock, users should have
+    a higher success rate due to the larger random range and retry
+    times. For more information
+    see bug `1777968 <https://bugs.launchpad.net/neutron/+bug/1777968>`_

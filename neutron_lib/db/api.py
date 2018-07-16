@@ -36,7 +36,7 @@ from neutron_lib import exceptions
 from neutron_lib.objects import exceptions as obj_exc
 
 
-MAX_RETRIES = 10
+MAX_RETRIES = 20
 OSPROFILER_TRACE_NAMES = {'neutron.db', 'neutron_lib.db'}
 LOG = logging.getLogger(__name__)
 _synchronized = lockutils.synchronized_with_prefix("neutron-")
@@ -148,7 +148,7 @@ def _copy_if_lds(item):
 
 _retry_db_errors = oslo_db_api.wrap_db_retry(
     max_retries=MAX_RETRIES,
-    retry_interval=0.1,
+    retry_interval=0.5,
     inc_retry_interval=True,
     exception_checker=is_retriable
 )
