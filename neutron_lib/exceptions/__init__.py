@@ -781,3 +781,8 @@ class FilterIDForIPNotFound(NotFound):
 class FailedToAddQdiscToDevice(NeutronException):
     message = _("Failed to add %(direction)s qdisc "
                 "to device %(device)s.")
+
+
+class PortBindingNotFound(NotFound):
+    message = _("Binding for port %(port_id)s for host %(host)s could not be "
+                "found.")
