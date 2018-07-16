@@ -21,6 +21,18 @@ class NeutronObjectUpdateForbidden(exceptions.NeutronException):
 
 
 class NeutronDbObjectDuplicateEntry(exceptions.Conflict):
+    """Duplicate entry at unique column error.
+
+    Raised when made an attempt to write to a unique column the same entry as
+    existing one. :attr: `columns` available on an instance of the exception
+    and could be used at error handling::
+
+       try:
+           obj_ref.save()
+       except NeutronDbObjectDuplicateEntry as e:
+           if 'colname' in e.columns:
+               # Handle error.
+    """
     message = _("Failed to create a duplicate %(object_type)s: "
                 "for attribute(s) %(attributes)s with value(s) %(values)s")
 
@@ -30,6 +42,8 @@ class NeutronDbObjectDuplicateEntry(exceptions.Conflict):
                                                   fully_qualified=False),
             attributes=db_exception.columns,
             values=db_exception.value)
+        self.columns = db_exception.columns
+        self.value = db_exception.value
 
 
 class NeutronDbObjectNotFoundByModel(exceptions.NotFound):
