@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Introduced ``neutron_lib.utils.net.random_mac_generator(basemac)``. It allows
+    you to get a mac address string Python generator from the same kind of
+    basemac that ``neutron_lib.utils.net.get_random_mac(basemac)`` expects. If
+    there are a lot of macs to get, this will speed the process up
+    significantly over generating single macs and testing for collisions.

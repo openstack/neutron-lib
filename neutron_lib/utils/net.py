@@ -43,6 +43,36 @@ def get_random_mac(base_mac):
     return ':'.join(["%02x" % x for x in mac])
 
 
+def random_mac_generator(base_mac):
+    """Generates random mac addresses from a specified base format.
+
+    The first 3 octets of each MAC address will remain unchanged. If the 4th
+    octet is not 00, it will also be used. The others will be randomly
+    generated.
+
+    :param base_mac: Base mac address represented by an array of 6 strings.
+    :returns: A mac address string generator.
+    """
+    fixed = list(base_mac[0:3])
+    to_generate = 3
+    if base_mac[3] != '00':
+        fixed += base_mac[3]
+        to_generate = 2
+    beginning = ':'.join(fixed) + ':'
+
+    form = '{}' + ':'.join('{:02x}' for _ in range(to_generate))
+    max_macs = 2 ** (to_generate * 8)
+    seen = set()
+    while len(seen) < max_macs:
+        numbers = [random.getrandbits(8) for _ in range(to_generate)]
+        mac = form.format(beginning, *numbers)
+        if mac in seen:
+            continue
+        else:
+            seen.add(mac)
+            yield mac
+
+
 def is_port_trusted(port):
     """Used to determine if port can be trusted not to attack network.
 
