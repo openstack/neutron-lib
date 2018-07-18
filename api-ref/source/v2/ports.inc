@@ -117,6 +117,12 @@ The ``standard-attr-tag`` adds Tag support for resources with
 standard attributes by adding the ``tags`` attribute
 allowing consumers to associate tags with resources.
 
+Mac learning extension
+======================
+
+The ``mac_learning_enabled`` extension extends neutron ports providing the
+ability to enable MAC learning on the associated port via the
+```mac_learning_enabled``` attribute.
 
 Show port details
 =================
@@ -180,6 +186,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - mac_learning_enabled: mac_learning_enabled
 
 Response Example
 ----------------
@@ -250,6 +257,7 @@ Request
    - port_security_enabled: port_security_enabled-request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
+   - mac_learning_enabled: mac_learning_enabled-request
 
 Request Example
 ---------------
@@ -300,6 +308,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - mac_learning_enabled: mac_learning_enabled
 
 Response Example
 ----------------
@@ -393,6 +402,7 @@ Request
    - not-tags: not-tags-query
    - not-tags-any: not-tags-any-query
    - fields: fields
+   - mac_learning_enabled: mac_learning_enabled-query
 
 Response Parameters
 -------------------
@@ -431,6 +441,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - mac_learning_enabled: mac_learning_enabled
 
 Response Example
 ----------------
@@ -485,6 +496,7 @@ Request
    - security_groups: port-security_groups-request
    - tags: tags
    - tenant_id: project_id-request
+   - mac_learning_enabled: mac_learning_enabled-request
 
 Request Example
 ---------------
@@ -535,6 +547,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - mac_learning_enabled: mac_learning_enabled
 
 Response Example
 ----------------
@@ -587,6 +600,7 @@ Request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - tenant_id: project_id-request
+   - mac_learning_enabled: mac_learning_enabled-request
 
 Request Example
 ---------------
@@ -631,6 +645,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - mac_learning_enabled: mac_learning_enabled
 
 Response Example
 ----------------
