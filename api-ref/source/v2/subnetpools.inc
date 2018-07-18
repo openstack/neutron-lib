@@ -110,6 +110,7 @@ Request
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
    - description: description-request
+   - is_default: subnetpool_is_default-request
 
 Request Example
 ---------------
@@ -280,6 +281,7 @@ Request
    - default_prefixlen: default_prefixlen
    - max_prefixlen: max_prefixlen
    - description: description-request
+   - is_default: subnetpool_is_default
 
 Request Example
 ---------------
