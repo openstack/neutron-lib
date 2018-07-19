@@ -70,6 +70,14 @@ Error response codes: 401
 Request
 -------
 
+.. rest_parameters:: parameters.yaml
+
+   - network_id: network_ip_availability-network_id-query
+   - network_name: network-name-query
+   - tenant_id: project_id-query
+   - project_id: project_id-query
+   - ip_version: ip_version-query
+
 Response Parameters
 -------------------
 
