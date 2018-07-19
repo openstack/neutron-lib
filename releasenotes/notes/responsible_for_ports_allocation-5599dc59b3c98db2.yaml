@@ -1,0 +1,10 @@
+---
+features:
+  - |
+    New MechanismDriver API method: ``responsible_for_ports_allocation``.
+    Mechanism drivers wanting to support resource allocations for ports in
+    Placement (eg. wanting to guarantee some minimum bandwidth allocated
+    on the resource provider in the port's ``binding:profile.allocation``)
+    must implement this method. The default implementation reports not
+    being responsible for any resource providers, therefore unaffected
+    drivers need not be changed.
