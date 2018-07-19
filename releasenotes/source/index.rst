@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   rocky
    queens
    pike
    ocata
