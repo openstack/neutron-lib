@@ -358,6 +358,12 @@ alive-query:
   in: query
   required: false
   type: boolean
+availability_zone-query:
+  description: |
+    Filter the list result by the availability zone of the agent.
+  in: query
+  required: false
+  type: string
 binary-query:
   description: |
     Filter the list result by the executable command used to start the agent
@@ -955,6 +961,13 @@ remote_ip_prefix-query:
   in: query
   required: false
   type: string
+resource-query:
+  description: |
+    Filter the list result by the resource type of the availability zone.
+    The supported resource types are ``network`` and ``router``.
+  in: query
+  required: false
+  type: string
 resource_log_id-query:
   description: |
     Filter the log list result by the ID of resource (e.g security group ID).
@@ -1095,6 +1108,13 @@ sort_dir:
     Sort direction. A valid value is ``asc`` (ascending) or ``desc``
     (descending). You can specify multiple pairs of sort key and
     sort direction query parameters.
+  in: query
+  required: false
+  type: string
+state-query:
+  description: |
+    Filter the list result by the state of the availability zone, which is
+    either ``available`` or ``unavailable``.
   in: query
   required: false
   type: string
@@ -1426,6 +1446,12 @@ auth_mode:
   in: body
   required: false
   type: string
+availability_zone:
+  description: |
+    The availability zone of the agent.
+  in: body
+  required: true
+  type: string
 availability_zone_hints:
   description: |
     The availability zone candidate for the network.
@@ -1441,6 +1467,12 @@ availability_zone_hints-request:
 availability_zones:
   description: |
     The availability zone for the network.
+  in: body
+  required: true
+  type: array
+availability_zones-list:
+  description: |
+    A list of ``availability zone`` objects.
   in: body
   required: true
   type: array
@@ -4695,6 +4727,13 @@ remote_ip_prefix-request:
   in: body
   required: false
   type: string
+resource:
+  description: |
+    The resource type of the availability zone. The supported resource types
+    are ``network`` and ``router``.
+  in: body
+  required: true
+  type: string
 resource-collection:
   description: |
     Collection name of the resource.
@@ -5338,6 +5377,13 @@ source_port-response:
 started_at:
   description: |
     Time at which the agent was started.
+  in: body
+  required: true
+  type: string
+state:
+  description: |
+    The state of the availability zone, which is either ``available`` or
+    ``unavailable``.
   in: body
   required: true
   type: string

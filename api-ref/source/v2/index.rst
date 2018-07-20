@@ -85,6 +85,7 @@ Logging
 Networking Agents
 #################
 .. include:: agents.inc
+.. include:: availability_zones.inc
 .. include:: l3-agent-scheduler.inc
 .. include:: dhcp-agent-scheduler.inc
 #######################

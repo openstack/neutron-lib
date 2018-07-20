@@ -6,6 +6,13 @@ Agents
 
 Lists, shows details for, updates, and deletes agents.
 
+Availability Zone Extension
+===========================
+
+The ``availability_zone`` extension adds the ``availability_zone`` attribute
+to agents. ``availability_zone`` is the name of the availability zone that
+the agent is running on.
+
 List all agents
 ===============
 
@@ -31,6 +38,7 @@ Request
    - admin_state_up: admin_state_up-query
    - agent_type: agent_type-query
    - alive: alive-query
+   - availability_zone: availability_zone-query
    - binary: binary-query
    - description: description-query
    - host: host-query
@@ -47,6 +55,7 @@ Response Parameters
    - agents: agents
    - agent_type: agent_type
    - alive: alive
+   - availability_zone: availability_zone
    - binary: binary
    - configurations: configurations
    - created_at: created_at_resource
@@ -92,6 +101,7 @@ Response Parameters
    - agent: agent
    - agent_type: agent_type
    - alive: alive
+   - availability_zone: availability_zone
    - binary: binary
    - configurations: configurations
    - created_at: created_at_resource
@@ -144,6 +154,7 @@ Response Parameters
    - agent: agent
    - agent_type: agent_type
    - alive: alive
+   - availability_zone: availability_zone
    - binary: binary
    - configurations: configurations
    - created_at: created_at_resource
