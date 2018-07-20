@@ -3159,6 +3159,12 @@ floatingip-subnet_id:
   in: body
   required: false
   type: string
+floatingip_pools:
+  description: |
+    A list of ``floatingip_pools`` objects.
+  in: body
+  required: true
+  type: array
 floatingips:
   description: |
     A list of ``floatingip`` objects.
