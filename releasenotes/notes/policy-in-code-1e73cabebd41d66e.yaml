@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    policy-in-code support in neutron-lib is added.
+    The default policies for 'context_is_admin' and 'context_is_advsvc' are
+    now implemented as embeded policies.
+    (Note that the main policy-in-code support will be implemented
+    in the main neutron codebase.)

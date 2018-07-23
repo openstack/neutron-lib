@@ -39,10 +39,15 @@ class TestPolicyEnforcer(base.BaseTestCase):
         self.assertTrue(policy.check_is_admin(ctx))
 
     def test_check_is_admin_no_roles_no_admin(self):
-        policy.init(policy_file='no_policy.json')
+        policy.init(policy_file='dummy_policy.json')
         ctx = context.Context('me', 'my_project', roles=['user']).elevated()
         # With no admin role, elevated() should not work.
         self.assertFalse(policy.check_is_admin(ctx))
+
+    def test_check_user_elevated_is_admin_with_default_policy(self):
+        policy.init(policy_file='no_policy.json')
+        ctx = context.Context('me', 'my_project', roles=['user']).elevated()
+        self.assertTrue(policy.check_is_admin(ctx))
 
     def test_check_is_advsvc_role(self):
         ctx = context.Context('me', 'my_project', roles=['advsvc'])
@@ -58,7 +63,12 @@ class TestPolicyEnforcer(base.BaseTestCase):
         self.assertFalse(policy.check_is_advsvc(ctx))
 
     def test_check_is_advsvc_no_roles_no_advsvc(self):
-        policy.init(policy_file='no_policy.json')
+        policy.init(policy_file='dummy_policy.json')
         ctx = context.Context('me', 'my_project', roles=['advsvc'])
         # No advsvc role in the policy file, so cannot assume the role.
         self.assertFalse(policy.check_is_advsvc(ctx))
+
+    def test_check_is_advsvc_role_with_default_policy(self):
+        policy.init(policy_file='no_policy.json')
+        ctx = context.Context('me', 'my_project', roles=['advsvc'])
+        self.assertTrue(policy.check_is_advsvc(ctx))

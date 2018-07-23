@@ -10,6 +10,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import sys
+
 from oslo_config import cfg
 from oslo_policy import policy
 
@@ -17,6 +19,18 @@ from oslo_policy import policy
 _ROLE_ENFORCER = None
 _ADMIN_CTX_POLICY = 'context_is_admin'
 _ADVSVC_CTX_POLICY = 'context_is_advsvc'
+
+
+_BASE_RULES = [
+    policy.RuleDefault(
+        _ADMIN_CTX_POLICY,
+        'role:admin',
+        description='Rule for cloud admin access'),
+    policy.RuleDefault(
+        _ADVSVC_CTX_POLICY,
+        'role:advsvc',
+        description='Rule for advanced service role access'),
+]
 
 
 def init(conf=cfg.CONF, policy_file=None):
@@ -35,6 +49,7 @@ def init(conf=cfg.CONF, policy_file=None):
     global _ROLE_ENFORCER
     if not _ROLE_ENFORCER:
         _ROLE_ENFORCER = policy.Enforcer(conf, policy_file=policy_file)
+        _ROLE_ENFORCER.register_defaults(_BASE_RULES)
         _ROLE_ENFORCER.load_rules(True)
 
 
@@ -65,3 +80,30 @@ def check_is_advsvc(context):
     enforcer) and False otherwise.
     """
     return _check_rule(context, _ADVSVC_CTX_POLICY)
+
+
+def list_rules():
+    return _BASE_RULES
+
+
+def get_enforcer():
+    # NOTE(amotoki): This was borrowed from nova/policy.py.
+    # This method is for use by oslo.policy CLI scripts. Those scripts need the
+    # 'output-file' and 'namespace' options, but having those in sys.argv means
+    # loading the neutron config options will fail as those are not expected to
+    # be present. So we pass in an arg list with those stripped out.
+    conf_args = []
+    # Start at 1 because cfg.CONF expects the equivalent of sys.argv[1:]
+    i = 1
+    while i < len(sys.argv):
+        if sys.argv[i].strip('-') in ['namespace', 'output-file']:
+            i += 2
+            continue
+        conf_args.append(sys.argv[i])
+        i += 1
+
+    # 'project' must be 'neutron' so that get_enforcer looks at
+    # /etc/neutron/policy.json by default.
+    cfg.CONF(conf_args, project='neutron')
+    init()
+    return _ROLE_ENFORCER
