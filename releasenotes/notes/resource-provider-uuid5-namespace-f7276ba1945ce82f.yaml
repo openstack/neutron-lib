@@ -1,0 +1,13 @@
+---
+features:
+  - |
+    New MechanismDriver API class property:
+    ``resource_provider_uuid5_namespace``.  Mechanism drivers wanting
+    to support resource provider information reporting to Placement
+    (eg. reporting resource providers to guarantee some minimum bandwidth
+    allocated on them later) must set this class property to a UUID
+    object unique to that mechanism driver. It will be used as a UUID
+    v5 namespace in generating UUIDs for resource providers. The default
+    implementation sets it to ``None``, meaning that the mechanism driver
+    does not support resource provider information reporting to Placement.
+    Unaffected drivers need not be changed.
