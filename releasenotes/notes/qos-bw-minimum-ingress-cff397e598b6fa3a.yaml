@@ -1,0 +1,5 @@
+---
+features:
+  - New extension ``qos-bw-minimum-ingress`` for extending
+    ``qos_minimum_bandwidth_rule`` with ingress direction for placement
+    based enforcement.

@@ -70,6 +70,7 @@ from neutron_lib.api.definitions import project_id
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import qos
 from neutron_lib.api.definitions import qos_bw_limit_direction
+from neutron_lib.api.definitions import qos_bw_minimum_ingress
 from neutron_lib.api.definitions import qos_default
 from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import revisionifmatch
@@ -158,6 +159,7 @@ _ALL_API_DEFINITIONS = {
     provider_net,
     qos,
     qos_bw_limit_direction,
+    qos_bw_minimum_ingress,
     qos_default,
     qos_rule_type_details,
     revisionifmatch,
