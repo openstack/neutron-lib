@@ -615,6 +615,13 @@ mac_address-query:
   in: query
   required: false
   type: string
+mac_learning_enabled-query:
+  description: |
+    Filter the list result by the mac_learning_enabled state of the resource,
+    which is enabled (``true``) or disabled (``false``).
+  in: query
+  required: false
+  type: boolean
 max_burst_kbps-query:
   description: |
     Filter the list result by the maximum burst size (in kilobits).
@@ -3601,6 +3608,20 @@ mac_address-request-put:
   in: body
   required: false
   type: string
+mac_learning_enabled:
+  description: |
+    A boolean value that indicates if MAC Learning is enabled on the
+    associated port.
+  in: body
+  required: false
+  type: boolean
+mac_learning_enabled-request:
+  description: |
+    A boolean value that indicates if MAC Learning is enabled on the
+    associated port.
+  in: body
+  required: false
+  type: boolean
 max_burst_kbps:
   description: |
     The maximum burst size (in kilobits). Default is ``0``.
