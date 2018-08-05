@@ -61,6 +61,12 @@ extensions-alias-path:
   in: path
   required: true
   type: string
+fip_port_forwarding_id-path:
+  description: |
+    The ID of the floating IP port forwarding.
+  in: path
+  required: true
+  type: string
 firewall_group_id-path-required:
   description: |
     The ID of the firewall group.
@@ -447,6 +453,13 @@ excluded-query:
   in: query
   required: false
   type: boolean
+external_port-query:
+  description: |
+    Filter the list result by the TCP/UDP/other protocol port number of the
+    floating IP.
+  in: query
+  required: false
+  type: integer
 fields:
   description: |
     The fields that you want the server to return.
@@ -456,6 +469,25 @@ fields:
     attributes. ``fields`` parameter can be specified multiple times.
     For example, if you specify ``fields=id&fields=name`` in the request URL,
     only ``id`` and ``name`` attributes will be returned.
+  in: query
+  required: false
+  type: string
+fip_port_forwarding-sort_key:
+  description: |
+    Sorts by a floating IP port forwarding attribute. You can specify multiple
+    pairs of sort key and sort direction query parameters. The sort keys are
+    limited to:
+
+    - ``id``
+    - ``internal_port_id``
+    - ``external_port``
+    - ``protocol``
+  in: query
+  required: false
+  type: string
+fip_port_forwarding_protocol-query:
+  description: |
+    Filter the list result by the used protocol.
   in: query
   required: false
   type: string
@@ -562,6 +594,12 @@ host-query:
 id-query:
   description: |
     Filter the list result by the ID of the resource.
+  in: query
+  required: false
+  type: string
+internal_port_id-query:
+  description: |
+    Filter the list result by the ID of the internal Neutron port.
   in: query
   required: false
   type: string
@@ -2346,6 +2384,20 @@ extensions:
   in: body
   required: true
   type: array
+external_port:
+  description: |
+    The TCP/UDP/other protocol port number of the port forwarding's floating IP
+    address.
+  in: body
+  required: true
+  type: integer
+external_port-update:
+  description: |
+    The TCP/UDP/other protocol port number of the port forwarding's floating IP
+    address.
+  in: body
+  required: false
+  type: integer
 external_v4_ip:
   description: |
     Read-only external (public) IPv4 address that is
@@ -2375,6 +2427,36 @@ extra_dhcp_opts-request:
     option pair consists of an option value and name.
   in: body
   required: false
+  type: array
+fip_port_forwarding:
+  description: |
+    A ``floating IP port forwarding`` object.
+  in: body
+  required: true
+  type: object
+fip_port_forwarding_id-body:
+  description: |
+    The ID of the floating IP port forwarding.
+  in: body
+  required: true
+  type: string
+fip_port_forwarding_protocol-body:
+  description: |
+    The IP protocol used in the floating IP port forwarding.
+  in: body
+  required: true
+  type: string
+fip_port_forwarding_protocol-update:
+  description: |
+    The IP protocol used in the floating IP port forwarding.
+  in: body
+  required: false
+  type: string
+fip_port_forwardings:
+  description: |
+    A list of ``floating IP port forwardings`` objects.
+  in: body
+  required: true
   type: array
 firewall:
   description: |
@@ -3252,6 +3334,47 @@ interfaces:
     Router interfaces
   in: body
   required: true
+  type: string
+internal_ip_address:
+  description: |
+    The fixed IPv4 address of the Neutron port associated to the floating IP
+    port forwarding. If it is not specified, the first IPv4 address found by
+    the port forwardings plug-in will be used.
+  in: body
+  required: false
+  type: string
+internal_ip_address-response:
+  description: |
+    The fixed IPv4 address of the Neutron port associated to the floating IP
+    port forwarding.
+  in: body
+  required: true
+  type: string
+internal_port:
+  description: |
+    The TCP/UDP/other protocol port number of the Neutron port fixed IP
+    address associated to the floating ip port forwarding.
+  in: body
+  required: true
+  type: integer
+internal_port-update:
+  description: |
+    The TCP/UDP/other protocol port number of the Neutron port fixed IP
+    address associated to the floating ip port forwarding.
+  in: body
+  required: false
+  type: integer
+internal_port_id:
+  description: |
+    The ID of the Neutron port associated to the floating IP port forwarding.
+  in: body
+  required: true
+  type: string
+internal_port_id-update:
+  description: |
+    The ID of the Neutron port associated to the floating IP port forwarding.
+  in: body
+  required: false
   type: string
 interval:
   description: |
