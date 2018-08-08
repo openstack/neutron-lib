@@ -130,9 +130,10 @@ class PlacementAPIClient(object):
 
         :param resource_provider: The resource provider. A dict with the name
                                   (required) and the uuid (required).
+        :returns: The resource provider created.
         """
         url = '/resource_providers'
-        self._post(url, resource_provider)
+        return self._post(url, resource_provider).json()
 
     @_check_placement_api_available
     def delete_resource_provider(self, resource_provider_uuid):
@@ -353,9 +354,10 @@ class PlacementAPIClient(object):
         :param resource_provider_uuid: UUID of the resource provider.
         :param aggregates: aggregates to be associated to the resource
                            provider.
+        :returns: All aggregates associated with the resource provider.
         """
         url = '/resource_providers/%s/aggregates' % resource_provider_uuid
-        self._put(url, aggregates)
+        return self._put(url, aggregates).json()
 
     @_check_placement_api_available
     def list_aggregates(self, resource_provider_uuid):
