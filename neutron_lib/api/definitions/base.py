@@ -160,6 +160,9 @@ KNOWN_EXTENSIONS = (
     # http://git.openstack.org/cgit/openstack/networking-sfc:
     'flow_classifier',
     'sfc',
+
+    # http://git.openstack.org/cgit/openstack/neutron-interconnection:
+    'interconnection',
 )
 
 KNOWN_KEYWORDS = (

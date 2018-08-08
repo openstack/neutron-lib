@@ -84,6 +84,10 @@ BGP/MPLS VPN Interconnection
 Logging
 #######
 .. include:: logging.inc
+###############################
+Neutron-Neutron Interconnection
+###############################
+.. include:: interconnection.inc
 #################
 Networking Agents
 #################

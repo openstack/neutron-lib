@@ -1,0 +1,14 @@
+{
+    "interconnection": {
+        "id": "1bdffef1-fc49-4299-b9b5-005a2861e716",
+        "project_id": "5455570dafa34c32abb69c70005a57de",
+        "name": "interconnection1",
+        "type": "network_l3",
+        "state": "TO_VALIDATE",
+        "local_resource_id": "5d6820bf-a528-4e0c-85df-c2e771368d55",
+        "remote_resource_id": "a02d408d-7493-4291-b7bc-56894d063693",
+        "remote_keystone": "http://10.0.0.100/identity",
+        "remote_region": "RegionOne",
+        "remote_interconnection_id": null
+    }
+}

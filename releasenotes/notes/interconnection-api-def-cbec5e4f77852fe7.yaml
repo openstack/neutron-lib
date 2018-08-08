@@ -1,0 +1,4 @@
+---
+features:
+  - Adds definition of ``interconnection`` API extension for
+    neutron-interconnection project.
