@@ -165,7 +165,6 @@ Request
    - ports: firewall_group_ports-body-optional
    - project_id: project_id-body-optional
    - shared: firewall_group_shared-body-optional
-   - status: firewall_group_status-body-optional
    - tenant_id: project_id-body-optional
 
 Request Example
@@ -225,7 +224,6 @@ Request
    - name: firewall_group_name-body-optional
    - ports: firewall_group_ports-body-optional
    - shared: firewall_group_shared-body-optional
-   - status: firewall_group_status-body-optional
 
 Request Example
 ---------------

@@ -2546,14 +2546,6 @@ firewall_group_shared-body-required:
   in: body
   required: true
   type: boolean
-firewall_group_status-body-optional:
-  description: |
-    The status of the firewall group. Valid values are ``ACTIVE``,
-    ``INACTIVE``, ``ERROR``, ``PENDING_UPDATE``, or
-    ``PENDING_DELETE``.
-  in: body
-  required: false
-  type: string
 firewall_group_status-body-required:
   description: |
     The status of the firewall group. Valid values are ``ACTIVE``,
