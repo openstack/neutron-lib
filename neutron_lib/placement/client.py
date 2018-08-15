@@ -40,8 +40,6 @@ def _check_placement_api_available(f):
 
     :param f: Function to execute.
     :returns: The returned value of the function f.
-    :raises PlacementEndpointNotFound: If the placement API endpoint configured
-                                       is not found.
     """
     @functools.wraps(f)
     def wrapper(self, *a, **k):
@@ -146,6 +144,10 @@ class PlacementAPIClient(object):
                                   the uuid (required),
                                   the name (required) and
                                   the parent_provider_uuid (optional).
+        :raises PlacementResourceProviderNotFound: No such resource provider.
+        :raises PlacementResourceProviderNameNotUnique: Conflict with another
+                                                        resource provider with
+                                                        the same name.
         :returns: The updated resource provider.
         """
         url = '/resource_providers/%s' % resource_provider['uuid']
@@ -193,10 +195,8 @@ class PlacementAPIClient(object):
         """Get resource provider by UUID.
 
         :param resource_provider_uuid: UUID of the resource provider.
-        :raises PlacementResourceProviderNotFound: If the resource provider is
-                                                   not present.
-        :returns: The Resource Provider matching the UUID.
         :raises PlacementResourceProviderNotFound: For failure to find resource
+        :returns: The Resource Provider matching the UUID.
         """
         url = '/resource_providers/%s' % resource_provider_uuid
         try:
@@ -222,9 +222,9 @@ class PlacementAPIClient(object):
                         resource provider with UUID == tree_uuid.
                         NOTE: placement 1.14 needed.
         :param uuid: UUID of the resource provider.
-        :returns: A list of Resource Provider matching the filters.
         :raises PlacementAPIVersionIncorrect: If placement API target version
                                               is too low
+        :returns: A list of Resource Provider matching the filters.
         """
         url = '/resource_providers'
         filters = {}
@@ -256,7 +256,7 @@ class PlacementAPIClient(object):
     def update_resource_provider_inventories(
             self, resource_provider_uuid, inventories,
             resource_provider_generation=None):
-        """Update resource provider inventories.
+        """Replaces the set of inventory records for a resource provider.
 
         :param resource_provider_uuid: UUID of the resource provider.
         :param inventories: The inventories. A dict in the format (see:
@@ -278,6 +278,7 @@ class PlacementAPIClient(object):
                                                              provider does not
                                                              match with the
                                                              server side.
+        :returns: The updated set of inventory records.
         """
         if resource_provider_generation is None:
             resource_provider_generation = self.get_resource_provider(
@@ -304,6 +305,7 @@ class PlacementAPIClient(object):
         :param resource_provider_uuid: UUID of the resource provider.
         :raises PlacementResourceProviderNotFound: If the resource provider
                                                    is not found.
+        :returns: None.
         """
         url = '/resource_providers/%s/inventories' % (
             resource_provider_uuid)
@@ -323,6 +325,10 @@ class PlacementAPIClient(object):
 
         :param resource_provider_uuid: UUID of the resource provider.
         :param resource_class: The name of the resource class
+        :raises PlacementResourceProviderNotFound: If the resource provider
+                                                   is not found.
+        :raises PlacementInventoryNotFound: No inventory of class.
+        :returns: None.
         """
         url = '/resource_providers/%s/inventories/%s' % (
             resource_provider_uuid, resource_class)
@@ -346,8 +352,11 @@ class PlacementAPIClient(object):
         :param resource_provider_uuid: UUID of the resource provider.
         :param resource_class: Resource class name of the inventory to be
                                returned.
+        :raises PlacementResourceProviderNotFound: If the resource provider is
+                                                   not found.
         :raises PlacementInventoryNotFound: For failure to find inventory
                                             for a resource provider.
+        :returns: The inventory of the resource class as a dict.
         """
         url = '/resource_providers/%s/inventories/%s' % (
             resource_provider_uuid, resource_class)
@@ -380,6 +389,7 @@ class PlacementAPIClient(object):
         :raises PlacementInventoryUpdateConflict: If the resource provider
                                                   generation does not match
                                                   with the server side.
+        :returns: The updated inventory of the resource class as a dict.
         """
         if resource_provider_generation is None:
             resource_provider_generation = self.get_resource_provider(
@@ -416,6 +426,8 @@ class PlacementAPIClient(object):
         :param resource_provider_uuid: UUID of the resource provider.
         :raises PlacementAggregateNotFound: For failure to the aggregates of
                                             a resource provider.
+        :returns: The list of aggregates together with the resource provider
+                  generation.
         """
         url = '/resource_providers/%s/aggregates' % resource_provider_uuid
         try:
@@ -436,6 +448,7 @@ class PlacementAPIClient(object):
 
         :param name: name of the trait to check.
         :raises PlacementTraitNotFound: If the trait name not found.
+        :returns: Evaluates to True if the trait exists.
         """
         url = '/traits/%s' % name
         try:
@@ -448,6 +461,7 @@ class PlacementAPIClient(object):
         """Insert a single custom trait.
 
         :param name: name of the trait to create.
+        :returns: The Response object so you may access response headers.
         """
         url = '/traits/%s' % (name)
         return self._put(url, None)
@@ -457,6 +471,8 @@ class PlacementAPIClient(object):
         """Delete the specified trait.
 
         :param name: the name of the trait to be deleted.
+        :raises PlacementTraitNotFound: If the trait did not exist.
+        :returns: None.
         """
         url = '/traits/%s' % (name)
         try:
@@ -468,7 +484,7 @@ class PlacementAPIClient(object):
     def update_resource_provider_traits(
             self, resource_provider_uuid, traits,
             resource_provider_generation=None):
-        """Update resource provider traits
+        """Replace all associated traits of a resource provider.
 
         :param resource_provider_uuid: UUID of the resource provider for which
                                        to set the traits
@@ -479,6 +495,8 @@ class PlacementAPIClient(object):
                                                    is not found.
         :raises PlacementTraitNotFound: If any of the specified traits are not
                                         valid.
+        :returns: The new traits of the resource provider together with the
+                  resource provider generation.
         """
         if resource_provider_generation is None:
             resource_provider_generation = self.get_resource_provider(
@@ -504,6 +522,8 @@ class PlacementAPIClient(object):
                                        the traits will be listed
         :raises PlacementResourceProviderNotFound: If the resource provider
                                                    is not found.
+        :returns: The associated traits of the resource provider together
+                  with the resource provider generation.
         """
         url = '/resource_providers/%s/traits' % (resource_provider_uuid)
         try:
@@ -518,6 +538,9 @@ class PlacementAPIClient(object):
 
         :param resource_provider_uuid: The UUID of the resource provider for
                                        which to delete all the traits.
+        :raises PlacementResourceProviderNotFound: If the resource provider
+                                                   is not found.
+        :returns: None.
         """
         url = '/resource_providers/%s/traits' % (resource_provider_uuid)
         try:
@@ -537,6 +560,9 @@ class PlacementAPIClient(object):
         """Show resource class.
 
         :param name: The name of the resource class to show
+        :raises PlacementResourceClassNotFound: If the resource class
+                                                is not found.
+        :returns: The name of resource class and its set of links.
         """
         url = '/resource_classes/%s' % (name)
         try:
@@ -549,6 +575,7 @@ class PlacementAPIClient(object):
         """Create a custom resource class
 
         :param name: the name of the resource class
+        :returns: None.
         """
         url = '/resource_classes'
         body = {'name': name}
@@ -559,6 +586,7 @@ class PlacementAPIClient(object):
         """Create or validate the existence of the resource custom class.
 
         :param name: the name of the resource class to be updated or validated
+        :returns: None.
         """
         url = '/resource_classes/%s' % name
         self._put(url, None)
@@ -568,6 +596,9 @@ class PlacementAPIClient(object):
         """Delete a custom resource class.
 
         :param name: The name of the resource class to be deleted.
+        :raises PlacementResourceClassNotFound: If the resource class
+                                                is not found.
+        :returns: None.
         """
         url = '/resource_classes/%s' % (name)
         try:
