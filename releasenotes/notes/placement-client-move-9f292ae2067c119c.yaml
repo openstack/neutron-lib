@@ -1,0 +1,7 @@
+---
+other:
+  - |
+    The ``PlacementAPIClient`` class is moved from
+    ``neutron_lib.clients.placement`` to ``neutron_lib.placement.client``
+    in order to consolidate all Placement related logic under sub-package
+    ``neutron_lib.placement``.

@@ -17,9 +17,9 @@ from keystoneauth1 import exceptions as ks_exc
 from oslo_utils import uuidutils
 
 from neutron_lib._i18n import _
-from neutron_lib.clients import placement
 from neutron_lib.exceptions import placement as n_exc
 from neutron_lib import fixture
+from neutron_lib.placement import client as place_client
 from neutron_lib.tests import _base as base
 
 
@@ -46,8 +46,8 @@ class TestPlacementAPIClient(base.BaseTestCase):
         config = mock.Mock()
         config.region_name = 'region_name'
         self.openstack_api_version = (
-            placement.PLACEMENT_API_LATEST_SUPPORTED)
-        self.placement_api_client = placement.PlacementAPIClient(
+            place_client.PLACEMENT_API_LATEST_SUPPORTED)
+        self.placement_api_client = place_client.PlacementAPIClient(
             config, self.openstack_api_version)
         self.placement_fixture = self.useFixture(
             fixture.PlacementAPIClientFixture(self.placement_api_client))
