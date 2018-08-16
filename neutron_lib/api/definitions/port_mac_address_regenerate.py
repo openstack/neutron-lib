@@ -29,6 +29,8 @@ RESOURCE_ATTRIBUTE_MAP = {
             'convert_to': converters.convert_to_mac_if_none,
             'validate': {'type:mac_address': None},
             'enforce_policy': True,
+            'is_filter': True,
+            'is_sort_key': True,
             'is_visible': True},
     }
 }
