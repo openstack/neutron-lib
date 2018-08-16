@@ -80,7 +80,9 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                  'allow_put': False,
                  'validate': {'type:uuid': None},
                  'is_visible': True,
-                 'primary_key': True},
+                 'primary_key': True,
+                 'is_sort_key': True,
+                 'is_filter': True},
             PROJECT_ID: {'allow_post': True,
                          'allow_put': False,
                          'validate': {
@@ -90,7 +92,9 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
             EXTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
                 'validate': {'type:port_range': None},
-                'is_visible': True},
+                'is_visible': True,
+                'is_sort_key': True,
+                'is_filter': True},
             INTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
                 'validate': {'type:port_range': None},
@@ -103,11 +107,15 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
             PROTOCOL: {'allow_post': True, 'allow_put': True,
                        'validate': {'type:values': PROTOCOLS},
                        'is_visible': True,
-                       'convert_to': converters.convert_to_protocol},
+                       'convert_to': converters.convert_to_protocol,
+                       'is_sort_key': True,
+                       'is_filter': True},
             INTERNAL_PORT_ID: {'allow_post': True,
                                'allow_put': True,
                                'validate': {'type:uuid': None},
-                               'is_visible': True},
+                               'is_visible': True,
+                               'is_sort_key': True,
+                               'is_filter': True},
             }
         }
     }
