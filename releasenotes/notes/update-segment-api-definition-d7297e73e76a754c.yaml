@@ -1,0 +1,7 @@
+---
+other:
+  - |
+    This release removes the ``description`` from the segment extension's
+    attribute map as well as adds the ``standard-attr-description`` as
+    required dependency and ``standard-attr-segment`` as an optional
+    dependency.
