@@ -128,12 +128,55 @@ class PlacementAPIClient(object):
     def create_resource_provider(self, resource_provider):
         """Create a resource provider.
 
-        :param resource_provider: The resource provider. A dict with the name
-                                  (required) and the uuid (required).
+        :param resource_provider: The resource provider. A dict with
+                                  the uuid (required),
+                                  the name (required) and
+                                  the parent_provider_uuid (optional).
         :returns: The resource provider created.
         """
         url = '/resource_providers'
         return self._post(url, resource_provider).json()
+
+    @_check_placement_api_available
+    def update_resource_provider(self, resource_provider):
+        """Update the resource provider identified by uuid.
+
+        :param resource_provider: The resource provider. A dict with
+                                  the uuid (required),
+                                  the name (required) and
+                                  the parent_provider_uuid (optional).
+        :returns: The updated resource provider.
+        """
+        url = '/resource_providers/%s' % resource_provider['uuid']
+        # update does not tolerate if the uuid is repeated in the body
+        update_body = resource_provider.copy()
+        update_body.pop('uuid')
+        try:
+            return self._put(url, update_body).json()
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceProviderNotFound(
+                resource_provider=resource_provider['uuid'])
+        except ks_exc.Conflict:
+            raise n_exc.PlacementResourceProviderNameNotUnique(
+                name=resource_provider['name'])
+
+    @_check_placement_api_available
+    def ensure_resource_provider(self, resource_provider):
+        """Ensure a resource provider exists by updating or creating it.
+
+        :param resource_provider: The resource provider. A dict with
+                                  the uuid (required),
+                                  the name (required) and
+                                  the parent_provider_uuid (optional).
+        :returns: The Resource Provider updated or created.
+
+        Beware, this is not an atomic operation of the API.
+        """
+        try:
+            return self.update_resource_provider(
+                resource_provider=resource_provider)
+        except n_exc.PlacementResourceProviderNotFound:
+            return self.create_resource_provider(resource_provider)
 
     @_check_placement_api_available
     def delete_resource_provider(self, resource_provider_uuid):

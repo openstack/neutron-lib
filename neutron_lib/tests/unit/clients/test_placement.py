@@ -24,6 +24,11 @@ from neutron_lib.tests import _base as base
 
 
 RESOURCE_PROVIDER_UUID = uuidutils.generate_uuid()
+RESOURCE_PROVIDER_NAME = 'resource_provider_name'
+RESOURCE_PROVIDER = {
+    'uuid': RESOURCE_PROVIDER_UUID,
+    'name': RESOURCE_PROVIDER_NAME,
+}
 RESOURCE_PROVIDER_GENERATION = 1
 RESOURCE_CLASS_NAME = 'resource_class_name'
 TRAIT_NAME = 'trait_name'
@@ -49,10 +54,38 @@ class TestPlacementAPIClient(base.BaseTestCase):
 
     def test_create_resource_provider(self):
         self.placement_api_client.create_resource_provider(
-            RESOURCE_PROVIDER_UUID)
+            RESOURCE_PROVIDER)
         self.placement_fixture.mock_post.assert_called_once_with(
             '/resource_providers',
-            RESOURCE_PROVIDER_UUID
+            RESOURCE_PROVIDER
+        )
+
+    def test_update_resource_provider(self):
+        self.placement_api_client.update_resource_provider(
+            RESOURCE_PROVIDER)
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/resource_providers/%s' % RESOURCE_PROVIDER_UUID,
+            {'name': RESOURCE_PROVIDER_NAME}
+        )
+
+    def test_ensure_update_resource_provider(self):
+        self.placement_api_client.ensure_resource_provider(
+            RESOURCE_PROVIDER)
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/resource_providers/%s' % RESOURCE_PROVIDER_UUID,
+            {'name': RESOURCE_PROVIDER_NAME}
+        )
+        self.placement_fixture.mock_post.assert_not_called()
+
+    def test_ensure_create_resource_provider(self):
+        self.placement_fixture.mock_put.side_effect = \
+            n_exc.PlacementResourceProviderNotFound(
+                resource_provider=RESOURCE_PROVIDER_UUID)
+        self.placement_api_client.ensure_resource_provider(
+            RESOURCE_PROVIDER)
+        self.placement_fixture.mock_post.assert_called_once_with(
+            '/resource_providers',
+            RESOURCE_PROVIDER
         )
 
     def test_delete_resource_provider(self):

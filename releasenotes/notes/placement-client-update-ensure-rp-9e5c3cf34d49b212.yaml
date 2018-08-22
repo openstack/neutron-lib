@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    New methods available in Placement client:
+    ``update_resource_provider`` and ``ensure_resource_provider``.
