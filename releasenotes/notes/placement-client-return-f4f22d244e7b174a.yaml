@@ -1,0 +1,8 @@
+---
+other:
+  - |
+    The ``create_resource_provider`` and ``associate_aggregates``
+    methods of ``PlacementAPIClient`` now return the parsed
+    body of the respective responses. Since these methods returned ``None``
+    previously this is unlikely to break anything. On the other hand callers
+    of these methods now have a chance to simplify their code.
