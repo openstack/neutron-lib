@@ -55,6 +55,19 @@ class MechanismDriver(object):
     methods that are part of the database transaction.
     """
 
+    # Used in generating resource provider UUIDs for physical network
+    # interfaces. Each mechanism driver supporting Placement should have its
+    # own UUID v5 namespace (which is a UUID v1 in turn). When set to a
+    # concrete value use a uuid.UUID() object, not the string format.
+    # It will be used when hashing RP UUIDs from:
+    #     (mech driver namespace, hostname, physical bridge/interface name)
+    # When needed generate new namespace UUIDs by:
+    #     python -c 'import uuid ; print uuid.uuid1()'
+    # See also:
+    #     https://tools.ietf.org/html/rfc4122
+    #     https://stackoverflow.com/a/7816117
+    resource_provider_uuid5_namespace = None
+
     @abc.abstractmethod
     def initialize(self):
         """Perform driver initialization.
