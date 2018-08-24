@@ -107,6 +107,7 @@ KNOWN_EXTENSIONS = (
     'network-ip-availability',
     'network_availability_zone',
     'pagination',
+    'port-resource-request',
     'port-security',
     'project-id',
     'provider',

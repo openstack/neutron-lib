@@ -1,0 +1,8 @@
+---
+features:
+  - The new extension ``port-resource-request`` adds the ``resource_request``
+    attribute to port responses. This attribute enables Neutron to communicate
+    to Nova resources needed by the port, such as physnet, VNIC type and
+    bandwidth. If the port requested by Nova boot has the ``resource_request``
+    attribute, then the Nova Scheduler will try to allocate the VM in a host
+    that can satisfy those requirements.

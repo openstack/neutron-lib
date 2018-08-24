@@ -63,6 +63,7 @@ from neutron_lib.api.definitions import network_mtu_writable
 from neutron_lib.api.definitions import pagination
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_mac_address_regenerate
+from neutron_lib.api.definitions import port_resource_request
 from neutron_lib.api.definitions import port_security
 from neutron_lib.api.definitions import portbindings
 from neutron_lib.api.definitions import portbindings_extended
@@ -152,6 +153,7 @@ _ALL_API_DEFINITIONS = {
     pagination,
     port,
     port_mac_address_regenerate,
+    port_resource_request,
     port_security,
     portbindings,
     portbindings_extended,
