@@ -73,6 +73,7 @@ from neutron_lib.api.definitions import qos
 from neutron_lib.api.definitions import qos_bw_limit_direction
 from neutron_lib.api.definitions import qos_bw_minimum_ingress
 from neutron_lib.api.definitions import qos_default
+from neutron_lib.api.definitions import qos_gateway_ip
 from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import revisionifmatch
 from neutron_lib.api.definitions import router_availability_zone
@@ -163,6 +164,7 @@ _ALL_API_DEFINITIONS = {
     qos_bw_limit_direction,
     qos_bw_minimum_ingress,
     qos_default,
+    qos_gateway_ip,
     qos_rule_type_details,
     revisionifmatch,
     router_availability_zone,
