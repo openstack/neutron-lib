@@ -755,6 +755,12 @@ name-query:
   in: query
   required: false
   type: string
+network-name-query:
+  description: |
+    Filter the list result by the human-readable name of the network.
+  in: query
+  required: false
+  type: string
 network-shared-query:
   description: |
     Filter the network list result based on if the network is shared across
@@ -788,6 +794,13 @@ network-status-query:
 network_id-query:
   description: |
     Filter the list result by the ID of the attached network.
+  in: query
+  required: false
+  type: string
+network_ip_availability-network_id-query:
+  description: |
+    Filter the list result by the ID of the network whose IP availability
+    detail is reported.
   in: query
   required: false
   type: string

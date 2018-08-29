@@ -27,15 +27,15 @@ RESOURCE_ATTRIBUTE_MAP = {
     RESOURCE_PLURAL: {
         'network_id': {
             'allow_post': False, 'allow_put': False,
-            'is_visible': True
+            'is_visible': True, 'is_filter': True
         },
         'network_name': {
             'allow_post': False, 'allow_put': False,
-            'is_visible': True
+            'is_visible': True, 'is_filter': True
         },
         'tenant_id': {
             'allow_post': False, 'allow_put': False,
-            'is_visible': True
+            'is_visible': True, 'is_filter': True
         },
         'total_ips': {
             'allow_post': False, 'allow_put': False,
@@ -48,6 +48,18 @@ RESOURCE_ATTRIBUTE_MAP = {
         'subnet_ip_availability': {
             'allow_post': False, 'allow_put': False,
             'is_visible': True
+        },
+        # NOTE(hongbin): This 'ip_version' attribute (top-level) is only used
+        # as a filter on listing the resources. There is another 'ip_version'
+        # attribute nested inside the 'subnet_ip_availability'.
+        # The difference is that the top-level attribute is used as input
+        # and the nested attribute is an output.
+        # In here, 'allow_post', 'allow_put' and 'is_visible' are set to False
+        # because this attribute should be used as filter only. Please do not
+        # set it to True to avoid introducing inconsistency.
+        'ip_version': {
+            'allow_post': False, 'allow_put': False,
+            'is_visible': False, 'is_filter': True
         }
         # TODO(wwriverrat) Make composite attribute for subnet_ip_availability
     }
