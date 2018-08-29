@@ -4257,6 +4257,17 @@ port:
   in: body
   required: true
   type: object
+port-resource:
+  description: |
+    Expose Placement resources (i.e.: ``minimum-bandwidth``) and
+    traits (i.e.: ``vnic-type``, ``physnet``) requested by a port to
+    Nova and Placement. A ``resource_request`` object contains a
+    ``required`` key for the traits (generated from the ``vnic_type``
+    and the ``physnet``) required by the port, and a ``resources`` key
+    for ``ingress`` and ``egress minimum-bandwidth`` need for the port.
+  in: body
+  required: false
+  type: object
 port-security_groups:
   description: |
     The IDs of security groups applied to the port.

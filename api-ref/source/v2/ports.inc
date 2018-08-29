@@ -80,6 +80,13 @@ The extension defines several attributes whose names have a prefix
 ``binding:`` including ``binding:host_id``, ``binding:vnic_type``,
 ``binding:vif_type``, ``binding:vif_details``, and ``binding:profile``.
 
+Port resource request
+=====================
+
+The port resource request extension (``port-resource-request``) allows
+administrative users (including Nova) to retrieve the Placement resources and
+traits needed by a port by introducing the ``resource_request`` to ``port`` resources.
+
 Port security
 =============
 
@@ -181,6 +188,7 @@ Response Parameters
    - project_id: project_id
    - revision_number: revision_number
    - qos_policy_id: qos_policy_id-port-response
+   - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
    - tags: tags
@@ -303,6 +311,7 @@ Response Parameters
    - project_id: project_id
    - revision_number: revision_number
    - qos_policy_id: qos_policy_id-port-response
+   - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
    - tags: tags
@@ -436,6 +445,7 @@ Response Parameters
    - project_id: project_id
    - revision_number: revision_number
    - qos_policy_id: qos_policy_id-port-response
+   - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
    - tags: tags
@@ -542,6 +552,7 @@ Response Parameters
    - project_id: project_id
    - revision_number: revision_number
    - qos_policy_id: qos_policy_id-port-response
+   - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
    - tags: tags
