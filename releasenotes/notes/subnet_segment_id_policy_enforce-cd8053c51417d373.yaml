@@ -1,0 +1,7 @@
+---
+fixes:
+  - |
+    Change API to enforce policy rules for subnet entities with specified
+    segment_ids, to fix a broken implementation of that policy enforcement.
+    Bug: `1784259 <https://bugs.launchpad.net/neutron/+bug/1784259>`_
+
