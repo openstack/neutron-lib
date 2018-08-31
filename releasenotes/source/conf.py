@@ -29,6 +29,7 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
+from neutron_lib.version import version_info as neutron_dr_version
 
 # If your documentation needs a minimal Sphinx version, state it here.
 # needs_sphinx = '1.0'
@@ -61,8 +62,6 @@ copyright = u'2016, Neutron Library Developers'
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-# The short X.Y version.
-from neutron_lib.version import version_info as neutron_dr_version
 # The full version, including alpha/beta/rc tags.
 release = neutron_dr_version.version_string_with_vcs()
 # The short X.Y version.

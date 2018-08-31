@@ -26,7 +26,9 @@ setuptools*.egg/
 !/.gitreview
 !/.mailmap
 !/.pylintrc
+!/.stestr.conf
 !/.testr.conf
+.stestr/
 
 # Files created by releasenotes build
 releasenotes/build
