@@ -82,6 +82,7 @@ KNOWN_EXTENSIONS = (
     'availability_zone',
     'binding',
     'data-plane-status',
+    'project-default-networks',
     'default-subnetpools',
     'dhcp_agent_scheduler',
     'dns-domain-ports',

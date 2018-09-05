@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    The ``project-default-networks`` extension is now available and adds a new
+    attribute ``project_default`` into the ``network`` resource.
+    This attribute will be used to indicate if a network is a project
+    default network.

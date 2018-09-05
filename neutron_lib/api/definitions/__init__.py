@@ -67,6 +67,7 @@ from neutron_lib.api.definitions import port_resource_request
 from neutron_lib.api.definitions import port_security
 from neutron_lib.api.definitions import portbindings
 from neutron_lib.api.definitions import portbindings_extended
+from neutron_lib.api.definitions import project_default_networks
 from neutron_lib.api.definitions import project_id
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import qos
@@ -158,6 +159,7 @@ _ALL_API_DEFINITIONS = {
     port_security,
     portbindings,
     portbindings_extended,
+    project_default_networks,
     project_id,
     provider_net,
     qos,
