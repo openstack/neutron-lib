@@ -5792,6 +5792,12 @@ subnetpool_is_default:
   in: body
   required: true
   type: boolean
+subnetpool_is_default-request:
+  description: |
+    The subnetpool is default pool or not.
+  in: body
+  required: false
+  type: boolean
 subnetpools:
   description: |
     A list of ``subnetpool`` objects.
