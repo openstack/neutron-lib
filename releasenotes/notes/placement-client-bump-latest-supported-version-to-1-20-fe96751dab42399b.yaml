@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Bump ``PlacementAPIClient's`` max supported microversion to ``1.20``,
+    as from that microversion placement API returns json body for
+    POST /resource_providers.
