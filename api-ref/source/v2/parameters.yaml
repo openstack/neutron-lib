@@ -4311,7 +4311,7 @@ port_range_max:
     matched by the security group rule. If the protocol is TCP, UDP,
     DCCP, SCTP or UDP-Lite this value must be greater than or equal to
     the ``port_range_min`` attribute value. If the protocol is ICMP,
-    this value must be an ICMP type.
+    this value must be an ICMP code.
   in: body
   required: true
   type: integer
@@ -4321,7 +4321,7 @@ port_range_max-request:
     matched by the security group rule. If the protocol is TCP, UDP,
     DCCP, SCTP or UDP-Lite this value must be greater than or equal to
     the ``port_range_min`` attribute value. If the protocol is ICMP,
-    this value must be an ICMP type.
+    this value must be an ICMP code.
   in: body
   required: false
   type: integer
