@@ -1,10 +1,11 @@
 {
     "healthmonitor": {
         "admin_state_up": false,
-        "delay": "2",
+        "delay": 2,
         "expected_codes": "200",
         "http_method": "POST",
         "max_retries": 2,
+        "name": "healthmonitor1",
         "timeout": 2,
         "url_path": "/page.html"
     }

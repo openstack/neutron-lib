@@ -11,6 +11,10 @@
                     "id": "35cb8516-1173-4035-8dae-0dae3453f37f"
                 }
             ],
+            "session_persistence": {
+                "cookie_name": null,
+                "type": "SOURCE_IP"
+            },
             "members": [],
             "name": "pool1",
             "protocol": "HTTP",

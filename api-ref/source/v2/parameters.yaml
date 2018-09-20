@@ -4218,6 +4218,20 @@ pool-id-response:
   in: body
   required: true
   type: string
+pool-session_persistence:
+  description: |
+    A JSON object specifying the session persistence for the pool
+    or ``null`` for no session persistence. Default is ``null``.
+  in: body
+  required: true
+  type: object
+pool-session_persistence-request:
+  description: |
+    A JSON object specifying the session persistence for the pool
+    or ``null`` for no session persistence. Default is ``null``.
+  in: body
+  required: false
+  type: object
 pool-status:
   description: |
     The status of the pool. Indicates whether the

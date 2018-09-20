@@ -1,20 +1,23 @@
 {
     "pool": {
-        "status": "PENDING_CREATE",
         "lb_algorithm": "ROUND_ROBIN",
         "protocol": "HTTP",
         "description": "simple pool",
-        "healthmonitors": [],
+        "healthmonitor_id": null,
         "members": [],
-        "status_description": null,
+        "session_persistence": {
+            "cookie_name": "Cookie",
+            "type": "APP_COOKIE"
+        },
+        "listeners": [
+            {
+                "id": "39de4d56-d663-46e5-85a1-5b9d5fa17829"
+            }
+        ],
         "id": "af95e0ce-8a26-4f29-9524-db41e7769c73",
-        "vip_id": null,
         "name": "my-pool",
         "admin_state_up": true,
-        "subnet_id": "e301aed0-d9e7-498a-977c-1bbfaf14ed5d",
         "project_id": "eabfefa3fd1740a88a47ad98e132d238",
-        "tenant_id": "eabfefa3fd1740a88a47ad98e132d238",
-        "healthmonitors_status": [],
-        "provider": "haproxy"
+        "tenant_id": "eabfefa3fd1740a88a47ad98e132d238"
     }
 }

@@ -797,20 +797,16 @@ Response Parameters
    - pools: pools-obj
    - admin_state_up: admin_state_up
    - description: description
-   - healthmonitors: healthmonitors-response
-   - healthmonitors_status: healthmonitors_status
+   - listeners: listeners
+   - session_persistence: pool-session_persistence
+   - healthmonitor_id: healthmonitor-id
    - id: pool-id-response
    - lb_algorithm: lb_algorithm
    - members: members
    - name: name
    - project_id: project_id
    - protocol: protocol-response
-   - provider: loadbalancer-provider
-   - status: pool-status
-   - status_description: status_description
-   - subnet_id: pool-subnet_id
    - tenant_id: project_id
-   - vip_id: vip_id
 
 Response Example
 ----------------
@@ -887,10 +883,10 @@ Request
    - description: description-request
    - lb_algorithm: lb_algorithm
    - listener_id: listener-id-response
+   - session_persistence: pool-session_persistence-request
    - name: name
    - project_id: project_id-request
    - protocol: protocol
-   - subnet_id: pool-subnet_id
    - tenant_id: project_id-request
 
 Request Example
@@ -907,20 +903,16 @@ Response Parameters
    - pool: pool
    - admin_state_up: admin_state_up
    - description: description
-   - healthmonitors: healthmonitors-response
-   - healthmonitors_status: healthmonitors_status
+   - healthmonitor_id: healthmonitor-id
    - id: pool-id-response
    - lb_algorithm: lb_algorithm
+   - listeners: listeners
+   - session_persistence: pool-session_persistence
    - members: members
    - name: name
    - project_id: project_id
    - protocol: protocol-response
-   - provider: loadbalancer-provider
-   - status: pool-status
-   - status_description: status_description
-   - subnet_id: pool-subnet_id
    - tenant_id: project_id
-   - vip_id: vip_id
 
 Response Example
 ----------------
@@ -963,20 +955,16 @@ Response Parameters
    - pool: pool
    - admin_state_up: admin_state_up
    - description: description
-   - healthmonitors: healthmonitors-response
-   - healthmonitors_status: healthmonitors_status
+   - healthmonitor_id: healthmonitor-id
    - lb_algorithm: lb_algorithm
+   - listeners: listeners
+   - session_persistence: pool-session_persistence
    - members: members
    - id: pool-id-response
    - name: name
-   - status: pool-status
-   - status_description: status_description
    - project_id: project_id
    - protocol: protocol-response
-   - provider: loadbalancer-provider
-   - subnet_id: pool-subnet_id
    - tenant_id: project_id
-   - vip_id: vip_id
 
 Response Example
 ----------------
@@ -1019,6 +1007,7 @@ Request
    - description: description-request
    - lb_algorithm: lb_algorithm
    - name: name
+   - session_persistence: pool-session_persistence-request
 
 Request Example
 ---------------
@@ -1034,20 +1023,16 @@ Response Parameters
    - pool: pool
    - admin_state_up: admin_state_up
    - description: description
-   - healthmonitors: healthmonitors-response
-   - healthmonitors_status: healthmonitors_status
+   - healthmonitor_id: healthmonitor-id
    - id: pool-id-response
    - lb_algorithm: lb_algorithm
+   - listeners: listeners
+   - session_persistence: pool-session_persistence
    - members: members
    - name: name
-   - status: pool-status
-   - status_description: status_description
    - project_id: project_id
    - protocol: protocol-response
-   - provider: loadbalancer-provider
-   - subnet_id: pool-subnet_id
    - tenant_id: project_id
-   - vip_id: vip_id
 
 Response Example
 ----------------
@@ -1419,6 +1404,7 @@ Response Parameters
    - http_method: http_method
    - id: healthmonitor-id
    - max_retries: max_retries
+   - name: name
    - pools: pools
    - project_id: project_id
    - tenant_id: project_id
@@ -1507,6 +1493,7 @@ Request
    - expected_codes: expected_codes
    - http_method: http_method
    - max_retries: max_retries
+   - name: name
    - pool_id: pool_id-request
    - project_id: project_id
    - tenant_id: project_id
@@ -1532,6 +1519,7 @@ Response Parameters
    - http_method: http_method
    - id: healthmonitor-id
    - max_retries: max_retries
+   - name: name
    - pools: pools
    - project_id: project_id
    - tenant_id: project_id
@@ -1581,6 +1569,7 @@ Response Parameters
    - expected_codes: expected_codes-response
    - http_method: http_method
    - max_retries: max_retries
+   - name: name
    - id: healthmonitor-id
    - pools: pools
    - project_id: project_id
@@ -1626,6 +1615,7 @@ Request
    - expected_codes: expected_codes
    - http_method: http_method
    - max_retries: max_retries
+   - name: name
    - timeout: timeout
    - url_path: url_path
 
@@ -1646,6 +1636,7 @@ Response Parameters
    - expected_codes: expected_codes-response
    - http_method: http_method
    - max_retries: max_retries
+   - name: name
    - id: healthmonitor-id
    - pools: pools
    - project_id: project_id
