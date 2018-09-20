@@ -5386,12 +5386,6 @@ router-external_gateway_ports:
   in: body
   required: true
   type: string
-router-external_network_bridge:
-  description: |
-   Router external network bridge
-  in: body
-  required: true
-  type: string
 router-flavor_id:
   description: |
     The ID of the flavor associated with the router.

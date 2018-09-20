@@ -24,7 +24,6 @@
                 "floating_ips": 0,
                 "interface_driver": "openvswitch",
                 "log_agent_heartbeats": false,
-                "external_network_bridge": "",
                 "ex_gw_ports": 1
             }
         }
