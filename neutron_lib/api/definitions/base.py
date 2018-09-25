@@ -130,6 +130,7 @@ KNOWN_EXTENSIONS = (
     'standard-attr-timestamp',
     'subnet_allocation',
     'subnet_onboard',
+    'subnet-segmentid-enforce',
     'subnet-segmentid-writable',
     'tag',
     'trunk',

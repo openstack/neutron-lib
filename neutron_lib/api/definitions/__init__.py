@@ -90,6 +90,7 @@ from neutron_lib.api.definitions import sorting
 from neutron_lib.api.definitions import standard_attr_segment
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_onboard
+from neutron_lib.api.definitions import subnet_segmentid_enforce
 from neutron_lib.api.definitions import subnet_segmentid_writable
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import trunk
@@ -182,6 +183,7 @@ _ALL_API_DEFINITIONS = {
     standard_attr_segment,
     subnet,
     subnet_onboard,
+    subnet_segmentid_enforce,
     subnet_segmentid_writable,
     subnetpool,
     trunk,
