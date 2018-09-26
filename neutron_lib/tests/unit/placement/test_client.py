@@ -424,7 +424,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_update_resource_class(self):
         self.placement_api_client.update_resource_class(RESOURCE_CLASS_NAME)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_classes/%s' % RESOURCE_CLASS_NAME)
+            '/resource_classes/%s' % RESOURCE_CLASS_NAME, None)
 
     def test_delete_resource_class(self):
         self.placement_api_client.delete_resource_class(RESOURCE_CLASS_NAME)

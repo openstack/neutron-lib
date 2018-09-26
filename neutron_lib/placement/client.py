@@ -561,7 +561,7 @@ class PlacementAPIClient(object):
         :param name: the name of the resource class to be updated or validated
         """
         url = '/resource_classes/%s' % name
-        self._put(url)
+        self._put(url, None)
 
     @_check_placement_api_available
     def delete_resource_class(self, name):
