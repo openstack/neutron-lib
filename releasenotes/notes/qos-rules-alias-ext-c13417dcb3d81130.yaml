@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    The ``qos-rules-alias`` API extension is introduced to enable users to
+    perform ``GET``, ``PUT`` and ``DELETE`` operations on
+    ``bandwidth_limit_rules``, ``dscp_marking_rules`` and
+    ``minimum_bandwidth_rules`` as though they are first level resources. In
+    other words, the user will not have to specify the QoS policy ID.
