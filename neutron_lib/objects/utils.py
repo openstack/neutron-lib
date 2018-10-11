@@ -10,7 +10,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import abc
 import copy
+
+import six
 
 from neutron_lib import exceptions
 
@@ -25,7 +28,15 @@ def convert_filters(**kwargs):
     return result
 
 
-class StringMatchingFilterObj(object):
+@six.add_metaclass(abc.ABCMeta)
+class FilterObj(object):
+
+    @abc.abstractmethod
+    def filter(self, column):
+        pass
+
+
+class StringMatchingFilterObj(FilterObj):
     @property
     def is_contains(self):
         return bool(getattr(self, "contains", False))
@@ -45,6 +56,9 @@ class StringContains(StringMatchingFilterObj):
         super(StringContains, self).__init__()
         self.contains = matching_string
 
+    def filter(self, column):
+        return column.contains(self.contains)
+
 
 class StringStarts(StringMatchingFilterObj):
 
@@ -52,9 +66,35 @@ class StringStarts(StringMatchingFilterObj):
         super(StringStarts, self).__init__()
         self.starts = matching_string
 
+    def filter(self, column):
+        return column.startswith(self.starts)
+
 
 class StringEnds(StringMatchingFilterObj):
 
     def __init__(self, matching_string):
         super(StringEnds, self).__init__()
         self.ends = matching_string
+
+    def filter(self, column):
+        return column.endswith(self.ends)
+
+
+class NotIn(FilterObj):
+
+    def __init__(self, value):
+        super(NotIn, self).__init__()
+        self.value = value
+
+    def filter(self, column):
+        return ~column.in_(self.value)
+
+
+class NotEqual(FilterObj):
+
+    def __init__(self, value):
+        super(NotEqual, self).__init__()
+        self.value = value
+
+    def filter(self, column):
+        return column != self.value

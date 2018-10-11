@@ -1,0 +1,9 @@
+---
+prelude: >
+    This release adds support for custom filtering in versioned object.
+features:
+  - |
+    A class called ``FilterObj`` is introduced.
+    This is the base class from which the custom filter class should inherit.
+    This release also implements two filter class: ``NotIn`` and ``NotEqual``.
+    The class ``StringMatchingFilterObj`` is now a subclass of ``FilterObj``.
