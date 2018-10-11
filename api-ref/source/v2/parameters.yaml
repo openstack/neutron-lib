@@ -3732,7 +3732,8 @@ mac_address-request:
 mac_address-request-put:
   description: |
     The MAC address of the port.
-    By default, only administrative users can change this value.
+    By default, only administrative users and users with advsvc role
+    can change this value.
   in: body
   required: false
   type: string
@@ -4432,7 +4433,8 @@ project_id-body-required:
 project_id-request:
   description: |
     The ID of the project that owns the resource.
-    Only administrative users can specify a project ID other than their own.
+    Only administrative and users with advsvc role can specify
+    a project ID other than their own.
     You cannot change this value through authorization policies.
   in: body
   required: false
