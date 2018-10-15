@@ -57,9 +57,10 @@ def _check_rule(context, rule):
     init()
     # the target is user-self
     credentials = context.to_policy_values()
-    if rule not in _ROLE_ENFORCER.rules:
+    try:
+        return _ROLE_ENFORCER.authorize(rule, credentials, credentials)
+    except policy.PolicyNotRegistered:
         return False
-    return _ROLE_ENFORCER.enforce(rule, credentials, credentials)
 
 
 def check_is_admin(context):
