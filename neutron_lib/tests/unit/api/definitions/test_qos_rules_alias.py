@@ -11,7 +11,6 @@
 #    under the License.
 
 from neutron_lib.api.definitions import qos
-from neutron_lib.api.definitions import qos_bw_limit_direction
 from neutron_lib.api.definitions import qos_rules_alias
 from neutron_lib.services.qos import constants as q_const
 from neutron_lib.tests.unit.api.definitions import base
@@ -22,7 +21,7 @@ class QoSRulesAliasDefinitionTestCase(base.DefinitionBaseTestCase):
     extension_resources = (qos.BANDWIDTH_LIMIT_RULES,
                            qos.DSCP_MARKING_RULES,
                            qos.MIN_BANDWIDTH_RULES)
-    extension_attributes = (qos_bw_limit_direction.DIRECTION,
+    extension_attributes = (q_const.DIRECTION,
                             q_const.MAX_BURST,
                             q_const.DSCP_MARK,
                             q_const.MIN_KBPS,

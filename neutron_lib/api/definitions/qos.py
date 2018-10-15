@@ -116,7 +116,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
         'parent': _PARENT,
         'parameters': dict(
             _QOS_RULE_COMMON_FIELDS,
-            **{'max_kbps': {
+            **{qos_const.MAX_KBPS: {
                 'allow_post': True, 'allow_put': True,
                 'convert_to': converters.convert_to_int,
                 'is_visible': True,
@@ -125,7 +125,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
             },
-                'max_burst_kbps': {
+                qos_const.MAX_BURST: {
                     'allow_post': True, 'allow_put': True,
                     'is_visible': True, 'default': 0,
                     'is_filter': True,
@@ -138,7 +138,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
         'parent': _PARENT,
         'parameters': dict(
             _QOS_RULE_COMMON_FIELDS,
-            **{'dscp_mark': {
+            **{qos_const.DSCP_MARK: {
                 'allow_post': True, 'allow_put': True,
                 'convert_to': converters.convert_to_int,
                 'is_visible': True,
@@ -151,7 +151,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
         'parent': _PARENT,
         'parameters': dict(
             _QOS_RULE_COMMON_FIELDS,
-            **{'min_kbps': {
+            **{qos_const.MIN_KBPS: {
                 'allow_post': True, 'allow_put': True,
                 'is_visible': True,
                 'is_filter': True,
@@ -159,7 +159,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'convert_to': converters.convert_to_int,
                 'validate': {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}},
-                'direction': {
+                qos_const.DIRECTION: {
                     'allow_post': True, 'allow_put': True,
                     'is_visible': True, 'default': constants.EGRESS_DIRECTION,
                     'is_filter': True,

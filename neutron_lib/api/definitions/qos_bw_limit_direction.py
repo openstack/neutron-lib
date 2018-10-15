@@ -15,9 +15,8 @@
 
 from neutron_lib.api.definitions import qos as qos_apidef
 from neutron_lib import constants
+from neutron_lib.services.qos import constants as qos_const
 
-
-DIRECTION = 'direction'
 
 ALIAS = 'qos-bw-limit-direction'
 LABEL = ''
@@ -34,7 +33,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
     # sub-resource extension itself
     qos_apidef.BANDWIDTH_LIMIT_RULES: {
         'parameters': {
-            DIRECTION: {
+            qos_const.DIRECTION: {
                 'allow_post': True,
                 'allow_put': True,
                 'is_visible': True,

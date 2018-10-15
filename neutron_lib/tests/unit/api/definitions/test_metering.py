@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import metering
+from neutron_lib.services.qos import constants as qos_consts
 from neutron_lib.tests.unit.api.definitions import base
 
 
@@ -21,4 +22,4 @@ class MeteringDefinitionTestCase(base.DefinitionBaseTestCase):
     extension_attributes = ('remote_ip_prefix',
                             'excluded',
                             'metering_label_id',
-                            'direction')
+                            qos_consts.DIRECTION)

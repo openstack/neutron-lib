@@ -15,6 +15,7 @@
 import mock
 
 from neutron_lib.api.definitions import portbindings
+from neutron_lib import constants
 from neutron_lib.services.qos import base as qos_base
 from neutron_lib.services.qos import constants as qos_consts
 from neutron_lib.tests import _base
@@ -22,8 +23,8 @@ from neutron_lib.tests import _base
 
 SUPPORTED_RULES = {
     qos_consts.RULE_TYPE_MINIMUM_BANDWIDTH: {
-        "min_kbps": {'type:values': None},
-        'direction': {'type:values': ['egress']}
+        qos_consts.MIN_KBPS: {'type:values': None},
+        qos_consts.DIRECTION: {'type:values': ['egress']}
     }
 }
 
@@ -73,9 +74,13 @@ class TestDriverBase(_base.BaseTestCase):
             _make_driver().is_rule_supported(
                 _make_rule(
                     rule_type=qos_consts.RULE_TYPE_MINIMUM_BANDWIDTH,
-                    params={'min_kbps': None, 'direction': 'egress'})))
+                    params={qos_consts.MIN_KBPS: None,
+                            qos_consts.DIRECTION:
+                                constants.EGRESS_DIRECTION})))
         self.assertFalse(
             _make_driver().is_rule_supported(
                 _make_rule(
                     rule_type=qos_consts.RULE_TYPE_MINIMUM_BANDWIDTH,
-                    params={'min_kbps': None, 'direction': 'ingress'})))
+                    params={qos_consts.MIN_KBPS: None,
+                            qos_consts.DIRECTION:
+                                constants.INGRESS_DIRECTION})))
