@@ -977,3 +977,94 @@ Response
 --------
 
 There is no body content for the response of a successful DELETE request.
+
+==================================
+Quality of Service rules alias API
+==================================
+
+The purpose of this API extension is to enable callers to execute the requests
+to delete, show and update QoS rules without specifying the corresponding
+policy ID. Otherwise, these requests have the exact same behavior as their
+counterparts described in other parts of this documentation. The requests
+available in this API extension are:
+
+Show bandwidth limit rule details alias
+=======================================
+
+.. rest_method::  GET /v2.0/qos/bandwidth_limit_rules/{rule_id}
+
+Please refer to
+`Show bandwidth limit rule details <#show-bandwidth-limit-rule-details>`__
+for more information on the request, response and return codes.
+
+Update bandwidth limit rule alias
+=================================
+
+.. rest_method::  PUT /v2.0/qos/bandwidth_limit_rules/{rule_id}
+
+Please refer to
+`Update bandwidth limit rule <#update-bandwidth-limit-rule>`__
+for more information on the request, response and return codes.
+
+Delete bandwidth limit rule alias
+=================================
+
+.. rest_method::  DELETE /v2.0/qos/bandwidth_limit_rules/{rule_id}
+
+Please refer to
+`Delete bandwidth limit rule <#delete-bandwidth-limit-rule>`__
+for more information on the request, response and return codes.
+
+Show DSCP marking rule details alias
+====================================
+
+.. rest_method::  GET /v2.0/qos/dscp_marking_rules/{dscp_rule_id}
+
+Please refer to
+`Show DSCP marking rule details <#show-dscp-marking-rule-details>`__
+for more information on the request, response and return codes.
+
+Update DSCP marking rule alias
+==============================
+
+.. rest_method::  PUT /v2.0/qos/dscp_marking_rules/{dscp_rule_id}
+
+Please refer to
+`Update DSCP marking rule <#update-dscp-marking-rule>`__
+for more information on the request, response and return codes.
+
+Delete DSCP marking rule alias
+==============================
+
+.. rest_method::  DELETE /v2.0/qos/dscp_marking_rules/{dscp_rule_id}
+
+Please refer to
+`Delete DSCP marking rule <#delete-dscp-marking-rule>`__
+for more information on the request, response and return codes.
+
+Show minimum bandwidth rule details alias
+=========================================
+
+.. rest_method::  GET /v2.0/qos/minimum_bandwidth_rules/{rule_id}
+
+Please refer to
+`Show minimum bandwidth rule details <#show-minimum-bandwidth-rule-details>`__
+for more information on the request, response and return codes.
+
+Update minimum bandwidth rule alias
+===================================
+
+.. rest_method::  PUT /v2.0/qos/minimum_bandwidth_rules/{rule_id}
+
+Please refer to
+`Update minimum bandwidth rule <#update-minimum-bandwidth-rule>`__
+for more information on the request, response and return codes.
+
+Delete minimum bandwidth rule alias
+===================================
+
+.. rest_method::  DELETE /v2.0/qos/minimum_bandwidth_rules/{rule_id}
+
+Please refer to
+`Delete minimum bandwidth rule <#delete-minimum-bandwidth-rule>`__
+for more information on the request, response and return codes.
