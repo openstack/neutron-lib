@@ -1,0 +1,4 @@
+---
+fixes:
+  - Bug `1796854 <https://bugs.launchpad.net/neutron/+bug/1796854>`_ is fixed
+    by validating if advsvc context is used.
