@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.services.qos import constants as qos_consts
 
 
 METERING_LABELS = 'metering_labels'
@@ -76,11 +77,11 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_filter': True, 'is_sort_key': True,
             'is_visible': True, 'required_by_policy': True
         },
-        'direction': {
+        qos_consts.DIRECTION: {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'is_filter': True,
             'is_sort_key': True,
-            'validate': {'type:values': ['ingress', 'egress']}
+            'validate': {'type:values': constants.VALID_DIRECTIONS}
         },
         'excluded': {
             'allow_post': True, 'allow_put': False,

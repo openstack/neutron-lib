@@ -55,7 +55,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
                 }
             },
-            qos_bw_limit_direction.DIRECTION: {
+            q_const.DIRECTION: {
                 'allow_post': False,
                 'allow_put': True,
                 'is_visible': True,
@@ -100,7 +100,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
                 }
             },
-            qos_bw_limit_direction.DIRECTION: {
+            q_const.DIRECTION: {
                 'allow_post': False, 'allow_put': True,
                 'is_visible': True, 'default': constants.EGRESS_DIRECTION,
                 'is_filter': True,
