@@ -56,7 +56,7 @@ def random_mac_generator(base_mac):
     fixed = list(base_mac[0:3])
     to_generate = 3
     if base_mac[3] != '00':
-        fixed += base_mac[3]
+        fixed = list(base_mac[0:4])
         to_generate = 2
     beginning = ':'.join(fixed) + ':'
 
