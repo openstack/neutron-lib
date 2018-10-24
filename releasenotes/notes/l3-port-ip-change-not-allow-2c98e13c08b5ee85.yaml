@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Directly updating some L3-related port IP addresses does not have any
+    effect on the L3 agent side. As a consequence, these L3-related ports
+    should not allow changing of their IP address. A new shim extension has
+    been added called ``l3-port-ip-change-not-allowed`` to prevent such IP
+    address change. For more information please see bug
+    `1796824 <https://bugs.launchpad.net/neutron/+bug/1796824>`_.
