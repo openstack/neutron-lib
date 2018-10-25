@@ -20,6 +20,7 @@ from neutron_lib.api import attributes
 from neutron_lib.api.definitions import port
 from neutron_lib.callbacks import registry
 from neutron_lib.db import model_base
+from neutron_lib.db import resource_extend
 from neutron_lib import fixture
 from neutron_lib.placement import client as place_client
 from neutron_lib.plugins import directory
@@ -154,3 +155,26 @@ class PlacementAPIClientFixtureTestCase(base.BaseTestCase):
         p_client, p_fixture = self._create_client_and_fixture()
         p_client.list_aggregates('resource')
         p_fixture.mock_get.assert_called_once()
+
+
+class DBResourceExtendFixtureTestCase(base.BaseTestCase):
+
+    def test_fixture_backup(self):
+        fake_methods = {
+            'a': 'A',
+            'b': 'B'
+        }
+        orig_methods = resource_extend._DECORATED_EXTEND_METHODS
+        self.assertNotEqual(fake_methods, orig_methods)
+
+        db_fixture = fixture.DBResourceExtendFixture(
+            extended_methods=fake_methods)
+        db_fixture.setUp()
+
+        resource_extend.register_funcs('C', (lambda x: x,))
+        self.assertNotEqual(
+            orig_methods, resource_extend._DECORATED_EXTEND_METHODS)
+
+        db_fixture.cleanUp()
+        self.assertEqual(
+            orig_methods, resource_extend._DECORATED_EXTEND_METHODS)

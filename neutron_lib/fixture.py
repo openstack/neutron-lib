@@ -24,6 +24,7 @@ from neutron_lib.callbacks import registry
 from neutron_lib.db import api as db_api
 from neutron_lib.db import model_base
 from neutron_lib.db import model_query
+from neutron_lib.db import resource_extend
 from neutron_lib.plugins import directory
 from neutron_lib import rpc
 from neutron_lib.tests.unit import fake_notifier
@@ -270,3 +271,18 @@ class RPCFixture(fixtures.Fixture):
 
         self.addCleanup(rpc.cleanup)
         rpc.init(CONF)
+
+
+class DBResourceExtendFixture(fixtures.Fixture):
+
+    def __init__(self, extended_methods=None):
+        self.extended_methods = extended_methods or {}
+
+    def _setUp(self):
+        self._backup = copy.deepcopy(
+            resource_extend._DECORATED_EXTEND_METHODS)
+        resource_extend._DECORATED_EXTEND_METHODS = self.extended_methods
+        self.addCleanup(self._restore)
+
+    def _restore(self):
+        resource_extend._DECORATED_EXTEND_METHODS = self._backup
