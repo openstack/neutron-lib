@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Neutron API should not allow user to set zero for floating IP port
+    forwarding internal or external port number. Directly modify the
+    floating-ip-port-forwarding extension to change external_port and
+    internal_port minimum value to 1. Then API and port forwarding object
+    will make consistent for these attributes.

@@ -91,13 +91,15 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                          'is_visible': False},
             EXTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
-                'validate': {'type:port_range': None},
+                'convert_to': converters.convert_to_int,
+                'validate': {'type:range': [1, 65535]},
                 'is_visible': True,
                 'is_sort_key': True,
                 'is_filter': True},
             INTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
-                'validate': {'type:port_range': None},
+                'convert_to': converters.convert_to_int,
+                'validate': {'type:range': [1, 65535]},
                 'is_visible': True},
             INTERNAL_IP_ADDRESS: {'allow_post': True,
                                   'allow_put': True,
