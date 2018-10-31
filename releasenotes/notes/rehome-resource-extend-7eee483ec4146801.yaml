@@ -1,0 +1,6 @@
+---
+features:
+  - The ``neutron.db._resource_extend`` is now available as
+    ``neutron_lib.db.resource_extend`` along with a new
+    ``DBResourceExtendFixture`` that allows tests to modify the
+    map of registered resource functions.
