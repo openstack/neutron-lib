@@ -26,6 +26,7 @@ from neutron_lib._i18n import _
 from neutron_lib.api import attributes
 from neutron_lib.api.definitions import network as net_apidef
 from neutron_lib.api.definitions import port as port_apidef
+from neutron_lib.api.definitions import portbindings as pb
 from neutron_lib.api.definitions import portbindings_extended as pb_ext
 from neutron_lib.api.definitions import subnet as subnet_apidef
 from neutron_lib import constants
@@ -382,3 +383,12 @@ def get_port_binding_by_status_and_host(bindings, status, host='',
                 return binding
     if raise_if_not_found:
         raise exceptions.PortBindingNotFound(port_id=port_id, host=host)
+
+
+def can_port_be_bound_to_virtual_bridge(port):
+    """Returns if port can be bound to a virtual bridge (e.g.: LB, OVS)
+
+    :param port: (dict) A port dictionary.
+    :returns: True if the port VNIC type is 'normal'; False in any other case.
+    """
+    return port[pb.VNIC_TYPE] == pb.VNIC_NORMAL
