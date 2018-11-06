@@ -10,6 +10,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import mock
+
 from neutron_lib.objects import utils as obj_utils
 from neutron_lib.tests import _base as base
 
@@ -31,13 +33,15 @@ class TestUtils(base.BaseTestCase):
 
         filter_obj = obj_utils.NotIn([1, 2, 3])
         fake_column = FakeColumn([1, 2, 4, 5])
-        self.assertEqual([4, 5], filter_obj.filter(fake_column))
+        self.assertEqual([4, 5],
+                         sorted(filter_obj.filter(fake_column)))
 
         fake_column = FakeColumn([1, 2])
         self.assertEqual([], filter_obj.filter(fake_column))
 
         fake_column = FakeColumn([4, 5])
-        self.assertEqual([4, 5], filter_obj.filter(fake_column))
+        self.assertEqual([4, 5],
+                         sorted(filter_obj.filter(fake_column)))
 
     def test_get_objects_with_filters_not_equal(self):
 
@@ -50,10 +54,23 @@ class TestUtils(base.BaseTestCase):
 
         filter_obj = obj_utils.NotEqual(1)
         fake_column = FakeColumn([1, 2, 4, 5])
-        self.assertEqual([2, 4, 5], filter_obj.filter(fake_column))
+        self.assertEqual([2, 4, 5],
+                         sorted(filter_obj.filter(fake_column)))
 
         fake_column = FakeColumn([1])
         self.assertEqual([], filter_obj.filter(fake_column))
 
         fake_column = FakeColumn([4, 5])
-        self.assertEqual([4, 5], filter_obj.filter(fake_column))
+        self.assertEqual([4, 5],
+                         sorted(filter_obj.filter(fake_column)))
+
+    def test_get_updatable_fields(self):
+        mock_class = mock.Mock()
+        mock_class.fields_no_update = [0, 2, 6]
+
+        mock_fields = mock.Mock()
+        mock_fields.copy.return_value = {k: k for k in range(7)}
+
+        updatable = obj_utils.get_updatable_fields(mock_class, mock_fields)
+        self.assertEqual([1, 3, 4, 5],
+                         sorted(list(updatable.keys())))

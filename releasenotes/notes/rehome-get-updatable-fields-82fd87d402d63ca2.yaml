@@ -1,0 +1,4 @@
+---
+features:
+  - The ``get_updatable_fields`` function from ``neutron.objects.base`` is now
+    available in ``neutron_lib.object.utils``.
