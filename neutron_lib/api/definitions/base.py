@@ -102,6 +102,7 @@ KNOWN_EXTENSIONS = (
     'ip-substring-filtering',
     'l3-ha',
     'l3_agent_scheduler',
+    'l3-port-ip-change-not-allowed',
     'logging',
     'metering',
     'multi-provider',

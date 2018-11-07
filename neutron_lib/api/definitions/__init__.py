@@ -51,6 +51,7 @@ from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
 from neutron_lib.api.definitions import l3_ext_ha_mode
 from neutron_lib.api.definitions import l3_flavors
+from neutron_lib.api.definitions import l3_port_ip_change_not_allowed
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
 from neutron_lib.api.definitions import metering
@@ -145,6 +146,7 @@ _ALL_API_DEFINITIONS = {
     l3_ext_gw_mode,
     l3_ext_ha_mode,
     l3_flavors,
+    l3_port_ip_change_not_allowed,
     logging,
     logging_resource,
     metering,
