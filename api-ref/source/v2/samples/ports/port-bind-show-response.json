@@ -52,7 +52,7 @@
         "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
         "resource_request": {
             "required": ["CUSTOM_PHYSNET_PUBLIC", "CUSTOM_VNIC_TYPE_NORMAL"],
-            "resources": {"NET_BANDWIDTH_EGRESS_KILOBITS_PER_SECOND": 1000}
+            "resources": {"NET_BW_EGR_KILOBIT_PER_SEC": 1000}
         }
     }
 }
