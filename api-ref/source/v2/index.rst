@@ -26,6 +26,7 @@ Layer 3 Networking
 ##################
 .. include:: address-scopes.inc
 .. include:: floatingips.inc
+.. include:: floatingippools.inc
 .. include:: fip-port-forwarding.inc
 .. include:: routers.inc
 .. include:: subnetpools.inc
