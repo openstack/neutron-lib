@@ -275,14 +275,14 @@ class RPCFixture(fixtures.Fixture):
 
 class DBResourceExtendFixture(fixtures.Fixture):
 
-    def __init__(self, extended_methods=None):
-        self.extended_methods = extended_methods or {}
+    def __init__(self, extended_functions=None):
+        self.extended_functions = extended_functions or {}
 
     def _setUp(self):
         self._backup = copy.deepcopy(
-            resource_extend._DECORATED_EXTEND_METHODS)
-        resource_extend._DECORATED_EXTEND_METHODS = self.extended_methods
+            resource_extend._resource_extend_functions)
+        resource_extend._resource_extend_functions = self.extended_functions
         self.addCleanup(self._restore)
 
     def _restore(self):
-        resource_extend._DECORATED_EXTEND_METHODS = self._backup
+        resource_extend._resource_extend_functions = self._backup
