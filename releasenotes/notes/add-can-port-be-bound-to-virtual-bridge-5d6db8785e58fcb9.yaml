@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add ``can_port_be_bound_to_virtual_bridge`` function in
+    ``neutron_lib.plugins.utils``. This function checks if a port, depending
+    on the VNIC type, can be bound to a virtual bridge.
