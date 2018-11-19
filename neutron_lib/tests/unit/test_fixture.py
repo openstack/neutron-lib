@@ -164,17 +164,17 @@ class DBResourceExtendFixtureTestCase(base.BaseTestCase):
             'a': 'A',
             'b': 'B'
         }
-        orig_methods = resource_extend._DECORATED_EXTEND_METHODS
+        orig_methods = resource_extend._resource_extend_functions
         self.assertNotEqual(fake_methods, orig_methods)
 
         db_fixture = fixture.DBResourceExtendFixture(
-            extended_methods=fake_methods)
+            extended_functions=fake_methods)
         db_fixture.setUp()
 
         resource_extend.register_funcs('C', (lambda x: x,))
         self.assertNotEqual(
-            orig_methods, resource_extend._DECORATED_EXTEND_METHODS)
+            orig_methods, resource_extend._resource_extend_functions)
 
         db_fixture.cleanUp()
         self.assertEqual(
-            orig_methods, resource_extend._DECORATED_EXTEND_METHODS)
+            orig_methods, resource_extend._resource_extend_functions)
