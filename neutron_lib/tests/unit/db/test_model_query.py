@@ -56,3 +56,15 @@ class TestHooks(_base.BaseTestCase):
                     self.assertEqual(hook_ref, d.get(k))
                 else:
                     self.assertEqual({}, d.get(k))
+
+    def test_get_values(self):
+        mock_model = mock.Mock()
+        mock_context = mock.Mock()
+        with mock.patch.object(
+                model_query, 'query_with_hooks') as query_with_hooks:
+            query_with_hooks.return_value = [['value1'], ['value2']]
+            values = model_query.get_values(mock_context, mock_model,
+                                            'fake_field')
+        self.assertEqual(['value1', 'value2'], values)
+        query_with_hooks.assert_called_with(
+            mock_context, mock_model, field='fake_field')

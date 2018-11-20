@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    Add method ``get_values`` in ``neutron_lib.db.model_query``.
+    This method allow callers to fetch specific column from
+    a database model.
+    Add keyword parameter ``field`` to method ``query_with_hooks``.
+    The default value of this parameter is None.
+    Callers can set this parameter to query specific column.

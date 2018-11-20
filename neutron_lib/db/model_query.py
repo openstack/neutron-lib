@@ -19,8 +19,10 @@ from oslo_db.sqlalchemy import utils as sa_utils
 from sqlalchemy import sql, or_, and_
 from sqlalchemy.ext import associationproxy
 
+from neutron_lib._i18n import _
 from neutron_lib.api import attributes
 from neutron_lib.db import utils as db_utils
+from neutron_lib import exceptions as n_exc
 from neutron_lib.objects import utils as obj_utils
 from neutron_lib.utils import helpers
 
@@ -95,14 +97,23 @@ def get_hooks(model):
     return _model_query_hooks.get(model, {}).values()
 
 
-def query_with_hooks(context, model):
+def query_with_hooks(context, model, field=None):
     """Query with hooks using the said context and model.
 
     :param context: The context to use for the DB session.
     :param model: The model to query.
+    :param field: The column.
     :returns: The query with hooks applied to it.
     """
-    query = context.session.query(model)
+    if field:
+        if hasattr(model, field):
+            field = getattr(model, field)
+        else:
+            msg = _("'%s' is not supported as field") % field
+            raise n_exc.InvalidInput(error_message=msg)
+        query = context.session.query(field)
+    else:
+        query = context.session.query(model)
     # define basic filter condition for model query
     query_filter = None
     if db_utils.model_query_scope_is_project(context, model):
@@ -299,6 +310,12 @@ def get_collection(context, model, dict_func,
     if limit and page_reverse:
         items.reverse()
     return items
+
+
+def get_values(context, model, field, filters=None):
+    query = query_with_hooks(context, model, field=field)
+    query = apply_filters(query, model, filters, context)
+    return [c[0] for c in query]
 
 
 def get_collection_count(context, model, filters=None):
