@@ -43,9 +43,21 @@ def _check_placement_api_available(f):
     """
     @functools.wraps(f)
     def wrapper(self, *a, **k):
-        if not self._client:
-            self._client = self._create_client()
-        return f(self, *a, **k)
+        try:
+            if not self._client:
+                self._client = self._create_client()
+            return f(self, *a, **k)
+        except ks_exc.http.HttpError as exc:
+            if 400 <= exc.http_status <= 499:
+                # NOTE(bence romsics): Placement has inconsistently formatted
+                # error messages. Some error response bodies are JSON
+                # formatted, seemingly machine readible objects. While others
+                # are free format text. We have to keep the whole thing
+                # to avoid losing information.
+                raise n_exc.PlacementClientError(
+                    msg=exc.response.text.replace('\n', ' '))
+            else:
+                raise
     return wrapper
 
 

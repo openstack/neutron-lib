@@ -65,3 +65,7 @@ class PlacementAPIVersionIncorrect(exceptions.NotFound):
 class PlacementResourceProviderNameNotUnique(exceptions.Conflict):
     message = _("Another resource provider exists with the provided name: "
                 "%(name)s.")
+
+
+class PlacementClientError(exceptions.NeutronException):
+    message = _("Placement Client Error (4xx): %(msg)s")

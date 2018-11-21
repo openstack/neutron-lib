@@ -1,0 +1,8 @@
+---
+other:
+  - |
+    The Placement client previously swallowed a few exceptions (but logged
+    a warning when doing this). In order to let the user of the client choose
+    to handle or ignore the error condition the client no longer does this.
+    Also to avoid losing error information we catch and re-throw HTTP 4xx
+    exceptions with better messages.
