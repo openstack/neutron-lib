@@ -43,22 +43,9 @@ def _check_placement_api_available(f):
     """
     @functools.wraps(f)
     def wrapper(self, *a, **k):
-        try:
-            if not self._client:
-                self._client = self._create_client()
-            return f(self, *a, **k)
-        except ks_exc.EndpointNotFound:
-            LOG.warning('Please enable the placement service.')
-        except ks_exc.MissingAuthPlugin:
-            LOG.warning('No authentication information found for placement '
-                        'API. Please enable the placement service.')
-        except ks_exc.Unauthorized:
-            LOG.warning('Placement service credentials do not work. '
-                        'Please enable the placement service.')
-        except ks_exc.DiscoveryFailure:
-            LOG.warning('Discovering suitable URL for placement API failed.')
-        except ks_exc.ConnectFailure:
-            LOG.warning('Placement API service is not responding.')
+        if not self._client:
+            self._client = self._create_client()
+        return f(self, *a, **k)
     return wrapper
 
 
