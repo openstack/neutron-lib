@@ -77,6 +77,11 @@ class RouterNotCompatibleWithAgent(exceptions.NeutronException):
     message = _("Router '%(router_id)s' is not compatible with this agent.")
 
 
+class RouterNotFoundInRouterFactory(exceptions.NeutronException):
+    message = _("Router '%(router_id)s' with features '%(features)s' could "
+                "not be found in the router factory.")
+
+
 class FloatingIpSetupException(exceptions.NeutronException):
     def __init__(self, message=None):
         self.message = message

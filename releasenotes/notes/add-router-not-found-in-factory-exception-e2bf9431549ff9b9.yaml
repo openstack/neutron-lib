@@ -1,0 +1,4 @@
+---
+features:
+  - Adds new L3 exception ``RouterNotFoundInRouterFactory`` in
+    ``neutron_lib.exceptions.l3``.
