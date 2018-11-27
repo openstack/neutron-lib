@@ -223,8 +223,9 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_get_inventory_not_found(self):
         _exception = ks_exc.NotFound()
         _exception.details = "Any other exception explanation"
+        _exception.response = mock.Mock(text="Some error response body")
         self.placement_fixture.mock_get.side_effect = _exception
-        self.assertRaises(ks_exc.NotFound,
+        self.assertRaises(n_exc.PlacementClientError,
                           self.placement_api_client.get_inventory,
                           RESOURCE_PROVIDER_UUID, RESOURCE_CLASS_NAME)
 
