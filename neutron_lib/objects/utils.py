@@ -98,3 +98,11 @@ class NotEqual(FilterObj):
 
     def filter(self, column):
         return column != self.value
+
+
+def get_updatable_fields(cls, fields):
+    fields = fields.copy()
+    for field in cls.fields_no_update:
+        if field in fields:
+            del fields[field]
+    return fields
