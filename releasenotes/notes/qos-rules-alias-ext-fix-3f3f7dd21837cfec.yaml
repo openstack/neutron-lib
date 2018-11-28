@@ -1,0 +1,11 @@
+---
+fixes:
+  - |
+    The ``qos-rules-alias`` API extension wrongly attempted to re-define
+    ``bandwidth_limit_rules``, ``dscp_marking_rules`` and
+    ``minimum_bandwidth_rules`` as first level API resources, leading to
+    conflicts in the QoS API. We now define ``alias_bandwidth_limit_rules``,
+    ``alias_dscp_marking_rules`` and ``alias_minimum_bandwidth_rules`` that
+    will enable users to perform ``GET``, ``PUT`` and ``DELETE`` operations
+    on the corresponding QoS rules without having to specify the associated
+    policy ID.
