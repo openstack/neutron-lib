@@ -18,6 +18,10 @@ from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as q_const
 
 
+BANDWIDTH_LIMIT_RULES_ALIAS = "alias_bandwidth_limit_rules"
+DSCP_MARKING_RULES_ALIAS = 'alias_dscp_marking_rules'
+MIN_BANDWIDTH_RULES_ALIAS = 'alias_minimum_bandwidth_rules'
+
 _QOS_RULE_COMMON_FIELDS = {
     'id': {
         'allow_post': False, 'allow_put': False,
@@ -43,7 +47,7 @@ DESCRIPTION = ('API to enable GET, PUT and DELETE operations on QoS policy '
                'rules without specifying policy ID')
 UPDATED_TIMESTAMP = '2018-10-07T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP = {
-    qos.BANDWIDTH_LIMIT_RULES: dict(
+    BANDWIDTH_LIMIT_RULES_ALIAS: dict(
         _QOS_RULE_COMMON_FIELDS,
         **{q_const.MAX_KBPS: {
                 'allow_post': False, 'allow_put': True,
@@ -54,7 +58,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
                 }
-            },
+        },
             q_const.DIRECTION: {
                 'allow_post': False,
                 'allow_put': True,
@@ -65,7 +69,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:values': constants.VALID_DIRECTIONS
                 }
-            },
+        },
             q_const.MAX_BURST: {
                 'allow_post': False, 'allow_put': True,
                 'is_visible': True, 'default': 0,
@@ -75,8 +79,8 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                         'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
                 }
-            }}),
-    qos.DSCP_MARKING_RULES: dict(
+        }}),
+    DSCP_MARKING_RULES_ALIAS: dict(
         _QOS_RULE_COMMON_FIELDS,
         **{q_const.DSCP_MARK: {
                 'allow_post': False, 'allow_put': True,
@@ -87,8 +91,8 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:values': constants.VALID_DSCP_MARKS
                 }
-           }}),
-    qos.MIN_BANDWIDTH_RULES: dict(
+        }}),
+    MIN_BANDWIDTH_RULES_ALIAS: dict(
          _QOS_RULE_COMMON_FIELDS,
          **{q_const.MIN_KBPS: {
                 'allow_post': False, 'allow_put': True,
@@ -99,7 +103,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
                 }
-            },
+              },
             q_const.DIRECTION: {
                 'allow_post': False, 'allow_put': True,
                 'is_visible': True, 'default': constants.EGRESS_DIRECTION,
@@ -108,7 +112,9 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:values': constants.VALID_DIRECTIONS
                 }
-            }})
+              }
+            }
+    )
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
