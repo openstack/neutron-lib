@@ -74,6 +74,29 @@ def compare_elements(a, b):
     return set(a or []) == set(b or [])
 
 
+def compare_dict(a, b):
+    """Compare two dicts, including keys and values.
+
+    Useful because dict comparison was removed in Python 3.0.1.
+
+    :param a: The first dict to compare.
+    :param b: The second dict to compare.
+    :returns: True if a and b have the same keys and values, False otherwise.
+    """
+    if sorted(list(a.keys())) != sorted(list(b.keys())):
+        return False
+    for key, value in a.items():
+        if not isinstance(value, type(b[key])):
+            return False
+        if isinstance(value, dict) and not compare_dict(value, b[key]):
+            return False
+        if isinstance(value, list) and not value.sort() == b[key].sort():
+            return False
+        elif value != b[key]:
+            return False
+    return True
+
+
 def safe_sort_key(value):
     """Return value hash or build one for dictionaries.
 
