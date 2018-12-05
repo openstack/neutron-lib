@@ -125,7 +125,7 @@ source.
 - If the change to consume the code from neutron-lib is widespread and/or "important",
   introduce your intentions for the change via the Neutron team
   `meeting slot <https://wiki.openstack.org/wiki/Network/Meetings>`_
-  for neutron-lib. Subsequently follow-up with an email to openstack-dev list using a
+  for neutron-lib. Subsequently follow-up with an email to openstack-discuss list using a
   subject with ``[neutron] neutron-lib impact`` providing additional details as necessary.
   Ideally we can identify the main impacted subprojects by
   `grepping the OpenStack code <http://codesearch.openstack.org/>`_.
