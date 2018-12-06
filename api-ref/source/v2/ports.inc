@@ -71,6 +71,13 @@ IP Substring Filtering
 The ``ip-substring-filtering`` extension adds support for filtering ports by
 using part of an IP address.
 
+Mac learning extension
+======================
+
+The ``mac_learning_enabled`` extension extends neutron ports providing the
+ability to enable MAC learning on the associated port via the
+```mac_learning_enabled``` attribute.
+
 Port binding extended attributes
 ================================
 
@@ -124,12 +131,13 @@ The ``standard-attr-tag`` adds Tag support for resources with
 standard attributes by adding the ``tags`` attribute
 allowing consumers to associate tags with resources.
 
-Mac learning extension
-======================
+Uplink status propagation
+=========================
 
-The ``mac_learning_enabled`` extension extends neutron ports providing the
-ability to enable MAC learning on the associated port via the
-```mac_learning_enabled``` attribute.
+The ``uplink-status-propagation`` extension adds ``uplink_status_propagation``
+attribute to port. If this attribute is set to ``true``, uplink status
+propagation is enabled. If this attribute is not specified, it is default to
+``false`` which indicates uplink status propagation is disabled.
 
 Show port details
 =================
@@ -194,6 +202,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - uplink_status_propagation: uplink_status_propagation
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -317,6 +326,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - uplink_status_propagation: uplink_status_propagation
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -451,6 +461,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - uplink_status_propagation: uplink_status_propagation
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -506,6 +517,7 @@ Request
    - security_groups: port-security_groups-request
    - tags: tags
    - tenant_id: project_id-request
+   - uplink_status_propagation: uplink_status_propagation-request
    - mac_learning_enabled: mac_learning_enabled-request
 
 Request Example
@@ -558,6 +570,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - uplink_status_propagation: uplink_status_propagation
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -611,6 +624,7 @@ Request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - tenant_id: project_id-request
+   - uplink_status_propagation: uplink_status_propagation-request
    - mac_learning_enabled: mac_learning_enabled-request
 
 Request Example
@@ -656,6 +670,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
+   - uplink_status_propagation: uplink_status_propagation
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example

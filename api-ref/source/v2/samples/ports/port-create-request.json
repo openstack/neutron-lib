@@ -12,6 +12,7 @@
                 "ip_address": "12.12.11.12",
                 "mac_address": "fa:14:2a:b3:cb:f0"
             }
-        ]
+        ],
+        "uplink_status_propagation": false
     }
 }

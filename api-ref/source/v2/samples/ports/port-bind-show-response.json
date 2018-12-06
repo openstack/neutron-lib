@@ -53,6 +53,7 @@
         "resource_request": {
             "required": ["CUSTOM_PHYSNET_PUBLIC", "CUSTOM_VNIC_TYPE_NORMAL"],
             "resources": {"NET_BW_EGR_KILOBIT_PER_SEC": 1000}
-        }
+        },
+        "uplink_status_propagation": false
     }
 }
