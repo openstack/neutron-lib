@@ -599,7 +599,7 @@ def validate_hostroutes(data, valid_values=None):
         msg = _verify_dict_keys(expected_keys, hostroute)
         if msg:
             return msg
-        msg = validate_subnet(hostroute['destination'])
+        msg = validate_route_cidr(hostroute['destination'])
         if msg:
             return msg
         msg = validate_ip_address(hostroute['nexthop'])
@@ -659,6 +659,30 @@ def validate_subnet(data, valid_values=None):
             return
     except Exception:
         msg = _("'%s' is not a valid IP subnet") % data
+    if msg:
+        LOG.debug(msg)
+    return msg
+
+
+def validate_route_cidr(data, valid_values=None):
+    """Validate data is a proper CIDR string.
+
+    :param data: The data to validate.
+    :param valid_values: Not used!
+    :returns: None if data is valid CIDR. Otherwise a human
+              readable message as to why data is invalid.
+    """
+    msg = None
+    try:
+        net = netaddr.IPNetwork(validate_no_whitespace(data))
+        if '/' not in data or (net.network != net.ip):
+            msg = _("'%(data)s' is not a recognized CIDR,"
+                    " '%(cidr)s' is recommended") % {"data": data,
+                                                     "cidr": net.cidr}
+        else:
+            return
+    except Exception:
+        msg = _("'%s' is not a valid CIDR") % data
     if msg:
         LOG.debug(msg)
     return msg

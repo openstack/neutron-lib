@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    A new function named ``validate_route_cidr`` was introduced
+    which is used to validate if ``destination`` of ``routes``
+    and ``destination`` of ``host_routes`` is a network address
+    of a destination subnet or an IP address of a destination.
