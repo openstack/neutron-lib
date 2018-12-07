@@ -202,6 +202,12 @@ class TestConvertIPv6AddrCanonicalFormat(base.BaseTestCase):
     def test_convert_invalid_address(self):
         result = converters.convert_ip_to_canonical_format("on")
         self.assertEqual("on", result)
+        result = converters.convert_ip_to_canonical_format(
+            u'192.168.1.1/32')
+        self.assertEqual(u'192.168.1.1/32', result)
+        result = converters.convert_ip_to_canonical_format(
+            u'2001:db8:0:1:1:1:1:1/128')
+        self.assertEqual(u'2001:db8:0:1:1:1:1:1/128', result)
 
 
 class TestConvertIPv6CIDRCanonicalFormat(base.BaseTestCase):

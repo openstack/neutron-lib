@@ -192,7 +192,7 @@ def convert_ip_to_canonical_format(value):
         ip = netaddr.IPAddress(value)
         if ip.version == constants.IP_VERSION_6:
             return six.text_type(ip.format(dialect=netaddr.ipv6_compact))
-    except netaddr.core.AddrFormatError:
+    except (netaddr.core.AddrFormatError, ValueError):
         pass
     return value
 
