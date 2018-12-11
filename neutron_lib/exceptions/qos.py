@@ -85,3 +85,13 @@ class QoSRulesConflict(e.Conflict):
 class PolicyRemoveAuthorizationError(e.NotAuthorized):
     message = _("Failed to remove provided policy %(policy_id)s "
                 "because you are not authorized.")
+
+
+class TcLibQdiscTypeError(e.NeutronException):
+    message = _("TC Qdisc type %(qdisc_type)s is not supported; supported "
+                "types: %(supported_qdisc_types)s.")
+
+
+class TcLibQdiscNeededArguments(e.NeutronException):
+    message = _("TC Qdisc type %(qdisc_type)s needs following arguments: "
+                "%(needed_arguments)s.")
