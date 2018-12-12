@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    Add ``smart-nic`` VNIC type for Smart NIC ports.
