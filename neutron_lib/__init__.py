@@ -12,6 +12,11 @@
 
 import pbr.version
 
+from neutron_lib.db import api  # noqa
+
+# NOTE(boden): neutron_lib.db.api is imported to ensure the ORM event listeners
+# are registered upon importing any neutron-lib module. For more details see
+# defect https://bugs.launchpad.net/networking-ovn/+bug/1802369
 
 __version__ = pbr.version.VersionInfo(
     'neutron_lib').version_string()

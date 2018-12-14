@@ -1,0 +1,5 @@
+---
+features:
+  - The private ORM event listener functions from ``neutron.db.api`` are now in
+    ``neutron_lib.db.api`` and are automatically loaded when importing any
+    neutron-lib module.
