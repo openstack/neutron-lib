@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Adds new traffic control exceptions ``TcLibQdiscNeededArguments``
+    and ``TcLibQdiscTypeError`` in ``neutron-lib.exceptions.qos``.
