@@ -1,0 +1,8 @@
+---
+other:
+  - |
+    This change removes the ``ONBOARD_SUBNETS_SPECS`` attribute extension
+    from the subnet onboard extension descriptor. This has been deemed to
+    be an unnecessary attribute extension during implementation and has been
+    removed. Because subnet onboard is not yet a completed Neutron feature,
+    the API definition is being updated to reflect this.
