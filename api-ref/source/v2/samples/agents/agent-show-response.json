@@ -12,6 +12,7 @@
         "agent_type": "Open vSwitch agent",
         "started_at": "2017-09-12 19:35:38",
         "created_at": "2017-09-12 19:35:38",
+        "resources_synced": true,
         "configurations": {
             "ovs_hybrid_plug": true,
             "in_distributed_mode": false,
