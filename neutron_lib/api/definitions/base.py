@@ -108,6 +108,7 @@ KNOWN_EXTENSIONS = (
     'multi-provider',
     'net-mtu',
     'network-ip-availability',
+    'network-segment-range',
     'network_availability_zone',
     'pagination',
     'port-resource-request',
