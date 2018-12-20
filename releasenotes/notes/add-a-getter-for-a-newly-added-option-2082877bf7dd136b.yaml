@@ -1,0 +1,5 @@
+---
+features:
+  - Maximum rpc timeout is now configurable by ``rpc_response_max_timeout``
+    from Neutron config instead of being calculated as ``10 *
+    rpc_response_timeout`` value.
