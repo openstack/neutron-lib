@@ -90,19 +90,6 @@ class TestCompareElements(base.BaseTestCase):
                                                  ['juve', 'napoli']))
 
 
-class TestCompare(base.BaseTestCase):
-
-    def test_compare(self):
-        self.assertTrue(helpers.compare_dict({'a': 2}, {'a': 2}))
-        self.assertFalse(helpers.compare_dict({'a': 2}, {'a': 3}))
-        self.assertTrue(helpers.compare_dict({'a': [1, 2]}, {'a': [2, 1]}))
-        self.assertFalse(helpers.compare_dict({'a': [1, 2]}, {'a': [1]}))
-        self.assertTrue(helpers.compare_dict({'a': 'value1'}, {'a': 'value1'}))
-        self.assertFalse(helpers.compare_dict({'a': 'value'}, {'a': 'value1'}))
-        self.assertFalse(helpers.compare_dict({'a': '1'},
-                                              {'a': '1', 'b': '2'}))
-
-
 class TestDictUtils(base.BaseTestCase):
 
     def test_dict2str(self):
