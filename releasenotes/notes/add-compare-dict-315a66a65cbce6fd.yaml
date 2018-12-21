@@ -1,6 +1,0 @@
----
-features:
-  - |
-    Introduced ``compare_dict`` function in ``neutron_lib.utils.helpers``. It
-    allows you to compare two dictionaries, checking both the keys and the
-    values they contain.
