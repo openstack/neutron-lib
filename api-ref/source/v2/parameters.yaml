@@ -187,6 +187,12 @@ network_id-path:
   in: path
   required: true
   type: string
+network_segment_range_id-path:
+  description: |
+    The ID of the network segment range.
+  in: path
+  required: true
+  type: string
 pool_id-path:
   description: |
     The ID for the pool.
@@ -811,6 +817,47 @@ network_is_default-query:
   in: query
   required: false
   type: boolean
+network_segment_range-name-query:
+  description: |
+    Filter the network segment range list result based on the name of the
+    range.
+  in: query
+  required: false
+  type: string
+network_segment_range-network_type-query:
+  description: |
+    Filter the list result by the type of physical network that this
+    network segment range is mapped to. For example, ``vlan``, ``vxlan``, or
+    ``gre``. Valid values depend on a networking back-end.
+  in: query
+  required: false
+  type: string
+network_segment_range-physical_network-query:
+  description: |
+    Filter the list result by the physical network where this
+    network segment range is implemented.
+  in: query
+  required: false
+  type: string
+network_segment_range-sort_key:
+  description: |
+    Sorts by a network segment range attribute. You can specify multiple pairs
+    of sort key and sort direction query parameters. The sort keys are limited
+    to:
+
+    - ``id``
+    - ``name``
+    - ``project_id``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
+network_segment_range_id-query:
+  description: |
+    Filter the network segment range list result based on the range ID.
+  in: query
+  required: false
+  type: string
 not-tags-any-query:
   description: |
     A list of tags to filter the list result by.
@@ -839,6 +886,13 @@ object_type-query:
   description: |
     Filter the RBAC policy list result by the type of the object that the
     RBAC policy affects. Types include ``qos-policy`` or ``network``.
+  in: query
+  required: false
+  type: string
+physical_network-query:
+  description: |
+    Filter the list result by the physical network where this
+    network/segment is implemented.
   in: query
   required: false
   type: string
@@ -4116,6 +4170,88 @@ network_is_default-request:
   in: body
   required: false
   type: boolean
+network_segment_range-available:
+  description: |
+    List of available segmentation IDs in the network segment range.
+  in: body
+  required: true
+  type: list
+network_segment_range-default:
+  description: |
+    Defines whether the network segment range is the default that is loaded
+    from the host ML2 config file.
+  in: body
+  required: true
+  type: boolean
+network_segment_range-maximum-body-optional:
+  description: |
+    The maximum segmentation ID of the network segment range.
+  in: body
+  required: false
+  type: integer
+network_segment_range-maximum-body-required:
+  description: |
+    The maximum segmentation ID of the network segment range.
+  in: body
+  required: true
+  type: integer
+network_segment_range-minimum-body-optional:
+  description: |
+    The minimum segmentation ID of the network segment range.
+  in: body
+  required: false
+  type: integer
+network_segment_range-minimum-body-required:
+  description: |
+    The minimum segmentation ID of the network segment range.
+  in: body
+  required: true
+  type: integer
+network_segment_range-name:
+  description: |
+      Human-readable name of the network segment range.
+  in: body
+  required: false
+  type: string
+network_segment_range-network_type:
+  description: |
+    The type of physical network that maps to this network segment range
+    resource. For example, ``vlan``, ``vxlan``, or ``gre``. Valid values depend
+    on a networking back-end.
+  in: body
+  required: true
+  type: string
+network_segment_range-physical_network-body-optional:
+  description: |
+    The physical network where this network segment range is implemented.
+  in: body
+  required: false
+  type: string
+network_segment_range-physical_network-body-required:
+  description: |
+    The physical network where this network segment range is implemented.
+  in: body
+  required: true
+  type: string
+network_segment_range-shared:
+  description: |
+    Indicates whether this network segment range is shared across all projects.
+  in: body
+  required: true
+  type: boolean
+network_segment_range-used:
+  description: |
+    Mapping of which segmentation ID in the network segment range is used by
+    which project.
+  in: body
+  required: true
+  type: dict
+network_segment_range_id:
+  description: |
+    The UUID of the network segment range.
+  in: body
+  required: true
+  type: string
 network_type:
   description: |
     The type of physical network that maps to this
@@ -4198,6 +4334,12 @@ phase1_negotiation_mode:
   description: |
     The IKE mode. A valid value is ``main``, which is
     the default.
+  in: body
+  required: false
+  type: string
+physical_network:
+  description: |
+    The physical network where this network/segment is implemented.
   in: body
   required: false
   type: string

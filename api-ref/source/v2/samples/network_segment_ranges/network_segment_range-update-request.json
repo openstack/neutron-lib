@@ -1,0 +1,7 @@
+{
+    "network_segment_range": {
+        "name": "new_range",
+        "minimum": 10,
+        "maximum": 20
+    }
+}

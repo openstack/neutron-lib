@@ -1,0 +1,18 @@
+{
+    "network_segment_range": {
+        "id": "50089a13-4a9f-4421-85ba-5222e84610c3",
+        "name": "new_range",
+        "default": false,
+        "shared": false,
+        "tenant_id": "7011dc7fccac4efda89dc3b7f0d0975a",
+        "project_id": "7011dc7fccac4efda89dc3b7f0d0975a",
+        "network_type": "vxlan",
+        "physical_network": null,
+        "minimum": 10,
+        "maximum": 20,
+        "available": [10,11,12,13,14,15,16,19,20],
+        "used": {
+            "17": "5fc1cd2f16ab4c8fbba2e780891b9de3",
+            "18": "87504c1c9d86439882ff90fdbfb096ad"}
+    }
+}

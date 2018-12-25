@@ -17,6 +17,7 @@ General API Overview
 Layer 2 Networking
 ##################
 .. include:: networks.inc
+.. include:: network_segment_ranges.inc
 .. include:: ports.inc
 .. include:: segments.inc
 .. include:: trunk.inc
