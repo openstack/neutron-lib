@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    Add API definition for the new ``network-segment-range`` extension.

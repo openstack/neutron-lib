@@ -61,6 +61,7 @@ from neutron_lib.api.definitions import network_availability_zone
 from neutron_lib.api.definitions import network_ip_availability
 from neutron_lib.api.definitions import network_mtu
 from neutron_lib.api.definitions import network_mtu_writable
+from neutron_lib.api.definitions import network_segment_range
 from neutron_lib.api.definitions import pagination
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_mac_address_regenerate
@@ -156,6 +157,7 @@ _ALL_API_DEFINITIONS = {
     network_ip_availability,
     network_mtu,
     network_mtu_writable,
+    network_segment_range,
     pagination,
     port,
     port_mac_address_regenerate,
