@@ -723,6 +723,31 @@ class TestAttributeValidation(base.BaseTestCase):
     def test_validate_subnet(self):
         self._test_validate_subnet(validators.validate_subnet)
 
+    def test_validate_route_cidr(self):
+        # Valid - CIDR
+        cidr = "10.0.0.0/8"
+        msg = validators.validate_route_cidr(cidr, None)
+        self.assertIsNone(msg)
+
+        # Valid - CIDR
+        cidr = "192.168.1.1/32"
+        msg = validators.validate_route_cidr(cidr, None)
+        self.assertIsNone(msg)
+
+        # Invalid - CIDR
+        cidr = "192.168.1.1/8"
+        msg = validators.validate_route_cidr(cidr, None)
+        error = _("'%(data)s' is not a recognized CIDR,"
+                  " '%(cidr)s' is recommended") % {"data": cidr,
+                                                   "cidr": "192.0.0.0/8"}
+        self.assertEqual(error, msg)
+
+        # Invalid - CIDR format error
+        cidr = 'invalid'
+        msg = validators.validate_route_cidr(cidr, None)
+        error = "'%s' is not a valid CIDR" % cidr
+        self.assertEqual(error, msg)
+
     def test_validate_subnet_or_none(self):
         self._test_validate_subnet(validators.validate_subnet_or_none,
                                    allow_none=True)
