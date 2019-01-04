@@ -223,7 +223,7 @@ latex_documents = [
 
 linkcheck_anchors_ignore = [
     # skip gerrit anchors
-    '\/q\/.*',
-    'q\,.*',
-    '\/c\/.*'
+    '\\/q\\/.*',
+    'q\\,.*',
+    '\\/c\\/.*'
 ]

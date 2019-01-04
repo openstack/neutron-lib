@@ -44,11 +44,15 @@ class GloriousObjectWithCallback(ObjectWithCallback):
 
 def callback_1(*args, **kwargs):
     callback_1.counter += 1
+
+
 callback_id_1 = manager._get_id(callback_1)
 
 
 def callback_2(*args, **kwargs):
     callback_2.counter += 1
+
+
 callback_id_2 = manager._get_id(callback_2)
 
 

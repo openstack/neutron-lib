@@ -162,13 +162,13 @@ def validate_values(data, valid_values=None, valid_values_display=None):
                 LOG.debug(msg)
                 return msg
         except TypeError:
-                # This is a programming error
-                msg = (_("'data' of type '%(typedata)s' and 'valid_values' "
-                         "of type '%(typevalues)s' are not "
-                         "compatible for comparison") %
-                       {'typedata': type(data),
-                        'typevalues': type(valid_values)})
-                raise TypeError(msg)
+            # This is a programming error
+            msg = (_("'data' of type '%(typedata)s' and 'valid_values' "
+                     "of type '%(typevalues)s' are not "
+                     "compatible for comparison") %
+                   {'typedata': type(data),
+                    'typevalues': type(valid_values)})
+            raise TypeError(msg)
     else:
         # This is a programming error
         msg = (_("'valid_values' does not support membership operations"))
