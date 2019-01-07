@@ -297,7 +297,7 @@ Update router
 Updates a logical router.
 
 This operation does not enable the update of router interfaces.
-To update a router intreface, use the add router interface and
+To update a router interface, use the add router interface and
 remove router interface operations.
 
 Normal response codes: 200
