@@ -95,3 +95,13 @@ class TcLibQdiscTypeError(e.NeutronException):
 class TcLibQdiscNeededArguments(e.NeutronException):
     message = _("TC Qdisc type %(qdisc_type)s needs following arguments: "
                 "%(needed_arguments)s.")
+
+
+class RouterQosBindingNotFound(e.NotFound):
+    message = _("QoS binding for router %(router_id)s gateway and policy "
+                "%(policy_id)s could not be found.")
+
+
+class RouterQosBindingError(e.NeutronException):
+    message = _("QoS binding for router %(router_id)s gateway and policy "
+                "%(policy_id)s could not be created: %(db_error)s.")

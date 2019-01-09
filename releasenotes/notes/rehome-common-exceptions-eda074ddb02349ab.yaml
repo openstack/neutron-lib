@@ -1,0 +1,7 @@
+---
+features:
+  - The following exceptions from ``neutron.common.exceptions`` have been
+    rehomed into neutron-lib; ``PortBindingAlreadyActive``,
+    ``PortBindingAlreadyExists``, ``PortBindingError``,
+    ``ProcessExecutionError``, ``RouterQosBindingNotFound``,
+    ``RouterQosBindingError``.

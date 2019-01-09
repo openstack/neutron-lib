@@ -786,3 +786,24 @@ class FailedToAddQdiscToDevice(NeutronException):
 class PortBindingNotFound(NotFound):
     message = _("Binding for port %(port_id)s for host %(host)s could not be "
                 "found.")
+
+
+class PortBindingAlreadyActive(Conflict):
+    message = _("Binding for port %(port_id)s on host %(host)s is already "
+                "active.")
+
+
+class PortBindingAlreadyExists(Conflict):
+    message = _("Binding for port %(port_id)s on host %(host)s already "
+                "exists.")
+
+
+class PortBindingError(NeutronException):
+    message = _("Binding for port %(port_id)s on host %(host)s could not be "
+                "created or updated.")
+
+
+class ProcessExecutionError(RuntimeError):
+    def __init__(self, message, returncode):
+        super(ProcessExecutionError, self).__init__(message)
+        self.returncode = returncode
