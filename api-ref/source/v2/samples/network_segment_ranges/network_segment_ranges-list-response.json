@@ -1,0 +1,36 @@
+{
+    "network_segment_ranges": [
+        {
+            "id": "59b38ee8-6642-418a-88b7-756861606ecb",
+            "name": "range_vlan_physnet1",
+            "default": false,
+            "shared": false,
+            "tenant_id": "7011dc7fccac4efda89dc3b7f0d0975a",
+            "project_id": "7011dc7fccac4efda89dc3b7f0d0975a",
+            "network_type": "vlan",
+            "physical_network": "physnet1",
+            "minimum": 10,
+            "maximum": 20,
+            "available": [10,11,12,13,14,15,16,19,20],
+            "used": {
+                "17": "5fc1cd2f16ab4c8fbba2e780891b9de3",
+                "18": "87504c1c9d86439882ff90fdbfb096ad"}
+        },
+        {
+            "id": "91ea6e31-3a6d-4541-8432-b49b4cacf893",
+            "name": "range_vxlan",
+            "default": false,
+            "shared": true,
+            "tenant_id": null,
+            "project_id": null,
+            "network_type": "vxlan",
+            "physical_network": null,
+            "minimum": 40,
+            "maximum": 50,
+            "available": [40,41,43,44,46,47,48,49,50],
+            "used": {
+                "42": "07ac1127ee9647d48ce2626867104a13",
+                "45": "d4fa62aa47d340d98d076801aa7e6ec4"}
+        }
+    ]
+}

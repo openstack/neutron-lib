@@ -1,0 +1,11 @@
+{
+    "network_segment_range": {
+        "name": "range_vlan_physnet1",
+        "shared": false,
+        "project_id": "7011dc7fccac4efda89dc3b7f0d0975a",
+        "network_type": "vlan",
+        "physical_network": "physnet1",
+        "minimum": 10,
+        "maximum": 20
+    }
+}
