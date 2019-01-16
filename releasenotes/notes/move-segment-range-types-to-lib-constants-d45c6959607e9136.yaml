@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    The ``neutron_lib.api.definitions.network_segment_range.NETWORK_SEGMENT_RANGE_TYPE_LIST``
+    constant was moved to ``neutron_lib.constants`` and renamed to
+    ``NETWORK_SEGMENT_RANGE_TYPES`` so that it can be used elsewhere.

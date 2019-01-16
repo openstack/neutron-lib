@@ -35,11 +35,6 @@ RESOURCE_NAME = 'network_segment_range'
 # The plural for the resource.
 COLLECTION_NAME = 'network_segment_ranges'
 
-NETWORK_SEGMENT_RANGE_TYPE_LIST = [constants.TYPE_VLAN,
-                                   constants.TYPE_VXLAN,
-                                   constants.TYPE_GRE,
-                                   constants.TYPE_GENEVE]
-
 # Min ID for VLAN, VXLAN, GRE and GENEVE all equal to 1; Max ID for them are
 # 4094, 2 ** 24 - 1, 2 ** 32 - 1 and 2 ** 24 - 1 respectively.
 # Take the largest range: [MIN_GRE_ID, MAX_GRE_ID] as the limit for validation.
@@ -82,7 +77,8 @@ RESOURCE_ATTRIBUTE_MAP = {
         'network_type': {'allow_post': True,
                          'allow_put': False,
                          'validate': {
-                             'type:values': NETWORK_SEGMENT_RANGE_TYPE_LIST},
+                             'type:values':
+                                 constants.NETWORK_SEGMENT_RANGE_TYPES},
                          'default': constants.ATTR_NOT_SPECIFIED,
                          'is_filter': True,
                          'is_visible': True},
