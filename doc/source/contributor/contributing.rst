@@ -148,6 +148,8 @@ source.
   still has direct neutron imports). The check happens daily therefore consider waiting to
   approve if you are either aware of another impactful change recently merged that has not
   been yet processed or you see failure rates spiking.
+- All projects that have `neutron-lib-current <http://codesearch.openstack.org/?q=neutron-lib-current&i=nope&files=requirements.txt&repos=>`_
+  should also be updated as part of consumption.
 
 Examples:
 

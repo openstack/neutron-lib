@@ -29,6 +29,7 @@ components and in how to use them, from a development standpoint.
 .. toctree::
    :maxdepth: 2
 
+   consuming
    conventions
    review-guidelines
    contributing
