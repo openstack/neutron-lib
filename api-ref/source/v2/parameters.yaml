@@ -1980,7 +1980,7 @@ binding:vnic_type:
     The type of vNIC which this port should be attached to. This is used to
     determine which mechanism driver(s) to be used to bind the port.
     The valid values are ``normal``, ``macvtap``, ``direct``, ``baremetal``,
-    ``direct-physical`` and ``virtio-forwarder``.
+    ``direct-physical``, ``virtio-forwarder`` and ``smart-nic``.
     What type of vNIC is actually available depends on deployments.
   in: body
   required: true
@@ -1990,7 +1990,7 @@ binding:vnic_type-request:
     The type of vNIC which this port should be attached to. This is used to
     determine which mechanism driver(s) to be used to bind the port.
     The valid values are ``normal``, ``macvtap``, ``direct``, ``baremetal``,
-    ``direct-physical`` and ``virtio-forwarder``.
+    ``direct-physical``, ``virtio-forwarder`` and ``smart-nic``.
     What type of vNIC is actually available depends on deployments.
     The default is ``normal``.
   in: body
