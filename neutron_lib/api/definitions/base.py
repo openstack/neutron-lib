@@ -99,6 +99,7 @@ KNOWN_EXTENSIONS = (
     'fip-port-details',
     'flavors',
     'floating-ip-port-forwarding',
+    'floatingip-autodelete-internal',
     'floatingip-pools',
     'ip-substring-filtering',
     'l3-ha',

@@ -40,6 +40,13 @@ The ``external-net`` extension adds the ``router:external`` attribute to
 networks. This boolean attribute indicates the network has an external
 routing facility that's not managed by the networking service.
 
+FloatingIP autodelete internal
+==============================
+
+The ``floatingip-autodelete-internal`` shim extension signals that the
+update of a network's ``router:external`` attribute from ``true`` to
+``false`` autodeletes the unused Floating IPs of that network.
+
 L2 adjacency extension
 ======================
 

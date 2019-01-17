@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    New shim API extension: ``floatingip-autodelete-internal``.
