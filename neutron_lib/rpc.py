@@ -90,6 +90,10 @@ def _get_default_method_timeouts():
     return collections.defaultdict(_get_default_method_timeout)
 
 
+def _get_rpc_response_max_timeout():
+    return TRANSPORT.conf.rpc_response_max_timeout
+
+
 class _ContextWrapper(object):
     def __init__(self, original_context):
         self._original_context = original_context
@@ -129,7 +133,7 @@ class _BackingOffContextWrapper(_ContextWrapper):
 
     @classmethod
     def get_max_timeout(cls):
-        return cls._max_timeout or _get_default_method_timeout() * 10
+        return cls._max_timeout or _get_rpc_response_max_timeout()
 
     @classmethod
     def set_max_timeout(cls, max_timeout):

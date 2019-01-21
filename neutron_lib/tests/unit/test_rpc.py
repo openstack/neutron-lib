@@ -292,6 +292,7 @@ class TimeoutTestCase(base.BaseTestCase):
         self.call_context = mock.Mock()
         self.sleep = mock.patch('time.sleep').start()
         rpc.TRANSPORT.conf.rpc_response_timeout = 10
+        rpc.TRANSPORT.conf.rpc_response_max_timeout = 300
 
     def test_timeout_unaffected_when_explicitly_set(self):
         rpc.TRANSPORT.conf.rpc_response_timeout = 5
@@ -343,19 +344,19 @@ class TimeoutTestCase(base.BaseTestCase):
                     for call in rpc.TRANSPORT._send.call_args_list]
         self.assertEqual([1, 2, 4, 8, 16], timeouts)
 
-    def test_method_timeout_10x_config_ceiling(self):
+    def test_method_timeout_config_ceiling(self):
         rpc.TRANSPORT.conf.rpc_response_timeout = 10
         # 5 doublings should max out at the 10xdefault ceiling
         for i in range(5):
             with testtools.ExpectedException(messaging.MessagingTimeout):
                 self.client.call(self.call_context, 'method_1')
         self.assertEqual(
-            10 * rpc.TRANSPORT.conf.rpc_response_timeout,
+            rpc.TRANSPORT.conf.rpc_response_max_timeout,
             rpc._BackingOffContextWrapper._METHOD_TIMEOUTS['method_1'])
         with testtools.ExpectedException(messaging.MessagingTimeout):
             self.client.call(self.call_context, 'method_1')
         self.assertEqual(
-            10 * rpc.TRANSPORT.conf.rpc_response_timeout,
+            rpc.TRANSPORT.conf.rpc_response_max_timeout,
             rpc._BackingOffContextWrapper._METHOD_TIMEOUTS['method_1'])
 
     def test_timeout_unchanged_on_other_exception(self):
@@ -426,7 +427,8 @@ class TimeoutTestCase(base.BaseTestCase):
     def test_set_max_timeout_overrides_default_timeout(self):
         rpc.TRANSPORT.conf.rpc_response_timeout = 10
         self.assertEqual(
-            10 * 10, rpc._BackingOffContextWrapper.get_max_timeout())
+            rpc.TRANSPORT.conf.rpc_response_max_timeout,
+            rpc._BackingOffContextWrapper.get_max_timeout())
         rpc._BackingOffContextWrapper.set_max_timeout(10)
         self.assertEqual(10, rpc._BackingOffContextWrapper.get_max_timeout())
 
