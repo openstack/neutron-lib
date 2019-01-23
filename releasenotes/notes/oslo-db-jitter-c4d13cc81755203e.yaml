@@ -1,0 +1,5 @@
+---
+fixes:
+  - The oslo.db wrap_db_retry function now supports randomized time jitter
+    in its retry algorithm. Add support for that feature, if the installed
+    version of oslo.db supports it.

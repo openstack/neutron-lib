@@ -12,6 +12,7 @@
 
 import contextlib
 import copy
+import inspect
 import weakref
 
 from oslo_concurrency import lockutils
@@ -147,12 +148,25 @@ def _copy_if_lds(item):
     return copy.deepcopy(item) if isinstance(item, (list, dict, set)) else item
 
 
-_retry_db_errors = oslo_db_api.wrap_db_retry(
-    max_retries=MAX_RETRIES,
-    retry_interval=0.5,
-    inc_retry_interval=True,
-    exception_checker=is_retriable
-)
+# Do retries with some randomness in the backoff, if the version
+# of oslo.db supports it.
+# TODO(dougwig): remove this gross if/else when lower constraints
+# on oslo.db is >= 4.37.0.
+if 'jitter' in inspect.getargspec(oslo_db_api.wrap_db_retry.__init__).args:
+    _retry_db_errors = oslo_db_api.wrap_db_retry(
+        max_retries=MAX_RETRIES,
+        retry_interval=0.5,
+        inc_retry_interval=True,
+        exception_checker=is_retriable,
+        jitter=True
+    )
+else:
+    _retry_db_errors = oslo_db_api.wrap_db_retry(
+        max_retries=MAX_RETRIES,
+        retry_interval=0.5,
+        inc_retry_interval=True,
+        exception_checker=is_retriable,
+    )
 
 
 def retry_db_errors(f):
