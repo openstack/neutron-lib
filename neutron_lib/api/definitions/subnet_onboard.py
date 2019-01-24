@@ -14,8 +14,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.api import converters
-from neutron_lib.api.definitions import subnet as subnet_def
 from neutron_lib.api.definitions import subnetpool as subnetpool_def
 import neutron_lib.constants
 
@@ -24,28 +22,14 @@ IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = "Subnet Onboard"
 DESCRIPTION = "Provides support for onboarding subnets into subnet pools"
-UPDATED_TIMESTAMP = "2017-07-27T10:00:00-00:00"
+UPDATED_TIMESTAMP = "2018-12-18T09:00:00-00:00"
 
 
 ONBOARD_SUBNETS = 'onboard_network_subnets'
 
-ONBOARD_SUBNETS_SPECS = {
-    'id': {'type:uuid': None, 'required': True},
-    'network_id': {'type:uuid': None, 'required': True},
-    'ip_version': {'convert_to': converters.convert_to_int,
-                   'type:values': [4, 6],
-                   'required': True}
-}
-
 
 RESOURCE_ATTRIBUTE_MAP = {
     subnetpool_def.COLLECTION_NAME: {
-        subnet_def.COLLECTION_NAME: {
-            'allow_post': True, 'allow_put': True, 'default': [],
-            'validate': {
-                'type:list_of_any_key_specs_or_none': ONBOARD_SUBNETS_SPECS
-            }
-        }
     }
 }
 
