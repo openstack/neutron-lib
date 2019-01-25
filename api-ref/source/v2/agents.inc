@@ -6,6 +6,12 @@ Agents
 
 Lists, shows details for, updates, and deletes agents.
 
+Agent Resources Synced Extension
+================================
+
+The ``agent-resources-synced`` extension adds the ``resources_synced`` attribute
+to agents.
+
 Availability Zone Extension
 ===========================
 
@@ -63,6 +69,7 @@ Response Parameters
    - heartbeat_timestamp: heartbeat_timestamp
    - host: host
    - id: id
+   - resources_synced: agent_resources_synced
    - started_at: started_at
    - topic: topic
 
@@ -109,6 +116,7 @@ Response Parameters
    - heartbeat_timestamp: heartbeat_timestamp
    - host: host
    - id: id
+   - resources_synced: agent_resources_synced
    - started_at: started_at
    - topic: topic
 
@@ -162,6 +170,7 @@ Response Parameters
    - heartbeat_timestamp: heartbeat_timestamp
    - host: host
    - id: id
+   - resources_synced: agent_resources_synced
    - started_at: started_at
    - topic: topic
 

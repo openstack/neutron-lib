@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import address_scope
 from neutron_lib.api.definitions import agent
+from neutron_lib.api.definitions import agent_resources_synced
 from neutron_lib.api.definitions import allowedaddresspairs
 from neutron_lib.api.definitions import auto_allocated_topology
 from neutron_lib.api.definitions import availability_zone
@@ -108,6 +109,7 @@ from neutron_lib.api.definitions import vpn_flavors
 _ALL_API_DEFINITIONS = {
     address_scope,
     agent,
+    agent_resources_synced,
     allowedaddresspairs,
     auto_allocated_topology,
     availability_zone,

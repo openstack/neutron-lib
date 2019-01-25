@@ -77,6 +77,7 @@ KNOWN_ACTION_STATUSES = (
 KNOWN_EXTENSIONS = (
     'address-scope',
     'agent',
+    'agent-resources-synced',
     'allowed-address-pairs',
     'auto-allocated-topology',
     'availability_zone',

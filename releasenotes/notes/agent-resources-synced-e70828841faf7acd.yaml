@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The ``agent-resources-synced`` extension introduces a new agent
+    attribute named ``resources_synced`` that tracks the success of
+    the resource view synchronization to Placement.
