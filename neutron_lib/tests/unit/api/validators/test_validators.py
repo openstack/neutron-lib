@@ -149,7 +149,7 @@ class TestAttributeValidation(base.BaseTestCase):
         # Check that value is not comparable to valid_values and got Exception
         data = 1
         valid_values = '[2, 3, 4, 5]'
-        response = "'data' of type '%s' and 'valid_values'of type" \
+        response = "'data' of type '%s' and 'valid_values' of type" \
                    " '%s' are not compatible for comparison" % (
                        type(data), type(valid_values))
         self.assertRaisesRegex(TypeError, response,
