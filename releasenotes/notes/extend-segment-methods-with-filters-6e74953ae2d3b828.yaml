@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    Extend the ML2 type driver abstract methods ``reserve_provider_segment``
+    and ``allocate_tenant_segment`` with ``filters`` that is used as search
+    criteria for the segment allocation support when network-segment-range
+    extension is loaded.

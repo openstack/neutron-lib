@@ -534,11 +534,12 @@ class TypeDriver(_TypeDriverBase):
     """
 
     @abc.abstractmethod
-    def reserve_provider_segment(self, session, segment):
+    def reserve_provider_segment(self, session, segment, filters=None):
         """Reserve resource associated with a provider network segment.
 
         :param session: database session
         :param segment: segment dictionary
+        :param filters: a dictionary that is used as search criteria
         :returns: segment dictionary
 
         Called inside transaction context on session to reserve the
@@ -549,10 +550,11 @@ class TypeDriver(_TypeDriverBase):
         pass
 
     @abc.abstractmethod
-    def allocate_tenant_segment(self, session):
+    def allocate_tenant_segment(self, session, filters=None):
         """Allocate resource for a new tenant network segment.
 
         :param session: database session
+        :param filters: a dictionary that is used as search criteria
         :returns: segment dictionary using keys defined above
 
         Called inside transaction context on session to allocate a new
@@ -604,11 +606,12 @@ class ML2TypeDriver(_TypeDriverBase):
     """
 
     @abc.abstractmethod
-    def reserve_provider_segment(self, context, segment):
+    def reserve_provider_segment(self, context, segment, filters=None):
         """Reserve resource associated with a provider network segment.
 
         :param context: instance of neutron context with DB session
         :param segment: segment dictionary
+        :param filters: a dictionary that is used as search criteria
         :returns: segment dictionary
 
         Called inside transaction context on session to reserve the
@@ -619,10 +622,11 @@ class ML2TypeDriver(_TypeDriverBase):
         pass
 
     @abc.abstractmethod
-    def allocate_tenant_segment(self, context):
+    def allocate_tenant_segment(self, context, filters=None):
         """Allocate resource for a new tenant network segment.
 
         :param context: instance of neutron context with DB session
+        :param filters: a dictionary that is used as search criteria
         :returns: segment dictionary using keys defined above
 
         Called inside transaction context on session to allocate a new
