@@ -109,7 +109,7 @@ class _ContextWrapper(object):
             # bug/1705351 is resolved on the oslo.messaging side; if
             # oslo.messaging auto-creates the exchange, then just remove the
             # code completely
-            LOG.debug("Ignored exception during cast: %e", e)
+            LOG.debug("Ignored exception during cast: %s", str(e))
 
 
 class _BackingOffContextWrapper(_ContextWrapper):
