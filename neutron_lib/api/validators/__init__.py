@@ -162,7 +162,7 @@ def validate_values(data, valid_values=None, valid_values_display=None):
                 return msg
         except TypeError:
                 # This is a programming error
-                msg = (_("'data' of type '%(typedata)s' and 'valid_values'"
+                msg = (_("'data' of type '%(typedata)s' and 'valid_values' "
                          "of type '%(typevalues)s' are not "
                          "compatible for comparison") %
                        {'typedata': type(data),

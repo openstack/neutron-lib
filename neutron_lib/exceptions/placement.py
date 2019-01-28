@@ -58,7 +58,7 @@ class PlacementResourceClassNotFound(exceptions.NotFound):
 
 
 class PlacementAPIVersionIncorrect(exceptions.NotFound):
-    message = _("Placement API version %(current_version)s, do not meet the"
+    message = _("Placement API version %(current_version)s, do not meet the "
                 "needed version %(needed_version)s.")
 
 
