@@ -78,6 +78,7 @@ ROUTER_INTERFACE_OWNERS_SNAT = (DEVICE_OWNER_ROUTER_INTF,
 DEVICE_ID_RESERVED_DHCP_PORT = 'reserved_dhcp_port'
 
 FLOATINGIP_KEY = '_floatingips'
+PORT_FORWARDING_FLOATINGIP_KEY = '_pf_floatingips'
 INTERFACE_KEY = '_interfaces'
 HA_INTERFACE_KEY = '_ha_interface'
 

@@ -1,0 +1,4 @@
+---
+other:
+  - |
+    Add new ``PORT_FORWARDING_FLOATINGIP_KEY`` constant.
