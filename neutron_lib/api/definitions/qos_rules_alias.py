@@ -50,14 +50,14 @@ RESOURCE_ATTRIBUTE_MAP = {
     BANDWIDTH_LIMIT_RULES_ALIAS: dict(
         _QOS_RULE_COMMON_FIELDS,
         **{q_const.MAX_KBPS: {
-                'allow_post': False, 'allow_put': True,
-                'convert_to': converters.convert_to_int,
-                'is_visible': True,
-                'is_filter': True,
-                'is_sort_key': True,
-                'validate': {
-                    'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
-                }
+            'allow_post': False, 'allow_put': True,
+            'convert_to': converters.convert_to_int,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'validate': {
+                'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
+            }
         },
             q_const.DIRECTION: {
                 'allow_post': False,
@@ -77,33 +77,33 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'is_sort_key': True,
                 'convert_to': converters.convert_to_int,
                 'validate': {
-                        'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
+                    'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
                 }
         }}),
     DSCP_MARKING_RULES_ALIAS: dict(
         _QOS_RULE_COMMON_FIELDS,
         **{q_const.DSCP_MARK: {
-                'allow_post': False, 'allow_put': True,
-                'convert_to': converters.convert_to_int,
-                'is_visible': True,
-                'is_filter': True,
-                'is_sort_key': True,
-                'validate': {
-                    'type:values': constants.VALID_DSCP_MARKS
-                }
+            'allow_post': False, 'allow_put': True,
+            'convert_to': converters.convert_to_int,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'validate': {
+                'type:values': constants.VALID_DSCP_MARKS
+            }
         }}),
     MIN_BANDWIDTH_RULES_ALIAS: dict(
-         _QOS_RULE_COMMON_FIELDS,
-         **{q_const.MIN_KBPS: {
-                'allow_post': False, 'allow_put': True,
-                'is_visible': True,
-                'is_filter': True,
-                'is_sort_key': True,
-                'convert_to': converters.convert_to_int,
-                'validate': {
-                    'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
-                }
-              },
+        _QOS_RULE_COMMON_FIELDS,
+        **{q_const.MIN_KBPS: {
+            'allow_post': False, 'allow_put': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'convert_to': converters.convert_to_int,
+            'validate': {
+                'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]
+            }
+        },
             q_const.DIRECTION: {
                 'allow_post': False, 'allow_put': True,
                 'is_visible': True, 'default': constants.EGRESS_DIRECTION,
@@ -112,8 +112,8 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:values': constants.VALID_DIRECTIONS
                 }
-              }
             }
+        }
     )
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
