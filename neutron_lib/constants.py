@@ -12,7 +12,6 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 # TODO(salv-orlando): Verify if a single set of operational
 # status constants is achievable
 NET_STATUS_ACTIVE = 'ACTIVE'
@@ -332,6 +331,17 @@ EGRESS_DIRECTION = 'egress'
 VALID_DIRECTIONS = (INGRESS_DIRECTION, EGRESS_DIRECTION)
 
 PROVISIONAL_IPV6_PD_PREFIX = '::/64'
+
+# Traffic control
+TC_QDISC_TYPE_HTB = 'htb'
+TC_QDISC_TYPE_TBF = 'tbf'
+TC_QDISC_TYPE_INGRESS = 'ingress'
+TC_QDISC_TYPES = (TC_QDISC_TYPE_HTB, TC_QDISC_TYPE_TBF, TC_QDISC_TYPE_INGRESS)
+
+TC_QDISC_INGRESS_ID = 'ffff:'
+
+TC_QDISC_PARENTS = {'root': 0xffffffff,
+                    'ingress': 0xfffffff1}
 
 
 class Sentinel(object):
