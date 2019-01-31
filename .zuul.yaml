@@ -10,3 +10,27 @@
       - lib-forward-testing
       - lib-forward-testing-python3
       - release-notes-jobs-python3
+    check:
+      jobs:
+        # This job comes from lib-forward-testing template,
+        # but it is limited to 2h there and we want to set
+        # for it 3h timeout
+        - tempest-full:
+            timeout: 10800
+        # This job comes from lib-forward-testing-python3 template,
+        # but it is limited to 2h there and we want to set
+        # for it 3h timeout
+        - tempest-full-py3:
+            timeout: 10800
+    gate:
+      jobs:
+        # This job comes from lib-forward-testing template,
+        # but it is limited to 2h there and we want to set
+        # for it 3h timeout
+        - tempest-full:
+            timeout: 10800
+        # This job comes from lib-forward-testing-python3 template,
+        # but it is limited to 2h there and we want to set
+        # for it 3h timeout
+        - tempest-full-py3:
+            timeout: 10800
