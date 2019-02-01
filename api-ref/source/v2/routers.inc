@@ -52,6 +52,17 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Router admin state down before update extension
+===============================================
+
+The ``router-admin-state-down-before-update`` extension adds the requirement
+that the administrative state of a distributed virtual router (DVR) be set to
+DOWN (``admin_state_up=False``) prior to modifying the ``distributed``
+parameter of the router. The API will return an error response code of 400 if
+the router's ``distributed`` attribute is modified without first setting the
+router's ``admin_state_up=False``.
+This extension requires the ``dvr`` extension.
+
 Router availability zone extension
 ==================================
 

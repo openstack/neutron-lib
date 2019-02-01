@@ -81,6 +81,7 @@ from neutron_lib.api.definitions import qos_gateway_ip
 from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import qos_rules_alias
 from neutron_lib.api.definitions import revisionifmatch
+from neutron_lib.api.definitions import router_admin_state_down_before_update
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import routerservicetype
@@ -178,6 +179,7 @@ _ALL_API_DEFINITIONS = {
     qos_rule_type_details,
     qos_rules_alias,
     revisionifmatch,
+    router_admin_state_down_before_update,
     router_availability_zone,
     router_interface_fip,
     routerservicetype,
