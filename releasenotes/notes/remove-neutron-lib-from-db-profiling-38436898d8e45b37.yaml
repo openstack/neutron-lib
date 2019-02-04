@@ -1,0 +1,9 @@
+---
+other:
+  - |
+    Module ``neutron_lib.db`` is now removed from db profiling projects so
+    database calls done from this module will not be tracked in osprofiler
+    results.
+    All db calls which are tracked by osprofiler are comming from
+    Neutron and this avoids having each call logged twice in osprofiler
+    report.
