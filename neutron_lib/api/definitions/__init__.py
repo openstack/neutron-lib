@@ -43,6 +43,7 @@ from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import firewallrouterinsertion
 from neutron_lib.api.definitions import flavors
 from neutron_lib.api.definitions import floating_ip_port_forwarding
+from neutron_lib.api.definitions import floatingip_autodelete_internal
 from neutron_lib.api.definitions import floatingip_pools
 from neutron_lib.api.definitions import flowclassifier
 from neutron_lib.api.definitions import ip_allocation
@@ -140,6 +141,7 @@ _ALL_API_DEFINITIONS = {
     fip_port_details,
     flavors,
     floating_ip_port_forwarding,
+    floatingip_autodelete_internal,
     floatingip_pools,
     ip_allocation,
     ip_substring_port_filtering,

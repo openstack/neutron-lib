@@ -5437,7 +5437,9 @@ router-subnet_ids:
 router:external:
   description: |
     Indicates whether the network has an external routing facility that's not
-    managed by the networking service.
+    managed by the networking service. If the network is updated from external
+    to internal the unused floating IPs of this network are automatically
+    deleted when extension ``floatingip-autodelete-internal`` is present.
   in: body
   required: true
   type: boolean
