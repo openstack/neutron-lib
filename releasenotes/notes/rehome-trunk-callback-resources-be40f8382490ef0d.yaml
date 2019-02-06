@@ -1,0 +1,5 @@
+---
+features:
+  - The ``SUBPORTS``, ``TRUNK`` and ``TRUNK_PLUGIN`` constants are now
+    available in ``neutron_lib.callbacks.resources`` for defining Trunk
+    related callback resources.
