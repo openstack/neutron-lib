@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    New exception classes: ``UnknownResourceProvider`` and
+    ``AmbiguousResponsibilityForResourceProvider``.

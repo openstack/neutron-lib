@@ -69,3 +69,14 @@ class PlacementResourceProviderNameNotUnique(exceptions.Conflict):
 
 class PlacementClientError(exceptions.NeutronException):
     message = _("Placement Client Error (4xx): %(msg)s")
+
+
+class UnknownResourceProvider(exceptions.BadRequest):
+    """Resource provider not known by neutron backends."""
+    message = _("No such resource provider known by Neutron: %(rsc_provider)s")
+
+
+class AmbiguousResponsibilityForResourceProvider(exceptions.NeutronException):
+    """Not clear who's responsible for resource provider."""
+    message = _("Expected one driver to be responsible for resource provider "
+                "%(rsc_provider)s, but got many: %(drivers)s")
