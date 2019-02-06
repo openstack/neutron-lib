@@ -6,6 +6,9 @@ RBAC Policies
 
 Lists, shows details for, creates, updates, and deletes RBAC policies.
 
+The presence of the ``rbac-security-groups`` extension extends this
+API to support object types of ``security_group``.
+
 Show RBAC policy details
 ========================
 

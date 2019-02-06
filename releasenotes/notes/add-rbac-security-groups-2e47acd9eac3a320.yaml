@@ -1,0 +1,4 @@
+features:
+  - |
+    Adds API definition for ``rbac-security-groups`` extension, which allows
+    sharing security groups between tenants via the network RBAC mechanism.
