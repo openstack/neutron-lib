@@ -15,10 +15,14 @@
 
 import functools
 import re
+import uuid
+
+import requests
 
 from keystoneauth1 import exceptions as ks_exc
 from keystoneauth1 import loading as keystone
 from oslo_log import log as logging
+from oslo_serialization import jsonutils
 from oslo_utils import versionutils
 from six.moves.urllib.parse import urlencode
 
@@ -67,6 +71,64 @@ def _get_version(openstack_api_version):
     return versionutils.convert_version_to_tuple(match.group('api_version'))
 
 
+class UUIDEncoder(jsonutils.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, uuid.UUID):
+            return str(o)
+        return super(UUIDEncoder, self).default(o)
+
+
+class NoAuthClient(object):
+    """Placement NoAuthClient for fullstack testing"""
+
+    def __init__(self, url):
+        self.url = url
+        # TODO(lajoskatona): use perhaps http_connect_timeout from
+        # keystone_authtoken group
+        self.timeout = 5
+
+    def request(self, url, method, body=None, headers=None, **kwargs):
+        headers = headers or {}
+        headers.setdefault('Accept', 'application/json')
+
+        # Note(lajoskatona): placement report plugin fills uuid fields with
+        # UUID objects, and that is good for keystone, but requests goes mad
+        # with that if we use json=body as it can't serialize UUID.
+        # To make things worse if we give a serialized json, it will do the
+        # jsonification again, so better to create the json here and give it
+        # to requests with the data parameter.
+        body = jsonutils.dumps(body, cls=UUIDEncoder)
+        try:
+            resp = requests.request(
+                method,
+                url,
+                data=body,
+                headers=headers,
+                verify=False,
+                timeout=self.timeout,
+                **kwargs)
+            return resp
+        # Note(lajoskatona): requests raise ConnectionError, but
+        # PlacementReportPlugin expects keystonauth1 HttpError.
+        except requests.ConnectionError:
+            raise ks_exc.HttpError
+
+    def get(self, url, endpoint_filter, **kwargs):
+        return self.request('%s%s' % (self.url, url), 'GET', **kwargs)
+
+    def post(self, url, json, endpoint_filter, **kwargs):
+        return self.request('%s%s' % (self.url, url), 'POST', body=json,
+                            **kwargs)
+
+    def put(self, url, json, endpoint_filter, **kwargs):
+        resp = self.request('%s%s' % (self.url, url), 'PUT', body=json,
+                            **kwargs)
+        return resp
+
+    def delete(self, url, endpoint_filter, **kwargs):
+        return self.request('%s%s' % (self.url, url), 'DELETE', **kwargs)
+
+
 class PlacementAPIClient(object):
     """Client class for placement ReST API."""
 
@@ -87,11 +149,18 @@ class PlacementAPIClient(object):
         # clean slate.
         self._resource_providers = {}
         self._provider_aggregate_map = {}
-        auth_plugin = keystone.load_auth_from_conf_options(
-            self._conf, 'placement')
-        return keystone.load_session_from_conf_options(
-            self._conf, 'placement', auth=auth_plugin,
-            additional_headers={'accept': 'application/json'})
+        # TODO(lajoskatona): perhaps not the best to override config options,
+        # actually the abused keystoneauth1 options are:
+        # auth_type (used for deciding for NoAuthClient) and auth_section
+        # (used for communicating the url for the NoAuthClient)
+        if self._conf.placement.auth_type == 'noauth':
+            return NoAuthClient(self._conf.placement.auth_section)
+        else:
+            auth_plugin = keystone.load_auth_from_conf_options(
+                self._conf, 'placement')
+            return keystone.load_session_from_conf_options(
+                self._conf, 'placement', auth=auth_plugin,
+                additional_headers={'accept': 'application/json'})
 
     def _extend_header_with_api_version(self, **kwargs):
         headers = kwargs.get('headers', {})

@@ -14,6 +14,8 @@
 import mock
 
 from keystoneauth1 import exceptions as ks_exc
+from keystoneauth1 import loading as keystone
+from oslo_serialization import jsonutils
 from oslo_utils import uuidutils
 
 from neutron_lib._i18n import _
@@ -37,6 +39,65 @@ INVENTORY = {
         'total': 42
     }
 }
+
+
+class TestNoAuthClient(base.BaseTestCase):
+
+    def setUp(self):
+        super(TestNoAuthClient, self).setUp()
+        self.noauth_client = place_client.NoAuthClient('placement/')
+        self.body_json = jsonutils.dumps({'name': 'foo'})
+        self.uuid = '42'
+
+    @mock.patch.object(place_client.NoAuthClient, 'request')
+    def test_get(self, mock_request):
+        self.noauth_client.get('resource_providers', '')
+        mock_request.assert_called_with('placement/resource_providers', 'GET')
+
+    @mock.patch.object(place_client.NoAuthClient, 'request')
+    def test_post(self, mock_request):
+        self.noauth_client.post('resource_providers', self.body_json, '')
+        mock_request.assert_called_with('placement/resource_providers', 'POST',
+                                        body=self.body_json)
+
+    @mock.patch.object(place_client.NoAuthClient, 'request')
+    def test_put(self, mock_request):
+        self.noauth_client.put('resource_providers/%s' % self.uuid,
+                               self.body_json, '')
+        mock_request.assert_called_with(
+            'placement/resource_providers/%s' % self.uuid, 'PUT',
+            body=self.body_json)
+
+    @mock.patch.object(place_client.NoAuthClient, 'request')
+    def test_delete(self, mock_request):
+        self.noauth_client.delete('resource_providers/%s' % self.uuid, '')
+        mock_request.assert_called_with(
+            'placement/resource_providers/%s' % self.uuid, 'DELETE')
+
+
+class TestPlacementAPIClientNoAuth(base.BaseTestCase):
+    def setUp(self):
+        super(TestPlacementAPIClientNoAuth, self).setUp()
+        self.config = mock.Mock()
+
+    @mock.patch('neutron_lib.placement.client.NoAuthClient', autospec=True)
+    def test__create_client_noauth(self, mock_auth_client):
+        self.config.placement.auth_type = 'noauth'
+        self.config.placement.auth_section = 'placement/'
+        self.placement_api_client = place_client.PlacementAPIClient(
+            self.config)
+        self.placement_api_client._create_client()
+        mock_auth_client.assert_called_once_with('placement/')
+
+    @mock.patch.object(keystone, 'load_auth_from_conf_options')
+    @mock.patch.object(keystone, 'load_session_from_conf_options')
+    def test__create_client(self, mock_session_from_conf, mock_auth_from_conf):
+        self.config.placement.auth_type = 'password'
+        self.placement_api_client = place_client.PlacementAPIClient(
+            self.config)
+        self.placement_api_client._create_client()
+        mock_auth_from_conf.assert_called_once_with(self.config, 'placement')
+        mock_session_from_conf.assert_called_once()
 
 
 class TestPlacementAPIClient(base.BaseTestCase):
