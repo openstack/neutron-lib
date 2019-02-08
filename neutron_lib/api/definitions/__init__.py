@@ -100,6 +100,7 @@ from neutron_lib.api.definitions import subnet_onboard
 from neutron_lib.api.definitions import subnet_segmentid_enforce
 from neutron_lib.api.definitions import subnet_segmentid_writable
 from neutron_lib.api.definitions import subnetpool
+from neutron_lib.api.definitions import subnetpool_prefix_ops
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
 from neutron_lib.api.definitions import uplink_status_propagation
@@ -200,6 +201,7 @@ _ALL_API_DEFINITIONS = {
     subnet_segmentid_enforce,
     subnet_segmentid_writable,
     subnetpool,
+    subnetpool_prefix_ops,
     trunk,
     trunk_details,
     uplink_status_propagation,

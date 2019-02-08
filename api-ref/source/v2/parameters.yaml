@@ -4673,6 +4673,22 @@ prefixes:
   in: body
   required: true
   type: array
+prefixes-response:
+    description: |
+      A list of the subnet prefixes currently assigned to the subnet
+      pool. Adjacent prefixes are merged and treated as a single prefix.
+    in: body
+    required: true
+    type: array
+prefixes_remove:
+  description: |
+    A list of subnet prefixes to remove from the subnet pool.
+    The API splits larger prefixes when a subset prefix is removed,
+    and merges any resulting adjacent prefixes to treat them as a single
+    prefix.
+  in: body
+  required: true
+  type: array
 project_id:
   description: |
     The ID of the project.
