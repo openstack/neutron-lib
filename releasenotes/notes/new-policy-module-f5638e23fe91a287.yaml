@@ -1,0 +1,10 @@
+---
+other:
+  - |
+    New module ``neutron_lib.policy`` was added.
+    It contains constants: ``RULE_ADMIN_OR_OWNER``, ``RULE_ADMIN_ONLY``,
+    ``RULE_ANY``, ``RULE_ADVSVC``, ``RULE_ADMIN_OR_NET_OWNER``,
+    ``RULE_ADMIN_OR_NET_OWNER_OR_ADVSVC`` and ``RULE_ADMIN_OR_PARENT_OWNER``.
+    It contains also helper functions ``policy_and`` and ``policy_or``.
+    Those constants and functions can be used in policy modules in Neutron
+    related projects.
