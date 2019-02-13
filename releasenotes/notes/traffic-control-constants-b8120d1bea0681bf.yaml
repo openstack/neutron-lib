@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    Adds traffic control related constants:
+
+    * Qdisc types: ``htb``, ``tbf`` and ``ingress``, used in Neutron ``tc_lib``
+    * Qdisc ID: for ``ingress`` type, because this one is specific only for
+      ingress traffic.
+    * Qdisc parents: for ``root`` and ``ingress`` types.
