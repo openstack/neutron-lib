@@ -1,0 +1,6 @@
+---
+features:
+  - The remaining ``neutron.common.constants`` are now available in
+    ``neutron_lib.constants`` with the exception of
+    ``EXT_PARENT_RESOURCE_MAPPING`` that is now available in
+    ``neutron_lib.services.constants``.
