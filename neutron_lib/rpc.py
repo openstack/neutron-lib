@@ -25,6 +25,7 @@ from neutron_lib.utils import runtime
 from oslo_config import cfg
 from oslo_log import log as logging
 import oslo_messaging
+from oslo_messaging import exceptions as oslomsg_exc
 from oslo_messaging.rpc import dispatcher
 from oslo_messaging import serializer as om_serializer
 from oslo_service import service
@@ -104,11 +105,7 @@ class _ContextWrapper(object):
     def cast(self, ctxt, method, **kwargs):
         try:
             self._original_context.cast(ctxt, method, **kwargs)
-        except Exception as e:
-            # TODO(kevinbenton): make catch specific to missing exchange once
-            # bug/1705351 is resolved on the oslo.messaging side; if
-            # oslo.messaging auto-creates the exchange, then just remove the
-            # code completely
+        except oslomsg_exc.MessageDeliveryFailure as e:
             LOG.debug("Ignored exception during cast: %s", str(e))
 
 
