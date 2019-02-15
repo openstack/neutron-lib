@@ -33,3 +33,8 @@ class NetworkSegmentRangeReferencedByProject(exceptions.NeutronException):
 class NetworkSegmentRangeDefaultReadOnly(exceptions.NeutronException):
     message = _("Network Segment Range %(range_id)s is a "
                 "default segment range which could not be updated or deleted.")
+
+
+class NetworkSegmentRangeOverlaps(exceptions.Conflict):
+    message = _("Network segment range overlaps with range(s) "
+                "with id %(range_id)s")
