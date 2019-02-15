@@ -652,6 +652,26 @@ class ML2TypeDriver(_TypeDriverBase):
         """
         pass
 
+    @abc.abstractmethod
+    def initialize_network_segment_range_support(self):
+        """Perform driver network segment range initialization.
+
+        Called during the initialization of the ``network-segment-range``
+        service plugin if enabled, after all drivers have been loaded and the
+        database has been initialized. This reloads the `default`
+        network segment ranges when Neutron server starts/restarts.
+        """
+        pass
+
+    @abc.abstractmethod
+    def update_network_segment_range_allocations(self):
+        """Update driver network segment range allocations.
+
+        This syncs the driver segment allocations when network segment ranges
+        have been created, updated or deleted.
+        """
+        pass
+
 
 @six.add_metaclass(abc.ABCMeta)
 class NetworkContext(object):
