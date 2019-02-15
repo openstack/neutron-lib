@@ -1,0 +1,27 @@
+features:
+  - |
+    ``neutron_lib.worker.BaseWorker`` will now set the process title
+    on process start, if it is a new process. By default, the name
+    will be "neutron-server", and the description will be the name
+    of the worker class, followed by the original process title.
+    Both fields are customizable via the ``name`` and ``desc``
+    arguments to ``BaseWorker.start()``, and the change
+    can be disabled via the ``set_proctitle`` argument to the
+    ``__init__`` function. ``neutron.conf`` will have a setting
+    for disabling this functionality for all in-tree workers, but
+    by default, all out of tree plugin workers will set their name
+    at fork time. Available settings are 'on' (described above, and
+    the default), 'off' (same as today), or 'brief', which settings
+    the process name to just name and description. 'brief' is probably
+    most useful/simple for deployers, but 'on' is the default in order
+    to prevent as many script related breakages as possible.
+upgrade:
+  - Any plugin which forks worker processes from neutron-server will
+    have its proctitle set to "neutron-server" plus a classname in ps
+    output. Any tool used for monitoring/maintenance that watches
+    the process table should be modified to only look for the string
+    ``neutron-server``. On the plus side, it will now be possible
+    to distinguish which process belongs to which plugin, based on
+    the new naming. Note that the original process string is still
+    in the proctitle, so as long as the scripting is not looking for
+    a perfect string match, it should continue to work.

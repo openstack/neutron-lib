@@ -12,6 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import six
+
 import mock
 
 from neutron_lib.callbacks import events
@@ -34,6 +36,14 @@ class _BaseWorker(worker.BaseWorker):
         pass
 
 
+# Same as _BaseWorker, but looks like a process launch instead of eventlet
+class _ProcWorker(_BaseWorker):
+
+    def __init__(self, worker_process_count=1, set_proctitle='on'):
+        super(_ProcWorker, self).__init__(worker_process_count, set_proctitle)
+        self._my_pid = -1  # make it appear to be a separate process
+
+
 class TestBaseWorker(base.BaseTestCase):
 
     def setUp(self):
@@ -51,3 +61,77 @@ class TestBaseWorker(base.BaseTestCase):
         base_worker.start()
         self._reg.notify.assert_called_once_with(
             resources.PROCESS, events.AFTER_INIT, base_worker.start)
+
+    # Forked workers, should call setproctitle
+
+    def test_proctitle_default(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker().start()
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^neutron-server: _ProcWorker \(.*python.*\)$')
+
+    def test_proctitle_custom_desc(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker().start(desc="fancy title")
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^neutron-server: fancy title \(.*python.*\)$')
+
+    def test_proctitle_custom_name(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker().start(name="tardis")
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^tardis: _ProcWorker \(.*python.*\)$')
+
+    def test_proctitle_empty(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker().start(desc="")
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^neutron-server: _ProcWorker \(.*python.*\)$')
+
+    def test_proctitle_nonstring(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker().start(desc=2)
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^neutron-server: 2 \(.*python.*\)$')
+
+    def test_proctitle_both_empty(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker().start(name="", desc="")
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^: _ProcWorker \(.*python.*\)$')
+
+    def test_proctitle_name_none(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker().start(name=None)
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^None: _ProcWorker \(.*python.*\)$')
+
+    # Forked, but proctitle disabled
+
+    def test_proctitle_off(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker(set_proctitle='off').start()
+            self.assertIsNone(spt.call_args)
+
+    # Eventlet style worker, should never call setproctitle
+
+    def test_proctitle_same_process(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _BaseWorker().start()
+            self.assertIsNone(spt.call_args)
+
+    def test_setproctitle_on(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker(set_proctitle='on').start(name="foo", desc="bar")
+            six.assertRegex(self, spt.call_args[0][0],
+                            '^foo: bar \(.*python.*\)$')
+
+    def test_setproctitle_off(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker(set_proctitle='off').start(name="foo", desc="bar")
+            self.assertIsNone(spt.call_args)
+
+    def test_setproctitle_brief(self):
+        with mock.patch('setproctitle.setproctitle') as spt:
+            _ProcWorker(set_proctitle='brief').start(name="foo", desc="bar")
+            self.assertEqual(spt.call_args[0][0], 'foo: bar')
