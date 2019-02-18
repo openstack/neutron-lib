@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    For technical reasons the ``floatingip-autodelete-internal`` extension
+    no longer requires the ``router`` extension.
