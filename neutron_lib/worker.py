@@ -12,7 +12,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import os
+
 from oslo_service import service
+import setproctitle
 
 from neutron_lib.callbacks import events
 from neutron_lib.callbacks import registry
@@ -45,15 +48,24 @@ class BaseWorker(service.ServiceBase):
     # default class value for case when super().__init__ is not called
     _default_process_count = 1
 
-    def __init__(self, worker_process_count=_default_process_count):
+    def __init__(self, worker_process_count=_default_process_count,
+                 set_proctitle='on'):
         """Initialize a worker instance.
 
         :param worker_process_count: Defines how many processes to spawn for
             worker:
                 0 - spawn 1 new worker thread,
                 1..N - spawn N new worker processes
+            set_proctitle:
+                'off' - do not change process title
+                'on' - set process title to descriptive string and parent
+                'brief' - set process title to descriptive string
         """
         self._worker_process_count = worker_process_count
+        self._my_pid = os.getpid()
+        self._set_proctitle = set_proctitle
+        if set_proctitle == 'on':
+            self._parent_proctitle = setproctitle.getproctitle()
 
     @property
     def worker_process_count(self):
@@ -63,13 +75,33 @@ class BaseWorker(service.ServiceBase):
         """
         return self._worker_process_count
 
-    def start(self):
+    def setproctitle(self, name="neutron-server", desc=None):
+        if self._set_proctitle == "off" or os.getpid() == self._my_pid:
+            return
+
+        if not desc:
+            desc = self.__class__.__name__
+
+        proctitle = "%s: %s" % (name, desc)
+        if self._set_proctitle == "on":
+            proctitle += " (%s)" % self._parent_proctitle
+
+        setproctitle.setproctitle(proctitle)
+
+    def start(self, name="neutron-server", desc=None):
         """Start the worker.
 
         If worker_process_count is greater than 0, a callback notification
         is sent. Subclasses should call this method before doing their
         own start() work.
+
+        Automatically sets the process title to indicate that this is a
+        child worker, customizable via the name and desc arguments.
+
         :returns: None
         """
+
+        # If we are a child process, set our proctitle to something useful
+        self.setproctitle(name, desc)
         if self.worker_process_count > 0:
             registry.notify(resources.PROCESS, events.AFTER_INIT, self.start)
