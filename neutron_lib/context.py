@@ -20,8 +20,8 @@ import warnings
 from oslo_context import context as oslo_context
 from oslo_db.sqlalchemy import enginefacade
 
-from neutron_lib import _policy as policy
 from neutron_lib.db import api as db_api
+from neutron_lib.policy import _engine as policy_engine
 
 
 class ContextBase(oslo_context.RequestContext):
@@ -50,9 +50,10 @@ class ContextBase(oslo_context.RequestContext):
         self.timestamp = timestamp
         self.is_advsvc = is_advsvc
         if self.is_advsvc is None:
-            self.is_advsvc = self.is_admin or policy.check_is_advsvc(self)
+            self.is_advsvc = (self.is_admin or
+                              policy_engine.check_is_advsvc(self))
         if self.is_admin is None:
-            self.is_admin = policy.check_is_admin(self)
+            self.is_admin = policy_engine.check_is_admin(self)
 
     @property
     def tenant_id(self):
