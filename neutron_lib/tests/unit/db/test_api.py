@@ -213,7 +213,5 @@ class TestDBProfiler(_base.BaseTestCase):
                 osprofiler.sqlalchemy, 'add_tracing') as add_tracing:
             engine_mock = mock.Mock()
             db_api._set_hook(engine_mock)
-            self.assertEqual(2, len(add_tracing.mock_calls))
-            expected_calls = [mock.call(sqlalchemy, mock.ANY, n)
-                              for n in db_api.OSPROFILER_TRACE_NAMES]
-            self.assertEqual(expected_calls, add_tracing.mock_calls)
+            add_tracing.assert_called_once_with(
+                sqlalchemy, mock.ANY, "neutron.db")

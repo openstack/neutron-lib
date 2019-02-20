@@ -38,7 +38,6 @@ from neutron_lib.objects import exceptions as obj_exc
 
 
 MAX_RETRIES = 20
-OSPROFILER_TRACE_NAMES = {'neutron.db', 'neutron_lib.db'}
 LOG = logging.getLogger(__name__)
 _synchronized = lockutils.synchronized_with_prefix("neutron-")
 _CTX_MANAGER = None
@@ -68,9 +67,8 @@ def get_context_manager():
 def _set_hook(engine):
     if (profiler_opts.is_trace_enabled() and
             profiler_opts.is_db_trace_enabled()):
-        for trace_name in OSPROFILER_TRACE_NAMES:
-            osprofiler.sqlalchemy.add_tracing(
-                sqlalchemy, engine, trace_name)
+        osprofiler.sqlalchemy.add_tracing(
+            sqlalchemy, engine, "neutron.db")
 
 
 # TODO(ihrachys) the hook assumes options defined by osprofiler, and the only
