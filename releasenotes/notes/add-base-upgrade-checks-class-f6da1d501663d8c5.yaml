@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Base class for upgrade checks used in checks in
+    ``neutron-status upgrade check`` tool is now available in
+    ``neutron_lib.utils.upgrade_checks`` and can be reused by other projects.
