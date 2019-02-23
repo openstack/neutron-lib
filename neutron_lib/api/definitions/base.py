@@ -123,6 +123,7 @@ KNOWN_EXTENSIONS = (
     'qos-rules-alias',
     'quotas',
     'rbac-policies',
+    'rbac-security-groups',
     'router',
     'router_availability_zone',
     'security-group',
