@@ -1,0 +1,5 @@
+other:
+  - |
+    Add the ``neutron_lib.plugins.constants.NETWORK_SEGMENT_RANGE`` constant so
+    that it can be used elsewhere related to the ``network_segment_range``
+    service plugin.
