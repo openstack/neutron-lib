@@ -1,0 +1,5 @@
+---
+features:
+  - The trunk service constants are now available in
+    ``neutron_lib.services.trunk.constants``, but now have the
+    constant name prefixed with ``TRUNK_``.
