@@ -12,9 +12,6 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from neutron_lib.api.definitions import l3
-
-
 ALIAS = 'floatingip-autodelete-internal'
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
@@ -25,6 +22,6 @@ UPDATED_TIMESTAMP = '2019-01-24T00:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
-REQUIRED_EXTENSIONS = [l3.ALIAS]
+REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}
