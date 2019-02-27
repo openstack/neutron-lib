@@ -15,6 +15,7 @@ import mock
 from oslo_config import cfg
 import oslo_messaging as messaging
 from oslo_messaging import conffixture as messaging_conffixture
+from oslo_messaging import exceptions as oslomsg_exc
 from oslo_messaging.rpc import dispatcher
 import testtools
 
@@ -445,7 +446,7 @@ class CastExceptionTestCase(base.BaseTestCase):
         self.addCleanup(rpc.cleanup)
         rpc.init(CONF)
         rpc.TRANSPORT = mock.MagicMock()
-        rpc.TRANSPORT._send.side_effect = Exception
+        rpc.TRANSPORT._send.side_effect = oslomsg_exc.MessageDeliveryFailure
         target = messaging.Target(version='1.0', topic='testing')
         self.client = rpc.get_client(target)
         self.cast_context = mock.Mock()
