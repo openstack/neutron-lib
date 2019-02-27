@@ -110,9 +110,9 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
 
     def test_resource_map(self):
         if (not self.resource_map and not self.subresource_map and
-                not self.is_shim_extension):
-            self.fail('Missing resource and subresource map, '
-                      'what is this extension doing?')
+                not self.is_shim_extension and not self.action_map):
+            self.fail('Missing resource map, subresource map, '
+                      'and action map, what is this extension doing?')
         elif self.is_shim_extension:
             self.skipTest('Shim extension with no API changes.')
 

@@ -31,6 +31,7 @@ Layer 3 Networking
 .. include:: fip-port-forwarding.inc
 .. include:: routers.inc
 .. include:: subnetpools.inc
+.. include:: subnetpool_prefix_ops.inc
 .. include:: subnets.inc
 ########
 Security

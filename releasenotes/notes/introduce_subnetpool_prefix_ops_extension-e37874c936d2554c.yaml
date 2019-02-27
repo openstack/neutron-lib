@@ -1,0 +1,5 @@
+---
+features:
+    - Adds ``subnetpool-prefix-ops`` API definition to neutron-lib. This
+      extension introduces API's that provide explicit support for removing
+      prefixes from a subnet pool and adding subnets to a subnet pool.
