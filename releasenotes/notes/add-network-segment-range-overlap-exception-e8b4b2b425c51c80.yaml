@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add ``NetworkSegmentRangeOverlaps`` exception to prevent overlapping
+    network segment ranges on creation.
