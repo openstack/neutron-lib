@@ -1,0 +1,5 @@
+---
+features:
+  - The ``neutron_lib.tests._tools`` module is now public and named
+    ``tools``.
+  - The ``sqlalchemytypes`` module is now available in ``neutron_lib.db``.

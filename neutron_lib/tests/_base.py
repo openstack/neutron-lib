@@ -32,7 +32,7 @@ from neutron_lib import exceptions
 from neutron_lib import fixture
 
 from neutron_lib.tests import _post_mortem_debug as post_mortem_debug
-from neutron_lib.tests import _tools as tools
+from neutron_lib.tests import tools
 
 
 CONF = cfg.CONF

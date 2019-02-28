@@ -22,7 +22,7 @@ from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
 from neutron_lib.tests import _base as base
-from neutron_lib.tests import _tools as tools
+from neutron_lib.tests import tools
 
 
 class TestConvertToBoolean(base.BaseTestCase):
