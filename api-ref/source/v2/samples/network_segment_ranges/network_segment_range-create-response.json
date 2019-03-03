@@ -2,6 +2,7 @@
     "network_segment_range": {
         "id": "59b38ee8-6642-418a-88b7-756861606ecb",
         "name": "range_vlan_physnet1",
+        "description": "network segment range for testing",
         "default": false,
         "shared": false,
         "tenant_id": "7011dc7fccac4efda89dc3b7f0d0975a",
@@ -11,6 +12,10 @@
         "minimum": 10,
         "maximum": 20,
         "available": [10,11,12,13,14,15,16,17,18,19,20],
-        "used": {}
+        "used": {},
+        "created_at": "2019-03-04T04:49:28Z",
+        "updated_at": "2019-03-04T04:49:28Z",
+        "revision_number": 1,
+        "tags": ["tag1,tag2"]
     }
 }

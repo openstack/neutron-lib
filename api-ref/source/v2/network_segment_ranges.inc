@@ -13,6 +13,19 @@ a per-tenant basis.
 Lists, shows details for, creates, updates, and deletes network segment ranges.
 The network segment ranges API is admin-only.
 
+Resource timestamps
+===================
+
+The ``standard-attr-timestamp`` extension adds the ``created_at`` and
+``updated_at`` attributes to all resources that have standard attributes.
+
+Tag extension
+=============
+
+The ``standard-attr-tag`` adds tag support for resources with
+standard attributes by adding the ``tags`` attribute
+allowing consumers to associate tags with resources.
+
 Show network segment range details
 ==================================
 
@@ -44,6 +57,7 @@ Response Parameters
 
    - id: network_segment_range_id
    - name: name
+   - description: description
    - default: network_segment_range-default
    - shared: network_segment_range-shared
    - tenant_id: project_id
@@ -54,6 +68,10 @@ Response Parameters
    - maximum: network_segment_range-maximum-body-required
    - available: network_segment_range-available
    - used: network_segment_range-used
+   - revision_number: revision_number
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -79,8 +97,13 @@ Request
 
    - network_segment_range_id: network_segment_range_id-path
    - name: name-request
+   - description: description-request
    - minimum: network_segment_range-minimum-body-optional
    - maximum: network_segment_range-maximum-body-optional
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
 
 Request Example
 ---------------
@@ -95,6 +118,7 @@ Response Parameters
 
    - id: network_segment_range_id
    - name: name
+   - description: description
    - default: network_segment_range-default
    - shared: network_segment_range-shared
    - tenant_id: project_id
@@ -105,6 +129,10 @@ Response Parameters
    - maximum: network_segment_range-maximum-body-required
    - available: network_segment_range-available
    - used: network_segment_range-used
+   - revision_number: revision_number
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -164,6 +192,10 @@ Request
    - physical_network: network_segment_range-physical_network-query
    - sort_dir: sort_dir
    - sort_key: network_segment_range-sort_key
+   - tags: tags-query
+   - tags-any: tags-any-query
+   - not-tags: not-tags-query
+   - not-tags-any: not-tags-any-query
    - fields: fields
 
 Response Parameters
@@ -173,6 +205,7 @@ Response Parameters
 
    - id: network_segment_range_id
    - name: name
+   - description: description
    - default: network_segment_range-default
    - shared: network_segment_range-shared
    - tenant_id: project_id
@@ -183,6 +216,10 @@ Response Parameters
    - maximum: network_segment_range-maximum-body-required
    - available: network_segment_range-available
    - used: network_segment_range-used
+   - revision_number: revision_number
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------
@@ -207,6 +244,7 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - name: network_segment_range-name
+   - description: description-request
    - shared: network_segment_range-shared
    - project_id: project_id-body-optional
    - network_type: network_segment_range-network_type
@@ -227,6 +265,7 @@ Response Parameters
 
    - id: network_segment_range_id
    - name: name
+   - description: description
    - default: network_segment_range-default
    - shared: network_segment_range-shared
    - tenant_id: project_id
@@ -237,6 +276,10 @@ Response Parameters
    - maximum: network_segment_range-maximum-body-required
    - available: network_segment_range-available
    - used: network_segment_range-used
+   - revision_number: revision_number
+   - created_at: created_at_resource
+   - updated_at: updated_at_resource
+   - tags: tags
 
 Response Example
 ----------------

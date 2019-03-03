@@ -2,6 +2,7 @@
     "network_segment_range": {
         "id": "50089a13-4a9f-4421-85ba-5222e84610c3",
         "name": "new_range",
+        "description": "network segment range updated for testing",
         "default": false,
         "shared": false,
         "tenant_id": "7011dc7fccac4efda89dc3b7f0d0975a",
@@ -13,6 +14,10 @@
         "available": [10,11,12,13,14,15,16,19,20],
         "used": {
             "17": "5fc1cd2f16ab4c8fbba2e780891b9de3",
-            "18": "87504c1c9d86439882ff90fdbfb096ad"}
+            "18": "87504c1c9d86439882ff90fdbfb096ad"},
+        "created_at": "2019-03-04T04:56:49Z",
+        "updated_at": "2019-03-04T04:58:06Z",
+        "revision_number": 2,
+        "tags": ["tag1,tag2"]
     }
 }

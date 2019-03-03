@@ -1,6 +1,7 @@
 {
     "network_segment_range": {
         "name": "range_vlan_physnet1",
+        "description": "network segment range for testing",
         "shared": false,
         "project_id": "7011dc7fccac4efda89dc3b7f0d0975a",
         "network_type": "vlan",
