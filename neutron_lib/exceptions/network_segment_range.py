@@ -16,7 +16,7 @@ from neutron_lib._i18n import _
 from neutron_lib import exceptions
 
 
-class NetworkSegmentRangeNetTypeNotSupported(exceptions.NeutronException):
+class NetworkSegmentRangeNetTypeNotSupported(exceptions.BadRequest):
     message = _("Network type %(type)s does not support "
                 "network segment ranges.")
 
@@ -25,12 +25,12 @@ class NetworkSegmentRangeNotFound(exceptions.NotFound):
     message = _("Network Segment Range %(range_id)s could not be found.")
 
 
-class NetworkSegmentRangeReferencedByProject(exceptions.NeutronException):
+class NetworkSegmentRangeReferencedByProject(exceptions.InUse):
     message = _("Network Segment Range %(range_id)s is referenced by "
                 "one or more tenant networks.")
 
 
-class NetworkSegmentRangeDefaultReadOnly(exceptions.NeutronException):
+class NetworkSegmentRangeDefaultReadOnly(exceptions.BadRequest):
     message = _("Network Segment Range %(range_id)s is a "
                 "default segment range which could not be updated or deleted.")
 
