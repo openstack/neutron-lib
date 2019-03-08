@@ -13,8 +13,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import os
 import platform
 import random
+import time
 import warnings
 
 import fixtures
@@ -66,3 +68,13 @@ def get_random_cidr(version=4):
                                   random.randint(3, 254),
                                   24)
     return '2001:db8:%x::/%d' % (random.getrandbits(16), 64)
+
+
+def reset_random_seed():
+    # reset random seed to make sure other processes extracting values from RNG
+    # don't get the same results (useful especially when you then use the
+    # random values to allocate system resources from global pool, like ports
+    # to listen). Use both current time and pid to make sure no tests started
+    # at the same time get the same values from RNG
+    seed = time.time() + os.getpid()
+    random.seed(seed)
