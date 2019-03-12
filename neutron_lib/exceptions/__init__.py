@@ -807,3 +807,12 @@ class ProcessExecutionError(RuntimeError):
     def __init__(self, message, returncode):
         super(ProcessExecutionError, self).__init__(message)
         self.returncode = returncode
+
+
+class InvalidSubnetServiceType(InvalidInput):
+    message = _("Subnet service type %(service_type)s does not correspond "
+                "to a valid device owner.")
+
+
+class InvalidInputSubnetServiceType(InvalidInput):
+    message = _("Subnet service type %(service_type)s is not a string.")

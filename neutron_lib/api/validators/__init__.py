@@ -21,6 +21,7 @@ from oslo_utils import netutils
 from oslo_utils import strutils
 from oslo_utils import uuidutils
 import six
+from webob import exc
 
 from neutron_lib._i18n import _
 from neutron_lib import constants
@@ -1101,6 +1102,24 @@ def validate_service_plugin_type(data, valid_values=None):
         raise n_exc.InvalidServiceType(service_type=data)
 
 
+def validate_subnet_service_types(service_types, valid_values=None):
+    if service_types:
+        if not isinstance(service_types, list):
+            raise exc.HTTPBadRequest(
+                _("Subnet service types must be a list."))
+
+        # Include standard prefixes
+        prefixes = list(constants.DEVICE_OWNER_PREFIXES)
+        prefixes += constants.DEVICE_OWNER_COMPUTE_PREFIX
+
+        for service_type in service_types:
+            if not isinstance(service_type, six.text_type):
+                raise n_exc.InvalidInputSubnetServiceType(
+                    service_type=service_type)
+            elif not service_type.startswith(tuple(prefixes)):
+                raise n_exc.InvalidSubnetServiceType(service_type=service_type)
+
+
 # Dictionary that maintains a list of validation functions
 validators = {'type:dict': validate_dict,
               'type:dict_or_none': validate_dict_or_none,
@@ -1144,7 +1163,9 @@ validators = {'type:dict': validate_dict,
               'type:list_of_any_key_specs_or_none':
                   validate_any_key_specs_or_none,
               'type:service_plugin_type': validate_service_plugin_type,
-              'type:list_of_subnets_or_none': validate_subnet_list_or_none
+              'type:list_of_subnets_or_none': validate_subnet_list_or_none,
+              'type:list_of_subnet_service_types':
+                  validate_subnet_service_types
               }
 
 
