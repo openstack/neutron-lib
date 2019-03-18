@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   stein
    rocky
    queens
    pike
