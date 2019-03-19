@@ -1,0 +1,9 @@
+---
+other:
+  - |
+    ``IP`` and ``HOPOPT`` keywords were added to
+    ``neutron_lib.constants.IP_PROTOCOL_MAP``.
+    This allows the use of these keywords to be used when creating
+    security group rules to describe either all IP protocols (for IPv4), or
+    Hop-by-Hop Options (for IPv6), instead of having to use the number
+    zero (0) for this purpose.
