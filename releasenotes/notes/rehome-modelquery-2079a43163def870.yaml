@@ -1,0 +1,3 @@
+---
+features:
+  - The ``model_query`` function is now available in ``neutron_lib.db.utils``.

@@ -167,3 +167,21 @@ def model_query_scope_is_project(context, model):
     # query will be scoped to a single project_id
     return ((not context.is_admin and hasattr(model, 'project_id')) and
             (not context.is_advsvc and hasattr(model, 'project_id')))
+
+
+def model_query(context, model):
+    """Query the context for the said model.
+
+    :param context: The context to use for the query.
+    :param model: The model to query for.
+    :returns: A query from the said context for the said model.
+    """
+    query = context.session.query(model)
+    # define basic filter condition for model query
+    query_filter = None
+    if model_query_scope_is_project(context, model):
+        query_filter = (model.tenant_id == context.tenant_id)
+
+    if query_filter is not None:
+        query = query.filter(query_filter)
+    return query
