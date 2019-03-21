@@ -1,0 +1,4 @@
+---
+features:
+  - The ``neutron.objects.extensions.standardattributes`` module is now
+    available as ``neutron_lib.objects.extensions.standardattributes``.
