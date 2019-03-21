@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    Added two new parameters in ``portbindings.port.vif_details``:
+
+    * ``connectivity``: a string informing about the back-end connectivity
+      level (l2, l3 or not specified).
+    * ``bound_drivers``: a dictionary mapping the binding level to the driver
+      name.

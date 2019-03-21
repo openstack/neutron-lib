@@ -51,6 +51,8 @@ VIF_DETAILS_MACVTAP_SOURCE = 'macvtap_source'
 VIF_DETAILS_MACVTAP_MODE = 'macvtap_mode'
 VIF_DETAILS_PHYSICAL_INTERFACE = 'physical_interface'
 VIF_DETAILS_BRIDGE_NAME = 'bridge_name'
+VIF_DETAILS_CONNECTIVITY = 'connectivity'
+VIF_DETAILS_BOUND_DRIVERS = 'bound_drivers'
 
 # OVS bridge datapath type: String value used to define if the bridge uses
 # kernel or userspace datapath.
@@ -117,6 +119,11 @@ VNIC_SMARTNIC = 'smart-nic'
 VNIC_TYPES = [VNIC_NORMAL, VNIC_DIRECT, VNIC_MACVTAP, VNIC_BAREMETAL,
               VNIC_DIRECT_PHYSICAL, VNIC_VIRTIO_FORWARDER, VNIC_SMARTNIC]
 
+# VIF_DETAILS_CONNECTIVITY: Indicates what kind of connectivity the network
+#                           back-end provides: L2, L3 or not specified.
+CONNECTIVITY_L2 = 'l2'
+CONNECTIVITY_L3 = 'l3'
+CONNECTIVITY_LEGACY = 'legacy'
 
 # The alias of the extension.
 ALIAS = 'binding'
