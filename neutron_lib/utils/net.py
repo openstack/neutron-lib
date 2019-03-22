@@ -14,6 +14,9 @@
 import random
 import socket
 
+import netaddr
+import six
+
 from neutron_lib import constants
 
 
@@ -85,3 +88,41 @@ def is_port_trusted(port):
     """
     return port['device_owner'].startswith(
         constants.DEVICE_OWNER_NETWORK_PREFIX)
+
+
+class _AuthenticBase(object):
+    def __init__(self, addr, **kwargs):
+        super(_AuthenticBase, self).__init__(addr, **kwargs)
+        self._initial_value = addr
+
+    def __str__(self):
+        if isinstance(self._initial_value, six.string_types):
+            return self._initial_value
+        return super(_AuthenticBase, self).__str__()
+
+    # NOTE(ihrachys): override deepcopy because netaddr.* classes are
+    # slot-based and hence would not copy _initial_value
+    def __deepcopy__(self, memo):
+        return self.__class__(self._initial_value)
+
+
+class AuthenticIPNetwork(_AuthenticBase, netaddr.IPNetwork):
+    '''AuthenticIPNetwork class
+
+    This class retains the format of the IP network string passed during
+    initialization.
+
+    This is useful when we want to make sure that we retain the format passed
+    by a user through API.
+    '''
+
+
+class AuthenticEUI(_AuthenticBase, netaddr.EUI):
+    '''AuthenticEUI class
+
+    This class retains the format of the MAC address string passed during
+    initialization.
+
+    This is useful when we want to make sure that we retain the format passed
+    by a user through API.
+    '''
