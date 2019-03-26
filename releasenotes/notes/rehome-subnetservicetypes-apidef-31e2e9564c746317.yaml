@@ -1,0 +1,7 @@
+---
+features:
+  - The ``subnet-service-types`` extension is now available in
+    ``neutron_lib.api.definitions.subnet_service_types``.
+  - The ``InvalidSubnetServiceType`` and ``InvalidInputSubnetServiceType``
+    exceptions are now available in ``neutron_lib.exceptions``.
+  - The validation type ``list_of_subnet_service_types`` is now available.
