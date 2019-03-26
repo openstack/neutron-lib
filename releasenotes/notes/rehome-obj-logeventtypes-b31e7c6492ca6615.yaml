@@ -1,0 +1,6 @@
+---
+features:
+  - The ``neutron.objects.logapi.events_types`` module is now available as
+    ``neutron_lib.objects.logapi.events_types``.
+  - The ``neutron.services.logapi.common.constants`` module is now available as
+    ``neutron_lib.services.logapi.constants``.
