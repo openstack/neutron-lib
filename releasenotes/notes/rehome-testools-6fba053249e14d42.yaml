@@ -1,0 +1,5 @@
+---
+features:
+  - The ``OpenFixture`` class is now available in ``neutron_lib.fixtures``.
+  - The ``reset_random_seed`` function is now available in
+    ``neutron_lib.tests.tools``.
