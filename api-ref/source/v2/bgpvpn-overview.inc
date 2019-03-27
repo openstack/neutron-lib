@@ -129,7 +129,7 @@ and to a prefix of a subnet bound to the router; in such a case whether
 the traffic will be delivered to the subnet or to the BGP VPN is not
 defined by this API.
 
-Connectivity Impact inside Openstack Neutron
+Connectivity Impact inside OpenStack Neutron
 ============================================
 
 Creating two BGP VPNs with RTs resulting in both VPNs to exchange
