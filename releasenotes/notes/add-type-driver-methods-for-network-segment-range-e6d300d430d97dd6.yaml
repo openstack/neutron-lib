@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    Introduce the ML2 type driver abstract methods
+    ``initialize_network_segment_range_support`` and
+    ``update_network_segment_range_allocations``
+    for the network segment range support when the extension is loaded.
