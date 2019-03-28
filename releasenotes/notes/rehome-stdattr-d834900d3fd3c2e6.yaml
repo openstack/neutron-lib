@@ -1,0 +1,3 @@
+---
+features:
+  - The ``neutron_lib.db.standard_attr`` module is now available for use.
