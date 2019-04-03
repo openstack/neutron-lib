@@ -20,8 +20,10 @@ import time
 import warnings
 
 import fixtures
+import netaddr
 
 from neutron_lib.utils import helpers
+from neutron_lib.utils import net
 
 
 class UnorderedList(list):
@@ -78,3 +80,13 @@ def reset_random_seed():
     # at the same time get the same values from RNG
     seed = time.time() + os.getpid()
     random.seed(seed)
+
+
+def get_random_EUI():
+    return netaddr.EUI(
+        net.get_random_mac(['fe', '16', '3e', '00', '00', '00'])
+    )
+
+
+def get_random_ip_network(version=4):
+    return netaddr.IPNetwork(get_random_cidr(version=version))

@@ -1,0 +1,8 @@
+---
+features:
+  - The ``neutron.objects.common_types`` module is now available in
+    ``neutron_lib.objects.common_types``.
+  - The ``get_random_EUI`` and ``get_random_ip_network`` functions are now
+    available in ``neutron_lib.tests.tools``.
+  - The ``AuthenticIPNetwork`` and ``AuthenticEUI`` classes are now available
+    in ``neutron_lib.utils.net``.
