@@ -39,7 +39,19 @@
             "project_id": "0bd18306d801447bb457a46252d82d13",
             "tenant_id": "0bd18306d801447bb457a46252d82d13",
             "service_type_id": null,
-            "tags": ["tag1,tag2"]
+            "tags": ["tag1,tag2"],
+            "conntrack_helpers": [
+                {
+                    "protocol": "udp",
+                    "helper": "tftp",
+                    "port": 69
+                },
+                {
+                    "protocol": "tcp",
+                    "helper": "ftp",
+                    "port": 21
+                }
+            ]
         },
         {
             "admin_state_up": true,
@@ -75,7 +87,19 @@
             "project_id": "0bd18306d801447bb457a46252d82d13",
             "tenant_id": "0bd18306d801447bb457a46252d82d13",
             "service_type_id": null,
-            "tags": ["tag1,tag2"]
+            "tags": ["tag1,tag2"],
+            "conntrack_helpers": [
+                {
+                    "protocol": "udp",
+                    "helper": "tftp",
+                    "port": 69
+                },
+                {
+                    "protocol": "tcp",
+                    "helper": "ftp",
+                    "port": 21
+                }
+            ]
         }
     ]
 }

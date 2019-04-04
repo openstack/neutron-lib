@@ -43,6 +43,12 @@ connection_id-path:
   in: path
   required: true
   type: string
+conntrack_helper_id-path:
+  description: |
+    The ID of the conntrack helper.
+  in: path
+  required: true
+  type: string
 dscp_rule_id:
   description: |
     The ID of the DSCP rule.
@@ -398,6 +404,36 @@ binding:host_id-query:
 cidr-query:
   description: |
     Filter the subnet list result by the CIDR of the subnet.
+  in: query
+  required: false
+  type: string
+conntrack_helper-sort_key:
+  description: |
+    Sorts by a conntrack helper ID attribute. You can specify multiple pairs of
+    sort key and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``helper``
+    - ``port``
+    - ``protocol``
+  in: query
+  required: false
+  type: string
+conntrack_helper_helper-query:
+  description: |
+    Filter the list result by the used helper.
+  in: query
+  required: false
+  type: string
+conntrack_helper_port-query:
+  description: |
+    Filter the list result by the used port.
+  in: query
+  required: false
+  type: integer
+conntrack_helper_protocol-query:
+  description: |
+    Filter the list result by the used protocol.
   in: query
   required: false
   type: string
@@ -2051,6 +2087,60 @@ connection_limit-response:
   in: body
   required: true
   type: integer
+conntrack_helper:
+  description: |
+    A router ``conntrack helper`` object.
+  in: body
+  required: true
+  type: object
+conntrack_helper_helper-body:
+  description: |
+    The netfilter conntrack helper module.
+  in: body
+  required: true
+  type: string
+conntrack_helper_helper-update:
+  description: |
+    The netfilter conntrack helper module.
+  in: body
+  required: false
+  type: string
+conntrack_helper_id-body:
+  description: |
+    The ID of the conntrack helper.
+  in: body
+  required: true
+  type: string
+conntrack_helper_port-body:
+  description: |
+    The network port for the netfilter conntrack target rule.
+  in: body
+  required: true
+  type: integer
+conntrack_helper_port-update:
+  description: |
+    The network port for the netfilter conntrack target rule.
+  in: body
+  required: false
+  type: integer
+conntrack_helper_protocol-body:
+  description: |
+    The network protocol for the netfilter conntrack target rule.
+  in: body
+  required: true
+  type: string
+conntrack_helper_protocol-update:
+  description: |
+    The network protocol for the netfilter conntrack target rule.
+  in: body
+  required: false
+  type: string
+conntrack_helpers:
+  description: |
+    A list of ``router conntrack helpers`` objects.
+  in: body
+  required: true
+  type: array
 created_at_resource:
   description: |
     Time at which the resource has been created (in UTC ISO8601 format).
@@ -5302,6 +5392,16 @@ router-availability_zones:
   description: |
     The availability zone(s) for the router.
     It is available when ``router_availability_zone`` extension is enabled.
+  in: body
+  required: true
+  type: array
+router-conntrack_helpers:
+  description: |
+    The associated conntrack helper resources for the roter. If the
+    router has multiple conntrack helper resources, this field has
+    multiple entries. Each entry consists of netfilter conntrack helper
+    (``helper``), the network protocol (``protocol``), the network port
+    (``port``).
   in: body
   required: true
   type: array

@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    The ``l3-conntrack-helper`` API definition for ``Router`` is introduced,
+    which allows conntrack helper target rules to be set for a ``Router``.
+  - |
+    Introduced ``expose-l3-conntrack-helper`` API extension for exposing
+    ``conntrack_helpers`` field in ``Router`` API response. This extension
+    requires the ``router`` and ``conntrack_helper`` service plugins.

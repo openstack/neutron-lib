@@ -1,0 +1,7 @@
+{
+    "conntrack_helper": {
+        "helper": "tftp",
+        "protocol": "udp",
+        "port": 69
+    }
+}

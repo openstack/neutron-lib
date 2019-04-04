@@ -31,6 +31,7 @@ from neutron_lib.api.definitions import dns
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import dvr
 from neutron_lib.api.definitions import empty_string_filtering
+from neutron_lib.api.definitions import expose_l3_conntrack_helper
 from neutron_lib.api.definitions import expose_port_forwarding_in_fip
 from neutron_lib.api.definitions import external_net
 from neutron_lib.api.definitions import extra_dhcp_opt
@@ -51,6 +52,7 @@ from neutron_lib.api.definitions import ip_allocation
 from neutron_lib.api.definitions import ip_substring_port_filtering
 from neutron_lib.api.definitions import l2_adjacency
 from neutron_lib.api.definitions import l3
+from neutron_lib.api.definitions import l3_conntrack_helper
 from neutron_lib.api.definitions import l3_ext_gw_mode
 from neutron_lib.api.definitions import l3_ext_ha_mode
 from neutron_lib.api.definitions import l3_flavors
@@ -133,6 +135,7 @@ _ALL_API_DEFINITIONS = {
     dns_domain_ports,
     dvr,
     empty_string_filtering,
+    expose_l3_conntrack_helper,
     expose_port_forwarding_in_fip,
     external_net,
     extra_dhcp_opt,
@@ -153,6 +156,7 @@ _ALL_API_DEFINITIONS = {
     l2_adjacency,
     flowclassifier,
     l3,
+    l3_conntrack_helper,
     l3_ext_gw_mode,
     l3_ext_ha_mode,
     l3_flavors,

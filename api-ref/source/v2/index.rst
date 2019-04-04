@@ -26,6 +26,7 @@ Layer 2 Networking
 Layer 3 Networking
 ##################
 .. include:: address-scopes.inc
+.. include:: l3-conntrack-helper.inc
 .. include:: floatingips.inc
 .. include:: floatingippools.inc
 .. include:: fip-port-forwarding.inc

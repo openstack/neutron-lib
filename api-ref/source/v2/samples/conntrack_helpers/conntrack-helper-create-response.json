@@ -1,0 +1,8 @@
+{
+    "conntrack_helper": {
+        "protocol": "tcp",
+        "id": "32925de7-580e-4ca9-bfd7-c2c2cefbd2ad",
+        "helper": "ftp",
+        "port": 21
+    }
+}

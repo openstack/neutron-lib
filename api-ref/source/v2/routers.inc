@@ -75,6 +75,13 @@ The ``standard-attr-tag`` adds Tag support for resources with
 standard attributes by adding the ``tags`` attribute
 allowing consumers to associate tags with resources.
 
+L3 conntrack helpers extension (``expose-l3-conntrack-helper``)
+===============================================================
+
+The router conntrack helper extension (``expose-l3-conntrack-helper``) adds the
+``conntrack_helpers`` field to routers, allowing configurable netfilter CT
+target rules for ``routers``.
+
 
 List routers
 ============
@@ -144,6 +151,7 @@ Response Parameters
    - created_at: created_at_resource
    - updated_at: updated_at_resource
    - tags: tags
+   - conntrack_helpers: router-conntrack_helpers
 
 Response Example
 ----------------
@@ -223,6 +231,7 @@ Response Parameters
    - created_at: created_at_resource
    - updated_at: updated_at_resource
    - tags: tags
+   - conntrack_helpers: router-conntrack_helpers
 
 Response Example
 ----------------
@@ -282,6 +291,7 @@ Response Parameters
    - created_at: created_at_resource
    - updated_at: updated_at_resource
    - tags: tags
+   - conntrack_helpers: router-conntrack_helpers
 
 Response Example
 ----------------
@@ -352,6 +362,7 @@ Response Parameters
    - created_at: created_at_resource
    - updated_at: updated_at_resource
    - tags: tags
+   - conntrack_helpers: router-conntrack_helpers
 
 Response Example
 ----------------
