@@ -11,6 +11,7 @@
 # under the License.
 
 import copy
+import warnings
 
 import fixtures
 import mock
@@ -308,3 +309,27 @@ class OpenFixture(fixtures.Fixture):
                                  new=replacement_open)
         self._patch.start()
         self.addCleanup(self._patch.stop)
+
+
+class WarningsFixture(fixtures.Fixture):
+    """Filters out warnings during test runs."""
+
+    warning_types = (
+        DeprecationWarning, PendingDeprecationWarning, ImportWarning
+    )
+
+    def __init__(self, module_re=None):
+        """Create a new WarningsFixture.
+
+        :param module_re: A list of regular expression strings that will be
+            used with filterwarnings. Multiple expressions are or'd together.
+        """
+        self._modules = ['^neutron_lib\\.']
+        if module_re:
+            self._modules.extend(module_re)
+
+    def _setUp(self):
+        self.addCleanup(warnings.resetwarnings)
+        for wtype in self.warning_types:
+            warnings.filterwarnings(
+                "always", category=wtype, module='|'.join(self._modules))

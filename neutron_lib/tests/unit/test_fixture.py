@@ -10,8 +10,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import mock
+import re
 
+import mock
 from oslo_config import cfg
 from oslo_db import options
 from oslotest import base
@@ -178,3 +179,19 @@ class DBResourceExtendFixtureTestCase(base.BaseTestCase):
         db_fixture.cleanUp()
         self.assertEqual(
             orig_methods, resource_extend._resource_extend_functions)
+
+
+class WarningsFixture(base.BaseTestCase):
+
+    @mock.patch.object(fixture.warnings, 'filterwarnings')
+    def test_fixture_regex(self, mock_filterwarnings):
+        module_re = ['^neutron\\.']
+        warn_fixture = fixture.WarningsFixture(module_re=module_re)
+        warn_fixture.setUp()
+        call_re = mock_filterwarnings.mock_calls[0][2]['module']
+        self.assertEqual('^neutron_lib\\.|^neutron\\.', call_re)
+        self.assertIsNotNone(re.compile(call_re))
+        self.assertIsNotNone(re.search(call_re, 'neutron.db.blah'))
+        self.assertIsNotNone(re.search(call_re, 'neutron_lib.db.blah'))
+        self.assertIsNone(re.search(
+            call_re, 'neutron_dynamic_routing.db.blah'))

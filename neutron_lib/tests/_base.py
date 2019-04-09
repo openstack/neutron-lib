@@ -32,7 +32,6 @@ from neutron_lib import exceptions
 from neutron_lib import fixture
 
 from neutron_lib.tests import _post_mortem_debug as post_mortem_debug
-from neutron_lib.tests import tools
 
 
 CONF = cfg.CONF
@@ -139,7 +138,7 @@ class BaseTestCase(testtools.TestCase):
                 debugger))
 
         # Make sure we see all relevant deprecation warnings when running tests
-        self.useFixture(tools.WarningsFixture())
+        self.useFixture(fixture.WarningsFixture())
 
         if bool_from_env('OS_DEBUG'):
             _level = std_logging.DEBUG
