@@ -1,0 +1,4 @@
+---
+features:
+  - The function ``provider_network_attribute_updates_supported`` is now
+    available in ``neutron_lib.plugins.ml2.api.MechanismDriver``.
