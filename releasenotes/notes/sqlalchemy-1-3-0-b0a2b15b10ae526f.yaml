@@ -1,0 +1,7 @@
+---
+other:
+  - |
+    Since `commit <https://github.com/sqlalchemy/sqlalchemy/commit/6446e0dfd3e3bb60754bad81c4d52345733d94e3>`_,
+    an AssociationProxy proxy instance is an AssociationProxyInstance
+    derivative object. In order to import versions SQLAlchemy>=1.3.x, we need
+    to handle both implementations.
