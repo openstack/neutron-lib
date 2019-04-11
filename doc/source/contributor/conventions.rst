@@ -48,31 +48,3 @@ DO NOT USE THEM. THEY WILL CHANGE.
 
 Private interfaces in this library will always have a leading underscore,
 on the module or function name.
-
-Legacy Modules
---------------
-
-This library has a special namespace called neutron_lib.legacy.
-
-Anything in this directory will likely get a new interface in the top-level
-library sometime in the near future, and then a debtcollector deprecation
-notice. Expect to get current cycle plus one release of maintenance at that
-point, and then they will be removed.
-
-Why this intermediary step? Because neutron has some serious dependency
-issues with its subprojects that need breaking, we do not want to rush
-some of the refactors to our interfaces that need to happen, we have
-limited resources, but we still need to make addressing those dependency
-issues a high priority.
-
-The legacy module is for those existing modules in neutron that are in
-wide use by subprojects, but which are not super interfaces. The legacy
-submodule is for routines that will still be maintained with a long-term
-backwards compatibility interface contract, but which are not considered
-"library worthy" by the neutron core team.
-
-This can easily be abused as a kitchen sink to just move stuff and make
-fast progress. Please do not do this, and do not expect this kind of thing
-to be favorably reviewed. Good candidates for this area are things that
-we want to refactor, but are lower priority, AND they have been around for
-a long time with no changes (i.e. an existing history of stability).
