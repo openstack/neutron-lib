@@ -1,0 +1,4 @@
+---
+features:
+  -  The ``WarningsFixture`` is now available in ``neutron_lib.fixture`` and
+     its constructor accepts additional module's to use with filterwarnings.

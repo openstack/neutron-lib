@@ -17,9 +17,7 @@ import os
 import platform
 import random
 import time
-import warnings
 
-import fixtures
 import netaddr
 
 from neutron_lib.utils import helpers
@@ -37,20 +35,6 @@ class UnorderedList(list):
 
     def __neq__(self, other):
         return not self == other
-
-
-class WarningsFixture(fixtures.Fixture):
-    """Filters out warnings during test runs."""
-
-    warning_types = (
-        DeprecationWarning, PendingDeprecationWarning, ImportWarning
-    )
-
-    def _setUp(self):
-        self.addCleanup(warnings.resetwarnings)
-        for wtype in self.warning_types:
-            warnings.filterwarnings(
-                "always", category=wtype, module='^neutron_lib\\.')
 
 
 def is_bsd():
