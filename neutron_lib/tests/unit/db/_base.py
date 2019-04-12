@@ -23,4 +23,4 @@ class SqlTestCase(base.BaseTestCase):
 
     def setUp(self):
         super(SqlTestCase, self).setUp()
-        self.useFixture(fixture.SqlFixture())
+        self.useFixture(fixture._SqlFixture())

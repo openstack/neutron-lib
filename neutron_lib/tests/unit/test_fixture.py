@@ -61,10 +61,12 @@ class SqlFixtureTestCase(base.BaseTestCase):
         options.set_defaults(
             cfg.CONF,
             connection='sqlite://')
-        self.useFixture(fixture.SqlFixture())
+        self.fixture = fixture._SqlFixture()
+        self.useFixture(self.fixture)
 
     def test_fixture(self):
         self.assertIsNotNone(model_base.BASEV2.metadata.sorted_tables)
+        self.assertIsNotNone(self.fixture.engine)
 
 
 class APIDefinitionFixtureTestCase(base.BaseTestCase):
