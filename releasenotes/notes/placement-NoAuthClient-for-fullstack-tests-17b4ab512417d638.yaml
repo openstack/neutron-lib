@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    Add ``NoAuthClient`` for placement.client to enable fullstack testing of
+    placement reporting service plugin.
