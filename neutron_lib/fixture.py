@@ -16,6 +16,9 @@ import warnings
 import fixtures
 import mock
 from oslo_config import cfg
+from oslo_db.sqlalchemy import enginefacade
+from oslo_db.sqlalchemy import provision
+from oslo_db.sqlalchemy import session
 from oslo_messaging import conffixture
 
 from neutron_lib.api import attributes
@@ -83,25 +86,100 @@ class CallbackRegistryFixture(fixtures.Fixture):
         self.patcher.stop()
 
 
-class SqlFixture(fixtures.Fixture):
+class _EnableSQLiteFKsFixture(fixtures.Fixture):
+    """Turn SQLite PRAGMA foreign keys on and off for tests.
+
+    FIXME(zzzeek): figure out some way to get oslo.db test_base to honor
+    oslo_db.engines.create_engine() arguments like sqlite_fks as well
+    as handling that it needs to be turned off during drops.
+
+    """
+
+    def __init__(self, engine):
+        self.engine = engine
+
+    def _setUp(self):
+        if self.engine.name == 'sqlite':
+            self.engine.execute("PRAGMA foreign_keys=ON")
+
+            def disable_fks():
+                with self.engine.connect() as conn:
+                    conn.connection.rollback()
+                    conn.execute("PRAGMA foreign_keys=OFF")
+            self.addCleanup(disable_fks)
+
+
+class _SqlFixture(fixtures.Fixture):
 
     # flag to indicate that the models have been loaded
     _TABLES_ESTABLISHED = False
 
-    def _setUp(self):
+    def _init_resources(self):
+        pass
+
+    @classmethod
+    def generate_schema(cls, engine):
         # Register all data models
-        engine = db_api.get_context_manager().writer.get_engine()
-        if not SqlFixture._TABLES_ESTABLISHED:
+        if not _SqlFixture._TABLES_ESTABLISHED:
             model_base.BASEV2.metadata.create_all(engine)
-            SqlFixture._TABLES_ESTABLISHED = True
+            _SqlFixture._TABLES_ESTABLISHED = True
 
-        def clear_tables():
-            with engine.begin() as conn:
-                for table in reversed(
-                        model_base.BASEV2.metadata.sorted_tables):
-                    conn.execute(table.delete())
+    def delete_from_schema(self, engine):
+        with engine.begin() as conn:
+            for table in reversed(
+                    model_base.BASEV2.metadata.sorted_tables):
+                conn.execute(table.delete())
 
-        self.addCleanup(clear_tables)
+    def _setUp(self):
+        self.engine = db_api.CONTEXT_WRITER.get_engine()
+        self.generate_schema(self.engine)
+        self._init_resources()
+
+        self.sessionmaker = session.get_maker(self.engine)
+
+        _restore_factory = db_api.get_context_manager()._root_factory
+
+        self.enginefacade_factory = enginefacade._TestTransactionFactory(
+            self.engine, self.sessionmaker, from_factory=_restore_factory,
+            apply_global=False)
+
+        db_api.get_context_manager()._root_factory = self.enginefacade_factory
+
+        self.addCleanup(lambda: self.delete_from_schema(self.engine))
+        self.addCleanup(
+            lambda: setattr(
+                db_api.get_context_manager(),
+                "_root_factory", _restore_factory))
+
+        self.useFixture(_EnableSQLiteFKsFixture(self.engine))
+
+
+class _StaticSqlFixture(_SqlFixture):
+    """Fixture which keeps a single sqlite memory database at global scope."""
+
+    _GLOBAL_RESOURCES = False
+
+    @classmethod
+    def _init_resources(cls):
+        # this is a classlevel version of what testresources
+        # does w/ the resources attribute as well as the
+        # setUpResources() step (which requires a test instance, that
+        # SqlFixture does not have).  Because this is a SQLite memory
+        # database, we don't actually tear it down, so we can keep
+        # it running throughout all tests.
+        if cls._GLOBAL_RESOURCES:
+            return
+        else:
+            cls._GLOBAL_RESOURCES = True
+            cls.schema_resource = provision.SchemaResource(
+                provision.DatabaseResource(
+                    "sqlite", db_api.get_context_manager()),
+                cls.generate_schema, teardown=False)
+            dependency_resources = {}
+            for name, resource in cls.schema_resource.resources:
+                dependency_resources[name] = resource.getResource()
+            cls.schema_resource.make(dependency_resources)
+            cls.engine = dependency_resources['database'].engine
 
 
 class APIDefinitionFixture(fixtures.Fixture):
