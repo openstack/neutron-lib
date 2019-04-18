@@ -515,7 +515,6 @@ Request
    - project_id: project_id-request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
-   - tags: tags
    - tenant_id: project_id-request
    - uplink_status_propagation: uplink_status_propagation-request
    - mac_learning_enabled: mac_learning_enabled-request
