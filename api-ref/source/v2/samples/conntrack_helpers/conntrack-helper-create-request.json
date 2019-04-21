@@ -1,0 +1,7 @@
+{
+    "conntrack_helper": {
+        "protocol": "udp",
+        "port": 2121,
+        "helper": "ftp"
+    }
+}
