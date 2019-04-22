@@ -3,7 +3,7 @@ Releasing
 =========
 
 Before you intend to release a new version of neutron-lib consider posting
-a `sentinel patch <https://review.openstack.org/#q,I261ec7ea9a5443fd23b806df8c1a109049264fcb,n,z>`_
+a `sentinel patch <https://review.opendev.org/#q,I261ec7ea9a5443fd23b806df8c1a109049264fcb,n,z>`_
 that will allow to validate that the neutron-lib hash chosen for tagging is
 not breaking gate or check jobs affecting a project you care about, first
 and foremost Neutron.

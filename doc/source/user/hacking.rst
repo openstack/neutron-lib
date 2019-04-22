@@ -49,7 +49,7 @@ To adopt neutron-lib's hacking checks:
 #. Actively adopt neutron-lib hacking checks by running and monitoring
    the neutron-lib `periodic job <http://grafana.openstack.org/dashboard/
    db/neutron-lib-failure-rate?panelId=4&fullscreen>`_ (as per `stadium guidelines
-   <https://review.openstack.org/389397/>`_ and
+   <https://review.opendev.org/389397/>`_ and
    watching for announcements. Announcements regarding neutron-lib adopter
    hacking checks will be communicated via openstack-discuss email list
    and `neutron meetings <https://wiki.openstack.org/wiki/Network/Meetings>`_.

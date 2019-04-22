@@ -148,26 +148,26 @@ KNOWN_EXTENSIONS = (
     'trunk',
     'trunk-details',
     # Add here list of extensions with pointers to the project repo, e.g.
-    # 'bgp',  # http://git.openstack.org/cgit/openstack/neutron-dynamic-routing
+    # 'bgp',  # https://opendev.org/openstack/neutron-dynamic-routing
 
-    # http://git.openstack.org/cgit/openstack/neutron-fwaas
+    # https://opendev.org/openstack/neutron-fwaas
     'fwaas',
     'fwaasrouterinsertion',
     'fwaas_v2',
-    'bgpvpn',  # https://git.openstack.org/cgit/openstack/networking-bgpvpn
+    'bgpvpn',  # https://opendev.org/openstack/networking-bgpvpn
     'bgpvpn-routes-control',
     'bgpvpn-vni',
 
-    # git.openstack.org/cgit/openstack/neutron-vpnaas
+    # https://opendev.org/openstack/neutron-vpnaas
     'vpnaas',
     'vpn-endpoint-groups',
     'vpn-flavors',
 
-    # http://git.openstack.org/cgit/openstack/networking-sfc:
+    # https://opendev.org/openstack/networking-sfc:
     'flow_classifier',
     'sfc',
 
-    # http://git.openstack.org/cgit/openstack/neutron-interconnection:
+    # https://opendev.org/openstack/neutron-interconnection:
     'interconnection',
 )
 

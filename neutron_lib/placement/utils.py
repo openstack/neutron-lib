@@ -81,7 +81,7 @@ def six_uuid5(namespace, name):
 # NOTE(bence romsics): The spec said: "Agent resource providers shall
 # be identified by their already existing Neutron agent UUIDs [...]"
 #
-# https://review.openstack.org/#/c/508149/14/specs/rocky
+# https://review.opendev.org/#/c/508149/14/specs/rocky
 #        /minimum-bandwidth-allocation-placement-api.rst@465
 #
 # However we forgot that agent UUIDs are not stable through a few

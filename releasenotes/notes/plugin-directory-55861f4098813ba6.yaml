@@ -12,4 +12,4 @@ features:
        core_plugin = directory.get_plugin()
        l3_plugin = directory.get_plugin(constants.L3)
 
-    For more examples, see: https://review.openstack.org/#/c/386845/
+    For more examples, see: https://review.opendev.org/#/c/386845/

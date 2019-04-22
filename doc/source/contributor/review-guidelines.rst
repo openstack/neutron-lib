@@ -29,9 +29,9 @@ When reviewing neutron-lib changes, please be aware:
     - Publish a change to neutron-lib that uses `Depends-On:` for the
       dummy change in neutron; this pulls the neutron dummy change into the
       neutron-lib gate job. For example
-      `386846 <https://review.openstack.org/386846/>`_ uses a dummy
+      `386846 <https://review.opendev.org/386846/>`_ uses a dummy
       neutron-lib patch to test code that already exists in neutron-lib
-      `master` whereas `346554 <https://review.openstack.org/#/c/346554/13>`_
+      `master` whereas `346554 <https://review.opendev.org/#/c/346554/13>`_
       tests the neutron-lib patch's code itself.
     - View neutron-lib gate job results and repeat as necessary.
 

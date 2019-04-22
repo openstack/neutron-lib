@@ -73,11 +73,11 @@ Phase 1: Rehome
 
 Examples:
 
-- `319769 <https://review.openstack.org/319769/>`_ brought over a number of common
+- `319769 <https://review.opendev.org/319769/>`_ brought over a number of common
   utility functions as-is from neutron into a new package structure within neutron-lib.
-- `253661 <https://review.openstack.org/253661/>`_ rehomed neutron callbacks into a
-  private package that's enhanced via `346554 <https://review.openstack.org/346554/>`_.
-- `319386 <https://review.openstack.org/319386/>`_ rehomes a validator from neutron
+- `253661 <https://review.opendev.org/253661/>`_ rehomed neutron callbacks into a
+  private package that's enhanced via `346554 <https://review.opendev.org/346554/>`_.
+- `319386 <https://review.opendev.org/319386/>`_ rehomes a validator from neutron
   into neutron-lib.
 
 Phase 2: Enhance
@@ -93,7 +93,7 @@ functionality.
 
 Examples:
 
-- `346554 <https://review.openstack.org/346554/>`_ enhances the rehomed private callback
+- `346554 <https://review.opendev.org/346554/>`_ enhances the rehomed private callback
   API in neutron-lib.
 
 Phase 3: Release
@@ -106,7 +106,7 @@ project.
 Once a release is cut, an openstack infra proposal bot will submit patches to the master branch
 of all projects that consume neutron-lib to set the new release as the minimum requirement.
 Someone from the neutron release team can bump `global requirements` (g-r); for example
-`review 393600 <https://review.openstack.org/393600/>`_.
+`review 393600 <https://review.opendev.org/393600/>`_.
 
 When the bot-proposed requirement patches have merged, your rehomed code can be consumed.
 
@@ -132,7 +132,7 @@ source.
 - Prepare a neutron core patch to remove and update the rehomed code from its source.
   This can be done without a `debtcollector <https://docs.openstack.org/debtcollector/latest/>`_
   notice by following the steps here. In the patch's commit message include the ``NeutronLibImpact``
-  so that we can easily `query <https://review.openstack.org/#/q/status:open+message:%22NeutronLibImpact%22>`_
+  so that we can easily `query <https://review.opendev.org/#/q/status:open+message:%22NeutronLibImpact%22>`_
   for such changes. Mark the patch as a work in progress with a -1 workflow vote.
 - If the change is significant enough, it may warrant a "reference implementation" in an
   impacted subproject to ensure the impacts are fully understood. Testing this
@@ -153,5 +153,5 @@ source.
 
 Examples:
 
-- `348472 <https://review.openstack.org/348472/>`_ removes a validator in neutron that
+- `348472 <https://review.opendev.org/348472/>`_ removes a validator in neutron that
   was rehomed to neutron-lib.
