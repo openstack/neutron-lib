@@ -52,6 +52,7 @@ def assert_validator(tester, attribute, attribute_dict, keyword, value):
     tester.assertIn(list(value)[0], validators.validators,
                     '%s is not a known validator for %s.' % (value, attribute))
 
+
 ASSERT_FUNCTIONS = {
     'allow_post': assert_bool,
     'allow_put': assert_bool,
