@@ -410,4 +410,4 @@ class WarningsFixture(fixtures.Fixture):
         self.addCleanup(warnings.resetwarnings)
         for wtype in self.warning_types:
             warnings.filterwarnings(
-                "always", category=wtype, module='|'.join(self._modules))
+                "once", category=wtype, module='|'.join(self._modules))
