@@ -17,7 +17,6 @@ NOTE: This module is a temporary shim until networking projects move to
 """
 from oslo_db.sqlalchemy import utils as sa_utils
 from sqlalchemy import sql, or_, and_
-from sqlalchemy.ext import associationproxy
 
 from neutron_lib._i18n import _
 from neutron_lib.api import attributes
@@ -25,6 +24,7 @@ from neutron_lib.db import utils as db_utils
 from neutron_lib import exceptions as n_exc
 from neutron_lib.objects import utils as obj_utils
 from neutron_lib.utils import helpers
+
 
 # Classes implementing extensions will register hooks into this dictionary
 # for "augmenting" the "core way" of building a query for retrieving objects
@@ -180,7 +180,10 @@ def apply_filters(query, model, filters, context=None):
                 if not value:
                     query = query.filter(sql.false())
                     return query
-                if isinstance(column, associationproxy.AssociationProxy):
+                if not hasattr(column, 'in_'):
+                    # NOTE(ralonsoh): since SQLAlchemy==1.3.0, a column is an
+                    # AssociationProxyInstance and inherits in_() method from
+                    # ColumnOperators.
                     # association proxies don't support in_ so we have to
                     # do multiple equals matches
                     query = query.filter(

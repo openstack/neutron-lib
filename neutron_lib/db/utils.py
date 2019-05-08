@@ -14,7 +14,8 @@ import six
 
 from oslo_db import exception as db_exc
 from oslo_utils import excutils
-from sqlalchemy.ext import associationproxy
+import sqlalchemy
+from sqlalchemy.ext.associationproxy import ASSOCIATION_PROXY
 from sqlalchemy.orm import exc
 from sqlalchemy.orm import properties
 
@@ -148,11 +149,12 @@ def filter_non_model_columns(data, model):
     :returns: A new dict who's keys are columns in model or are association
         proxies of the model.
     """
-    columns = [c.name for c in model.__table__.columns]
-    return dict((k, v) for (k, v) in
-                data.items() if k in columns or
-                isinstance(getattr(model, k, None),
-                           associationproxy.AssociationProxy))
+    mapper = sqlalchemy.inspect(model)
+    columns = set(c.name for c in mapper.columns)
+    columns.update(d.value_attr for d in mapper.all_orm_descriptors
+                   if d.extension_type is ASSOCIATION_PROXY)
+    return dict((k, v) for (k, v)
+                in data.items() if k in columns)
 
 
 def model_query_scope_is_project(context, model):
