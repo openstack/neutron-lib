@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    A new method ``retrieve_valid_sort_keys`` was added to ``neutron_lib.api.attributes``.
+    This method can help retrieve valid sort keys from a given resource attribute map.

@@ -297,3 +297,16 @@ def _core_resource_attributes():
 
 # populate core resources into singleton global
 RESOURCES = _core_resource_attributes()
+
+
+def retrieve_valid_sort_keys(attr_info):
+    """Retrieve sort keys from `attr_info` dict.
+
+    Iterate the `attr_info`, filter and return the attributes that are
+    defined with `is_sort_key=True`.
+
+    :param attr_info: The attribute dict for common neutron resource.
+    :returns: Set of sort keys.
+    """
+    return set(attr for attr, schema in attr_info.items()
+               if schema.get('is_sort_key', False))

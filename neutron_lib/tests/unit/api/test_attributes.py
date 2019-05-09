@@ -321,3 +321,26 @@ class TestValidatePriviliges(base.BaseTestCase):
             attributes._validate_privileges(ctx, res_dict)
         except exc.HTTPBadRequest:
             self.fail("HTTPBadRequest exception should not be raised.")
+
+
+class TestRetrieveValidSortKeys(base.BaseTestCase):
+
+    def test_retrieve_valid_sort_keys(self):
+        attr_info = {
+            "id": {
+                "visible": True,
+                "is_sort_key": True
+            },
+            "name": {
+                "is_sort_key": True
+            },
+            "created_at": {
+                "is_sort_key": False
+            },
+            "tenant_id": {
+                "visible": True,
+            }
+        }
+        expect_val = set(["id", "name"])
+        actual_val = attributes.retrieve_valid_sort_keys(attr_info)
+        self.assertEqual(expect_val, actual_val)
