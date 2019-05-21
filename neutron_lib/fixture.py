@@ -111,31 +111,32 @@ class _EnableSQLiteFKsFixture(fixtures.Fixture):
 
 class _SqlFixture(fixtures.Fixture):
 
-    # flag to indicate that the models have been loaded
-    _TABLES_ESTABLISHED = False
-
-    def _init_resources(self):
-        pass
-
     @classmethod
-    def generate_schema(cls, engine):
-        # Register all data models
-        if not _SqlFixture._TABLES_ESTABLISHED:
-            model_base.BASEV2.metadata.create_all(engine)
-            _SqlFixture._TABLES_ESTABLISHED = True
+    def _generate_schema(cls, engine):
+        model_base.BASEV2.metadata.create_all(engine)
 
-    def delete_from_schema(self, engine):
+    def _delete_from_schema(self, engine):
         with engine.begin() as conn:
             for table in reversed(
                     model_base.BASEV2.metadata.sorted_tables):
                 conn.execute(table.delete())
 
+    def _init_resources(self):
+        pass
+
     def _setUp(self):
-        self.engine = db_api.CONTEXT_WRITER.get_engine()
-        self.generate_schema(self.engine)
         self._init_resources()
 
-        self.sessionmaker = session.get_maker(self.engine)
+        # check if the fixtures failed to get
+        # an engine.  The test setUp() itself should also be checking
+        # this and raising skipTest.
+        if not hasattr(self, 'engine'):
+            return
+
+        engine = self.engine
+        self.addCleanup(lambda: self._delete_from_schema(engine))
+
+        self.sessionmaker = session.get_maker(engine)
 
         _restore_factory = db_api.get_context_manager()._root_factory
 
@@ -145,17 +146,17 @@ class _SqlFixture(fixtures.Fixture):
 
         db_api.get_context_manager()._root_factory = self.enginefacade_factory
 
-        self.addCleanup(lambda: self.delete_from_schema(self.engine))
+        engine = db_api.CONTEXT_WRITER.get_engine()
+
         self.addCleanup(
             lambda: setattr(
                 db_api.get_context_manager(),
                 "_root_factory", _restore_factory))
 
-        self.useFixture(_EnableSQLiteFKsFixture(self.engine))
+        self.useFixture(_EnableSQLiteFKsFixture(engine))
 
 
 class _StaticSqlFixture(_SqlFixture):
-    """Fixture which keeps a single sqlite memory database at global scope."""
 
     _GLOBAL_RESOURCES = False
 
@@ -174,7 +175,7 @@ class _StaticSqlFixture(_SqlFixture):
             cls.schema_resource = provision.SchemaResource(
                 provision.DatabaseResource(
                     "sqlite", db_api.get_context_manager()),
-                cls.generate_schema, teardown=False)
+                cls._generate_schema, teardown=False)
             dependency_resources = {}
             for name, resource in cls.schema_resource.resources:
                 dependency_resources[name] = resource.getResource()

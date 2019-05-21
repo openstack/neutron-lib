@@ -61,7 +61,7 @@ class SqlFixtureTestCase(base.BaseTestCase):
         options.set_defaults(
             cfg.CONF,
             connection='sqlite://')
-        self.fixture = fixture._SqlFixture()
+        self.fixture = fixture._StaticSqlFixture()
         self.useFixture(self.fixture)
 
     def test_fixture(self):
