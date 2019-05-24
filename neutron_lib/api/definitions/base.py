@@ -140,6 +140,7 @@ KNOWN_EXTENSIONS = (
     'standard-attr-timestamp',
     'subnet',
     'subnet_allocation',
+    'subnet_dns_publish_fixed_ip',
     'subnet_onboard',
     'subnetpool-prefix-ops',
     'subnet-segmentid-enforce',

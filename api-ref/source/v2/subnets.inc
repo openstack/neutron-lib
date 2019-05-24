@@ -28,6 +28,13 @@ Subnet allocation extension
 Subnet allocation extension (``subnet_allocation``) enables allocation of
 subnets from a subnet pool.
 
+Subnet DNS publish fixed IP extension
+=====================================
+
+The ``subnet-dns-publish-fixed-ip`` extension adds the ``dns_publish_fixed_ip``
+attribute to subnets. It allows to select per subnet whether DNS records
+for fixed IPs are to be published in an external DNS service.
+
 Segment extension
 =================
 
@@ -126,6 +133,7 @@ Request
    - tags-any: tags-any-query
    - not-tags: not-tags-query
    - not-tags-any: not-tags-any-query
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip-query
    - fields: fields
 
 Response Parameters
@@ -156,6 +164,7 @@ Response Parameters
    - subnetpool_id: subnet-subnetpool_id
    - updated_at: updated_at_resource
    - tags: tags
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
 
 Response Example
 ----------------
@@ -235,6 +244,7 @@ Request
    - subnetpool_id: subnet-subnetpool_id-request
    - use_default_subnetpool: use_default_subnetpool
    - service_types: subnet-service_types-optional
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip-request
 
 Request Example
 ---------------
@@ -270,6 +280,7 @@ Response Parameters
    - segment_id: subnet-segment_id
    - updated_at: updated_at_resource
    - tags: tags
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
 
 Response Example
 ----------------
@@ -316,6 +327,7 @@ Request
    - subnetpool_id: subnet-subnetpool_id-request
    - use_default_subnetpool: use_default_subnetpool
    - service_types: subnet-service_types-optional
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip-request
 
 Request Example
 ---------------
@@ -351,6 +363,7 @@ Response Parameters
    - subnetpool_id: subnet-subnetpool_id
    - updated_at: updated_at_resource
    - tags: tags
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
 
 Response Example
 ----------------
@@ -406,6 +419,7 @@ Response Parameters
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
    - tags: tags
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
 
 Response Example
 ----------------
@@ -443,6 +457,7 @@ Request
    - description: description-request
    - service_types: subnet-service_types-optional
    - segment_id: subnet-segment_id-request
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip-request
 
 Request Example
 ---------------
@@ -478,6 +493,7 @@ Response Parameters
    - subnetpool_id: subnet-subnetpool_id
    - updated_at: updated_at_resource
    - tags: tags
+   - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
 
 Response Example
 ----------------

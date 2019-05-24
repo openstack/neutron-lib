@@ -8,6 +8,7 @@
             "project_id": "26a7980765d0414dbc1fc1f88cdb7e6e",
             "tenant_id": "26a7980765d0414dbc1fc1f88cdb7e6e",
             "dns_nameservers": [],
+            "dns_publish_fixed_ip": false,
             "allocation_pools": [
                 {
                     "start": "10.0.0.2",
@@ -37,6 +38,7 @@
             "project_id": "4fd44f30292945e481c7b8a0c8908869",
             "tenant_id": "4fd44f30292945e481c7b8a0c8908869",
             "dns_nameservers": [],
+            "dns_publish_fixed_ip": false,
             "allocation_pools": [
                 {
                     "start": "192.0.0.2",
