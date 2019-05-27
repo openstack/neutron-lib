@@ -18,6 +18,13 @@ that the port can use when sending packets if ``port_security_enabled`` is
 ``ip_address`` is required in each allowed address pair, the ``mac_address``
 is optional and will be taken from the port if not specified.
 
+.. warning::
+
+    If a security group with a ``remote_group_id`` rule is used by a port, adding
+    an address pair with IP address ``0.0.0.0/0`` (``ANY``) will bypass all rules
+    with source IP address restrictions for all ports which use the same security
+    group.
+
 Data plane status extension
 ===========================
 
