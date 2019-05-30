@@ -3612,10 +3612,9 @@ interfaces:
 internal_ip_address:
   description: |
     The fixed IPv4 address of the Neutron port associated to the floating IP
-    port forwarding. If it is not specified, the first IPv4 address found by
-    the port forwardings plug-in will be used.
+    port forwarding.
   in: body
-  required: false
+  required: true
   type: string
 internal_ip_address-response:
   description: |
