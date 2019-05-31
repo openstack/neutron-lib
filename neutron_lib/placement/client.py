@@ -202,7 +202,12 @@ class PlacementAPIClient(object):
         :returns: The resource provider created.
         """
         url = '/resource_providers'
-        return self._post(url, resource_provider).json()
+        rsp = self._post(url, resource_provider)
+        if (self._target_version <
+                _get_version(PLACEMENT_API_RETURN_PROVIDER_BODY)):
+            return
+        else:
+            return rsp.json()
 
     @_check_placement_api_available
     def update_resource_provider(self, resource_provider):
