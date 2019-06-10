@@ -25,5 +25,6 @@ from neutron_lib.plugins import constants as plugin_const
 # SERVICE_PLUGIN_NAME is the service plugin which introduced the resource and
 # registered the service plugin name in neutron-lib.
 EXT_PARENT_RESOURCE_MAPPING = {
-    l3.FLOATINGIP: plugin_const.L3
+    l3.FLOATINGIP: plugin_const.L3,
+    l3.ROUTER: plugin_const.CONNTRACKHELPER
 }
