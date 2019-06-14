@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    Add ``ETHERTYPE_RARP`` constant which represents RARP protocol to support live-migration.
