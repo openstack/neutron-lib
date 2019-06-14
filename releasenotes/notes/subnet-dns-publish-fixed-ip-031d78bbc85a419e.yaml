@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    The ``subnet-dns-publish-fixed-ip`` API extension is added. It adds the
+    ``dns_publish_fixed_ip`` attribute to subnets, indicating whether
+    to publish DNS records for fixed IPs from this subnet in an external
+    DNS service. For details see
+    [`bug 1784879 <https://launchpad.net/bugs/1784879>`_].

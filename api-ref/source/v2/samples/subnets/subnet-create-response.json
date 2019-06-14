@@ -7,6 +7,7 @@
         "project_id": "4fd44f30292945e481c7b8a0c8908869",
         "tenant_id": "4fd44f30292945e481c7b8a0c8908869",
         "dns_nameservers": [],
+        "dns_publish_fixed_ip": false,
         "allocation_pools": [
             {
                 "start": "192.168.199.2",

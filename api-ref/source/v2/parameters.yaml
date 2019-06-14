@@ -1274,9 +1274,16 @@ state-query:
   in: query
   required: false
   type: string
+subnet-dns_publish_fixed_ip-query:
+  description: |
+    Filter the subnet list result based on if ``dns_publish_fixed_ip`` is
+    enabled or disabled for the subnet.
+  in: query
+  required: false
+  type: boolean
 subnet-enable_dhcp-query:
   description: |
-    Filter the subnet list result based on if is enabled or disabled
+    Filter the subnet list result based on if DHCP is enabled or disabled
     for the subnet.
   in: query
   required: false
@@ -5983,6 +5990,19 @@ subnet-dns_nameservers-request:
   in: body
   required: false
   type: array
+subnet-dns_publish_fixed_ip:
+  description: |
+    Whether to publish DNS records for IPs from this subnet.
+  in: body
+  required: true
+  type: boolean
+subnet-dns_publish_fixed_ip-request:
+  description: |
+    Whether to publish DNS records for IPs from this subnet. Default
+    is ``false``.
+  in: body
+  required: false
+  type: boolean
 subnet-enable_dhcp:
   description: |
     Indicates whether dhcp is enabled or disabled
