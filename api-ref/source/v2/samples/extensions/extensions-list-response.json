@@ -22,13 +22,6 @@
             "description": "Schedule routers among l3 agents"
         },
         {
-            "updated": "2013-02-07T10:00:00-00:00",
-            "name": "Loadbalancer Agent Scheduler",
-            "links": [],
-            "alias": "lbaas_agent_scheduler",
-            "description": "Schedule pools among lbaas agents"
-        },
-        {
             "updated": "2013-03-28T10:00:00-00:00",
             "name": "Neutron L3 Configurable external gateway mode",
             "links": [],
@@ -104,13 +97,6 @@
             "links": [],
             "alias": "extra_dhcp_opt",
             "description": "Extra options configuration for DHCP. For example PXE boot options to DHCP clients can be specified (e.g. tftp-server, server-ip-address, bootfile-name)"
-        },
-        {
-            "updated": "2012-10-07T10:00:00-00:00",
-            "name": "LoadBalancing service",
-            "links": [],
-            "alias": "lbaas",
-            "description": "Extension for LoadBalancing service"
         },
         {
             "updated": "2013-02-01T10:00:00-00:00",

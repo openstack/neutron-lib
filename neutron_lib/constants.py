@@ -59,6 +59,8 @@ DEVICE_OWNER_AGENT_GW = (DEVICE_OWNER_NETWORK_PREFIX +
                          "floatingip_agent_gateway")
 DEVICE_OWNER_ROUTER_SNAT = (DEVICE_OWNER_NETWORK_PREFIX +
                             "router_centralized_snat")
+# TODO(johnsom) Remove after these stop being used. Neutron-LBaaS is now
+#               retired (train) and these should no longer be necessary.
 DEVICE_OWNER_LOADBALANCER = DEVICE_OWNER_NEUTRON_PREFIX + "LOADBALANCER"
 DEVICE_OWNER_LOADBALANCERV2 = DEVICE_OWNER_NEUTRON_PREFIX + "LOADBALANCERV2"
 
@@ -107,7 +109,6 @@ AGENT_TYPE_OVS = 'Open vSwitch agent'
 AGENT_TYPE_LINUXBRIDGE = 'Linux bridge agent'
 AGENT_TYPE_OFA = 'OFA driver agent'
 AGENT_TYPE_L3 = 'L3 agent'
-AGENT_TYPE_LOADBALANCER = 'Loadbalancer agent'
 AGENT_TYPE_METERING = 'Metering agent'
 AGENT_TYPE_METADATA = 'Metadata agent'
 AGENT_TYPE_NIC_SWITCH = 'NIC Switch agent'
@@ -124,7 +125,6 @@ DVR_SNAT_BOUND = 'dvr_snat_bound'
 PORT_BINDING_EXT_ALIAS = 'binding'
 L3_AGENT_SCHEDULER_EXT_ALIAS = 'l3_agent_scheduler'
 DHCP_AGENT_SCHEDULER_EXT_ALIAS = 'dhcp_agent_scheduler'
-LBAAS_AGENT_SCHEDULER_EXT_ALIAS = 'lbaas_agent_scheduler'
 L3_DISTRIBUTED_EXT_ALIAS = 'dvr'
 L3_HA_MODE_EXT_ALIAS = 'l3-ha'
 SUBNET_ALLOCATION_EXT_ALIAS = 'subnet_allocation'

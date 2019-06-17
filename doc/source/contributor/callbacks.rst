@@ -36,7 +36,7 @@ callback-based system, where the same objects are allowed to cooperate in a
 loose manner.
 
 This is particularly important since the spin off of the advanced services like
-VPN, Firewall and Load Balancer, where each service's codebase lives independently
+VPN and Firewall, where each service's codebase lives independently
 from the core and from one another. This means that the tight coupling is no longer
 a practical solution for object cooperation. In addition to this, if more services
 are developed independently, there is no viable integration between them and the

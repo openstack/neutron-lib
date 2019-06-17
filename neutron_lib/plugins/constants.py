@@ -13,8 +13,6 @@
 #    under the License.
 
 # Well-known service type constants:
-LOADBALANCER = "LOADBALANCER"
-LOADBALANCERV2 = "LOADBALANCERV2"
 FIREWALL = "FIREWALL"
 VPN = "VPN"
 METERING = "METERING"
@@ -27,3 +25,8 @@ PORTFORWARDING = "PORTFORWARDING"
 FLOATINGIPPOOL = "FLOATINGIPPOOL"
 NETWORK_SEGMENT_RANGE = "NETWORK_SEGMENT_RANGE"
 CONNTRACKHELPER = "CONNTRACKHELPER"
+
+# TODO(johnsom) Remove after these stop being used. Neutron-LBaaS is now
+#               retired (train) and these should no longer be necessary.
+LOADBALANCER = "LOADBALANCER"
+LOADBALANCERV2 = "LOADBALANCERV2"
