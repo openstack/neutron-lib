@@ -73,7 +73,6 @@ ACTION_STATUS = {
 # The list of required extensions.
 REQUIRED_EXTENSIONS = [
     dns.ALIAS,
-    subnet.ALIAS
 ]
 
 # The list of optional extensions.
