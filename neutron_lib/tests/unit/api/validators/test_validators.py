@@ -742,6 +742,12 @@ class TestAttributeValidation(base.BaseTestCase):
                                                    "cidr": "192.0.0.0/8"}
         self.assertEqual(error, msg)
 
+        # Invalid - loopback CIDR
+        cidr = "127.0.0.0/8"
+        msg = validators.validate_route_cidr(cidr, None)
+        error = _("'%(data)s' is not a routable CIDR") % {"data": cidr}
+        self.assertEqual(error, msg)
+
         # Invalid - CIDR format error
         cidr = 'invalid'
         msg = validators.validate_route_cidr(cidr, None)

@@ -1,0 +1,7 @@
+---
+fixes:
+  - |
+    Static route validator should verify that routed CIDR isn't a loopback.
+    Loopback addresses should not be routable.
+    Bug: `1834012 <https://bugs.launchpad.net/neutron/+bug/1834012>`_
+
