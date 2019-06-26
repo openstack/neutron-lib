@@ -38,13 +38,13 @@ class HackingTestCase(base.BaseTestCase):
         return check_fns
 
     def test_factory(self):
-        self.assertTrue(len(self._get_factory_checks(checks.factory)) > 0)
+        self.assertGreater(len(self._get_factory_checks(checks.factory)), 0)
 
     def test_neutron_lib_factory(self):
         lib_checks = self._get_factory_checks(checks._neutron_lib_factory)
         other_checks = self._get_factory_checks(checks.factory)
 
-        self.assertTrue(len(lib_checks) > 0)
+        self.assertGreater(len(lib_checks), 0)
 
         if other_checks:
             for other_check in other_checks:

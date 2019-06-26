@@ -158,7 +158,7 @@ class TestDeadLockDecorator(_base.BaseTestCase):
         if exc_to_raise == db_exc.DBDeadlock:
             self.assertEqual(True, (fake_timer.counter <= sum(worst_case)))
         else:
-            self.assertTrue(sum(worst_case) >= fake_timer.counter)
+            self.assertGreaterEqual(sum(worst_case), fake_timer.counter)
 
     def test_all_deadlock_time_elapsed(self):
         self._test_retry_time_cost(db_exc.DBDeadlock)
