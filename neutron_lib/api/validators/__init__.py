@@ -680,6 +680,8 @@ def validate_route_cidr(data, valid_values=None):
             msg = _("'%(data)s' is not a recognized CIDR,"
                     " '%(cidr)s' is recommended") % {"data": data,
                                                      "cidr": net.cidr}
+        elif net.is_loopback():
+            msg = _("'%(data)s' is not a routable CIDR") % {"data": data}
         else:
             return
     except Exception:
