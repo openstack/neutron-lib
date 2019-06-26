@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    A new exception named ``NetworkAddressScopeAffinityError`` has been added
+    in neutron_lib/exceptions/address_scope.py. This is to be raised by
+    consumers when network / address scope affinity constraints are violated
+    on subnet creation and subnet pool updates.

@@ -29,3 +29,8 @@ class AddressScopeInUse(exceptions.InUse):
 class AddressScopeUpdateError(exceptions.BadRequest):
     message = _("Unable to update address scope %(address_scope_id)s : "
                 "%(reason)s.")
+
+
+class NetworkAddressScopeAffinityError(exceptions.BadRequest):
+    message = _("Subnets of the same address family hosted on the same "
+                "network must all participate in the same address scope.")
