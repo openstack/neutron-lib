@@ -116,5 +116,5 @@ class TestListPackageModules(base.BaseTestCase):
 
     def test_list_package_modules(self):
         # mainly just to ensure we can import modules for both PY2/PY3
-        self.assertTrue(
-            len(runtime.list_package_modules('neutron_lib.exceptions')) > 3)
+        self.assertGreater(
+            len(runtime.list_package_modules('neutron_lib.exceptions')), 3)
