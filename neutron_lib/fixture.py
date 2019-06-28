@@ -109,7 +109,7 @@ class _EnableSQLiteFKsFixture(fixtures.Fixture):
             self.addCleanup(disable_fks)
 
 
-class _SqlFixture(fixtures.Fixture):
+class SqlFixture(fixtures.Fixture):
 
     @classmethod
     def _generate_schema(cls, engine):
@@ -156,7 +156,7 @@ class _SqlFixture(fixtures.Fixture):
         self.useFixture(_EnableSQLiteFKsFixture(engine))
 
 
-class _StaticSqlFixture(_SqlFixture):
+class StaticSqlFixture(SqlFixture):
 
     _GLOBAL_RESOURCES = False
 

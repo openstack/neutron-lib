@@ -1,0 +1,4 @@
+---
+features:
+  - The ``SqlFixture`` and ``StaticSqlFixture`` are now available in
+    ``neutron_lib.fixtures``.
