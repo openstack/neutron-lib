@@ -1,0 +1,5 @@
+---
+features:
+  - Router API is modified through a regime API extension to neutron-lib that
+    enforces the admin state of a router be DOWN (admin_state_up=False) prior
+    to modifying the distributed attribute of the router.
