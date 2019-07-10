@@ -97,6 +97,7 @@ KNOWN_EXTENSIONS = (
     'external-net',
     'extra_dhcp_opt',
     'extraroute',
+    'extraroute-atomic',
     'filter-validation',
     'fip-port-details',
     'flavors',

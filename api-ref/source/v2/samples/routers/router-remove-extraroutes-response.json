@@ -1,0 +1,10 @@
+{
+   "router" : {
+      "id" : "64e339bb-1a6c-47bd-9ee7-a0cf81a35172",
+      "name" : "router1",
+      "routes" : [
+         { "destination" : "10.0.1.0/24", "nexthop" : "10.0.0.11" },
+         { "destination" : "10.0.2.0/24", "nexthop" : "10.0.0.12" }
+      ]
+   }
+}

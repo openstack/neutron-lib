@@ -22,6 +22,17 @@ Extra routes extension
 The extra route extension (``extraroute``) extends ``router`` resources adding
 a ``routes`` attribute that contains an array of route objects. Each route
 object has a ``destination`` and ``nexthop`` attribute representing the route.
+When the ``extraroute-atomic`` extension is also available you can add
+or remove a set of extra routes atomically on the server side. For details
+please see below.
+
+Extra routes (atomic) extension
+===============================
+
+The extra route atomic extension (``extraroute-atomic``) extends the
+``router`` resource by adding two member actions (``add_extraroutes`` /
+``remove_extraroutes``) to edit the set of extra routes atomically on
+the server side.
 
 HA capability for router extension (``l3-ha``)
 =======================================================
@@ -579,3 +590,143 @@ Response Example
 .. literalinclude:: samples/routers/router-remove-interface-response.json
    :language: javascript
 
+Add extra routes to router
+==========================
+
+.. rest_method::  PUT /v2.0/routers/{router_id}/add_extraroutes
+
+Atomically adds a set of extra routes to the router's already existing
+extra routes.
+
+This operation is a variation on updating the router's ``routes``
+parameter.  In all ways it works the same, except the extra routes sent
+in the request body do not replace the existing set of extra routes.
+Instead the extra routes sent are added to the existing set of
+extra routes.
+
+The use of the add_extraroutes/remove_extraroutes member actions
+is preferred to updating the ``routes`` attribute in all cases when
+concurrent updates to the set of extra routes are possible.
+
+The addition's corner cases behave the following way:
+
+* When (destinationA, nexthopA) is to be added but it is already present
+  that is accepted and the request succeeds.
+
+* Two or more routes with the same destination but with different
+  nexthops are all accepted.
+
+* A route whose destination overlaps the destination of existing routes
+  (e.g. ``192.168.1.0/24`` and ``192.168.1.0/22``) can be added and
+  existing routes are left untouched.
+
+The format of the request body is the same as the format of a PUT
+request to the router changing the ``routes`` parameter only.
+
+The response codes and response body are the same as to the update of
+the ``routes`` parameter. That is the whole router object is returned
+including the ``routes`` parameter which represents the result of the
+addition.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 412
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_id: router_id
+   - routes: router-routes
+
+Request Example
+---------------
+
+.. literalinclude:: samples/routers/router-add-extraroutes-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - id: router-id-body
+   - name: router_name
+   - routes: router-routes
+
+Response Example
+----------------
+
+.. literalinclude:: samples/routers/router-add-extraroutes-response.json
+   :language: javascript
+
+Remove extra routes from router
+===============================
+
+.. rest_method::  PUT /v2.0/routers/{router_id}/remove_extraroutes
+
+Atomically removes a set of extra routes from the router's already
+existing extra routes.
+
+This operation is a variation on updating the router's ``routes``
+parameter.  In all ways it works the same, except the extra routes sent
+in the request body do not replace the existing set of extra routes.
+Instead the the extra routes sent are removed from the existing set of
+extra routes.
+
+The use of the add_extraroutes/remove_extraroutes member actions
+is preferred to updating the ``routes`` attribute in all cases when
+concurrent updates to the set of extra routes are possible.
+
+The removal's corner cases behave the following way:
+
+* An extra route is only removed if there is an exact match (including the
+  ``destination`` and ``nexthop``) between the route sent and the route
+  already present.
+
+* When (destinationA, nexthopA) is to be removed but it is already missing
+  that is accepted and the request succeeds.
+
+The format of the request body is the same as the format of a PUT
+request to the router changing the ``routes`` parameter only. However
+the routes sent are not meant to overwrite the whole ``routes``
+parameter, but they are meant to be removed from the existing set.
+
+The response codes and response body are the same as to the update of
+the ``routes`` parameter. That is the whole router object is returned
+including the ``routes`` parameter which represents the result of the
+removal.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 412
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_id: router_id
+   - routes: router-routes
+
+Request Example
+---------------
+
+.. literalinclude:: samples/routers/router-remove-extraroutes-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - id: router-id-body
+   - name: router_name
+   - routes: router-routes
+
+Response Example
+----------------
+
+.. literalinclude:: samples/routers/router-remove-extraroutes-response.json
+   :language: javascript

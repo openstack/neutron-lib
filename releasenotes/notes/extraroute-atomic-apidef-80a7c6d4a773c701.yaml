@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    New API definition: ``extraroute-atomic``.

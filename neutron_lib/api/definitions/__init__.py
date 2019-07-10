@@ -36,6 +36,7 @@ from neutron_lib.api.definitions import expose_port_forwarding_in_fip
 from neutron_lib.api.definitions import external_net
 from neutron_lib.api.definitions import extra_dhcp_opt
 from neutron_lib.api.definitions import extraroute
+from neutron_lib.api.definitions import extraroute_atomic
 from neutron_lib.api.definitions import filter_validation
 from neutron_lib.api.definitions import fip64
 from neutron_lib.api.definitions import fip_port_details
@@ -142,6 +143,7 @@ _ALL_API_DEFINITIONS = {
     external_net,
     extra_dhcp_opt,
     extraroute,
+    extraroute_atomic,
     filter_validation,
     fip64,
     firewall,
