@@ -429,7 +429,10 @@ ETHERTYPE_IPV6 = 0x86DD
 IP_PROTOCOL_NAME_ALIASES = {PROTO_NAME_IPV6_ICMP_LEGACY:
                             PROTO_NAME_IPV6_ICMP}
 
-IP_PROTOCOL_NUM_TO_NAME_MAP = {str(v): k for k, v in IP_PROTOCOL_MAP.items()}
+# We only want one mapping from '58' to 'ipv6-icmp' since that is the
+# normalized string, the name to number mapping can have both
+IP_PROTOCOL_NUM_TO_NAME_MAP = ({str(v): k for k, v in IP_PROTOCOL_MAP.items()
+                               if k != PROTO_NAME_IPV6_ICMP_LEGACY})
 
 # When using iptables-save we specify '-p {proto}',
 # but sometimes those values are not identical.  This is a map
