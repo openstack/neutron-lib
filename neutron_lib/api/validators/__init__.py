@@ -16,6 +16,7 @@ import inspect
 import re
 
 import netaddr
+from oslo_config import cfg
 from oslo_log import log as logging
 from oslo_utils import netutils
 from oslo_utils import strutils
@@ -1122,11 +1123,44 @@ def validate_subnet_service_types(service_types, valid_values=None):
                 raise n_exc.InvalidSubnetServiceType(service_type=service_type)
 
 
+def validate_ethertype(ethertype, valid_values=None):
+    """Validates ethertype is a valid ethertype.
+
+    :param ethertype: Ethertype to validate
+    :returns: None if data is a valid ethertype.  Otherwise a human-readable
+        message indicating that the data is not a valid ethertype.
+    """
+    if cfg.CONF.sg_filter_ethertypes:
+        try:
+            if isinstance(ethertype, six.string_types):
+                ethertype = int(ethertype, 16)
+            if (isinstance(ethertype, six.integer_types) and
+                    constants.ETHERTYPE_MIN <= ethertype and
+                    ethertype <= constants.ETHERTYPE_MAX):
+                return None
+        except ValueError:
+            pass
+        msg = _("Ethertype %s is not a two octet hexadecimal "
+                "number.") % ethertype
+        LOG.debug(msg)
+        return msg
+    else:
+        if ethertype in constants.VALID_ETHERTYPES:
+            return None
+        valids = ','.join(map(str, constants.VALID_ETHERTYPES))
+        msg = _("Ethertype %(ethertype)s is not a valid ethertype, must be "
+                "one of %(valid_ethertypes)s.") % {'ethertype': ethertype,
+                                                   'valid_ethertypes': valids}
+        LOG.debug(msg)
+        return msg
+
+
 # Dictionary that maintains a list of validation functions
 validators = {'type:dict': validate_dict,
               'type:dict_or_none': validate_dict_or_none,
               'type:dict_or_empty': validate_dict_or_empty,
               'type:dict_or_nodata': validate_dict_or_nodata,
+              'type:ethertype': validate_ethertype,
               'type:fixed_ips': validate_fixed_ips,
               'type:hostroutes': validate_hostroutes,
               'type:ip_address': validate_ip_address,
