@@ -76,7 +76,8 @@ class PlacementAPIClient(object):
         self._target_version = _get_version(openstack_api_version)
         self._conf = conf
         self._ks_filter = {'service_type': 'placement',
-                           'region_name': self._conf.placement.region_name}
+                           'region_name': self._conf.placement.region_name,
+                           'interface': self._conf.placement.endpoint_type}
         self._api_version_header = {API_VERSION_REQUEST_HEADER:
                                     self._openstack_api_version}
         self._client = None
