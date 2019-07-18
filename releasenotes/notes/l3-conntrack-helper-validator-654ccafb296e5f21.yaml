@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Fixes an issue in the ``l3-conntrack-helper`` API definition. The
+    validation for the ``helper`` field passed a string validation
+    method instead of the maximum length of the string. This caused a
+    TypeError when running under python3.
+

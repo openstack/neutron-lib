@@ -15,7 +15,6 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
-from neutron_lib.api import validators
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 
@@ -102,7 +101,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                    'is_filter': True},
             HELPER: {'allow_post': True, 'allow_put': True,
                      'convert_to': converters.convert_to_string,
-                     'validate': {'type:string': validators.validate_string},
+                     'validate': {'type:string': 64},
                      'is_visible': True,
                      'is_sort_key': True,
                      'is_filter': True},
