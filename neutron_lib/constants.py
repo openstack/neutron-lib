@@ -563,6 +563,9 @@ IP_ALLOWED_VERSIONS = [IP_VERSION_4, IP_VERSION_6]
 PORT_RANGE_MIN = 1
 PORT_RANGE_MAX = 65535
 
+ETHERTYPE_MIN = 0
+ETHERTYPE_MAX = 65535
+
 DHCPV6_CLIENT_PORT = 546
 
 # Configuration values for accept_ra sysctl, copied from linux kernel

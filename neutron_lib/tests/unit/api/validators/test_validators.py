@@ -1107,6 +1107,50 @@ class TestAttributeValidation(base.BaseTestCase):
         ]
         self.assertIsNone(validators.validate_subports(body))
 
+    @mock.patch('oslo_config.cfg.CONF')
+    def test_validate_ethertype_valid_string(self, CONF):
+        CONF.sg_filter_ethertypes = False
+        self.assertIsNone(validators.validate_ethertype('IPv4'))
+        self.assertIsNone(validators.validate_ethertype('IPv6'))
+
+    @mock.patch('oslo_config.cfg.CONF')
+    def test_validate_ethertype_invalid_string(self, CONF):
+        CONF.sg_filter_ethertypes = False
+        self.assertEqual(('Ethertype 0x4008 is not a valid ethertype, must be '
+                          'one of IPv4,IPv6.'),
+                         validators.validate_ethertype('0x4008'))
+
+    @mock.patch('oslo_config.cfg.CONF')
+    def test_validate_ethertype_extended_valid_string(self, CONF):
+        CONF.sg_filter_ethertypes = True
+        self.assertIsNone(validators.validate_ethertype('0x4008'))
+
+    @mock.patch('oslo_config.cfg.CONF')
+    def test_validate_ethertype_extended_valid_hexint(self, CONF):
+        CONF.sg_filter_ethertypes = True
+        self.assertIsNone(validators.validate_ethertype(0x4008))
+
+    @mock.patch('oslo_config.cfg.CONF')
+    def test_validate_ethertype_extended_invalid_negative(self, CONF):
+        CONF.sg_filter_ethertypes = True
+        self.assertEqual(("Ethertype -16392 is not a two octet "
+                          "hexadecimal number."),
+                         validators.validate_ethertype('-0x4008'))
+
+    @mock.patch('oslo_config.cfg.CONF')
+    def test_validate_ethertype_extended_invalid_nonhex(self, CONF):
+        CONF.sg_filter_ethertypes = True
+        self.assertEqual(("Ethertype invalid is not a two octet "
+                          "hexadecimal number."),
+                         validators.validate_ethertype('invalid'))
+
+    @mock.patch('oslo_config.cfg.CONF')
+    def test_validate_ethertype_extended_invalid_toobig(self, CONF):
+        CONF.sg_filter_ethertypes = True
+        self.assertEqual(("Ethertype 3735928559 is not a two octet "
+                          "hexadecimal number."),
+                         validators.validate_ethertype('0xdeadbeef'))
+
 
 class TestValidateIPSubnetNone(base.BaseTestCase):
 

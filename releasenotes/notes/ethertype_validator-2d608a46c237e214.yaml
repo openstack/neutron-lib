@@ -1,0 +1,5 @@
+---
+features:
+  - A new API validation type ``type:ethertype`` has been added and validates
+    ethertypes either as a valid two byte octet or as 'IPv4' and 'IPv6' based on
+    the sg_filter_ethertypes configuration setting.
