@@ -37,8 +37,9 @@ API extensions consist of the following high-level constructs:
   ``neutron_lib.api.definitions`` package.
 - API reference documenting the APIs/resources added/modified by the extension.
   This documentation is in ``rst`` format and is used to generate the
-  `openstack API reference <https://developer.openstack.org/api-ref/networking/
-  v2/>`_. The API reference lives under the ``api-ref/source/v2``
+  `OpenStack Networking API reference
+  <https://docs.openstack.org/api-ref/network/>`_.
+  The API reference lives under the ``api-ref/source/v2``
   directory of the ``neutron-lib`` project repository.
 - An extension descriptor class that must be defined in an extension directory
   for ``neutron`` or other sub-project that supports extensions. This concrete
