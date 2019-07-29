@@ -145,6 +145,15 @@ admin_state_up=True and shared=True and named ``foobar`` or ``bizbaz``:
 
     GET /v2.0/networks?name=foobar&name=bizbaz&admin_state_up=True&shared=True
 
+List of resources is supported in GET requests. For example, if you want the
+information of two specific ports that ``id`` is ``port_id_A`` or ``port_id_B``:
+
+.. code::
+
+    GET /v2.0/ports?id=port_id_A&id=port_id_B
+
+It treats ID filters as list and return ports with those 2 IDs.
+
 Starting from Rocky release, the Networking API might support filtering
 attributes with empty value. For example, the request below lists all ports
 that have ``device_id`` attribute with empty value (which are unbound ports).
