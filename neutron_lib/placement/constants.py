@@ -22,7 +22,7 @@ CLASS_NET_BW_INGRESS_KBPS = 'NET_BW_IGR_KILOBIT_PER_SEC'
 
 # Optionally reported inventory parameters. Mandatory parameters like 'total'
 # are left out intentionally. See also:
-# https://developer.openstack.org/api-ref/placement
+# https://docs.openstack.org/api-ref/placement
 #        /#update-resource-provider-inventory
 INVENTORY_OPTIONS = set([
     'allocation_ratio',
