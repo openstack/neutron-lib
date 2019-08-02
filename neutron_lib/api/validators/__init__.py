@@ -16,6 +16,7 @@ import inspect
 import re
 
 import netaddr
+from os_ken.lib.packet import ether_types
 from oslo_config import cfg
 from oslo_log import log as logging
 from oslo_utils import netutils
@@ -1126,11 +1127,26 @@ def validate_subnet_service_types(service_types, valid_values=None):
 def validate_ethertype(ethertype, valid_values=None):
     """Validates ethertype is a valid ethertype.
 
-    :param ethertype: Ethertype to validate
+    :param ethertype: Ethertype to validate.
     :returns: None if data is a valid ethertype.  Otherwise a human-readable
         message indicating that the data is not a valid ethertype.
     """
+
     if cfg.CONF.sg_filter_ethertypes:
+        os_ken_ethertypes = ether_types.__dict__
+        try:
+            # Use the ethertype constants from os_ken with the special
+            # exception of 'IPv4', which appears as 'ETH_TYPE_IP' in os_ken.
+            # Be case-insensitive.
+            ethertype_str = str(ethertype).upper()
+            if ethertype_str == "IPV4":
+                ethertype_str = "IP"
+            ethertype_name = 'ETH_TYPE_' + ethertype_str
+            if ethertype_name in os_ken_ethertypes:
+                ethertype = os_ken_ethertypes[ethertype_name]
+        except TypeError:
+            # Value of ethertype cannot be coerced into a string, like None
+            pass
         try:
             if isinstance(ethertype, six.string_types):
                 ethertype = int(ethertype, 16)
@@ -1141,7 +1157,7 @@ def validate_ethertype(ethertype, valid_values=None):
         except ValueError:
             pass
         msg = _("Ethertype %s is not a two octet hexadecimal "
-                "number.") % ethertype
+                "number or ethertype name.") % ethertype
         LOG.debug(msg)
         return msg
     else:

@@ -37,6 +37,7 @@ netifaces==0.10.4
 openstackdocstheme==1.18.1
 os-api-ref==1.4.0
 os-client-config==1.28.0
+os-ken==0.3.0
 os-traits==0.9.0
 oslo.concurrency==3.26.0
 oslo.config==5.2.0
