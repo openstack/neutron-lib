@@ -45,7 +45,9 @@ Enjoy!
    user/index
    contributor/index
 
-.. toctree::
-   :maxdepth: 1
+.. only:: html
 
-   reference/index
+   .. toctree::
+      :maxdepth: 1
+
+      reference/index
