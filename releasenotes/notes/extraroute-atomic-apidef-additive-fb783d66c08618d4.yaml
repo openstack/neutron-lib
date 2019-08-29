@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    The ``extraroute-atomic`` api-def's ACTION_MAP is changed so we add the
+    new member actions (``add_extraroutes`` and ``remove_extraroutes``) while
+    we also keep the ``router`` extension's member actions
+    (``add_router_interface`` and ``remove_router_interface``).

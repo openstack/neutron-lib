@@ -27,12 +27,11 @@ RESOURCE_ATTRIBUTE_MAP = {
     l3.ROUTERS: {}
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {
-    l3.ROUTER: {
-        'add_extraroutes': 'PUT',
-        'remove_extraroutes': 'PUT',
-    }
-}
+ACTION_MAP = l3.ACTION_MAP
+ACTION_MAP[l3.ROUTER].update({
+    'add_extraroutes': 'PUT',
+    'remove_extraroutes': 'PUT',
+})
 REQUIRED_EXTENSIONS = [l3.ALIAS, extraroute.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}
