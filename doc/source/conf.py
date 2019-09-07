@@ -207,10 +207,10 @@ html_last_updated_fmt = '%Y-%m-%d %H:%M'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author,
 # documentclass [howto/manual]).
-# latex_documents = [
-#     ('index', 'NeutronLib.tex', u'Neutron Library Documentation',
-#      u'Neutron development team', 'manual'),
-# ]
+latex_documents = [
+    ('index', 'doc-neutron-lib.tex', u'Neutron Library Documentation',
+     u'Neutron development team', 'manual'),
+]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
@@ -229,6 +229,13 @@ html_last_updated_fmt = '%Y-%m-%d %H:%M'
 # If false, no module index is generated.
 #latex_use_modindex = True
 
+latex_elements = {
+    'makeindex': '',
+    'printindex': '',
+    'preamble': r'\setcounter{tocdepth}{3}',
+}
+
+
 # -- Options for openstackdocstheme -------------------------------------------
 repository_name = 'openstack/neutron-lib'
 bug_project = 'neutron'
@@ -236,7 +243,7 @@ bug_tag = 'doc'
 
 linkcheck_anchors_ignore = [
     # skip gerrit anchors
-    '\/q\/.*',
-    'q\,.*',
-    '\/c\/.*'
+    r'\/q\/.*',
+    r'q\,.*',
+    r'\/c\/.*'
 ]
