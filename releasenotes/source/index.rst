@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   train
    stein
    rocky
    queens
