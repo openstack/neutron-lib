@@ -15,6 +15,7 @@
 
 import functools
 import re
+import time
 import uuid
 
 import requests
@@ -86,6 +87,7 @@ class NoAuthClient(object):
         # TODO(lajoskatona): use perhaps http_connect_timeout from
         # keystone_authtoken group
         self.timeout = 5
+        self.retries = 2
 
     def request(self, url, method, body=None, headers=None, **kwargs):
         headers = headers or {}
@@ -98,20 +100,28 @@ class NoAuthClient(object):
         # jsonification again, so better to create the json here and give it
         # to requests with the data parameter.
         body = jsonutils.dumps(body, cls=UUIDEncoder)
-        try:
-            resp = requests.request(
-                method,
-                url,
-                data=body,
-                headers=headers,
-                verify=False,
-                timeout=self.timeout,
-                **kwargs)
-            return resp
+        for i in range(self.retries):
+            try:
+                resp = requests.request(
+                    method,
+                    url,
+                    data=body,
+                    headers=headers,
+                    verify=False,
+                    timeout=self.timeout,
+                    **kwargs)
+                return resp
+            except requests.Timeout:
+                LOG.exception('requests Timeout, let\'s retry it...')
+            except requests.ConnectionError:
+                LOG.exception('Connection Error appeared')
+            except requests.RequestException as e:
+                LOG.exception('Some really weird thing happened, let\'s '
+                              'retry it')
+            time.sleep(self.timeout)
         # Note(lajoskatona): requests raise ConnectionError, but
         # PlacementReportPlugin expects keystonauth1 HttpError.
-        except requests.ConnectionError:
-            raise ks_exc.HttpError
+        raise ks_exc.HttpError
 
     def get(self, url, endpoint_filter, **kwargs):
         return self.request('%s%s' % (self.url, url), 'GET', **kwargs)
