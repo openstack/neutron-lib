@@ -1,7 +1,7 @@
 {
     "service_profile": {
         "enabled": false,
-        "driver": "neutron_lbaas.drivers.octavia.driver.OctaviaDriver",
+        "driver": "neutron.services.vpn.device_drivers.ipsec.OpenSwanDriver",
         "description": "New description",
         "metainfo": "{'new': 'info'}"
     }

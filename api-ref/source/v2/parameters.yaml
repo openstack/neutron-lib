@@ -127,12 +127,6 @@ floatingip-id-path:
   in: path
   required: true
   type: string
-healthmonitor_id-path:
-  description: |
-    The ID for the health monitor.
-  in: path
-  required: true
-  type: string
 ikepolicy_id-path:
   description: |
     The ID of the IKE policy.
@@ -151,18 +145,6 @@ ipsecpolicy_id-path:
   in: path
   required: true
   type: string
-listener-id-path:
-  description: |
-    The ID of the listener.
-  in: path
-  required: true
-  type: string
-loadbalancer-id-path:
-  description: |
-    The ID of the load balancer.
-  in: path
-  required: true
-  type: string
 log_id-path:
   description: |
     The ID of the log resource.
@@ -172,12 +154,6 @@ log_id-path:
 logging_resource_id:
   description: |
     The ID of the logging resource.
-  in: path
-  required: true
-  type: string
-member_id-path:
-  description: |
-    The ID for the member.
   in: path
   required: true
   type: string
@@ -202,18 +178,6 @@ network_id-path:
 network_segment_range_id-path:
   description: |
     The ID of the network segment range.
-  in: path
-  required: true
-  type: string
-pool_id-path:
-  description: |
-    The ID for the pool.
-  in: path
-  required: true
-  type: string
-pool_id-request:
-  description: |
-    The ID for the pool.
   in: path
   required: true
   type: string
@@ -2079,21 +2043,6 @@ connection_id-body-response:
   in: body
   required: false
   type: string
-connection_limit:
-  description: |
-    The maximum number of connections permitted for
-    this load balancer. Default is infinite.
-  in: body
-  required: false
-  type: integer
-connection_limit-response:
-  description: |
-    The maximum number of connections allowed for the
-    VIP. Value is ``-1`` if the limit is not set. Default
-    is infinite.
-  in: body
-  required: true
-  type: integer
 conntrack_helper:
   description: |
     A router ``conntrack helper`` object.
@@ -2175,20 +2124,6 @@ default:
   in: body
   required: true
   type: boolean
-default_pool_id:
-  description: |
-    The ID of default pool. Must have compatible
-    protocol with listener.
-  in: body
-  required: false
-  type: string
-default_pool_id-response:
-  description: |
-    The ID of default pool. Must have compatible
-    protocol with listener.
-  in: body
-  required: true
-  type: string
 default_prefixlen:
   description: |
     The size of the prefix to allocate when the
@@ -2208,25 +2143,6 @@ default_quota:
     applied.
   in: body
   required: false
-  type: integer
-default_tls_container_ref:
-  description: |
-    A reference to a container of TLS secrets.
-  in: body
-  required: false
-  type: string
-default_tls_container_ref-response:
-  description: |
-    A reference to a container of TLS secrets.
-  in: body
-  required: true
-  type: string
-delay:
-  description: |
-    The time, in seconds, between sending probes to
-    members.
-  in: body
-  required: true
   type: integer
 description:
   description: |
@@ -2372,13 +2288,6 @@ dpd:
   in: body
   required: false
   type: object
-driver:
-  description: |
-    Provider driver to use for this profile. Example:
-    ``neutron_lbaas.drivers.octavia.driver.OctaviaDriver``
-  in: body
-  required: false
-  type: string
 dscp_mark:
   description: |
     The DSCP mark value.
@@ -3219,7 +3128,7 @@ flavor-service_profiles:
   type: array
 flavor-service_type:
   description: |
-    Service type for the flavor. Example: LOADBALANCERV2.
+    Service type for the flavor. Example: FIREWALL.
   in: body
   required: true
   type: string
@@ -3378,38 +3287,6 @@ fw_event-request-put:
   in: body
   required: false
   type: string
-healthmonitor:
-  description: |
-    A ``healthmonitor`` object.
-  in: body
-  required: true
-  type: object
-healthmonitor-id:
-  description: |
-    The UUID of the health monitor.
-  in: body
-  required: false
-  type: string
-healthmonitors-obj:
-  description: |
-    A list of ``healthmonitor`` objects.
-  in: body
-  required: true
-  type: array
-healthmonitors-response:
-  description: |
-    List of health monitors that are associated with the pool.
-  in: body
-  required: true
-  type: array
-healthmonitors_status:
-  description: |
-    A list of ``healthmonitors_status`` objects,
-    one per healthmonitor that contains a ``monitor_id``,
-    ``status`` and ``status_description``
-  in: body
-  required: true
-  type: array
 heartbeat_timestamp:
   description: |
     Time at which the last heartbeat was received.
@@ -3419,12 +3296,6 @@ heartbeat_timestamp:
 host:
   description: |
     The hostname of the system the agent is running on.
-  in: body
-  required: true
-  type: string
-http_method:
-  description: |
-    The HTTP method that the monitor uses for requests.
   in: body
   required: true
   type: string
@@ -3770,17 +3641,6 @@ l2_adjacency:
   in: body
   required: true
   type: boolean
-lb_algorithm:
-  description: |
-    The load-balancer algorithm, which is round-robin
-    (``ROUND_ROBIN``), least-connections (``LEAST_CONNECTIONS``),
-    source IP (``SOURCE_IP``), and so on, that is used to distribute
-    traffic to the pool members. This value, which must be supported,
-    is dependent on the load-balancer provider. The round-robin
-    algorithm must be supported.
-  in: body
-  required: true
-  type: string
 lifetime:
   description: |
     The lifetime of the security association. The
@@ -3793,73 +3653,6 @@ lifetime:
 links:
   description: |
     The share links.
-  in: body
-  required: true
-  type: array
-listener:
-  description: |
-    A ``listener`` object.
-  in: body
-  required: true
-  type: object
-listener-id-response:
-  description: |
-    The ID of the listener.
-  in: body
-  required: true
-  type: string
-listener_id:
-  description: |
-    The ID of the listener.
-  in: body
-  required: false
-  type: string
-listeners:
-  description: |
-    The associated listeners, if any.
-  in: body
-  required: true
-  type: array
-listeners-response:
-  description: |
-    A list of ``listeners`` objects.
-  in: body
-  required: true
-  type: array
-loadbalancer:
-  description: |
-    A ``loadbalancer`` object.
-  in: body
-  required: true
-  type: object
-loadbalancer-id:
-  description: |
-    The ID of the load balancer.
-  in: body
-  required: true
-  type: string
-loadbalancer-provider:
-  description: |
-    Provider name of the load balancer service.
-  in: body
-  required: true
-  type: string
-loadbalancer-provider-request:
-  description: |
-    Provider name of the load balancer service.
-  in: body
-  required: false
-  type: string
-loadbalancer-statuses:
-  description: |
-    The status tree of a load balancer object contains all
-    provisioning and operating statuses for its children.
-  in: body
-  required: true
-  type: object
-loadbalancers:
-  description: |
-    A list of load balancer objects.
   in: body
   required: true
   type: array
@@ -4060,56 +3853,6 @@ max_prefixlen:
   in: body
   required: false
   type: integer
-max_retries:
-  description: |
-    The number of allowed connection failures before
-    changing the status of the member to ``INACTIVE``. A valid value
-    is from 1 to 10.
-  in: body
-  required: true
-  type: integer
-member:
-  description: |
-    A ``member`` object.
-  in: body
-  required: true
-  type: object
-member-id-response:
-  description: |
-    The ID of the member.
-  in: body
-  required: true
-  type: string
-member-weight:
-  description: |
-    The weight of a member determines the portion of
-    requests or connections it services compared to the other members
-    of the pool. For example, a member with a weight of 10 receives five
-    times as much traffic as a member with a weight of 2.
-    A value of 0 means the member does not participate in
-    load- balancing but still accepts persistent connections. A valid
-    value is from 0 to 256.
-  in: body
-  required: true
-  type: integer
-member-weight-request:
-  description: |
-    The weight of a member determines the portion of
-    requests or connections it services compared to the other members
-    of the pool. For example, a member with a weight of 10 receives five
-    times as much traffic as a member with a weight of 2.
-    A value of 0 means the member does not participate in
-    load- balancing but still accepts persistent connections. A valid
-    value is from 0 to 256. The default is 1.
-  in: body
-  required: false
-  type: integer
-members:
-  description: |
-    The list of members that belong to the pool.
-  in: body
-  required: true
-  type: array
 metainfo:
   description: |
     JSON-formatted meta information.
@@ -4496,13 +4239,6 @@ object_type:
   in: body
   required: true
   type: string
-operating_status:
-  description: |
-    The operating status of the load balancer.  This
-    value is ``ONLINE`` or ``OFFLINE``.
-  in: body
-  required: true
-  type: string
 peer_address:
   description: |
     The peer gateway public IPv4 or IPv6 address or
@@ -4570,65 +4306,6 @@ policy:
   in: body
   required: true
   type: object
-pool:
-  description: |
-    A ``pool`` object.
-  in: body
-  required: true
-  type: object
-pool-id-response:
-  description: |
-    The ID of the pool.
-  in: body
-  required: true
-  type: string
-pool-session_persistence:
-  description: |
-    A JSON object specifying the session persistence for the pool
-    or ``null`` for no session persistence. Default is ``null``.
-  in: body
-  required: true
-  type: object
-pool-session_persistence-request:
-  description: |
-    A JSON object specifying the session persistence for the pool
-    or ``null`` for no session persistence. Default is ``null``.
-  in: body
-  required: false
-  type: object
-pool-status:
-  description: |
-    The status of the pool. Indicates whether the
-    pool is operational.
-  in: body
-  required: true
-  type: string
-pool-subnet_id:
-  description: |
-    The subnet on which the members of the pool will be located.
-  in: body
-  required: true
-  type: string
-pool-subnet_id-request:
-  description: |
-    If you omit this parameter, LBaaS uses the
-    ``vip_subnet_id`` parameter value for the subnet UUID.
-  in: body
-  required: false
-  type: string
-pools:
-  description: |
-    List of pools that are associated with the health
-    monitor.
-  in: body
-  required: true
-  type: array
-pools-obj:
-  description: |
-    A list of ``pool`` objects.
-  in: body
-  required: true
-  type: array
 port:
   description: |
     A ``port`` object.
@@ -4923,13 +4600,6 @@ provider:segmentation_id-request:
   in: body
   required: false
   type: integer
-provisioning_status:
-  description: |
-    The provisioning status of the load balancer.
-    This value is ``ACTIVE``, ``PENDING_CREATE`` or ``ERROR``.
-  in: body
-  required: true
-  type: string
 psk:
   description: |
     The pre-shared key. A valid value is any string.
@@ -5809,15 +5479,13 @@ service_profile-description-request:
   type: string
 service_profile-driver:
   description: |
-    Provider driver to use for this profile. Example:
-    ``neutron_lbaas.drivers.octavia.driver.OctaviaDriver``
+    Provider driver to use for this profile.
   in: body
   required: true
   type: string
 service_profile-driver-request:
   description: |
-    Provider driver to use for this profile. Example:
-    ``neutron_lbaas.drivers.octavia.driver.OctaviaDriver``
+    Provider driver to use for this profile.
   in: body
   required: false
   type: string
@@ -5869,8 +5537,8 @@ service_providers:
 service_type:
   description: |
     The service type, which is ``CORE``, ``DUMMY``,
-    ``FIREWALL``, ``FLAVORS``, ``L3_ROUTER_NAT``, ``LOADBALANCER``,
-    ``LOADBALANCERV2``, ``METERING``, ``QOS``, or ``VPN``.
+    ``FIREWALL``, ``FLAVORS``, ``L3_ROUTER_NAT``, ``METERING``, ``QOS``,
+    or ``VPN``.
   in: body
   required: true
   type: string
@@ -5887,18 +5555,6 @@ shared-response:
   in: body
   required: true
   type: boolean
-sni_container_refs:
-  description: |
-    A list of references to TLS secrets.
-  in: body
-  required: false
-  type: array
-sni_container_refs-response:
-  description: |
-    A list of references to TLS secrets.
-  in: body
-  required: true
-  type: array
 source_firewall_group_id-body-optional:
   description: |
     The ID  of the remote source firewall group.
@@ -6236,14 +5892,6 @@ target_tenant:
   in: body
   required: true
   type: string
-timeout:
-  description: |
-    The maximum time, in seconds, that a monitor
-    waits to connect before it times out. This value must be less than
-    the delay value.
-  in: body
-  required: true
-  type: integer
 topic:
   description: |
     The name of AMQP topic the agent is listening on such as
@@ -6284,14 +5932,6 @@ trunk_port_id:
   in: body
   required: true
   type: string
-type:
-  description: |
-    The type of probe sent by the load balancer to
-    verify the member state. A valid value is ``PING``, ``TCP``,
-    ``HTTP``, or ``HTTPS``.
-  in: body
-  required: true
-  type: string
 units:
   description: |
     The units for the lifetime of the security
@@ -6328,22 +5968,6 @@ uplink_status_propagation-request:
   in: body
   required: false
   type: boolean
-url_path:
-  description: |
-    The HTTP path of the request sent by the monitor
-    to test the health of a member. A valid value is a string that
-    begins with a forward slash (``/``).
-  in: body
-  required: false
-  type: string
-url_path-response:
-  description: |
-    The HTTP path of the request sent by the monitor
-    to test the health of a member. Must be a string that begins with
-    a forward slash (``/``). The default is ``/``.
-  in: body
-  required: true
-  type: string
 use_default_subnetpool:
   description: |
     Whether to allocate this subnet from the default subnet pool.
@@ -6402,41 +6026,6 @@ versions:
   in: body
   required: true
   type: array
-vip:
-  description: |
-    A ``vip`` object.
-  in: body
-  required: true
-  type: object
-vip_address:
-  description: |
-    The IP address of the VIP .
-  format: ipv4
-  in: body
-  required: true
-  type: string
-vip_id:
-  description: |
-    The ID of the virtual IP (VIP) address.
-  in: body
-  required: true
-  type: string
-vip_network_id:
-  description: |
-    The ID of the network on which to allocate
-    the virtual IP (VIP) address. This option is
-    required if no vip_subnet_id is given.
-  in: body
-  required: false
-  type: string
-vip_subnet_id:
-  description: |
-    The ID of the subnet on which to allocate the
-    virtual IP (VIP) address. This option is required
-    if no vip_network_id is given.
-  in: body
-  required: false
-  type: string
 vlan_transparent:
   description: |
     Indicates the VLAN transparency mode of the network, which is

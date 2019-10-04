@@ -1,6 +1,6 @@
 {
     "flavor": {
-        "service_type": "LOADBALANCERV2",
+        "service_type": "FIREWALL",
         "enabled": true,
         "name": "dummy",
         "description": "Dummy flavor"

@@ -84,9 +84,7 @@ parameter. The corresponding service plugin must have been
 activated as part of the configuration.
 Check `Service providers <#list-service-providers>`__ for how to see
 currently loaded service types. Additionally the service plugin
-needs to support the use of flavors. For example, the LOADBALANCERV2
-service type using the LBaaSv2 API currently supports Neutron service
-flavors.
+needs to support the use of flavors.
 
 Creation currently limited to administrators. Other users will
 receive a ``Forbidden 403`` response code with a response body

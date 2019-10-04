@@ -3,14 +3,14 @@
         {
             "id": "4e5b9191-ffbe-4f7a-b112-2db98232fd32",
             "enabled": true,
-            "driver": "neutron_lbaas.drivers.octavia.driver.OctaviaDriver",
+            "driver": "neutron.services.vpn.device_drivers.ipsec.OpenSwanDriver",
             "description": "",
             "metainfo": "{}"
         },
         {
             "id": "684322c5-703a-48a2-8138-34b99942a7ef",
             "enabled": true,
-            "driver": "neutron_lbaas.drivers.octavia.driver.OctaviaDriver",
+            "driver": "neutron.services.vpn.device_drivers.ipsec.OpenSwanDriver",
             "description": "",
             "metainfo": "{}"
         }
