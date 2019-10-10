@@ -10,9 +10,20 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import gettext
+
 import pbr.version
+import six
 
 from neutron_lib.db import api  # noqa
+
+
+if six.PY2:
+    # pylint: disable=unexpected-keyword-arg
+    gettext.install('neutron_lib', unicode=1)
+else:
+    gettext.install('neutron_lib')
+
 
 # NOTE(boden): neutron_lib.db.api is imported to ensure the ORM event listeners
 # are registered upon importing any neutron-lib module. For more details see
