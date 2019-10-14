@@ -60,13 +60,16 @@ Quality of Service
 ###########################################
 Load Balancer as a Service 2.0 (DEPRECATED)
 ###########################################
+
 Neutron-lbaas is deprecated as of Queens. Load-Balancer-as-a-Service
 (LBaaS v2) is now provided by the `Octavia project
 <https://docs.openstack.org/octavia/latest/>`_. The `Octavia API v2
 <https://developer.openstack.org/api-ref/load-balancer/v2/index.html>`_ is
 backwards compatible with the neutron-lbaas implementation of the LBaaS 2.0
 API.
+
 Please see the FAQ at https://wiki.openstack.org/wiki/Neutron/LBaaS/Deprecation
+
 #####################################
 Logging Resource (networking-midonet)
 #####################################
