@@ -440,11 +440,6 @@ class ExternalIpAddressExhausted(BadRequest):
                 "network %(net_id)s.")
 
 
-class TooManyExternalNetworks(NeutronException):
-    """An error due to more than one external networks existing."""
-    message = _("More than one external network exists.")
-
-
 class InvalidConfigurationOption(NeutronException):
     """An error due to an invalid configuration option value.
 
