@@ -102,6 +102,7 @@ KNOWN_EXTENSIONS = (
     'fip-port-details',
     'flavors',
     'floating-ip-port-forwarding',
+    'floating-ip-port-forwarding-description',
     'floatingip-autodelete-internal',
     'floatingip-pools',
     'ip-substring-filtering',

@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add a new field ``description`` in floating ip portforwardings that
+    can be used to help users to manage/find easily theirs rules.

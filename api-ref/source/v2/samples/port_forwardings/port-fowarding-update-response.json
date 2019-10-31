@@ -5,6 +5,7 @@
     "internal_port": 37,
     "internal_port_id": "99889dc2-19a7-4edb-b9d0-d2ace8d1e144",
     "external_port": 1960,
+    "description": "Some description",
     "id": "725ade3c-9760-4880-8080-8fc2dbab9acc"
   }
 }
