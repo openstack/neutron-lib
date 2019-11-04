@@ -13,7 +13,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
-from neutron_lib.api.definitions import firewall
+from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.db import constants as db_const
 
 
@@ -132,7 +132,7 @@ ACTION_STATUS = {
 
 # The list of required extensions.
 REQUIRED_EXTENSIONS = [
-    firewall.ALIAS,
+    firewall_v2.ALIAS,
 ]
 
 # The list of optional extensions.
