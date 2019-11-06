@@ -40,6 +40,7 @@
             "tags": ["tag1,tag2"],
             "tenant_id": "",
             "updated_at": "2016-03-08T20:19:41",
+            "qos_network_policy_id": "174dd0c1-a4eb-49d4-a807-ae80246d82f4",
             "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
             "port_security_enabled": false,
             "uplink_status_propagation": false
@@ -84,6 +85,7 @@
             "tags": ["tag1,tag2"],
             "tenant_id": "d397de8a63f341818f198abb0966f6f3",
             "updated_at": "2016-03-08T20:19:41",
+            "qos_network_policy_id": null,
             "qos_policy_id": null,
             "port_security_enabled": false,
             "uplink_status_propagation": false

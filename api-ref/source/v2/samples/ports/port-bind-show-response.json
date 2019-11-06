@@ -49,6 +49,7 @@
         "tags": ["tag1,tag2"],
         "tenant_id": "7e02058126cc4950b75f9970368ba177",
         "updated_at": "2016-03-08T20:19:41",
+        "qos_network_policy_id": "174dd0c1-a4eb-49d4-a807-ae80246d82f4",
         "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
         "resource_request": {
             "required": ["CUSTOM_PHYSNET_PUBLIC", "CUSTOM_VNIC_TYPE_NORMAL"],

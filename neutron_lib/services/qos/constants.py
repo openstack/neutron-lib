@@ -29,6 +29,7 @@ DIRECTION = "direction"
 DSCP_MARK = "dscp_mark"
 
 QOS_POLICY_ID = 'qos_policy_id'
+QOS_NETWORK_POLICY_ID = 'qos_network_policy_id'
 
 QOS_PLUGIN = 'qos_plugin'
 

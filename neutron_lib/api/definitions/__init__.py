@@ -83,6 +83,7 @@ from neutron_lib.api.definitions import qos_bw_limit_direction
 from neutron_lib.api.definitions import qos_bw_minimum_ingress
 from neutron_lib.api.definitions import qos_default
 from neutron_lib.api.definitions import qos_gateway_ip
+from neutron_lib.api.definitions import qos_port_network_policy
 from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import qos_rules_alias
 from neutron_lib.api.definitions import rbac_security_groups
@@ -190,6 +191,7 @@ _ALL_API_DEFINITIONS = {
     qos_bw_minimum_ingress,
     qos_default,
     qos_gateway_ip,
+    qos_port_network_policy,
     qos_rule_type_details,
     qos_rules_alias,
     rbac_security_groups,

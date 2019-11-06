@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add field ``qos_port_network_policy_id`` to the ``port`` definition. This
+    read only parameter contains the QoS policy of the network where the port
+    is plugged.
