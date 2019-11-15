@@ -133,12 +133,6 @@ ikepolicy_id-path:
   in: path
   required: true
   type: string
-interconnection-id-path:
-  description: |
-      The ID of the interconnection.
-  in: path
-  required: true
-  type: string
 ipsecpolicy_id-path:
   description: |
     The ID of the IPsec policy.
@@ -3383,104 +3377,6 @@ insert_before:
   in: body
   required: false
   type: string
-interconnection:
-  description: |
-    An ``interconnection`` object.
-  in: body
-  required: true
-  type: object
-interconnection-id-body:
-  description: |
-   The ID of the ``interconnection``.
-  in: body
-  required: true
-  type: string
-interconnection-local_parameters:
-  description: |
-   Parameters specific to local interconnection mechanism, represented by a
-   dict with a type (``bgpvpn``, ``vxlan``, etc...) key and corresponding
-   identifier (BGPVPN RT, VNI, etc...) value.
-  in: body
-  required: false
-  type: dict
-interconnection-local_resource_id:
-  description: |
-   The ID of the local Neutron resource (network or router) to interconnect
-   with remote Neutron resource.
-  in: body
-  required: true
-  type: string
-interconnection-name:
-  description: |
-      Name of the ``interconnection``.
-  in: body
-  required: false
-  type: string
-interconnection-name-required:
-  description: |
-      Name of the ``interconnection``.
-  in: body
-  required: true
-  type: string
-interconnection-remote_interconnection_id:
-  description: |
-   ID of the symmetric ``interconnection`` exchanged with remote Neutron.
-  in: body
-  required: true
-  type: string
-interconnection-remote_keystone:
-  description: |
-   ``auth_url`` of the remote Keystone service.
-  in: body
-  required: false
-  type: string
-interconnection-remote_parameters:
-  description: |
-   Parameters specific to remote interconnection mechanism exchanged with
-   remote Neutron, represented by a dict with a type (``bgpvpn``, ``vxlan``,
-   etc...) key and corresponding identifier (BGPVPN RT, VNI, etc...) value.
-  in: body
-  required: false
-  type: dict
-interconnection-remote_region:
-  description: |
-   Remote region name.
-  in: body
-  required: false
-  type: string
-interconnection-remote_resource_id:
-  description: |
-   The ID of the remote Neutron resource (network or router) to interconnect
-   with local Neutron resource.
-  in: body
-  required: true
-  type: string
-interconnection-state:
-  description: |
-   Indicates the state of the ``interconnection``.
-  in: body
-  required: true
-  type: string
-interconnection-type:
-  description: |
-   Selection of the type of interconnection. Allowed values are ``network_l2``,
-   ``network_l3`` or ``router``. Default is ``network_l3``.
-  in: body
-  required: false
-  type: string
-interconnection-type-required:
-  description: |
-   Selection of the type of interconnection. Allowed values are ``network_l2``,
-   ``network_l3`` or ``router``. Default is ``network_l3``.
-  in: body
-  required: true
-  type: string
-interconnections:
-  description: |
-    A list of ``interconnection`` objects.
-  in: body
-  required: true
-  type: array
 interfaces:
   description: |
     Router interfaces

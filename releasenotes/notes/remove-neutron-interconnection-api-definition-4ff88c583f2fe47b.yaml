@@ -1,0 +1,8 @@
+---
+other:
+  - |
+    Removes the definition of ``interconnection`` API extension for
+    neutron-interconnection project.
+    Neutron-interconnection project was removed from Neutron stadium due to lack
+    of activity for long time so there is no need to keep the API definition
+    in the official Neutron's API definitions.
