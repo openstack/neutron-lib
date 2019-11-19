@@ -320,14 +320,6 @@ class TestPlacementAPIClient(base.BaseTestCase):
              'rc_name': RESOURCE_CLASS_NAME},
             expected_body)
 
-    def test_update_resource_inventory_inventory_conflict_exception(self):
-        self.placement_fixture.mock_put.side_effect = ks_exc.Conflict()
-        self.assertRaises(
-            n_exc.PlacementInventoryUpdateConflict,
-            self.placement_api_client.update_resource_provider_inventory,
-            RESOURCE_PROVIDER_UUID, INVENTORY,
-            RESOURCE_CLASS_NAME, resource_provider_generation=1)
-
     def test_update_resource_provider_inventory_not_found(self):
         # Test the resource provider not found case
         self.placement_fixture.mock_put.side_effect = ks_exc.NotFound(
@@ -501,3 +493,208 @@ class TestPlacementAPIClient(base.BaseTestCase):
             self.placement_api_client.delete_resource_class,
             RESOURCE_CLASS_NAME
         )
+
+    def test_update_rp_traits_caller_handles_generation_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = ks_exc.Conflict(
+            response=mock_resp)
+        self.assertRaises(
+            n_exc.PlacementResourceProviderGenerationConflict,
+            self.placement_api_client.update_resource_provider_traits,
+            resource_provider_uuid='resource provider uuid',
+            traits=['trait a', 'trait b'],
+            resource_provider_generation=3,
+        )
+        self.placement_fixture.mock_put.assert_called_once()
+
+    def test_update_rp_traits_callee_handles_generation_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = [
+            ks_exc.Conflict(response=mock_resp),
+            mock.Mock(),
+        ]
+        self.placement_api_client.update_resource_provider_traits(
+            resource_provider_uuid='resource provider uuid',
+            traits=['trait a', 'trait b'],
+            resource_provider_generation=None,
+        )
+        self.assertEqual(2, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_traits_reached_max_tries(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = 10 * [
+            ks_exc.Conflict(response=mock_resp),
+        ]
+        self.assertRaises(
+            n_exc.PlacementResourceProviderGenerationConflict,
+            self.placement_api_client.update_resource_provider_traits,
+            resource_provider_uuid='resource provider uuid',
+            traits=['trait a', 'trait b'],
+            resource_provider_generation=None,
+        )
+        self.assertEqual(10, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_traits_raise_other_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'some_other_code'}]}
+        self.placement_fixture.mock_put.side_effect = [
+            ks_exc.Conflict(response=mock_resp),
+            mock.Mock(),
+        ]
+        self.assertRaises(
+            n_exc.PlacementClientError,
+            self.placement_api_client.update_resource_provider_traits,
+            resource_provider_uuid='resource provider uuid',
+            traits=[],
+            resource_provider_generation=None,
+        )
+        self.assertEqual(1, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_inventory_caller_handles_generation_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = ks_exc.Conflict(
+            response=mock_resp)
+        self.assertRaises(
+            n_exc.PlacementResourceProviderGenerationConflict,
+            self.placement_api_client.update_resource_provider_inventory,
+            resource_provider_uuid='resource provider uuid',
+            inventory={},
+            resource_class='a resource class',
+            resource_provider_generation=3,
+        )
+        self.placement_fixture.mock_put.assert_called_once()
+
+    def test_update_rp_inventory_callee_handles_generation_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = [
+            ks_exc.Conflict(response=mock_resp),
+            mock.Mock(),
+        ]
+        self.placement_api_client.update_resource_provider_inventory(
+            resource_provider_uuid='resource provider uuid',
+            inventory={},
+            resource_class='a resource class',
+            resource_provider_generation=None,
+        )
+        self.assertEqual(2, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_inventory_reached_max_tries(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = 10 * [
+            ks_exc.Conflict(response=mock_resp),
+        ]
+        self.assertRaises(
+            n_exc.PlacementResourceProviderGenerationConflict,
+            self.placement_api_client.update_resource_provider_inventory,
+            resource_provider_uuid='resource provider uuid',
+            inventory={},
+            resource_class='a resource class',
+            resource_provider_generation=None,
+        )
+        self.assertEqual(10, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_inventory_raise_other_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'some_other_code'}]}
+        self.placement_fixture.mock_put.side_effect = [
+            ks_exc.Conflict(response=mock_resp),
+            mock.Mock(),
+        ]
+        self.assertRaises(
+            n_exc.PlacementClientError,
+            self.placement_api_client.update_resource_provider_inventory,
+            resource_provider_uuid='resource provider uuid',
+            inventory={},
+            resource_class='a resource class',
+            resource_provider_generation=None,
+        )
+        self.assertEqual(1, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_inventories_caller_handles_generation_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = ks_exc.Conflict(
+            response=mock_resp)
+        self.assertRaises(
+            n_exc.PlacementResourceProviderGenerationConflict,
+            self.placement_api_client.update_resource_provider_inventories,
+            resource_provider_uuid='resource provider uuid',
+            inventories={},
+            resource_provider_generation=3,
+        )
+        self.placement_fixture.mock_put.assert_called_once()
+
+    def test_update_rp_inventories_callee_handles_generation_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = [
+            ks_exc.Conflict(response=mock_resp),
+            mock.Mock(),
+        ]
+        self.placement_api_client.update_resource_provider_inventories(
+            resource_provider_uuid='resource provider uuid',
+            inventories={},
+            resource_provider_generation=None,
+        )
+        self.assertEqual(2, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_inventories_reached_max_tries(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'placement.concurrent_update'}]}
+        self.placement_fixture.mock_put.side_effect = 10 * [
+            ks_exc.Conflict(response=mock_resp),
+        ]
+        self.assertRaises(
+            n_exc.PlacementResourceProviderGenerationConflict,
+            self.placement_api_client.update_resource_provider_inventories,
+            resource_provider_uuid='resource provider uuid',
+            inventories={},
+            resource_provider_generation=None,
+        )
+        self.assertEqual(10, self.placement_fixture.mock_put.call_count)
+
+    def test_update_rp_inventories_raise_other_conflict(self):
+        mock_resp = mock.Mock()
+        mock_resp.text = ''
+        mock_resp.json = lambda: {
+            'errors': [{'code': 'some_other_code'}]}
+        self.placement_fixture.mock_put.side_effect = [
+            ks_exc.Conflict(response=mock_resp),
+            mock.Mock(),
+        ]
+        self.assertRaises(
+            n_exc.PlacementClientError,
+            self.placement_api_client.update_resource_provider_inventories,
+            resource_provider_uuid='resource provider uuid',
+            inventories={},
+            resource_provider_generation=None,
+        )
+        self.assertEqual(1, self.placement_fixture.mock_put.call_count)

@@ -37,7 +37,9 @@ API_VERSION_REQUEST_HEADER = 'OpenStack-API-Version'
 PLACEMENT_API_WITH_MEMBER_OF = 'placement 1.3'
 PLACEMENT_API_WITH_NESTED_RESOURCES = 'placement 1.14'
 PLACEMENT_API_RETURN_PROVIDER_BODY = 'placement 1.20'
-PLACEMENT_API_LATEST_SUPPORTED = PLACEMENT_API_RETURN_PROVIDER_BODY
+PLACEMENT_API_ERROR_CODE = 'placement 1.23'
+PLACEMENT_API_LATEST_SUPPORTED = PLACEMENT_API_ERROR_CODE
+GENERATION_CONFLICT_RETRIES = 10
 
 
 def _check_placement_api_available(f):
@@ -196,6 +198,46 @@ class PlacementAPIClient(object):
         kwargs = self._extend_header_with_api_version(**kwargs)
         return self._client.put(url, json=data,
                                 endpoint_filter=self._ks_filter, **kwargs)
+
+    def _put_with_retry_for_generation_conflict(
+            self, url, body,
+            resource_provider_uuid,
+            resource_provider_generation=None):
+
+        if resource_provider_generation is None:
+            # If the client's user did not supply a generation to us we dare to
+            # retry without handing the control back to our caller.
+            max_tries = GENERATION_CONFLICT_RETRIES
+        else:
+            # If the client's user supplied a generation to us we don't dare to
+            # retry on her behalf since we don't know her intention.
+            max_tries = 1
+
+        body['resource_provider_generation'] = resource_provider_generation
+
+        for i in range(max_tries):
+            if resource_provider_generation is None:
+                # In the bodies of
+                # PUT /resource_providers/{uuid}/traits
+                # PUT /resource_providers/{uuid}/inventories
+                # PUT /resource_providers/{uuid}/inventories/{resource_class}
+                # resource_provider_generation happens to be at the same place.
+                body['resource_provider_generation'] = \
+                    self.get_resource_provider(
+                        resource_provider_uuid=resource_provider_uuid)[
+                            'generation']
+            try:
+                return self._put(url, body).json()
+            except ks_exc.Conflict as e:
+                if e.response.json()[
+                        'errors'][0]['code'] == 'placement.concurrent_update':
+                    continue
+                else:
+                    raise
+
+        raise n_exc.PlacementResourceProviderGenerationConflict(
+            resource_provider=resource_provider_uuid,
+            generation=body['resource_provider_generation'])
 
     def _delete(self, url, **kwargs):
         kwargs = self._extend_header_with_api_version(**kwargs)
@@ -364,23 +406,19 @@ class PlacementAPIClient(object):
                                                              server side.
         :returns: The updated set of inventory records.
         """
-        if resource_provider_generation is None:
-            resource_provider_generation = self.get_resource_provider(
-                resource_provider_uuid=resource_provider_uuid)['generation']
         url = '/resource_providers/%s/inventories' % resource_provider_uuid
         body = {
             'resource_provider_generation': resource_provider_generation,
             'inventories': inventories
         }
+
         try:
-            return self._put(url, body).json()
+            return self._put_with_retry_for_generation_conflict(
+                url, body, resource_provider_uuid,
+                resource_provider_generation)
         except ks_exc.NotFound:
             raise n_exc.PlacementResourceProviderNotFound(
                 resource_provider=resource_provider_uuid)
-        except ks_exc.Conflict:
-            raise n_exc.PlacementResourceProviderGenerationConflict(
-                resource_provider=resource_provider_uuid,
-                generation=resource_provider_generation)
 
     @_check_placement_api_available
     def delete_resource_provider_inventories(self, resource_provider_uuid):
@@ -470,26 +508,23 @@ class PlacementAPIClient(object):
                                              provider. Optional.
         :raises PlacementResourceNotFound: If the resource provider or the
                                            resource class is not found.
-        :raises PlacementInventoryUpdateConflict: If the resource provider
-                                                  generation does not match
-                                                  with the server side.
+        :raises PlacementResourceProviderGenerationConflict: If the resource
+                                                             provider
+                                                             generation does
+                                                             not match with the
+                                                             server side.
         :returns: The updated inventory of the resource class as a dict.
         """
-        if resource_provider_generation is None:
-            resource_provider_generation = self.get_resource_provider(
-                resource_provider_uuid=resource_provider_uuid)['generation']
         url = '/resource_providers/%s/inventories/%s' % (
             resource_provider_uuid, resource_class)
-        inventory['resource_provider_generation'] = \
-            resource_provider_generation
+        body = inventory
+
         try:
-            return self._put(url, inventory).json()
+            return self._put_with_retry_for_generation_conflict(
+                url, body, resource_provider_uuid,
+                resource_provider_generation)
         except ks_exc.NotFound as e:
             raise n_exc.PlacementResourceNotFound(url=e.url)
-        except ks_exc.Conflict:
-            raise n_exc.PlacementInventoryUpdateConflict(
-                resource_provider=resource_provider_uuid,
-                resource_class=resource_class)
 
     @_check_placement_api_available
     def associate_aggregates(self, resource_provider_uuid, aggregates):
@@ -574,24 +609,32 @@ class PlacementAPIClient(object):
                                        to set the traits
         :param traits: a list of traits.
         :param resource_provider_generation: The generation of the resource
-                                             provider. Optional.
+                                             provider. Optional. If not
+                                             supplied by the caller, handle
+                                             potential generation conflict
+                                             by retrying the call. If supplied
+                                             we assume the caller handles
+                                             generation conflict.
         :raises PlacementResourceProviderNotFound: If the resource provider
                                                    is not found.
         :raises PlacementTraitNotFound: If any of the specified traits are not
                                         valid.
+        :raises PlacementResourceProviderGenerationConflict: For concurrent
+                                                             conflicting
+                                                             updates detected.
         :returns: The new traits of the resource provider together with the
                   resource provider generation.
         """
-        if resource_provider_generation is None:
-            resource_provider_generation = self.get_resource_provider(
-                resource_provider_uuid=resource_provider_uuid)['generation']
         url = '/resource_providers/%s/traits' % (resource_provider_uuid)
         body = {
             'resource_provider_generation': resource_provider_generation,
             'traits': traits
         }
+
         try:
-            return self._put(url, body).json()
+            return self._put_with_retry_for_generation_conflict(
+                url, body, resource_provider_uuid,
+                resource_provider_generation)
         except ks_exc.NotFound:
             raise n_exc.PlacementResourceProviderNotFound(
                 resource_provider=resource_provider_uuid)

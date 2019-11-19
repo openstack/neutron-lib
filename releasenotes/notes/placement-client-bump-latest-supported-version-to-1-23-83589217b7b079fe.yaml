@@ -1,0 +1,9 @@
+---
+other:
+  - |
+    Bump the microversion used by ``PlacementAPIClient``
+    from ``1.20`` to ``1.23`` in order to have access to the
+    ``code`` attribute of JSON error responses (`Placement API changelog
+    <https://docs.openstack.org/placement/latest/placement-api-microversion-history.html#include-code-attribute-in-json-error-responses>`_).
+    Both ``1.20`` and ``1.23`` were released in the ``Rocky`` version
+    of Placement therefore we expect no upgrade impact.
