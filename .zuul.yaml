@@ -4,18 +4,11 @@
       - publish-openstack-docs-pti
       - openstack-cover-jobs
       - openstack-lower-constraints-jobs
-      - openstack-python-jobs
-      - openstack-python3-train-jobs
-      - lib-forward-testing
+      - openstack-python3-ussuri-jobs
       - lib-forward-testing-python3
       - release-notes-jobs-python3
     check:
       jobs:
-        # This job comes from lib-forward-testing template,
-        # but it is limited to 2h there and we want to set
-        # for it 3h timeout
-        - tempest-full:
-            timeout: 10800
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
@@ -23,11 +16,6 @@
             timeout: 10800
     gate:
       jobs:
-        # This job comes from lib-forward-testing template,
-        # but it is limited to 2h there and we want to set
-        # for it 3h timeout
-        - tempest-full:
-            timeout: 10800
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
