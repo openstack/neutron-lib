@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    The API defintion for the ``stateful-security-group`` extension is
+    now available in ``neutron_lib.api.definitions.stateful_security_group``.

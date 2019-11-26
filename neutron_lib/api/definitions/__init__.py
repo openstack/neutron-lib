@@ -96,6 +96,7 @@ from neutron_lib.api.definitions import sfc
 from neutron_lib.api.definitions import sort_key_validation
 from neutron_lib.api.definitions import sorting
 from neutron_lib.api.definitions import standard_attr_segment
+from neutron_lib.api.definitions import stateful_security_group
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_dns_publish_fixed_ip
 from neutron_lib.api.definitions import subnet_onboard
@@ -200,6 +201,7 @@ _ALL_API_DEFINITIONS = {
     sort_key_validation,
     sorting,
     standard_attr_segment,
+    stateful_security_group,
     subnet,
     subnet_dns_publish_fixed_ip,
     subnet_onboard,

@@ -9,6 +9,7 @@
         "id": "01fbade5-b664-42f6-83ae-4e214f4263fa",
         "name": "mysecgroup",
         "description": "my security group",
-        "tags": ["tag1,tag2"]
+        "tags": ["tag1,tag2"],
+        "stateful": true
     }
 }

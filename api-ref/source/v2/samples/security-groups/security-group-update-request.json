@@ -1,6 +1,7 @@
 {
     "security_group": {
         "name": "mysecgroup",
-        "description": "my security group"
+        "description": "my security group",
+        "stateful": true
     }
 }

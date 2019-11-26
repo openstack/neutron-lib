@@ -55,7 +55,8 @@ KNOWN_RESOURCES = (
     'ports',
     'routers',
     'subnets',
-    'subnetpools'
+    'subnetpools',
+    'security_groups'
 )
 
 KNOWN_HTTP_ACTIONS = (

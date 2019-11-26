@@ -5500,6 +5500,12 @@ state:
   in: body
   required: true
   type: string
+stateful_enabled:
+  description: |
+    Indicates if the security group is stateful or stateless.
+  in: body
+  required: false
+  type: boolean
 status_description:
   description: |
     Human-readable description of the status.

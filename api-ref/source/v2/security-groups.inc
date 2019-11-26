@@ -20,6 +20,14 @@ The ``standard-attr-tag`` adds Tag support for resources with
 standard attributes by adding the ``tags`` attribute
 allowing consumers to associate tags with resources.
 
+Stateful security groups extension (``stateful-security-group``)
+================================================================
+
+The stateful security group extension (``stateful-security-group``) adds the
+``stateful`` field to security groups, allowing users to configure stateful
+or stateless security groups for ``ports``. The existing security groups
+will all be considered as stateful. Update of the ``stateful`` attribute is
+allowed when there is no port associated with the security group.
 
 List security groups
 ====================
@@ -76,6 +84,7 @@ Response Parameters
    - description: description
    - security_group_rules: security_group_rules
    - tags: tags
+   - stateful: stateful_enabled
 
 Response Example
 ----------------
@@ -107,6 +116,7 @@ Request
    - project_id: project_id
    - description: description-request
    - name: name
+   - stateful: stateful_enabled
 
 Request Example
 ---------------
@@ -130,6 +140,7 @@ Response Parameters
    - description: description
    - security_group_rules: security_group_rules
    - tags: tags
+   - stateful: stateful_enabled
 
 Response Example
 ----------------
@@ -181,6 +192,7 @@ Response Parameters
    - description: description
    - security_group_rules: security_group_rules
    - tags: tags
+   - stateful: stateful_enabled
 
 Response Example
 ----------------
@@ -231,6 +243,7 @@ Response Parameters
    - description: description
    - security_group_rules: security_group_rules
    - tags: tags
+   - stateful: stateful_enabled
 
 Response Example
 ----------------
