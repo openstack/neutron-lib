@@ -46,7 +46,6 @@ from neutron_lib.api.definitions import floating_ip_port_forwarding
 from neutron_lib.api.definitions import floatingip_autodelete_internal
 from neutron_lib.api.definitions import floatingip_pools
 from neutron_lib.api.definitions import flowclassifier
-from neutron_lib.api.definitions import interconnection
 from neutron_lib.api.definitions import ip_allocation
 from neutron_lib.api.definitions import ip_substring_port_filtering
 from neutron_lib.api.definitions import l2_adjacency
@@ -150,7 +149,6 @@ _ALL_API_DEFINITIONS = {
     floating_ip_port_forwarding,
     floatingip_autodelete_internal,
     floatingip_pools,
-    interconnection,
     ip_allocation,
     ip_substring_port_filtering,
     l2_adjacency,

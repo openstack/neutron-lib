@@ -168,9 +168,6 @@ KNOWN_EXTENSIONS = (
     # https://opendev.org/openstack/networking-sfc:
     'flow_classifier',
     'sfc',
-
-    # https://opendev.org/openstack/neutron-interconnection:
-    'interconnection',
 )
 
 KNOWN_KEYWORDS = (
