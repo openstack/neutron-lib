@@ -11,7 +11,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
-from neutron_lib.api.definitions import dns
+from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import subnet
 
 DNS_PUBLISH_FIXED_IP = 'dns_publish_fixed_ip'
@@ -72,7 +72,7 @@ ACTION_STATUS = {
 
 # The list of required extensions.
 REQUIRED_EXTENSIONS = [
-    dns.ALIAS,
+    dns_domain_ports.ALIAS,
 ]
 
 # The list of optional extensions.
