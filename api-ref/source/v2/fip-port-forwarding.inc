@@ -7,6 +7,14 @@ Floating IPs port forwarding
 Lists, creates, shows details for, updates, and deletes floating IPs port
 forwardings.
 
+Port forwarding rule description
+=========================================
+
+The ``floating-ip-port-forwarding-description`` extension adds the
+``description`` attribute to the floating IP port forwardings.
+The value of the ``description`` attribute contains a text describing the rule,
+which helps users to manage/find easily theirs rules.
+
 Show port forwarding
 ====================
 
@@ -43,6 +51,7 @@ Response Parameters
    - internal_port: internal_port
    - external_port: external_port
    - protocol: fip_port_forwarding_protocol-body
+   - description: fip_port_forwarding-description
 
 Response Example
 ----------------
@@ -94,6 +103,7 @@ Response Parameters
    - internal_port: internal_port
    - external_port: external_port
    - protocol: fip_port_forwarding_protocol-body
+   - description: fip_port_forwarding-description
 
 Response Example
 ----------------
@@ -171,6 +181,7 @@ Response Parameters
    - internal_port: internal_port
    - external_port: external_port
    - protocol: fip_port_forwarding_protocol-body
+   - description: fip_port_forwarding-description
 
 Response Example
 ----------------
@@ -201,6 +212,7 @@ Request
    - internal_port: internal_port
    - external_port: external_port
    - protocol: fip_port_forwarding_protocol-body
+   - description: fip_port_forwarding-description
 
 Request Example
 ---------------
@@ -220,6 +232,7 @@ Response Parameters
    - internal_port: internal_port
    - external_port: external_port
    - protocol: fip_port_forwarding_protocol-body
+   - description: fip_port_forwarding-description
 
 Response Example
 ----------------

@@ -2522,6 +2522,13 @@ fip_port_forwarding:
   in: body
   required: true
   type: object
+fip_port_forwarding-description:
+  description: |
+    A text describing the rule, which helps users to
+    manage/find easily theirs rules.
+  in: body
+  required: false
+  type: string
 fip_port_forwarding_id-body:
   description: |
     The ID of the floating IP port forwarding.
