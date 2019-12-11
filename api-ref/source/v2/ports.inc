@@ -117,6 +117,13 @@ define QoS policies and associate these to the ports by introducing the
 ``qos_policy_id`` attribute. The policies should be created before they are
 associated to the ports.
 
+QoS network policy
+==================
+
+The ``qos-port-network-policy`` extension adds the read only parameter
+``qos_network_policy_id`` to the port responses. This parameter contains the
+QoS policy ID of the network where this port is plugged.
+
 Regenerate mac address extension
 ================================
 
@@ -201,8 +208,9 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
-   - revision_number: revision_number
+   - qos_network_policy_id: qos_network_policy_id-port-response
    - qos_policy_id: qos_policy_id-port-response
+   - revision_number: revision_number
    - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
@@ -325,8 +333,9 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
-   - revision_number: revision_number
+   - qos_network_policy_id: qos_network_policy_id-port-response
    - qos_policy_id: qos_policy_id-port-response
+   - revision_number: revision_number
    - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
@@ -460,8 +469,9 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
-   - revision_number: revision_number
+   - qos_network_policy_id: qos_network_policy_id-port-response
    - qos_policy_id: qos_policy_id-port-response
+   - revision_number: revision_number
    - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
@@ -568,8 +578,9 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
-   - revision_number: revision_number
+   - qos_network_policy_id: qos_network_policy_id-port-response
    - qos_policy_id: qos_policy_id-port-response
+   - revision_number: revision_number
    - resource_request: port-resource
    - security_groups: port-security_groups
    - status: port-status
@@ -669,8 +680,9 @@ Response Parameters
    - network_id: network_id
    - port_security_enabled: port_security_enabled
    - project_id: project_id
-   - revision_number: revision_number
+   - qos_network_policy_id: qos_network_policy_id-port-response
    - qos_policy_id: qos_policy_id-port-response
+   - revision_number: revision_number
    - security_groups: port-security_groups
    - status: port-status
    - tags: tags

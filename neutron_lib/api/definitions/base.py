@@ -126,6 +126,7 @@ KNOWN_EXTENSIONS = (
     'qos',
     'qos-bw-limit-direction',
     'qos-gateway-ip',
+    'qos-port-network-policy',
     'qos-rules-alias',
     'quotas',
     'rbac-policies',

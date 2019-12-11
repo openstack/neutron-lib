@@ -4627,6 +4627,12 @@ qos_minimum_bandwidth_rule-id:
   in: body
   required: true
   type: string
+qos_network_policy_id-port-response:
+  description: |
+    The ID of the QoS policy of the network where this port is plugged.
+  in: body
+  required: true
+  type: string
 qos_policy-name:
   description: |
       Human-readable name of the resource.
