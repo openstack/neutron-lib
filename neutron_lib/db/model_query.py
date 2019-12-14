@@ -196,7 +196,13 @@ def apply_filters(query, model, filters, context=None):
                     query = query.filter(
                         or_(*[column == v for v in value]))
                 else:
-                    query = query.filter(column.in_(value))
+                    # NOTE(frickler): in_() isn't implemented for relations
+                    # yet, let this pass so it can be handled by the
+                    # result_filter hook
+                    try:
+                        query = query.filter(column.in_(value))
+                    except NotImplementedError:
+                        pass
             elif key == 'shared' and hasattr(model, 'rbac_entries'):
                 # translate a filter on shared into a query against the
                 # object's rbac entries
