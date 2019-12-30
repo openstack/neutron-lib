@@ -107,6 +107,7 @@ from neutron_lib.api.definitions import subnet_segmentid_writable
 from neutron_lib.api.definitions import subnet_service_types
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import subnetpool_prefix_ops
+from neutron_lib.api.definitions import tag_ports_during_bulk_creation
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
 from neutron_lib.api.definitions import uplink_status_propagation
@@ -214,6 +215,7 @@ _ALL_API_DEFINITIONS = {
     subnet_service_types,
     subnetpool,
     subnetpool_prefix_ops,
+    tag_ports_during_bulk_creation,
     trunk,
     trunk_details,
     uplink_status_propagation,

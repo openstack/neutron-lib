@@ -1,0 +1,4 @@
+---
+features:
+  - The ``tag-ports-during-bulk-creation`` shim extension API definition has
+    been added to enable the tagging of ports during bulk creation.
