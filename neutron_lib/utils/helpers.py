@@ -179,13 +179,7 @@ def safe_decode_utf8(s):
     return s
 
 
-try:
-    # PY3
-    weak_method = weakref.WeakMethod
-except AttributeError:
-    # PY2
-    import weakrefmethod
-    weak_method = weakrefmethod.WeakMethod
+weak_method = weakref.WeakMethod
 
 
 def make_weak_ref(f):
