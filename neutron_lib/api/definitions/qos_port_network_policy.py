@@ -25,7 +25,7 @@ DESCRIPTION = 'Adds a the QoS network ID to the port definition'
 UPDATED_TIMESTAMP = '2019-11-01T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP = {
     port_apidef.COLLECTION_NAME: {
-        qos_const.QOS_POLICY_ID: {
+        qos_const.QOS_NETWORK_POLICY_ID: {
             'allow_post': False,
             'allow_put': False,
             'is_visible': True,
