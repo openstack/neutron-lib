@@ -87,24 +87,6 @@ class HackingTestCase(base.BaseTestCase):
         self.assertLinePasses(f, '# with contextlib.nested():', '')
         self.assertLinePasses(f, 'print("with contextlib.nested():")', '')
 
-    def test_check_python3_xrange(self):
-        f = checks.check_python3_xrange
-        self.assertLineFails(f, 'a = xrange(1000)')
-        self.assertLineFails(f, 'b =xrange   (   42 )')
-        self.assertLineFails(f, 'c = xrange(1, 10, 2)')
-        self.assertLinePasses(f, 'd = range(1000)')
-        self.assertLinePasses(f, 'e = six.moves.range(1337)')
-
-    def test_no_basestring(self):
-        f = checks.check_no_basestring
-        self.assertLineFails(f, 'isinstance(x, basestring)')
-        self.assertLinePasses(f, 'isinstance(x, BaseString)')
-
-    def test_check_python3_iteritems(self):
-        f = checks.check_python3_no_iteritems
-        self.assertLineFails(f, "d.iteritems()")
-        self.assertLinePasses(f, "six.iteritems(d)")
-
     def test_no_mutable_default_args(self):
         self.assertEqual(1, len(list(checks.no_mutable_default_args(
             " def fake_suds_context(calls={}):"))))

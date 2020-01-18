@@ -10,7 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import six
+import functools
 
 from oslo_db import exception as db_exc
 from oslo_utils import excutils
@@ -97,7 +97,7 @@ def reraise_as_retryrequest(function):
         Exception's as a RetryRequest.
     :raises RetryRequest: If the wrapped function raises retriable exception.
     """
-    @six.wraps(function)
+    @functools.wraps(function)
     def _wrapped(*args, **kwargs):
         try:
             return function(*args, **kwargs)

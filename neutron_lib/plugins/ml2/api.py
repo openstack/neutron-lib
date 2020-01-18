@@ -14,8 +14,6 @@
 
 import abc
 
-import six
-
 
 # The following keys are used in the segment dictionaries passed via
 # the driver API.
@@ -33,8 +31,7 @@ BOUND_DRIVER = 'bound_driver'
 BOUND_SEGMENT = 'bound_segment'
 
 
-@six.add_metaclass(abc.ABCMeta)
-class MechanismDriver(object):
+class MechanismDriver(object, metaclass=abc.ABCMeta):
     """Define stable abstract interface for ML2 mechanism drivers.
 
     A mechanism driver is called on the creation, update, and deletion
@@ -459,8 +456,7 @@ class MechanismDriver(object):
         return []
 
 
-@six.add_metaclass(abc.ABCMeta)
-class _TypeDriverBase(object):
+class _TypeDriverBase(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def get_type(self):
@@ -520,8 +516,7 @@ class _TypeDriverBase(object):
         pass
 
 
-@six.add_metaclass(abc.ABCMeta)
-class TypeDriver(_TypeDriverBase):
+class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """Define abstract interface for ML2 type drivers.
 
     ML2 type drivers each support a specific network_type for provider
@@ -592,8 +587,7 @@ class TypeDriver(_TypeDriverBase):
         pass
 
 
-@six.add_metaclass(abc.ABCMeta)
-class ML2TypeDriver(_TypeDriverBase):
+class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """Define abstract interface for ML2 type drivers.
 
     ML2 type drivers each support a specific network_type for provider
@@ -684,8 +678,7 @@ class ML2TypeDriver(_TypeDriverBase):
         pass
 
 
-@six.add_metaclass(abc.ABCMeta)
-class NetworkContext(object):
+class NetworkContext(object, metaclass=abc.ABCMeta):
     """Context passed to MechanismDrivers for changes to network resources.
 
     A NetworkContext instance wraps a network resource. It provides
@@ -722,8 +715,7 @@ class NetworkContext(object):
         pass
 
 
-@six.add_metaclass(abc.ABCMeta)
-class SubnetContext(object):
+class SubnetContext(object, metaclass=abc.ABCMeta):
     """Context passed to MechanismDrivers for changes to subnet resources.
 
     A SubnetContext instance wraps a subnet resource. It provides
@@ -755,8 +747,7 @@ class SubnetContext(object):
         pass
 
 
-@six.add_metaclass(abc.ABCMeta)
-class PortContext(object):
+class PortContext(object, metaclass=abc.ABCMeta):
     """Context passed to MechanismDrivers for changes to port resources.
 
     A PortContext instance wraps a port resource. It provides helper
@@ -1073,8 +1064,7 @@ class PortContext(object):
         pass
 
 
-@six.add_metaclass(abc.ABCMeta)
-class ExtensionDriver(object):
+class ExtensionDriver(object, metaclass=abc.ABCMeta):
     """Define stable abstract interface for ML2 extension drivers.
 
     An extension driver extends the core resources implemented by the

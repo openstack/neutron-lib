@@ -16,7 +16,6 @@ import uuid
 
 import os_traits
 from oslo_log import log as logging
-import six
 
 from neutron_lib._i18n import _
 from neutron_lib import constants as const
@@ -73,8 +72,6 @@ def six_uuid5(namespace, name):
     # cPython 3.6:
     # https://github.com/python/cpython/blob
     #        /e9e2fd75ccbc6e9a5221cf3525e39e9d042d843f/Lib/uuid.py#L628
-    if six.PY2:
-        name = name.encode('utf-8')
     return uuid.uuid5(namespace=namespace, name=name)
 
 

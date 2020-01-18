@@ -12,8 +12,6 @@
 
 import abc
 
-import six
-
 
 class WorkerBase(object):
 
@@ -48,8 +46,7 @@ class WorkerBase(object):
         self._workers.extend(workers)
 
 
-@six.add_metaclass(abc.ABCMeta)
-class ServicePluginBase(WorkerBase):
+class ServicePluginBase(WorkerBase, metaclass=abc.ABCMeta):
     """Define base interface for any Advanced Service plugin."""
     supported_extension_aliases = []
 

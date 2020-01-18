@@ -15,7 +15,6 @@ import random
 import socket
 
 import netaddr
-import six
 
 from neutron_lib import constants
 
@@ -96,7 +95,7 @@ class _AuthenticBase(object):
         self._initial_value = addr
 
     def __str__(self):
-        if isinstance(self._initial_value, six.string_types):
+        if isinstance(self._initial_value, str):
             return self._initial_value
         return super(_AuthenticBase, self).__str__()
 

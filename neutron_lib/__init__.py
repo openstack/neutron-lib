@@ -13,16 +13,11 @@
 import gettext
 
 import pbr.version
-import six
 
 from neutron_lib.db import api  # noqa
 
 
-if six.PY2:
-    # pylint: disable=unexpected-keyword-arg
-    gettext.install('neutron_lib', unicode=1)
-else:
-    gettext.install('neutron_lib')
+gettext.install('neutron_lib')
 
 
 # NOTE(boden): neutron_lib.db.api is imported to ensure the ORM event listeners

@@ -123,50 +123,6 @@ def check_no_contextlib_nested(logical_line, filename):
         yield(0, msg)
 
 
-def check_python3_xrange(logical_line):
-    """N525 - Do not use xrange.
-
-    :param logical_line: The logical line to check.
-    :returns: None if the logical line passes the check, otherwise a tuple
-        is yielded that contains the offending index in logical line and a
-        message describe the check validation failure.
-    """
-    if re.search(r"\bxrange\s*\(", logical_line):
-        yield(0, "N525: Do not use xrange. Use range, or six.moves.range for "
-                 "large loops.")
-
-
-def check_no_basestring(logical_line):
-    """N526 - basestring is not Python3-compatible.
-
-    :param logical_line: The logical line to check.
-    :returns: None if the logical line passes the check, otherwise a tuple
-        is yielded that contains the offending index in logical line and a
-        message describe the check validation failure.
-    """
-    if re.search(r"\bbasestring\b", logical_line):
-        msg = ("N526: basestring is not Python3-compatible, use "
-               "six.string_types instead.")
-        yield(0, msg)
-
-
-def check_python3_no_iteritems(logical_line):
-    """N527 - Use dict.items() instead of dict.iteritems().
-
-    :param logical_line: The logical line to check.
-    :returns: None if the logical line passes the check, otherwise a tuple
-        is yielded that contains the offending index in logical line and a
-        message describe the check validation failure.
-    """
-    if re.search(r".*\.iteritems\(\)", logical_line):
-        msg = ("N527: Use dict.items() instead of dict.iteritems() to be "
-               "compatible with both Python 2 and Python 3. In Python 2, "
-               "dict.items() may be inefficient for very large dictionaries. "
-               "If you can prove that you need the optimization of an "
-               "iterator for Python 2, then you can use six.iteritems(dict).")
-        yield(0, msg)
-
-
 def no_mutable_default_args(logical_line):
     """N529 - Method's default argument shouldn't be mutable.
 
@@ -235,9 +191,6 @@ def factory(register):
     """
     register(use_jsonutils)
     register(check_no_contextlib_nested)
-    register(check_python3_xrange)
-    register(check_no_basestring)
-    register(check_python3_no_iteritems)
     register(no_mutable_default_args)
     register(check_neutron_namespace_imports)
     register(translation_checks.no_translate_logs)

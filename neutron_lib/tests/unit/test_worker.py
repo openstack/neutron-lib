@@ -12,8 +12,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import six
-
 import mock
 
 from neutron_lib.callbacks import events
@@ -67,44 +65,44 @@ class TestBaseWorker(base.BaseTestCase):
     def test_proctitle_default(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker().start()
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^neutron-server: _ProcWorker \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^neutron-server: _ProcWorker \\(.*python.*\\)$')
 
     def test_proctitle_custom_desc(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker().start(desc="fancy title")
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^neutron-server: fancy title \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^neutron-server: fancy title \\(.*python.*\\)$')
 
     def test_proctitle_custom_name(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker().start(name="tardis")
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^tardis: _ProcWorker \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^tardis: _ProcWorker \\(.*python.*\\)$')
 
     def test_proctitle_empty(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker().start(desc="")
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^neutron-server: _ProcWorker \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^neutron-server: _ProcWorker \\(.*python.*\\)$')
 
     def test_proctitle_nonstring(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker().start(desc=2)
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^neutron-server: 2 \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^neutron-server: 2 \\(.*python.*\\)$')
 
     def test_proctitle_both_empty(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker().start(name="", desc="")
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^: _ProcWorker \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^: _ProcWorker \\(.*python.*\\)$')
 
     def test_proctitle_name_none(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker().start(name=None)
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^None: _ProcWorker \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^None: _ProcWorker \\(.*python.*\\)$')
 
     # Forked, but proctitle disabled
 
@@ -123,8 +121,8 @@ class TestBaseWorker(base.BaseTestCase):
     def test_setproctitle_on(self):
         with mock.patch('setproctitle.setproctitle') as spt:
             _ProcWorker(set_proctitle='on').start(name="foo", desc="bar")
-            six.assertRegex(self, spt.call_args[0][0],
-                            '^foo: bar \\(.*python.*\\)$')
+            self.assertRegex(spt.call_args[0][0],
+                             '^foo: bar \\(.*python.*\\)$')
 
     def test_setproctitle_off(self):
         with mock.patch('setproctitle.setproctitle') as spt:

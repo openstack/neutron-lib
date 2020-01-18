@@ -17,7 +17,6 @@ import uuid
 import netaddr
 from oslo_serialization import jsonutils
 from oslo_versionedobjects import fields as obj_fields
-import six
 
 from neutron_lib._i18n import _
 from neutron_lib import constants as lib_constants
@@ -45,7 +44,7 @@ class RangeConstrainedInteger(obj_fields.Integer):
         super(RangeConstrainedInteger, self).__init__(**kwargs)
 
     def coerce(self, obj, attr, value):
-        if not isinstance(value, six.integer_types):
+        if not isinstance(value, int):
             msg = _("Field value %s is not an integer") % value
             raise ValueError(msg)
         if not self._start <= value <= self._end:
@@ -101,7 +100,7 @@ class SetOfUUIDsField(obj_fields.AutoTypedField):
 
 class DomainName(obj_fields.String):
     def coerce(self, obj, attr, value):
-        if not isinstance(value, six.string_types):
+        if not isinstance(value, str):
             msg = _("Field value %s is not a string") % value
             raise ValueError(msg)
         if len(value) > lib_db_const.FQDN_FIELD_SIZE:
@@ -120,14 +119,14 @@ class IntegerEnum(obj_fields.Integer):
             msg = _("No possible values specified")
             raise ValueError(msg)
         for value in valid_values:
-            if not isinstance(value, six.integer_types):
+            if not isinstance(value, int):
                 msg = _("Possible value %s is not an integer") % value
                 raise ValueError(msg)
         self._valid_values = valid_values
         super(IntegerEnum, self).__init__(**kwargs)
 
     def coerce(self, obj, attr, value):
-        if not isinstance(value, six.integer_types):
+        if not isinstance(value, int):
             msg = _("Field value %s is not an integer") % value
             raise ValueError(msg)
         if value not in self._valid_values:
@@ -235,7 +234,7 @@ class DictOfMiscValues(obj_fields.FieldType):
     def coerce(obj, attr, value):
         if isinstance(value, dict):
             return value
-        if isinstance(value, six.string_types):
+        if isinstance(value, str):
             try:
                 return jsonutils.loads(value)
             except Exception:

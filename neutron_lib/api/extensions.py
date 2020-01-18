@@ -15,8 +15,6 @@
 
 import abc
 
-import six
-
 from neutron_lib._i18n import _
 from neutron_lib import constants
 
@@ -34,8 +32,7 @@ def is_extension_supported(plugin, alias):
     return alias in getattr(plugin, "supported_extension_aliases", [])
 
 
-@six.add_metaclass(abc.ABCMeta)
-class ExtensionDescriptor(object):
+class ExtensionDescriptor(object, metaclass=abc.ABCMeta):
     """Base class that defines the contract for extensions."""
 
     @abc.abstractmethod

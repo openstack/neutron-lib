@@ -12,11 +12,8 @@
 
 import abc
 
-import six
 
-
-@six.add_metaclass(abc.ABCMeta)
-class AgentExtension(object):
+class AgentExtension(object, metaclass=abc.ABCMeta):
     """Define stable abstract interface for agent extensions.
 
     An agent extension extends the agent core functionality.

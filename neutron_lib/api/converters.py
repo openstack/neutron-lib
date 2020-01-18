@@ -13,7 +13,6 @@
 import netaddr
 from oslo_config import cfg
 from oslo_utils import strutils
-import six
 
 from neutron_lib._i18n import _
 from neutron_lib.api import validators
@@ -172,7 +171,7 @@ def convert_to_list(data):
     """
     if data is None:
         return []
-    elif hasattr(data, '__iter__') and not isinstance(data, six.string_types):
+    elif hasattr(data, '__iter__') and not isinstance(data, str):
         return list(data)
     else:
         return [data]
@@ -191,7 +190,7 @@ def convert_ip_to_canonical_format(value):
     try:
         ip = netaddr.IPAddress(value)
         if ip.version == constants.IP_VERSION_6:
-            return six.text_type(ip.format(dialect=netaddr.ipv6_compact))
+            return str(ip.format(dialect=netaddr.ipv6_compact))
     except (netaddr.core.AddrFormatError, ValueError):
         pass
     return value
@@ -292,7 +291,7 @@ def convert_prefix_forced_case(data, prefix):
               replaced by <prefix>
     """
     plen = len(prefix)
-    if (isinstance(data, six.string_types) and len(data) >= plen and
+    if (isinstance(data, str) and len(data) >= plen and
             data[0:plen].lower() == prefix.lower()):
         return prefix + data[plen:]
     return data

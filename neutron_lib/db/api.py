@@ -12,6 +12,7 @@
 
 import contextlib
 import copy
+import functools
 import weakref
 
 from oslo_concurrency import lockutils
@@ -24,7 +25,6 @@ from oslo_utils import excutils
 from osprofiler import opts as profiler_opts
 import osprofiler.sqlalchemy
 from pecan import util as p_util
-import six
 import sqlalchemy
 from sqlalchemy import event  # noqa
 from sqlalchemy import exc as sql_exc
@@ -129,7 +129,7 @@ def _tag_retriables_as_unretriable(f):
     This decorator can be used outside of a retry decorator to prevent
     decorators higher up from retrying again.
     """
-    @six.wraps(f)
+    @functools.wraps(f)
     def wrapped(*args, **kwargs):
         try:
             return f(*args, **kwargs)
@@ -169,7 +169,7 @@ def retry_db_errors(f):
 
     @_tag_retriables_as_unretriable
     @_retry_db_errors
-    @six.wraps(f)
+    @functools.wraps(f)
     def wrapped(*args, **kwargs):
         try:
             # copy mutable args and kwargs to make retries safe. this doesn't
@@ -221,7 +221,7 @@ def retry_if_session_inactive(context_var_name='context'):
             raise RuntimeError(msg)
         f_with_retry = retry_db_errors(f)
 
-        @six.wraps(f)
+        @functools.wraps(f)
         def wrapped(*args, **kwargs):
             # only use retry wrapper if we aren't nested in an active
             # transaction

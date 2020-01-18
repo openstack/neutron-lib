@@ -14,7 +14,6 @@
 import collections
 import re
 
-import six
 import testtools
 
 from neutron_lib.tests import _base as base
@@ -160,33 +159,18 @@ class TestGetRandomString(base.BaseTestCase):
         self.assertIsNotNone(regex.match(random_string))
 
 
-def requires_py2(testcase):
-    return testtools.skipUnless(six.PY2, "requires python 2.x")(testcase)
-
-
-def requires_py3(testcase):
-    return testtools.skipUnless(six.PY3, "requires python 3.x")(testcase)
-
-
 class TestSafeDecodeUtf8(base.BaseTestCase):
 
-    @requires_py2
-    def test_py2_does_nothing(self):
-        s = 'test-py2'
-        self.assertIs(s, helpers.safe_decode_utf8(s))
-
-    @requires_py3
     def test_py3_decoded_valid_bytes(self):
         s = bytes('test-py2', 'utf-8')
         decoded_str = helpers.safe_decode_utf8(s)
-        self.assertIsInstance(decoded_str, six.text_type)
+        self.assertIsInstance(decoded_str, str)
         self.assertEqual(s, decoded_str.encode('utf-8'))
 
-    @requires_py3
     def test_py3_decoded_invalid_bytes(self):
         s = bytes('test-py2', 'utf_16')
         decoded_str = helpers.safe_decode_utf8(s)
-        self.assertIsInstance(decoded_str, six.text_type)
+        self.assertIsInstance(decoded_str, str)
 
 
 class TestSafeSortKey(base.BaseTestCase):

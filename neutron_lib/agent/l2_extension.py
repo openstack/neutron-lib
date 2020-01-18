@@ -12,13 +12,10 @@
 
 import abc
 
-import six
-
 from neutron_lib.agent import extension
 
 
-@six.add_metaclass(abc.ABCMeta)
-class L2AgentExtension(extension.AgentExtension):
+class L2AgentExtension(extension.AgentExtension, metaclass=abc.ABCMeta):
     """Define stable abstract interface for l2 agent extensions.
 
     An agent extension extends the agent core functionality.

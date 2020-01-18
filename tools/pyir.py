@@ -331,8 +331,7 @@ def ordered(obj):
 
 
 def json_primitive(val):
-    if isinstance(val, (six.string_types, six.text_type,
-                        six.integer_types, bool)):
+    if isinstance(val, (str, int, bool)):
         return str(val)
     elif str(val).startswith('<') or type(val) in [dict, list, set, tuple]:
         return str(type(val))
@@ -697,8 +696,7 @@ class PyLineTokens(object):
     CLOSED_B = ')'
 
 
-@six.add_metaclass(abc.ABCMeta)
-class AbstractFilter(object):
+class AbstractFilter(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def mark(self, py_line):
@@ -709,8 +707,7 @@ class AbstractFilter(object):
         pass
 
 
-@six.add_metaclass(abc.ABCMeta)
-class AbstractPerFileFilter(AbstractFilter):
+class AbstractPerFileFilter(AbstractFilter, metaclass=abc.ABCMeta):
 
     def __init__(self):
         self._marked = []
@@ -855,8 +852,7 @@ class RemoveCommentLines(AbstractFilter):
             py_file.del_line(py_line)
 
 
-@six.add_metaclass(abc.ABCMeta)
-class AbstractMultiLineCollector(AbstractFilter):
+class AbstractMultiLineCollector(AbstractFilter, metaclass=abc.ABCMeta):
 
     def __init__(self):
         self._comment_stripper = StripTrailingComments()
@@ -1330,8 +1326,7 @@ class APIReport(object):
         }
 
 
-@six.add_metaclass(abc.ABCMeta)
-class AbstractCommand(object):
+class AbstractCommand(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def get_parser(self):

@@ -22,7 +22,6 @@ from oslo_log import log as logging
 from oslo_utils import netutils
 from oslo_utils import strutils
 from oslo_utils import uuidutils
-import six
 from webob import exc
 
 from neutron_lib._i18n import _
@@ -228,7 +227,7 @@ def validate_string(data, max_len=None):
         the given max_len. Otherwise a human readable message indicating why
         the data is invalid.
     """
-    if not isinstance(data, six.string_types):
+    if not isinstance(data, str):
         msg = _("'%s' is not a valid string") % data
         LOG.debug(msg)
         return msg
@@ -1117,7 +1116,7 @@ def validate_subnet_service_types(service_types, valid_values=None):
         prefixes += constants.DEVICE_OWNER_COMPUTE_PREFIX
 
         for service_type in service_types:
-            if not isinstance(service_type, six.text_type):
+            if not isinstance(service_type, str):
                 raise n_exc.InvalidInputSubnetServiceType(
                     service_type=service_type)
             elif not service_type.startswith(tuple(prefixes)):
@@ -1148,9 +1147,9 @@ def validate_ethertype(ethertype, valid_values=None):
             # Value of ethertype cannot be coerced into a string, like None
             pass
         try:
-            if isinstance(ethertype, six.string_types):
+            if isinstance(ethertype, str):
                 ethertype = int(ethertype, 16)
-            if (isinstance(ethertype, six.integer_types) and
+            if (isinstance(ethertype, int) and
                     constants.ETHERTYPE_MIN <= ethertype and
                     ethertype <= constants.ETHERTYPE_MAX):
                 return None

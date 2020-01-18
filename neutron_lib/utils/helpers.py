@@ -16,8 +16,6 @@ import decimal
 import random
 import weakref
 
-import six
-
 from neutron_lib._i18n import _
 
 
@@ -174,7 +172,7 @@ def safe_decode_utf8(s):
     :param s: The str to decode.
     :returns: The decoded str.
     """
-    if six.PY3 and isinstance(s, bytes):
+    if isinstance(s, bytes):
         return s.decode('utf-8', 'surrogateescape')
     return s
 

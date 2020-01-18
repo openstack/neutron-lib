@@ -13,8 +13,6 @@
 import abc
 import copy
 
-import six
-
 from neutron_lib import exceptions
 
 
@@ -28,8 +26,7 @@ def convert_filters(**kwargs):
     return result
 
 
-@six.add_metaclass(abc.ABCMeta)
-class FilterObj(object):
+class FilterObj(object, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def filter(self, column):

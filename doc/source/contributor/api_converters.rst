@@ -43,7 +43,7 @@ to a boolean value.
 ::
 
    def convert_to_boolean(data):
-        if isinstance(data, six.string_types):
+        if isinstance(data, str):
             val = data.lower()
             if val == "true" or val == "1":
                 return True

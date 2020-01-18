@@ -18,7 +18,6 @@ from oslo_db.sqlalchemy import enginefacade
 from oslo_db.sqlalchemy import test_fixtures
 from oslo_utils import timeutils
 from oslo_utils import uuidutils
-import six
 import sqlalchemy as sa
 
 from neutron_lib import context
@@ -28,9 +27,9 @@ from neutron_lib.tests import tools
 from neutron_lib.utils import net
 
 
-@six.add_metaclass(abc.ABCMeta)
 class SqlAlchemyTypesBaseTestCase(test_fixtures.OpportunisticDBTestMixin,
-                                  test_base.BaseTestCase):
+                                  test_base.BaseTestCase,
+                                  metaclass=abc.ABCMeta):
     def setUp(self):
         super(SqlAlchemyTypesBaseTestCase, self).setUp()
         self.engine = enginefacade.writer.get_engine()

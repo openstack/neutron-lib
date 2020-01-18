@@ -18,7 +18,6 @@ Neutron base exception handling.
 """
 
 from oslo_utils import excutils
-import six
 
 from neutron_lib._i18n import _
 
@@ -42,10 +41,6 @@ class NeutronException(Exception):
                     ctxt.reraise = False
                     # at least get the core message out if something happened
                     super(NeutronException, self).__init__(self.message)
-
-    if six.PY2:
-        def __unicode__(self):
-            return unicode(self.msg)  # noqa
 
     def __str__(self):
         return self.msg
