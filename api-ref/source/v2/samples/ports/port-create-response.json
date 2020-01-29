@@ -12,11 +12,13 @@
         "description": "",
         "device_id": "",
         "device_owner": "",
-        "dns_assignment": {
-            "hostname": "myport",
-            "ip_address": "10.0.0.2",
-            "fqdn": "myport.my-domain.org"
-        },
+        "dns_assignment": [
+            {
+                "hostname": "myport",
+                "ip_address": "10.0.0.2",
+                "fqdn": "myport.my-domain.org"
+            }
+        ],
         "dns_domain": "my-domain.org.",
         "dns_name": "myport",
         "extra_dhcp_opts": [

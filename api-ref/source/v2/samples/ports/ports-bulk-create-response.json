@@ -50,7 +50,7 @@
             "description": "",
             "device_id": "",
             "device_owner": "",
-            "dns_assignment": {},
+            "dns_assignment": [],
             "dns_domain": "",
             "dns_name": "",
             "extra_dhcp_opts": [
