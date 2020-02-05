@@ -879,8 +879,9 @@ object_id-query:
     Filter the RBAC policy list result by the ID of the ``object_type``
     resource. An ``object_type`` of ``network`` returns a network ID,
     an ``object_type`` of ``qos-policy`` returns a QoS policy ID,
-    an ``object_type`` of ``security-group`` returns a security group ID
-    and an `object_type`` of ``address-scope`` returns a address scope ID.
+    an ``object_type`` of ``security-group`` returns a security group ID,
+    an `object_type`` of ``address-scope`` returns a address scope ID
+    and an ``object_type`` of ``subnetpool`` returns a subnetpool ID.
   in: query
   required: false
   type: string
@@ -888,7 +889,7 @@ object_type-query:
   description: |
     Filter the RBAC policy list result by the type of the object that the
     RBAC policy affects. Types include ``qos-policy``, ``network``,
-    ``security-group`` or ``address-scope``.
+    ``security-group``, ``address-scope`` or ``subnetpool``.
   in: query
   required: false
   type: string
