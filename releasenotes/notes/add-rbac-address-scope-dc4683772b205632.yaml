@@ -1,0 +1,4 @@
+features:
+  - |
+    Added API definition for ``rbac-address-scope`` extension, which allows
+    sharing address scope between tenants via the network RBAC mechanism.

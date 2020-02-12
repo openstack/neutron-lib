@@ -129,6 +129,7 @@ KNOWN_EXTENSIONS = (
     'qos-port-network-policy',
     'qos-rules-alias',
     'quotas',
+    'rbac-address-scope',
     'rbac-policies',
     'rbac-security-groups',
     'router',
