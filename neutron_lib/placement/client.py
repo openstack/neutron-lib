@@ -117,7 +117,7 @@ class NoAuthClient(object):
                 LOG.exception('requests Timeout, let\'s retry it...')
             except requests.ConnectionError:
                 LOG.exception('Connection Error appeared')
-            except requests.RequestException as e:
+            except requests.RequestException:
                 LOG.exception('Some really weird thing happened, let\'s '
                               'retry it')
             time.sleep(self.timeout)

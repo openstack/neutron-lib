@@ -14,6 +14,8 @@
 
 import re
 
+from hacking import core
+
 from neutron_lib.hacking import translation_checks
 
 # Guidelines for writing new hacking checks
@@ -41,6 +43,7 @@ assert_is_none_re = re.compile(
     r"assertIs(Not)?\(.*,\s+None\)(( |\t)*#.*)?$|assertIs(Not)?\(None,")
 
 
+@core.flake8ext
 def use_jsonutils(logical_line, filename):
     """N521 - jsonutils must be used instead of json.
 
@@ -105,6 +108,7 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
         return (0, msg_o or msg)
 
 
+@core.flake8ext
 def check_no_contextlib_nested(logical_line, filename):
     """N524 - Use of contextlib.nested is deprecated.
 
@@ -123,6 +127,7 @@ def check_no_contextlib_nested(logical_line, filename):
         yield(0, msg)
 
 
+@core.flake8ext
 def no_mutable_default_args(logical_line):
     """N529 - Method's default argument shouldn't be mutable.
 
@@ -139,6 +144,7 @@ def no_mutable_default_args(logical_line):
 # Chances are that most projects will need to put an ignore on this rule
 # until they can fully migrate to the lib.
 
+@core.flake8ext
 def check_neutron_namespace_imports(logical_line):
     """N530 - Direct neutron imports not allowed.
 
@@ -154,6 +160,7 @@ def check_neutron_namespace_imports(logical_line):
         yield x
 
 
+@core.flake8ext
 def check_no_eventlet_imports(logical_line):
     """N535 - Usage of Python eventlet module not allowed.
 
@@ -167,6 +174,7 @@ def check_no_eventlet_imports(logical_line):
         yield logical_line.index('eventlet'), msg
 
 
+@core.flake8ext
 def assert_equal_none(logical_line):
     """N536 - Use assertIsNone."""
     if assert_equal_none_re.search(logical_line):
@@ -180,6 +188,8 @@ def assert_equal_none(logical_line):
         yield logical_line.index('assert'), msg
 
 
+# TODO(amotoki): Drop this once all neutron related projects
+# have switched to hacking 2.x
 def factory(register):
     """Hacking check factory for neutron-lib adopter compliant checks.
 
@@ -197,18 +207,3 @@ def factory(register):
     register(translation_checks.check_log_warn_deprecated)
     register(translation_checks.check_raised_localized_exceptions)
     register(assert_equal_none)
-
-
-def _neutron_lib_factory(register):
-    """Hacking check factory for neutron-lib internal project checks.
-
-    Hacking check factory for use with tox.ini. This factory registers all
-    checks that are run with the neutron-lib project itself.
-
-    :param register: The function to register the check functions with.
-    :returns: None.
-    """
-    factory(register)
-
-    # neutron-lib project specific checks below
-    register(check_no_eventlet_imports)
