@@ -9,6 +9,9 @@ Lists, shows details for, creates, updates, and deletes RBAC policies.
 The presence of the ``rbac-security-groups`` extension extends this
 API to support object types of ``security_group``.
 
+The presence of the ``rbac-address-scope`` extension extends this
+API to support object types of ``address-scope``.
+
 Show RBAC policy details
 ========================
 
