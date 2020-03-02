@@ -1,0 +1,4 @@
+features:
+  - |
+    Added API definition for ``rbac-subnetpool`` extension, which allows
+    sharing subnetpool between tenants via the network RBAC mechanism.

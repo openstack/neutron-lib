@@ -132,6 +132,7 @@ KNOWN_EXTENSIONS = (
     'rbac-address-scope',
     'rbac-policies',
     'rbac-security-groups',
+    'rbac-subnetpool',
     'router',
     'router_availability_zone',
     'security-group',
