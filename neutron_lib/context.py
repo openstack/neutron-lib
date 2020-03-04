@@ -15,13 +15,16 @@
 import collections
 import copy
 import datetime
-import warnings
 
 from oslo_context import context as oslo_context
 from oslo_db.sqlalchemy import enginefacade
+from oslo_log import log as logging
 
 from neutron_lib.db import api as db_api
 from neutron_lib.policy import _engine as policy_engine
+
+
+LOG = logging.getLogger(__name__)
 
 
 class ContextBase(oslo_context.RequestContext):
@@ -147,11 +150,9 @@ class Context(ContextBaseWithSession):
         # TODO(akamyshnikova): checking for session attribute won't be needed
         # when reader and writer will be used
         if hasattr(super(Context, self), 'session'):
-            if self._session:
-                warnings.warn('context.session is used with and without '
-                              'new enginefacade. Please update the code to '
-                              'use new enginefacede consistently.',
-                              DeprecationWarning)
+            LOG.debug('context.session is used with and without new '
+                      'enginefacade. Please update the code to use new '
+                      'enginefacede consistently.')
             return super(Context, self).session
         if self._session is None:
             self._session = db_api.get_writer_session()
