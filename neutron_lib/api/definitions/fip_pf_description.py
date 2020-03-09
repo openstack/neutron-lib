@@ -21,20 +21,24 @@ IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Floating IP Port Forwarding new attribute description'
 DESCRIPTION = 'Add a description field to Port Forwarding rules'
 UPDATED_TIMESTAMP = '2019-11-01T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP = {
     pfw.COLLECTION_NAME: {
-        DESCRIPTION_FIELD: {'allow_post': True,
-                            'allow_put': True,
-                            'validate': {
-                                'type:string':
-                                    db_const.LONG_DESCRIPTION_FIELD_SIZE},
-                            'is_visible': True,
-                            'is_sort_key': False,
-                            'is_filter': True,
-                            'default': ''}
+        'parameters': {
+            DESCRIPTION_FIELD: {
+                'allow_post': True,
+                'allow_put': True,
+                'validate': {
+                    'type:string':
+                        db_const.LONG_DESCRIPTION_FIELD_SIZE},
+                'is_visible': True,
+                'is_sort_key': False,
+                'is_filter': True,
+                'default': ''
+            }
+        }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [pfw.ALIAS]
 OPTIONAL_EXTENSIONS = []

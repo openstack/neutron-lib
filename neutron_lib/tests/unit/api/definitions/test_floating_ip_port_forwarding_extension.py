@@ -17,5 +17,5 @@ from neutron_lib.tests.unit.api.definitions import base
 
 class FipPortForwardingNameAndDescriptionTestCase(base.DefinitionBaseTestCase):
     extension_module = pf_description
-    extension_resources = (fip_pf.COLLECTION_NAME,)
+    extension_subresources = (fip_pf.COLLECTION_NAME,)
     extension_attributes = (pf_description.DESCRIPTION_FIELD,)
