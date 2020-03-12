@@ -11,10 +11,10 @@
 # under the License.
 
 import copy
+from unittest import mock
 import warnings
 
 import fixtures
-import mock
 from oslo_config import cfg
 from oslo_db.sqlalchemy import enginefacade
 from oslo_db.sqlalchemy import provision

@@ -13,8 +13,8 @@
 #    under the License.
 
 import hashlib
+from unittest import mock
 
-import mock
 from oslo_utils import excutils
 from oslo_utils import uuidutils
 

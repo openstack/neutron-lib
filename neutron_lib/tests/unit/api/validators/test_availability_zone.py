@@ -10,7 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import mock
+from unittest import mock
 
 from neutron_lib.api.validators import availability_zone as az_validator
 from neutron_lib.db import constants as db_const

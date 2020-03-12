@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import mock
+from unittest import mock
 
 from neutron_lib import context
 from neutron_lib.policy import _engine as policy_engine

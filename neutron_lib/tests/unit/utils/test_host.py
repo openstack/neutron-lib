@@ -12,8 +12,7 @@
 # limitations under the License.
 
 import multiprocessing
-
-import mock
+from unittest import mock
 
 from neutron_lib.tests import _base as base
 from neutron_lib.utils import host

@@ -14,8 +14,7 @@
 import itertools
 import random
 import socket
-
-import mock
+from unittest import mock
 
 from neutron_lib import constants
 from neutron_lib.tests import _base as base

@@ -12,8 +12,8 @@
 #    under the License.
 
 import string
+from unittest import mock
 
-import mock
 import netaddr
 
 from neutron_lib._i18n import _

@@ -12,10 +12,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import mock
-import testtools
+from unittest import mock
 
 from oslotest import base
+import testtools
 
 from neutron_lib.callbacks import events
 from neutron_lib.callbacks import priority_group

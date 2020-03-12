@@ -17,9 +17,9 @@ import logging as std_logging
 import os
 import os.path
 import random
+from unittest import mock
 
 import fixtures
-import mock
 from oslo_config import cfg
 from oslo_db import options as db_options
 from oslo_utils import strutils
