@@ -279,11 +279,6 @@ class TestExceptions(base.BaseTestCase):
             _("Unable to find any IP address on external network darpanet."),
             net_id='darpanet')
 
-    def test_too_many_external_networks(self):
-        self._check_nexc(
-            ne.TooManyExternalNetworks,
-            _("More than one external network exists."))
-
     def test_invalid_configuration_option(self):
         self._check_nexc(
             ne.InvalidConfigurationOption,
