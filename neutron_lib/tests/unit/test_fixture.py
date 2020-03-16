@@ -11,8 +11,8 @@
 # under the License.
 
 import re
+from unittest import mock
 
-import mock
 from oslo_config import cfg
 from oslo_db import options
 from oslotest import base
