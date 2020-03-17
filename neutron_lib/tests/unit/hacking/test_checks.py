@@ -40,17 +40,6 @@ class HackingTestCase(base.BaseTestCase):
     def test_factory(self):
         self.assertGreater(len(self._get_factory_checks(checks.factory)), 0)
 
-    def test_neutron_lib_factory(self):
-        lib_checks = self._get_factory_checks(checks._neutron_lib_factory)
-        other_checks = self._get_factory_checks(checks.factory)
-
-        self.assertGreater(len(lib_checks), 0)
-
-        if other_checks:
-            for other_check in other_checks:
-                # lib checks are superset of all checks
-                self.assertTrue(other_check in lib_checks)
-
     def test_use_jsonutils(self):
         def __get_msg(fun):
             msg = ("N521: jsonutils.%(fun)s must be used instead of "

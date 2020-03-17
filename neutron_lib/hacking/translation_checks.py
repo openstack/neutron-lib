@@ -14,6 +14,8 @@
 
 import re
 
+from hacking import core
+
 
 _all_log_levels = {'critical', 'error', 'exception', 'info',
                    'warning', 'debug'}
@@ -36,6 +38,7 @@ def _translation_checks_not_enforced(filename):
     return any(pat in filename for pat in ["/tests/", "rally-jobs/plugins/"])
 
 
+@core.flake8ext
 def check_log_warn_deprecated(logical_line, filename):
     """N532 - Use LOG.warning due to compatibility with py3.
 
@@ -50,6 +53,7 @@ def check_log_warn_deprecated(logical_line, filename):
         yield (0, msg)
 
 
+@core.flake8ext
 def check_raised_localized_exceptions(logical_line, filename):
     """N534 - Untranslated exception message.
 
@@ -72,6 +76,7 @@ def check_raised_localized_exceptions(logical_line, filename):
             yield (logical_line.index(exception_msg), msg)
 
 
+@core.flake8ext
 def no_translate_logs(logical_line, filename):
     """N537 - Don't translate logs.
 
