@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   ussuri
    train
    stein
    rocky
