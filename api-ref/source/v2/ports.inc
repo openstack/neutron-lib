@@ -256,6 +256,9 @@ specify it in the request body. If the security groups are not
 valid, the operation fails and the existing security groups are not
 removed from the port.
 
+When you update ``binding:profile`` of a port with null it is treated as {}
+in the response.
+
 Only admins and users with a specific role can update the data plane status
 (default role: ``data_plane_integrator``).
 

@@ -1,6 +1,7 @@
 {
     "port": {
         "binding:host_id": "test_for_port_update_host",
+        "binding:profile": null,
         "device_id": "d90a13da-be41-461f-9f99-1dbcf438fdf2",
         "data_plane_status": "DOWN",
         "device_owner": "compute:nova",
