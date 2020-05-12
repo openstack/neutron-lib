@@ -4,7 +4,7 @@
       - publish-openstack-docs-pti
       - openstack-cover-jobs
       - openstack-lower-constraints-jobs
-      - openstack-python3-ussuri-jobs
+      - openstack-python3-victoria-jobs
       - lib-forward-testing-python3
       - release-notes-jobs-python3
     check:
