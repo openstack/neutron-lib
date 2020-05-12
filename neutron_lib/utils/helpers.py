@@ -128,8 +128,8 @@ def diff_list_of_dict(old_list, new_list):
     :returns: A tuple where the first item is a list of the added dicts in
         the diff and the second item is the removed dicts.
     """
-    new_set = set([dict2str(l) for l in new_list])
-    old_set = set([dict2str(l) for l in old_list])
+    new_set = set([dict2str(i) for i in new_list])
+    old_set = set([dict2str(i) for i in old_list])
     added = new_set - old_set
     removed = old_set - new_set
     return [str2dict(a) for a in added], [str2dict(r) for r in removed]
