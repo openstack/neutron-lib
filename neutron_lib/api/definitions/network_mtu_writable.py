@@ -54,7 +54,8 @@ RESOURCE_ATTRIBUTE_MAP = {
         MTU: {'allow_post': True, 'allow_put': True, 'is_visible': True,
               'is_filter': True, 'is_sort_key': True,
               'validate': {'type:non_negative': None}, 'default': 0,
-              'convert_to': converters.convert_to_int},
+              'convert_to': converters.convert_to_int,
+              'enforce_policy': True},
     },
 }
 
