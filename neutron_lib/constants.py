@@ -571,8 +571,6 @@ PORT_RANGE_MAX = 65535
 ETHERTYPE_MIN = 0
 ETHERTYPE_MAX = 65535
 
-DHCPV6_CLIENT_PORT = 546
-
 # Configuration values for accept_ra sysctl, copied from linux kernel
 # networking (netdev) tree, file Documentation/networking/ip-sysctl.txt
 #
