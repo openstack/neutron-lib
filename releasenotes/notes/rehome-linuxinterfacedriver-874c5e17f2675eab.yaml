@@ -1,0 +1,5 @@
+---
+features:
+  - The abstract class LinuxInterfaceDriver is now defined in
+    ``neutron-lib.agent.linux.interface``. It contains only the
+    abstract methods and the class variables.
