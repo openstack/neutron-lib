@@ -62,9 +62,10 @@ project = u'Networking API Reference'
 copyright = u'2010-present, OpenStack Foundation'
 
 # openstackdocstheme options
-repository_name = 'openstack/neutron-lib'
-bug_project = 'neutron'
-bug_tag = 'api-ref'
+openstackdocs_repo_name = 'openstack/neutron-lib'
+openstackdocs_bug_project = 'neutron'
+openstackdocs_bug_tag = 'api-ref'
+openstackdocs_auto_name = False
 
 release = ''
 # The short X.Y version.
@@ -97,7 +98,7 @@ add_module_names = False
 show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'native'
 
 # -- Options for man page output ----------------------------------------------
 
@@ -140,11 +141,6 @@ pygments_style = 'sphinx'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 # html_static_path = ['_static']
-
-# If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
-# using the given strftime format.
-# html_last_updated_fmt = '%b %d, %Y'
-html_last_updated_fmt = '%Y-%m-%d %H:%M'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
