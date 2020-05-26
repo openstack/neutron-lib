@@ -20,6 +20,7 @@ from sqlalchemy import sql, or_, and_
 
 from neutron_lib._i18n import _
 from neutron_lib.api import attributes
+from neutron_lib import constants
 from neutron_lib.db import utils as db_utils
 from neutron_lib import exceptions as n_exc
 from neutron_lib.objects import utils as obj_utils
@@ -122,7 +123,8 @@ def query_with_hooks(context, model, field=None):
             rbac_model = model.rbac_entries.property.mapper.class_
             query_filter = (
                 (model.tenant_id == context.tenant_id) |
-                ((rbac_model.action == 'access_as_shared') &
+                (rbac_model.action.in_(
+                    [constants.ACCESS_SHARED, constants.ACCESS_READONLY]) &
                  ((rbac_model.target_tenant == context.tenant_id) |
                   (rbac_model.target_tenant == '*'))))
         elif hasattr(model, 'shared'):
@@ -212,7 +214,7 @@ def apply_filters(query, model, filters, context=None):
                     matches.append(rbac.target_tenant == context.tenant_id)
                 # any 'access_as_shared' records that match the
                 # wildcard or requesting tenant
-                is_shared = and_(rbac.action == 'access_as_shared',
+                is_shared = and_(rbac.action == constants.ACCESS_SHARED,
                                  or_(*matches))
                 if not value[0]:
                     # NOTE(kevinbenton): we need to find objects that don't

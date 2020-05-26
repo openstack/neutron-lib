@@ -665,3 +665,8 @@ PORT_NUMA_POLICY_PREFERRED = 'preferred'
 PORT_NUMA_POLICY_LEGACY = 'legacy'
 PORT_NUMA_POLICIES = (PORT_NUMA_POLICY_REQUIRED, PORT_NUMA_POLICY_PREFERRED,
                       PORT_NUMA_POLICY_LEGACY)
+
+# RBAC Sharing Actions
+ACCESS_SHARED = 'access_as_shared'
+ACCESS_READONLY = 'access_as_readonly'
+ACCESS_EXTERNAL = 'access_as_external'
