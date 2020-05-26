@@ -70,6 +70,7 @@ def get_funcs(resource):
     return _resource_extend_functions.get(resource, [])
 
 
+@helpers.timecost
 def apply_funcs(resource_type, response, db_object):
     """Appy registered functions for the said resource type.
 
