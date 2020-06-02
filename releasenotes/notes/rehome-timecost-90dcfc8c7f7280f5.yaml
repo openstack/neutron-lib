@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The ``timecost`` decorator is available in ``neutron_lib.utils.helpers``
+    now.  This permits functions to be decorated with functionality that will
+    emit a debug log with the time it took to execute the function.
