@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    The DHCP port numbers for IPv4 were defined incorrectly in
+    ``neutron_lib.constants``, they are now correct - ``68`` (client)
+    and ``67`` (server).
