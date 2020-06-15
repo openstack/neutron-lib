@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    Add API extension ``dns-integration-domain-keywords``. This extension
+    indicates if the server supports usage of keywords like ``project_id``,
+    ``project_name``, ``user_id`` and ``user_name`` in the network's DNS
+    domain name.
