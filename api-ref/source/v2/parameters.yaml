@@ -1959,6 +1959,7 @@ binding:profile:
     A dictionary that enables the application running on the specific host to
     pass and receive vif port information specific to the networking back-end.
     The networking API does not define a specific format of this field.
+    If the update request is null this response field will be {}.
   in: body
   required: true
   type: object
@@ -1968,6 +1969,7 @@ binding:profile-request:
     pass and receive vif port information specific to the networking back-end.
     The networking API does not define a specific format of this field.
     The default is an empty dictionary.
+    If you update it with null then it is treated like {} in the response.
   in: body
   required: false
   type: object
