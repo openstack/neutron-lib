@@ -109,15 +109,27 @@ DHCPV6_RESPONSE_PORT = 547
 
 FLOODING_ENTRY = ('00:00:00:00:00:00', '0.0.0.0')
 
+# Agent process name and description
+AGENT_PROCESS_DHCP = 'neutron-dhcp-agent'
+AGENT_PROCESS_L3 = 'neutron-l3-agent'
+AGENT_PROCESS_LINUXBRIDGE = 'neutron-linuxbridge-agent'
+AGENT_PROCESS_MACVTAP = 'neutron-macvtap-agent'
+AGENT_PROCESS_METADATA = 'neutron-metadata-agent'
+AGENT_PROCESS_METERING = 'neutron-metering-agent'
+AGENT_PROCESS_NIC_SWITCH = 'neutron-sriov-nic-agent'
+AGENT_PROCESS_OVN_METADATA = 'neutron-ovn-metadata-agent'
+AGENT_PROCESS_OVS = 'neutron-openvswitch-agent'
+
 AGENT_TYPE_DHCP = 'DHCP agent'
-AGENT_TYPE_OVS = 'Open vSwitch agent'
-AGENT_TYPE_LINUXBRIDGE = 'Linux bridge agent'
-AGENT_TYPE_OFA = 'OFA driver agent'
 AGENT_TYPE_L3 = 'L3 agent'
-AGENT_TYPE_METERING = 'Metering agent'
-AGENT_TYPE_METADATA = 'Metadata agent'
-AGENT_TYPE_NIC_SWITCH = 'NIC Switch agent'
+AGENT_TYPE_LINUXBRIDGE = 'Linux bridge agent'
 AGENT_TYPE_MACVTAP = 'Macvtap agent'
+AGENT_TYPE_METADATA = 'Metadata agent'
+AGENT_TYPE_METERING = 'Metering agent'
+AGENT_TYPE_NIC_SWITCH = 'NIC Switch agent'
+AGENT_TYPE_OFA = 'OFA driver agent'
+AGENT_TYPE_OVS = 'Open vSwitch agent'
+
 L2_AGENT_TOPIC = 'N/A'
 
 L3_AGENT_MODE_DVR = 'dvr'
