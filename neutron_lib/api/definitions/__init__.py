@@ -28,6 +28,7 @@ from neutron_lib.api.definitions import data_plane_status
 from neutron_lib.api.definitions import default_subnetpools
 from neutron_lib.api.definitions import dhcpagentscheduler
 from neutron_lib.api.definitions import dns
+from neutron_lib.api.definitions import dns_domain_keywords
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import dvr
 from neutron_lib.api.definitions import empty_string_filtering
@@ -138,6 +139,7 @@ _ALL_API_DEFINITIONS = {
     default_subnetpools,
     dhcpagentscheduler,
     dns,
+    dns_domain_keywords,
     dns_domain_ports,
     dvr,
     empty_string_filtering,
