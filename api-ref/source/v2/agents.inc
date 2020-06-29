@@ -51,6 +51,8 @@ Request
    - id: id-query
    - topic: topic-query
    - fields: fields
+   - sort_dir: sort_dir
+   - sort_key: agent-sort_key
 
 Response Parameters
 -------------------

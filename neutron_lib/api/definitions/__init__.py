@@ -13,6 +13,7 @@
 from neutron_lib.api.definitions import address_scope
 from neutron_lib.api.definitions import agent
 from neutron_lib.api.definitions import agent_resources_synced
+from neutron_lib.api.definitions import agent_sort_key
 from neutron_lib.api.definitions import allowedaddresspairs
 from neutron_lib.api.definitions import auto_allocated_topology
 from neutron_lib.api.definitions import availability_zone
@@ -124,6 +125,7 @@ _ALL_API_DEFINITIONS = {
     address_scope,
     agent,
     agent_resources_synced,
+    agent_sort_key,
     allowedaddresspairs,
     auto_allocated_topology,
     availability_zone,
