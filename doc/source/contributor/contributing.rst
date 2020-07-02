@@ -15,6 +15,9 @@ The checklist below aims to provide guidance for developers rehoming (moving) co
 neutron-lib. Rehoming approaches that fall outside the scope herein will need to be
 considered on a case by case basis.
 
+Please note that the effort to rehome existing code from neutron to neutron-lib
+so that no stadium projects would import directly from neutron has been suspended.
+
 The rehoming workflow procedure has four main phases:
 
 #. `Phase 1: Rehome`_ the code from neutron into neutron-lib.
@@ -113,45 +116,9 @@ When the bot-proposed requirement patches have merged, your rehomed code can be 
 Phase 4: Consume
 ~~~~~~~~~~~~~~~~
 
-It's critical that before you submit your patch to remove the rehomed code from its source that
-you perform a diff between it and the rehomed version in neutron-lib to ensure nothing has
-changed in the source. If something has changed in the source, you need to push and shepherd a
-patch to neutron-lib with the difference(s) before proceeding with this consumption phase.
-
-The following guidelines are intended to provide a smooth transition to the rehomed code
-in neutron-lib and minimize impacts to subprojects consuming the rehomed code from its
-source.
-
-- If the change to consume the code from neutron-lib is widespread and/or "important",
-  introduce your intentions for the change via the Neutron team
-  `meeting slot <https://wiki.openstack.org/wiki/Network/Meetings>`_
-  for neutron-lib. Subsequently follow-up with an email to openstack-discuss list using a
-  subject with ``[neutron] neutron-lib impact`` providing additional details as necessary.
-  Ideally we can identify the main impacted subprojects by
-  `grepping the OpenStack code <http://codesearch.openstack.org/>`_.
-- Prepare a neutron core patch to remove and update the rehomed code from its source.
-  This can be done without a `debtcollector <https://docs.openstack.org/debtcollector/latest/>`_
-  notice by following the steps here. In the patch's commit message include the ``NeutronLibImpact``
-  so that we can easily `query <https://review.opendev.org/#/q/status:open+message:%22NeutronLibImpact%22>`_
-  for such changes. Mark the patch as a work in progress with a -1 workflow vote.
-- If the change is significant enough, it may warrant a "reference implementation" in an
-  impacted subproject to ensure the impacts are fully understood. Testing this
-  change can be done using the ``Depends-On:`` approach described in the
-  `review guidelines <./review-guidelines.html>`_.
-- If you are a core reviewer and about to approve a NeutronLibImpact change, please consider
-  checking the state of all Stadium subprojects by looking at the
-  `grafana periodic dashboard <http://grafana.openstack.org/dashboard/db/neutron-lib-failure-rate?panelId=4&fullscreen>`_.
-  This dashboard shows the status of subprojects' unit tests against neutron and neutron-lib
-  master branches, and even though it is not exactly validating unit tests against a released
-  version of neutron-lib it may be enough of an alarm bell to indicate that something might
-  be wrong because of a patch that recently landed in neutron (assuming that the subprojects
-  still has direct neutron imports). The check happens daily therefore consider waiting to
-  approve if you are either aware of another impactful change recently merged that has not
-  been yet processed or you see failure rates spiking.
-- All projects that have `neutron-lib-current <http://codesearch.openstack.org/?q=neutron-lib-current&i=nope&files=requirements.txt&repos=>`_
-  should also be updated as part of consumption.
-
-Examples:
-
-- `348472 <https://review.opendev.org/348472/>`_ removes a validator in neutron that
-  was rehomed to neutron-lib.
+When code is rehomed from neutron-lib then the original location of the code
+should be flagged with a `debtcollector removal
+<https://docs.openstack.org/debtcollector/latest/user/usage.html#removing-a-class-classmethod-method-function>`_.
+This will indicate to any consuming projects that the given code is deprecated.
+Be sure that this change is accompanied by a release note that notes the
+deprecation.
