@@ -266,6 +266,20 @@ class PortBound(InUse):
                 "old_mac %(old_mac)s, new_mac %(new_mac)s.")
 
 
+class PortBoundNUMAAffinityPolicy(InUse):
+    """An operational error indicating a port is already bound.
+
+    NUMA affinity policy cannot be modified when the port is bound.
+
+    :param port_id: The UUID of the port requested.
+    :param host_id: The host ID where the port is bound.
+    :param numa_affinity_policy: value passed to be updated.
+    """
+    message = _("Unable to complete operation on port %(port_id)s, "
+                "port is already bound to host %(host_id)s, "
+                "numa_affinity_policy value given %(numa_affinity_policy)s.")
+
+
 class MacAddressInUse(InUse):
     """An network operational error indicating a MAC address is already in use.
 

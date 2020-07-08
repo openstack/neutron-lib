@@ -85,6 +85,13 @@ The ``mac_learning_enabled`` extension extends neutron ports providing the
 ability to enable MAC learning on the associated port via the
 ```mac_learning_enabled``` attribute.
 
+NUMA affinity policy
+====================
+
+The NUMA affinity policy extension (``port-numa-affinity-policy``) defines
+the Nova scheduling strategy according to the network backend NUMA topology.
+This parameter could be ``required``, ``preferred``, ``legacy`` or ``None``.
+
 Port binding extended attributes
 ================================
 
@@ -206,6 +213,7 @@ Response Parameters
    - mac_address: mac_address
    - name: name
    - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - qos_network_policy_id: qos_network_policy_id-port-response
@@ -289,6 +297,7 @@ Request
    - fixed_ips: fixed_ips-request
    - mac_address: mac_address-request-put
    - name: name-request
+   - numa_affinity_policy: numa_affinity_policy-request
    - port_security_enabled: port_security_enabled-request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
@@ -334,6 +343,7 @@ Response Parameters
    - mac_address: mac_address
    - name: name
    - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - qos_network_policy_id: qos_network_policy_id-port-response
@@ -470,6 +480,7 @@ Response Parameters
    - mac_address: mac_address
    - name: name
    - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - qos_network_policy_id: qos_network_policy_id-port-response
@@ -531,6 +542,7 @@ Request
    - mac_address: mac_address-request
    - name: name-request
    - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy-request
    - port_security_enabled: port_security_enabled-request
    - project_id: project_id-request
    - qos_policy_id: qos_policy_id-port-request
@@ -579,6 +591,7 @@ Response Parameters
    - mac_address: mac_address
    - name: name
    - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - qos_network_policy_id: qos_network_policy_id-port-response
@@ -639,6 +652,7 @@ Request
    - mac_address: mac_address-request
    - name: name-request
    - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy-request
    - port_security_enabled: port_security_enabled-request
    - project_id: project_id-request
    - qos_policy_id: qos_policy_id-port-request
@@ -681,6 +695,7 @@ Response Parameters
    - mac_address: mac_address
    - name: name
    - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy
    - port_security_enabled: port_security_enabled
    - project_id: project_id
    - qos_network_policy_id: qos_network_policy_id-port-response

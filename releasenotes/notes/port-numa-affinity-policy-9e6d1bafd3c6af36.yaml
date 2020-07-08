@@ -1,0 +1,7 @@
+---
+features:
+ - |
+   New API definition: ``port-numa-affinity-policy``. The new field added to
+   ``ports`` API, ``numa_affinity_policy``, represents the NUMA affinity
+   policy requested by this port during the virtual machine scheduling.
+   Values: None, "required", "preferred", "legacy".

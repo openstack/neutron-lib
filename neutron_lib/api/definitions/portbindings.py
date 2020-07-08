@@ -105,6 +105,8 @@ VIF_TYPE_AGILIO_OVS = 'agilio_ovs'
 VIF_TYPE_HW_VEB = 'hw_veb'
 VIF_TYPE_HOSTDEV_PHY = 'hostdev_physical'
 
+VIF_UNPLUGGED_TYPES = (VIF_TYPE_BINDING_FAILED, VIF_TYPE_UNBOUND)
+
 # VNIC_TYPE: It's used to determine which mechanism driver to use to bind a
 #            port. It can be specified via the Neutron API. Default is normal,
 #            used by OVS and LinuxBridge agent.
