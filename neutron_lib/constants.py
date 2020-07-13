@@ -606,7 +606,23 @@ ACCEPT_RA_WITH_FORWARDING = 2
 PRIVATE_CIDR_RANGE = '169.254.0.0/16'
 DVR_FIP_LL_CIDR = '169.254.64.0/18'
 L3_HA_NET_CIDR = '169.254.192.0/18'
-METADATA_CIDR = '169.254.169.254/32'
+
+# Well-known addresses of the metadata service.
+# When binding to an address, used with a port.
+METADATA_V4_IP = '169.254.169.254'
+# When configuring an address on an interface.
+# When adding a route.
+METADATA_V4_CIDR = '169.254.169.254/32'
+# When checking if a metadata subnet is present.
+METADATA_V4_SUBNET = '169.254.0.0/16'
+
+METADATA_V6_IP = 'fe80::a9fe:a9fe'
+METADATA_V6_CIDR = 'fe80::a9fe:a9fe/64'
+
+METADATA_PORT = 80
+
+# For backwards compatibility, prefer METADATA_V4_CIDR instead.
+METADATA_CIDR = METADATA_V4_CIDR
 
 # The only defined IpamAllocation status at this stage is 'ALLOCATED'.
 # More states will be available in the future - e.g.: RECYCLABLE
