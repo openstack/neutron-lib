@@ -64,8 +64,7 @@ def _check_placement_api_available(f):
                 # to avoid losing information.
                 raise n_exc.PlacementClientError(
                     msg=exc.response.text.replace('\n', ' '))
-            else:
-                raise
+            raise
     return wrapper
 
 
@@ -79,7 +78,7 @@ class UUIDEncoder(jsonutils.JSONEncoder):
     def default(self, o):
         if isinstance(o, uuid.UUID):
             return str(o)
-        return super(UUIDEncoder, self).default(o)
+        return super().default(o)
 
 
 class NoAuthClient(object):
@@ -233,8 +232,7 @@ class PlacementAPIClient(object):
                 if e.response.json()[
                         'errors'][0]['code'] == 'placement.concurrent_update':
                     continue
-                else:
-                    raise
+                raise
 
         raise n_exc.PlacementResourceProviderGenerationConflict(
             resource_provider=resource_provider_uuid,
@@ -277,6 +275,7 @@ class PlacementAPIClient(object):
                                                         the same name.
         :returns: The updated resource provider.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_providers/%s' % resource_provider['uuid']
         # update does not tolerate if the uuid is repeated in the body
         update_body = resource_provider.copy()
@@ -325,6 +324,7 @@ class PlacementAPIClient(object):
         :raises PlacementResourceProviderNotFound: For failure to find resource
         :returns: The Resource Provider matching the UUID.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_providers/%s' % resource_provider_uuid
         try:
             return self._get(url).json()
@@ -407,6 +407,7 @@ class PlacementAPIClient(object):
                                                              server side.
         :returns: The updated set of inventory records.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_providers/%s/inventories' % resource_provider_uuid
         body = {
             'resource_provider_generation': resource_provider_generation,
@@ -438,8 +439,7 @@ class PlacementAPIClient(object):
             if "No resource provider with uuid" in e.details:
                 raise n_exc.PlacementResourceProviderNotFound(
                     resource_provider=resource_provider_uuid)
-            else:
-                raise
+            raise
 
     @_check_placement_api_available
     def delete_resource_provider_inventory(self, resource_provider_uuid,
@@ -461,12 +461,11 @@ class PlacementAPIClient(object):
             if "No resource provider with uuid" in e.details:
                 raise n_exc.PlacementResourceProviderNotFound(
                     resource_provider=resource_provider_uuid)
-            elif "No inventory of class" in e.details:
+            if "No inventory of class" in e.details:
                 raise n_exc.PlacementInventoryNotFound(
                     resource_provider=resource_provider_uuid,
                     resource_class=resource_class)
-            else:
-                raise
+            raise
 
     @_check_placement_api_available
     def get_inventory(self, resource_provider_uuid, resource_class):
@@ -489,12 +488,11 @@ class PlacementAPIClient(object):
             if "No resource provider with uuid" in e.details:
                 raise n_exc.PlacementResourceProviderNotFound(
                     resource_provider=resource_provider_uuid)
-            elif _("No inventory of class") in e.details:
+            if _("No inventory of class") in e.details:
                 raise n_exc.PlacementInventoryNotFound(
                     resource_provider=resource_provider_uuid,
                     resource_class=resource_class)
-            else:
-                raise
+            raise
 
     @_check_placement_api_available
     def update_resource_provider_inventory(
@@ -549,6 +547,7 @@ class PlacementAPIClient(object):
         :returns: The list of aggregates together with the resource provider
                   generation.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_providers/%s/aggregates' % resource_provider_uuid
         try:
             return self._get(url).json()
@@ -570,6 +569,7 @@ class PlacementAPIClient(object):
         :raises PlacementTraitNotFound: If the trait name not found.
         :returns: Evaluates to True if the trait exists.
         """
+        # pylint: disable=raise-missing-from
         url = '/traits/%s' % name
         try:
             return self._get(url)
@@ -594,6 +594,7 @@ class PlacementAPIClient(object):
         :raises PlacementTraitNotFound: If the trait did not exist.
         :returns: None.
         """
+        # pylint: disable=raise-missing-from
         url = '/traits/%s' % (name)
         try:
             self._delete(url)
@@ -626,6 +627,7 @@ class PlacementAPIClient(object):
         :returns: The new traits of the resource provider together with the
                   resource provider generation.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_providers/%s/traits' % (resource_provider_uuid)
         body = {
             'resource_provider_generation': resource_provider_generation,
@@ -653,6 +655,7 @@ class PlacementAPIClient(object):
         :returns: The associated traits of the resource provider together
                   with the resource provider generation.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_providers/%s/traits' % (resource_provider_uuid)
         try:
             return self._get(url).json()
@@ -670,6 +673,7 @@ class PlacementAPIClient(object):
                                                    is not found.
         :returns: None.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_providers/%s/traits' % (resource_provider_uuid)
         try:
             self._delete(url)
@@ -692,6 +696,7 @@ class PlacementAPIClient(object):
                                                 is not found.
         :returns: The name of resource class and its set of links.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_classes/%s' % (name)
         try:
             return self._get(url).json()
@@ -728,6 +733,7 @@ class PlacementAPIClient(object):
                                                 is not found.
         :returns: None.
         """
+        # pylint: disable=raise-missing-from
         url = '/resource_classes/%s' % (name)
         try:
             self._delete(url)
@@ -776,8 +782,7 @@ class PlacementAPIClient(object):
                 resp = e.response.json()
                 if resp['errors'][0]['code'] == 'placement.concurrent_update':
                     continue
-                else:
-                    raise
+                raise
         raise n_exc.PlacementAllocationGenerationConflict(
             consumer=consumer_uuid)
 

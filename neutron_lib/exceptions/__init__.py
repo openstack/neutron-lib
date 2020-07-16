@@ -33,14 +33,14 @@ class NeutronException(Exception):
 
     def __init__(self, **kwargs):
         try:
-            super(NeutronException, self).__init__(self.message % kwargs)
+            super().__init__(self.message % kwargs)
             self.msg = self.message % kwargs
         except Exception:
             with excutils.save_and_reraise_exception() as ctxt:
                 if not self.use_fatal_exceptions():
                     ctxt.reraise = False
                     # at least get the core message out if something happened
-                    super(NeutronException, self).__init__(self.message)
+                    super().__init__(self.message)
 
     def __str__(self):
         return self.msg
@@ -200,7 +200,7 @@ class SubnetInUse(InUse):
         if 'reason' not in kwargs:
             kwargs['reason'] = _("One or more ports have an IP allocation "
                                  "from this subnet")
-        super(SubnetInUse, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
 
 class SubnetPoolInUse(InUse):
@@ -219,7 +219,7 @@ class SubnetPoolInUse(InUse):
     def __init__(self, **kwargs):
         if 'reason' not in kwargs:
             kwargs['reason'] = _("Two or more concurrent subnets allocated")
-        super(SubnetPoolInUse, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
 
 class PortInUse(InUse):
@@ -389,7 +389,7 @@ class Invalid(NeutronException):
     """A generic base class for invalid errors."""
     def __init__(self, message=None):
         self.message = message
-        super(Invalid, self).__init__()
+        super().__init__()
 
 
 class InvalidInput(BadRequest):
@@ -481,7 +481,7 @@ class NetworkTunnelRangeError(NeutronException):
         # Convert tunnel_range tuple to 'start:end' format for display
         if isinstance(kwargs['tunnel_range'], tuple):
             kwargs['tunnel_range'] = "%d:%d" % kwargs['tunnel_range']
-        super(NetworkTunnelRangeError, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
 
 class PolicyInitError(NeutronException):
@@ -517,7 +517,7 @@ class MultipleExceptions(Exception):
         :param args: Passed onto parent constructor.
         :param kwargs: Passed onto parent constructor.
         """
-        super(MultipleExceptions, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.inner_exceptions = exceptions
 
 
@@ -552,7 +552,7 @@ class NetworkVlanRangeError(NeutronException):
         # Convert vlan_range tuple to 'start:end' format for display
         if isinstance(kwargs['vlan_range'], tuple):
             kwargs['vlan_range'] = "%d:%d" % kwargs['vlan_range']
-        super(NetworkVlanRangeError, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
 
 class PhysicalNetworkNameError(NeutronException):
@@ -670,7 +670,7 @@ class DuplicatedExtension(NeutronException):
 
 class DriverCallError(MultipleExceptions):
     def __init__(self, exc_list=None):
-        super(DriverCallError, self).__init__(exc_list or [])
+        super().__init__(exc_list or [])
 
 
 class DeviceIDNotOwnedByTenant(Conflict):
@@ -809,7 +809,7 @@ class PortBindingError(NeutronException):
 
 class ProcessExecutionError(RuntimeError):
     def __init__(self, message, returncode):
-        super(ProcessExecutionError, self).__init__(message)
+        super().__init__(message)
         self.returncode = returncode
 
 

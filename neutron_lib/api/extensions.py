@@ -262,5 +262,5 @@ class APIExtensionDescriptor(ExtensionDescriptor):
         """
         if extension_attrs_map is None:
             extension_attrs_map = cls.get_extended_resources('2.0')
-        super(APIExtensionDescriptor, cls()).update_attributes_map(
-            attributes, extension_attrs_map=extension_attrs_map)
+        super(APIExtensionDescriptor, cls).update_attributes_map(
+            cls, attributes, extension_attrs_map=extension_attrs_map)

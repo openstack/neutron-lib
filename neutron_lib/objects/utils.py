@@ -50,7 +50,7 @@ class StringMatchingFilterObj(FilterObj):
 class StringContains(StringMatchingFilterObj):
 
     def __init__(self, matching_string):
-        super(StringContains, self).__init__()
+        super().__init__()
         self.contains = matching_string
 
     def filter(self, column):
@@ -60,7 +60,7 @@ class StringContains(StringMatchingFilterObj):
 class StringStarts(StringMatchingFilterObj):
 
     def __init__(self, matching_string):
-        super(StringStarts, self).__init__()
+        super().__init__()
         self.starts = matching_string
 
     def filter(self, column):
@@ -70,7 +70,7 @@ class StringStarts(StringMatchingFilterObj):
 class StringEnds(StringMatchingFilterObj):
 
     def __init__(self, matching_string):
-        super(StringEnds, self).__init__()
+        super().__init__()
         self.ends = matching_string
 
     def filter(self, column):
@@ -80,7 +80,7 @@ class StringEnds(StringMatchingFilterObj):
 class NotIn(FilterObj):
 
     def __init__(self, value):
-        super(NotIn, self).__init__()
+        super().__init__()
         self.value = value
 
     def filter(self, column):
@@ -90,7 +90,7 @@ class NotIn(FilterObj):
 class NotEqual(FilterObj):
 
     def __init__(self, value):
-        super(NotEqual, self).__init__()
+        super().__init__()
         self.value = value
 
     def filter(self, column):

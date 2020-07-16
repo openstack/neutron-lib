@@ -38,11 +38,12 @@ def get_and_validate_sort_keys(sorts, model):
     for sort_key in sort_keys:
         try:
             sort_key_attr = getattr(model, sort_key)
-        except AttributeError:
+        except AttributeError as e:
             # Extension attributes don't support sorting. Because it
             # existed in attr_info, it will be caught here.
             msg = _("'%s' is an invalid attribute for sort key") % sort_key
-            raise n_exc.BadRequest(resource=model.__tablename__, msg=msg)
+            raise n_exc.BadRequest(
+                resource=model.__tablename__, msg=msg) from e
         if isinstance(sort_key_attr.property,
                       properties.RelationshipProperty):
             msg = _("Attribute '%(attr)s' references another resource and "

@@ -129,9 +129,9 @@ class HasStandardAttributes(object):
     def get_collection_resource_map(cls):
         try:
             return cls.collection_resource_map
-        except AttributeError:
-            raise NotImplementedError(_("%s must define "
-                                        "collection_resource_map") % cls)
+        except AttributeError as e:
+            raise NotImplementedError(
+                _("%s must define collection_resource_map") % cls) from e
 
     @classmethod
     def validate_tag_support(cls):
@@ -168,7 +168,7 @@ class HasStandardAttributes(object):
         for key in standard_attr_keys:
             if key in kwargs:
                 standard_attr_kwargs[key] = kwargs.pop(key)
-        super(HasStandardAttributes, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         # here we automatically create the related standard attribute object
         self.standard_attr = StandardAttribute(
             resource_type=self.__tablename__, **standard_attr_kwargs)
@@ -190,7 +190,7 @@ class HasStandardAttributes(object):
         # happens if code calls update_port with modified results of get_port
         new_dict.pop('created_at', None)
         new_dict.pop('updated_at', None)
-        super(HasStandardAttributes, self).update(new_dict)
+        super().update(new_dict)
 
     @declarative.declared_attr
     def revision_number(cls):

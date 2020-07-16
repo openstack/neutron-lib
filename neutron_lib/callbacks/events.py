@@ -107,7 +107,7 @@ class DBEventPayload(EventPayload):
     def __init__(self, context, metadata=None, request_body=None,
                  states=None, resource_id=None, desired_state=None):
 
-        super(DBEventPayload, self).__init__(
+        super().__init__(
             context, metadata=metadata, request_body=request_body,
             states=states, resource_id=resource_id)
 
@@ -138,8 +138,7 @@ class DBEventPayload(EventPayload):
         :returns: If this payload has a desired_state its returned, otherwise
             latest_state is returned.
         """
-        return (self.desired_state or
-                super(DBEventPayload, self).latest_state)
+        return (self.desired_state or super().latest_state)
 
 
 class APIEventPayload(EventPayload):
@@ -149,7 +148,7 @@ class APIEventPayload(EventPayload):
                  metadata=None, request_body=None, states=None,
                  resource_id=None, collection_name=None):
 
-        super(APIEventPayload, self).__init__(
+        super().__init__(
             context, metadata=metadata, request_body=request_body,
             states=states, resource_id=resource_id)
 

@@ -125,11 +125,11 @@ def _parse_bandwidth_value(bw_str):
             bw = int(bw_str)
             if bw < 0:
                 raise ValueError()
-    except ValueError:
+    except ValueError as e:
         raise ValueError(_(
             'Cannot parse resource_provider_bandwidths. '
             'Expected: non-negative integer bandwidth value, got: %s') %
-            bw_str)
+            bw_str) from e
     return bw
 
 
@@ -160,10 +160,10 @@ def parse_rp_bandwidths(bandwidths):
             bandwidth += '::'
         try:
             device, egress_str, ingress_str = bandwidth.split(':')
-        except ValueError:
+        except ValueError as e:
             raise ValueError(_(
                 'Cannot parse resource_provider_bandwidths. '
-                'Expected: DEVICE:EGRESS:INGRESS, got: %s') % bandwidth)
+                'Expected: DEVICE:EGRESS:INGRESS, got: %s') % bandwidth) from e
         if device in rv:
             raise ValueError(_(
                 'Cannot parse resource_provider_bandwidths. '
@@ -216,11 +216,11 @@ def parse_rp_inventory_defaults(inventory_defaults):
                 inventory_defaults['allocation_ratio'])
             if inventory_defaults['allocation_ratio'] < 0:
                 raise ValueError()
-    except ValueError:
+    except ValueError as e:
         raise ValueError(_(
             'Cannot parse inventory_defaults.allocation_ratio. '
             'Expected: non-negative float, got: %s') %
-            inventory_defaults['allocation_ratio'])
+            inventory_defaults['allocation_ratio']) from e
 
     # the others are ints
     for key in ('min_unit', 'max_unit', 'reserved', 'step_size'):
@@ -229,12 +229,12 @@ def parse_rp_inventory_defaults(inventory_defaults):
                 inventory_defaults[key] = int(inventory_defaults[key])
                 if inventory_defaults[key] < 0:
                     raise ValueError()
-        except ValueError:
+        except ValueError as e:
             raise ValueError(_(
                 'Cannot parse inventory_defaults.%(key)s. '
                 'Expected: non-negative int, got: %(got)s') % {
                     'key': key,
                     'got': inventory_defaults[key],
-            })
+            }) from e
 
     return inventory_defaults
