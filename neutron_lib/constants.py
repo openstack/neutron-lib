@@ -59,6 +59,7 @@ DEVICE_OWNER_AGENT_GW = (DEVICE_OWNER_NETWORK_PREFIX +
                          "floatingip_agent_gateway")
 DEVICE_OWNER_ROUTER_SNAT = (DEVICE_OWNER_NETWORK_PREFIX +
                             "router_centralized_snat")
+DEVICE_OWNER_ROUTED = (DEVICE_OWNER_NETWORK_PREFIX + "routed")
 # TODO(johnsom) Remove after these stop being used. Neutron-LBaaS is now
 #               retired (train) and these should no longer be necessary.
 DEVICE_OWNER_LOADBALANCER = DEVICE_OWNER_NEUTRON_PREFIX + "LOADBALANCER"
