@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add an API extension ``address-groups`` that enables users to aggregate IP
+    address blocks into an address group object which can be later referenced
+    when creating other resources.
