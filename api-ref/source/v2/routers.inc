@@ -26,6 +26,15 @@ When the ``extraroute-atomic`` extension is also available you can add
 or remove a set of extra routes atomically on the server side. For details
 please see below.
 
+.. warning::
+
+    By default in a router there is one route for each attached subnet. If you
+    add an extra route that matches one of the default routes for a subnet,
+    the existing subnet route will be overwritten.
+    If the Neutron route is removed, the corresponding route will be removed
+    as well. The affected subnet will subsequently lose connectivity to this
+    router.
+
 Extra routes (atomic) extension
 ===============================
 
@@ -33,6 +42,15 @@ The extra route atomic extension (``extraroute-atomic``) extends the
 ``router`` resource by adding two member actions (``add_extraroutes`` /
 ``remove_extraroutes``) to edit the set of extra routes atomically on
 the server side.
+
+.. warning::
+
+    By default in a router there is one route for each attached subnet. If you
+    add an extra route that matches one of the default routes for a subnet,
+    the existing subnet route will be overwritten.
+    If the Neutron route is removed, the corresponding route will be removed
+    as well. The affected subnet will subsequently lose connectivity to this
+    router.
 
 HA capability for router extension (``l3-ha``)
 =======================================================
