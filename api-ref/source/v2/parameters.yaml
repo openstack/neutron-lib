@@ -327,6 +327,25 @@ admin_state_up_trunk-query:
   in: query
   required: false
   type: boolean
+agent-sort_key:
+  description: |
+    Sorts by agent attributes. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``admin_state_up``
+    - ``agent_type``
+    - ``alive``
+    - ``binary``
+    - ``created_at``
+    - ``description``
+    - ``heartbeat_timestamp``
+    - ``host``
+    - ``id``
+    - ``started_at``
+    - ``topic``
+  in: query
+  required: false
+  type: string
 agent_type-query:
   description: |
     Filter the list result by the type of agent such as ``Open vSwitch agent``

@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add keyword ``is_sort_key`` to agents. Make the agent's
+    attribute can be used as a sort key for sorting list result.
