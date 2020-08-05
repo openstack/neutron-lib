@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    Add ``supported_extensions`` method to ``MechanismDriver``. This method
+    provides an standard API to implement, per mechanism driver, a way to
+    filter the supported extensions. By default, this method will return the
+    same set of extensions passed.
