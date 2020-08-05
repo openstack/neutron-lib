@@ -28,7 +28,7 @@ RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
         PROPAGATE_UPLINK_STATUS: {'allow_post': True,
                                   'allow_put': False,
-                                  'default': False,
+                                  'default': True,
                                   'convert_to': converters.convert_to_boolean,
                                   'is_visible': True},
     },

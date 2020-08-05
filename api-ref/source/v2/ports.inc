@@ -149,9 +149,9 @@ Uplink status propagation
 =========================
 
 The ``uplink-status-propagation`` extension adds ``uplink_status_propagation``
-attribute to port. If this attribute is set to ``true``, uplink status
-propagation is enabled. If this attribute is not specified, it is default to
-``false`` which indicates uplink status propagation is disabled.
+attribute to port. If this attribute is set to ``false``, uplink status
+propagation is disabled. If this attribute is not specified, it is default to
+``true`` which indicates uplink status propagation is enabled.
 
 Show port details
 =================

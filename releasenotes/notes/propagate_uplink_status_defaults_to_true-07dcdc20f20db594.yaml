@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    The API extension ``uplink-status-propagation`` has changed the default
+    value of ``propagate_uplink_status`` from False to True. Now, when this
+    extension is enabled, the VF link state will be set, by default, to "auto",
+    following the PF link state.
+    This change will affect only new ports; existing ports will keep their
+    current value.
