@@ -658,3 +658,10 @@ EXT_PARENT_PREFIX = 'ext_parent'
 
 RP_BANDWIDTHS = 'resource_provider_bandwidths'
 RP_INVENTORY_DEFAULTS = 'resource_provider_inventory_defaults'
+
+# Port NUMA affinity policies, matching Nova NUMA affinity policy constants
+PORT_NUMA_POLICY_REQUIRED = 'required'
+PORT_NUMA_POLICY_PREFERRED = 'preferred'
+PORT_NUMA_POLICY_LEGACY = 'legacy'
+PORT_NUMA_POLICIES = (PORT_NUMA_POLICY_REQUIRED, PORT_NUMA_POLICY_PREFERRED,
+                      PORT_NUMA_POLICY_LEGACY)

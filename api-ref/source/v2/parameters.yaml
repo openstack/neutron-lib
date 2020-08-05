@@ -4150,6 +4150,20 @@ networks:
   in: body
   required: true
   type: array
+numa_affinity_policy:
+  description: |
+    The port NUMA affinity policy requested during the virtual machine
+    scheduling. Values: ``None``, ``requiered``, ``preferred`` or ``legacy``.
+  in: body
+  required: False
+  type: string
+numa_affinity_policy-request:
+  description: |
+    The port NUMA affinity policy requested during the virtual machine
+    scheduling. Values: ``None``, ``requiered``, ``preferred`` or ``legacy``.
+  in: body
+  required: False
+  type: string
 object_id:
   description: |
     The ID of the ``object_type`` resource. An ``object_type`` of ``network``

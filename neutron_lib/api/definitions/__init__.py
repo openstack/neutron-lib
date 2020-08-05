@@ -72,6 +72,7 @@ from neutron_lib.api.definitions import network_segment_range
 from neutron_lib.api.definitions import pagination
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_mac_address_regenerate
+from neutron_lib.api.definitions import port_numa_affinity_policy
 from neutron_lib.api.definitions import port_resource_request
 from neutron_lib.api.definitions import port_security
 from neutron_lib.api.definitions import portbindings
@@ -186,6 +187,7 @@ _ALL_API_DEFINITIONS = {
     pagination,
     port,
     port_mac_address_regenerate,
+    port_numa_affinity_policy,
     port_resource_request,
     port_security,
     portbindings,
