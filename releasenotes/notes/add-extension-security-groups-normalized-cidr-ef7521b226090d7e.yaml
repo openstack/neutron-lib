@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add an API extension ``security-groups-normalized-cidr`` that adds
+    new, read-only attribute ``normalized_cidr`` to the security group rules.

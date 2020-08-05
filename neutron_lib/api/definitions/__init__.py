@@ -95,6 +95,7 @@ from neutron_lib.api.definitions import router_admin_state_down_before_update
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import routerservicetype
+from neutron_lib.api.definitions import security_groups_normalized_cidr
 from neutron_lib.api.definitions import security_groups_port_filtering
 from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import segments_peer_subnet_host_routes
@@ -208,6 +209,7 @@ _ALL_API_DEFINITIONS = {
     router_availability_zone,
     router_interface_fip,
     routerservicetype,
+    security_groups_normalized_cidr,
     security_groups_port_filtering,
     segment,
     segments_peer_subnet_host_routes,
