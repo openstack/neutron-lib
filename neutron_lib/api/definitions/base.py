@@ -113,6 +113,7 @@ KNOWN_EXTENSIONS = (
     'l3-port-ip-change-not-allowed',
     'logging',
     'metering',
+    'metering_source_and_destination_filters',
     'multi-provider',
     'net-mtu',
     'network-ip-availability',
