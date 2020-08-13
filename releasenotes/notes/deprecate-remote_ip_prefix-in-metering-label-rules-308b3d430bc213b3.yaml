@@ -1,0 +1,8 @@
+---
+deprecations:
+  - |
+    The parameter 'remote_ip_prefix' in metering label rules has been
+    deprecated. Its name expresses the opposite of what does when used,
+    and the lack of documentation confuses people. Moreover, an alternative
+    method has been proposed and approved to enable operators to create
+    metering rules using both source and destination IP addresses.

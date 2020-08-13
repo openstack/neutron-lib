@@ -734,8 +734,9 @@ metering_label_rule-direction-query:
   type: string
 metering_label_rule-remote_ip_prefix-query:
   description: |
-    Filter the metering rule list result by the remote IP prefix that
-    the metering rule associates with.
+    (deprecated) Filter the metering rule list result by the source IP prefix
+    that the metering rule associates with. By source IP prefix, we mean,
+    the internal/private IPs used in OpenStack.
   in: query
   required: false
   type: string
@@ -3839,7 +3840,8 @@ metering_label_rule-id:
   type: string
 metering_label_rule-remote_ip_prefix:
   description: |
-    The remote IP prefix that is matched by this metering rule.
+    (deprecated) The source IP prefix that is matched by this metering rule. By
+    source IP prefix, we mean, the internal/private IPs used in OpenStack.
   in: body
   required: true
   type: string
