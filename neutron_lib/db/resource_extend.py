@@ -18,7 +18,13 @@ NOTE: This module shall not be used by external projects. It will be moved
 import collections
 import inspect
 
+from oslo_log import log as logging
+from oslo_utils import timeutils
+
 from neutron_lib.utils import helpers
+
+
+LOG = logging.getLogger(__name__)
 
 
 # This dictionary will store methods for extending API resources.
@@ -70,7 +76,7 @@ def get_funcs(resource):
     return _resource_extend_functions.get(resource, [])
 
 
-@helpers.timecost
+@timeutils.time_it(LOG, min_duration=0.1)
 def apply_funcs(resource_type, response, db_object):
     """Appy registered functions for the said resource type.
 
