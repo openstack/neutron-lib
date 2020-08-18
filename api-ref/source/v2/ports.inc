@@ -155,7 +155,7 @@ allowing consumers to associate tags with resources.
 Uplink status propagation
 =========================
 
-The ``uplink-status-propagation`` extension adds ``uplink_status_propagation``
+The ``uplink-status-propagation`` extension adds ``propagate_uplink_status``
 attribute to port. If this attribute is set to ``false``, uplink status
 propagation is disabled. If this attribute is not specified, it is default to
 ``true`` which indicates uplink status propagation is enabled.
@@ -225,7 +225,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
-   - uplink_status_propagation: uplink_status_propagation
+   - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -355,7 +355,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
-   - uplink_status_propagation: uplink_status_propagation
+   - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -492,7 +492,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
-   - uplink_status_propagation: uplink_status_propagation
+   - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -548,7 +548,7 @@ Request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - tenant_id: project_id-request
-   - uplink_status_propagation: uplink_status_propagation-request
+   - propagate_uplink_status: propagate_uplink_status-request
    - mac_learning_enabled: mac_learning_enabled-request
 
 Request Example
@@ -603,7 +603,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
-   - uplink_status_propagation: uplink_status_propagation
+   - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example
@@ -658,7 +658,7 @@ Request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - tenant_id: project_id-request
-   - uplink_status_propagation: uplink_status_propagation-request
+   - propagate_uplink_status: propagate_uplink_status-request
    - mac_learning_enabled: mac_learning_enabled-request
 
 Request Example
@@ -706,7 +706,7 @@ Response Parameters
    - tags: tags
    - tenant_id: project_id
    - updated_at: updated_at_resource
-   - uplink_status_propagation: uplink_status_propagation
+   - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
 
 Response Example

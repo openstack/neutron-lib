@@ -16,6 +16,6 @@
         "dns_domain": "my-domain.org.",
         "dns_name": "myport",
         "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
-        "uplink_status_propagation": false
+        "propagate_uplink_status": false
     }
 }

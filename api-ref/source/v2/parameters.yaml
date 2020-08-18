@@ -4435,6 +4435,20 @@ project_id-request:
   in: body
   required: false
   type: string
+propagate_uplink_status:
+  description: |
+    The uplink status propagation of the port. Valid values are
+    enabled (``true``) and disabled (``false``).
+  in: body
+  required: true
+  type: boolean
+propagate_uplink_status-request:
+  description: |
+    The uplink status propagation of the port. Valid values are
+    enabled (``true``) and disabled (``false``).
+  in: body
+  required: false
+  type: boolean
 protocol:
   description: |
     The IP protocol can be represented by a string, an integer, or ``null``.
@@ -5906,20 +5920,6 @@ updated_at_resource:
   in: body
   required: true
   type: string
-uplink_status_propagation:
-  description: |
-    The uplink status propagation of the port. Valid values are
-    enabled (``true``) and disabled (``false``).
-  in: body
-  required: true
-  type: boolean
-uplink_status_propagation-request:
-  description: |
-    The uplink status propagation of the port. Valid values are
-    enabled (``true``) and disabled (``false``).
-  in: body
-  required: false
-  type: boolean
 use_default_subnetpool:
   description: |
     Whether to allocate this subnet from the default subnet pool.

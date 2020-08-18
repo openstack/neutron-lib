@@ -52,7 +52,7 @@
             },
             "tags": ["tag1,tag2"],
             "tenant_id": "",
-            "uplink_status_propagation": false
+            "propagate_uplink_status": false
         },
         {
             "admin_state_up": true,
@@ -102,7 +102,7 @@
             "qos_policy_id": null,
             "tags": ["tag1,tag2"],
             "tenant_id": "d397de8a63f341818f198abb0966f6f3",
-            "uplink_status_propagation": false
+            "propagate_uplink_status": false
         }
     ]
 }
