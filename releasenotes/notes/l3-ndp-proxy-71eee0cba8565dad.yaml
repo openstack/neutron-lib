@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The ``l3-ndp-proxy`` and ``l3-ext-ndp-proxy`` API definitions are
+    introduced, which allow a router to support proxy NDP for IPv6
+    addresses of internal ports.

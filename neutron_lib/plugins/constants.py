@@ -31,3 +31,5 @@ PLACEMENT_REPORT = "placement_report"
 #               retired (train) and these should no longer be necessary.
 LOADBALANCER = "LOADBALANCER"
 LOADBALANCERV2 = "LOADBALANCERV2"
+
+NDPPROXY = 'NDPPROXY'
