@@ -17,7 +17,7 @@
 
 import abc
 import contextlib
-import imp
+import importlib
 import inspect
 import os
 from os import path
@@ -1141,7 +1141,7 @@ class ModuleParser(object):
             if defined_name in sys.modules:
                 del sys.modules[defined_name]
             f, p, d = imp.find_module(module_name, search_paths)
-            module = imp.load_module(defined_name, f, p, d)
+            module = importlib.load_module(defined_name, f, p, d)
             if defined_name == '__init__':
                 setattr(module, '__path__', search_paths)
             return module

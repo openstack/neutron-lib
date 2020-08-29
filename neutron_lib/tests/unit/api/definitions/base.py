@@ -10,7 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import imp
+import importlib.util
 import os
 
 from neutron_lib.api import definitions
@@ -205,6 +205,14 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
             self.assertIn(ext, base.KNOWN_EXTENSIONS,
                           'Optional extension is unknown, check for typos.')
 
+    def _load_module(self, name, path):
+        module_spec = importlib.util.spec_from_file_location(
+            name, path
+        )
+        module = importlib.util.module_from_spec(module_spec)
+        module_spec.loader.exec_module(module)
+        return module
+
     def test_all_api_definitions_list(self):
         # ensure _ALL_API_DEFINITIONS contains all public api-defs
         ext_aliases = []
@@ -213,7 +221,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
             mod_name, file_ext = os.path.splitext(os.path.split(f)[-1])
             ext_path = os.path.join(api_def_path, f)
             if file_ext.lower() == '.py' and not mod_name.startswith('_'):
-                mod = imp.load_source(mod_name, ext_path)
+                mod = self._load_module(mod_name, ext_path)
                 ext_alias = getattr(mod, 'ALIAS', None)
                 if not ext_alias:
                     continue
