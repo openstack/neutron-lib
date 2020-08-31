@@ -206,6 +206,8 @@ Request
 
    - direction: metering_label_rule-direction-query
    - remote_ip_prefix: metering_label_rule-remote_ip_prefix-query
+   - source_ip_prefix: metering_label_rule-source_ip_prefix-query
+   - destination_ip_prefix: metering_label_rule-destination_ip_prefix-query
    - excluded : excluded-query
    - metering_label_id: metering_label-id-query
    - id: id-query
@@ -221,6 +223,8 @@ Response Parameters
    - metering_label_rules: metering_label_rules
    - direction: metering_label_rule-direction
    - remote_ip_prefix: metering_label_rule-remote_ip_prefix
+   - source_ip_prefix: metering_label_rule-source_ip_prefix-query
+   - destination_ip_prefix: metering_label_rule-destination_ip_prefix-query
    - excluded : excluded
    - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
@@ -249,6 +253,8 @@ Request
 
    - metering_label_rule: metering_label_rule
    - remote_ip_prefix: metering_label_rule-remote_ip_prefix
+   - source_ip_prefix: metering_label_rule-source_ip_prefix-query
+   - destination_ip_prefix: metering_label_rule-destination_ip_prefix-query
    - direction: metering_label_rule-direction
    - metering_label_id: metering_label-id-body
    - excluded: excluded-request
@@ -267,6 +273,8 @@ Response Parameters
    - metering_label_rule: metering_label_rule
    - direction: metering_label_rule-direction
    - remote_ip_prefix: metering_label_rule-remote_ip_prefix
+   - source_ip_prefix: metering_label_rule-source_ip_prefix-query
+   - destination_ip_prefix: metering_label_rule-destination_ip_prefix-query
    - excluded : excluded
    - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id
@@ -293,6 +301,10 @@ The response body shows this information for each metering label rule:
 - The ID for the metering label rule.
 
 - The remote IP prefix (deprecated).
+
+- The source IP prefix
+
+- The destination IP prefix
 
 - The metering label ID for the metering label with which the rule
   is associated.
@@ -322,6 +334,8 @@ Response Paramters
    - metering_label_rule: metering_label_rule
    - direction: metering_label_rule-direction
    - remote_ip_prefix: metering_label_rule-remote_ip_prefix
+   - source_ip_prefix: metering_label_rule-source_ip_prefix-query
+   - destination_ip_prefix: metering_label_rule-destination_ip_prefix-query
    - excluded : excluded
    - metering_label_id: metering_label-id-body
    - id: metering_label_rule-id

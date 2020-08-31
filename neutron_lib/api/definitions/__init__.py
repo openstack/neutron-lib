@@ -62,6 +62,7 @@ from neutron_lib.api.definitions import l3_port_ip_change_not_allowed
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
 from neutron_lib.api.definitions import metering
+from neutron_lib.api.definitions import metering_source_and_destination_filters
 from neutron_lib.api.definitions import multiprovidernet
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import network_availability_zone
@@ -177,6 +178,7 @@ _ALL_API_DEFINITIONS = {
     logging,
     logging_resource,
     metering,
+    metering_source_and_destination_filters,
     multiprovidernet,
     network,
     network_availability_zone,
