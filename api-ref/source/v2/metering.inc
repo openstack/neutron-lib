@@ -292,7 +292,7 @@ The response body shows this information for each metering label rule:
 
 - The ID for the metering label rule.
 
-- The remote IP prefix.
+- The remote IP prefix (deprecated).
 
 - The metering label ID for the metering label with which the rule
   is associated.
