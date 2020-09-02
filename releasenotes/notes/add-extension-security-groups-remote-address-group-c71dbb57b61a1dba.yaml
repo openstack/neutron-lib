@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add an API extension ``security-groups-remote-address-group`` that adds the
+    new field ``remote_address_group_id`` in security group rules. This allows
+    users to easily manage SG rules for aggregated IP address blocks.
