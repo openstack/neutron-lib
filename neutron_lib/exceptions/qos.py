@@ -105,3 +105,9 @@ class RouterQosBindingNotFound(e.NotFound):
 class RouterQosBindingError(e.NeutronException):
     message = _("QoS binding for router %(router_id)s gateway and policy "
                 "%(policy_id)s could not be created: %(db_error)s.")
+
+
+class QosPlacementAllocationConflict(e.Conflict):
+    message = _("Allocation for consumer %(consumer)s is not possible on "
+                "resource provider %(rp)s, the requested amount of bandwidth "
+                "would exceed the capacity available.")
