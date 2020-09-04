@@ -80,3 +80,17 @@ class AmbiguousResponsibilityForResourceProvider(exceptions.NeutronException):
     """Not clear who's responsible for resource provider."""
     message = _("Expected one driver to be responsible for resource provider "
                 "%(rsc_provider)s, but got many: %(drivers)s")
+
+
+class PlacementAllocationGenerationConflict(exceptions.Conflict):
+    message = _("Resource allocation has been changed for consumer "
+                "%(consumer)s in Placement while Neutron tried to update it.")
+
+
+class PlacementAllocationRemoved(exceptions.BadRequest):
+    message = _("Resource allocation is deleted for consumer %(consumer)s")
+
+
+class PlacementAllocationRpNotExists(exceptions.BadRequest):
+    message = _("Resource provider %(resource_provider)s for %(consumer)s "
+                "does not exist")

@@ -38,7 +38,8 @@ PLACEMENT_API_WITH_MEMBER_OF = 'placement 1.3'
 PLACEMENT_API_WITH_NESTED_RESOURCES = 'placement 1.14'
 PLACEMENT_API_RETURN_PROVIDER_BODY = 'placement 1.20'
 PLACEMENT_API_ERROR_CODE = 'placement 1.23'
-PLACEMENT_API_LATEST_SUPPORTED = PLACEMENT_API_ERROR_CODE
+PLACEMENT_API_CONSUMER_GENERATION = 'placement 1.28'
+PLACEMENT_API_LATEST_SUPPORTED = PLACEMENT_API_CONSUMER_GENERATION
 GENERATION_CONFLICT_RETRIES = 10
 
 
@@ -732,3 +733,60 @@ class PlacementAPIClient(object):
             self._delete(url)
         except ks_exc.NotFound:
             raise n_exc.PlacementResourceClassNotFound(resource_class=name)
+
+    @_check_placement_api_available
+    def list_allocations(self, consumer_uuid):
+        """List allocations for the consumer
+
+        :param consumer_uuid: The uuid of the consumer, in case of bound port
+                              owned by a VM, the VM uuid.
+        :returns: All allocation records for the consumer.
+        """
+        url = '/allocations/%s' % consumer_uuid
+        return self._get(url).json()
+
+    def update_qos_minbw_allocation(self, consumer_uuid, minbw_alloc_diff,
+                                    rp_uuid):
+        """Update allocation for QoS minimum bandwidth consumer
+
+        :param consumer_uuid: The uuid of the consumer, in case of bound port
+                              owned by a VM, the VM uuid.
+        :param minbw_alloc_diff: A dict which contains the fields to update
+                            for the allocation under the given resource
+                            provider.
+        :param rp_uuid: uuid of the resource provider for which the
+                        allocations are to be updated.
+        """
+        for i in range(GENERATION_CONFLICT_RETRIES):
+            body = self.list_allocations(consumer_uuid)
+            if not body['allocations']:
+                raise n_exc.PlacementAllocationRemoved(consumer=consumer_uuid)
+            if rp_uuid not in body['allocations']:
+                raise n_exc.PlacementAllocationRpNotExists(
+                    resource_provider=rp_uuid, consumer=consumer_uuid)
+            # Count new min_kbps values based on the diff in alloc_diff
+            for drctn, min_kbps_diff in minbw_alloc_diff.items():
+                orig_kbps = body['allocations'][rp_uuid]['resources'][drctn]
+                new_kbps = orig_kbps + min_kbps_diff
+                body['allocations'][rp_uuid]['resources'][drctn] = new_kbps
+            try:
+                # Update allocations has no return body, but leave the loop
+                return self.update_allocation(consumer_uuid, body)
+            except ks_exc.Conflict as e:
+                resp = e.response.json()
+                if resp['errors'][0]['code'] == 'placement.concurrent_update':
+                    continue
+                else:
+                    raise
+        raise n_exc.PlacementAllocationGenerationConflict(
+            consumer=consumer_uuid)
+
+    def update_allocation(self, consumer_uuid, allocations):
+        """Update allocation record for given consumer and rp
+
+        :param consumer_uuid: The uuid of the consumer
+        :param allocations: Dict in the form described in placement API ref:
+                            https://tinyurl.com/yxeuzn6l
+        """
+        url = '/allocations/%s' % consumer_uuid
+        self._put(url, allocations)

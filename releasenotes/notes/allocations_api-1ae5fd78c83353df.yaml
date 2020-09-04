@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    - Bump ``PlacementAPIClient's`` max supported microversion to ``1.28``,
+      as from that version ``allocations`` API handles generations in a general
+      way.
+    - Add ``list_allocations``, ``update_allocation`` and
+      ``update_qos_minbw_allocation`` methods.
