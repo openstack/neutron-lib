@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add new constant ``BROADCAST_MAC`` which has value ``FF:FF:FF:FF:FF:FF`` and
+    represents broadcast MAC address.
