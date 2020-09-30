@@ -20,6 +20,11 @@ class AddressGroupNotFound(exceptions.NotFound):
     message = _("Address group %(address_group_id)s could not be found.")
 
 
+class AddressGroupInUse(exceptions.InUse):
+    message = _("Address group %(address_group_id)s is in use on one or more "
+                "security group rules.")
+
+
 class AddressesNotFound(exceptions.NotFound):
     message = _("Addresses %(addresses)s not found in the address group "
                 "%(address_group_id)s.")
