@@ -768,7 +768,16 @@ class PlacementAPIClient(object):
             for drctn, min_kbps_diff in minbw_alloc_diff.items():
                 orig_kbps = body['allocations'][rp_uuid]['resources'][drctn]
                 new_kbps = orig_kbps + min_kbps_diff
-                body['allocations'][rp_uuid]['resources'][drctn] = new_kbps
+                if new_kbps > 0:
+                    body['allocations'][rp_uuid]['resources'][drctn] = new_kbps
+                else:
+                    # Remove the resource class if the new value for min_kbps
+                    # is 0
+                    resources = body['allocations'][rp_uuid]['resources']
+                    if len(resources) > 1:
+                        resources.pop(drctn, None)
+                    else:
+                        body['allocations'].pop(rp_uuid)
             try:
                 # Update allocations has no return body, but leave the loop
                 return self.update_allocation(consumer_uuid, body)
