@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   victoria
    ussuri
    train
    stein
