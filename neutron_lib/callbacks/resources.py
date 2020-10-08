@@ -11,6 +11,7 @@
 #    under the License.
 
 # String literals representing core resources.
+ADDRESS_GROUP = 'address_group'
 AGENT = 'agent'
 FLOATING_IP = 'floatingip'
 NETWORK = 'network'
