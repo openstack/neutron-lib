@@ -1,0 +1,14 @@
+---
+features:
+  - |
+    A new vnic type ``vdpa`` has been added to allow requesting port that
+    utilize a vhost-vdpa offload. vhost-vdpa is simpler to vhost-user or
+    kernel vhost offload but utilizes the newly added vdpa bus introduced
+    in the Linux 5.7 kernel. vdpa interface can be implemented in software
+    or hardware, when implemented in hardware they provide equivalent
+    performance to sr-iov or hardware offloaded ovs while have two main
+    advantages over both sriov and hardware offloaded ovs. Unlike the alternatives
+    vhost-vdpa enable live migration of instance transparently and provides
+    a standard virtio-net interface to the guest avoiding the need to install
+    vendor specific drivers  in the guest.
+
