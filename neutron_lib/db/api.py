@@ -184,21 +184,6 @@ def retry_db_errors(f):
     return wrapped
 
 
-@contextlib.contextmanager
-def autonested_transaction(sess):
-    """This is a convenience context to not bother with 'nested' parameter.
-
-    :param sess: The database session.
-    :returns: Yields the context transaction from sess.
-    """
-    if sess.is_active:
-        session_context = sess.begin(nested=True)
-    else:
-        session_context = sess.begin(subtransactions=True)
-    with session_context as tx:
-        yield tx
-
-
 def retry_if_session_inactive(context_var_name='context'):
     """Retries only if the session in the context is inactive.
 
