@@ -189,7 +189,7 @@ class BackingOffClient(oslo_messaging.RPCClient):
     increase the timeout for the given call method.
     """
     def prepare(self, *args, **kwargs):
-        ctx = super(BackingOffClient, self).prepare(*args, **kwargs)
+        ctx = super().prepare(*args, **kwargs)
         # don't back off contexts that explicitly set a timeout
         if 'timeout' in kwargs:
             return _ContextWrapper(ctx)
@@ -255,7 +255,7 @@ def get_notifier(service=None, host=None, publisher_id=None):
 class RequestContextSerializer(om_serializer.Serializer):
     """Convert RPC common context into Neutron Context."""
     def __init__(self, base=None):
-        super(RequestContextSerializer, self).__init__()
+        super().__init__()
         self._base = base
 
     def serialize_entity(self, ctxt, entity):
@@ -295,7 +295,7 @@ class Service(service.Service):
     A service enables rpc by listening to queues based on topic and host.
     """
     def __init__(self, host, topic, manager=None, serializer=None):
-        super(Service, self).__init__()
+        super().__init__()
         self.host = host
         self.topic = topic
         self.serializer = serializer
@@ -305,7 +305,7 @@ class Service(service.Service):
             self.manager = manager
 
     def start(self):
-        super(Service, self).start()
+        super().start()
 
         self.conn = Connection()
         LOG.debug("Creating Consumer connection for Service %s",
@@ -330,14 +330,14 @@ class Service(service.Service):
             self.conn.close()
         except Exception:  # nosec
             pass
-        super(Service, self).stop()
+        super().stop()
 
 
 class Connection(object):
     """A utility class that manages a collection of RPC servers."""
 
     def __init__(self):
-        super(Connection, self).__init__()
+        super().__init__()
         self.servers = []
 
     def create_consumer(self, topic, endpoints, fanout=False):

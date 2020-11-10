@@ -38,10 +38,10 @@ class RangeConstrainedInteger(obj_fields.Integer):
         try:
             self._start = int(start)
             self._end = int(end)
-        except (TypeError, ValueError):
+        except (TypeError, ValueError) as e:
             raise o_exc.NeutronRangeConstrainedIntegerInvalidLimit(
-                start=start, end=end)
-        super(RangeConstrainedInteger, self).__init__(**kwargs)
+                start=start, end=end) from e
+        super().__init__(**kwargs)
 
     def coerce(self, obj, attr, value):
         if not isinstance(value, int):
@@ -50,14 +50,13 @@ class RangeConstrainedInteger(obj_fields.Integer):
         if not self._start <= value <= self._end:
             msg = _("Field value %s is invalid") % value
             raise ValueError(msg)
-        return super(RangeConstrainedInteger, self).coerce(obj, attr, value)
+        return super().coerce(obj, attr, value)
 
 
 class IPNetworkPrefixLen(RangeConstrainedInteger):
     """IP network (CIDR) prefix length custom Enum"""
     def __init__(self, **kwargs):
-        super(IPNetworkPrefixLen, self).__init__(
-            start=0, end=lib_constants.IPv6_BITS, **kwargs)
+        super().__init__(start=0, end=lib_constants.IPv6_BITS, **kwargs)
 
 
 class IPNetworkPrefixLenField(obj_fields.AutoTypedField):
@@ -66,9 +65,9 @@ class IPNetworkPrefixLenField(obj_fields.AutoTypedField):
 
 class PortRange(RangeConstrainedInteger):
     def __init__(self, start=lib_constants.PORT_RANGE_MIN, **kwargs):
-        super(PortRange, self).__init__(start=start,
-                                        end=lib_constants.PORT_RANGE_MAX,
-                                        **kwargs)
+        super().__init__(start=start,
+                         end=lib_constants.PORT_RANGE_MAX,
+                         **kwargs)
 
 
 class PortRangeField(obj_fields.AutoTypedField):
@@ -81,9 +80,9 @@ class PortRangeWith0Field(obj_fields.AutoTypedField):
 
 class VlanIdRange(RangeConstrainedInteger):
     def __init__(self, **kwargs):
-        super(VlanIdRange, self).__init__(start=lib_constants.MIN_VLAN_TAG,
-                                          end=lib_constants.MAX_VLAN_TAG,
-                                          **kwargs)
+        super().__init__(start=lib_constants.MIN_VLAN_TAG,
+                         end=lib_constants.MAX_VLAN_TAG,
+                         **kwargs)
 
 
 class VlanIdRangeField(obj_fields.AutoTypedField):
@@ -106,7 +105,7 @@ class DomainName(obj_fields.String):
         if len(value) > lib_db_const.FQDN_FIELD_SIZE:
             msg = _("Domain name %s is too long") % value
             raise ValueError(msg)
-        return super(DomainName, self).coerce(obj, attr, value)
+        return super().coerce(obj, attr, value)
 
 
 class DomainNameField(obj_fields.AutoTypedField):
@@ -123,7 +122,7 @@ class IntegerEnum(obj_fields.Integer):
                 msg = _("Possible value %s is not an integer") % value
                 raise ValueError(msg)
         self._valid_values = valid_values
-        super(IntegerEnum, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def coerce(self, obj, attr, value):
         if not isinstance(value, int):
@@ -136,13 +135,13 @@ class IntegerEnum(obj_fields.Integer):
                 {'value': value, 'values': self._valid_values}
             )
             raise ValueError(msg)
-        return super(IntegerEnum, self).coerce(obj, attr, value)
+        return super().coerce(obj, attr, value)
 
 
 class IPVersionEnum(IntegerEnum):
     """IP version integer Enum"""
     def __init__(self, **kwargs):
-        super(IPVersionEnum, self).__init__(
+        super().__init__(
             valid_values=lib_constants.IP_ALLOWED_VERSIONS, **kwargs)
 
 
@@ -152,8 +151,7 @@ class IPVersionEnumField(obj_fields.AutoTypedField):
 
 class DscpMark(IntegerEnum):
     def __init__(self, valid_values=None, **kwargs):
-        super(DscpMark, self).__init__(
-            valid_values=lib_constants.VALID_DSCP_MARKS)
+        super().__init__(valid_values=lib_constants.VALID_DSCP_MARKS)
 
 
 class DscpMarkField(obj_fields.AutoTypedField):
@@ -176,7 +174,7 @@ class EtherTypeEnumField(obj_fields.AutoTypedField):
 class IpProtocolEnum(obj_fields.Enum):
     """IP protocol number Enum"""
     def __init__(self, **kwargs):
-        super(IpProtocolEnum, self).__init__(
+        super().__init__(
             valid_values=list(
                 itertools.chain(
                     lib_constants.IP_PROTOCOL_MAP.keys(),
@@ -205,7 +203,7 @@ class MACAddress(obj_fields.FieldType):
         if not isinstance(value, netaddr.EUI):
             msg = _("Field value %s is not a netaddr.EUI") % value
             raise ValueError(msg)
-        return super(MACAddress, self).coerce(obj, attr, value)
+        return super().coerce(obj, attr, value)
 
     @staticmethod
     def to_primitive(obj, attr, value):
@@ -215,9 +213,9 @@ class MACAddress(obj_fields.FieldType):
     def from_primitive(obj, attr, value):
         try:
             return net_utils.AuthenticEUI(value)
-        except Exception:
+        except Exception as e:
             msg = _("Field value %s is not a netaddr.EUI") % value
-            raise ValueError(msg)
+            raise ValueError(msg) from e
 
 
 class MACAddressField(obj_fields.AutoTypedField):
@@ -237,9 +235,9 @@ class DictOfMiscValues(obj_fields.FieldType):
         if isinstance(value, str):
             try:
                 return jsonutils.loads(value)
-            except Exception:
+            except Exception as e:
                 msg = _("Field value %s is not stringified JSON") % value
-                raise ValueError(msg)
+                raise ValueError(msg) from e
         msg = (_("Field value %s is not type of dict or stringified JSON")
                % value)
         raise ValueError(msg)
@@ -276,7 +274,7 @@ class IPNetwork(obj_fields.FieldType):
         if not isinstance(value, netaddr.IPNetwork):
             msg = _("Field value %s is not a netaddr.IPNetwork") % value
             raise ValueError(msg)
-        return super(IPNetwork, self).coerce(obj, attr, value)
+        return super().coerce(obj, attr, value)
 
     @staticmethod
     def to_primitive(obj, attr, value):
@@ -286,9 +284,9 @@ class IPNetwork(obj_fields.FieldType):
     def from_primitive(obj, attr, value):
         try:
             return net_utils.AuthenticIPNetwork(value)
-        except Exception:
+        except Exception as e:
             msg = _("Field value %s is not a netaddr.IPNetwork") % value
-            raise ValueError(msg)
+            raise ValueError(msg) from e
 
 
 class IPNetworkField(obj_fields.AutoTypedField):

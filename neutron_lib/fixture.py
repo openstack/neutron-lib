@@ -40,7 +40,7 @@ CONF = cfg.CONF
 class PluginDirectoryFixture(fixtures.Fixture):
 
     def __init__(self, plugin_directory=None):
-        super(PluginDirectoryFixture, self).__init__()
+        super().__init__()
         self.plugin_directory = (
             plugin_directory or directory._PluginDirectory())
 
@@ -69,7 +69,7 @@ class CallbackRegistryFixture(fixtures.Fixture):
         _get_callback_manager(). Otherwise a new instance of CallbacksManager
         is used.
         """
-        super(CallbackRegistryFixture, self).__init__()
+        super().__init__()
         self.callback_manager = callback_manager or manager.CallbacksManager()
         self.patcher = None
 
@@ -258,7 +258,7 @@ class PlacementAPIClientFixture(fixtures.Fixture):
 
         :param placement_api_client: Placement API client object.
         """
-        super(PlacementAPIClientFixture, self).__init__()
+        super().__init__()
         self.placement_api_client = placement_api_client
 
     def _setUp(self):

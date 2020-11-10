@@ -162,14 +162,14 @@ def validate_values(data, valid_values=None, valid_values_display=None):
                        {'data': data, 'valid_values': valid_values_display})
                 LOG.debug(msg)
                 return msg
-        except TypeError:
+        except TypeError as e:
             # This is a programming error
             msg = (_("'data' of type '%(typedata)s' and 'valid_values' "
                      "of type '%(typevalues)s' are not "
                      "compatible for comparison") %
                    {'typedata': type(data),
                     'typevalues': type(valid_values)})
-            raise TypeError(msg)
+            raise TypeError(msg) from e
     else:
         # This is a programming error
         msg = (_("'valid_values' does not support membership operations"))
@@ -377,7 +377,7 @@ def validate_mac_address(data, valid_values=None):
         valid_mac = False
 
     if valid_mac:
-        valid_mac = (not netaddr.EUI(data) in
+        valid_mac = (netaddr.EUI(data) not in
                      map(netaddr.EUI, constants.INVALID_MAC_ADDRESSES))
     # TODO(arosen): The code in this file should be refactored
     # so it catches the correct exceptions. validate_no_whitespace
@@ -868,8 +868,8 @@ def _extract_validator(key_validator):
                 return (validator_name,
                         validators[validator_name],
                         validator_params)
-            except KeyError:
-                raise UndefinedValidator(validator_name)
+            except KeyError as e:
+                raise UndefinedValidator(validator_name) from e
     return None, None, None
 
 
@@ -1119,7 +1119,7 @@ def validate_subnet_service_types(service_types, valid_values=None):
             if not isinstance(service_type, str):
                 raise n_exc.InvalidInputSubnetServiceType(
                     service_type=service_type)
-            elif not service_type.startswith(tuple(prefixes)):
+            if not service_type.startswith(tuple(prefixes)):
                 raise n_exc.InvalidSubnetServiceType(service_type=service_type)
 
 
@@ -1141,8 +1141,7 @@ def validate_ethertype(ethertype, valid_values=None):
             if ethertype_str == "IPV4":
                 ethertype_str = "IP"
             ethertype_name = 'ETH_TYPE_' + ethertype_str
-            if ethertype_name in os_ken_ethertypes:
-                ethertype = os_ken_ethertypes[ethertype_name]
+            ethertype = os_ken_ethertypes.get(ethertype_name, ethertype)
         except TypeError:
             # Value of ethertype cannot be coerced into a string, like None
             pass
@@ -1150,8 +1149,8 @@ def validate_ethertype(ethertype, valid_values=None):
             if isinstance(ethertype, str):
                 ethertype = int(ethertype, 16)
             if (isinstance(ethertype, int) and
-                    constants.ETHERTYPE_MIN <= ethertype and
-                    ethertype <= constants.ETHERTYPE_MAX):
+                    constants.ETHERTYPE_MIN <= ethertype <=
+                    constants.ETHERTYPE_MAX):
                 return None
         except ValueError:
             pass

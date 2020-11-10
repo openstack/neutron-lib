@@ -40,7 +40,7 @@ class ContextBase(oslo_context.RequestContext):
         # prefer project_name, as that's what's going to be set by
         # keystone. Fall back to tenant_name if for some reason it's blank.
         kwargs.setdefault('project_name', tenant_name)
-        super(ContextBase, self).__init__(
+        super().__init__(
             is_admin=is_admin, user_id=user_id, **kwargs)
 
         self.user_name = user_name
@@ -72,7 +72,7 @@ class ContextBase(oslo_context.RequestContext):
         self.project_name = tenant_name
 
     def to_dict(self):
-        context = super(ContextBase, self).to_dict()
+        context = super().to_dict()
         context.update({
             'user_id': self.user_id,
             'tenant_id': self.project_id,
@@ -85,7 +85,7 @@ class ContextBase(oslo_context.RequestContext):
         return context
 
     def to_policy_values(self):
-        values = super(ContextBase, self).to_policy_values()
+        values = super().to_policy_values()
         values['tenant_id'] = self.project_id
         values['is_admin'] = self.is_admin
 
@@ -138,7 +138,7 @@ _TransactionConstraint = collections.namedtuple(
 
 class Context(ContextBaseWithSession):
     def __init__(self, *args, **kwargs):
-        super(Context, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self._session = None
         self._txn_constraint = None
 
@@ -146,13 +146,13 @@ class Context(ContextBaseWithSession):
     def session(self):
         # TODO(akamyshnikova): checking for session attribute won't be needed
         # when reader and writer will be used
-        if hasattr(super(Context, self), 'session'):
+        if hasattr(super(), 'session'):
             if self._session:
                 warnings.warn('context.session is used with and without '
                               'new enginefacade. Please update the code to '
                               'use new enginefacede consistently.',
                               DeprecationWarning)
-            return super(Context, self).session
+            return super().session
         if self._session is None:
             self._session = db_api.get_writer_session()
 

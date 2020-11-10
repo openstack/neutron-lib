@@ -306,7 +306,7 @@ def _fixup_res_dict(context, attr_name, res_dict, check_allow_post=True):
     except web_exc.HTTPBadRequest as e:
         # convert webob exception into ValueError as these functions are
         # for internal use. webob exception doesn't make sense.
-        raise ValueError(e.detail)
+        raise ValueError(e.detail) from e
     attr_ops.fill_post_defaults(res_dict, check_allow_post=check_allow_post)
     attr_ops.convert_values(res_dict)
     return res_dict

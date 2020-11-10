@@ -70,9 +70,8 @@ def random_mac_generator(base_mac):
         mac = form.format(beginning, *numbers)
         if mac in seen:
             continue
-        else:
-            seen.add(mac)
-            yield mac
+        seen.add(mac)
+        yield mac
 
 
 def is_port_trusted(port):
@@ -91,13 +90,13 @@ def is_port_trusted(port):
 
 class _AuthenticBase(object):
     def __init__(self, addr, **kwargs):
-        super(_AuthenticBase, self).__init__(addr, **kwargs)
+        super().__init__(addr, **kwargs)
         self._initial_value = addr
 
     def __str__(self):
         if isinstance(self._initial_value, str):
             return self._initial_value
-        return super(_AuthenticBase, self).__str__()
+        return super().__str__()
 
     # NOTE(ihrachys): override deepcopy because netaddr.* classes are
     # slot-based and hence would not copy _initial_value

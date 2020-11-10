@@ -21,7 +21,7 @@ from neutron_lib.services.logapi import constants as log_const
 class SecurityEvent(obj_fields.String):
     def __init__(self, valid_values, **kwargs):
         self._valid_values = valid_values
-        super(SecurityEvent, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
     def coerce(self, obj, attr, value):
         if value not in self._valid_values:
@@ -31,7 +31,7 @@ class SecurityEvent(obj_fields.String):
                 {'value': value, 'values': self._valid_values}
             )
             raise ValueError(msg)
-        return super(SecurityEvent, self).coerce(obj, attr, value)
+        return super().coerce(obj, attr, value)
 
 
 class SecurityEventField(obj_fields.AutoTypedField):

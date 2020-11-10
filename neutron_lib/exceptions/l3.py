@@ -27,7 +27,7 @@ class RouterInUse(exceptions.InUse):
     def __init__(self, **kwargs):
         if 'reason' not in kwargs:
             kwargs['reason'] = "still has ports"
-        super(RouterInUse, self).__init__(**kwargs)
+        super().__init__(**kwargs)
 
 
 class RouterInterfaceNotFound(exceptions.NotFound):
@@ -85,7 +85,7 @@ class RouterNotFoundInRouterFactory(exceptions.NeutronException):
 class FloatingIpSetupException(exceptions.NeutronException):
     def __init__(self, message=None):
         self.message = message
-        super(FloatingIpSetupException, self).__init__()
+        super().__init__()
 
 
 class AbortSyncRouters(exceptions.NeutronException):
@@ -95,4 +95,4 @@ class AbortSyncRouters(exceptions.NeutronException):
 class IpTablesApplyException(exceptions.NeutronException):
     def __init__(self, message=None):
         self.message = message
-        super(IpTablesApplyException, self).__init__()
+        super().__init__()

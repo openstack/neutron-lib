@@ -32,9 +32,9 @@ def convert_to_boolean(data):
     """
     try:
         return strutils.bool_from_string(data, strict=True)
-    except ValueError:
+    except ValueError as e:
         msg = _("'%s' cannot be converted to boolean") % data
-        raise n_exc.InvalidInput(error_message=msg)
+        raise n_exc.InvalidInput(error_message=msg) from e
 
 
 def convert_to_boolean_if_not_none(data):
@@ -58,9 +58,9 @@ def convert_to_int(data):
     """
     try:
         return int(data)
-    except (ValueError, TypeError):
+    except (ValueError, TypeError) as e:
         msg = _("'%s' is not an integer") % data
-        raise n_exc.InvalidInput(error_message=msg)
+        raise n_exc.InvalidInput(error_message=msg) from e
 
 
 def convert_to_int_if_not_none(data):
@@ -96,9 +96,9 @@ def convert_to_positive_float_or_none(val):
         val = float(val)
         if val < 0:
             raise ValueError()
-    except (ValueError, TypeError):
+    except (ValueError, TypeError) as e:
         msg = _("'%s' must be a non negative decimal") % val
-        raise n_exc.InvalidInput(error_message=msg)
+        raise n_exc.InvalidInput(error_message=msg) from e
     return val
 
 
@@ -210,8 +210,8 @@ def convert_cidr_to_canonical_format(value):
         cidr = netaddr.IPNetwork(value)
         return str(convert_ip_to_canonical_format(
             cidr.ip)) + "/" + str(cidr.prefixlen)
-    except netaddr.core.AddrFormatError:
-        raise n_exc.InvalidInput(error_message=error_message)
+    except netaddr.core.AddrFormatError as e:
+        raise n_exc.InvalidInput(error_message=error_message) from e
 
 
 def convert_string_to_case_insensitive(data):
@@ -226,9 +226,9 @@ def convert_string_to_case_insensitive(data):
     """
     try:
         return data.lower()
-    except AttributeError:
+    except AttributeError as e:
         error_message = _("Input value %s must be string type") % data
-        raise n_exc.InvalidInput(error_message=error_message)
+        raise n_exc.InvalidInput(error_message=error_message) from e
 
 
 def convert_to_protocol(data):
@@ -260,8 +260,8 @@ def convert_to_protocol(data):
             return data
         else:
             raise n_exc.InvalidInput(error_message=error_message)
-    except n_exc.InvalidInput:
-        raise n_exc.InvalidInput(error_message=error_message)
+    except n_exc.InvalidInput as e:
+        raise n_exc.InvalidInput(error_message=error_message) from e
 
 
 def convert_to_string(data):

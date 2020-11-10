@@ -216,18 +216,17 @@ def retry_if_session_inactive(context_var_name='context'):
             # deals with the horrors of finding args of already decorated
             # functions
             ctx_arg_index = p_util.getargspec(f).args.index(context_var_name)
-        except ValueError:
+        except ValueError as e:
             msg = _("Could not find position of var %s") % context_var_name
-            raise RuntimeError(msg)
+            raise RuntimeError(msg) from e
         f_with_retry = retry_db_errors(f)
 
         @functools.wraps(f)
         def wrapped(*args, **kwargs):
             # only use retry wrapper if we aren't nested in an active
             # transaction
-            if context_var_name in kwargs:
-                context = kwargs[context_var_name]
-            else:
+            context = kwargs.get(context_var_name)
+            if context is None:
                 context = args[ctx_arg_index]
             method = f if context.session.is_active else f_with_retry
             return method(*args, **kwargs)
