@@ -13,12 +13,20 @@
 import sys
 
 from oslo_config import cfg
+from oslo_policy import opts
 from oslo_policy import policy
 
 
 _ROLE_ENFORCER = None
 _ADMIN_CTX_POLICY = 'context_is_admin'
 _ADVSVC_CTX_POLICY = 'context_is_advsvc'
+
+
+# TODO(gmann): Remove setting the default value of config policy_file
+# once oslo_policy change the default value to 'policy.yaml'.
+# https://github.com/openstack/oslo.policy/blob/a626ad12fe5a3abd49d70e3e5b95589d279ab578/oslo_policy/opts.py#L49
+DEFAULT_POLICY_FILE = 'policy.yaml'
+opts.set_defaults(cfg.CONF, DEFAULT_POLICY_FILE)
 
 
 _BASE_RULES = [
@@ -104,7 +112,7 @@ def get_enforcer():
         i += 1
 
     # 'project' must be 'neutron' so that get_enforcer looks at
-    # /etc/neutron/policy.json by default.
+    # /etc/neutron/policy.yaml by default.
     cfg.CONF(conf_args, project='neutron')
     init()
     return _ROLE_ENFORCER
