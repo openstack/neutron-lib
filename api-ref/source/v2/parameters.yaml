@@ -2286,6 +2286,24 @@ device_owner-request:
   in: body
   required: false
   type: string
+device_profile:
+  description: |
+    A port device profile is a reference for Cyborg project and is a named
+    set of the user requirements for one or more acceletators.
+    https://docs.openstack.org/api-ref/accelerator/v2/index.html#
+    device-profiles
+  in: body
+  required: False
+  type: string
+device_profile-request:
+  description: |
+    A port device profile is a reference for Cyborg project and is a named
+    set of the user requirements for one or more acceletators.
+    https://docs.openstack.org/api-ref/accelerator/v2/index.html#
+    device-profiles
+  in: body
+  required: False
+  type: string
 direction:
   description: |
     Ingress or egress, which is the direction in
