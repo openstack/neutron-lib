@@ -1,5 +1,0 @@
-{
-    "context_is_admin":  "role:admin",
-    "context_is_advsvc":  "role:advsvc",
-    "default": "rule:admin_or_owner"
-}
