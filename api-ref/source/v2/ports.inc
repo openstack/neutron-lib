@@ -54,6 +54,15 @@ extension must be used in conjunction with the ``dns-integration`` extension.
 When enabled and set, a port level ``dns_domain`` take precedence over a
 ``dns_domain`` specified in the port's network allowing per-port DNS domains.
 
+Device profile
+==============
+
+The port device profile extension (``port-device-profile``) defines a named set
+of user requirements for one or more acceletators. This parameter is a
+reference for Cyborg project, read by Nova when a port is requested. If this
+parameter is populated, Nova makes a request to Cyborg.
+https://docs.openstack.org/api-ref/accelerator/v2/index.html#device-profiles
+
 Extra DHCP option (``extra_dhcp_opt``) extension
 ================================================
 

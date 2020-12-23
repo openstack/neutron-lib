@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    New API definition: ``port-device-profile``. The new field added to
+    ``ports`` API, ``device_profile``, represents a Cyborg device profile
+    and is a named set of user requirements for one or more accelerators.
