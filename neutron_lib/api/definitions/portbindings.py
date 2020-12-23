@@ -122,10 +122,16 @@ VNIC_SMARTNIC = 'smart-nic'
 #          kernel 5.7 to implement  a vhost offload of a standard virtio-net
 #          interface to a software or hardware backend.
 VNIC_VHOST_VDPA = 'vdpa'
+# - accelerator: Refers to any device that supports hardware acceleration of
+#                any kind and is provided by Cyborg
+#                (https://wiki.openstack.org/wiki/Cyborg).
+VNIC_ACCELERATOR_DIRECT = 'accelerator-direct'
+VNIC_ACCELERATOR_DIRECT_PHYSICAL = 'accelerator-direct-physical'
 
 VNIC_TYPES = [VNIC_NORMAL, VNIC_DIRECT, VNIC_MACVTAP, VNIC_BAREMETAL,
               VNIC_DIRECT_PHYSICAL, VNIC_VIRTIO_FORWARDER, VNIC_SMARTNIC,
-              VNIC_VHOST_VDPA]
+              VNIC_VHOST_VDPA, VNIC_ACCELERATOR_DIRECT,
+              VNIC_ACCELERATOR_DIRECT_PHYSICAL]
 
 # VIF_DETAILS_CONNECTIVITY: Indicates what kind of connectivity the network
 #                           back-end provides: L2, L3 or not specified.
