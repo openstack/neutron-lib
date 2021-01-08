@@ -49,7 +49,7 @@ class BaseWorker(service.ServiceBase):
     _default_process_count = 1
 
     def __init__(self, worker_process_count=_default_process_count,
-                 set_proctitle='on'):
+                 set_proctitle='on', desc=None):
         """Initialize a worker instance.
 
         :param worker_process_count: Defines how many processes to spawn for
@@ -60,12 +60,15 @@ class BaseWorker(service.ServiceBase):
                 'off' - do not change process title
                 'on' - set process title to descriptive string and parent
                 'brief' - set process title to descriptive string
+            desc:
+                process descriptive string
         """
         self._worker_process_count = worker_process_count
         self._my_pid = os.getpid()
         self._set_proctitle = set_proctitle
         if set_proctitle == 'on':
             self._parent_proctitle = setproctitle.getproctitle()
+        self.desc = desc
 
     @property
     def worker_process_count(self):
@@ -102,6 +105,7 @@ class BaseWorker(service.ServiceBase):
         """
 
         # If we are a child process, set our proctitle to something useful
+        desc = desc or self.desc
         self.setproctitle(name, desc)
         if self.worker_process_count > 0:
             registry.notify(resources.PROCESS, events.AFTER_INIT, self.start)
