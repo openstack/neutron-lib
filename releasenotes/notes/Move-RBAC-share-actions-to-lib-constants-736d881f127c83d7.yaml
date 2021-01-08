@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add constants for RBAC sharing actions: ``ACCESS_SHARED``,
+    ``ACCESS_EXTERNAL``, and a new action ``ACCESS_READONLY``.
