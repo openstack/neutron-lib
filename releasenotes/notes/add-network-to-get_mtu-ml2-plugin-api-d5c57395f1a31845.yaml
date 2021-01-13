@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Methods ``get_mtu``, ``reserve_provider_segment`` and
+    ``allocate_tenant_segment`` from the base ML2 TypeDriver class
+    now accepts dictionary with network parameters as an argument.

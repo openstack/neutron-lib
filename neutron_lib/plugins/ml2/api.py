@@ -520,13 +520,15 @@ class _TypeDriverBase(object, metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def get_mtu(self, physical):
+    def get_mtu(self, physical, network=None):
         """Get driver's network MTU.
 
+        :param physical: name of the physical network
+        :param network: network parameters dictionary
         :returns: mtu maximum transmission unit
 
-        Returns the mtu for the network based on the config values and
-        the network type.
+        Returns the mtu for the network based on the config values,
+        the network type and the network attributes.
         """
         pass
 
@@ -555,12 +557,14 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """
 
     @abc.abstractmethod
-    def reserve_provider_segment(self, session, segment, filters=None):
+    def reserve_provider_segment(self, session, segment, filters=None,
+                                 network=None):
         """Reserve resource associated with a provider network segment.
 
         :param session: database session
         :param segment: segment dictionary
         :param filters: a dictionary that is used as search criteria
+        :param network: network parameters dictionary
         :returns: segment dictionary
 
         Called inside transaction context on session to reserve the
@@ -571,11 +575,12 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def allocate_tenant_segment(self, session, filters=None):
+    def allocate_tenant_segment(self, session, filters=None, network=None):
         """Allocate resource for a new tenant network segment.
 
         :param session: database session
         :param filters: a dictionary that is used as search criteria
+        :param network: network parameters dictionary
         :returns: segment dictionary using keys defined above
 
         Called inside transaction context on session to allocate a new
@@ -626,12 +631,14 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """
 
     @abc.abstractmethod
-    def reserve_provider_segment(self, context, segment, filters=None):
+    def reserve_provider_segment(self, context, segment, filters=None,
+                                 network=None):
         """Reserve resource associated with a provider network segment.
 
         :param context: instance of neutron context with DB session
         :param segment: segment dictionary
         :param filters: a dictionary that is used as search criteria
+        :param network: network parameters dictionary
         :returns: segment dictionary
 
         Called inside transaction context on session to reserve the
@@ -642,11 +649,12 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         pass
 
     @abc.abstractmethod
-    def allocate_tenant_segment(self, context, filters=None):
+    def allocate_tenant_segment(self, context, filters=None, network=None):
         """Allocate resource for a new tenant network segment.
 
         :param context: instance of neutron context with DB session
         :param filters: a dictionary that is used as search criteria
+        :param network: network parameters dictionary
         :returns: segment dictionary using keys defined above
 
         Called inside transaction context on session to allocate a new
