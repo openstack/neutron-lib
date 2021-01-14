@@ -125,6 +125,14 @@ attribute to ports. If a ``port-security`` value is not specified during
 port creation, a port will inherit the ``port_security_enabled`` from the
 network its connected to.
 
+Tag Ports During Bulk Creation
+==============================
+
+The ``tag-ports-during-bulk-creation`` extension adds the ability to set tags
+for ports when they are created, directly in the ``POST`` request.
+It can be done both when one port is created as well as when ports are
+created in bulk.
+
 QoS extension
 =============
 
