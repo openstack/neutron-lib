@@ -90,6 +90,7 @@ from neutron_lib.api.definitions import qos_gateway_ip
 from neutron_lib.api.definitions import qos_port_network_policy
 from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import qos_rules_alias
+from neutron_lib.api.definitions import rbac_address_groups
 from neutron_lib.api.definitions import rbac_address_scope
 from neutron_lib.api.definitions import rbac_security_groups
 from neutron_lib.api.definitions import rbac_subnetpool
@@ -208,6 +209,7 @@ _ALL_API_DEFINITIONS = {
     qos_port_network_policy,
     qos_rule_type_details,
     qos_rules_alias,
+    rbac_address_groups,
     rbac_address_scope,
     rbac_security_groups,
     rbac_subnetpool,

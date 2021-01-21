@@ -15,6 +15,9 @@ API to support object types of ``address-scope``.
 The presence of the ``rbac-subnetpool`` extension extends this
 API to support object types of ``subnetpool``.
 
+The presence of the ``rbac-address-group`` extension extends this
+API to support object types of ``address-group``.
+
 Show RBAC policy details
 ========================
 

@@ -1,0 +1,4 @@
+features:
+  - |
+    Added API definition for ``rbac-address-group`` extension, which allows
+    sharing address groups between tenants via the network RBAC mechanism.

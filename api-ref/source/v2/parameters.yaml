@@ -925,8 +925,9 @@ object_id-query:
     resource. An ``object_type`` of ``network`` returns a network ID,
     an ``object_type`` of ``qos-policy`` returns a QoS policy ID,
     an ``object_type`` of ``security-group`` returns a security group ID,
-    an `object_type`` of ``address-scope`` returns a address scope ID
-    and an ``object_type`` of ``subnetpool`` returns a subnetpool ID.
+    an `object_type`` of ``address-scope`` returns a address scope ID,
+    an ``object_type`` of ``subnetpool`` returns a subnetpool ID and
+    an ``object_type`` of ``address-group`` returns an address group ID.
   in: query
   required: false
   type: string
@@ -934,7 +935,7 @@ object_type-query:
   description: |
     Filter the RBAC policy list result by the type of the object that the
     RBAC policy affects. Types include ``qos-policy``, ``network``,
-    ``security-group``, ``address-scope`` or ``subnetpool``.
+    ``security-group``, ``address-scope``, ``subnetpool`` or ``address-group``.
   in: query
   required: false
   type: string
@@ -4214,15 +4215,19 @@ numa_affinity_policy-request:
 object_id:
   description: |
     The ID of the ``object_type`` resource. An ``object_type`` of ``network``
-    returns a network ID and an ``object_type`` of ``qos-policy`` returns
-    a QoS ID.
+    returns a network ID, an ``object_type`` of ``qos-policy`` returns a QoS
+    policy ID, an ``object_type`` of ``security-group`` returns a security
+    group ID, an ``object_type`` of ``address-scope`` returns a address scope
+    ID, an ``object_type`` of ``subnetpool`` returns a subnetpool ID and
+    an ``object_type`` of ``address-group`` returns an address group ID.
   in: body
   required: true
   type: string
 object_type:
   description: |
     The type of the object that the RBAC policy affects. Types include
-    ``qos-policy`` or ``network``.
+    ``qos-policy``, ``network``, ``security-group``, ``address-scope``,
+    ``subnetpool`` or ``address-group``.
   in: body
   required: true
   type: string
