@@ -109,6 +109,17 @@ class DriverBase(object):
         """
         return True
 
+    def validate_rule_for_network(self, context, rule, network_id):
+        """Return True/False for valid/invalid.
+
+        This is only meant to be used when a rule is compatible
+        with some networks but not with others (depending on
+        network properties).
+
+        Returns True by default for backwards compatibility.
+        """
+        return True
+
     def create_policy(self, context, policy):
         """Create policy invocation.
 

@@ -69,6 +69,11 @@ class QosRuleNotSupported(e.Conflict):
     message = _("Rule %(rule_type)s is not supported by port %(port_id)s")
 
 
+class QosRuleNotSupportedByNetwork(e.Conflict):
+    message = _("Rule %(rule_type)s is not supported "
+                "by network %(network_id)s")
+
+
 class QoSRuleParameterConflict(e.Conflict):
     message = _("Unable to add the rule with value %(rule_value)s to the "
                 "policy %(policy_id)s as the existing rule of type "
