@@ -60,6 +60,13 @@ RESOURCE_ATTRIBUTE_MAP = {
                       'default': constants.ATTR_NOT_SPECIFIED,
                       'validate': {'type:subnet_list': None},
                       'is_visible': True},
+        constants.SHARED: {'allow_post': False,
+                           'allow_put': False,
+                           'default': False,
+                           'convert_to': converters.convert_to_boolean,
+                           'is_visible': False,
+                           'is_filter': False,
+                           'is_sort_key': False},
     }
 }
 
