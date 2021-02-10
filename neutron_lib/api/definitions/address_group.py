@@ -22,8 +22,8 @@ NAME = 'Address group'
 DESCRIPTION = 'Support address group'
 UPDATED_TIMESTAMP = '2020-07-15T10:00:00-00:00'
 
-RESOURCE_NAME = 'address-group'
-COLLECTION_NAME = 'address-groups'
+RESOURCE_NAME = 'address_group'
+COLLECTION_NAME = 'address_groups'
 
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
