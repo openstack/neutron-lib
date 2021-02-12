@@ -1,0 +1,12 @@
+---
+features:
+  - New extension ``bfd-monitor`` to allow creation of bfd_monitor instances,
+    and managing them. The API definition defines also ``bfd_session_status``
+    and ``bfd_monitor_associations`` actions to make possible checking the
+    session status of the bfd_monitor and its asscociated routes, and listing
+    the routes associated with the bfd_monitor.
+    (``Note`` that this API extension was merged as experimental to enable
+    parallel development of multiple backends. At the moment this API does
+    not have a reference implementation and should not be considered final.
+    A later release note will mark when the reference implementation gets
+    merged and the feauture is ready to be consumed.)

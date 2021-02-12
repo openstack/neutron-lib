@@ -13,6 +13,12 @@ agent_id-path:
   in: path
   required: true
   type: string
+bfd_monitor_id-path:
+  description: |
+    The ID of the BFD monitor.
+  in: path
+  required: true
+  type: string
 bgp_speaker_id-path:
   description: |
       The ID of the BGP Speaker.
@@ -1737,6 +1743,119 @@ bandwidth_limit_rules:
     the QoS policy.
   in: body
   required: true
+  type: array
+bfd_monitor-obj:
+  description: |
+    A list of ``bfd_monitor`` objects.
+  in: body
+  required: true
+  type: object
+bfd_monitor_associations_remotes:
+  description: |
+    List of dictionaries to list the routes details associated with
+    the BFD monitor:
+
+    * ``type`` for now it can be ``extra_route``.
+    * ``router`` is the uuid of the ``router`` of which ``route`` the
+      monitor is associated with.
+    * ``extra_route`` is a dict containing the ``destination`` , ``nexthop``
+      information.
+    * ``src_ip`` is the source ip address used as source for transmitted
+      BFD packets.
+  in: body
+  required: false
+  type: array
+bfd_monitor_auth_key:
+  description: |
+    A dictionary of authentication key chain in which key is
+    an integer of ``Auth Key ID`` and value is a string of
+    ``Password`` or ``Auth Key``.
+  in: body
+  required: true
+  type: string
+bfd_monitor_auth_type:
+  description: |
+    The Authentication Type, which can be ``password``, ``MD5``,
+    ``MeticulousMD5``, ``SHA1``, ``MeticulousSHA1``, if empty no
+    authentication is used.
+  in: body
+  required: true
+  type: string
+bfd_monitor_dst_ip:
+  description: |
+    The destination IP address to be monitored.
+  in: body
+  required: false
+  type: string
+bfd_monitor_id:
+  description: |
+    The ID of the BFD monitor.
+  in: body
+  required: false
+  type: string
+bfd_monitor_min_rx:
+  description: |
+    The shortest interval, in milliseconds, at which this BFD session
+    offers to receive BFD control messages. At least 1. Default
+    is 1000.
+  in: body
+  required: false
+  type: string
+bfd_monitor_min_tx:
+  description: |
+    The shortest interval, in milliseconds, at which this BFD session is
+    willing to transmit BFD control messages. At least 1. Default
+    is 100.
+  in: body
+  required: false
+  type: string
+bfd_monitor_mode:
+  description: |
+    Can be ``asynchronous`` (default common echo mode of BFD) or
+    ``demand`` (some other mechanism is used to detect link state)
+    or ``one_arm_echo`` and can accept future modes.
+  in: body
+  required: false
+  type: string
+bfd_monitor_multiplier:
+  description: |
+    The BFD detection multiplier, An endpoint signals  a connectivity
+    fault if the given number of consecutive BFD control messages fail
+    to arrive. Default is 3.
+  in: body
+  required: false
+  type: string
+bfd_monitor_src_ip:
+  description: |
+    IP address used as source for transmitted BFD packets. If empty
+    then it will be the address of the router interface port.
+  in: body
+  required: false
+  type: string
+bfd_monitor_status:
+  description: |
+    Shows if the BFD monitor was succesfully created in the backend,
+    but nothing about the session status, for that the
+    session_status API endpoint can be used.
+  in: body
+  required: false
+  type: string
+bfd_monitor_status_remotes:
+  description: |
+    List of dictionaries with the following fields:
+
+    * ``type`` for now it can be``extra_route``.
+    * ``router`` is the uuid of the ``router`` of which ``route`` the
+      monitor is associated with.
+    * ``extra_route`` is a dict containing the ``destination`` , ``nexthop``
+      information.
+    * ``src_ip`` is the source ip address used as source for transmitted
+      BFD packets.
+    * ``status`` is a dict containing the following keys: ``SessionState``
+      and ``RemoteSessionState``, ``LocalDiagnostic`` and ``RemoteDiagnostic``
+      ``LocalDiscriminator`` and ``RemoteDiscriminator``, ``Forwarding``.
+  in: body
+  required: false
   type: array
 bgp_peer_auth_type_body:
   description: |

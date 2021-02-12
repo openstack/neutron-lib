@@ -1,0 +1,13 @@
+{
+    "bfd_session_status": {
+        "remotes": [{
+            "type": "extra_route",
+            "router": "60dc31ed-9dfc-4294-80b1-6b7876183631",
+            "extra_route": {
+                "destination": "10.0.3.0/24",
+                "nexthop": "10.0.0.1"
+            },
+            "src_ip": "169.254.112.144"
+        }]
+    }
+}
