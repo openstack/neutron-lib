@@ -19,6 +19,7 @@ from neutron_lib.api.definitions import allowedaddresspairs
 from neutron_lib.api.definitions import auto_allocated_topology
 from neutron_lib.api.definitions import availability_zone
 from neutron_lib.api.definitions import availability_zone_filter
+from neutron_lib.api.definitions import bfd_for_extraroutes
 from neutron_lib.api.definitions import bfd_monitor
 from neutron_lib.api.definitions import bgp
 from neutron_lib.api.definitions import bgp_4byte_asn
@@ -149,6 +150,7 @@ _ALL_API_DEFINITIONS = {
     auto_allocated_topology,
     availability_zone,
     availability_zone_filter,
+    bfd_for_extraroutes,
     bfd_monitor,
     bgp,
     bgp_4byte_asn,

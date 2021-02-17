@@ -5699,6 +5699,8 @@ router-routes:
     The extra routes configuration for L3 router.
     A list of dictionaries with ``destination`` and ``nexthop`` parameters.
     It is available when ``extraroute`` extension is enabled.
+    If ``bfd-for-extraroutes`` extension is enabled ``bfd_monitor_id``
+    parameter is available in the ``routes`` dictionary.
   in: body
   required: true
   type: array
