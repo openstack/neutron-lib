@@ -25,6 +25,7 @@ PORTFORWARDING = "PORTFORWARDING"
 FLOATINGIPPOOL = "FLOATINGIPPOOL"
 NETWORK_SEGMENT_RANGE = "NETWORK_SEGMENT_RANGE"
 CONNTRACKHELPER = "CONNTRACKHELPER"
+PLACEMENT_REPORT = "placement_report"
 
 # TODO(johnsom) Remove after these stop being used. Neutron-LBaaS is now
 #               retired (train) and these should no longer be necessary.

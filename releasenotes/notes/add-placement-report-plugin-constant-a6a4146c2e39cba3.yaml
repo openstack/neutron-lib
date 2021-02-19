@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Add the ``neutron_lib.plugins.constants.PLACEMENT_REPORT`` constant so
+    that it can be used elsewhere related to the ``placement_report``
+    service plugin.
