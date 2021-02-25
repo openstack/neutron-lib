@@ -68,6 +68,7 @@ class StandardAttribute(model_base.BASEV2):
         # see http://docs.sqlalchemy.org/en/latest/orm/versioning.html for
         # details about how this works
         "version_id_col": revision_number,
+        "confirm_deleted_rows": False,
         "version_id_generator": False  # revision plugin increments manually
     }
 
