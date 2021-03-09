@@ -83,8 +83,9 @@ class TestUtils(base.BaseTestCase):
                           'n1:a:4')
 
     def test_parse_network_vlan_ranges(self):
-        ranges = utils.parse_network_vlan_ranges(['n1:1:3', 'n2:2:4'])
-        self.assertEqual(2, len(ranges.keys()))
+        ranges = utils.parse_network_vlan_ranges(
+            ['n1:1:3', 'n2:2:4', 'n3', 'n4', 'n4:10:12'])
+        self.assertEqual(4, len(ranges.keys()))
         self.assertIn('n1', ranges.keys())
         self.assertIn('n2', ranges.keys())
         self.assertEqual(2, len(ranges['n1'][0]))
@@ -93,6 +94,8 @@ class TestUtils(base.BaseTestCase):
         self.assertEqual(2, len(ranges['n2'][0]))
         self.assertEqual(2, ranges['n2'][0][0])
         self.assertEqual(4, ranges['n2'][0][1])
+        self.assertEqual([constants.VLAN_VALID_RANGE], ranges['n3'])
+        self.assertEqual([constants.VLAN_VALID_RANGE], ranges['n4'])
 
     def test_is_valid_gre_id(self):
         for v in [constants.MIN_GRE_ID, constants.MIN_GRE_ID + 2,

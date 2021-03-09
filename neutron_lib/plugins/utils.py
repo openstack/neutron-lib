@@ -199,9 +199,11 @@ def parse_network_vlan_ranges(network_vlan_ranges_cfg_entries):
     for entry in network_vlan_ranges_cfg_entries:
         network, vlan_range = parse_network_vlan_range(entry)
         if vlan_range:
+            if networks.get(network) == [constants.VLAN_VALID_RANGE]:
+                continue
             networks.setdefault(network, []).append(vlan_range)
         else:
-            networks.setdefault(network, [])
+            networks[network] = [constants.VLAN_VALID_RANGE]
     return networks
 
 
