@@ -213,7 +213,8 @@ def retry_if_session_inactive(context_var_name='context'):
             context = kwargs.get(context_var_name)
             if context is None:
                 context = args[ctx_arg_index]
-            method = f if context.session.is_active else f_with_retry
+            method = (f if (context.session and context.session.is_active)
+                      else f_with_retry)
             return method(*args, **kwargs)
         return wrapped
     return decorator

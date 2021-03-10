@@ -15,7 +15,6 @@
 import collections
 import copy
 import datetime
-import warnings
 
 from oslo_config import cfg
 from oslo_context import context as oslo_context
@@ -148,18 +147,17 @@ class Context(ContextBaseWithSession):
 
     @property
     def session(self):
-        # TODO(akamyshnikova): checking for session attribute won't be needed
-        # when reader and writer will be used
+        # TODO(ralonsoh): "Context.session" is provided by
+        # "enginefacade.transaction_context_provider" when a new transaction,
+        # READER or WRITER, is created. This property is just a temporary fix
+        # for those transactions that are not executed inside a transaction.
+        # By manually selecting the type of transaction we can speed up the
+        # code because by default a writer session is always created, even
+        # within read only operations.
         if hasattr(super(), 'session'):
-            if self._session:
-                warnings.warn('context.session is used with and without '
-                              'new enginefacade. Please update the code to '
-                              'use new enginefacede consistently.',
-                              DeprecationWarning)
-            return super().session
+            self._session = super().session
         if self._session is None:
             self._session = db_api.get_writer_session()
-
         return self._session
 
     def set_transaction_constraint(self, resource, resource_id, rev_number):
