@@ -166,9 +166,11 @@ def model_query_scope_is_project(context, model):
     :returns: True if the context is not admin and not advsvc and the model
         has a project_id. False otherwise.
     """
-    # Unless a context has 'admin' or 'advanced-service' rights the
+    # Unless a context is a system_scope token or
+    # context has 'admin' or 'advanced-service' rights the
     # query will be scoped to a single project_id
-    return ((not context.is_admin and hasattr(model, 'project_id')) and
+    return (context.system_scope != 'all' and
+            (not context.is_admin and hasattr(model, 'project_id')) and
             (not context.is_advsvc and hasattr(model, 'project_id')))
 
 
