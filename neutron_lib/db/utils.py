@@ -12,6 +12,7 @@
 
 import functools
 
+from oslo_config import cfg
 from oslo_db import exception as db_exc
 from oslo_utils import excutils
 import sqlalchemy
@@ -166,12 +167,25 @@ def model_query_scope_is_project(context, model):
     :returns: True if the context is not admin and not advsvc and the model
         has a project_id. False otherwise.
     """
-    # Unless a context is a system_scope token or
-    # context has 'admin' or 'advanced-service' rights the
-    # query will be scoped to a single project_id
-    return (context.system_scope != 'all' and
-            (not context.is_admin and hasattr(model, 'project_id')) and
-            (not context.is_advsvc and hasattr(model, 'project_id')))
+    if not hasattr(model, 'project_id'):
+        # If model don't have project_id, there is no need to scope query to
+        # just one project
+        return False
+    if context.is_advsvc:
+        # For context which has 'advanced-service' rights the
+        # query will not be scoped to a single project_id
+        return False
+    # TODO(slaweq): Remove that old is_admin check and always check scopes
+    # when old, deprecated rules will be removed and only rules with new
+    # personas will be supported
+    if cfg.CONF.oslo_policy.enforce_new_defaults:
+        # Unless a context is a system_scope token, query should be scoped to a
+        # single project_id
+        return context.system_scope != 'all'
+    else:
+        # Unless context has 'admin' rights the
+        # query will be scoped to a single project_id
+        return not context.is_admin
 
 
 def model_query(context, model):

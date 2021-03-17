@@ -12,6 +12,7 @@
 
 from unittest import mock
 
+from oslo_config import cfg
 from oslo_db.sqlalchemy import models
 import sqlalchemy as sa
 from sqlalchemy.ext import declarative
@@ -89,8 +90,13 @@ class TestUtils(base.BaseTestCase):
         utils.resource_fields(r, ['name'])
         mock_populate.assert_called_once_with({'name': 'n'})
 
-    def test_model_query_scope_is_project_admin(self):
-        ctx = context.Context(project_id='some project', is_admin=True)
+    def test_model_query_scope_is_project_admin_old_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', False, group='oslo_policy')
+        ctx = context.Context(
+            project_id='some project',
+            is_admin=True,
+            is_advsvc=False)
         model = mock.Mock(project_id='project')
 
         self.assertFalse(
@@ -101,8 +107,13 @@ class TestUtils(base.BaseTestCase):
         self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
-    def test_model_query_scope_is_project_advsvc(self):
-        ctx = context.Context(project_id='some project', is_advsvc=True)
+    def test_model_query_scope_is_project_advsvc_old_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', False, group='oslo_policy')
+        ctx = context.Context(
+            project_id='some project',
+            is_admin=False,
+            is_advsvc=True)
         model = mock.Mock(project_id='project')
 
         self.assertFalse(
@@ -113,23 +124,96 @@ class TestUtils(base.BaseTestCase):
         self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
-    def test_model_query_scope_is_project_system_scope(self):
-        ctx = context.Context(system_scope='all')
-        model = mock.Mock(project_id='project')
-
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
-
-        # Ensure that project_id isn't mocked
-        del model.project_id
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
-
-    def test_model_query_scope_is_project_regular_user(self):
-        ctx = context.Context(project_id='some project')
+    def test_model_query_scope_is_project_regular_user_old_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', False, group='oslo_policy')
+        ctx = context.Context(
+            project_id='some project',
+            is_admin=False,
+            is_advsvc=False)
         model = mock.Mock(project_id='project')
 
         self.assertTrue(
+            utils.model_query_scope_is_project(ctx, model))
+
+        # Ensure that project_id isn't mocked
+        del model.project_id
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
+    def test_model_query_scope_is_project_system_scope_old_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', False, group='oslo_policy')
+        ctx = context.Context(system_scope='all')
+        model = mock.Mock(project_id='project')
+
+        self.assertTrue(
+            utils.model_query_scope_is_project(ctx, model))
+
+        # Ensure that project_id isn't mocked
+        del model.project_id
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
+    def test_model_query_scope_is_project_admin_new_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', True, group='oslo_policy')
+        ctx = context.Context(
+            project_id='some project',
+            is_admin=True,
+            is_advsvc=False)
+        model = mock.Mock(project_id='project')
+
+        self.assertTrue(
+            utils.model_query_scope_is_project(ctx, model))
+
+        # Ensure that project_id isn't mocked
+        del model.project_id
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
+    def test_model_query_scope_is_project_advsvc_new_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', True, group='oslo_policy')
+        ctx = context.Context(
+            project_id='some project',
+            is_admin=False,
+            is_advsvc=True)
+        model = mock.Mock(project_id='project')
+
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
+        # Ensure that project_id isn't mocked
+        del model.project_id
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
+    def test_model_query_scope_is_project_regular_user_new_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', True, group='oslo_policy')
+        ctx = context.Context(
+            project_id='some project',
+            is_admin=False,
+            is_advsvc=False)
+        model = mock.Mock(project_id='project')
+
+        self.assertTrue(
+            utils.model_query_scope_is_project(ctx, model))
+
+        # Ensure that project_id isn't mocked
+        del model.project_id
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
+    def test_model_query_scope_is_project_system_scope_new_defaults(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', True, group='oslo_policy')
+        ctx = context.Context(
+            system_scope='all')
+        model = mock.Mock(project_id='project')
+
+        self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
         # Ensure that project_id isn't mocked
