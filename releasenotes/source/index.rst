@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   wallaby
    victoria
    ussuri
    train
