@@ -17,6 +17,15 @@
       "external_port": 2230,
       "description": "",
       "id": "e0a0274e-4d19-4eab-9e12-9e77a8caf3ea"
+    },
+    {
+      "protocol": "tcp",
+      "internal_ip_address": "10.0.0.12",
+      "internal_port_range": "80:90",
+      "internal_port_id": "2057ec54-8be2-11eb-8dcd-0242ac130003",
+      "external_port_range": "8080:8090",
+      "description": "using port ranges",
+      "id": "0f23a90a-8be2-11eb-8dcd-0242ac130003"
     }
   ]
 }

@@ -1,0 +1,10 @@
+---
+features:
+  - |
+    Add new fields ``internal_port_range`` and ``external_port_range`` to
+    allow users to create port forwardings using port ranges instead of
+    creating the ports rules one by one.
+
+    Update fields ``internal_port`` and ``external_port`` in floating ip
+    portforwardings to be optional, as now you can chose between using them
+    or the ``internal_port_range`` and ``external_port_range`` fields.

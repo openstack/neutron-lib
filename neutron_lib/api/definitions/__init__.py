@@ -41,6 +41,7 @@ from neutron_lib.api.definitions import extraroute_atomic
 from neutron_lib.api.definitions import filter_validation
 from neutron_lib.api.definitions import fip64
 from neutron_lib.api.definitions import fip_pf_description
+from neutron_lib.api.definitions import fip_pf_port_range
 from neutron_lib.api.definitions import fip_port_details
 from neutron_lib.api.definitions import firewall_v2
 from neutron_lib.api.definitions import flavors
@@ -155,6 +156,7 @@ _ALL_API_DEFINITIONS = {
     fip_port_details,
     flavors,
     floating_ip_port_forwarding,
+    fip_pf_port_range,
     fip_pf_description,
     floatingip_autodelete_internal,
     floatingip_pools,
