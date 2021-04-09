@@ -485,6 +485,13 @@ external_port-query:
   in: query
   required: false
   type: integer
+external_port_range-query:
+  description: |
+    Filter the list result by the TCP/UDP/other protocol port range of the
+    floating IP.
+  in: query
+  required: false
+  type: string
 fields:
   description: |
     The fields that you want the server to return.
@@ -506,6 +513,7 @@ fip_port_forwarding-sort_key:
     - ``id``
     - ``internal_port_id``
     - ``external_port``
+    - ``external_port_range``
     - ``protocol``
   in: query
   required: false
@@ -2546,7 +2554,7 @@ external_port:
     The TCP/UDP/other protocol port number of the port forwarding's floating IP
     address.
   in: body
-  required: true
+  required: false
   type: integer
 external_port-update:
   description: |
@@ -2555,6 +2563,13 @@ external_port-update:
   in: body
   required: false
   type: integer
+external_port_range:
+  description: |
+    The TCP/UDP/other protocol port range of the port forwarding's floating IP
+    address.
+  in: body
+  required: false
+  type: string
 external_v4_ip:
   description: |
     Read-only external (public) IPv4 address that is
@@ -3275,9 +3290,10 @@ floatingip-port_forwardings:
     floating IP has multiple port forwarding resources, this field has
     multiple entries. Each entry consists of network IP protocol
     (``protocol``), the fixed IP address of internal neutron port
-    (``internal_ip_address``), the TCP or UDP port used by internal
-    neutron port (``internal_port``) and the TCP or UDP port used by
-    floating IP (``external_port``).
+    (``internal_ip_address``), the TCP or UDP port or port range used by
+    internal neutron port (``internal_port``) or (``internal_port_range``)
+    and the TCP or UDP port or port range used by floating IP
+    (``external_port``) or (``external_port_range``).
   in: body
   required: true
   type: array
@@ -3478,7 +3494,7 @@ internal_port:
     The TCP/UDP/other protocol port number of the Neutron port fixed IP
     address associated to the floating ip port forwarding.
   in: body
-  required: true
+  required: false
   type: integer
 internal_port-update:
   description: |
@@ -3496,6 +3512,13 @@ internal_port_id:
 internal_port_id-update:
   description: |
     The ID of the Neutron port associated to the floating IP port forwarding.
+  in: body
+  required: false
+  type: string
+internal_port_range:
+  description: |
+    The TCP/UDP/other protocol port range of the Neutron port fixed IP
+    address associated to the floating ip port forwarding.
   in: body
   required: false
   type: string
