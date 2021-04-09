@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The neutron
+    ``neutron.plugins.ml2.drivers.openvswitch.agent.common.constants``
+    are now available in ``neutron_lib.constants``.
