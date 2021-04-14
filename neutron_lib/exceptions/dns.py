@@ -32,3 +32,7 @@ class InvalidPTRZoneConfiguration(exceptions.Conflict):
     message = _("Value of %(parameter)s has to be multiple of %(number)s, "
                 "with maximum value of %(maximum)s and minimum value of "
                 "%(minimum)s")
+
+
+class ExternalDNSOverQuota(exceptions.OverQuota):
+    message = _("External DNS Quota exceeded for resources: %(resource)s.")
