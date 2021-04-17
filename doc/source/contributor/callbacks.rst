@@ -198,18 +198,18 @@ pass along API controller specifics.
 Sample usage::
 
     # BEFORE_RESPONSE for create:
-    APIEventPayload(context, notifier_method, action,
+    APIEventPayload(context, method_name, action,
              request_body=req_body,
              states=[create_result],
              collection_name=self._collection_name)
 
     # BEFORE_RESPONSE for delete:
-    APIEventPayload(context, notifier_method, action,
+    APIEventPayload(context, method_name, action,
              states=[copy_of_deleted_resource],
              collection_name=self._collection_name)
 
     # BEFORE_RESPONSE for update:
-    APIEventPayload(context, notifier_method, action,
+    APIEventPayload(context, method_name, action,
              states=[original, updated],
              collection_name=self._collection_name)
 
