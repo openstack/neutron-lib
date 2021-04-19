@@ -266,7 +266,7 @@ In practical terms this scenario would be translated in the code below:
       print('Callback2 called by trigger: ', trigger)
       print('payload: ', payload)
 
-  def callbackhighproirity(resource, event, trigger, payload):
+  def callbackhighpriority(resource, event, trigger, payload):
       print("Prepared data for entities")
 
   # A is using event in case for some callback or internal operations
@@ -295,12 +295,11 @@ The output is:
 
   > Subscribed
   > Notifying...
-  > callbackhighpriority called by trigger: <function do_notify at 0x7f2a5d663410>
-  > payload: <neutron_lib._callbacks.events.EventPayload object at 0x7ff9ed253510>
-  > Callback2 called by trigger:  <function do_notify at 0x7f2a5d663410>
-  > payload: <neutron_lib._callbacks.events.EventPayload object at 0x7ff9ed253510>
-  > Callback1 called by trigger:  <function do_notify at 0x7f2a5d663410>
-  > payload: <neutron_lib._callbacks.events.EventPayload object at 0x7ff9ed253510>
+  > Prepared data for entities
+  > Callback1 called by trigger:  <function do_notify at 0x7f73166ae620>
+  > payload:  <neutron_lib.callbacks.events.EventPayload object at 0x7f731bc8fb70>
+  > Callback2 called by trigger:  <function do_notify at 0x7f73166ae620>
+  > payload:  <neutron_lib.callbacks.events.EventPayload object at 0x7f731bc8fb70>
 
 Thanks to the intermediary existence throughout the life of the system, A, B, C and
 D are flexible to evolve their internals, dynamics, and lifecycles.
