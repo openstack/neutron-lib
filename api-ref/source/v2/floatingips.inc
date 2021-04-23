@@ -174,6 +174,8 @@ reasons:
   - The internal OpenStack Networking port and fixed IP address are
     already associated with another floating IP.
 
+  - The external DNS service recordset quota exceeds the limit.
+
 Normal response codes: 201
 
 Error response codes: 400, 401, 404, 409
