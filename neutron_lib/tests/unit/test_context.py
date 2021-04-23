@@ -12,6 +12,7 @@
 
 from unittest import mock
 
+from oslo_config import cfg
 from oslo_context import context as oslo_context
 from testtools import matchers
 
@@ -151,6 +152,16 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertTrue(elevated_ctx.is_admin)
         elevated2_ctx = elevated_ctx.elevated()
         self.assertTrue(elevated2_ctx.is_admin)
+
+    def test_neutron_context_elevated_system_scope_for_new_policies(self):
+        cfg.CONF.set_override(
+            'enforce_new_defaults', True, group='oslo_policy')
+        ctx = context.Context('user_id', 'tenant_id')
+        self.assertFalse(ctx.is_admin)
+        self.assertNotEqual('all', ctx.system_scope)
+        elevated_ctx = ctx.elevated()
+        self.assertTrue(elevated_ctx.is_admin)
+        self.assertEqual('all', elevated_ctx.system_scope)
 
     def test_neutron_context_overwrite(self):
         ctx1 = context.Context('user_id', 'tenant_id')

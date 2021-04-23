@@ -17,6 +17,7 @@ import copy
 import datetime
 import warnings
 
+from oslo_config import cfg
 from oslo_context import context as oslo_context
 from oslo_db.sqlalchemy import enginefacade
 
@@ -123,6 +124,9 @@ class ContextBase(oslo_context.RequestContext):
 
         if 'admin' not in [x.lower() for x in context.roles]:
             context.roles = context.roles + ["admin"]
+
+        if cfg.CONF.oslo_policy.enforce_new_defaults:
+            context.system_scope = 'all'
 
         return context
 
