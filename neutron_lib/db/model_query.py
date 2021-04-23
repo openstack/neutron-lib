@@ -250,7 +250,7 @@ def apply_filters(query, model, filters, context=None):
 
 
 def get_collection_query(context, model, filters=None, sorts=None, limit=None,
-                         marker_obj=None, page_reverse=False):
+                         marker_obj=None, page_reverse=False, field=None):
     """Get a collection query.
 
     :param context: The context to use for the DB session.
@@ -260,9 +260,11 @@ def get_collection_query(context, model, filters=None, sorts=None, limit=None,
     :param limit: The limit associated with the query.
     :param marker_obj: The marker object if applicable.
     :param page_reverse: If reverse paging should be used.
+    :param field: Column, in string format, from the "model"; the query will
+                  return only this parameter instead of the full model columns.
     :returns: A paginated query for the said model.
     """
-    collection = query_with_hooks(context, model)
+    collection = query_with_hooks(context, model, field=field)
     collection = apply_filters(collection, model, filters, context)
     if sorts:
         sort_keys = db_utils.get_and_validate_sort_keys(sorts, model)
