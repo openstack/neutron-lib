@@ -380,9 +380,8 @@ class OpenFixture(fixtures.Fixture):
         self._orig_open = open
 
         def replacement_open(name, *args, **kwargs):
-            if name == self.path:
-                return self.mock_open(name, *args, **kwargs)
-            return self._orig_open(name, *args, **kwargs)
+            method = self.mock_open if name == self.path else self._orig_open
+            return method(name, *args, **kwargs)
 
         self._patch = mock.patch('builtins.open', new=replacement_open)
         self._patch.start()
