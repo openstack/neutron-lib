@@ -55,6 +55,8 @@ RESOURCE_ATTRIBUTE_MAP = {
                            'is_visible': True},
         PORT_MAC_ADDRESS: {'allow_post': True, 'allow_put': True,
                            'default': constants.ATTR_NOT_SPECIFIED,
+                           'convert_to':
+                               converters.convert_to_sanitized_mac_address,
                            'validate': {'type:mac_address': None},
                            'enforce_policy': True,
                            'is_filter': True,

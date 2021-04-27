@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Improved ``port`` API with a MAC address conversion method that sanitizes
+    the value. The output format will be EUI-48, represented with colons and
+    in lower case, for example, 01:23:45:67:89:ab.

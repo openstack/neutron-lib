@@ -353,3 +353,34 @@ class TestConvertPortMacAddress(base.BaseTestCase):
         CONF.base_mac = 'fa:16:3e:00:00:00'
         self.assertTrue(
             netaddr.valid_mac(converters.convert_to_mac_if_none(None)))
+
+
+class TestConvertToSanitizedMacAddress(base.BaseTestCase):
+
+    def test_sanitize_mac_address(self):
+        self.assertEqual(
+            '00:11:22:33:44:55',
+            converters.convert_to_sanitized_mac_address('00:11:22:33:44:55'))
+        self.assertEqual(
+            '00:11:22:33:44:05',
+            converters.convert_to_sanitized_mac_address('00:11:22:33:44:5'))
+        self.assertEqual(
+            '00:01:02:03:04:05',
+            converters.convert_to_sanitized_mac_address('0:1:2:3:4:5'))
+        self.assertEqual(
+            'ca:fe:ca:fe:0a:0e',
+            converters.convert_to_sanitized_mac_address('ca:FE:cA:Fe:a:E'))
+        self.assertEqual(
+            '01:23:45:67:89:01',
+            converters.convert_to_sanitized_mac_address('12345678901'))
+        self.assertEqual(
+            '01:23:45:67:89:01',
+            converters.convert_to_sanitized_mac_address('012345678901'))
+
+        # Not converted, those MAC address will fail in the validation step.
+        self.assertEqual(
+            '00:11:22:33:44',
+            converters.convert_to_sanitized_mac_address('00:11:22:33:44'))
+        self.assertEqual(
+            '00:11:22:33:44:',
+            converters.convert_to_sanitized_mac_address('00:11:22:33:44:'))

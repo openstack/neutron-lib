@@ -319,3 +319,17 @@ def convert_to_mac_if_none(data):
         return net_utils.get_random_mac(cfg.CONF.base_mac.split(':'))
 
     return data
+
+
+def convert_to_sanitized_mac_address(mac_address):
+    """Return a MAC address with format xx:xx:xx:xx:xx:xx
+
+    :param mac_address: The MAC address value
+    :return: A string with the MAC address formatted. If the MAC address
+             provided is invalid, the same input value is returned; the goal
+             of this method is not to validate it.
+    """
+    try:
+        return str(netaddr.EUI(mac_address, dialect=netaddr.mac_unix_expanded))
+    except netaddr.core.AddrFormatError:
+        return mac_address
