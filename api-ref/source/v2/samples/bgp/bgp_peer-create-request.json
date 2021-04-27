@@ -1,0 +1,8 @@
+{
+   "bgp_peer":{
+      "auth_type":"none",
+      "remote_as":"1001",
+      "name":"bgp-peer",
+      "peer_ip":"10.0.0.3"
+   }
+}

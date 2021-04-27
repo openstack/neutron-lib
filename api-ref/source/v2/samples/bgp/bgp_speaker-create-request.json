@@ -1,0 +1,7 @@
+{
+   "bgp_speaker":{
+      "ip_version":4,
+      "local_as":"1000",
+      "name":"bgp-speaker"
+   }
+}

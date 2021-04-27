@@ -1,0 +1,15 @@
+{
+   "bgp_speaker": {
+      "peers": [
+      ],
+      "name": "bgp-speaker-1",
+      "tenant_id": "34a6e17a48cf414ebc890367bf42266b",
+      "local_as": 1001,
+      "advertise_tenant_networks": true,
+      "networks": [
+      ],
+      "ip_version": 4,
+      "advertise_floating_ip_host_routes": true,
+      "id": "5e08db80-db77-4b5c-a56d-dbca0b284f2c"
+   }
+}

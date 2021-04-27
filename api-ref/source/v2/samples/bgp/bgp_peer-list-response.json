@@ -1,0 +1,12 @@
+{
+   "bgp_peers":[
+      {
+         "auth_type":"none",
+         "remote_as":1001,
+         "name":"bgp-peer",
+         "tenant_id":"34a6e17a48cf414ebc890367bf42266b",
+         "peer_ip":"10.0.0.3",
+         "id":"a7193581-a31c-4ea5-8218-b3052758461f"
+      }
+   ]
+}

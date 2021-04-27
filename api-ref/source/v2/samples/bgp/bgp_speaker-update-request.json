@@ -1,0 +1,7 @@
+{
+   "bgp_speaker":{
+      "advertise_floating_ip_host_routes": "true",
+      "advertise_tenant_networks": "false",
+      "name":"bgp-speaker_2"
+   }
+}
