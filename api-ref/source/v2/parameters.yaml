@@ -4224,14 +4224,14 @@ networks:
 numa_affinity_policy:
   description: |
     The port NUMA affinity policy requested during the virtual machine
-    scheduling. Values: ``None``, ``requiered``, ``preferred`` or ``legacy``.
+    scheduling. Values: ``None``, ``required``, ``preferred`` or ``legacy``.
   in: body
   required: False
   type: string
 numa_affinity_policy-request:
   description: |
     The port NUMA affinity policy requested during the virtual machine
-    scheduling. Values: ``None``, ``requiered``, ``preferred`` or ``legacy``.
+    scheduling. Values: ``None``, ``required``, ``preferred`` or ``legacy``.
   in: body
   required: False
   type: string
