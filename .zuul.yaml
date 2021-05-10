@@ -3,13 +3,12 @@
       - check-requirements
       - publish-openstack-docs-pti
       - openstack-cover-jobs
-      - openstack-lower-constraints-jobs
       - openstack-python3-wallaby-jobs
       - lib-forward-testing-python3
       - release-notes-jobs-python3
     check:
       jobs:
-        - neutron-tempest-plugin-api
+        - neutron-tempest-plugin-api-wallaby
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
@@ -17,7 +16,7 @@
             timeout: 10800
     gate:
       jobs:
-        - neutron-tempest-plugin-api
+        - neutron-tempest-plugin-api-wallaby
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
