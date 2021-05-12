@@ -33,6 +33,7 @@ from neutron_lib.api.definitions import dns
 from neutron_lib.api.definitions import dns_domain_keywords
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import dvr
+from neutron_lib.api.definitions import ecmp_routes
 from neutron_lib.api.definitions import empty_string_filtering
 from neutron_lib.api.definitions import expose_l3_conntrack_helper
 from neutron_lib.api.definitions import expose_port_forwarding_in_fip
@@ -153,6 +154,7 @@ _ALL_API_DEFINITIONS = {
     dns_domain_keywords,
     dns_domain_ports,
     dvr,
+    ecmp_routes,
     empty_string_filtering,
     expose_l3_conntrack_helper,
     expose_port_forwarding_in_fip,

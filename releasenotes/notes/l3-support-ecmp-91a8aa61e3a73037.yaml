@@ -1,0 +1,4 @@
+---
+features:
+  - The ``ecmp_routes`` extension API definition has been added as
+    ``neutron_lib.api.definitions.ecmp``.
