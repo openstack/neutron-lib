@@ -1,0 +1,6 @@
+{
+    "packet_rate_limit_rule": {
+        "max_kpps": "10000",
+        "max_burst_kpps": "10000"
+    }
+}

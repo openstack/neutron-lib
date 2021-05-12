@@ -978,6 +978,219 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
+===========================
+QoS packet rate limit rules
+===========================
+
+Lists, creates, deletes, shows information for, and updates QoS packet rate limit rules.
+
+List packet rate limit rules for QoS policy
+===========================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/packet_rate_limit_rules
+
+Lists all packet rate limit rules for a QoS policy.
+
+The list might be empty.
+
+You can control which response parameters are returned by using the
+fields query parameter. For information, see `Filtering and column
+selection <http://specs.openstack.org/openstack/neutron-
+specs/specs/api/networking_general_api_information.html#filtering-
+and-column-selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - max_kpps: max_kpps-query
+   - max_burst_kpps: max_burst_kpps-query
+   - id: id-query
+   - direction: qos-rule-direction-query
+   - sort_dir: sort_dir
+   - sort_key: qos_packet_rate_limit_rule-sort_key
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - packet_rate_limit_rules: packet_rate_limit_rules
+   - max_kpps: max_kpps-response
+   - max_burst_kpps: max_burst_kpps-response
+   - id: qos_packet_rate_limit_rule-id
+   - direction: qos-rule-direction-response
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/packet_rate_limit_rules-list-response.json
+   :language: javascript
+
+Create packet rate limit rule
+=============================
+
+.. rest_method::  POST /v2.0/qos/policies/{policy_id}/packet_rate_limit_rules
+
+Creates a packet rate limit rule for a QoS policy.
+
+Normal response codes: 201
+
+Error response codes: 400, 401, 404, 409
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - packet_rate_limit_rule: packet_rate_limit_rule
+   - max_kpps: max_kpps
+   - max_burst_kpps: max_burst_kpps
+   - direction: qos-rule-direction
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/packet_rate_limit_rule-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - packet_rate_limit_rule: packet_rate_limit_rule
+   - max_kpps: max_kpps-response
+   - max_burst_kpps: max_burst_kpps-response
+   - id: qos_packet_rate_limit_rule-id
+   - direction: qos-rule-direction-response
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/packet_rate_limit_rule-create-response.json
+   :language: javascript
+
+Show packet rate limit rule details
+===================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/packet_rate_limit_rules/{rule_id}
+
+Shows details for a packet rate limit rule for a QoS policy.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - packet_rate_limit_rule: packet_rate_limit_rule
+   - max_kpps: max_kpps-response
+   - max_burst_kpps: max_burst_kpps-response
+   - id: qos_packet_rate_limit_rule-id
+   - direction: qos-rule-direction-response
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/packet_rate_limit_rule-show-response.json
+   :language: javascript
+
+Update packet rate limit rule
+=============================
+
+.. rest_method::  PUT /v2.0/qos/policies/{policy_id}/packet_rate_limit_rules/{rule_id}
+
+Updates a packet rate limit rule for a QoS policy.
+
+If the request is valid, the service returns the ``Accepted (202)``
+response code.
+
+Normal response codes: 202
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+   - packet_rate_limit_rule: packet_rate_limit_rule
+   - max_kpps: max_kpps
+   - max_burst_kpps: max_burst_kpps
+   - direction: qos-rule-direction-update
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/packet_rate_limit_rule-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - packet_rate_limit_rule: packet_rate_limit_rule
+   - max_kpps: max_kpps-response
+   - max_burst_kpps: max_burst_kpps-response
+   - id: qos_packet_rate_limit_rule-id
+   - direction: qos-rule-direction-update-response
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/packet_rate_limit_rule-update-response.json
+   :language: javascript
+
+Delete packet rate limit rule
+=============================
+
+.. rest_method::  DELETE /v2.0/qos/policies/{policy_id}/packet_rate_limit_rules/{rule_id}
+
+Deletes a packet rate limit rule for a QoS policy.
+
+Normal response codes: 204
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
 ==================================
 Quality of Service rules alias API
 ==================================

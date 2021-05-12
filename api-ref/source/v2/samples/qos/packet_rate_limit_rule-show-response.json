@@ -1,0 +1,8 @@
+{
+    "packet_rate_limit_rule": {
+        "id": "1eddf7af-0b4c-42c5-8ae1-390b32f1de08",
+        "max_kpps": 10000,
+        "max_burst_kpps": 10000,
+        "direction": "egress"
+    }
+}
