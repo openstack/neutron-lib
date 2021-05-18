@@ -77,6 +77,8 @@ class TruncatedDateTime(types.TypeDecorator):
 
     impl = types.DateTime
 
+    cache_ok = False
+
     def process_bind_param(self, value, dialect):
         return value.replace(microsecond=0) if value else value
 
