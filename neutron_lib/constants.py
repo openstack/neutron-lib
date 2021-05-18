@@ -874,3 +874,10 @@ OVSDB_RESOURCE = 'ovsdb'
 # Used in ovs port 'external_ids' in order mark it for no cleanup when
 # ovs_cleanup script is used.
 SKIP_CLEANUP = 'skip_cleanup'
+
+# neutron-dynamic-routing constants
+MIN_ASNUM = 1
+MAX_ASNUM = 65535
+MAX_4BYTE_ASNUM = 4294967295
+
+SUPPORTED_AUTH_TYPES = ['none', 'md5']

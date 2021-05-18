@@ -157,7 +157,7 @@ KNOWN_EXTENSIONS = (
     'trunk',
     'trunk-details',
     # Add here list of extensions with pointers to the project repo, e.g.
-    # 'bgp',  # https://opendev.org/openstack/neutron-dynamic-routing
+    'bgp',  # https://opendev.org/openstack/neutron-dynamic-routing
 
     # https://opendev.org/openstack/neutron-fwaas
     'fwaas',

@@ -1,0 +1,5 @@
+---
+features:
+  - The API definitions of ``neutron-dynamic-routing``, ``bgp``,
+    ``bgp_4byte_asn`` and ``bgp_dragent_scheduler``, are now available
+    in ``neutron_lib.api.definitions``.

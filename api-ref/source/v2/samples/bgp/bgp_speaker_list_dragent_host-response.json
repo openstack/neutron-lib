@@ -1,0 +1,25 @@
+{
+  "agents":[
+     {
+        "binary":"neutron-bgp-dragent",
+        "description":null,
+        "admin_state_up":true,
+        "heartbeat_timestamp":"2016-05-17 03:05:12",
+        "availability_zone":null,
+        "alive":true,
+        "topic":"bgp_dragent",
+        "host":"yangyubj-virtual-machine",
+        "agent_type":"BGP dynamic routing agent",
+        "resource_versions":{
+        },
+        "created_at":"2016-05-09 07:38:00",
+        "started_at":"2016-05-11 09:06:13",
+        "id":"af216618-29d3-4ee7-acab-725bdc90e614",
+        "configurations":{
+           "advertise_routes":0,
+           "bgp_peers":0,
+           "bgp_speakers":1
+        }
+     }
+  ]
+}
