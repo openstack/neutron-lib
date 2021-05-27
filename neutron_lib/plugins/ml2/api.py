@@ -73,7 +73,6 @@ class MechanismDriver(object, metaclass=abc.ABCMeta):
         been initialized. No abstract methods defined below will be
         called prior to this method being called.
         """
-        pass
 
     def create_network_precommit(self, context):
         """Allocate resources for a new network.
@@ -479,7 +478,6 @@ class _TypeDriverBase(object, metaclass=abc.ABCMeta):
 
         :returns: network_type value handled by this driver
         """
-        pass
 
     @abc.abstractmethod
     def initialize(self):
@@ -489,7 +487,6 @@ class _TypeDriverBase(object, metaclass=abc.ABCMeta):
         been initialized. No abstract methods defined below will be
         called prior to this method being called.
         """
-        pass
 
     @abc.abstractmethod
     def is_partial_segment(self, segment):
@@ -517,7 +514,6 @@ class _TypeDriverBase(object, metaclass=abc.ABCMeta):
         The network_type attribute is present in segment, but
         need not be validated.
         """
-        pass
 
     @abc.abstractmethod
     def get_mtu(self, physical, network=None):
@@ -530,7 +526,6 @@ class _TypeDriverBase(object, metaclass=abc.ABCMeta):
         Returns the mtu for the network based on the config values,
         the network type and the network attributes.
         """
-        pass
 
 
 class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
@@ -572,7 +567,6 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         segment dictionary passed in was returned by a previous
         validate_provider_segment() call.
         """
-        pass
 
     @abc.abstractmethod
     def allocate_tenant_segment(self, session, filters=None, network=None):
@@ -590,7 +584,6 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         (i.e. tenant networks not supported or resource pool is
         exhausted), return None.
         """
-        pass
 
     @abc.abstractmethod
     def release_segment(self, session, segment):
@@ -604,7 +597,6 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         errors are not expected, but raising an exception will result
         in rollback of the transaction.
         """
-        pass
 
 
 class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
@@ -646,7 +638,6 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         segment dictionary passed in was returned by a previous
         validate_provider_segment() call.
         """
-        pass
 
     @abc.abstractmethod
     def allocate_tenant_segment(self, context, filters=None, network=None):
@@ -664,7 +655,6 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         (i.e. tenant networks not supported or resource pool is
         exhausted), return None.
         """
-        pass
 
     @abc.abstractmethod
     def release_segment(self, context, segment):
@@ -678,7 +668,6 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         errors are not expected, but raising an exception will result
         in rollback of the transaction.
         """
-        pass
 
     @abc.abstractmethod
     def initialize_network_segment_range_support(self):
@@ -689,7 +678,6 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         database has been initialized. This reloads the `default`
         network segment ranges when Neutron server starts/restarts.
         """
-        pass
 
     @abc.abstractmethod
     def update_network_segment_range_allocations(self):
@@ -698,7 +686,6 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         This syncs the driver segment allocations when network segment ranges
         have been created, updated or deleted.
         """
-        pass
 
 
 class NetworkContext(object, metaclass=abc.ABCMeta):
@@ -710,7 +697,8 @@ class NetworkContext(object, metaclass=abc.ABCMeta):
     MechanismDrivers can freely access the same information.
     """
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def current(self):
         """Return the network in its current configuration.
 
@@ -719,9 +707,9 @@ class NetworkContext(object, metaclass=abc.ABCMeta):
         all its properties 'current' at the time the context was
         established.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original(self):
         """Return the network in its original configuration.
 
@@ -730,12 +718,11 @@ class NetworkContext(object, metaclass=abc.ABCMeta):
         only valid within calls to update_network_precommit and
         update_network_postcommit.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def network_segments(self):
         """Return the segments associated with this network resource."""
-        pass
 
 
 class SubnetContext(object, metaclass=abc.ABCMeta):
@@ -747,7 +734,8 @@ class SubnetContext(object, metaclass=abc.ABCMeta):
     MechanismDrivers can freely access the same information.
     """
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def current(self):
         """Return the subnet in its current configuration.
 
@@ -756,9 +744,9 @@ class SubnetContext(object, metaclass=abc.ABCMeta):
         all its properties 'current' at the time the context was
         established.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original(self):
         """Return the subnet in its original configuration.
 
@@ -767,7 +755,6 @@ class SubnetContext(object, metaclass=abc.ABCMeta):
         only valid within calls to update_subnet_precommit and
         update_subnet_postcommit.
         """
-        pass
 
 
 class PortContext(object, metaclass=abc.ABCMeta):
@@ -779,7 +766,8 @@ class PortContext(object, metaclass=abc.ABCMeta):
     freely access the same information.
     """
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def current(self):
         """Return the port in its current configuration.
 
@@ -788,9 +776,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         all its properties 'current' at the time the context was
         established.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original(self):
         """Return the port in its original configuration.
 
@@ -799,28 +787,28 @@ class PortContext(object, metaclass=abc.ABCMeta):
         only valid within calls to update_port_precommit and
         update_port_postcommit.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def status(self):
         """Return the status of the current port."""
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original_status(self):
         """Return the status of the original port.
 
         The method is only valid within calls to update_port_precommit and
         update_port_postcommit.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def network(self):
         """Return the NetworkContext associated with this port."""
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def binding_levels(self):
         """Return dictionaries describing the current binding levels.
 
@@ -843,9 +831,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         Within calls to MechanismDriver.bind_port, descriptions of the
         levels above the level currently being bound are returned.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original_binding_levels(self):
         """Return dictionaries describing the original binding levels.
 
@@ -858,9 +846,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         update_port_precommit and update_port_postcommit. It returns
         None otherwise.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def top_bound_segment(self):
         """Return the current top-level bound segment dictionary.
 
@@ -870,9 +858,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         binding_levels[0][BOUND_SEGMENT], and returns one of the
         port's network's static segments.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original_top_bound_segment(self):
         """Return the original top-level bound segment dictionary.
 
@@ -886,9 +874,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         update_port_precommit and update_port_postcommit. It returns
         None otherwise.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def bottom_bound_segment(self):
         """Return the current bottom-level bound segment dictionary.
 
@@ -899,9 +887,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         whose binding supplied the port's binding:vif_type and
         binding:vif_details attribute values.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original_bottom_bound_segment(self):
         """Return the original bottom-level bound segment dictionary.
 
@@ -916,9 +904,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         update_port_precommit and update_port_postcommit. It returns
         None otherwise.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def host(self):
         """Return the host with which the port is associated.
 
@@ -927,9 +915,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         operation is being performed. Otherwise, it is the same value
         as current['binding:host_id'].
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original_host(self):
         """Return the original host with which the port was associated.
 
@@ -942,9 +930,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         update_port_precommit and update_port_postcommit. It returns
         None otherwise.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def vif_type(self):
         """Return the vif_type indicating the binding state of the port.
 
@@ -954,9 +942,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         performed. Otherwise, it is the same value as
         current['binding:vif_type'].
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original_vif_type(self):
         """Return the original vif_type of the port.
 
@@ -970,9 +958,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         update_port_precommit and update_port_postcommit. It returns
         None otherwise.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def vif_details(self):
         """Return the vif_details describing the binding of the port.
 
@@ -982,9 +970,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         performed. Otherwise, it is the same value as
         current['binding:vif_details'].
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def original_vif_details(self):
         """Return the original vif_details of the port.
 
@@ -998,9 +986,9 @@ class PortContext(object, metaclass=abc.ABCMeta):
         update_port_precommit and update_port_postcommit. It returns
         None otherwise.
         """
-        pass
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def segments_to_bind(self):
         """Return the list of segments with which to bind the port.
 
@@ -1014,7 +1002,6 @@ class PortContext(object, metaclass=abc.ABCMeta):
         This property is only valid within calls to
         MechanismDriver.bind_port. It returns None otherwise.
         """
-        pass
 
     @abc.abstractmethod
     def host_agents(self, agent_type):
@@ -1023,7 +1010,6 @@ class PortContext(object, metaclass=abc.ABCMeta):
         :param agent_type: Agent type identifier
         :returns: List of neutron.db.models.agent.Agent records
         """
-        pass
 
     @abc.abstractmethod
     def set_binding(self, segment_id, vif_type, vif_details,
@@ -1040,7 +1026,6 @@ class PortContext(object, metaclass=abc.ABCMeta):
         segment_id must identify an item in the current value of the
         segments_to_bind property.
         """
-        pass
 
     @abc.abstractmethod
     def continue_binding(self, segment_id, next_segments_to_bind):
@@ -1059,7 +1044,6 @@ class PortContext(object, metaclass=abc.ABCMeta):
         populate segments_to_bind for the next lower level of a
         hierarchical binding.
         """
-        pass
 
     @abc.abstractmethod
     def allocate_dynamic_segment(self, segment):
@@ -1073,7 +1057,6 @@ class PortContext(object, metaclass=abc.ABCMeta):
         specified segment. At a minimum it needs the network_type populated to
         call on the appropriate type driver.
         """
-        pass
 
     @abc.abstractmethod
     def release_dynamic_segment(self, segment_id):
@@ -1084,7 +1067,6 @@ class PortContext(object, metaclass=abc.ABCMeta):
         Called by the MechanismDriver.delete_port or update_port to release
         the dynamic segment allocated for this port.
         """
-        pass
 
 
 class ExtensionDriver(object, metaclass=abc.ABCMeta):
@@ -1106,7 +1088,6 @@ class ExtensionDriver(object, metaclass=abc.ABCMeta):
         been initialized. No abstract methods defined below will be
         called prior to this method being called.
         """
-        pass
 
     @property
     def extension_alias(self):
@@ -1117,7 +1098,7 @@ class ExtensionDriver(object, metaclass=abc.ABCMeta):
         be left to a service plugin, and we just need to provide
         core resource extension and updates.
         """
-        pass
+        return
 
     @property
     def extension_aliases(self):
