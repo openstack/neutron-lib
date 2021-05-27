@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Adding new API extension for QoS service plugin to allow
+    CURD actions for packet rate limit (packet per second) rule.

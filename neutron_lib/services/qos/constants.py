@@ -28,6 +28,10 @@ MIN_KBPS = "min_kbps"
 DIRECTION = "direction"
 DSCP_MARK = "dscp_mark"
 
+# Names of pps rules' attributes
+MAX_KPPS = "max_kpps"
+MAX_BURST_KPPS = "max_burst_kpps"
+
 QOS_POLICY_ID = 'qos_policy_id'
 QOS_NETWORK_POLICY_ID = 'qos_network_policy_id'
 
