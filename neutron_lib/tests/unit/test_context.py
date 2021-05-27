@@ -214,12 +214,6 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertDictSupersetOf(values, policy_values)
         self.assertDictSupersetOf(additional_values, policy_values)
 
-    @mock.patch.object(context.ContextBaseWithSession, 'session')
-    def test_superclass_session(self, mocked_session):
-        ctx = context.Context('user_id', 'tenant_id')
-        # make sure context uses parent class session that is mocked
-        self.assertEqual(mocked_session, ctx.session)
-
     def test_session_cached(self):
         ctx = context.Context('user_id', 'tenant_id')
         session1 = ctx.session
