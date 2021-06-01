@@ -916,9 +916,12 @@ Updates a minimum bandwidth rule for a QoS policy.
 If the request is valid, the service returns the ``Accepted (202)``
 response code.
 
+Note that the rule cannot be updated, and the update is rejected with error
+code 501, if there is any bound port referring to the rule via the qos policy.
+
 Normal response codes: 202
 
-Error response codes: 400, 401, 404
+Error response codes: 400, 401, 404, 501
 
 Request
 -------
