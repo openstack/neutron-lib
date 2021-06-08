@@ -12,6 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import copy
+
 from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import subnet
 
@@ -46,14 +48,17 @@ DESCRIPTION = (
 UPDATED_TIMESTAMP = "2018-03-12T00:00:00-00:00"
 
 
+segment_id_attr_info = copy.deepcopy(
+    segment.RESOURCE_ATTRIBUTE_MAP[
+        subnet.COLLECTION_NAME][segment.SEGMENT_ID])
+segment_id_attr_info['allow_put'] = True
+
 RESOURCE_ATTRIBUTE_MAP = {
     subnet.COLLECTION_NAME: {
-        segment.SEGMENT_ID: {'allow_post': True, 'allow_put': True,
-                             'default': None,
-                             'validate': {'type:uuid_or_none': None},
-                             'is_visible': True}
+        segment.SEGMENT_ID: segment_id_attr_info
     }
 }
+
 
 # The subresource attribute map for the extension. It adds child resources
 # to main extension's resource. The subresource map must have a parent and
