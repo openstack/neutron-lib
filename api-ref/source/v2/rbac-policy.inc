@@ -18,6 +18,9 @@ API to support object types of ``subnetpool``.
 The presence of the ``rbac-address-group`` extension extends this
 API to support object types of ``address-group``.
 
+The presence of the ``rbac-bgpvpn`` extension extends this
+API to support object types of ``bgpvpn``.
+
 Show RBAC policy details
 ========================
 

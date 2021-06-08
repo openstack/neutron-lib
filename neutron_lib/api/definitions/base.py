@@ -132,6 +132,7 @@ KNOWN_EXTENSIONS = (
     'quotas',
     'rbac-address-group',
     'rbac-address-scope',
+    'rbac-bgpvpn',
     'rbac-policies',
     'rbac-security-groups',
     'rbac-subnetpool',

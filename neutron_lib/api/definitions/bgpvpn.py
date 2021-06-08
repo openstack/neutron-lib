@@ -132,7 +132,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                      'enforce_policy': True},
         'routers': {'allow_post': False, 'allow_put': False,
                     'is_visible': True,
-                    'enforce_policy': True}
+                    'enforce_policy': True},
     },
 }
 

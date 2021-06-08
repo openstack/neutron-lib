@@ -1,0 +1,5 @@
+features:
+  - |
+    Added API definition for ``rbac-bgpvpn`` extension, which allows
+    sharing bgpvpn objects between tenants via the RBAC mechanism. With shared
+    bgpvpn the end-user will be able to manage router and network associations.
