@@ -111,26 +111,65 @@ def device_resource_provider_uuid(namespace, host, device, separator=':'):
     return six_uuid5(namespace=namespace, name=name)
 
 
-def _parse_bandwidth_value(bw_str):
-    """Parse the config string of a bandwidth value to an integer.
+def _parse_rp_rate(rate_str):
+    """Parse the config string value to an non-negative integer.
 
-    :param bw_str: A decimal string represantation of an integer, allowing
-                   the empty string.
+    :param rate_str: A decimal string representation of an non-negative
+                     integer, allowing the empty string.
     :raises: ValueError on invalid input.
-    :returns: The bandwidth value as an integer or None if not set in config.
+    :returns: The value as an integer or None if not set in config.
     """
     try:
-        bw = None
-        if bw_str:
-            bw = int(bw_str)
-            if bw < 0:
+        rate = None
+        if rate_str:
+            rate = int(rate_str)
+            if rate < 0:
                 raise ValueError()
     except ValueError as e:
         raise ValueError(_(
-            'Cannot parse resource_provider_bandwidths. '
-            'Expected: non-negative integer bandwidth value, got: %s') %
-            bw_str) from e
-    return bw
+            'Cannot parse string value to an integer. '
+            'Expected: non-negative integer value, got: %s') %
+            rate_str) from e
+    return rate
+
+
+def _parse_rp_options(options, dict_keys):
+    """Parse the config string tuples and map them to dict of dicts.
+
+    :param options: The list of string tuples separated with ':'
+                    in following format '[<str>]:[<rate0>:...:<rateN>]'.
+                    First element of the tuple is a string that will be used as
+                    a key of an outer dictionary. If not specified, defaults to
+                    an empty string. A rate is an optional, non-negative int.
+                    If rate values are provided they must match the length of
+                    dict_keys. If a rate value is not specified, it defaults to
+                    None.
+    :param dict_keys: A tuple of strings containing names of inner dictionary
+                      keys that are going to be mapped to rate values from
+                      options tuple.
+    :raises: ValueError on invalid input.
+    :returns: The fully parsed config as a dict of dicts.
+    """
+    rv = {}
+    for option in options:
+        if ':' not in option:
+            option += ':' * len(dict_keys)
+        try:
+            values = option.split(':')
+            tuple_len = len(dict_keys) + 1
+            if len(values) != tuple_len:
+                raise ValueError()
+            name = values.pop(0)
+        except ValueError as e:
+            raise ValueError(
+                _('Expected a tuple with %d values, got: %s')
+                % (tuple_len, option)) from e
+        if name in rv:
+            raise ValueError(_(
+                'Same resource name listed multiple times: "%s"') % name)
+        rv[name] = dict(zip(dict_keys,
+                            [_parse_rp_rate(v) for v in values]))
+    return rv
 
 
 def parse_rp_bandwidths(bandwidths):
@@ -153,28 +192,100 @@ def parse_rp_bandwidths(bandwidths):
     :raises: ValueError on invalid input.
     :returns: The fully parsed bandwidth config as a dict of dicts.
     """
+    try:
+        return _parse_rp_options(
+            bandwidths,
+            (const.EGRESS_DIRECTION, const.INGRESS_DIRECTION))
+    except ValueError as e:
+        raise ValueError(_(
+            "Cannot parse resource_provider_bandwidths. %s") % e) from e
 
-    rv = {}
-    for bandwidth in bandwidths:
-        if ':' not in bandwidth:
-            bandwidth += '::'
-        try:
-            device, egress_str, ingress_str = bandwidth.split(':')
-        except ValueError as e:
-            raise ValueError(_(
-                'Cannot parse resource_provider_bandwidths. '
-                'Expected: DEVICE:EGRESS:INGRESS, got: %s') % bandwidth) from e
-        if device in rv:
-            raise ValueError(_(
-                'Cannot parse resource_provider_bandwidths. '
-                'Same device listed multiple times: %s') % device)
-        egress = _parse_bandwidth_value(egress_str)
-        ingress = _parse_bandwidth_value(ingress_str)
-        rv[device] = {
-            const.EGRESS_DIRECTION: egress,
-            const.INGRESS_DIRECTION: ingress,
+
+def _rp_pp_set_default_hypervisor(cfg, host):
+    # If the user omitted hypervisor name we need to replace '' key with the
+    # value of a host parameter. Before we do that, ensure that we won't
+    # override a key which already exists in the dict.
+    if cfg.get('') and cfg.get(host):
+        raise ValueError(_(
+            'Found configuration for "%s" hypervisor and one without '
+            'hypervisor name specified that would override it.') % host)
+    if cfg.get(''):
+        cfg[host] = cfg.pop('')
+
+
+def parse_rp_pp_with_direction(pkt_rates, host):
+    """Parse and validate: resource_provider_packet_processing_with_direction.
+
+    Input in the config:
+        resource_provider_packet_processing_with_direction =
+            host0:10000:10000,host1::10000,host2::,host3,:0:0
+    Input here:
+        ['host0:10000:10000', 'host1::10000', 'host2::', 'host3', ':0:0']
+    Output:
+        {
+            'host0': {'egress': 10000, 'ingress': 10000},
+            'host1': {'egress': None, 'ingress': 10000},
+            'host2': {'egress': None, 'ingress': None},
+            'host3': {'egress': None, 'ingress': None},
+            '<host>': {'egress': 0, 'ingress': 0},
         }
-    return rv
+
+    :param pkt_rates: The list of 'hypervisor:egress:ingress' pkt rate
+                       config options as pre-parsed by oslo_config.
+    :param host: Hostname that will be used as a default key value if the user
+                 did not provide hypervisor name.
+    :raises: ValueError on invalid input.
+    :returns: The fully parsed pkt rate config as a dict of dicts.
+    """
+
+    try:
+        cfg = _parse_rp_options(
+            pkt_rates,
+            (const.EGRESS_DIRECTION, const.INGRESS_DIRECTION))
+        _rp_pp_set_default_hypervisor(cfg, host)
+    except ValueError as e:
+        raise ValueError(_(
+            "Cannot parse "
+            "resource_provider_packet_processing_with_direction. %s")
+            % e) from e
+
+    return cfg
+
+
+def parse_rp_pp_without_direction(pkt_rates, host):
+    """Parse: resource_provider_packet_processing_without_direction.
+
+    Input in the config:
+        resource_provider_packet_processing_without_direction =
+            host0:10000,host1:,host2,:0
+    Input here:
+        ['host0:10000', 'host1:', 'host2', ':0']
+    Output:
+        {
+            'host0': {'any': 10000},
+            'host1': {'any': None},
+            'host2': {'any': None},
+            '<DEFAULT.host>': {'any': 0},
+        }
+
+    :param pkt_rates: The list of 'hypervisor:pkt_rate' config options
+                      as pre-parsed by oslo_config.
+    :param host: Hostname that will be used as a default key value if the user
+                 did not provide hypervisor name.
+    :raises: ValueError on invalid input.
+    :returns: The fully parsed pkt rate config as a dict of dicts.
+    """
+
+    try:
+        cfg = _parse_rp_options(pkt_rates, (const.ANY_DIRECTION,))
+        _rp_pp_set_default_hypervisor(cfg, host)
+    except ValueError as e:
+        raise ValueError(_(
+            "Cannot parse "
+            "resource_provider_packet_processing_without_direction. %s")
+            % e) from e
+
+    return cfg
 
 
 def parse_rp_inventory_defaults(inventory_defaults):

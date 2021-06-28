@@ -360,6 +360,8 @@ VALID_DSCP_MARKS = [0, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34,
 
 INGRESS_DIRECTION = 'ingress'
 EGRESS_DIRECTION = 'egress'
+# Used only for QoS minimum guaranteed packet rate
+ANY_DIRECTION = 'any'
 VALID_DIRECTIONS = (INGRESS_DIRECTION, EGRESS_DIRECTION)
 
 PROVISIONAL_IPV6_PD_PREFIX = '::/64'
@@ -660,6 +662,11 @@ EXT_PARENT_PREFIX = 'ext_parent'
 
 RP_BANDWIDTHS = 'resource_provider_bandwidths'
 RP_INVENTORY_DEFAULTS = 'resource_provider_inventory_defaults'
+RP_PP_WITHOUT_DIRECTION = (
+    'resource_provider_packet_processing_without_direction')
+RP_PP_WITH_DIRECTION = 'resource_provider_packet_processing_with_direction'
+RP_PP_INVENTORY_DEFAULTS = (
+    'resource_provider_packet_processing_inventory_defaults')
 
 # Port NUMA affinity policies, matching Nova NUMA affinity policy constants
 PORT_NUMA_POLICY_REQUIRED = 'required'
