@@ -16,7 +16,11 @@
 TRAIT_PREFIX_VNIC_TYPE = 'VNIC_TYPE_'
 TRAIT_PREFIX_PHYSNET = 'PHYSNET_'
 
-# resource classes
+# TODO(przszc): Remove resource classes constants with next major release of
+# neutron-lib. There were only a few occurrences in neutron source code where
+# those constants were used, and all of them were replaced with
+# os-resource-classes lib.
+# **DEPRECATED** resource classes
 CLASS_NET_BW_EGRESS_KBPS = 'NET_BW_EGR_KILOBIT_PER_SEC'
 CLASS_NET_BW_INGRESS_KBPS = 'NET_BW_IGR_KILOBIT_PER_SEC'
 
