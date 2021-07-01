@@ -253,7 +253,8 @@ class APIExtensionDescriptor(ExtensionDescriptor):
         return cls.api_definition.OPTIONAL_EXTENSIONS
 
     @classmethod
-    def update_attributes_map(cls, attributes, extension_attrs_map=None):
+    def update_attributes_map(cls, extended_attributes,
+                              extension_attrs_map=None):
         """Update attributes map for this extension.
 
         Behaves like ExtensionDescriptor.update_attributes_map(), but
@@ -263,4 +264,4 @@ class APIExtensionDescriptor(ExtensionDescriptor):
         if extension_attrs_map is None:
             extension_attrs_map = cls.get_extended_resources('2.0')
         super(APIExtensionDescriptor, cls).update_attributes_map(
-            cls, attributes, extension_attrs_map=extension_attrs_map)
+            cls, extended_attributes, extension_attrs_map=extension_attrs_map)
