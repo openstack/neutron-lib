@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    ``DHCP_IPV4_TABLE`` and ``DHCP_IPV6_TABLE`` constants from the
+    ``neutron.plugins.ml2.drivers.openvswitch.agent.common.constants`` module
+    are now available in ``neutron_lib.constants``.
