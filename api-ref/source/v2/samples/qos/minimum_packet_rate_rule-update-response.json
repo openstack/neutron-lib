@@ -1,0 +1,7 @@
+{
+    "minimum_packet_rate_rule": {
+        "id": "5f126d84-551a-4dcf-bb01-0e9c0df0c794",
+        "min_kpps": 2000,
+        "direction": "any"
+    }
+}

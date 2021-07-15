@@ -811,6 +811,12 @@ min_kbps-query:
   in: query
   required: false
   type: integer
+min_kpps-query:
+  description: |
+    Filter the list result by the min kpps (kilo packets per second) value.
+  in: query
+  required: false
+  type: integer
 min_prefixlen-query:
   description: |
     Filter the subnet pool list result by the smallest prefix that can be
@@ -1055,6 +1061,14 @@ qos-rule-direction-query:
   in: query
   required: false
   type: string
+qos-rule-minimum-packet-rate-direction-query:
+  description: |
+    Filter the list result by the direction of the traffic to which the QoS
+    minimum packet rule is applied. Valid values are ``any``, ``egress`` and
+    ``ingress``.
+  in: query
+  required: false
+  type: string
 qos-shared-query:
   description: |
     Filter the QoS policy list result based on whether this policy is shared
@@ -1113,6 +1127,18 @@ qos_minimum_bandwidth_rule-sort_key:
     - ``direction``
     - ``id``
     - ``min_kbps``
+  in: query
+  required: false
+  type: string
+qos_minimum_packet_rate_rule-sort_key:
+  description: |
+    Sorts by a minimum packet rate rule attribute. You can specify multiple
+    pairs of sort key and sort direction query parameters. The sort keys are
+    limited to:
+
+    - ``direction``
+    - ``id``
+    - ``min_kpps``
   in: query
   required: false
   type: string
@@ -4123,6 +4149,18 @@ min_kbps-response:
   in: body
   required: true
   type: integer
+min_kpps:
+  description: |
+    The minimum kilo (1000) packets per second (kpps) value.
+  in: body
+  required: true
+  type: integer
+min_kpps-response:
+  description: |
+    The minimum kilo (1000) packets per second (kpps) value.
+  in: body
+  required: true
+  type: integer
 min_prefixlen:
   description: |
     The smallest prefix that can be allocated from a
@@ -4140,6 +4178,19 @@ minimum_bandwidth_rule:
 minimum_bandwidth_rules:
   description: |
     A list of ``minimum_bandwidth_rule`` objects associated with
+    the QoS policy.
+  in: body
+  required: true
+  type: array
+minimum_packet_rate_rule:
+  description: |
+    A ``minimum_packet_rate_rule`` object.
+  in: body
+  required: true
+  type: object
+minimum_packet_rate_rules:
+  description: |
+    A list of ``minimum_packet_rate_rule`` objects associated with
     the QoS policy.
   in: body
   required: true
@@ -4887,6 +4938,16 @@ qos-rule-direction-update-response:
   in: body
   required: true
   type: string
+qos-rule-minimum-packet-rate-direction:
+  description: |
+    The direction of the traffic to which the QoS
+    minimum packet rate rule is applied, as seen
+    from the point of view of the ``port``. Valid
+    values are ``any``, ``egress`` and
+    ``ingress``.
+  in: body
+  required: true
+  type: string
 qos-rule-type:
   description: |
     The type of QoS rule.
@@ -4946,6 +5007,12 @@ qos_is_default-request:
 qos_minimum_bandwidth_rule-id:
   description: |
     The ID of the QoS minimum bandwidth rule.
+  in: body
+  required: true
+  type: string
+qos_minimum_packet_rate_rule-id:
+  description: |
+    The ID of the QoS minimum packet rate rule.
   in: body
   required: true
   type: string

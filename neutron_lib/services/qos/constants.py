@@ -30,6 +30,7 @@ DSCP_MARK = "dscp_mark"
 
 # Names of pps rules' attributes
 MAX_KPPS = "max_kpps"
+MIN_KPPS = "min_kpps"
 MAX_BURST_KPPS = "max_burst_kpps"
 
 QOS_POLICY_ID = 'qos_policy_id'
