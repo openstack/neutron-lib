@@ -31,6 +31,7 @@ Layer 3 Networking
 .. include:: floatingippools.inc
 .. include:: fip-port-forwarding.inc
 .. include:: routers.inc
+.. include:: router-ndp-proxy.inc
 .. include:: subnetpools.inc
 .. include:: subnetpool_prefix_ops.inc
 .. include:: subnets.inc

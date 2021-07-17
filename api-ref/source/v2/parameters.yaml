@@ -205,6 +205,12 @@ metering_label_rule-id-path:
   in: path
   required: true
   type: string
+ndp_proxy_id-path:
+  description: |
+    The ID of the ndp proxy.
+  in: path
+  required: true
+  type: string
 network_id-path:
   description: |
     The ID of the network.
@@ -980,6 +986,39 @@ mtu-query:
 name-query:
   description: |
     Filter the list result by the human-readable name of the resource.
+  in: query
+  required: false
+  type: string
+ndp_proxy-ip-address-query:
+  description:
+    The IPv6 address which the ``ndp proxy`` annunciate to external network.
+  in: query
+  required: false
+  type: string
+ndp_proxy-port-id-query:
+  description:
+    The ID of the port for the ndp proxy.
+  in: query
+  required: false
+  type: string
+ndp_proxy-router-id-query:
+  description:
+    The ID of the router for the ndp proxy.
+  in: query
+  required: false
+  type: string
+ndp_proxy-sort_key:
+  description: |
+    Sorts by a ndp proxy attribute. You can specify multiple pairs of sort key
+    and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``name``
+    - ``tenant_id``
+    - ``project_id``
+    - ``router_id``
+    - ``port_id``
+    - ``ip_address``
   in: query
   required: false
   type: string
@@ -4801,6 +4840,48 @@ name_resource:
   in: body
   required: false
   type: string
+ndp_proxies:
+  description: |
+    A list of ``ndp proxy`` object.
+  in: body
+  required: true
+  type: array
+ndp_proxy:
+  description: |
+    A ``ndp proxy`` object.
+  in: body
+  required: true
+  type: object
+ndp_proxy_id-body:
+  description: |
+    The ID of the ndp proxy
+  in: body
+  required: true
+  type: string
+ndp_proxy_ip_address-body:
+  description: |
+    The IPv6 address which the ``ndp proxy`` annunciate to external network.
+  in: body
+  required: true
+  type: string
+ndp_proxy_ip_address-body-request:
+  description: |
+    The IPv6 address which the ``ndp proxy`` annunciate to external network.
+  in: body
+  required: false
+  type: string
+ndp_proxy_port_id-body:
+  description: |
+    The ID of the port for the ndp proxy.
+  in: body
+  required: true
+  type: string
+ndp_proxy_router_id-body:
+  description: |
+    The ID of the router for the ndp proxy.
+  in: body
+  required: true
+  type: string
 network:
   description: |
     A ``network`` object.
@@ -6005,6 +6086,26 @@ router-distributed-request:
   description: |
     ``true`` indicates a distributed router.
     It is available when ``dvr`` extension is enabled.
+  in: body
+  required: false
+  type: boolean
+router-enable_ndp_proxy:
+  description: |
+    Enable NDP proxy attribute. ``true`` means NDP proxy is enabled for the
+    router, the IPv6 address of internal subnets attached to the router can be
+    published to external by create ``ndp_proxy``. ``false`` means NDP proxy is
+    disabled, the IPv6 address of internal subnets attached to the router can
+    not be published to external by ``ndp_proxy``. It is available when
+    ``router-extend-ndp-proxy`` extension is enabled.
+  in: body
+  required: true
+  type: boolean
+router-enable_ndp_proxy-request:
+  description: |
+    Enable NDP proxy attribute. Default is ``false``, To persist this attribute
+    value, set the ``enable_ndp_proxy_by_default`` option in the
+    ``neutron.conf`` file. It is available when ``router-extend-ndp-proxy``
+    extension is enabled.
   in: body
   required: false
   type: boolean

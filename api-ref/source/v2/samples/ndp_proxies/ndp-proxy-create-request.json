@@ -1,0 +1,9 @@
+{
+  "ndp_proxy": {
+    "name": "ndp_proxy1",
+    "router_id": "1238be08-a2a8-4b8d-addf-fb5e2250e480",
+    "port_id": "6738be23-a398-445d-aaaf-785e4550e4cb",
+    "ip_address": "2001::1:6",
+    "description": "Some description"
+  }
+}
