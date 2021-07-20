@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import collections
+from collections import abc
 import decimal
 import random
 import weakref
@@ -85,7 +85,7 @@ def safe_sort_key(value):
     :param value: The value to build a hash for.
     :returns: The value sorted.
     """
-    if isinstance(value, collections.Mapping):
+    if isinstance(value, abc.Mapping):
         return sorted(value.items())
     return value
 
