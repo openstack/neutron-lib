@@ -1,0 +1,18 @@
+{
+  "port_associations": [
+    {
+      "local_ip_id": "8c5d88dc-60ac-4b02-a65a-36b65888ddcd",
+      "local_ip_address": "172.24.4.228",
+      "fixed_port_id": "96227c78-6a0c-4d9d-b441-c4b8f6fb6c4a",
+      "fixed_ip": "10.0.0.5",
+      "host": "host1"
+    },
+    {
+      "local_ip_id": "8c5d88dc-60ac-4b02-a65a-36b65888ddcd",
+      "local_ip_address": "172.24.4.228",
+      "fixed_port_id": "1b09fd12-c769-4be7-9c26-dececa474acf",
+      "fixed_ip": "10.0.0.6",
+      "host": "host2"
+    }
+  ]
+}

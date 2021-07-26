@@ -1,0 +1,6 @@
+{
+    "local_ip": {
+        "name": "new_name",
+        "description": "new description"
+    }
+}
