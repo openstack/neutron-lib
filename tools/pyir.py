@@ -1194,11 +1194,11 @@ class ModuleParser(object):
                 elif inspect.isfunction(member):
                     self._notify(APISignature.SignatureType.FUNCTION,
                                  fqn, member,
-                                 arg_spec=inspect.getargspec(member))
+                                 arg_spec=inspect.getfullargspec(member))
                 elif inspect.ismethod(member):
                     self._notify(APISignature.SignatureType.METHOD,
                                  fqn, member,
-                                 arg_spec=inspect.getargspec(member))
+                                 arg_spec=inspect.getfullargspec(member))
                 else:
                     event = (APISignature.SignatureType.MODULE_ATTR
                              if inspect.ismodule(module)
