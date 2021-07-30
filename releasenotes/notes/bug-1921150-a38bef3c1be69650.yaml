@@ -1,0 +1,14 @@
+---
+upgrade:
+  - |
+    If you leave a long time window between upgrading Placement and Neutron
+    Server, then it is recommended to upgrade Placement first (as was always
+    the logical order since Neutron is a client of Placement).
+    If the window between upgrading Neutron and Placement is short - that is
+    no changes in (segments of routed networks and QoS) resources backed by
+    Placement during this window you can ignore this note.
+fixes:
+  - |
+    Switched to using placement microversion 1.37 therefore we can fix the
+    resource provider tree corrupted by bug
+    https://launchpad.net/bugs/1921150.
