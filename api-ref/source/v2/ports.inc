@@ -117,6 +117,20 @@ The port resource request extension (``port-resource-request``) allows
 administrative users (including Nova) to retrieve the Placement resources and
 traits needed by a port by introducing the ``resource_request`` to ``port`` resources.
 
+Port resource request groups
+============================
+
+The port resource request groups extension (``port-resource-request-groups``)
+introduces a new format of ``resource_request`` field for ``port`` resource.
+The new structure enables Neutron to request multiple groups of resources and
+traits from the same RP subtree.
+
+Resource request new format example
+-----------------------------------
+
+.. literalinclude:: samples/ports/port-resource-request-new-format.json
+   :language: javascript
+
 Port security
 =============
 
