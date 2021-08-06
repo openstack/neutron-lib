@@ -1,0 +1,6 @@
+{
+    "minimum_packet_rate_rule": {
+        "min_kpps": 1000,
+        "direction": "any"
+    }
+}

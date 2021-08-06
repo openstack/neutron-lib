@@ -1,0 +1,5 @@
+{
+    "minimum_packet_rate_rule": {
+        "min_kpps": 2000
+    }
+}

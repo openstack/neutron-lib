@@ -981,6 +981,215 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
+=============================
+QoS minimum packet rate rules
+=============================
+
+Lists, creates, deletes, shows information for, and updates QoS minimum packet
+rate rules.
+
+List minimum packet rate rules for QoS policy
+=============================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/minimum_packet_rate_rules
+
+Lists all minimum packet rate rules for a QoS policy.
+
+The list might be empty.
+
+You can control which response parameters are returned by using the
+fields query parameter. For information, see `Filtering and column
+selection <http://specs.openstack.org/openstack/neutron-
+specs/specs/api/networking_general_api_information.html#filtering-
+and-column-selection>`__.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - min_kpps: min_kpps-query
+   - id: id-query
+   - direction: qos-rule-minimum-packet-rate-direction-query
+   - sort_dir: sort_dir
+   - sort_key: qos_minimum_packet_rate_rule-sort_key
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_packet_rate_rules: minimum_packet_rate_rules
+   - min_kpps: min_kpps-response
+   - id: qos_minimum_packet_rate_rule-id
+   - direction: qos-rule-minimum-packet-rate-direction
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_packet_rate_rules-list-response.json
+   :language: javascript
+
+Create minimum packet rate rule
+===============================
+
+.. rest_method::  POST /v2.0/qos/policies/{policy_id}/minimum_packet_rate_rules
+
+Creates a minimum packet rate rule for a QoS policy.
+
+Normal response codes: 201
+
+Error response codes: 400, 401, 404, 409
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - minimum_packet_rate_rule: minimum_packet_rate_rule
+   - min_kpps: min_kpps
+   - direction: qos-rule-minimum-packet-rate-direction
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/minimum_packet_rate_rule-create-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_packet_rate_rule: minimum_packet_rate_rule
+   - min_kpps: min_kpps-response
+   - id: qos_minimum_packet_rate_rule-id
+   - direction: qos-rule-minimum-packet-rate-direction
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_packet_rate_rule-create-response.json
+   :language: javascript
+
+Show minimum packet rate rule details
+=====================================
+
+.. rest_method::  GET /v2.0/qos/policies/{policy_id}/minimum_packet_rate_rules/{rule_id}
+
+Shows details for a minimum packet rate rule for a QoS policy.
+
+Normal response codes: 200
+
+Error response codes: 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_packet_rate_rule: minimum_packet_rate_rule
+   - min_kpps: min_kpps-response
+   - id: qos_minimum_packet_rate_rule-id
+   - direction: qos-rule-minimum-packet-rate-direction
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_packet_rate_rule-show-response.json
+   :language: javascript
+
+Update minimum packet rate rule
+===============================
+
+.. rest_method::  PUT /v2.0/qos/policies/{policy_id}/minimum_packet_rate_rules/{rule_id}
+
+Updates a minimum packet rate rule for a QoS policy.
+
+If the request is valid, the service returns the ``Accepted (202)``
+response code.
+
+Note that the rule cannot be updated, and the update is rejected with error
+code 501, if there is any bound port referring to the rule via the qos policy.
+
+Normal response codes: 202
+
+Error response codes: 400, 401, 404, 501
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+   - minimum_packet_rate_rule: minimum_packet_rate_rule
+   - min_kpps: min_kpps
+
+Request Example
+---------------
+
+.. literalinclude:: samples/qos/minimum_packet_rate_rule-update-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - minimum_packet_rate_rule: minimum_packet_rate_rule
+   - min_kpps: min_kpps-response
+   - id: qos_minimum_packet_rate_rule-id
+   - direction: qos-rule-minimum-packet-rate-direction
+   - tags: tags
+
+Response Example
+----------------
+
+.. literalinclude:: samples/qos/minimum_packet_rate_rule-update-response.json
+   :language: javascript
+
+Delete minimum packet rate rule
+===============================
+
+.. rest_method::  DELETE /v2.0/qos/policies/{policy_id}/minimum_packet_rate_rules/{rule_id}
+
+Deletes a minimum packet rate rule for a QoS policy.
+
+Normal response codes: 204
+
+Error response codes: 400, 401, 404
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - policy_id: qos-policy-id-path
+   - rule_id: qos-rule_id
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
 ===========================
 QoS packet rate limit rules
 ===========================

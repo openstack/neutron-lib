@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    Added API definition for QoS minimum packet rate rule.
