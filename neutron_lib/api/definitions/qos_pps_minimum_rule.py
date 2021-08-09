@@ -46,7 +46,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
             },
             qos_constants.DIRECTION: {
                 'allow_post': True,
-                'allow_put': False,
+                'allow_put': True,
                 'is_visible': True,
                 'default': None,
                 'is_filter': True,
