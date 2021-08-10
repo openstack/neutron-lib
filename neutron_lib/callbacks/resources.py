@@ -14,6 +14,7 @@
 ADDRESS_GROUP = 'address_group'
 AGENT = 'agent'
 FLOATING_IP = 'floatingip'
+LOCAL_IP_ASSOCIATION = 'local_ip_association'
 NETWORK = 'network'
 NETWORKS = 'networks'
 PORT = 'port'
