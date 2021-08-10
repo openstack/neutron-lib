@@ -15,7 +15,6 @@ from oslo_config import cfg
 from oslo_utils import strutils
 
 from neutron_lib._i18n import _
-from neutron_lib.api import validators
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
 from neutron_lib.utils import net as net_utils
@@ -256,7 +255,7 @@ def convert_to_protocol(data):
                       "names and their integer representation (0 to "
                       "255) are supported") % data
     try:
-        if validators.validate_range(convert_to_int(data), [0, 255]) is None:
+        if 0 <= convert_to_int(data) <= 255:
             return data
         else:
             raise n_exc.InvalidInput(error_message=error_message)

@@ -13,7 +13,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 
 
@@ -35,18 +34,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_visible': True,
             'default': None,
             'enforce_policy': True,
-            'validate': {
-                'type:dict_or_nodata': {
-                    'network_id': {'type:uuid': None, 'required': True},
-                    'enable_snat': {'type:boolean': None, 'required': False,
-                                    'convert_to':
-                                        converters.convert_to_boolean},
-                    'external_fixed_ips': {
-                        'type:fixed_ips': None,
-                        'required': False
-                    }
-                }
-            }
+            'validate': {'type:external_gw_info': None},
         }
     }
 }
