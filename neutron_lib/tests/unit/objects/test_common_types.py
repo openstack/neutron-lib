@@ -184,6 +184,21 @@ class FlowDirectionEnumFieldTest(test_base.BaseTestCase, TestField):
             self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
 
 
+class FlowDirectionAndAnyEnumFieldTest(test_base.BaseTestCase, TestField):
+    def setUp(self):
+        super(FlowDirectionAndAnyEnumFieldTest, self).setUp()
+        self.field = common_types.FlowDirectionAndAnyEnumField()
+        self.coerce_good_values = [
+            (val, val) for val in const.VALID_DIRECTIONS_AND_ANY]
+        self.coerce_bad_values = ['test', '8', 10, []]
+        self.to_primitive_values = self.coerce_good_values
+        self.from_primitive_values = self.coerce_good_values
+
+    def test_stringify(self):
+        for in_val, out_val in self.coerce_good_values:
+            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+
+
 class DomainNameFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
         super(DomainNameFieldTest, self).setUp()
