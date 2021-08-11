@@ -77,8 +77,7 @@ class QosRuleNotSupportedByNetwork(e.Conflict):
 class QoSRuleParameterConflict(e.Conflict):
     message = _("Unable to add the rule with value %(rule_value)s to the "
                 "policy %(policy_id)s as the existing rule of type "
-                "%(existing_rule)s restricts the bandwidth to "
-                "%(existing_value)s.")
+                "%(existing_rule)s has value %(existing_value)s.")
 
 
 class QoSRulesConflict(e.Conflict):
