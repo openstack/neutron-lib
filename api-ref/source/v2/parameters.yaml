@@ -1,6 +1,12 @@
  # variables in header
 
 # variables in path
+address_group_id-path:
+  description: |
+    The ID of the address group.
+  in: path
+  required: true
+  type: string
 address_scope_id-path:
   description: |
     The ID of the address scope.
@@ -298,6 +304,19 @@ vpnservice_id-path:
   required: true
   type: string
 # variables in query
+address_group-sort_key:
+  description: |
+    Sorts by an address group attribute. You can specify multiple pairs of sort
+    key and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``name``
+    - ``project_id``
+    - ``shared``
+    - ``tenant_id``
+  in: query
+  required: false
+  type: string
 address_scope-sort_key:
   description: |
     Sorts by an address scope attribute. You can specify multiple pairs of sort
@@ -1555,6 +1574,24 @@ address:
   in: body
   required: true
   type: string
+address_group:
+  description: |
+    An ``address group`` object.
+  in: body
+  required: true
+  type: object
+address_group_id_body:
+  description: |
+    The ID of the address group.
+  in: body
+  required: true
+  type: string
+address_groups:
+  description: |
+    A list of ``address group`` objects.
+  in: body
+  required: true
+  type: array
 address_scope:
   description: |
     An ``address scope`` object.
@@ -1576,6 +1613,12 @@ address_scope_id_body:
 address_scopes:
   description: |
     A list of ``address scope`` objects.
+  in: body
+  required: true
+  type: array
+addresses:
+  description: |
+    A list of IP addresses.
   in: body
   required: true
   type: array

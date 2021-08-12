@@ -1,0 +1,10 @@
+{
+    "address_group": {
+        "id": "9f60873a-9bb0-45c9-ac25-b1d5d668d955",
+        "name": "address-group-2",
+        "project_id": "c9a6f447205640e89523df967c26f4d5",
+        "addresses": [],
+        "description": "docs example group",
+        "tenant_id": "c9a6f447205640e89523df967c26f4d5"
+    }
+}

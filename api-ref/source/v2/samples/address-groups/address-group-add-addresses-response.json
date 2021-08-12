@@ -1,0 +1,14 @@
+{
+    "address_group": {
+        "id": "9ace2ef6-bd57-426a-9223-cf1751d26db9",
+        "name": "doc-address-group",
+        "project_id": "c9a6f447205640e89523df967c26f4d5",
+        "addresses": [
+            "10.0.1.34/32",
+            "10.0.2.100/32",
+            "192.168.100.0/24"
+        ],
+        "description": "AG description",
+        "tenant_id": "c9a6f447205640e89523df967c26f4d5"
+    }
+}
