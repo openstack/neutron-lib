@@ -1131,7 +1131,7 @@ code 501, if there is any bound port referring to the rule via the qos policy.
 
 Normal response codes: 202
 
-Error response codes: 400, 401, 404, 501
+Error response codes: 400, 401, 404, 409, 501
 
 Request
 -------
@@ -1141,7 +1141,8 @@ Request
    - policy_id: qos-policy-id-path
    - rule_id: qos-rule_id
    - minimum_packet_rate_rule: minimum_packet_rate_rule
-   - min_kpps: min_kpps
+   - min_kpps: min_kpps-update
+   - direction: qos-rule-minimum-packet-rate-direction-update
 
 Request Example
 ---------------

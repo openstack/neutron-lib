@@ -4204,6 +4204,12 @@ min_kpps-response:
   in: body
   required: true
   type: integer
+min_kpps-update:
+  description: |
+    The minimum kilo (1000) packets per second (kpps) value.
+  in: body
+  required: false
+  type: integer
 min_prefixlen:
   description: |
     The smallest prefix that can be allocated from a
@@ -4990,6 +4996,16 @@ qos-rule-minimum-packet-rate-direction:
     ``ingress``.
   in: body
   required: true
+  type: string
+qos-rule-minimum-packet-rate-direction-update:
+  description: |
+    The direction of the traffic to which the QoS
+    minimum packet rate rule is applied, as seen
+    from the point of view of the ``port``. Valid
+    values are ``any``, ``egress`` and
+    ``ingress``.
+  in: body
+  required: false
   type: string
 qos-rule-type:
   description: |
