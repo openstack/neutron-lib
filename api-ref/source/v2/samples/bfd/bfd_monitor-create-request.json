@@ -1,0 +1,8 @@
+{
+    "bfd_monitor": {
+        "name": "bfd_monitor_1",
+        "description": "My BFD monitor",
+        "dst_ip": "192.168.100.12",
+        "src_ip": "169.254.112.144"
+    }
+}

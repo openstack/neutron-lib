@@ -1,0 +1,18 @@
+{
+    "bfd_monitor": {
+        "project_id": "8d4c70a21fed4aeba121a1a429ba0d04",
+        "tenant_id": "8d4c70a21fed4aeba121a1a429ba0d04",
+        "id": "46ebaec0-0570-43ac-82f6-60d2b03168c4",
+        "name": "bfd_monitor_1",
+        "description": "My BFD monitor",
+        "mode": "asynchronous",
+        "dst_ip": "192.168.100.12",
+        "src_ip": "172.24.4.6",
+        "min_rx": "1000",
+        "min_tx": "100",
+        "multiplier": "3",
+        "status": "ACTIVE",
+        "auth_key": "None",
+        "auth_type": "None"
+    }
+}

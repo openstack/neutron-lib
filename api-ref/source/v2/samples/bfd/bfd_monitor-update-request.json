@@ -1,0 +1,9 @@
+{
+    "bfd_monitor": {
+        "name": "bfd_monitor_1",
+        "description": "My BFD monitor",
+        "min_rx": "2000",
+        "min_tx": "1000",
+        "multiplier": 4
+    }
+}
