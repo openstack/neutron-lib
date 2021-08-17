@@ -16,9 +16,11 @@
 RULE_TYPE_BANDWIDTH_LIMIT = 'bandwidth_limit'
 RULE_TYPE_DSCP_MARKING = 'dscp_marking'
 RULE_TYPE_MINIMUM_BANDWIDTH = 'minimum_bandwidth'
+RULE_TYPE_PACKET_RATE_LIMIT = 'packet_rate_limit'
 VALID_RULE_TYPES = [RULE_TYPE_BANDWIDTH_LIMIT,
                     RULE_TYPE_DSCP_MARKING,
                     RULE_TYPE_MINIMUM_BANDWIDTH,
+                    RULE_TYPE_PACKET_RATE_LIMIT,
                     ]
 
 # Names of rules' attributes

@@ -17,6 +17,7 @@ import copy
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import qos as qos_apidef
+from neutron_lib.api.definitions import qos_bw_minimum_ingress
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_const
@@ -31,6 +32,7 @@ DESCRIPTION = 'Add QoS Rule Type Packet per Second'
 UPDATED_TIMESTAMP = '2021-05-12T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP = {}
 PACKET_RATE_LIMIT_RULES = 'packet_rate_limit_rules'
+RESOURCE_NAME = 'packet_rate_limit_rule'
 SUB_RES_ATTR_MAP = copy.deepcopy(
     qos_apidef.SUB_RESOURCE_ATTRIBUTE_MAP)
 SUB_RES_ATTR_MAP.update({
@@ -69,6 +71,8 @@ SUB_RES_ATTR_MAP.update({
             }),
     }
 })
+SUB_RES_ATTR_MAP.update(
+    qos_bw_minimum_ingress.SUB_RESOURCE_ATTRIBUTE_MAP)
 SUB_RESOURCE_ATTRIBUTE_MAP = SUB_RES_ATTR_MAP
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [qos_apidef.ALIAS]
