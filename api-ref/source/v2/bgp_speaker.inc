@@ -207,7 +207,7 @@ There is no body content for the response of a successful DELETE request.
 Add BGP Peer to a BGP Speaker
 =============================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/add-bgp-peer
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/add-bgp-peer
 
 Bind the BGP peer to the specified BGP Speaker.
 
@@ -243,7 +243,7 @@ Response Example
 Remove BGP Peer from a BGP Speaker
 ==================================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/remove-bgp-peer
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/remove-bgp-peer
 
 Unbind the BGP peer from a BGP Speaker.
 
@@ -271,7 +271,7 @@ There is no body content for the response of a successful DELETE request.
 Add Network to a BGP Speaker
 ============================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/add_gateway_network
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/add_gateway_network
 
 Add a network to the specified BGP speaker.
 
@@ -308,7 +308,7 @@ Response Example
 Delete Network from a BGP Speaker
 =================================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/remove_gateway_network
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/remove_gateway_network
 
 Remove a network from the specified BGP speaker.
 
@@ -317,7 +317,7 @@ Normal response codes: 200
 List routes advertised by a BGP Speaker
 =======================================
 
-.. rest_method:: GET /v2.0/bgp-speakers/<bgp-speaker-id>/get_advertised_routes
+.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/get_advertised_routes
 
 List all routes advertised by the specified BGP Speaker.
 
@@ -341,7 +341,7 @@ Response Example
 List Dynamic Routing Agents hosting a specific BGP Speaker
 ==========================================================
 
-.. rest_method:: GET /v2.0/bgp-speakers/<bgp-speaker-id>/bgp-dragents
+.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/bgp-dragents
 
 List all BGP dynamic agents which are hosting the specified BGP Speaker.
 
