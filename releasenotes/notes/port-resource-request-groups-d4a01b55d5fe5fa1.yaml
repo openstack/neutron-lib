@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add API extension ``port-resource-request-groups``. This extension
+    indicates that Neutron supports requesting multiple groups of resources
+    and traits from the same RP subtree in ``resource_request``.

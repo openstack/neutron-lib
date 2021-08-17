@@ -42,13 +42,31 @@
             "revision_number": 1,
             "security_groups": [],
             "status": "ACTIVE",
-            "tenant_id": "",
             "updated_at": "2016-03-08T20:19:41",
             "qos_network_policy_id": null,
             "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
             "resource_request": {
-                "required": ["CUSTOM_PHYSNET_PUBLIC", "CUSTOM_VNIC_TYPE_NORMAL"],
-                "resources": {"NET_BW_EGR_KILOBIT_PER_SEC": 1000}
+                "request_groups": [
+                    {
+                        "id": "1e4f3958-c0c9-4dec-82fa-ed2dc1c5cb34",
+                        "required": ["CUSTOM_VNIC_TYPE_NORMAL"],
+                        "resources": {
+                            "NET_PACKET_RATE_KILOPACKET_PER_SEC": 1000
+                        }
+                    },
+                    {
+                        "id": "b20bb47f-5d6d-45a6-8fe7-2c1b44f0db73",
+                        "required": [
+                            "CUSTOM_PHYSNET_PUBLIC", "CUSTOM_VNIC_TYPE_NORMAL"],
+                        "resources": {
+                            "NET_BW_EGR_KILOBIT_PER_SEC": 1000
+                        }
+                    }
+                ],
+                "same_subtree": [
+                    "1e4f3958-c0c9-4dec-82fa-ed2dc1c5cb34",
+                    "b20bb47f-5d6d-45a6-8fe7-2c1b44f0db73"
+                ]
             },
             "tags": ["tag1,tag2"],
             "tenant_id": "",
@@ -96,7 +114,6 @@
             "revision_number": 2,
             "security_groups": [],
             "status": "ACTIVE",
-            "tenant_id": "d397de8a63f341818f198abb0966f6f3",
             "updated_at": "2016-03-08T20:19:41",
             "qos_network_policy_id": "174dd0c1-a4eb-49d4-a807-ae80246d82f4",
             "qos_policy_id": null,
