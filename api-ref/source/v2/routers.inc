@@ -137,6 +137,19 @@ The router conntrack helper extension (``expose-l3-conntrack-helper``) adds the
 ``conntrack_helpers`` field to routers, allowing configurable netfilter CT
 target rules for ``routers``.
 
+BFD monitors for Extraroutes extension (``bfd-for-extraroutes``)
+================================================================
+
+BFD monitors for Extraroutes extension (``bfd-for-extraroutes``) adds
+``bfd_monitor_id`` field to the extraroutes dictionary.
+
+.. warning::
+
+    This API extension was merged as experimental to enable parallel
+    development of multiple backends. At the moment this API does not have
+    a reference implementation and should not be considered final. The
+    removal of this warning will mark when the reference implementation
+    gets merged and the feauture is ready to be consumed.
 
 List routers
 ============

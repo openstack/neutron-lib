@@ -94,6 +94,7 @@ KNOWN_EXTENSIONS = (
     'allowed-address-pairs',
     'auto-allocated-topology',
     'availability_zone',
+    'bfd-monitor',
     'binding',
     'data-plane-status',
     'project-default-networks',

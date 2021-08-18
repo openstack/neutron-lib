@@ -1,0 +1,10 @@
+---
+features:
+  - Add possibility to define ``extraroutes`` with ``bfd_monitor``.
+    The extension makes it possible to define an ``extraroute`` with
+    or without the extra field ``bfd_monitor_id``.
+    (``Note`` that this API extension was merged as experimental to enable
+    parallel development of multiple backends. At the moment this API does
+    not have a reference implementation and should not be considered final.
+    A later release note will mark when the reference implementation gets
+    merged and the feauture is ready to be consumed.)
