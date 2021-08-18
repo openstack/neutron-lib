@@ -111,6 +111,18 @@ def device_resource_provider_uuid(namespace, host, device, separator=':'):
     return six_uuid5(namespace=namespace, name=name)
 
 
+def resource_request_group_uuid(namespace, qos_rules, separator=':'):
+    """Generate a stable UUID for a resource request group.
+
+    :param namespace: A UUID object identifying a port.
+    :param qos_rules: A list of QoS rules contributing to the group.
+    :param separator: A string used in assembling a name for uuid5(). Optional.
+    :returns: A unique and stable UUID identifying a resource request group.
+    """
+    name = separator.join([rule.id for rule in qos_rules])
+    return six_uuid5(namespace=namespace, name=name)
+
+
 def _parse_rp_rate(rate_str):
     """Parse the config string value to an non-negative integer.
 
