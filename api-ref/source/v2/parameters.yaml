@@ -31,6 +31,18 @@ bgp_speaker_id-path:
   in: path
   required: true
   type: string
+bgp_speaker_peer_association_id-path:
+  description: |
+      The ID of the BGP Speaker Peer association.
+  in: path
+  required: true
+  type: string
+bgp_speaker_router_association_id-path:
+  description: |
+      The ID of the BGP Speaker Router association.
+  in: path
+  required: true
+  type: string
 bgpvpn-id-path:
   description: |
       The ID of the BGP VPN.
@@ -1969,6 +1981,20 @@ bgp_speaker-networks-body:
   in: body
   required: true
   type: string
+bgp_speaker-router_id-body:
+  description: |
+      The ID of a Neutron router to be associated with the BGP speaker.
+  in: body
+  required: true
+  type: string
+bgp_speaker_advertise_extra_routes-body:
+  description: |
+    Boolean flag which determines whether Neutron extra routes on the Neutron
+    router will be redistributed to bgp-peers by the bgpspeaker. Default is
+    true.
+  in: body
+  required: false
+  type: boolean
 bgp_speaker_advertise_fip_host_routes-body:
   description: |
     Whether to enable or disable the advertisement of floating ip host
@@ -1989,6 +2015,13 @@ bgp_speaker_advertised_routes-body:
   in: body
   required: true
   type: array
+bgp_speaker_association_status:
+  description: |
+    Status of realization of a peer or a router association on the underlying
+    Openstack infrastructure. It can be either ``DOWN`` or ``ACTIVE``.
+  in: body
+  required: true
+  type: string
 bgp_speaker_cidr-body:
   description: |
     The cidr of the route advertised by the BGP Speaker.
@@ -2013,12 +2046,50 @@ bgp_speaker_nexthop-body:
   in: body
   required: true
   type: string
+bgp_speaker_peer_association_id-body:
+  description: |
+      The ID of Peer association associated to BGP speaker.
+  in: body
+  required: true
+  type: string
+bgp_speaker_peer_associations-body:
+  description: |
+    A list of ``peer_association`` objects associated to a BGP speaker.
+  in: body
+  required: true
+  type: array
 bgp_speaker_peer_id-body:
   description: |
     The id of the peer.
   in: body
   required: true
   type: string
+bgp_speaker_route_type-body:
+  description: |
+    The type of route that describes where the route is originated. Valid
+    values are ``local``, ``peer``.
+  in: body
+  required: true
+  type: string
+bgp_speaker_router_association_id-body:
+  description: |
+      The ID of Router association associated to BGP speaker.
+  in: body
+  required: true
+  type: string
+bgp_speaker_router_associations-body:
+  description: |
+    A list of ``router_association`` objects associated to a BGP speaker.
+  in: body
+  required: true
+  type: array
+bgp_speaker_routes-body:
+  description: |
+    A list of routes (cidr-nexthop-route_type values) advertised and learnt by
+    the BGP Speaker.
+  in: body
+  required: true
+  type: array
 bgp_speakers:
   description: |
     A list of ``bgp_speaker`` objects. Each ``bgp_speaker`` object acts as a

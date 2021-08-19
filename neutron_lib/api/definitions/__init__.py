@@ -23,6 +23,7 @@ from neutron_lib.api.definitions import bfd_for_extraroutes
 from neutron_lib.api.definitions import bfd_monitor
 from neutron_lib.api.definitions import bgp
 from neutron_lib.api.definitions import bgp_4byte_asn
+from neutron_lib.api.definitions import bgp_associations
 from neutron_lib.api.definitions import bgp_dragentscheduler
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.api.definitions import bgpvpn_routes_control
@@ -156,6 +157,7 @@ _ALL_API_DEFINITIONS = {
     bfd_monitor,
     bgp,
     bgp_4byte_asn,
+    bgp_associations,
     bgp_dragentscheduler,
     bgpvpn,
     bgpvpn_routes_control,

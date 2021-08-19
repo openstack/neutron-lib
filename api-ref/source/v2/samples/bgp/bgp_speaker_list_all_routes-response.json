@@ -1,0 +1,14 @@
+{
+    "routes":[
+        {
+         "cidr":"192.168.10.0/24",
+         "nexthop":"10.0.0.1",
+         "route_type": "local"
+        },
+        {
+         "cidr":"192.168.11.0/24",
+         "nexthop":"10.0.0.5",
+         "route_type": "peer"
+        }
+    ]
+}

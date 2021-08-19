@@ -1,0 +1,12 @@
+---
+features:
+  - New extension ``bgp_associations`` is included to allow addition of
+    router, peer association resources as sub-resources to the existing
+    ``bgp-speakers`` resource.
+  - Added action ``get_routes`` to the existing bgp extension to list both
+    learnt as well as advertised routes by the bgp speaker.
+    (``Note`` that this API extension was merged as experimental to enable
+    parallel development of multiple backends. At the moment this API does
+    not have a reference implementation and should not be considered final.
+    A later release note will mark when the reference implementation gets
+    merged and the feauture is ready to be consumed.
