@@ -27,7 +27,8 @@ RESOURCE_ATTRIBUTE_MAP = {
     RESOURCE_PLURAL: {
         'network_id': {
             'allow_post': False, 'allow_put': False,
-            'is_visible': True, 'is_filter': True
+            'is_visible': True, 'is_filter': True,
+            'primary_key': True, 'is_sort_key': True
         },
         'network_name': {
             'allow_post': False, 'allow_put': False,
