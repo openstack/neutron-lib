@@ -37,8 +37,6 @@ class TestNeutronContext(_base.BaseTestCase):
         if isinstance(request_id, bytes):
             request_id = request_id.decode('utf-8')
         self.assertThat(request_id, matchers.StartsWith('req-'))
-        self.assertEqual('user_id', ctx.user)
-        self.assertEqual('tenant_id', ctx.tenant)
         self.assertIsNone(ctx.user_name)
         self.assertIsNone(ctx.tenant_name)
         self.assertIsNone(ctx.project_name)
@@ -61,8 +59,8 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertEqual('tenant_name', ctx.tenant_name)
         self.assertEqual('tenant_name', ctx.project_name)
         # Check user/tenant contains its ID even if user/tenant_name is passed
-        self.assertEqual('user_id', ctx.user)
-        self.assertEqual('tenant_id', ctx.tenant)
+        self.assertEqual('user_id', ctx.user_id)
+        self.assertEqual('tenant_id', ctx.tenant_id)
 
     def test_neutron_context_create_with_request_id(self):
         ctx = context.Context('user_id', 'tenant_id', request_id='req_id_xxx')
@@ -196,10 +194,9 @@ class TestNeutronContext(_base.BaseTestCase):
             'is_admin': 'is_admin',
             'tenant_name': 'tenant_name',
             'user_name': 'user_name',
-            'domain': 'domain',
-            'user_domain': 'user_domain',
-            'project_domain': 'project_domain',
-            'user_name': 'user_name',
+            'domain_id': 'domain',
+            'user_domain_id': 'user_domain',
+            'project_domain_id': 'project_domain',
         }
         additional_values = {
             'user': 'user_id',
