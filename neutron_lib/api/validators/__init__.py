@@ -596,9 +596,9 @@ def validate_hostroutes(data, valid_values=None):
         LOG.debug(msg)
         return msg
 
-    expected_keys = ['destination', 'nexthop']
     hostroutes = []
     for hostroute in data:
+        expected_keys = ['destination', 'nexthop']
         if hostroute and 'bfd_monitor_id' in hostroute:
             expected_keys.append('bfd_monitor_id')
         msg = _verify_dict_keys(expected_keys, hostroute)
