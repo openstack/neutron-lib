@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Added pagging and sorting support for ``network-ip-availability`` API
+    extension. The primary key is ``network_id``.
