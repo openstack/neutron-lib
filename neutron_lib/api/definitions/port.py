@@ -81,6 +81,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                          'validate': {
                              'type:string': db_const.DEVICE_OWNER_FIELD_SIZE},
                          'default': '', 'enforce_policy': True,
+                         'required_by_policy': True,
                          'is_filter': True,
                          'is_sort_key': True,
                          'is_visible': True},
