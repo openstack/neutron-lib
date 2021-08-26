@@ -288,6 +288,7 @@ class TimeoutTestCase(base.BaseTestCase):
         rpc.init(CONF)
         rpc.TRANSPORT = mock.MagicMock()
         rpc.TRANSPORT._send.side_effect = messaging.MessagingTimeout
+        rpc.TRANSPORT.conf.oslo_messaging_metrics.metrics_enabled = False
         target = messaging.Target(version='1.0', topic='testing')
         self.client = rpc.get_client(target)
         self.call_context = mock.Mock()
@@ -447,6 +448,7 @@ class CastExceptionTestCase(base.BaseTestCase):
         rpc.init(CONF)
         rpc.TRANSPORT = mock.MagicMock()
         rpc.TRANSPORT._send.side_effect = oslomsg_exc.MessageDeliveryFailure
+        rpc.TRANSPORT.conf.oslo_messaging_metrics.metrics_enabled = False
         target = messaging.Target(version='1.0', topic='testing')
         self.client = rpc.get_client(target)
         self.cast_context = mock.Mock()
