@@ -1,0 +1,30 @@
+{
+    "local_ips": [
+        {
+            "id": "d23abc8d-2991-4a55-ba98-2aaea84cc72f",
+            "name": "test_local_ip1",
+            "description": "for test",
+            "project_id": "4969c491a3c74ee4af974e6d800c62de",
+            "local_port_id": "2f245a7b-796b-4f26-9cf9-9e82d248fda7",
+            "network_id": "ce705c24-c1ef-408a-bda3-7bbd946164ab",
+            "local_ip_address": "100.100.100.100",
+            "ip_mode": "translate",
+            "created_at": "2021-12-21T10:55:50Z",
+            "updated_at": "2021-12-21T10:55:53Z",
+            "revision_number": 1
+        },
+        {
+            "id": "61cea855-49cb-4846-997d-801b70c71bdd",
+            "name": "test_local_ip2",
+            "description": "for test",
+            "project_id": "4969c491a3c74ee4af974e6d800c62de",
+            "local_port_id": "898b198e-49f7-47d6-a7e1-53f626a548e6",
+            "network_id": "376da547-b977-4cfe-9cba-275c80debf57",
+            "local_ip_address": "172.24.4.228",
+            "ip_mode": "passthrough",
+            "created_at": "2021-12-21T20:45:00Z",
+            "updated_at": "2021-12-21T20:45:00Z",
+            "revision_number": 1
+        }
+    ]
+}

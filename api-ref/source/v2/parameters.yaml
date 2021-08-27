@@ -169,6 +169,18 @@ ipsecpolicy_id-path:
   in: path
   required: true
   type: string
+local_ip-id-path:
+  description: |
+    The ID of the Local IP
+  in: path
+  required: true
+  type: string
+local_ip_association-fixed_port_id-path:
+  description: |
+    The ID of the port associated with the Local IP.
+  in: path
+  required: true
+  type: string
 log_id-path:
   description: |
     The ID of the log resource.
@@ -693,6 +705,78 @@ ip_version-query:
   in: query
   required: false
   type: integer
+local_ip-id-query:
+  description: |
+    Filter the Local IP list result by ID of Local IP
+  in: query
+  required: false
+  type: string
+local_ip-ip_mode-query:
+  description: |
+    Filter the Local IP list result by IP mode.
+    Possible values are ``translate`` (DNAT) and ``passthrough`` (no DNAT)
+  in: query
+  required: false
+  type: string
+local_ip-local_port_id-query:
+  description: |
+    Filter the Local IP list result by ID of underlying Neutron port
+  in: query
+  required: false
+  type: string
+local_ip-sort_key:
+  description: |
+    Sorts by a Local IP attribute. You can specify multiple pairs of sort
+    key and sort direction query parameters. The sort keys are limited to:
+
+    - ``id``
+    - ``name``
+    - ``description``
+    - ``project_id``
+    - ``local_port_id``
+    - ``network_id``
+    - ``local_ip_address``
+    - ``ip_mode``
+  in: query
+  required: false
+  type: string
+local_ip_address-query:
+  description: |
+    Filter the Local IP list result by IP address
+  in: query
+  required: false
+  type: string
+local_ip_association-fixed_ip-query:
+  description: |
+    Filter the Local IP Association list result by IP of associated ports
+  in: query
+  required: false
+  type: string
+local_ip_association-fixed_port_id-query:
+  description: |
+    Filter the Local IP Association list result by ID of associated ports
+  in: query
+  required: false
+  type: string
+local_ip_association-host-query:
+  description: |
+    Filter the Local IP Association list result by host of associated ports
+  in: query
+  required: false
+  type: string
+local_ip_association-sort_key:
+  description: |
+    Sorts by a Local IP Association attribute. You can specify multiple pairs
+    of sort key and sort direction query parameters.
+    The sort keys are limited to:
+
+    - ``local_ip_id``
+    - ``fixed_port_id``
+    - ``fixed_ip``
+    - ``host``
+  in: query
+  required: false
+  type: string
 log-sort_key:
   description: |
     Sorts by a log attribute. You can specify multiple pairs of sort key
@@ -4089,6 +4173,126 @@ local_id:
   in: body
   required: false
   type: string
+local_ip:
+  description: |
+    A ``local_ip`` object represents a Local IP that could be associated
+    with multiple ports
+  in: body
+  required: true
+  type: object
+local_ip-id:
+  description: |
+    The ID of the Local IP.
+  in: body
+  required: true
+  type: string
+local_ip-ip_mode:
+  description: |
+    The IP mode of the Local IP.
+    Possible values are ``translate`` (DNAT) and ``passthrough`` (no DNAT)
+  in: body
+  required: true
+  type: string
+local_ip-ip_mode-request:
+  description: |
+    The requested IP mode of the Local IP.
+    Possible values are ``translate`` (DNAT) and ``passthrough`` (no DNAT)
+  in: body
+  required: false
+  type: string
+local_ip-local_port_id:
+  description: |
+    The ID of underlying port of the Local IP.
+  in: body
+  required: true
+  type: string
+local_ip-local_port_id-request:
+  description: |
+    The requested ID of the underlying port of the Local IP
+  in: body
+  required: true
+  type: string
+local_ip-network_id:
+  description: |
+    The ID of the network of the Local IP.
+  in: body
+  required: true
+  type: string
+local_ip-network_id-request:
+  description: |
+    The requested ID of the network of the Local IP
+  in: body
+  required: true
+  type: string
+local_ip_address:
+  description: |
+    The actual IP address of the Local IP.
+  in: body
+  required: true
+  type: string
+local_ip_address-request:
+  description: |
+    The requested actual IP address of the Local IP.
+  in: body
+  required: false
+  type: string
+local_ip_association:
+  description: |
+    A ``local_ip_association`` object represents a Local IP Association
+    with a port
+  in: body
+  required: true
+  type: object
+local_ip_association-fixed_ip:
+  description: |
+    The IP of the port associated with the Local IP.
+  in: body
+  required: false
+  type: string
+local_ip_association-fixed_ip-request:
+  description: |
+    The requested IP of the port associated with the Local IP.
+  in: body
+  required: false
+  type: string
+local_ip_association-fixed_port_id:
+  description: |
+    The ID of the port associated with the Local IP.
+  in: body
+  required: true
+  type: string
+local_ip_association-fixed_port_id-request:
+  description: |
+    The requested ID of the port associated with the Local IP.
+  in: body
+  required: true
+  type: string
+local_ip_association-host:
+  description: |
+    The host of the port associated with the Local IP.
+  in: body
+  required: false
+  type: string
+local_ip_associations:
+  description: |
+    A list of ``local_ip_association`` objects. Each ``local_ip_association``
+    object represents a Local IP Association with a port
+  in: body
+  required: true
+  type: array
+local_ip_id:
+  description: |
+    The ID of the associated Local IP.
+  in: body
+  required: true
+  type: string
+local_ips:
+  description: |
+    A list of ``local_ip`` objects. Each ``local_ip`` object represents a
+    Local IP that could be associated with multiple ports
+  in: body
+  required: true
+  type: array
 location:
   description: |
     Full URL to a service or server.

@@ -70,6 +70,7 @@ from neutron_lib.api.definitions import l3_flavors
 from neutron_lib.api.definitions import l3_multi_ext_gw
 from neutron_lib.api.definitions import l3_ndp_proxy
 from neutron_lib.api.definitions import l3_port_ip_change_not_allowed
+from neutron_lib.api.definitions import local_ip
 from neutron_lib.api.definitions import logging
 from neutron_lib.api.definitions import logging_resource
 from neutron_lib.api.definitions import metering
@@ -204,6 +205,7 @@ _ALL_API_DEFINITIONS = {
     l3_multi_ext_gw,
     l3_ndp_proxy,
     l3_port_ip_change_not_allowed,
+    local_ip,
     logging,
     logging_resource,
     metering,
