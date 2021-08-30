@@ -37,7 +37,8 @@ RESOURCE_ATTRIBUTE_MAP = {
     'security_groups': {
         'stateful': {'allow_post': True, 'allow_put': True,
                      'is_visible': True, 'default': True,
-                     'convert_to': converters.convert_to_boolean}
+                     'convert_to': converters.convert_to_boolean,
+                     'enforce_policy': True}
     }
 }
 
