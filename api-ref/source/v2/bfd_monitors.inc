@@ -173,10 +173,7 @@ Update BFD monitor
 
 Updates a BFD monitor.
 
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404, 412
 

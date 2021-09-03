@@ -145,7 +145,7 @@ Update a BGP Peer
 
 Update a specific BGP Peer.
 
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404, 41
 

@@ -292,10 +292,7 @@ Update QoS policy
 
 Updates a QoS policy.
 
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404, 412
 
@@ -512,10 +509,7 @@ Update bandwidth limit rule
 
 Updates a bandwidth limit rule for a QoS policy.
 
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404
 
@@ -709,10 +703,7 @@ Update DSCP marking rule
 
 Updates a DSCP marking rule for a QoS policy.
 
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404
 
@@ -913,13 +904,10 @@ Update minimum bandwidth rule
 
 Updates a minimum bandwidth rule for a QoS policy.
 
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
 Note that the rule cannot be updated, and the update is rejected with error
 code 501, if there is any bound port referring to the rule via the qos policy.
 
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404, 501
 
@@ -1123,13 +1111,10 @@ Update minimum packet rate rule
 
 Updates a minimum packet rate rule for a QoS policy.
 
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
 Note that the rule cannot be updated, and the update is rejected with error
 code 501, if there is any bound port referring to the rule via the qos policy.
 
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404, 409, 501
 
@@ -1337,10 +1322,7 @@ Update packet rate limit rule
 
 Updates a packet rate limit rule for a QoS policy.
 
-If the request is valid, the service returns the ``Accepted (202)``
-response code.
-
-Normal response codes: 202
+Normal response codes: 200
 
 Error response codes: 400, 401, 404
 

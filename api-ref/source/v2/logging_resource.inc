@@ -59,7 +59,7 @@ Create Logging Resource
 
 Creates a logging resource.
 
-Normal response codes: 200
+Normal response codes: 201
 
 Error response codes: 400, 401, 403
 
@@ -201,7 +201,7 @@ Delete Logging Resource
 
 Deletes a logging resource.
 
-Normal response codes: 202
+Normal response codes: 204
 
 Error response codes: 400, 401, 403, 404
 
