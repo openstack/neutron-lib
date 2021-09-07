@@ -344,12 +344,16 @@ def get_values(context, model, field, filters=None):
     return [c[0] for c in query]
 
 
-def get_collection_count(context, model, filters=None):
+def get_collection_count(context, model, filters=None, query_field=None):
     """Get the count for a specific collection.
 
     :param context: The context to use for the DB session.
     :param model: The model for the query.
     :param filters: The filters to apply.
+    :param query_field: Column, in string format, from the "model"; the query
+                        will return only this parameter instead of the full
+                        model columns.
     :returns: The number of objects for said model with filters applied.
     """
-    return get_collection_query(context, model, filters).count()
+    return get_collection_query(context, model, filters=filters,
+                                field=query_field).count()
