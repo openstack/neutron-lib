@@ -752,39 +752,40 @@ class PlacementAPIClient(object):
         url = '/allocations/%s' % consumer_uuid
         return self._get(url).json()
 
-    def update_qos_minbw_allocation(self, consumer_uuid, minbw_alloc_diff,
-                                    rp_uuid):
+    def update_qos_allocation(self, consumer_uuid, alloc_diff):
         """Update allocation for QoS minimum bandwidth consumer
 
         :param consumer_uuid: The uuid of the consumer, in case of bound port
                               owned by a VM, the VM uuid.
-        :param minbw_alloc_diff: A dict which contains the fields to update
-                            for the allocation under the given resource
-                            provider.
-        :param rp_uuid: uuid of the resource provider for which the
-                        allocations are to be updated.
+        :param alloc_diff: A dict which contains RP UUIDs as keys and
+                           corresponding fields to update for the allocation
+                           under the given resource provider.
         """
         for i in range(GENERATION_CONFLICT_RETRIES):
             body = self.list_allocations(consumer_uuid)
             if not body['allocations']:
                 raise n_exc.PlacementAllocationRemoved(consumer=consumer_uuid)
-            if rp_uuid not in body['allocations']:
-                raise n_exc.PlacementAllocationRpNotExists(
-                    resource_provider=rp_uuid, consumer=consumer_uuid)
-            # Count new min_kbps values based on the diff in alloc_diff
-            for drctn, min_kbps_diff in minbw_alloc_diff.items():
-                orig_kbps = body['allocations'][rp_uuid]['resources'][drctn]
-                new_kbps = orig_kbps + min_kbps_diff
-                if new_kbps > 0:
-                    body['allocations'][rp_uuid]['resources'][drctn] = new_kbps
-                else:
-                    # Remove the resource class if the new value for min_kbps
-                    # is 0
-                    resources = body['allocations'][rp_uuid]['resources']
-                    if len(resources) > 1:
-                        resources.pop(drctn, None)
+            # Count new values based on the diff in alloc_diff
+            for rp_uuid, diff in alloc_diff.items():
+                if rp_uuid not in body['allocations']:
+                    raise n_exc.PlacementAllocationRpNotExists(
+                        resource_provider=rp_uuid, consumer=consumer_uuid)
+                for drctn, value in diff.items():
+                    orig_value = body['allocations'][rp_uuid][
+                        'resources'].get(drctn, 0)
+                    new_value = orig_value + value
+                    if new_value > 0:
+                        body['allocations'][rp_uuid]['resources'][
+                            drctn] = new_value
                     else:
-                        body['allocations'].pop(rp_uuid)
+                        # Remove the resource class if the new value is 0
+                        resources = body['allocations'][rp_uuid]['resources']
+                        resources.pop(drctn, None)
+
+            # Remove RPs without any resources
+            body['allocations'] = {
+                rp: alloc for rp, alloc in body['allocations'].items()
+                if alloc.get('resources')}
             try:
                 # Update allocations has no return body, but leave the loop
                 return self.update_allocation(consumer_uuid, body)

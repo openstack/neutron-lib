@@ -26,6 +26,7 @@ from neutron_lib.tests import _base as base
 
 
 RESOURCE_PROVIDER_UUID = uuidutils.generate_uuid()
+SECOND_RESOURCE_PROVIDER_UUID = uuidutils.generate_uuid()
 CONSUMER_UUID = uuidutils.generate_uuid()
 RESOURCE_PROVIDER_NAME = 'resource_provider_name'
 RESOURCE_PROVIDER = {
@@ -727,23 +728,20 @@ class TestPlacementAPIClient(base.BaseTestCase):
             }}
         )
 
-    def _get_allocation_response(self, resources):
+    def _get_allocation_response(self, allocation):
         mock_rsp_get = mock.Mock()
         mock_rsp_get.json = lambda: {
-            'allocations': {
-                RESOURCE_PROVIDER_UUID: resources
-            }
+            'allocations': allocation
         }
         return mock_rsp_get
 
-    def test_update_qos_minbw_allocation(self):
+    def test_update_qos_allocation(self):
         mock_rsp_get = self._get_allocation_response(
-            {'resources': {'a': 3, 'b': 2}})
+            {RESOURCE_PROVIDER_UUID: {'resources': {'a': 3, 'b': 2}}})
         self.placement_fixture.mock_get.side_effect = [mock_rsp_get]
-        self.placement_api_client.update_qos_minbw_allocation(
+        self.placement_api_client.update_qos_allocation(
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={'a': 2, 'b': 2},
-            rp_uuid=RESOURCE_PROVIDER_UUID
+            alloc_diff={RESOURCE_PROVIDER_UUID: {'a': 2, 'b': 2}},
         )
         self.placement_fixture.mock_put.assert_called_once_with(
             '/allocations/%s' % CONSUMER_UUID,
@@ -753,32 +751,31 @@ class TestPlacementAPIClient(base.BaseTestCase):
             }}
         )
 
-    def test_update_qos_minbw_allocation_removed(self):
+    def test_update_qos_allocation_removed(self):
         mock_rsp = mock.Mock()
         mock_rsp.json = lambda: {'allocations': {}}
         self.placement_fixture.mock_get.side_effect = [mock_rsp]
         self.assertRaises(
             n_exc.PlacementAllocationRemoved,
-            self.placement_api_client.update_qos_minbw_allocation,
+            self.placement_api_client.update_qos_allocation,
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={'a': 1, 'b': 1},
-            rp_uuid=RESOURCE_PROVIDER_UUID
+            alloc_diff={RESOURCE_PROVIDER_UUID: {'a': 1, 'b': 1}},
         )
 
-    def test_update_qos_minbw_allocation_rp_not_exists(self):
+    def test_update_qos_allocation_rp_not_exists(self):
         mock_rsp = mock.Mock()
         mock_rsp.json = lambda: {'allocations': {'other:rp:uuid': {'c': 3}}}
         self.placement_fixture.mock_get.side_effect = [mock_rsp]
         self.assertRaises(
             n_exc.PlacementAllocationRpNotExists,
-            self.placement_api_client.update_qos_minbw_allocation,
+            self.placement_api_client.update_qos_allocation,
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={'a': 1, 'b': 1},
-            rp_uuid=RESOURCE_PROVIDER_UUID
+            alloc_diff={RESOURCE_PROVIDER_UUID: {'a': 1, 'b': 1}},
         )
 
-    def test_update_qos_minbw_allocation_max_retries(self):
-        mock_rsp_get = self._get_allocation_response({'c': 3})
+    def test_update_qos_allocation_max_retries(self):
+        mock_rsp_get = self._get_allocation_response(
+            {RESOURCE_PROVIDER_UUID: {'c': 3}})
         self.placement_fixture.mock_get.side_effect = 10 * [mock_rsp_get]
         mock_rsp_put = mock.Mock()
         mock_rsp_put.json = lambda: {
@@ -787,15 +784,15 @@ class TestPlacementAPIClient(base.BaseTestCase):
             response=mock_rsp_put)
         self.assertRaises(
             n_exc.PlacementAllocationGenerationConflict,
-            self.placement_api_client.update_qos_minbw_allocation,
+            self.placement_api_client.update_qos_allocation,
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={},
-            rp_uuid=RESOURCE_PROVIDER_UUID,
+            alloc_diff={RESOURCE_PROVIDER_UUID: {}},
         )
         self.assertEqual(10, self.placement_fixture.mock_put.call_count)
 
     def test_update_qos_minbwallocation_generation_conflict_solved(self):
-        mock_rsp_get = self._get_allocation_response({'c': 3})
+        mock_rsp_get = self._get_allocation_response(
+            {RESOURCE_PROVIDER_UUID: {'c': 3}})
         self.placement_fixture.mock_get.side_effect = 2 * [mock_rsp_get]
         mock_rsp_put = mock.Mock()
         mock_rsp_put.json = lambda: {
@@ -804,15 +801,15 @@ class TestPlacementAPIClient(base.BaseTestCase):
             ks_exc.Conflict(response=mock_rsp_put),
             mock.Mock()
         ]
-        self.placement_api_client.update_qos_minbw_allocation(
+        self.placement_api_client.update_qos_allocation(
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={},
-            rp_uuid=RESOURCE_PROVIDER_UUID
+            alloc_diff={RESOURCE_PROVIDER_UUID: {}},
         )
         self.assertEqual(2, self.placement_fixture.mock_put.call_count)
 
-    def test_update_qos_minbw_allocation_other_conflict(self):
-        mock_rsp_get = self._get_allocation_response({'c': 3})
+    def test_update_qos_allocation_other_conflict(self):
+        mock_rsp_get = self._get_allocation_response(
+            {RESOURCE_PROVIDER_UUID: {'c': 3}})
         self.placement_fixture.mock_get.side_effect = 10*[mock_rsp_get]
         mock_rsp_put = mock.Mock()
         mock_rsp_put.text = ''
@@ -822,34 +819,31 @@ class TestPlacementAPIClient(base.BaseTestCase):
             response=mock_rsp_put)
         self.assertRaises(
             ks_exc.Conflict,
-            self.placement_api_client.update_qos_minbw_allocation,
+            self.placement_api_client.update_qos_allocation,
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={},
-            rp_uuid=RESOURCE_PROVIDER_UUID,
+            alloc_diff={RESOURCE_PROVIDER_UUID: {}},
         )
         self.placement_fixture.mock_put.assert_called_once()
 
-    def test_update_qos_minbw_allocation_to_zero(self):
+    def test_update_qos_allocation_to_zero(self):
         mock_rsp_get = self._get_allocation_response(
-            {'resources': {'a': 3, 'b': 2}})
+            {RESOURCE_PROVIDER_UUID: {'resources': {'a': 3, 'b': 2}}})
         self.placement_fixture.mock_get.side_effect = [mock_rsp_get]
-        self.placement_api_client.update_qos_minbw_allocation(
+        self.placement_api_client.update_qos_allocation(
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={'a': -3, 'b': -2},
-            rp_uuid=RESOURCE_PROVIDER_UUID
+            alloc_diff={RESOURCE_PROVIDER_UUID: {'a': -3, 'b': -2}},
         )
         self.placement_fixture.mock_put.assert_called_once_with(
             '/allocations/%s' % CONSUMER_UUID,
             {'allocations': {}})
 
-    def test_update_qos_minbw_allocation_one_class_to_zero(self):
+    def test_update_qos_allocation_one_class_to_zero(self):
         mock_rsp_get = self._get_allocation_response(
-            {'resources': {'a': 3, 'b': 2}})
+            {RESOURCE_PROVIDER_UUID: {'resources': {'a': 3, 'b': 2}}})
         self.placement_fixture.mock_get.side_effect = [mock_rsp_get]
-        self.placement_api_client.update_qos_minbw_allocation(
+        self.placement_api_client.update_qos_allocation(
             consumer_uuid=CONSUMER_UUID,
-            minbw_alloc_diff={'a': -3, 'b': 1},
-            rp_uuid=RESOURCE_PROVIDER_UUID
+            alloc_diff={RESOURCE_PROVIDER_UUID: {'a': -3, 'b': 1}},
         )
         self.placement_fixture.mock_put.assert_called_once_with(
             '/allocations/%s' % CONSUMER_UUID,
@@ -857,3 +851,41 @@ class TestPlacementAPIClient(base.BaseTestCase):
                 RESOURCE_PROVIDER_UUID: {
                     'resources': {'b': 3}}
             }})
+
+    def test_update_qos_allocation_one_class_to_zero_and_new_class(self):
+        mock_rsp_get = self._get_allocation_response(
+            {RESOURCE_PROVIDER_UUID: {'resources': {'a': 3}}})
+        self.placement_fixture.mock_get.side_effect = [mock_rsp_get]
+        self.placement_api_client.update_qos_allocation(
+            consumer_uuid=CONSUMER_UUID,
+            alloc_diff={RESOURCE_PROVIDER_UUID: {'a': -3, 'b': 1}},
+        )
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/allocations/%s' % CONSUMER_UUID,
+            {'allocations': {
+                RESOURCE_PROVIDER_UUID: {
+                    'resources': {'b': 1}}
+            }})
+
+    def test_update_qos_allocation_multiple_rps(self):
+        mock_rsp_get = self._get_allocation_response({
+                RESOURCE_PROVIDER_UUID: {'resources': {'a': 3, 'b': 2}},
+                SECOND_RESOURCE_PROVIDER_UUID: {'resources': {'c': 1, 'd': 5}},
+                })
+        self.placement_fixture.mock_get.side_effect = [mock_rsp_get]
+        self.placement_api_client.update_qos_allocation(
+            consumer_uuid=CONSUMER_UUID,
+            alloc_diff={
+                RESOURCE_PROVIDER_UUID: {'a': -3, 'b': 2},
+                SECOND_RESOURCE_PROVIDER_UUID: {'e': 3, 'd': -5},
+                },
+        )
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/allocations/%s' % CONSUMER_UUID,
+            {'allocations': {
+                RESOURCE_PROVIDER_UUID: {
+                    'resources': {'b': 4}},
+                SECOND_RESOURCE_PROVIDER_UUID: {
+                    'resources': {'c': 1, 'e': 3}},
+            }}
+        )
