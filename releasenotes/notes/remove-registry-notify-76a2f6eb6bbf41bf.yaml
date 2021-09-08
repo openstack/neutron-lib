@@ -1,0 +1,5 @@
+---
+other:
+  - The deprecated method neutron_lib.callbacks.registry.notify()`` and
+    ``neutron_lib.callbacks.manager.CallbacksManager.notify()`` has been
+    removed in favor of their ``publish()`` counterparts

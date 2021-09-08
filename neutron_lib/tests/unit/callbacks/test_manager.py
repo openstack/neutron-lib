@@ -73,6 +73,7 @@ class CallBacksManagerTestCase(base.BaseTestCase):
     def setUp(self):
         super(CallBacksManagerTestCase, self).setUp()
         self.manager = manager.CallbacksManager()
+        self.event_payload = events.EventPayload(object())
         callback_1.counter = 0
         callback_2.counter = 0
         callback_3.counter = 0
@@ -124,7 +125,8 @@ class CallBacksManagerTestCase(base.BaseTestCase):
 
         self.manager.subscribe(unsub, resources.PORT,
                                events.BEFORE_CREATE)
-        self.manager.notify(resources.PORT, events.BEFORE_CREATE, mock.ANY)
+        self.manager.publish(resources.PORT, events.BEFORE_CREATE, mock.ANY,
+                             payload=self.event_payload)
         self.assertNotIn(unsub, self.manager._index)
 
     def test_unsubscribe(self):
@@ -199,58 +201,70 @@ class CallBacksManagerTestCase(base.BaseTestCase):
             self.manager._callbacks[resources.PORT][events.BEFORE_CREATE])
         self.assertNotIn(callback_id_1, self.manager._index)
 
-    def test_notify_none(self):
-        self.manager.notify(resources.PORT, events.BEFORE_CREATE, mock.ANY)
+    def test_publish_none(self):
+        self.manager.publish(resources.PORT, events.BEFORE_CREATE, mock.ANY,
+                             payload=self.event_payload)
         self.assertEqual(0, callback_1.counter)
         self.assertEqual(0, callback_2.counter)
 
     def test_feebly_referenced_callback(self):
         self.manager.subscribe(lambda *x, **y: None, resources.PORT,
                                events.BEFORE_CREATE)
-        self.manager.notify(resources.PORT, events.BEFORE_CREATE, mock.ANY)
+        self.manager.publish(resources.PORT, events.BEFORE_CREATE, mock.ANY,
+                             payload=self.event_payload)
 
-    def test_notify_with_exception(self):
+    def test_publish_with_exception(self):
         with mock.patch.object(self.manager, '_notify_loop') as n:
             n.return_value = ['error']
             self.assertRaises(exceptions.CallbackFailure,
-                              self.manager.notify,
-                              mock.ANY, events.BEFORE_CREATE, mock.ANY)
+                              self.manager.publish,
+                              mock.ANY, events.BEFORE_CREATE, mock.ANY,
+                              payload=self.event_payload)
             expected_calls = [
-                mock.call(mock.ANY, 'before_create', mock.ANY),
-                mock.call(mock.ANY, 'abort_create', mock.ANY)
+                mock.call(mock.ANY, 'before_create', mock.ANY,
+                          self.event_payload),
+                mock.call(mock.ANY, 'abort_create', mock.ANY,
+                          self.event_payload)
             ]
             n.assert_has_calls(expected_calls)
 
-    def test_notify_with_precommit_exception(self):
+    def test_publish_with_precommit_exception(self):
         with mock.patch.object(self.manager, '_notify_loop') as n:
             n.return_value = ['error']
             self.assertRaises(exceptions.CallbackFailure,
-                              self.manager.notify,
-                              mock.ANY, events.PRECOMMIT_UPDATE, mock.ANY)
+                              self.manager.publish,
+                              mock.ANY, events.PRECOMMIT_UPDATE, mock.ANY,
+                              payload=self.event_payload)
             expected_calls = [
-                mock.call(mock.ANY, 'precommit_update', mock.ANY),
+                mock.call(mock.ANY, 'precommit_update', mock.ANY,
+                          self.event_payload),
             ]
             n.assert_has_calls(expected_calls)
 
-    def test_notify_handle_exception(self):
+    def test_publish_handle_exception(self):
         self.manager.subscribe(
             callback_raise, resources.PORT, events.BEFORE_CREATE)
-        e = self.assertRaises(exceptions.CallbackFailure, self.manager.notify,
-                              resources.PORT, events.BEFORE_CREATE, self)
+        e = self.assertRaises(exceptions.CallbackFailure, self.manager.publish,
+                              resources.PORT, events.BEFORE_CREATE, self,
+                              payload=self.event_payload)
         self.assertIsInstance(e.errors[0], exceptions.NotificationError)
 
-    def test_notify_handle_retriable_exception(self):
+    def test_publish_handle_retriable_exception(self):
         self.manager.subscribe(
             callback_raise_retriable, resources.PORT, events.BEFORE_CREATE)
-        self.assertRaises(db_exc.RetryRequest, self.manager.notify,
-                          resources.PORT, events.BEFORE_CREATE, self)
+        self.assertRaises(db_exc.RetryRequest, self.manager.publish,
+                          resources.PORT, events.BEFORE_CREATE, self,
+                          payload=self.event_payload)
 
-    def test_notify_called_once_with_no_failures(self):
+    def test_publish_called_once_with_no_failures(self):
         with mock.patch.object(self.manager, '_notify_loop') as n:
             n.return_value = False
-            self.manager.notify(resources.PORT, events.BEFORE_CREATE, mock.ANY)
+            self.manager.publish(resources.PORT, events.BEFORE_CREATE,
+                                 mock.ANY,
+                                 payload=self.event_payload)
             n.assert_called_once_with(
-                resources.PORT, events.BEFORE_CREATE, mock.ANY)
+                resources.PORT, events.BEFORE_CREATE, mock.ANY,
+                self.event_payload)
 
     def test__notify_loop_single_event(self):
         self.manager.subscribe(
@@ -258,7 +272,8 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.manager.subscribe(
             callback_2, resources.PORT, events.BEFORE_CREATE)
         self.manager._notify_loop(
-            resources.PORT, events.BEFORE_CREATE, mock.ANY)
+            resources.PORT, events.BEFORE_CREATE, mock.ANY,
+            payload=mock.ANY)
         self.assertEqual(1, callback_1.counter)
         self.assertEqual(1, callback_2.counter)
 
@@ -270,9 +285,11 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.manager.subscribe(
             callback_2, resources.PORT, events.BEFORE_CREATE)
         self.manager._notify_loop(
-            resources.PORT, events.BEFORE_CREATE, mock.ANY)
+            resources.PORT, events.BEFORE_CREATE, mock.ANY,
+            payload=mock.ANY)
         self.manager._notify_loop(
-            resources.ROUTER, events.BEFORE_DELETE, mock.ANY)
+            resources.ROUTER, events.BEFORE_DELETE, mock.ANY,
+            payload=mock.ANY)
         self.assertEqual(2, callback_1.counter)
         self.assertEqual(1, callback_2.counter)
 
@@ -320,7 +337,8 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.assertEqual(
             3, len(self.manager._callbacks['my-resource']['my-event']))
         self.manager.unsubscribe(callback_3, 'my-resource', 'my-event')
-        self.manager.notify('my-resource', 'my-event', mock.ANY)
+        self.manager.publish('my-resource', 'my-event', mock.ANY,
+                             payload=self.event_payload)
         # callback_3 should be deleted and not executed
         self.assertEqual(
             2, len(self.manager._callbacks['my-resource']['my-event']))
@@ -340,9 +358,10 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.manager.subscribe(
             callback_raise, resources.PORT, events.PRECOMMIT_CREATE)
         self.manager._notify_loop(
-            resources.PORT, events.BEFORE_CREATE, mock.ANY)
+            resources.PORT, events.BEFORE_CREATE, mock.ANY, payload=mock.ANY)
         self.manager._notify_loop(
-            resources.PORT, events.PRECOMMIT_CREATE, mock.ANY)
+            resources.PORT, events.PRECOMMIT_CREATE, mock.ANY,
+            payload=mock.ANY)
         self.assertFalse(_logger.exception.call_count)
         self.assertTrue(_logger.debug.call_count)
 
@@ -357,7 +376,8 @@ class CallBacksManagerTestCase(base.BaseTestCase):
             # ensure idempotency remains for a single object
             self.manager.subscribe(
                 o.callback, resources.PORT, events.BEFORE_CREATE)
-        self.manager.notify(resources.PORT, events.BEFORE_CREATE, mock.ANY)
+        self.manager.publish(resources.PORT, events.BEFORE_CREATE, mock.ANY,
+                             payload=events.EventPayload(object()))
         self.assertEqual(1, a.counter)
         self.assertEqual(1, b.counter)
         self.assertEqual(1, c.counter)
@@ -384,6 +404,5 @@ class CallBacksManagerTestCase(base.BaseTestCase):
             notify_payload.append(payload)
 
         self.manager.subscribe(_memo, 'x', 'y')
-        payload = events.EventPayload(object())
-        self.manager.publish('x', 'y', self, payload=payload)
-        self.assertEqual(payload, notify_payload[0])
+        self.manager.publish('x', 'y', self, payload=self.event_payload)
+        self.assertEqual(self.event_payload, notify_payload[0])

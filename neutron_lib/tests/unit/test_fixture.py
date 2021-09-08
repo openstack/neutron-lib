@@ -50,8 +50,8 @@ class CallbackRegistryFixtureTestCase(base.BaseTestCase):
             callback_manager=self.manager))
 
     def test_fixture(self):
-        registry.notify('a', 'b', self)
-        self.assertTrue(self.manager.notify.called)
+        registry.publish('a', 'b', self, payload=mock.ANY)
+        self.assertTrue(self.manager.publish.called)
 
 
 class SqlFixtureTestCase(base.BaseTestCase):

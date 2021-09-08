@@ -57,8 +57,9 @@ class TestBaseWorker(base.BaseTestCase):
     def test_start_callback_event(self):
         base_worker = _BaseWorker()
         base_worker.start()
-        self._reg.notify.assert_called_once_with(
-            resources.PROCESS, events.AFTER_INIT, base_worker.start)
+        self._reg.publish.assert_called_once_with(
+            resources.PROCESS, events.AFTER_INIT, base_worker.start,
+            payload=mock.ANY)
 
     # Forked workers, should call setproctitle
 

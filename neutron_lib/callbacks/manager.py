@@ -128,6 +128,7 @@ class CallbacksManager(object):
                                        callback_id)
             del self._index[callback_id]
 
+    @db_utils.reraise_as_retryrequest
     def publish(self, resource, event, trigger, payload=None):
         """Notify all subscribed callback(s) with a payload.
 
@@ -146,30 +147,12 @@ class CallbacksManager(object):
             if not isinstance(payload, events.EventPayload):
                 raise exceptions.Invalid(element='event payload',
                                          value=type(payload))
-        return self.notify(resource, event, trigger, payload=payload)
-
-    # NOTE(boden): We plan to deprecate the usage of this method and **kwargs
-    # as the payload in Queens, but no warning here to avoid log flooding
-    @db_utils.reraise_as_retryrequest
-    def notify(self, resource, event, trigger, **kwargs):
-        """Notify all subscribed callback(s).
-
-        Dispatch the resource's event to the subscribed callbacks.
-
-        :param resource: The resource for the event.
-        :param event: The event.
-        :param trigger: The trigger. A reference to the sender of the event.
-        :param kwargs: (deprecated) Unstructured key/value pairs to invoke
-            the callback with. Using event objects with publish() is preferred.
-        :raises CallbackFailure: CallbackFailure is raised if the underlying
-            callback has errors.
-        """
-        errors = self._notify_loop(resource, event, trigger, **kwargs)
+        errors = self._notify_loop(resource, event, trigger, payload)
         if errors:
             if event.startswith(events.BEFORE):
                 abort_event = event.replace(
                     events.BEFORE, events.ABORT)
-                self._notify_loop(resource, abort_event, trigger, **kwargs)
+                self._notify_loop(resource, abort_event, trigger, payload)
 
                 raise exceptions.CallbackFailure(errors=errors)
 
@@ -181,7 +164,7 @@ class CallbacksManager(object):
         self._callbacks = collections.defaultdict(dict)
         self._index = collections.defaultdict(dict)
 
-    def _notify_loop(self, resource, event, trigger, **kwargs):
+    def _notify_loop(self, resource, event, trigger, payload):
         """The notification loop."""
         errors = []
         # NOTE(yamahata): Since callback may unsubscribe it,
@@ -189,12 +172,12 @@ class CallbacksManager(object):
         callbacks = list(itertools.chain(
             *[pri_callbacks.items() for (priority, pri_callbacks)
               in self._callbacks[resource].get(event, [])]))
-        LOG.debug("Notify callbacks %s for %s, %s",
+        LOG.debug("Publish callbacks %s for %s, %s",
                   [c[0] for c in callbacks], resource, event)
         # TODO(armax): consider using a GreenPile
         for callback_id, callback in callbacks:
             try:
-                callback(resource, event, trigger, **kwargs)
+                callback(resource, event, trigger, payload=payload)
             except Exception as e:
                 abortable_event = (
                     event.startswith(events.BEFORE) or
