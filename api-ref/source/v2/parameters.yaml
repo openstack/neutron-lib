@@ -5532,6 +5532,13 @@ quota:
   in: body
   required: true
   type: object
+quota-check-limit:
+  description: |
+    A flag used in the ``quota`` update command. If enabled, the Quota engine
+    will first check the resource usage before applying the new quota limit.
+  in: body
+  required: false
+  type: object
 quota-detail:
   description: |
     A ``quota`` detail object. Each key in the object corresponds to a resource

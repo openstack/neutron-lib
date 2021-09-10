@@ -145,6 +145,7 @@ KNOWN_EXTENSIONS = (
     'qos-port-network-policy',
     'qos-rules-alias',
     'quotas',
+    'quota-check-limit',
     'rbac-address-group',
     'rbac-address-scope',
     'rbac-bgpvpn',

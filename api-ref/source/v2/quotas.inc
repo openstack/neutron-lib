@@ -114,6 +114,7 @@ Request
    - security_group_rule: quota-security_group_rule-request
    - subnet: quota-subnet-request
    - subnetpool: quota-subnetpool-request
+   - check_limit: quota-check-limit
 
 Request Example
 ---------------

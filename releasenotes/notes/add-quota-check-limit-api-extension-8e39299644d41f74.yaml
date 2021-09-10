@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    Add API extension ``quota-check-limit``. This is a shim extension that
+    indicates if Neutron supports checking the resource usage before applying
+    a new quota limit. A new API parameter ``check_limit`` is introduced; it
+    can be used in the ``quota`` update request to enable this check.
