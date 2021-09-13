@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   xena
    wallaby
    victoria
    ussuri
