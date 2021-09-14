@@ -115,3 +115,9 @@ class QosPlacementAllocationConflict(e.Conflict):
     message = _("Allocation for consumer %(consumer)s is not possible on "
                 "resource provider %(rp)s, the requested amount of bandwidth "
                 "would exceed the capacity available.")
+
+
+class QosPlacementAllocationUpdateConflict(e.Conflict):
+    message = _("Updating placement allocation with %(alloc_diff)s for "
+                "consumer %(consumer)s failed. The requested resources would "
+                "exceed the capacity available.")
