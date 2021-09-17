@@ -12,6 +12,8 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
+from neutron_lib.api import validators
+from neutron_lib.api.validators import bfd as bfd_validator
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 
@@ -29,6 +31,21 @@ BFD_SESSION_STATUS = 'bfd_session_status'
 BFD_MODE_ASYNC = 'asynchronous'
 BFD_MODE_DEMAND = 'demand'
 BFD_MODE_ONE_ARM = 'one_arm_echo'
+
+AUTH_TYPE_PWD = 'password'  # nosec
+AUTH_TYPE_MD5 = 'MD5'
+AUTH_TYPE_METIC_MD5 = 'MeticulousMD5'
+AUTH_TYPE_SHA1 = 'SHA1'
+AUTH_TYPE_METIC_SHA1 = 'MeticulousSHA1'
+
+VALID_AUTH_TYPES = (AUTH_TYPE_PWD, AUTH_TYPE_MD5, AUTH_TYPE_METIC_MD5,
+                    AUTH_TYPE_SHA1, AUTH_TYPE_METIC_SHA1)
+VALID_MODES = (BFD_MODE_ASYNC, BFD_MODE_DEMAND, BFD_MODE_ONE_ARM)
+
+validators.add_validator('bfd_mode_validator',
+                         bfd_validator.validate_bfd_mode)
+validators.add_validator('bfd_auth_type_validator',
+                         bfd_validator.validate_bfd_auth_type)
 
 RESOURCE_ATTRIBUTE_MAP = {
     BFD_MONITORS: {
@@ -51,7 +68,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                        'required_by_policy': True,
                        'is_visible': True, 'enforce_policy': True},
         'mode': {'allow_post': True, 'allow_put': False,
-                 'validate': {'type:string': db_const.STATUS_FIELD_SIZE},
+                 'validate': {'type:bfd_mode_validator': VALID_MODES},
                  'default': BFD_MODE_ASYNC, 'is_filter': True,
                  'is_sort_key': True, 'is_visible': True},
         'dst_ip': {'allow_post': True, 'allow_put': False,
@@ -83,8 +100,8 @@ RESOURCE_ATTRIBUTE_MAP = {
                    'is_filter': True, 'is_sort_key': True,
                    'is_visible': True},
         'auth_type': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:string_or_none':
-                                   db_const.NAME_FIELD_SIZE},
+                      'validate': {'type:bfd_auth_type_validator':
+                                   VALID_AUTH_TYPES},
                       'default': constants.ATTR_NOT_SPECIFIED,
                       'is_visible': True},
         'auth_key': {'allow_post': True, 'allow_put': False,
