@@ -108,4 +108,4 @@ class BaseWorker(service.ServiceBase):
         desc = desc or self.desc
         self.setproctitle(name, desc)
         if self.worker_process_count > 0:
-            registry.notify(resources.PROCESS, events.AFTER_INIT, self.start)
+            registry.publish(resources.PROCESS, events.AFTER_INIT, self.start)

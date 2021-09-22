@@ -50,12 +50,6 @@ def unsubscribe_all(callback):
     _get_callback_manager().unsubscribe_all(callback)
 
 
-# NOTE(boden): This method is deprecated in favor of publish() and will be
-# removed in Queens, but not deprecation message to reduce log flooding
-def notify(resource, event, trigger, **kwargs):
-    _get_callback_manager().notify(resource, event, trigger, **kwargs)
-
-
 def publish(resource, event, trigger, payload=None):
     _get_callback_manager().publish(resource, event, trigger, payload=payload)
 

@@ -74,19 +74,26 @@ class CallBacksManagerTestCase(base.BaseTestCase):
 
     def test_decorated_inst_method_receives(self):
         i1 = ObjectWithDecoratedCallback()
-        registry.notify(resources.PORT, events.BEFORE_CREATE, self)
+        event_payload = events.EventPayload(mock.ANY)
+        registry.publish(resources.PORT, events.BEFORE_CREATE, self,
+                         payload=event_payload)
         self.assertEqual(0, i1.counter)
-        registry.notify(resources.PORT, events.AFTER_CREATE, self)
+        registry.publish(resources.PORT, events.AFTER_CREATE, self,
+                         payload=event_payload)
         self.assertEqual(1, i1.counter)
-        registry.notify(resources.PORT, events.AFTER_UPDATE, self)
+        registry.publish(resources.PORT, events.AFTER_UPDATE, self,
+                         payload=event_payload)
         self.assertEqual(2, i1.counter)
-        registry.notify(resources.NETWORK, events.AFTER_UPDATE, self)
+        registry.publish(resources.NETWORK, events.AFTER_UPDATE, self,
+                         payload=event_payload)
         self.assertEqual(2, i1.counter)
-        registry.notify(resources.NETWORK, events.AFTER_DELETE, self)
+        registry.publish(resources.NETWORK, events.AFTER_DELETE, self,
+                         payload=event_payload)
         self.assertEqual(3, i1.counter)
         i2 = ObjectWithDecoratedCallback()
         self.assertEqual(0, i2.counter)
-        registry.notify(resources.NETWORK, events.AFTER_DELETE, self)
+        registry.publish(resources.NETWORK, events.AFTER_DELETE, self,
+                         payload=event_payload)
         self.assertEqual(4, i1.counter)
         self.assertEqual(1, i2.counter)
 
@@ -147,11 +154,6 @@ class TestCallbackRegistryDispatching(base.BaseTestCase):
         registry.unsubscribe_all(my_callback)
         self.callback_manager.unsubscribe_all.assert_called_with(
             my_callback)
-
-    def test_notify(self):
-        registry.notify('my-resource', 'my-event', mock.ANY)
-        self.callback_manager.notify.assert_called_with(
-            'my-resource', 'my-event', mock.ANY)
 
     def test_clear(self):
         registry.clear()
