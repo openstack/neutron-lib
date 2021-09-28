@@ -30,21 +30,25 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {'type:port_range': None},
                 'is_visible': True,
                 'is_sort_key': True,
-                'is_filter': True},
+                'is_filter': True,
+                'default': None},
             INTERNAL_PORT_RANGE: {
                 'allow_post': True, 'allow_put': True,
                 'validate': {'type:port_range': None},
-                'is_visible': True},
+                'is_visible': True,
+                'default': None},
             pfw.EXTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
                 'validate': {'type:range_or_none': [1, 65535]},
                 'is_visible': True,
                 'is_sort_key': True,
-                'is_filter': True},
+                'is_filter': True,
+                'default': None},
             pfw.INTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
                 'validate': {'type:range_or_none': [1, 65535]},
-                'is_visible': True},
+                'is_visible': True,
+                'default': None},
         }
     }
 }

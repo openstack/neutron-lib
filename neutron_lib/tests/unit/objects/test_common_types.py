@@ -199,6 +199,19 @@ class FlowDirectionAndAnyEnumFieldTest(test_base.BaseTestCase, TestField):
             self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
 
 
+class PortRangesFieldTest(test_base.BaseTestCase, TestField):
+    def setUp(self):
+        super(PortRangesFieldTest, self).setUp()
+        self.field = common_types.PortRangesField()
+        self.coerce_good_values = [(val, val) for val in (
+            '80:80', '80:90', '80', 80)]
+        self.coerce_bad_values = ('x', 0, 99999, '99999',
+                                  '9999:', ':9999',
+                                  '99999:100000', '80:70')
+        self.to_primitive_values = self.coerce_good_values
+        self.from_primitive_values = self.coerce_good_values
+
+
 class DomainNameFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
         super(DomainNameFieldTest, self).setUp()
