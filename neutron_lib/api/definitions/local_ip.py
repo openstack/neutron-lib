@@ -108,6 +108,10 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
         'parent': {'collection_name': COLLECTION_NAME,
                    'member_name': RESOURCE_NAME},
         'parameters': {
+            'local_ip_id': {
+                'allow_post': False,
+                'allow_put': False,
+                'is_visible': True},
             'local_ip_address': {
                 'allow_post': False,
                 'allow_put': False,
@@ -140,9 +144,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'allow_put': False,
                 'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
                 'required_by_policy': True,
-                'is_filter': True,
-                'is_sort_key': True,
-                'is_visible': True},
+                'is_visible': False},
         }
     }
 }
