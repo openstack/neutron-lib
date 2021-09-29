@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    New API validators ``validate_oneline_not_empty_string`` and
+    ``validate_oneline_not_empty_string_or_none`` are added. Those validators
+    are now used to validate ``opt_name`` and ``opt_value`` fields of
+    the extra_dhcp_opt so strings with newline character are not valid for
+    dhcp extra option's name nor value.

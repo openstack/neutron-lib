@@ -33,9 +33,9 @@ EXTRA_DHCP_OPT_KEY_SPECS = [
                     'type:values': [4, 6],
                     'required': False}},
     # key spec if opt_name not in _VALID_BLANK_EXTRA_DHCP_OPTS
-    {'opt_name': {'type:not_empty_string': DHCP_OPT_NAME_MAX_LEN,
+    {'opt_name': {'type:oneline_not_empty_string': DHCP_OPT_NAME_MAX_LEN,
                   'required': True},
-     'opt_value': {'type:not_empty_string_or_none':
+     'opt_value': {'type:oneline_not_empty_string_or_none':
                    DHCP_OPT_VALUE_MAX_LEN,
                    'required': True},
      'ip_version': {'convert_to': converters.convert_to_int,
