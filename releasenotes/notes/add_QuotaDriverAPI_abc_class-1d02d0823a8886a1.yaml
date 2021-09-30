@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Added ``QuotaDriverAPI`` abstract class. This class is the API to create
+    any Neutron Quota engine driver.
