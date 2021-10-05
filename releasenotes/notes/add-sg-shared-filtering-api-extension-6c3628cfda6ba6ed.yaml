@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add API extension ``security-groups-shared-filtering``. This extension
+    adds the ``shared`` field to security groups and allows users to filter
+    security groups based on the ``shared`` field.
