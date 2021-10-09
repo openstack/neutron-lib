@@ -77,10 +77,6 @@ help understand better some of the principles behind the provided mechanism.
 Event payloads
 --------------
 
-The use of ``**kwargs`` for callback event payloads is deprecated (slated to be
-removed in 'Queens') in favor of standardized event payload objects as
-described herein.
-
 The event payloads are defined in ``neutron_lib.callbacks.events`` and define a
 set of payload objects based on consumption pattern. The following event
 objects are defined today:
@@ -96,10 +92,6 @@ objects are defined today:
   action.
 
 Each event object is described in greater detail in its own subsection below.
-
-For backwards compatibility the callback registry and manager still provide
-the ``notify`` method for passing ``**kwargs``, but also provide the
-``publish`` method for passing an event object.
 
 
 Event objects: EventPayload
@@ -242,7 +234,7 @@ more uniform and straightforward:
   # A is done creating the resource
   # A gets hold of the reference to the intermediary I
   # A calls I
-  I->notify()
+  I->publish()
 
 Since B and C will have expressed interest in knowing about A's business, and D also
 subscribed for router creation with higher priority, 'I' will deliver the messages to D
@@ -530,12 +522,12 @@ Is there any ordering guarantee during notifications?
 
 How is the notifying object expected to interact with the subscribing objects?
 
-  The ``notify`` method implements a one-way communication paradigm: the notifier sends a message
+  The ``publish`` method implements a one-way communication paradigm: the publisher sends a message
   without expecting a response back (in other words it fires and forget). However, due to the nature
   of Python, the payload can be mutated by the subscribing objects, and this can lead to unexpected
   behavior of your code, if you assume that this is the intentional design. Bear in mind, that
   passing-by-value using deepcopy was not chosen for efficiency reasons. Having said that, if you
-  intend for the notifier object to expect a response, then the notifier itself would need to act
+  intend for the publisher object to expect a response, then the publisher itself would need to act
   as a subscriber.
 
 Is the registry thread-safe?
@@ -544,7 +536,7 @@ Is the registry thread-safe?
   details as to why can be found line 937 of
   `dictobject <https://hg.python.org/releasing/2.7.9/file/753a8f457ddc/Objects/dictobject.c>`_).
   A mutation could happen if a 'subscribe'/'unsubscribe' operation interleaves with the execution
-  of the notify loop. Albeit there is a possibility that things may end up in a bad state, the
+  of the publish loop. Albeit there is a possibility that things may end up in a bad state, the
   registry works correctly under the assumption that subscriptions happen at the very beginning
   of the life of the process and that the unsubscriptions (if any) take place at the very end.
   In this case, chances that things do go badly may be pretty slim. Making the registry
