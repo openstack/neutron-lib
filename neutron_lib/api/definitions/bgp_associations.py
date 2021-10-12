@@ -40,6 +40,10 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                    'validate': {'type:uuid': None},
                    'is_visible': True,
                    'primary_key': True},
+            'name': {'allow_post': True, 'allow_put': True,
+                     'validate': {'type:string': db_const.NAME_FIELD_SIZE},
+                     'default': '', 'is_filter': True, 'is_sort_key': True,
+                     'is_visible': True},
             'project_id': {'allow_post': True, 'allow_put': False,
                            'validate': {
                                'type:string': db_const.PROJECT_ID_FIELD_SIZE},
@@ -55,6 +59,9 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                                       'validate': {'type:boolean': None},
                                       'is_visible': True, 'default': True,
                                       'required_by_policy': False},
+            'status': {'allow_post': False, 'allow_put': False,
+                       'is_filter': True, 'is_sort_key': True,
+                       'is_visible': True},
             }
     },
     PEER_ASSOCIATIONS: {
@@ -65,6 +72,10 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                    'validate': {'type:uuid': None},
                    'is_visible': True,
                    'primary_key': True},
+            'name': {'allow_post': True, 'allow_put': True,
+                     'validate': {'type:string': db_const.NAME_FIELD_SIZE},
+                     'default': '', 'is_filter': True, 'is_sort_key': True,
+                     'is_visible': True},
             'project_id': {'allow_post': True, 'allow_put': False,
                            'validate': {
                                'type:string': db_const.PROJECT_ID_FIELD_SIZE},
@@ -72,7 +83,10 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                            'is_visible': True},
             'peer_id': {'allow_post': True, 'allow_put': False,
                         'validate': {'type:uuid': None},
-                        'is_visible': True}
+                        'is_visible': True},
+            'status': {'allow_post': False, 'allow_put': False,
+                       'is_filter': True, 'is_sort_key': True,
+                       'is_visible': True},
         }
     }
 }
