@@ -29,6 +29,13 @@ or stateless security groups for ``ports``. The existing security groups
 will all be considered as stateful. Update of the ``stateful`` attribute is
 allowed when there is no port associated with the security group.
 
+Shared filtering extension
+==========================
+
+The ``security-groups-shared-filtering`` extension adds the ``shared`` field
+to security groups and allows users to filter security groups based on the
+``shared`` field.
+
 List security groups
 ====================
 
@@ -62,6 +69,7 @@ Request
    - description: description-query
    - sort_dir: sort_dir
    - sort_key: security_group-sort_key
+   - shared: security_group-shared-query
    - tags: tags-query
    - tags-any: tags-any-query
    - not-tags: not-tags-query
@@ -85,6 +93,7 @@ Response Parameters
    - security_group_rules: security_group_rules
    - tags: tags
    - stateful: stateful_enabled
+   - shared: security_group-shared-response
 
 Response Example
 ----------------
@@ -141,6 +150,7 @@ Response Parameters
    - security_group_rules: security_group_rules
    - tags: tags
    - stateful: stateful_enabled
+   - shared: security_group-shared-response
 
 Response Example
 ----------------
@@ -193,6 +203,7 @@ Response Parameters
    - security_group_rules: security_group_rules
    - tags: tags
    - stateful: stateful_enabled
+   - shared: security_group-shared-response
 
 Response Example
 ----------------
@@ -244,6 +255,7 @@ Response Parameters
    - security_group_rules: security_group_rules
    - tags: tags
    - stateful: stateful_enabled
+   - shared: security_group-shared-response
 
 Response Example
 ----------------

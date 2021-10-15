@@ -1365,6 +1365,13 @@ router:external-query:
   in: query
   required: false
   type: boolean
+security_group-shared-query:
+  description: |
+    Filter the security group list result based on if the security group is
+    shared to the requestor's project.
+  in: query
+  required: false
+  type: boolean
 security_group-sort_key:
   description: |
     Sorts by a security group attribute. You can specify multiple pairs of
@@ -6155,6 +6162,12 @@ security_group-id:
   in: body
   required: true
   type: string
+security_group-shared-response:
+  description: |
+    Indicates whether this security group is shared to the requestor's project.
+  in: body
+  required: true
+  type: boolean
 security_group_id:
   description: |
     The security group UUID to associate with this

@@ -10,6 +10,7 @@
         "name": "mysecgroup",
         "description": "my security group",
         "tags": ["tag1,tag2"],
-        "stateful": true
+        "stateful": true,
+        "shared": false
     }
 }
