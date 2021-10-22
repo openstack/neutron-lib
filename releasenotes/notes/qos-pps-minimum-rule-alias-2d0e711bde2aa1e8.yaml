@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Added API definition for ``qos-pps-minimum-rule-alias`` extension that
+    enables GET, PUT and DELETE operations to be performed on QoS minimum
+    packet rate rule without specifying policy ID.

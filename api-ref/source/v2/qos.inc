@@ -1476,3 +1476,38 @@ Delete minimum bandwidth rule alias
 Please refer to
 `Delete minimum bandwidth rule <#delete-minimum-bandwidth-rule>`__
 for more information on the request, response and return codes.
+
+======================================================
+Quality of Service minimum packet rate rule alias API
+======================================================
+
+This API extension enables callers to execute the requests to delete, show and
+update QoS minimum packet rate rule without specifying the corresponding
+policy ID.
+
+Show minimum packet rate rule details alias
+===========================================
+
+.. rest_method::  GET /v2.0/qos/alias_minimum_packet_rate_rules/{rule_id}
+
+Please refer to
+`Show minimum packet rate rule details <#show-minimum-packet-rate-rule-details>`__
+for more information on the request, response and return codes.
+
+Update minimum packet rate rule alias
+=====================================
+
+.. rest_method::  PUT /v2.0/qos/alias_minimum_packet_rate_rules/{rule_id}
+
+Please refer to
+`Update minimum packet rate rule <#update-minimum-packet-rate-rule>`__
+for more information on the request, response and return codes.
+
+Delete minimum packet rate rule alias
+=====================================
+
+.. rest_method::  DELETE /v2.0/qos/alias_minimum_packet_rate_rules/{rule_id}
+
+Please refer to
+`Delete minimum packet rate rule <#delete-minimum-packet-rate-rule>`__
+for more information on the request, response and return codes.

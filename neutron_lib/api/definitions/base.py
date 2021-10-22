@@ -143,6 +143,8 @@ KNOWN_EXTENSIONS = (
     'qos-bw-limit-direction',
     'qos-gateway-ip',
     'qos-port-network-policy',
+    'qos-pps-minimum',
+    'qos-pps-minimum-rule-alias',
     'qos-rules-alias',
     'quotas',
     'quota-check-limit',
