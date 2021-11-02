@@ -857,3 +857,19 @@ class TestPlacementAPIClient(base.BaseTestCase):
                 RESOURCE_PROVIDER_UUID: {
                     'resources': {'b': 3}}
             }})
+
+    def test_update_qos_minbw_allocation_one_class_to_zero_and_new_class(self):
+        mock_rsp_get = self._get_allocation_response(
+            {'resources': {'a': 3}})
+        self.placement_fixture.mock_get.side_effect = [mock_rsp_get]
+        self.placement_api_client.update_qos_minbw_allocation(
+            consumer_uuid=CONSUMER_UUID,
+            minbw_alloc_diff={'a': -3, 'b': 1},
+            rp_uuid=RESOURCE_PROVIDER_UUID
+        )
+        self.placement_fixture.mock_put.assert_called_once_with(
+            '/allocations/%s' % CONSUMER_UUID,
+            {'allocations': {
+                RESOURCE_PROVIDER_UUID: {
+                    'resources': {'b': 1}}
+            }})
