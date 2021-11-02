@@ -102,6 +102,7 @@ from neutron_lib.api.definitions import qos_default
 from neutron_lib.api.definitions import qos_gateway_ip
 from neutron_lib.api.definitions import qos_port_network_policy
 from neutron_lib.api.definitions import qos_pps_minimum_rule
+from neutron_lib.api.definitions import qos_pps_minimum_rule_alias
 from neutron_lib.api.definitions import qos_pps_rule
 from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import qos_rules_alias
@@ -239,6 +240,7 @@ _ALL_API_DEFINITIONS = {
     qos_gateway_ip,
     qos_port_network_policy,
     qos_pps_minimum_rule,
+    qos_pps_minimum_rule_alias,
     qos_pps_rule,
     qos_rule_type_details,
     qos_rules_alias,
