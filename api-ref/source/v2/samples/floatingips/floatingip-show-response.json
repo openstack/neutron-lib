@@ -25,7 +25,8 @@
             "device_id": "8e3941b4-a6e9-499f-a1ac-2a4662025cba"
         },
         "tags": ["tag1,tag2"],
-        "port_forwardings": []
+        "port_forwardings": [],
+        "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae"
 
     }
 }

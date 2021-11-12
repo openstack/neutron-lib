@@ -26,7 +26,9 @@
                 "device_id": "8e3941b4-a6e9-499f-a1ac-2a4662025cba"
             },
             "tags": ["tag1,tag2"],
-            "port_forwardings": []
+            "port_forwardings": [],
+            "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae"
+
         },
         {
             "router_id": null,
@@ -46,7 +48,8 @@
             "status": "DOWN",
             "port_details": null,
             "tags": ["tag1,tag2"],
-            "port_forwardings": []
+            "port_forwardings": [],
+            "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae"
         },
         {
             "router_id": "0303bf18-2c52-479c-bd68-e0ad712a1639",
@@ -78,7 +81,8 @@
                     "internal_port": 16666,
                     "external_port": 8786
                 }
-            ]
+            ],
+            "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae"
         }
     ]
 }
