@@ -100,6 +100,7 @@ from neutron_lib.api.definitions import qos_bw_limit_direction
 from neutron_lib.api.definitions import qos_bw_minimum_ingress
 from neutron_lib.api.definitions import qos_default
 from neutron_lib.api.definitions import qos_fip
+from neutron_lib.api.definitions import qos_fip_network_policy
 from neutron_lib.api.definitions import qos_gateway_ip
 from neutron_lib.api.definitions import qos_port_network_policy
 from neutron_lib.api.definitions import qos_pps_minimum_rule
@@ -239,6 +240,7 @@ _ALL_API_DEFINITIONS = {
     qos_bw_minimum_ingress,
     qos_default,
     qos_fip,
+    qos_fip_network_policy,
     qos_gateway_ip,
     qos_port_network_policy,
     qos_pps_minimum_rule,

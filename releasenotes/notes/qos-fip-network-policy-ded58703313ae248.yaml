@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Added field ``qos_network_policy_id`` to the ``floatingip`` definition.
+    This read only parameter contains the QoS policy of the network where the
+    floating IP is plugged.
