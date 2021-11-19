@@ -58,3 +58,13 @@ class L3AgentExtension(extension.AgentExtension, metaclass=abc.ABCMeta):
         :param context: rpc context
         :param data: dict of router_id and new state
         """
+
+    @abc.abstractmethod
+    def update_network(self, context, data):
+        """Handle a network update event.
+
+        Called on network update.
+
+        :param context: RPC context.
+        :param data: dict of network data.
+        """

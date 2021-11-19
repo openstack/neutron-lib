@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    A new method ``update_network`` has been added to ``L3AgentExtension``
+    to handle the network update events in the L3 agent extensions.
