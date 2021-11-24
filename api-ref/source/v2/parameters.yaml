@@ -5509,6 +5509,18 @@ qos_policy_id:
   in: body
   required: true
   type: string
+qos_policy_id-floatingip-request:
+  description: |
+    The ID of the QoS policy associated with the floating IP.
+  in: body
+  required: false
+  type: string
+qos_policy_id-floatingip-response:
+  description: |
+    The ID of the QoS policy associated with the floating IP.
+  in: body
+  required: true
+  type: string
 qos_policy_id-network-request:
   description: |
     The ID of the QoS policy associated with the network.

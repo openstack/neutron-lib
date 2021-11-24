@@ -7,6 +7,7 @@
         "floating_ip_address": "172.24.4.228",
         "description": "floating ip for testing",
         "dns_domain": "my-domain.org.",
-        "dns_name": "myfip"
+        "dns_name": "myfip",
+        "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae"
     }
 }

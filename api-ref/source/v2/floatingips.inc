@@ -24,6 +24,14 @@ The ``expose-port-forwarding-in-fip`` extension adds the ``port_forwardings``
 attribute to floating IPs. The value of this attribute contains the
 information of associated port forwarding resources.
 
+QoS extension
+=============
+
+The :ref:`QoS <quality-of-service>` extension (``qos``) makes it possible to
+define QoS policies and associate these to the ports by introducing the
+``qos_policy_id`` attribute. The policies should be created before they are
+associated to the floating IPs.
+
 Resource timestamps
 ===================
 
@@ -106,6 +114,7 @@ Response Parameters
    - dns_domain: dns_domain
    - dns_name: dns_name
    - port_details: floating_port_details
+   - qos_policy_id: qos_policy_id-floatingip-response
    - floating_network_id: floating_network_id
    - fixed_ip_address: floatingip-fixed_ip_address
    - floating_ip_address: floating_ip_address
@@ -196,6 +205,7 @@ Request
    - description: description-request
    - dns_domain: dns_domain-request
    - dns_name: dns_name-request
+   - qos_policy_id: qos_policy_id-floatingip-request
 
 Request Example
 ---------------
@@ -227,6 +237,7 @@ Response Parameters
    - id: floatingip-id
    - tags: tags
    - port_forwardings: floatingip-port_forwardings
+   - qos_policy_id: qos_policy_id-floatingip-response
 
 Response Example
 ----------------
@@ -293,6 +304,7 @@ Response Parameters
    - id: floatingip-id
    - tags: tags
    - port_forwardings: floatingip-port_forwardings
+   - qos_policy_id: qos_policy_id-floatingip-response
 
 Response Example
 ----------------
@@ -373,6 +385,7 @@ Response Parameters
    - port_details: floating_port_details
    - tags: tags
    - port_forwardings: floatingip-port_forwardings
+   - qos_policy_id: qos_policy_id-floatingip-response
 
 Response Example
 ----------------

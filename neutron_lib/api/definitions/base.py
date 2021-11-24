@@ -141,6 +141,7 @@ KNOWN_EXTENSIONS = (
     'provider',
     'qos',
     'qos-bw-limit-direction',
+    'qos-fip',
     'qos-gateway-ip',
     'qos-port-network-policy',
     'qos-pps-minimum',
