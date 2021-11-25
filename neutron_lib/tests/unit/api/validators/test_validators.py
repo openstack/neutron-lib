@@ -222,6 +222,59 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_list_of_unique_strings(data, None)
         self.assertIsNone(msg)
 
+    def test_validate_oneline_not_empty_string(self):
+        data = "Test"
+        msg = validators.validate_oneline_not_empty_string(data, None)
+        self.assertIsNone(msg)
+
+        data = "Test but this is too long"
+        max_len = 4
+        msg = validators.validate_oneline_not_empty_string(data, max_len)
+        self.assertEqual(
+            "'%s' exceeds maximum length of %s" % (data, max_len),
+            msg)
+
+        data = "First line\nsecond line"
+        msg = validators.validate_oneline_not_empty_string(data, None)
+        self.assertEqual(
+            "Multi-line string is not allowed: '%s'" % data,
+            msg)
+
+        data = ""
+        msg = validators.validate_oneline_not_empty_string(data, None)
+        self.assertEqual(
+            "'%s' Blank strings are not permitted" % data,
+            msg)
+
+    def test_validate_oneline_not_empty_string_or_none(self):
+        data = "Test"
+        msg = validators.validate_oneline_not_empty_string_or_none(data, None)
+        self.assertIsNone(msg)
+
+        data = None
+        msg = validators.validate_oneline_not_empty_string_or_none(data, None)
+        self.assertIsNone(msg)
+
+        data = "Test but this is too long"
+        max_len = 4
+        msg = validators.validate_oneline_not_empty_string_or_none(
+            data, max_len)
+        self.assertEqual(
+            "'%s' exceeds maximum length of %s" % (data, max_len),
+            msg)
+
+        data = "First line\nsecond line"
+        msg = validators.validate_oneline_not_empty_string_or_none(data, None)
+        self.assertEqual(
+            "Multi-line string is not allowed: '%s'" % data,
+            msg)
+
+        data = ""
+        msg = validators.validate_oneline_not_empty_string(data, None)
+        self.assertEqual(
+            "'%s' Blank strings are not permitted" % data,
+            msg)
+
     def test_validate_boolean(self):
         msg = validators.validate_boolean(True)
         self.assertIsNone(msg)

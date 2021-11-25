@@ -256,6 +256,36 @@ def validate_list_of_unique_strings(data, max_len=None):
     return _validate_list_of_unique_strings(data, max_len=max_len)
 
 
+def validate_oneline_not_empty_string(data, max_len=None):
+    """Validate data is a non-empty string without newline character.
+
+    :param data: The data to validate.
+    :param max_len: An optional cap on the length of the string.
+    :returns: None if the data is a string without newline character,
+        otherwise a human readable message indicating why validation failed.
+    """
+    msg = validate_not_empty_string(data, max_len=max_len)
+    if msg:
+        return msg
+    if len(data.splitlines()) > 1:
+        msg = _("Multi-line string is not allowed: '%s'") % data
+        LOG.debug(msg)
+        return msg
+
+
+def validate_oneline_not_empty_string_or_none(data, max_len=None):
+    """Validate data is a non-empty string without newline character or None.
+
+    :param data: The data to validate.
+    :param max_len: An optional cap on the length of the string data.
+    :returns: None if the data is None or a valid string without newline
+        character, otherwise a human readable message indicating why
+        validation failed.
+    """
+    if data is not None:
+        return validate_oneline_not_empty_string(data, max_len=max_len)
+
+
 def validate_boolean(data, valid_values=None):
     """Validate data is a python bool compatible object.
 
@@ -1232,6 +1262,10 @@ validators = {'type:dict': validate_dict,
               'type:not_empty_string': validate_not_empty_string,
               'type:not_empty_string_or_none':
               validate_not_empty_string_or_none,
+              'type:oneline_not_empty_string':
+              validate_oneline_not_empty_string,
+              'type:oneline_not_empty_string_or_none':
+              validate_oneline_not_empty_string_or_none,
               'type:subnet': validate_subnet,
               'type:subnet_list': validate_subnet_list,
               'type:subnet_or_none': validate_subnet_or_none,
