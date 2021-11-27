@@ -5485,6 +5485,12 @@ qos_minimum_packet_rate_rule-id:
   in: body
   required: true
   type: string
+qos_network_policy_id-floatingip-response:
+  description: |
+    The ID of the QoS policy of the network where this floating IP is plugged.
+  in: body
+  required: true
+  type: string
 qos_network_policy_id-port-response:
   description: |
     The ID of the QoS policy of the network where this port is plugged.
