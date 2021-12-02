@@ -127,8 +127,8 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
                 (model.tenant_id == context.tenant_id) |
                 (rbac_model.action.in_(
                     [constants.ACCESS_SHARED, constants.ACCESS_READONLY]) &
-                 ((rbac_model.target_tenant == context.tenant_id) |
-                  (rbac_model.target_tenant == '*'))))
+                 ((rbac_model.target_project == context.tenant_id) |
+                  (rbac_model.target_project == '*'))))
         elif hasattr(model, 'shared'):
             query_filter = ((model.tenant_id == context.tenant_id) |
                             (model.shared == sql.true()))
@@ -217,9 +217,9 @@ def apply_filters(query, model, filters, context=None):
                 # translate a filter on shared into a query against the
                 # object's rbac entries
                 rbac = model.rbac_entries.property.mapper.class_
-                matches = [rbac.target_tenant == '*']
+                matches = [rbac.target_project == '*']
                 if context:
-                    matches.append(rbac.target_tenant == context.tenant_id)
+                    matches.append(rbac.target_project == context.tenant_id)
                 # any 'access_as_shared' records that match the
                 # wildcard or requesting tenant
                 is_shared = and_(rbac.action == constants.ACCESS_SHARED,
