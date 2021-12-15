@@ -177,9 +177,18 @@ class NetworkInUse(InUse):
     network.
 
     :param net_id: The UUID of the network requested.
+    :param reason: Details on why the operation failed. If None, a default
+        reason is used indicating one or more ports still in use
+        on the network.
     """
     message = _("Unable to complete operation on network %(net_id)s. "
-                "There are one or more ports still in use on the network.")
+                "%(reason)s.")
+
+    def __init__(self, **kwargs):
+        if 'reason' not in kwargs:
+            kwargs['reason'] = _("There are one or more ports still in use "
+                                 "on the network")
+        super().__init__(**kwargs)
 
 
 class SubnetInUse(InUse):

@@ -129,6 +129,12 @@ class TestExceptions(base.BaseTestCase):
               "There are one or more ports still in use on the network."),
             net_id="foo")
 
+    def test_network_in_use_custom_reason(self):
+        self._check_nexc(
+            ne.NetworkInUse,
+            _("Unable to complete operation on network foo. not full."),
+            net_id="foo", reason="not full")
+
     def test_subnet_in_use(self):
         self._check_nexc(
             ne.SubnetInUse,
