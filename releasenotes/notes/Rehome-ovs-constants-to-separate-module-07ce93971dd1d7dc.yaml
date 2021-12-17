@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Openvswitch related constants are moved from the
+    ``neutron_lib.constants`` module to the own module
+    ``neutron_lib.plugins.ml2.ovs_constants``.
