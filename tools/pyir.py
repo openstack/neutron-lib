@@ -16,6 +16,7 @@
 #
 
 import abc
+import argparse
 import contextlib
 import importlib
 import inspect
@@ -25,9 +26,6 @@ import re
 import shutil
 import sys
 import tempfile
-
-import argparse
-import six
 
 from oslo_serialization import jsonutils
 
