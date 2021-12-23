@@ -172,8 +172,9 @@ class CallbacksManager(object):
         callbacks = list(itertools.chain(
             *[pri_callbacks.items() for (priority, pri_callbacks)
               in self._callbacks[resource].get(event, [])]))
-        LOG.debug("Publish callbacks %s for %s, %s",
-                  [c[0] for c in callbacks], resource, event)
+        resource_id = getattr(payload, "resource_id", None)
+        LOG.debug("Publish callbacks %s for %s (%s), %s",
+                  [c[0] for c in callbacks], resource, resource_id, event)
         # TODO(armax): consider using a GreenPile
         for callback_id, callback in callbacks:
             try:
