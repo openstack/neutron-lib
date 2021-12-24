@@ -54,8 +54,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Neutron Library Release Notes'
-copyright = u'2016, Neutron Library Developers'
+project = 'Neutron Library Release Notes'
+copyright = '2016, Neutron Library Developers'
 
 # Release notes are version independent.
 # The full version, including alpha/beta/rc tags.
@@ -201,8 +201,8 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     ('index', 'NeutronLibReleaseNotes.tex',
-     u'Neutron Library Notes Documentation',
-     u'Neutron Library Developers', 'manual'),
+     'Neutron Library Notes Documentation',
+     'Neutron Library Developers', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -231,9 +231,9 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'neutronlibreleasenotes', u'Neutron Library',
+    ('index', 'neutronlibreleasenotes', 'Neutron Library',
      'Neutron Library Release Notes Documentation',
-     [u'Neutron Library Developers'],
+     ['Neutron Library Developers'],
      1)
 ]
 
@@ -247,9 +247,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'NeutronLibReleaseNotes', u'Neutron Library',
+    ('index', 'NeutronLibReleaseNotes', 'Neutron Library',
      'Neutron Library Release Notes Documentation',
-     u'Neutron Library Developers',
+     'Neutron Library Developers',
      'NeutronLibReleaseNotes',
      'For sharing/decoupling neutron functionality across the Stadium.',
      'Miscellaneous'),
