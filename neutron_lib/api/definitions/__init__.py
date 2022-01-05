@@ -139,10 +139,12 @@ from neutron_lib.api.definitions import subnet_segmentid_writable
 from neutron_lib.api.definitions import subnet_service_types
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import subnetpool_prefix_ops
+from neutron_lib.api.definitions import taas
 from neutron_lib.api.definitions import tag_ports_during_bulk_creation
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
 from neutron_lib.api.definitions import uplink_status_propagation
+from neutron_lib.api.definitions import vlan_filter
 from neutron_lib.api.definitions import vlantransparent
 from neutron_lib.api.definitions import vpn
 from neutron_lib.api.definitions import vpn_endpoint_groups
@@ -279,10 +281,12 @@ _ALL_API_DEFINITIONS = {
     subnet_service_types,
     subnetpool,
     subnetpool_prefix_ops,
+    taas,
     tag_ports_during_bulk_creation,
     trunk,
     trunk_details,
     uplink_status_propagation,
+    vlan_filter,
     vlantransparent,
     vpn,
     vpn_endpoint_groups,
