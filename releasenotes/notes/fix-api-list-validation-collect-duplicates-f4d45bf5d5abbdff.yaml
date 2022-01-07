@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Fixed an issue where API validation for duplicate entries in list values
+    would fail with a TypeError in case the values in the list was of type
+    ``dict``.
+    See bug: `1956785 <https://bugs.launchpad.net/neutron/+bug/1956785>`_.
+

@@ -78,14 +78,14 @@ def _collect_duplicates(data_list):
 
     :param data_list: A list of items to check for duplicates. The list may
         include dict items.
-    :returns: A set of items that are duplicates in data_list. If no
-        duplicates are found, the returned set is empty.
+    :returns: A list of items that are duplicates in data_list. If no
+        duplicates are found, the returned list is empty.
     """
     seen = []
-    dups = set()
+    dups = []
     for datum in data_list:
-        if datum in seen:
-            dups.add(datum)
+        if datum in seen and datum not in dups:
+            dups.append(datum)
             continue
         seen.append(datum)
     return dups

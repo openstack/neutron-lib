@@ -971,6 +971,24 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators._validate_list_of_items_non_empty(mock.Mock(), items)
         self.assertEqual("List should not be empty", msg)
 
+    def test__validate_list_of_items_collect_duplicates(self):
+        items = ['a', 'b', 'duplicate_1', 'duplicate_2', 'duplicate_1',
+                 'duplicate_2', 'duplicate_2', 'c']
+        msg = validators._validate_list_of_items(mock.Mock(), items)
+        error = ("Duplicate items in the list: '%s'"
+                 % 'duplicate_1, duplicate_2')
+        self.assertEqual(error, msg)
+
+        items = [['a', 'b'], ['c', 'd'], ['a', 'b']]
+        msg = validators._validate_list_of_items(mock.Mock(), items)
+        error = "Duplicate items in the list: '%s'" % ['a', 'b']
+        self.assertEqual(error, msg)
+
+        items = [{'a': 'b'}, {'c': 'd'}, {'a': 'b'}]
+        msg = validators._validate_list_of_items(mock.Mock(), items)
+        error = "Duplicate items in the list: '%s'" % {'a': 'b'}
+        self.assertEqual(error, msg)
+
     def test_validate_dict_type(self):
         for value in (None, True, '1', []):
             self.assertEqual("'%s' is not a dictionary" % value,
