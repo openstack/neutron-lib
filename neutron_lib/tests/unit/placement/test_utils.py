@@ -51,7 +51,7 @@ class TestPlacementUtils(base.BaseTestCase):
             # assertNotRaises
             place_utils.six_uuid5(
                 namespace=self._uuid_ns,
-                name=u'unicode string')
+                name='unicode string')
         except Exception:
             self.fail('could not generate uuid')
 

@@ -58,8 +58,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Networking API Reference'
-copyright = u'2010-present, OpenStack Foundation'
+project = 'Networking API Reference'
+copyright = '2010-present, OpenStack Foundation'
 
 # openstackdocstheme options
 openstackdocs_repo_name = 'openstack/neutron-lib'
@@ -189,8 +189,8 @@ htmlhelp_basename = 'neutrondoc'
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
-    ('index', 'Neutron.tex', u'OpenStack Networking API Documentation',
-     u'OpenStack Foundation', 'manual'),
+    ('index', 'Neutron.tex', 'OpenStack Networking API Documentation',
+     'OpenStack Foundation', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

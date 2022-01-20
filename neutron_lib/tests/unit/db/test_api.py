@@ -106,7 +106,7 @@ class TestDeadLockDecorator(_base.BaseTestCase):
         retry_fixture.cleanUp()
 
     def test_mysql_savepoint_error(self):
-        e = db_exc.DBError("(pymysql.err.InternalError) (1305, u'SAVEPOINT "
+        e = db_exc.DBError("(pymysql.err.InternalError) (1305, 'SAVEPOINT "
                            "sa_savepoint_1 does not exist')")
         self.assertIsNone(self._decorated_function(1, e))
 
