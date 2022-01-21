@@ -167,3 +167,16 @@ class QuotaDriverAPI(object, metaclass=abc.ABCMeta):
         :return: None if passed; ``OverQuota`` if quota limits are exceeded,
                  ``InvalidQuotaValue`` if delta values are invalid.
         """
+
+    @staticmethod
+    @abc.abstractmethod
+    def get_workers():
+        """Return the quota driver workers to be spawned during initialization
+
+        This method returns the quota driver workers that needs to be spawned
+        during the plugin initialization. For example, ``DbQuotaNoLockDriver``
+        requires a ``PeriodicWorker`` to clean up the expired reservations left
+        in the database.
+
+        :return: list of ``worker.BaseWorker`` or derived instances.
+        """

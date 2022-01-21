@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    Added abstract method ``get_workers`` to ``QuotaDriverAPI`` metaclass. This
+    method returns the quota driver workers that needs to be spawned during the
+    plugin initialization.
