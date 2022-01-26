@@ -112,3 +112,7 @@ Networking Agents
 Auto Allocated Topology
 #######################
 .. include:: auto-topology.inc
+#################
+Tap as a Service
+#################
+.. include:: taas.inc

@@ -490,6 +490,18 @@ description-query:
   in: query
   required: false
   type: string
+description_taf-query:
+  description: |
+    Filter the list result by the human-readable description of the resource.
+  in: query
+  required: false
+  type: string
+description_tas-query:
+  description: |
+    Filter the list result by the human-readable description of the resource.
+  in: query
+  required: false
+  type: string
 device_id-query:
   description: |
     Filter the port list result by the ID of the device that uses this port.
@@ -509,6 +521,12 @@ direction-query:
   description: |
     Filter the security group rule list result by the direction in which
     the security group rule is applied, which is ``ingress`` or ``egress``.
+  in: query
+  required: false
+  type: string
+direction_taf-query:
+  description: |
+    Direction of the Tap flow. Possible options are: IN, OUT, BOTH
   in: query
   required: false
   type: string
@@ -945,6 +963,12 @@ min_prefixlen-query:
   in: query
   required: false
   type: integer
+mirror_port_tas-query:
+  description: |
+    Port to which the Tap service is connected.
+  in: query
+  requried: true
+  type: string
 mtu-query:
   description: |
     Filter the network list result by the maximum transmission unit (MTU)
@@ -1141,6 +1165,13 @@ port_range_min-query:
   in: query
   required: false
   type: integer
+project-domain_taas:
+  description: |
+    Domain the project belongs to (name or ID).
+    This can be used in case collisions between project names exist.
+  in: query
+  requried: false
+  type: string
 project_id-query:
   description: |
     Filter the list result by the ID of the project that owns the resource.
@@ -1468,10 +1499,28 @@ sort_dir:
   in: query
   required: false
   type: string
+source_port_taf-query:
+  description: |
+    Source port to which the Tap Flow is connected.
+  in: query
+  requried: true
+  type: string
 state-query:
   description: |
     Filter the list result by the state of the availability zone, which is
     either ``available`` or ``unavailable``.
+  in: query
+  required: false
+  type: string
+status_taf-query:
+  description: |
+    Human-readable description of the status for tap flow.
+  in: query
+  required: false
+  type: string
+status_tas-query:
+  description: |
+    Human-readable description of the status for tap service.
   in: query
   required: false
   type: string
@@ -1587,6 +1636,18 @@ subnetpool_is_default-query:
   in: query
   required: false
   type: boolean
+taf_id-query:
+  description: |
+    The ID of the Tap flow.
+  in: query
+  required: false
+  type: string
+taf_name-query:
+  description: |
+    The name of the Tap flow.
+  in: query
+  required: true
+  type: string
 tags-any-query:
   description: |
     A list of tags to filter the list result by.
@@ -1603,12 +1664,30 @@ tags-query:
   in: query
   required: false
   type: string
+tap_service_id-query:
+  description: |
+    Tap Service to which the Tap Flow belongs.
+  in: query
+  required: false
+  type: string
 target_tenant-query:
   description: |
     Filter the RBAC policy list result by the ID of the tenant to which the
     RBAC policy will be enforced.
   in: query
   required: false
+  type: string
+tas_id-query:
+  description: |
+    The ID of the Tap Service.
+  in: query
+  required: false
+  type: string
+tas_name-query:
+  description: |
+    The name of the Tap Service.
+  in: query
+  required: true
   type: string
 topic-query:
   description: |
@@ -1651,6 +1730,12 @@ verbose:
   in: query
   required: false
   type: boolean
+vlan-filter_taf-query:
+  description: |
+    VLAN Ids to be mirrored in the form of range string.
+  in: query
+  required: false
+  type: string
 vlan_transparent-query:
   description: |
     Filter the network list by the VLAN transparency mode of the network,
@@ -2730,6 +2815,18 @@ description_resource:
   in: body
   required: true
   type: string
+description_taf:
+  description: |
+    The description for this Tap Flow.
+  in: body
+  required: true
+  type: string
+description_tas:
+  description: |
+    The description for this Tap Service.
+  in: body
+  required: true
+  type: string
 destination_firewall_group_id-body-optional:
   description: |
     The ID of the remote destination firewall group.
@@ -2826,6 +2923,12 @@ direction:
   description: |
     Ingress or egress, which is the direction in
     which the security group rule is applied.
+  in: body
+  required: true
+  type: string
+direction_taf:
+  description: |
+    Direction of the Tap flow. Possible options are: IN, OUT, BOTH
   in: body
   required: true
   type: string
@@ -4645,6 +4748,12 @@ minimum_packet_rate_rules:
   in: body
   required: true
   type: array
+mirror_port_tas:
+  description: |
+    Port to which the Tap service is connected.
+  in: body
+  required: true
+  type: string
 mtu:
   description: |
     The maximum transmission unit (MTU) value to
@@ -6403,6 +6512,12 @@ source_port-response:
   in: body
   required: false
   type: string
+source_port_taf:
+  description: |
+    Source port to which the Tap Flow is connected.
+  in: body
+  required: true
+  type: string
 started_at:
   description: |
     Time at which the agent was started.
@@ -6425,6 +6540,18 @@ stateful_enabled:
 status_description:
   description: |
     Human-readable description of the status.
+  in: body
+  required: true
+  type: string
+status_taf:
+  description: |
+    Human-readable description of the status for tap flow.
+  in: body
+  required: true
+  type: string
+status_tas:
+  description: |
+    Human-readable description of the status for tap service.
   in: body
   required: true
   type: string
@@ -6698,15 +6825,45 @@ subnets-obj:
   in: body
   required: true
   type: array
+taf_id:
+  description: |
+    The id for the Tap Flow.
+  in: body
+  required: true
+  type: string
+taf_name:
+  description: |
+    The name for the Tap Flow.
+  in: body
+  required: true
+  type: string
 tags:
   description: |
     The list of tags on the resource.
   in: body
   required: true
   type: array
+tap_service_id:
+  description: |
+    Tap Service to which the Tap Flow belongs.
+  in: body
+  required: true
+  type: string
 target_tenant:
   description: |
     The ID of the tenant to which the RBAC policy will be enforced.
+  in: body
+  required: true
+  type: string
+tas_id:
+  description: |
+    Tha id for the Tap Service.
+  in: body
+  required: true
+  type: string
+tas_name:
+  description: |
+    Tha name for the Tap Flow.
   in: body
   required: true
   type: string
@@ -6830,6 +6987,12 @@ versions:
   in: body
   required: true
   type: array
+vlan-filter_taf:
+  description: |
+    VLAN Ids to be mirrored in the form of range string.
+  in: body
+  required: true
+  type: boolean
 vlan_transparent:
   description: |
     Indicates the VLAN transparency mode of the network, which is

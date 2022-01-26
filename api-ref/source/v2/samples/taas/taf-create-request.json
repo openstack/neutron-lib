@@ -1,0 +1,8 @@
+{
+    "tap_flow": {
+        "name": "tf1",
+        "source_port": "ee2911c3-08e7-44cb-81aa-fbee2cf43168",
+        "tap_service_id": "1b059120-078b-4f25-bb16-e14d69706a9a",
+        "direction": "BOTH"
+    }
+}

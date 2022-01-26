@@ -1,0 +1,11 @@
+{
+    "tap_services": [
+        {
+            "id": "257bcb47-5134-4ee9-b5cc-762d99ddae0b",
+            "tenant_id": "dad19b09dba44e589c022000d580e9d5",
+            "name": "tap_service-1",
+            "port_id": "a9855775-48ae-4609-8742-aa9d85db2e01",
+            "status": "ACTIVE"
+        }
+    ]
+}
