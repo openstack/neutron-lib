@@ -14,6 +14,8 @@
 
 import abc
 
+from neutron_lib.api.definitions import portbindings
+
 
 # The following keys are used in the segment dictionaries passed via
 # the driver API.
@@ -468,6 +470,16 @@ class MechanismDriver(object, metaclass=abc.ABCMeta):
                   mechanism driver
         """
         return extensions
+
+    @property
+    def connectivity(self):
+        """Return the mechanism driver connectivity type
+
+        The possible values are "l2", "l3" and "legacy" (default).
+
+        :returns: a string in ("l2", "l3", "legacy")
+        """
+        return portbindings.CONNECTIVITY_LEGACY
 
 
 class _TypeDriverBase(object, metaclass=abc.ABCMeta):
