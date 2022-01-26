@@ -196,6 +196,10 @@ KNOWN_EXTENSIONS = (
     # https://opendev.org/openstack/networking-sfc:
     'flow_classifier',
     'sfc',
+
+    # https://opendev.org/openstack/tap-as-a-service
+    'taas',
+    'taas-vlan-filter',
 )
 
 KNOWN_KEYWORDS = (

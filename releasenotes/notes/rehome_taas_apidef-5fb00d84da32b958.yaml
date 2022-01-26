@@ -1,0 +1,6 @@
+---
+features:
+  - The API definitions of ``tap-as-a-service``, ``taas`` and ``vlan_filter``,
+    are now available in ``neutron_lib.api.definitions``.
+    This includes ``tap_services``, ``tap_flows`` and ``vlan_filter``
+    extension to tap_flows.
