@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add ``connectivity`` property to ``MechanismDriver``. For more information,
+    see
+    [`Boot a VM with an unaddressed port <https://blueprints.launchpad.net/nova/+spec/boot-vm-with-unaddressed-port>`_].
