@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Added API definition for ``qos-rule-type-filter`` extension that adds two
+    new parameters to QoS rule type API: "all_supported" that is a flag to
+    filter all supported QoS rule types by at least one loaded mechanism
+    driver; "all_rules" that is a flag to filter all implemented QoS rule
+    types in the Neutron server.

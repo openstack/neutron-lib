@@ -147,6 +147,7 @@ KNOWN_EXTENSIONS = (
     'qos-port-network-policy',
     'qos-pps-minimum',
     'qos-pps-minimum-rule-alias',
+    'qos-rule-type-filter',
     'qos-rules-alias',
     'quotas',
     'quota-check-limit',

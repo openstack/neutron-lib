@@ -5532,6 +5532,20 @@ qos-rule-type:
   in: body
   required: true
   type: string
+qos-rule-type-all-rules:
+  description: |
+    Set to ``true`` to return all QoS rule types implemented in the Neutron
+    server.
+  in: body
+  required: false
+  type: boolean
+qos-rule-type-all-supported:
+  description: |
+    Set to ``true`` to return all QoS rule types supported by any loaded
+    driver.
+  in: body
+  required: false
+  type: boolean
 qos-rule-types:
   description: |
     A list of QoS ``rule_type`` objects.
