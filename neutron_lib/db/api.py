@@ -48,7 +48,10 @@ def _create_context_manager():
     global _CTX_MANAGER
     if _CTX_MANAGER is None:
         _CTX_MANAGER = enginefacade.transaction_context()
-        _CTX_MANAGER.configure(sqlite_fk=True, flush_on_subtransaction=True)
+        # TODO(stephenfin): Drop "__autocommit=False" when oslo.db changes its
+        # default (https://review.opendev.org/c/openstack/oslo.db/+/804775)
+        _CTX_MANAGER.configure(sqlite_fk=True, flush_on_subtransaction=True,
+                               __autocommit=False)
 
     return _CTX_MANAGER
 
@@ -171,9 +174,11 @@ def retry_db_errors(f):
     @_retry_db_errors
     @functools.wraps(f)
     def wrapped(*args, **kwargs):
+        context_reference = None
         try:
             # copy mutable args and kwargs to make retries safe. this doesn't
             # prevent mutations of complex objects like the context or 'self'
+            context_reference = kwargs.pop('_context_reference', None)
             dup_args = [_copy_if_lds(a) for a in args]
             dup_kwargs = {k: _copy_if_lds(v) for k, v in kwargs.items()}
             return f(*dup_args, **dup_kwargs)
@@ -181,6 +186,8 @@ def retry_db_errors(f):
             with excutils.save_and_reraise_exception():
                 if is_retriable(e):
                     LOG.debug("Retry wrapper got retriable exception: %s", e)
+                    if context_reference and context_reference.session:
+                        context_reference.session.rollback()
     return wrapped
 
 
@@ -213,9 +220,11 @@ def retry_if_session_inactive(context_var_name='context'):
             context = kwargs.get(context_var_name)
             if context is None:
                 context = args[ctx_arg_index]
-            method = (f if (context.session and context.session.is_active)
-                      else f_with_retry)
-            return method(*args, **kwargs)
+            if context.session and is_session_active(context.session):
+                return f(*args, **kwargs)
+            else:
+                return f_with_retry(*args, **kwargs,
+                                    _context_reference=context)
         return wrapped
     return decorator
 
@@ -454,3 +463,24 @@ def _expire_prop_on_col(cls, prop, colkey):
     def expire(target, value, oldvalue, initiator):
         """Expire relationships when FK attribute on an object changes"""
         _expire_for_fk_change(target, value, prop, colkey)
+
+
+def is_session_active(session):
+    """Return if the session is active
+
+    Since sqlalchemy 1.4, "autocommit=False" by default; in sqlalchemy 2.0,
+    that will be the only possible value. If session autocommit is False, the
+    session transaction will not end at the end of a reader/writer context.
+    In this case, a session could have an active transaction even when it is
+    not inside a reader/writer context. In order to mimic the previous
+    behaviour, this method checks the pending new, deleted and dirty elements
+    to be flushed.
+    """
+    if getattr(session, 'autocommit', None):
+        # old behaviour, to be removed with sqlalchemy 2.0
+        return session.is_active
+    if not session.transaction:
+        return False
+    if not (session.dirty or session.deleted or session.new):
+        return False
+    return True
