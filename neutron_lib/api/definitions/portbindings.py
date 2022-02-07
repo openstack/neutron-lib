@@ -127,11 +127,12 @@ VNIC_VHOST_VDPA = 'vdpa'
 #                (https://wiki.openstack.org/wiki/Cyborg).
 VNIC_ACCELERATOR_DIRECT = 'accelerator-direct'
 VNIC_ACCELERATOR_DIRECT_PHYSICAL = 'accelerator-direct-physical'
+VNIC_REMOTE_MANAGED = 'remote-managed'
 
 VNIC_TYPES = [VNIC_NORMAL, VNIC_DIRECT, VNIC_MACVTAP, VNIC_BAREMETAL,
               VNIC_DIRECT_PHYSICAL, VNIC_VIRTIO_FORWARDER, VNIC_SMARTNIC,
               VNIC_VHOST_VDPA, VNIC_ACCELERATOR_DIRECT,
-              VNIC_ACCELERATOR_DIRECT_PHYSICAL]
+              VNIC_ACCELERATOR_DIRECT_PHYSICAL, VNIC_REMOTE_MANAGED]
 
 # VIF_DETAILS_CONNECTIVITY: Indicates what kind of connectivity the network
 #                           back-end provides: L2, L3 or not specified.

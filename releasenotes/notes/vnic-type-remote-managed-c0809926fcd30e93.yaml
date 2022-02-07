@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add ``remote-managed`` VNIC type for ports such as off-path SmartNIC DPU
+    ports.
