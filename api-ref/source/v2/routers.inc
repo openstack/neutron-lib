@@ -143,6 +143,13 @@ BFD monitors for Extraroutes extension (``bfd-for-extraroutes``)
 BFD monitors for Extraroutes extension (``bfd-for-extraroutes``) adds
 ``bfd_monitor_id`` field to the extraroutes dictionary.
 
+Router enable ndp proxy extension (router-extend-ndp-proxy)
+===========================================================
+
+The ``router-extend-ndp-proxy`` extension adds a ``enable_ndp_proxy`` parameter
+to router. If this parameter is set as ``false``, the router don't support
+``ndp_proxy``.
+
 .. warning::
 
     This API extension was merged as experimental to enable parallel
@@ -221,6 +228,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
+   - enable_ndp_proxy: router-enable_ndp_proxy
 
 Response Example
 ----------------
@@ -266,6 +274,7 @@ Request
    - availability_zone_hints: router-availability_zone_hints-request
    - service_type_id: router-service_type_id-request
    - flavor_id: router-flavor_id-optional
+   - enable_ndp_proxy: router-enable_ndp_proxy-request
 
 Request Example
 ---------------
@@ -302,6 +311,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
+   - enable_ndp_proxy: router-enable_ndp_proxy
 
 Response Example
 ----------------
@@ -363,6 +373,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
+   - enable_ndp_proxy: router-enable_ndp_proxy
 
 Response Example
 ----------------
@@ -399,6 +410,7 @@ Request
    - description: description-request
    - routes: router-routes-request
    - distributed: router-distributed-request
+   - enable_ndp_proxy: router-enable_ndp_proxy-request
 
 Request Example
 ---------------
@@ -435,6 +447,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
+   - enable_ndp_proxy: router-enable_ndp_proxy
 
 Response Example
 ----------------

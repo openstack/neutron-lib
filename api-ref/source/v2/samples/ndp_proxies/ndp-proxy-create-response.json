@@ -1,0 +1,15 @@
+{
+  "ndp_proxy": {
+    "name": "ndp_proxy1",
+    "id": "b930d7f6-ceb7-40a0-8b81-a425dd994ccf",
+    "router_id": "1238be08-a2a8-4b8d-addf-fb5e2250e480",
+    "port_id": "6738be23-a398-445d-aaaf-785e4550e4cb",
+    "ip_address": "2001::1:6",
+    "revision_number": 0,
+    "project_id": "0bd18306d801447bb457a46252d82d13",
+    "tenant_id": "0bd18306d801447bb457a46252d82d13",
+    "created_at": "2021-07-16T19:17:04Z",
+    "updated_at": "2021-07-16T20:36:22Z",
+    "description": "Some description"
+  }
+}
