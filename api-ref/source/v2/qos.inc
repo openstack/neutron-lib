@@ -34,6 +34,14 @@ Normal response codes: 200
 
 Error response codes: 401
 
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - all_supported: qos-rule-type-all-supported
+   - all_rules: qos-rule-type-all-rules
+
 Response Parameters
 -------------------
 
