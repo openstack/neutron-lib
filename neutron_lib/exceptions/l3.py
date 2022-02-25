@@ -101,3 +101,9 @@ class IpTablesApplyException(exceptions.NeutronException):
 class BfdMonitorInUse(exceptions.InUse):
     message = _("Unable to complete operation on BFD monitor %(bfd_id)s. "
                 "There are one or more routes that still use the monitor.")
+
+
+class L3ExtensionException(exceptions.NeutronException):
+    message = _('The following L3 agent extensions do not inherit from '
+                '``neutron_lib.agent.l3_extension.L3AgentExtension``: '
+                '%(extensions)s.')
