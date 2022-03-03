@@ -391,6 +391,7 @@ def can_port_be_bound_to_virtual_bridge(port):
     """Returns if port can be bound to a virtual bridge (e.g.: LB, OVS)
 
     :param port: (dict) A port dictionary.
-    :returns: True if the port VNIC type is 'normal'; False in any other case.
+    :returns: True if the port VNIC type is 'normal' or 'smart-nic'; False in
+              any other case.
     """
-    return port[pb.VNIC_TYPE] == pb.VNIC_NORMAL
+    return port[pb.VNIC_TYPE] in [pb.VNIC_NORMAL, pb.VNIC_SMARTNIC]
