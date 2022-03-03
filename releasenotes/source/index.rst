@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   yoga
    xena
    wallaby
    victoria
