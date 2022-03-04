@@ -386,3 +386,7 @@ class RouterStatusEnumField(obj_fields.AutoTypedField):
 class NetworkSegmentRangeNetworkTypeEnumField(obj_fields.AutoTypedField):
     AUTO_TYPE = obj_fields.Enum(
         valid_values=lib_constants.NETWORK_SEGMENT_RANGE_TYPES)
+
+
+class NumaAffinityPoliciesEnumField(obj_fields.AutoTypedField):
+    AUTO_TYPE = obj_fields.Enum(valid_values=lib_constants.PORT_NUMA_POLICIES)

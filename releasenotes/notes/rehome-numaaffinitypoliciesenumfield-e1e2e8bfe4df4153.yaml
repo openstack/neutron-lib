@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    The class ``NumaAffinityPoliciesEnumField`` is now available in
+    ``neutron_lib.objects.common_types``.
