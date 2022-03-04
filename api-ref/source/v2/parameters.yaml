@@ -2657,6 +2657,11 @@ binding:profile-request:
     The networking API does not define a specific format of this field.
     The default is an empty dictionary.
     If you update it with null then it is treated like {} in the response.
+    Since the port-mac-address-override extension the ``device_mac_address``
+    field of the binding:profile can be used to provide the MAC address of the
+    physical device a direct-physical port is being bound to. If provided, then
+    the ``mac_address`` field of the port resource will be updated to the MAC
+    from the active binding.
   in: body
   required: false
   type: object
@@ -4554,7 +4559,9 @@ logs:
   type: array
 mac_address:
   description: |
-    The MAC address of the port.
+    The MAC address of the port. If the port uses the ``direct-physical``
+    ``vnic_type`` then the value of this field is overwritten with the MAC
+    address provided in the active binding:profile if any.
   in: body
   required: true
   type: string
