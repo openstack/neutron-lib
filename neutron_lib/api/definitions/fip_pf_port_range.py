@@ -27,14 +27,14 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
         'parameters': {
             EXTERNAL_PORT_RANGE: {
                 'allow_post': True, 'allow_put': True,
-                'validate': {'type:port_range': None},
+                'validate': {'type:port_range': [1, 65535]},
                 'is_visible': True,
                 'is_sort_key': True,
                 'is_filter': True,
                 'default': None},
             INTERNAL_PORT_RANGE: {
                 'allow_post': True, 'allow_put': True,
-                'validate': {'type:port_range': None},
+                'validate': {'type:port_range': [1, 65535]},
                 'is_visible': True,
                 'default': None},
             pfw.EXTERNAL_PORT: {
