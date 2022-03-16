@@ -1299,6 +1299,22 @@ class TestValidateIPSubnetNone(base.BaseTestCase):
 
 class TestPortRangeValidation(base.BaseTestCase):
 
+    def test_valid_port_specific_range(self):
+        result = validators.validate_port_range_or_none("4:5",
+                                                        [1, 65535])
+        self.assertIsNone(result)
+
+    def test_invalid_port_specific_range(self):
+        result = validators.validate_port_range_or_none("4:500000",
+                                                        [1, 65535])
+        self.assertEqual(u"Invalid port: 500000", result)
+
+    def test_invalid_port_for_specific_range(self):
+        result = validators.validate_port_range_or_none("0:10",
+                                                        [1, 65535])
+        self.assertEqual(u"Invalid port: 0, the port must be in"
+                         u" the range [1, 65535]", result)
+
     def test_valid_port(self):
         result = validators.validate_port_range_or_none("80")
         self.assertIsNone(result)

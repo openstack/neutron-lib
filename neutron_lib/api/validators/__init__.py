@@ -1038,13 +1038,17 @@ def validate_port_range_or_none(data, valid_values=None):
     """Validate data is a range of TCP/UDP port numbers
 
     :param data: The data to validate
-    :param valid_values: Not used!
-    :returns: None if data is an int between 0 and 65535, or two ints between 0
-        and 65535 with a colon between them, otherwise a human readable message
-        as to why data is invalid.
+    :param valid_values: valid port range, default is [0, 65535]
+    :returns: None if data is a valid port between the values defined in the
+        valid_values param, or two valid ports between the values defined in
+        the valid_values param with a colon between them, otherwise a human
+        readable message as to why data is invalid.
     """
     if data is None:
         return
+
+    min_value, max_value = valid_values or [0, 65535]
+
     data = str(data)
     ports = data.split(':')
     if len(ports) > 2:
@@ -1060,6 +1064,11 @@ def validate_port_range_or_none(data, valid_values=None):
             msg = _("Invalid port: %s") % p
             LOG.debug(msg)
             return msg
+        if max_value < int(p) or int(p) < min_value:
+            msg = "Invalid port: %s, the port must be in the range " \
+                  "[%s, %s]"
+            LOG.debug(msg, p, min_value, max_value)
+            return _(msg) % (p, min_value, max_value)
     if len(ports) > 1 and int(ports[0]) > int(ports[1]):
         msg = _("First port in a port range must be lower than the second "
                 "port")
