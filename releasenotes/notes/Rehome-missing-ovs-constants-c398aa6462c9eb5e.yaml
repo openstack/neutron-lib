@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Constants ``LOCAL_EGRESS_TABLE``, ``LOCAL_IP_TABLE`` and
+    ``PACKET_RATE_LIMIT`` are now available in
+    ``neutron_lib.plugins.ml2.ovs_constants``.
