@@ -25,4 +25,5 @@ FAULT_MAP = {
     exceptions.NotAuthorized: webob.exc.HTTPForbidden,
     netaddr.AddrFormatError: webob.exc.HTTPBadRequest,
     policy.PolicyNotAuthorized: webob.exc.HTTPForbidden,
+    policy.InvalidScope: webob.exc.HTTPForbidden,
 }
