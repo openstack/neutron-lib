@@ -16,9 +16,6 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import provider_net as providernet
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from oslo_log import log as logging
-
-LOG = logging.getLogger(__name__)
 
 # The name of the extension.
 NAME = 'Neutron Network Segment Range'

@@ -15,14 +15,10 @@
 import uuid
 
 import os_traits
-from oslo_log import log as logging
 
 from neutron_lib._i18n import _
 from neutron_lib import constants as const
 from neutron_lib.placement import constants as place_const
-
-
-LOG = logging.getLogger(__name__)
 
 
 def physnet_trait(physnet):
