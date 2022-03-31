@@ -36,6 +36,7 @@ Layer 3 Networking
 .. include:: subnetpool_prefix_ops.inc
 .. include:: subnets.inc
 .. include:: bfd_monitors.inc
+.. include:: local-ips.inc
 ########
 Security
 ########
