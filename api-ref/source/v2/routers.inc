@@ -143,13 +143,6 @@ BFD monitors for Extraroutes extension (``bfd-for-extraroutes``)
 BFD monitors for Extraroutes extension (``bfd-for-extraroutes``) adds
 ``bfd_monitor_id`` field to the extraroutes dictionary.
 
-Router enable ndp proxy extension (router-extend-ndp-proxy)
-===========================================================
-
-The ``router-extend-ndp-proxy`` extension adds a ``enable_ndp_proxy`` parameter
-to router. If this parameter is set as ``false``, the router don't support
-``ndp_proxy``.
-
 .. warning::
 
     This API extension was merged as experimental to enable parallel
@@ -157,6 +150,19 @@ to router. If this parameter is set as ``false``, the router don't support
     a reference implementation and should not be considered final. The
     removal of this warning will mark when the reference implementation
     gets merged and the feauture is ready to be consumed.
+
+Router enable ndp proxy extension (router-extend-ndp-proxy)
+===========================================================
+
+The ``router-extend-ndp-proxy`` extension adds a ``enable_ndp_proxy`` parameter
+to router. If this parameter is set as ``false``, the router don't support
+``ndp_proxy``.
+
+Router gateway IP QoS (qos-gateway-ip)
+======================================
+
+The ``qos-gateway-ip`` extension adds ``qos_policy_id`` to the
+``external_gateway_info`` field of routers.
 
 List routers
 ============
