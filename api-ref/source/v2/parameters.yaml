@@ -6188,12 +6188,6 @@ router-external_gateway_ports:
   in: body
   required: true
   type: string
-router-external_gateways:
-  description: |
-    The list of external gateways of the router.
-  in: body
-  required: true
-  type: array
 router-flavor_id:
   description: |
     The ID of the flavor associated with the router.
