@@ -623,7 +623,7 @@ def validate_hostroutes(data, valid_values=None):
     :param data: The data to validate. To be valid it must be a list like
         structure of host route dicts, each containing 'destination' and
         'nexthop' key values.
-    :param valid_values: A list of valid keys or None
+    :param valid_values: Not used!
     :returns: None if data is a valid list of unique host route dicts,
         otherwise a human readable message indicating why validation failed.
     """
@@ -632,11 +632,9 @@ def validate_hostroutes(data, valid_values=None):
         LOG.debug(msg, data)
         return _(msg) % data
 
+    expected_keys = ['destination', 'nexthop']
     hostroutes = []
     for hostroute in data:
-        expected_keys = ['destination', 'nexthop']
-        if hostroute and 'bfd_monitor_id' in hostroute:
-            expected_keys.append('bfd_monitor_id')
         msg = _verify_dict_keys(expected_keys, hostroute)
         if msg:
             return msg
@@ -650,10 +648,6 @@ def validate_hostroutes(data, valid_values=None):
             msg = "Duplicate hostroute '%s'"
             LOG.debug(msg, hostroute)
             return _(msg) % hostroute
-        if 'bfd_monitor_id' in hostroute:
-            msg = validate_uuid(hostroute['bfd_monitor_id'])
-            if msg:
-                return msg
         hostroutes.append(hostroute)
 
 

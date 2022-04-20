@@ -15,8 +15,6 @@ from neutron_lib import constants
 
 KNOWN_ATTRIBUTES = (
     'admin_state_up',
-    'auth_key',
-    'auth_type',
     'allocation_pools',
     'cidr',
     'default_prefixlen',
@@ -25,7 +23,6 @@ KNOWN_ATTRIBUTES = (
     'device_id',
     'device_owner',
     'dns_nameservers',
-    'dst_ip',
     'enable_dhcp',
     'enable_ndp_proxy',
     'external_gateways',
@@ -40,10 +37,6 @@ KNOWN_ATTRIBUTES = (
     'mac_address',
     'max_prefixlen',
     'min_prefixlen',
-    'min_rx',
-    'min_tx',
-    'mode',
-    'multiplier',
     'name',
     'network_id',
     'port_id',
@@ -53,12 +46,10 @@ KNOWN_ATTRIBUTES = (
     'qos_policy_id',
     'service_types',
     constants.SHARED,
-    'src_ip',
     'status',
     'subnets',
     'subnetpool_id',
-    'tenant_id',
-    'type'
+    'tenant_id'
 )
 
 KNOWN_RESOURCES = (
@@ -94,7 +85,6 @@ KNOWN_EXTENSIONS = (
     'allowed-address-pairs',
     'auto-allocated-topology',
     'availability_zone',
-    'bfd-monitor',
     'binding',
     'data-plane-status',
     'project-default-networks',
