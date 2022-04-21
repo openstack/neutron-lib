@@ -135,6 +135,7 @@ KNOWN_EXTENSIONS = (
     'network-segment-range',
     'network_availability_zone',
     'pagination',
+    'port-mac-address-override',
     'port-resource-request',
     'port-security',
     'project-id',

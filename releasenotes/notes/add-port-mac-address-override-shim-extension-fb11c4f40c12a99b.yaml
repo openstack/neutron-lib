@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add API extension ``port-mac-address-override``. This is a shim extension
+    that indicates if Neutron supports overriding the direct-phyiscal port MAC
+    via the active binding profile.
