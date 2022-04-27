@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    The neutron ovs_lib related constantswhich represents used
+    OpenFlow registries are now available in the
+    ``neutron_lib.agent.common.constants`` module.
+    The helper function ``create_reg_numbers`` is now available in the
+    ``neutron_lib.agent.common.utils`` module.
