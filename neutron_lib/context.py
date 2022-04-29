@@ -124,7 +124,7 @@ class ContextBase(oslo_context.RequestContext):
         if 'admin' not in [x.lower() for x in context.roles]:
             context.roles = context.roles + ["admin"]
 
-        if cfg.CONF.oslo_policy.enforce_new_defaults:
+        if cfg.CONF.oslo_policy.enforce_scope:
             context.system_scope = 'all'
 
         return context
