@@ -1,0 +1,13 @@
+---
+features:
+  - |
+    To guarantee the correct transition to SQLAlchemy 2.0, Neutron and
+    neutron-lib set the SQL engine connection ``autocommit`` parameter to
+    "False". Since SQLAlchemy 1.4, this parameter will default to "False";
+    in SQLAlchemy 2.0, this will be the only value.
+    If session ``autocommit`` is "False", the session transaction will not
+    end at the end of a reader/writer context. In this case, a session could
+    have an active transaction even when it is not inside a reader/writer
+    context. In order to mimic the previous behaviour, this method checks
+    the pending new, deleted and dirty elements to be flushed. In case of
+    not having any pending command, the session is considered as non active.
