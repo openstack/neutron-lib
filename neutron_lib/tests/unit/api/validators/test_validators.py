@@ -595,14 +595,6 @@ class TestAttributeValidation(base.BaseTestCase):
                              'destination': '100.0.0.0/8'},
                             {'nexthop': '10.0.2.20',
                              'destination': '100.0.0.0/8'}],
-                           [{'nexthop': '10.0.2.20',
-                             'destination': '101.0.0.0/8',
-                             'bfd_monitor_id':
-                                 'uuid'}],
-                           [{'nexthop': '10.0.2.20',
-                             'destination': '101.0.0.0/8',
-                             'bfd_monitor_id':
-                                 None}],
                            [None],
                            None]
         for host_routes in hostroute_pools:
@@ -614,20 +606,7 @@ class TestAttributeValidation(base.BaseTestCase):
                            [{'nexthop': '10.0.2.20',
                              'destination': '100.0.0.0/8'},
                             {'nexthop': '10.0.2.20',
-                             'destination': '101.0.0.0/8'}],
-                           [{'nexthop': '10.0.2.20',
-                             'destination': '100.0.0.0/24'},
-                            {'nexthop': '10.0.2.20',
-                             'destination': '101.0.0.0/8',
-                             'bfd_monitor_id':
-                                 '469e4b94-f607-11eb-a9a2-038e2b6c9f81'}],
-                           [{'nexthop': '10.0.2.20',
-                             'destination': '101.0.0.0/8',
-                             'bfd_monitor_id':
-                                 '469e4b94-f607-11eb-a9a2-038e2b6c9f81'},
-                            {'nexthop': '10.0.2.20',
-                             'destination': '100.0.0.0/24'}]
-                           ]
+                             'destination': '101.0.0.0/8'}]]
         for host_routes in hostroute_pools:
             msg = validators.validate_hostroutes(host_routes, None)
             self.assertIsNone(msg)
