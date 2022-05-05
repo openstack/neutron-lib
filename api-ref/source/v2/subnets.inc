@@ -215,6 +215,14 @@ subnets must be associated with segments or none of them can be.
 Neutron enforces this invariant. Currently, routed networks are
 only supported for provider networks.
 
+.. note::
+
+   Creating a subnet does not always result in an automatic port update
+   for the ports which are already bound on the network.
+
+   For details see:
+   https://docs.openstack.org/neutron/latest/admin/config-ipv6.html#address-modes-for-ports
+
 Normal response codes: 201
 
 Error response codes: 400, 401, 403, 404, 409
