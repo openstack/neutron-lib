@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add API extension ``fip-pf-detail``. This extension indicates the list
+    floating ip api will return port forwarding's ``id`` and
+    ``internal_port_id``.
