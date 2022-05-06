@@ -128,7 +128,8 @@ class ExtensionDescriptor(object, metaclass=abc.ABCMeta):
         """
         return []
 
-    def update_attributes_map(self, extended_attributes,
+    @classmethod
+    def update_attributes_map(cls, extended_attributes,
                               extension_attrs_map=None):
         """Update attributes map for this extension.
 
@@ -263,5 +264,5 @@ class APIExtensionDescriptor(ExtensionDescriptor):
         """
         if extension_attrs_map is None:
             extension_attrs_map = cls.get_extended_resources('2.0')
-        super(APIExtensionDescriptor, cls).update_attributes_map(
-            cls, extended_attributes, extension_attrs_map=extension_attrs_map)
+        super().update_attributes_map(
+            extended_attributes, extension_attrs_map=extension_attrs_map)
