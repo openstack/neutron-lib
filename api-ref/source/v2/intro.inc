@@ -160,7 +160,7 @@ that have ``device_id`` attribute with empty value (which are unbound ports).
 
 .. code::
 
-    GET /v2.0/networks?device_id=
+    GET /v2.0/ports?device_id=
 
 To determine if this feature is supported, a user can check whether the
 ``empty-string-filtering`` extension API is available.
