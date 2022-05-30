@@ -178,7 +178,7 @@ def model_query_scope_is_project(context, model):
     # TODO(slaweq): Remove that old is_admin check and always check scopes
     # when old, deprecated rules will be removed and only rules with new
     # personas will be supported
-    if cfg.CONF.oslo_policy.enforce_new_defaults:
+    if cfg.CONF.oslo_policy.enforce_scope:
         # Unless a context is a system_scope token, query should be scoped to a
         # single project_id
         return context.system_scope != 'all'

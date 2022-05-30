@@ -151,8 +151,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertTrue(elevated2_ctx.is_admin)
 
     def test_neutron_context_elevated_system_scope_for_new_policies(self):
-        cfg.CONF.set_override(
-            'enforce_new_defaults', True, group='oslo_policy')
+        cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
         ctx = context.Context('user_id', 'tenant_id')
         self.assertFalse(ctx.is_admin)
         self.assertNotEqual('all', ctx.system_scope)
