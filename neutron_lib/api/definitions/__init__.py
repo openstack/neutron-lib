@@ -21,7 +21,6 @@ from neutron_lib.api.definitions import availability_zone
 from neutron_lib.api.definitions import availability_zone_filter
 from neutron_lib.api.definitions import bgp
 from neutron_lib.api.definitions import bgp_4byte_asn
-from neutron_lib.api.definitions import bgp_associations
 from neutron_lib.api.definitions import bgp_dragentscheduler
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.api.definitions import bgpvpn_routes_control
@@ -162,7 +161,6 @@ _ALL_API_DEFINITIONS = {
     availability_zone_filter,
     bgp,
     bgp_4byte_asn,
-    bgp_associations,
     bgp_dragentscheduler,
     bgpvpn,
     bgpvpn_routes_control,
