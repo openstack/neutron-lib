@@ -15,14 +15,6 @@ external network is best for being used as a gateway network.
 The association builds a list of all virtual routers with gateways on provider
 and self-service networks within the same address scope.
 
-BGP associations extension
-==========================
-
-The ``bgp_associations`` extension enables addition of router, peer association
-resources as sub-resources to the existing ``bgp-speakers`` resource. New
-action ``get_routes`` is also added that will list both learnt as well as
-advertised routes by the bgp speaker.
-
 List BGP Speakers
 =================
 
@@ -215,7 +207,7 @@ There is no body content for the response of a successful DELETE request.
 Add BGP Peer to a BGP Speaker
 =============================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/add-bgp-peer
+.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/add-bgp-peer
 
 Bind the BGP peer to the specified BGP Speaker.
 
@@ -251,7 +243,7 @@ Response Example
 Remove BGP Peer from a BGP Speaker
 ==================================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/remove-bgp-peer
+.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/remove-bgp-peer
 
 Unbind the BGP peer from a BGP Speaker.
 
@@ -279,7 +271,7 @@ There is no body content for the response of a successful DELETE request.
 Add Network to a BGP Speaker
 ============================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/add_gateway_network
+.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/add_gateway_network
 
 Add a network to the specified BGP speaker.
 
@@ -316,360 +308,16 @@ Response Example
 Delete Network from a BGP Speaker
 =================================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/remove_gateway_network
+.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/remove_gateway_network
 
 Remove a network from the specified BGP speaker.
 
 Normal response codes: 200
 
-List Router associations for a given BGP speaker
-================================================
-
-.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/router_associations
-
-List all the associated routers for a given BGP speaker
-
-Normal response codes: 200
-
-Error response codes: 400, 401, 403
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - router_associations: bgp_speaker_router_associations-body
-   - id: bgp_speaker_router_association_id-body
-   - router_id: bgp_speaker-router_id-body
-   - project_id: project_id
-   - advertise_extra_routes: bgp_speaker_advertise_extra_routes-body
-   - status: bgp_speaker_association_status
-
-Response Example
-----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_list_all_router_associations-response.json
-   :language: javascript
-
-Show details for a BGP speaker Router Association
-=================================================
-
-.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/router_associations/{router-association-id}
-
-Normal response codes: 200
-
-Error response codes: 401, 404
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-   - router-association-id: bgp_speaker_router_association_id-path
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - id: bgp_speaker_router_association_id-body
-   - router_id: bgp_speaker-router_id-body
-   - project_id: project_id
-   - advertise_extra_routes: bgp_speaker_advertise_extra_routes-body
-   - status: bgp_speaker_association_status
-
-Response Example
-
-.. literalinclude:: samples/bgp/bgp_speaker_show_router_association-response.json
-   :language: javascript
-
-Create BGP Speaker Router Association
-=====================================
-
-.. rest_method:: POST /v2.0/bgp-speakers/{bgp-speaker-id}/router_associations
-
-Add a router to the specified BGP speaker.
-
-Normal response codes: 200
-
-Error response codes: 401, 403, 404, 409
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-   - router_id: bgp_speaker-router_id-body
-   - advertise_extra_routes: bgp_speaker_advertise_extra_routes-body
-
-Request Example
----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_create_router_association-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - id: bgp_speaker_router_association_id-body
-   - router_id: bgp_speaker-router_id-body
-   - project_id: project_id
-   - advertise_extra_routes: bgp_speaker_advertise_extra_routes-body
-   - status: bgp_speaker_association_status
-
-Response Example
-----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_create_router_association-response.json
-   :language: javascript
-
-Update BGP Speaker Router Association
-=====================================
-
-.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/router_associations/{router-association-uuid}
-
-Update router associated to the specified BGP speaker.
-
-Normal response codes: 200
-
-Error response codes: 400, 401, 404, 412
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-   - router-association-uuid: bgp_speaker_router_association_id-path
-   - advertise_extra_routes: bgp_speaker_advertise_extra_routes-body
-
-Request Example
----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_update_router_association-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - id: bgp_speaker_router_association_id-body
-   - router_id: bgp_speaker-router_id-body
-   - project_id: project_id
-   - advertise_extra_routes: bgp_speaker_advertise_extra_routes-body
-   - status: bgp_speaker_association_status
-
-Response Example
-----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_update_router_association-response.json
-   :language: javascript
-
-Delete BGP Speaker Router Association
-=====================================
-
-.. rest_method:: DELETE /v2.0/bgp-speakers/{bgp-speaker-id}/router_associations/{router-association-uuid}
-
-Remove a router from the specified BGP speaker.
-
-Normal response codes: 200
-
-Error response codes: 400, 401, 404, 412
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-   - router-association-uuid: bgp_speaker_router_association_id-path
-
-Response
---------
-
-There is no body content for the response of a successful DELETE request.
-
-List Peer associations for a given BGP speaker
-==============================================
-
-.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/peer_associations
-
-List all the peer associations for a given BGP speaker.
-
-Normal response codes: 200
-
-Error response codes: 400, 401, 403
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - peer_associations: bgp_speaker_peer_associations-body
-   - id: bgp_speaker_peer_association_id-body
-   - project_id: project_id
-   - bgp_peer_id: bgp_speaker_peer_id-body
-   - status: bgp_speaker_association_status
-
-Response Example
-----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_list_all_peer_associations-response.json
-   :language: javascript
-
-Show details for a BGP speaker Peer Association
-===============================================
-
-.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/peer_associations/{peer-association-id}
-
-Normal response codes: 200
-
-Error response codes: 401, 404
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-   - peer-association-id: bgp_speaker_peer_association_id-path
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - id: bgp_speaker_peer_association_id-body
-   - project_id: project_id
-   - bgp_peer_id: bgp_speaker_peer_id-body
-   - status: bgp_speaker_association_status
-
-Response Example
-----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_show_peer_association-response.json
-   :language: javascript
-
-Create BGP speaker Peer Association
-===================================
-
-.. rest_method:: POST /v2.0/bgp-speakers/{bgp-speaker-id}/peer_associations
-
-Add a peer association to the specified BGP speaker. This operation is
-currently planned to be supported only for router-associated BGP speakers and
-will not be supported for network-associated BGP speakers.
-
-Normal response codes: 200
-
-Error response codes: 401, 403, 404, 409
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-   - bgp_peer_id: bgp_speaker_peer_id-body
-
-Request Example
----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_create_peer_association-request.json
-   :language: javascript
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-   - id: bgp_speaker_peer_association_id-body
-   - project_id: project_id
-   - bgp_peer_id: bgp_speaker_peer_id-body
-   - status: bgp_speaker_association_status
-
-Response Example
-----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_create_peer_association-response.json
-   :language: javascript
-
-Delete BGP speaker Peer Association
-===================================
-
-.. rest_method:: DELETE /v2.0/bgp-speakers/{bgp-speaker-id}/peer_associations/{peer-association-uuid}
-
-Remove a peer association from the specified BGP speaker. This operation is
-currently planned to be supported only for router-associated BGP speakers and
-will not be supported for network-associated BGP speakers.
-
-Normal response codes: 200
-
-Error response codes: 400, 401, 404, 412
-
-Request
--------
-
-.. rest_parameters:: parameters.yaml
-
-   - bgp-speaker-id: bgp_speaker_id-path
-   - peer-association-uuid: bgp_speaker_peer_association_id-path
-
-Response
---------
-
-There is no body content for the response of a successful DELETE request.
-
-List learnt and advertised routes advertised by a BGP Speaker
-=============================================================
-
-.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/get_routes
-
-List all routes which includes learnt routes and routes advertised by the
-specified BGP Speaker.
-
-Normal response codes: 200
-
-Error response codes: 401, 404
-
-Response Parameters
--------------------
-
-.. rest_parameters:: parameters.yaml
-
-    - routes: bgp_speaker_routes-body
-    - cidr: bgp_speaker_cidr-body
-    - nexthop: bgp_speaker_nexthop-body
-    - route_type: bgp_speaker_route_type-body
-
-Response Example
-----------------
-
-.. literalinclude:: samples/bgp/bgp_speaker_list_all_routes-response.json
-   :language: javascript
-
 List routes advertised by a BGP Speaker
 =======================================
 
-.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/get_advertised_routes
+.. rest_method:: GET /v2.0/bgp-speakers/<bgp-speaker-id>/get_advertised_routes
 
 List all routes advertised by the specified BGP Speaker.
 
@@ -693,7 +341,7 @@ Response Example
 List Dynamic Routing Agents hosting a specific BGP Speaker
 ==========================================================
 
-.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/bgp-dragents
+.. rest_method:: GET /v2.0/bgp-speakers/<bgp-speaker-id>/bgp-dragents
 
 List all BGP dynamic agents which are hosting the specified BGP Speaker.
 
