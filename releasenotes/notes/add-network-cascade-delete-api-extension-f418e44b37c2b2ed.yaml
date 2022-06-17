@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    Add API extension ``network-cascade-delete`` that allows users
+    to automatically delete all associated ports when
+    deleting networks.

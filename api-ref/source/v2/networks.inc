@@ -92,6 +92,13 @@ The ``network_availability_zone`` extension provides support of availability
 zone for networks, exposing ``availability_zone_hints``
 and ``availability_zones`` attributes.
 
+Network cascade delete extension
+================================
+
+The ``network-cascade-delete`` shim extension adds to networks the optional
+boolean attribute, ``cascade``, that when defined as ``true``, removes all
+child objects of a network upon its deletion.
+
 Port security
 =============
 

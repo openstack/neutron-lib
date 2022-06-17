@@ -74,6 +74,7 @@ from neutron_lib.api.definitions import metering_source_and_destination_filters
 from neutron_lib.api.definitions import multiprovidernet
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import network_availability_zone
+from neutron_lib.api.definitions import network_cascade_delete
 from neutron_lib.api.definitions import network_ip_availability
 from neutron_lib.api.definitions import network_mtu
 from neutron_lib.api.definitions import network_mtu_writable
@@ -214,6 +215,7 @@ _ALL_API_DEFINITIONS = {
     multiprovidernet,
     network,
     network_availability_zone,
+    network_cascade_delete,
     network_ip_availability,
     network_mtu,
     network_mtu_writable,
