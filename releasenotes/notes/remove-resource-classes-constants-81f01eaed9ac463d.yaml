@@ -1,0 +1,6 @@
+---
+other:
+  - |
+    From '799676 change <https://review.opendev.org/c/openstack/neutron/+/799676/`>_
+    neutron uses os-resource-classes lib constants. Neutron-lib copy constants
+    ``CLASS_NET_BW_EGRESS_KBPS`` and ``CLASS_NET_BW_INGRESS_KBPS`` are removed
