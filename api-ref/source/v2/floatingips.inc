@@ -24,6 +24,12 @@ The ``expose-port-forwarding-in-fip`` extension adds the ``port_forwardings``
 attribute to floating IPs. The value of this attribute contains the
 information of associated port forwarding resources.
 
+Floating IP port forwardings detail
+===================================
+
+The ``floating-ip-port-forwarding-detail`` extension adds the ``id`` and
+``internal_port_id`` attribute to port_forwardings.
+
 QoS extension
 =============
 

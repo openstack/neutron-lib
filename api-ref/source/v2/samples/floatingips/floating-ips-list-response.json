@@ -75,13 +75,17 @@
                     "protocol": "tcp",
                     "internal_ip_address": "10.0.0.19",
                     "internal_port": 25,
-                    "external_port": 2225
+                    "internal_port_id": "2057ec54-8be2-11eb-8dcd-0242ac130003",
+                    "external_port": 2225,
+                    "id": "0f23a90a-8be2-11eb-8dcd-0242ac130003"
                 },
                 {
                     "protocol": "tcp",
                     "internal_ip_address": "10.0.0.18",
                     "internal_port": 16666,
-                    "external_port": 8786
+                    "internal_port_id": "1238be08-a2a8-4b8d-addf-fb5e2250e480",
+                    "external_port": 8786,
+                    "id": "e0a0274e-4d19-4eab-9e12-9e77a8caf3ea"
                 }
             ],
             "qos_network_policy_id": "174dd0c1-a4eb-49d4-a807-ae80246d82f4",
