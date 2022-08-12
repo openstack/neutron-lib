@@ -88,10 +88,16 @@ Response Parameters
    - type: qos-rule-type
    - drivers: qos-backend-drivers
 
-Response Example
-----------------
+Response Example (type "bandwidth_limit")
+-----------------------------------------
 
-.. literalinclude:: samples/qos/rule_type-details-response.json
+.. literalinclude:: samples/qos/rule_type-details-bandwidth_limit-response.json
+   :language: javascript
+
+Response Example (type "dscp_marking")
+--------------------------------------
+
+.. literalinclude:: samples/qos/rule_type-details-dscp_marking-response.json
    :language: javascript
 
 ==================

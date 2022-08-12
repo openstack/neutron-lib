@@ -357,7 +357,7 @@ DNS_LABEL_REGEX = "^([a-z0-9-]{1,%d}|%s)$" % (
 PORT_MAX = 2**16 - 1
 
 VALID_DSCP_MARKS = [0, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34,
-                    36, 38, 40, 46, 48, 56]
+                    36, 38, 40, 44, 46, 48, 56]
 
 INGRESS_DIRECTION = 'ingress'
 EGRESS_DIRECTION = 'egress'

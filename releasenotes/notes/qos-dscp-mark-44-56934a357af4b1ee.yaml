@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Added a new DSCP mark value: 44. This new mark value was included
+    recently in the `RFC5865 <https://www.rfc-editor.org/rfc/rfc5865.html>`_.
