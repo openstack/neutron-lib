@@ -3072,6 +3072,20 @@ extra_dhcp_opts-request:
   in: body
   required: false
   type: array
+fip-distributed:
+  description: |
+    ``true`` indicates a distributed floatingip.
+    It is available when ``floating-ip-distributed`` extension is enabled.
+  in: body
+  required: true
+  type: boolean
+fip-distributed-request:
+  description: |
+    ``true`` indicates a distributed floatingip.
+    It is available when ``floating-ip-distributed`` extension is enabled.
+  in: body
+  required: false
+  type: boolean
 fip_port_forwarding:
   description: |
     A ``floating IP port forwarding`` object.

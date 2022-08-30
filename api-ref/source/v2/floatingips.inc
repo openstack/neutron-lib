@@ -10,6 +10,13 @@ attributes to floating IPs allowing them to be specified at creation time.
 The data in these attributes will be published in an external DNS service
 when Neutron is configured to integrate with such a service.
 
+Floating IP distributed
+========================
+
+The ``floating-ip-distributed`` extension adds the ``distributed`` attribute
+to the floating IPs. The value of this attribute identify the Floating IP is
+distributed or centralized.
+
 Floating IP port details
 ========================
 
@@ -97,6 +104,7 @@ Request
    - project_id: project_id-query
    - revision_number: revision_number-query
    - description: description-query
+   - distributed: fip-distributed-request
    - floating_network_id: floating_network_id-query
    - fixed_ip_address: floatingip-fixed_ip_address-query
    - floating_ip_address: floating_ip_address-query
@@ -124,6 +132,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - revision_number: revision_number
    - description: description
+   - distributed: fip-distributed
    - dns_domain: dns_domain
    - dns_name: dns_name
    - port_details: floating_port_details
@@ -216,6 +225,7 @@ Request
    - floating_ip_address: floating_ip_address-request
    - port_id: floatingip-port_id-post-request
    - subnet_id: floatingip-subnet_id
+   - distributed: fip-distributed-request
    - description: description-request
    - dns_domain: dns_domain-request
    - dns_name: dns_name-request
@@ -236,6 +246,7 @@ Response Parameters
    - router_id: floatingip-router_id
    - status: floatingip-status
    - description: description
+   - distributed: fip-distributed
    - dns_domain: dns_domain
    - dns_name: dns_name
    - port_details: floating_port_details
@@ -304,6 +315,7 @@ Response Parameters
    - router_id: floatingip-router_id
    - status: floatingip-status
    - description: description
+   - distributed: fip-distributed
    - dns_domain: dns_domain
    - dns_name: dns_name
    - port_details: floating_port_details
@@ -364,6 +376,7 @@ Request
    - port_id: floatingip-port_id-put-request
    - fixed_ip_address: floatingip-fixed_ip_address-request
    - description: description-request
+   - distributed: fip-distributed-request
 
 Request Example
 ---------------
@@ -396,6 +409,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - revision_number: revision_number
    - description: description
+   - distributed: fip-distributed
    - dns_domain: dns_domain
    - dns_name: dns_name
    - port_details: floating_port_details

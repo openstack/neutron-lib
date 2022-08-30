@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add API extension ``floating-ip-distributed``. This extension
+    adds ``distributed`` attribute to the Floating IP resource.
