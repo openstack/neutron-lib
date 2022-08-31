@@ -94,7 +94,6 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertEqual('tenant_id', ctx_dict['project_id'])
         self.assertEqual(ctx.request_id, ctx_dict['request_id'])
         self.assertEqual('user_id', ctx_dict['user'])
-        self.assertEqual('tenant_id', ctx_dict['tenant'])
         self.assertIsNone(ctx_dict['user_name'])
         self.assertIsNone(ctx_dict['tenant_name'])
         self.assertIsNone(ctx_dict['project_name'])
