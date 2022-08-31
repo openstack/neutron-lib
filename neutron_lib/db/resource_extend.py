@@ -126,6 +126,7 @@ def has_resource_extenders(klass):
             super_new = super(klass, cls).__new__
             if super_new is object.__new__:
                 # object.__new__ doesn't accept args nor kwargs
+                # pylint: disable=no-value-for-parameter
                 instance = super_new(cls)
             else:
                 instance = super_new(cls, *args, **kwargs)
