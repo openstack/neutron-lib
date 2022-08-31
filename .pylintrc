@@ -24,57 +24,44 @@ disable=
  abstract-method,
  arguments-differ,
  attribute-defined-outside-init,
- bad-builtin,
  bad-indentation,
  broad-except,
  dangerous-default-value,
- deprecated-lambda,
  expression-not-assigned,
  fixme,
  global-statement,
  keyword-arg-before-vararg,
  literal-comparison,
- no-init,
  non-parent-init-called,
  not-callable,
  protected-access,
  redefined-builtin,
  redefined-outer-name,
  signature-differs,
- star-args,
  super-init-not-called,
- super-on-old-class,
  unpacking-non-sequence,
  unused-argument,
  unused-import,
  unused-variable,
  useless-super-delegation,
  using-constant-test,
-# TODO(dougwig) - disable nonstandard-exception while we have neutron_lib shims
- nonstandard-exception,
 # "C" Coding convention violations
- bad-continuation,
  consider-iterating-dictionary,
  consider-using-enumerate,
  consider-using-f-string,
  invalid-name,
  len-as-condition,
- misplaced-comparison-constant,
  missing-docstring,
  singleton-comparison,
  superfluous-parens,
  ungrouped-imports,
  wrong-import-order,
 # "R" Refactor recommendations
- abstract-class-little-used,
- abstract-class-not-used,
  consider-merging-isinstance,
  consider-using-ternary,
  duplicate-code,
  inconsistent-return-statements,
- interface-not-implemented,
  no-else-return,
- no-self-use,
  redefined-argument-from-local,
  simplifiable-if-statement,
  too-few-public-methods,
@@ -119,10 +106,6 @@ max-line-length=79
 # you should avoid to define new builtins when possible.
 # _ is used by our localization
 additional-builtins=_
-
-[CLASSES]
-# List of interface methods to ignore, separated by a comma.
-ignore-iface-methods=
 
 [IMPORTS]
 # Deprecated modules which should not be used, separated by a comma
