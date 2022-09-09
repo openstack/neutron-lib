@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   zed
    yoga
    xena
    wallaby
