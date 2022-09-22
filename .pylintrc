@@ -111,11 +111,12 @@ additional-builtins=_
 # Deprecated modules which should not be used, separated by a comma
 deprecated-modules=
 # should use oslo_serialization.jsonutils
- json
+ json,
+ six
 
 [TYPECHECK]
 # List of module names for which member attributes should not be checked
-ignored-modules=six.moves,_MovedItems
+ignored-modules=_MovedItems
 
 [REPORTS]
 # Tells whether to display a full report or only the messages
