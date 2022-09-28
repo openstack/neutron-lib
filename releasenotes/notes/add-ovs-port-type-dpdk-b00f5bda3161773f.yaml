@@ -1,0 +1,6 @@
+---
+features:
+  - A OVS port type ``OVS_DPDK``) has been added.
+    OVS_DPDK_PORT_TYPES was extended with new OVS port type.
+
+

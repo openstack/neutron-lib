@@ -214,8 +214,12 @@ OVS_DATAPATH_SYSTEM = 'system'
 OVS_DATAPATH_NETDEV = 'netdev'
 OVS_DPDK_VHOST_USER = 'dpdkvhostuser'
 OVS_DPDK_VHOST_USER_CLIENT = 'dpdkvhostuserclient'
+OVS_DPDK = 'dpdk'
 
-OVS_DPDK_PORT_TYPES = [OVS_DPDK_VHOST_USER, OVS_DPDK_VHOST_USER_CLIENT]
+OVS_DPDK_PORT_TYPES = [OVS_DPDK_VHOST_USER,
+                       OVS_DPDK_VHOST_USER_CLIENT,
+                       OVS_DPDK,
+                       ]
 
 # default ovs vhost-user socket location
 VHOST_USER_SOCKET_DIR = '/var/run/openvswitch'
