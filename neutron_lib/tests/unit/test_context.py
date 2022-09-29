@@ -87,6 +87,27 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertEqual(owner['user_id'], ctx.user_id)
         self.assertEqual(owner['tenant_id'], ctx.tenant_id)
 
+    def test_neutron_context_from_dict_validate(self):
+        ctx = context.Context(user_id='user_id1',
+                              user_name='user',
+                              tenant_id='tenant_id1',
+                              tenant_name='project1',
+                              request_id='request_id1',
+                              auth_token='auth_token1')
+        values = {'user_id': 'user_id1',
+                  'user_name': 'user',
+                  'tenant_id': 'tenant_id1',
+                  'tenant_name': 'project1',
+                  'request_id': 'request_id1',
+                  'auth_token': 'auth_token1'}
+        ctx2 = context.Context.from_dict(values)
+
+        ctx_dict = ctx.to_dict()
+        ctx_dict.pop('timestamp')
+        ctx2_dict = ctx2.to_dict()
+        ctx2_dict.pop('timestamp')
+        self.assertEqual(ctx_dict, ctx2_dict)
+
     def test_neutron_context_to_dict(self):
         ctx = context.Context('user_id', 'tenant_id')
         ctx_dict = ctx.to_dict()
@@ -94,7 +115,6 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertEqual('tenant_id', ctx_dict['project_id'])
         self.assertEqual(ctx.request_id, ctx_dict['request_id'])
         self.assertEqual('user_id', ctx_dict['user'])
-        self.assertEqual('tenant_id', ctx_dict['tenant'])
         self.assertIsNone(ctx_dict['user_name'])
         self.assertIsNone(ctx_dict['tenant_name'])
         self.assertIsNone(ctx_dict['project_name'])

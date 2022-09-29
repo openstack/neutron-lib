@@ -106,15 +106,13 @@ class ContextBase(oslo_context.RequestContext):
 
     @classmethod
     def from_dict(cls, values):
-        return cls(user_id=values.get('user_id', values.get('user')),
-                   tenant_id=values.get('tenant_id', values.get('project_id')),
-                   is_admin=values.get('is_admin'),
-                   roles=values.get('roles'),
-                   timestamp=values.get('timestamp'),
-                   request_id=values.get('request_id'),
-                   tenant_name=values.get('tenant_name'),
-                   user_name=values.get('user_name'),
-                   auth_token=values.get('auth_token'))
+        cls_obj = super().from_dict(values)
+        if values.get('timestamp'):
+            cls_obj.timestamp = values['timestamp']
+        cls_obj.user_id = values.get('user_id', values.get('user'))
+        cls_obj.tenant_id = values.get('tenant_id', values.get('project_id'))
+        cls_obj.tenant_name = values.get('tenant_name')
+        return cls_obj
 
     def elevated(self):
         """Return a version of this context with admin flag set."""
