@@ -69,6 +69,13 @@ A newer ``net-mtu-writable`` extension enhances ``net-mtu`` in that now the
 ``mtu`` attribute is available for write (both when creating as well as
 updating networks).
 
+.. warning::
+
+   Due to limitations in libvirt and QEMU, updating the ``mtu`` value for an
+   existing network with instances plugged into it requires either a hard
+   reboot of those instances, or a detach and re-attach of their ports from
+   that network.
+
 Multiple provider extension
 ===========================
 
