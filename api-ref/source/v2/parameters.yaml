@@ -5332,6 +5332,8 @@ provider:segmentation_id:
     The ``network_type`` attribute defines the segmentation model.
     For example, if the ``network_type`` value is vlan, this ID is a vlan
     identifier. If the ``network_type`` value is gre, this ID is a gre key.
+    ``Note`` that only the segmentation-id of VLAN type networks can be
+    changed!
   in: body
   required: true
   type: integer
