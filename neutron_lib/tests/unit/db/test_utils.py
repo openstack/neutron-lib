@@ -40,7 +40,11 @@ class FakeRouter(declarative.declarative_base(cls=models.ModelBase)):
     gw_port = orm.relationship(FakePort, lazy='joined')
 
 
-class TestUtils(base.BaseTestCase):
+class TestUtilsLegacyPolicies(base.BaseTestCase):
+
+    def setUp(self):
+        cfg.CONF.set_override('enforce_scope', False, group='oslo_policy')
+        super().setUp()
 
     def test_get_sort_dirs(self):
         sorts = [(1, True), (2, False), (3, True)]
@@ -90,8 +94,7 @@ class TestUtils(base.BaseTestCase):
         utils.resource_fields(r, ['name'])
         mock_populate.assert_called_once_with({'name': 'n'})
 
-    def test_model_query_scope_is_project_admin_old_defaults(self):
-        cfg.CONF.set_override('enforce_scope', False, group='oslo_policy')
+    def test_model_query_scope_is_project_admin(self):
         ctx = context.Context(
             project_id='some project',
             is_admin=True,
@@ -106,8 +109,7 @@ class TestUtils(base.BaseTestCase):
         self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
-    def test_model_query_scope_is_project_advsvc_old_defaults(self):
-        cfg.CONF.set_override('enforce_scope', False, group='oslo_policy')
+    def test_model_query_scope_is_project_advsvc(self):
         ctx = context.Context(
             project_id='some project',
             is_admin=False,
@@ -122,8 +124,7 @@ class TestUtils(base.BaseTestCase):
         self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
-    def test_model_query_scope_is_project_regular_user_old_defaults(self):
-        cfg.CONF.set_override('enforce_scope', False, group='oslo_policy')
+    def test_model_query_scope_is_project_regular_user(self):
         ctx = context.Context(
             project_id='some project',
             is_admin=False,
@@ -138,8 +139,7 @@ class TestUtils(base.BaseTestCase):
         self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
-    def test_model_query_scope_is_project_system_scope_old_defaults(self):
-        cfg.CONF.set_override('enforce_scope', False, group='oslo_policy')
+    def test_model_query_scope_is_project_system_scope(self):
         ctx = context.Context(system_scope='all')
         model = mock.Mock(project_id='project')
 
@@ -151,64 +151,9 @@ class TestUtils(base.BaseTestCase):
         self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
-    def test_model_query_scope_is_project_admin_new_defaults(self):
+
+class TestUtilsWithScopeEnforcement(TestUtilsLegacyPolicies):
+
+    def setUp(self):
+        super().setUp()
         cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
-        ctx = context.Context(
-            project_id='some project',
-            is_admin=True,
-            is_advsvc=False)
-        model = mock.Mock(project_id='project')
-
-        self.assertTrue(
-            utils.model_query_scope_is_project(ctx, model))
-
-        # Ensure that project_id isn't mocked
-        del model.project_id
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
-
-    def test_model_query_scope_is_project_advsvc_new_defaults(self):
-        cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
-        ctx = context.Context(
-            project_id='some project',
-            is_admin=False,
-            is_advsvc=True)
-        model = mock.Mock(project_id='project')
-
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
-
-        # Ensure that project_id isn't mocked
-        del model.project_id
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
-
-    def test_model_query_scope_is_project_regular_user_new_defaults(self):
-        cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
-        ctx = context.Context(
-            project_id='some project',
-            is_admin=False,
-            is_advsvc=False)
-        model = mock.Mock(project_id='project')
-
-        self.assertTrue(
-            utils.model_query_scope_is_project(ctx, model))
-
-        # Ensure that project_id isn't mocked
-        del model.project_id
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
-
-    def test_model_query_scope_is_project_system_scope_new_defaults(self):
-        cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
-        ctx = context.Context(
-            system_scope='all')
-        model = mock.Mock(project_id='project')
-
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
-
-        # Ensure that project_id isn't mocked
-        del model.project_id
-        self.assertFalse(
-            utils.model_query_scope_is_project(ctx, model))
