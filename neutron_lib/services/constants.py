@@ -13,6 +13,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import l3
+from neutron_lib.api.definitions import qos
 from neutron_lib.plugins import constants as plugin_const
 
 
@@ -26,5 +27,6 @@ from neutron_lib.plugins import constants as plugin_const
 # registered the service plugin name in neutron-lib.
 EXT_PARENT_RESOURCE_MAPPING = {
     l3.FLOATINGIP: plugin_const.L3,
-    l3.ROUTER: plugin_const.CONNTRACKHELPER
+    l3.ROUTER: plugin_const.CONNTRACKHELPER,
+    qos.POLICY: plugin_const.QOS,
 }
