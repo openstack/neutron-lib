@@ -14,6 +14,7 @@
 
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import local_ip
+from neutron_lib.api.definitions import qos
 from neutron_lib.plugins import constants as plugin_const
 
 
@@ -28,5 +29,6 @@ from neutron_lib.plugins import constants as plugin_const
 EXT_PARENT_RESOURCE_MAPPING = {
     l3.FLOATINGIP: plugin_const.L3,
     l3.ROUTER: plugin_const.CONNTRACKHELPER,
-    local_ip.RESOURCE_NAME: plugin_const.LOCAL_IP
+    local_ip.RESOURCE_NAME: plugin_const.LOCAL_IP,
+    qos.POLICY: plugin_const.QOS,
 }

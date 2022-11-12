@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    Parent resource mapping was added to ``EXT_PARENT_RESOURCE_MAPPING`` in
+    ``neutron_lib.services.constants`` for the ``qos`` plugin.
