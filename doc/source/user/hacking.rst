@@ -3,7 +3,7 @@ Hacking Checks
 ==============
 
 The ``neutron_lib.hacking`` package implements a number of public
-`flake8 checks <https://gitlab.com/pycqa/flake8>`__ intended to help
+`flake8 checks <https://github.com/pycqa/flake8>`__ intended to help
 adopters validate their compliance with the latest hacking standards.
 
 To adopt neutron-lib's hacking checks:
