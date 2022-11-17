@@ -157,7 +157,8 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertNotEqual('all', ctx.system_scope)
         elevated_ctx = ctx.elevated()
         self.assertTrue(elevated_ctx.is_admin)
-        self.assertEqual('all', elevated_ctx.system_scope)
+        # make sure we do not set the system scope in context
+        self.assertNotEqual('all', elevated_ctx.system_scope)
 
     def test_neutron_context_overwrite(self):
         ctx1 = context.Context('user_id', 'tenant_id')
