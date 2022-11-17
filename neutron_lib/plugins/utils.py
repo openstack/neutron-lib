@@ -286,7 +286,8 @@ def get_interface_name(name, prefix='', max_len=constants.DEVICE_NAME_MAX_LEN):
                            "given length for an interface name."))
 
     namelen = max_len - len(prefix) - INTERFACE_HASH_LEN
-    hashed_name = hashlib.sha1(encodeutils.to_utf8(name))
+    hashed_name = hashlib.new('sha1', usedforsecurity=False)
+    hashed_name.update(encodeutils.to_utf8(name))
     new_name = ('%(prefix)s%(truncated)s%(hash)s' %
                 {'prefix': prefix, 'truncated': name[0:namelen],
                  'hash': hashed_name.hexdigest()[0:INTERFACE_HASH_LEN]})

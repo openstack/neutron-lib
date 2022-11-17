@@ -15,6 +15,7 @@
 import hashlib
 from unittest import mock
 
+from oslo_utils import encodeutils
 from oslo_utils import excutils
 from oslo_utils import uuidutils
 
@@ -28,12 +29,6 @@ from neutron_lib.tests import _base as base
 LONG_NAME1 = "A_REALLY_LONG_INTERFACE_NAME1"
 LONG_NAME2 = "A_REALLY_LONG_INTERFACE_NAME2"
 SHORT_NAME = "SHORT"
-MOCKED_HASH = "mockedhash"
-
-
-class MockSHA(object):
-    def hexdigest(self):
-        return MOCKED_HASH
 
 
 class TestUtils(base.BaseTestCase):
@@ -175,18 +170,21 @@ class TestUtils(base.BaseTestCase):
         core_plugin.update_port.assert_called_once_with(
             'ctx', '1', {'port': '2'})
 
-    @mock.patch.object(hashlib, 'sha1', return_value=MockSHA())
-    def test_get_interface_name(self, mock_sha1):
+    @staticmethod
+    def _hash_prefix(name):
+        # nosec B324
+        hashed_name = hashlib.sha1(encodeutils.to_utf8(name))
+        return hashed_name.hexdigest()[0:utils.INTERFACE_HASH_LEN]
+
+    def test_get_interface_name(self):
         prefix = "pre-"
         prefix_long = "long_prefix"
         prefix_exceeds_max_dev_len = "much_too_long_prefix"
-        hash_used = MOCKED_HASH[0:6]
-
-        self.assertEqual("A_REALLY_" + hash_used,
+        self.assertEqual("A_REALLY_" + self._hash_prefix(LONG_NAME1),
                          utils.get_interface_name(LONG_NAME1))
         self.assertEqual("SHORT",
                          utils.get_interface_name(SHORT_NAME))
-        self.assertEqual("pre-A_REA" + hash_used,
+        self.assertEqual("pre-A_REA" + self._hash_prefix(LONG_NAME1),
                          utils.get_interface_name(LONG_NAME1, prefix=prefix))
         self.assertEqual("pre-SHORT",
                          utils.get_interface_name(SHORT_NAME, prefix=prefix))
@@ -203,8 +201,7 @@ class TestUtils(base.BaseTestCase):
         if_prefix2 = utils.get_interface_name(LONG_NAME2, prefix=prefix)
         self.assertNotEqual(if_prefix1, if_prefix2)
 
-    @mock.patch.object(hashlib, 'sha1', return_value=MockSHA())
-    def test_get_interface_max_len(self, mock_sha1):
+    def test_get_interface_max_len(self):
         self.assertEqual(constants.DEVICE_NAME_MAX_LEN,
                          len(utils.get_interface_name(LONG_NAME1)))
         self.assertEqual(10, len(utils.get_interface_name(LONG_NAME1,
