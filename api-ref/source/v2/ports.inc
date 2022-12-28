@@ -110,6 +110,18 @@ The extension defines several attributes whose names have a prefix
 ``binding:`` including ``binding:host_id``, ``binding:vnic_type``,
 ``binding:vif_type``, ``binding:vif_details``, and ``binding:profile``.
 
+Port hints
+==========
+
+The port hints extension (``port-hints``) introduces the ``hints``
+port attribute. Hints are backend specific pieces of information,
+mainly to allow backend specific performance tuning. In itself this
+extension defines no particular hint, and therefore no valid values of
+the ``hints`` attribute. It just serves as the base for other extensions
+introducing concrete hints and signals the presence of the ``hints``
+port attribute to the API user. By default policy, use of the ``hints``
+attribute is restricted to admininstrative users.
+
 Port resource request
 =====================
 
