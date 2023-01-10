@@ -207,7 +207,7 @@ There is no body content for the response of a successful DELETE request.
 Add BGP Peer to a BGP Speaker
 =============================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/add-bgp-peer
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/add_bgp_peer
 
 Bind the BGP peer to the specified BGP Speaker.
 
@@ -243,7 +243,7 @@ Response Example
 Remove BGP Peer from a BGP Speaker
 ==================================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/remove-bgp-peer
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/remove_bgp_peer
 
 Unbind the BGP peer from a BGP Speaker.
 
@@ -271,7 +271,7 @@ There is no body content for the response of a successful DELETE request.
 Add Network to a BGP Speaker
 ============================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/add_gateway_network
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/add_gateway_network
 
 Add a network to the specified BGP speaker.
 
@@ -308,16 +308,35 @@ Response Example
 Delete Network from a BGP Speaker
 =================================
 
-.. rest_method:: PUT /v2.0/bgp-speakers/<bgp-speaker-id>/remove_gateway_network
+.. rest_method:: PUT /v2.0/bgp-speakers/{bgp-speaker-id}/remove_gateway_network
 
 Remove a network from the specified BGP speaker.
 
 Normal response codes: 200
 
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - bgp-speaker-id: bgp_speaker_id-path
+   - network_id: network_id
+
+Request Example
+---------------
+
+.. literalinclude:: samples/bgp/bgp_speaker_remove_network-request.json
+   :language: javascript
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
 List routes advertised by a BGP Speaker
 =======================================
 
-.. rest_method:: GET /v2.0/bgp-speakers/<bgp-speaker-id>/get_advertised_routes
+.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/get_advertised_routes
 
 List all routes advertised by the specified BGP Speaker.
 
@@ -341,7 +360,7 @@ Response Example
 List Dynamic Routing Agents hosting a specific BGP Speaker
 ==========================================================
 
-.. rest_method:: GET /v2.0/bgp-speakers/<bgp-speaker-id>/bgp-dragents
+.. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/bgp-dragents
 
 List all BGP dynamic agents which are hosting the specified BGP Speaker.
 
