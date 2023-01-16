@@ -98,6 +98,7 @@ BGP Dynamic Routing
 ###################
 .. include:: bgp_speaker.inc
 .. include:: bgp_peer.inc
+.. include:: bgp_dragent_scheduler.inc
 #######
 Logging
 #######

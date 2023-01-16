@@ -19,6 +19,12 @@ agent_id-path:
   in: path
   required: true
   type: string
+bgp_dragent_id-path:
+  description: |
+    The ID of the dynamic routing agent.
+  in: path
+  required: true
+  type: string
 bgp_speaker_id-path:
   description: |
       The ID of the BGP Speaker.
