@@ -68,6 +68,14 @@ modes, adds the ``external_gateway_info`` attribute to ``routers``
 and allows definitions for ``network_id``, ``enable_snat`` and
 ``external_fixed_ips``.
 
+L3 external gateway multihoming extension (``external-gateway-multihoming``)
+============================================================================
+
+The ``external-gateway-multihoming`` extension allows a router to have
+multiple external gateway ports and to have a policy specified on how
+to handle ECMP and BFD for default routes inferred from the subnets
+associated with gateway ports.
+
 L3 flavors extension (``l3-flavors``)
 =====================================
 
@@ -135,6 +143,24 @@ Router gateway IP QoS (qos-gateway-ip)
 The ``qos-gateway-ip`` extension adds ``qos_policy_id`` to the
 ``external_gateway_info`` field of routers.
 
+Router enable default route ECMP extension (``enable-default-route-ecmp``)
+==========================================================================
+
+The ``enable-default-route-ecmp`` extension adds a parameter called
+``enable_default_route_ecmp`` to the router resource which can be used to
+enable or disable automatic configuration of ECMP default routes based on the
+default gateways of subnets accessible from a router's gateway ports (see
+the ``external-gateway-multihoming`` extension).
+
+Router enable default route BFD extension (``enable-default-route-bfd``)
+========================================================================
+
+The ``enable-default-route-bfd`` extension adds a parameter called
+``enable_default_route_bfd`` to the router resource which can be used to
+enable or disable automatic configuration of BFD for default routes of a router
+created based on the default gateways of subnets accessible from a router's
+gateway ports (see ``enable-default-route-ecmp`` extension).
+
 List routers
 ============
 
@@ -190,6 +216,7 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
+   - external_gateways: router-external_gateways
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
@@ -205,6 +232,8 @@ Response Parameters
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
    - enable_ndp_proxy: router-enable_ndp_proxy
+   - enable_default_route_bfd: router-enable_default_route_bfd
+   - enable_default_route_ecmp: router-enable_default_route_ecmp
 
 Response Example
 ----------------
@@ -251,6 +280,8 @@ Request
    - service_type_id: router-service_type_id-request
    - flavor_id: router-flavor_id-optional
    - enable_ndp_proxy: router-enable_ndp_proxy-request
+   - enable_default_route_bfd: router-enable_default_route_bfd
+   - enable_default_route_ecmp: router-enable_default_route_ecmp
 
 Request Example
 ---------------
@@ -272,6 +303,7 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
+   - external_gateways: router-external_gateways
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
@@ -287,6 +319,8 @@ Response Parameters
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
    - enable_ndp_proxy: router-enable_ndp_proxy
+   - enable_default_route_bfd: router-enable_default_route_bfd
+   - enable_default_route_ecmp: router-enable_default_route_ecmp
 
 Response Example
 ----------------
@@ -333,6 +367,7 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
+   - external_gateways: router-external_gateways
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
@@ -348,6 +383,8 @@ Response Parameters
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
    - enable_ndp_proxy: router-enable_ndp_proxy
+   - enable_default_route_bfd: router-enable_default_route_bfd
+   - enable_default_route_ecmp: router-enable_default_route_ecmp
 
 Response Example
 ----------------
@@ -385,6 +422,8 @@ Request
    - routes: router-routes-request
    - distributed: router-distributed-request
    - enable_ndp_proxy: router-enable_ndp_proxy-request
+   - enable_default_route_bfd: router-enable_default_route_bfd
+   - enable_default_route_ecmp: router-enable_default_route_ecmp
 
 Request Example
 ---------------
@@ -406,6 +445,7 @@ Response Parameters
    - admin_state_up: admin_state_up
    - status: router-status
    - external_gateway_info: router-external_gateway_info
+   - external_gateways: router-external_gateways
    - revision_number: revision_number
    - routes: router-routes
    - destination: router-destination
@@ -421,6 +461,8 @@ Response Parameters
    - tags: tags
    - conntrack_helpers: router-conntrack_helpers
    - enable_ndp_proxy: router-enable_ndp_proxy
+   - enable_default_route_bfd: router-enable_default_route_bfd
+   - enable_default_route_ecmp: router-enable_default_route_ecmp
 
 Response Example
 ----------------
@@ -765,4 +807,240 @@ Response Example
 ----------------
 
 .. literalinclude:: samples/routers/router-remove-extraroutes-response.json
+   :language: javascript
+
+Add external gateways to router
+===============================
+
+.. rest_method::  PUT /v2.0/routers/{router_id}/add_external_gateways
+
+Add external gateways to a router in addition to the ones it already
+has.
+
+Multiple gateways attached to the same network can be added to the
+same router.
+
+The add/update/remove external gateways operations extend the use of
+``router.external_gateway_info`` to manage multiple external gateways.
+The full set of external gateways is exposed in the read-only
+``router.external_gateways`` parameter.  ``router.external_gateways``
+contains a list of ``external_gateway_info`` structures like:
+
+::
+
+    [
+      {"network_id": ...,
+       "external_fixed_ips": [{"ip_address": ..., "subnet_id": ...}, ...],
+       "enable_snat": ...},
+      ...
+    ]
+
+The first item (index 0) of the ``external_gateways`` list is special if a
+router does not have any gateway ports yet:
+
+* It will provide data for the compatibility ``router.external_gateway_info``
+  field of a router;
+
+* This first item sets a router's default route. If ECMP is enabled for
+  default routes inferred from gateway port subnets, then all of those
+  default routes are used for load-sharing;
+
+* The first item is just another extra gateway if the add operation is
+  performed when a router already has one or more gateways.
+
+The order of the the rest of the list (indexes 1, 2, ...) is irrelevant
+and ignored.
+
+The first external gateway can be managed in two
+ways: via ``router.external_gateway_info`` or via
+``add/update/remove_external_gateways``.  The other external gateways
+can only be managed via ``add/update/remove_external_gateways``.
+
+The format of the request body is the same as the format of the read-only
+``router.external_gateways`` parameter, but wrapped as follows:
+
+::
+
+    {"router": {"external_gateways": EXTERNAL-GATEWAY-LIST}}
+
+The response codes and response body are the same as to the update of
+the router.  That is the whole router object is returned including the
+``external_gateway_info`` and ``external_gateways`` parameters which
+represents the result of the operation.
+
+Changes in ``router.external_gateway_info`` are reflected
+in ``router.external_gateways`` and vice versa.  Updating
+``external_gateway_info`` also updates the first element of
+``external_gateways`` and it leaves the rest of ``external_gateways``
+unchanged.  Setting ``external_gateway_info`` to an empty value removes
+a single gateway and one of the extra gateways takes its place instead.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 412
+
+Request Parameters
+------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_id: router_id
+   - external_gateways: router-external_gateways
+
+Request Example
+---------------
+
+.. literalinclude:: samples/routers/router-add-external-gateways-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - id: router-id-body
+   - name: router_name
+   - external_gateways: router-external_gateways
+
+Response Example
+----------------
+
+.. literalinclude:: samples/routers/router-add-external-gateways-response.json
+   :language: javascript
+
+Update external gateways of router
+==================================
+
+.. rest_method::  PUT /v2.0/routers/{router_id}/update_external_gateways
+
+Update some external gateways of router.
+
+For general information on the add/update/remove external gateways
+operations see ``add_external_gateways`` above.
+
+The external gateways to be updated are identified by the ``network_ids``
+found in the PUT request.  The ``external_fixed_ips``, ``enable_snat``,
+fields can be updated.  The ``network_id`` field cannot be updated - any
+changes will cause a gateway port to be removed and recreated.
+
+The format of the request body is the same as the format of the read-only
+``router.external_gateways`` parameter, but wrapped as follows:
+
+::
+
+    {"router": {"external_gateways": EXTERNAL-GATEWAY-LIST}}
+
+The ``enable_snat`` field does not have any effect for extra gateways except
+for the first external gateway in the list.
+
+The ``network_id`` field is used to identify a particular gateway port along
+with the ``external_fixed_ips`` field. Specifying just the ``network_id`` field
+is ambiguous: Neutron will attempt to find the matching gateway port but if
+there are multiple matches it will return an error response code.
+
+The ``enable_snat`` field can be omitted from the request. Specifying
+``external_fixed_ips`` will result in matching ports based on those
+fixed IPs. If a gateway port has a subset of the specified fixed IPs,
+then the set of IPs will be updated to match the ones in the request.
+Alternatively, if a gateway port has a superset of fixed IPs from the
+request the IPs will be removed from the gateway port.
+
+The response codes and response body are the same as to the update of
+the router.  That is the whole router object is returned including the
+``external_gateway_info`` and ``external_gateways`` parameters which
+represents the result of the operation.
+
+Please note that updating ``external_gateway_info`` also updates
+the first element of ``external_gateways`` and it leaves the rest of
+``external_gateways`` unchanged.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 412
+
+Request Parameters
+------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_id: router_id
+   - external_gateways: router-external_gateways
+
+Request Example
+---------------
+
+.. literalinclude:: samples/routers/router-update-external-gateways-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - id: router-id-body
+   - name: router_name
+   - external_gateways: router-external_gateways
+
+Response Example
+----------------
+
+.. literalinclude:: samples/routers/router-update-external-gateways-response.json
+   :language: javascript
+
+Remove external gateways from router
+====================================
+
+.. rest_method::  PUT /v2.0/routers/{router_id}/remove_external_gateways
+
+Remove some external gateways from router.
+
+For general information on the add/update/remove external gateways
+operations see ``add_external_gateways`` above.
+
+The format of the request body is the same as the format of the read-only
+``router.external_gateways`` parameter, but wrapped as follows:
+
+::
+
+    {"router": {"external_gateways": EXTERNAL-GATEWAY-LIST}}
+
+However the request body can be partial.  Only the ``network_id``
+and ``external_fixed_ips`` fields from the ``external_gateway_info``
+structure is used in order to match the specific gateway ports.
+The ``enable_snat`` key can be present but its value is ignored.
+
+Please note that setting ``external_gateway_info`` to an empty value
+also resets ``external_gateways`` to the empty list.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 412
+
+Request Parameters
+------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - router_id: router_id
+   - external_gateways: router-external_gateways
+
+Request Example
+---------------
+
+.. literalinclude:: samples/routers/router-remove-external-gateways-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - id: router-id-body
+   - name: router_name
+   - external_gateways: router-external_gateways
+
+Response Example
+----------------
+
+.. literalinclude:: samples/routers/router-remove-external-gateways-response.json
    :language: javascript

@@ -62,7 +62,10 @@ from neutron_lib.api.definitions import ip_substring_port_filtering
 from neutron_lib.api.definitions import l2_adjacency
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_conntrack_helper
+from neutron_lib.api.definitions import l3_enable_default_route_bfd
+from neutron_lib.api.definitions import l3_enable_default_route_ecmp
 from neutron_lib.api.definitions import l3_ext_gw_mode
+from neutron_lib.api.definitions import l3_ext_gw_multihoming
 from neutron_lib.api.definitions import l3_ext_ha_mode
 from neutron_lib.api.definitions import l3_ext_ndp_proxy
 from neutron_lib.api.definitions import l3_flavors
@@ -211,6 +214,9 @@ _ALL_API_DEFINITIONS = {
     l3_ext_ha_mode,
     l3_ext_ndp_proxy,
     l3_flavors,
+    l3_ext_gw_multihoming,
+    l3_enable_default_route_bfd,
+    l3_enable_default_route_ecmp,
     l3_ndp_proxy,
     l3_port_ip_change_not_allowed,
     local_ip,

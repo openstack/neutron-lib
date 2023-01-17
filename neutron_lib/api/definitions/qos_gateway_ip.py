@@ -11,11 +11,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
 from neutron_lib.api.definitions import qos
-from neutron_lib.services.qos import constants as qos_consts
 
 
 ALIAS = 'qos-gateway-ip'
@@ -35,22 +33,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_visible': True,
             'default': None,
             'enforce_policy': True,
-            'validate': {
-                'type:dict_or_nodata': {
-                    'network_id': {'type:uuid': None, 'required': True},
-                    'enable_snat': {'type:boolean': None, 'required': False,
-                                    'convert_to':
-                                        converters.convert_to_boolean},
-                    'external_fixed_ips': {
-                        'type:fixed_ips': None,
-                        'required': False
-                    },
-                    qos_consts.QOS_POLICY_ID: {
-                        'type:uuid_or_none': None,
-                        'required': False
-                    }
-                }
-            }
+            'validate': {'type:external_gw_info': None},
         }
     }
 }

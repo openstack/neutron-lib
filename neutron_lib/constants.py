@@ -148,6 +148,8 @@ L3_AGENT_SCHEDULER_EXT_ALIAS = 'l3_agent_scheduler'
 DHCP_AGENT_SCHEDULER_EXT_ALIAS = 'dhcp_agent_scheduler'
 L3_DISTRIBUTED_EXT_ALIAS = 'dvr'
 L3_HA_MODE_EXT_ALIAS = 'l3-ha'
+L3_ENABLE_DEFAULT_ROUTE_ECMP_ALIAS = 'enable-default-route-ecmp'
+L3_ENABLE_DEFAULT_ROUTE_BFD_ALIAS = 'enable-default-route-bfd'
 SUBNET_ALLOCATION_EXT_ALIAS = 'subnet_allocation'
 
 # Protocol names and numbers for Security Groups/Firewalls

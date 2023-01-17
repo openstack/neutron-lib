@@ -28,7 +28,7 @@ from neutron_lib._i18n import _
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
 from neutron_lib.plugins import directory
-
+from neutron_lib.services.qos import constants as qos_consts
 
 LOG = logging.getLogger(__name__)
 
@@ -1215,6 +1215,42 @@ def validate_ethertype(ethertype, valid_values=None):
         return _(msg) % msg_data
 
 
+def validate_external_gw_info(data, valid_values=None):
+    """Validate data is an external_gateway_info.
+
+    :param data: The data to validate.
+    :param valid_values: Not used!
+    :returns: None if valid, error string otherwise.
+    """
+    # See https://github.com/PyCQA/pylint/issues/850
+    # pylint: disable=import-outside-toplevel,cyclic-import
+    from neutron_lib.api import converters
+    return validate_dict_or_nodata(
+        data,
+        key_specs={
+            'network_id': {'type:uuid': None, 'required': True},
+            'external_fixed_ips': {'type:fixed_ips': None, 'required': False},
+            'enable_snat': {'type:boolean': None, 'required': False,
+                            'convert_to': converters.convert_to_boolean},
+            qos_consts.QOS_POLICY_ID: {
+                'type:uuid_or_none': None,
+                'required': False
+            }
+        }
+    )
+
+
+def validate_external_gw_info_list(data, valid_values=None):
+    """Validate data is a list of external_gateway_info.
+
+    :param data: The data to validate.
+    :param valid_values: Not used!
+    :returns: None if valid, error string otherwise.
+    """
+    if data is not None:
+        return _validate_list_of_items(validate_external_gw_info, data)
+
+
 # Dictionary that maintains a list of validation functions
 validators = {'type:dict': validate_dict,
               'type:dict_or_none': validate_dict_or_none,
@@ -1265,7 +1301,9 @@ validators = {'type:dict': validate_dict,
               'type:service_plugin_type': validate_service_plugin_type,
               'type:list_of_subnets_or_none': validate_subnet_list_or_none,
               'type:list_of_subnet_service_types':
-                  validate_subnet_service_types
+                  validate_subnet_service_types,
+              'type:external_gw_info': validate_external_gw_info,
+              'type:external_gw_info_list': validate_external_gw_info_list,
               }
 
 

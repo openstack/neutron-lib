@@ -5971,6 +5971,22 @@ router-distributed-request:
   in: body
   required: false
   type: boolean
+router-enable_default_route_bfd:
+  description: |
+    ``true`` indicates that Neutron will enable BFD sessions for default routes
+    inferred from the external gateway port subnets.
+    Available when ``external-gateway-multihoming`` extension is enabled.
+  in: body
+  required: false
+  type: boolean
+router-enable_default_route_ecmp:
+  description: |
+    ``true`` indicates that Neutron will add ECMP default routes if multiple
+    are available via different gateway ports.
+    Available when ``external-gateway-multihoming`` extension is enabled.
+  in: body
+  required: false
+  type: boolean
 router-enable_ndp_proxy:
   description: |
     Enable NDP proxy attribute. ``true`` means NDP proxy is enabled for the
@@ -6032,8 +6048,9 @@ router-external_gateway_info:
   description: |
     The external gateway information of the router.
     If the router has an external gateway, this would be a dict with
-    ``network_id``, ``enable_snat``, ``external_fixed_ips`` and
-    ``qos_policy_id``.
+    ``network_id``, ``enable_snat``, ``external_fixed_ips``,
+    ``qos_policy_id``, ``enable_default_route_ecmp`` and
+    ``enable_default_route_bfd``.
     Otherwise, this would be ``null``.
   in: body
   required: true
@@ -6054,6 +6071,12 @@ router-external_gateway_ports:
   in: body
   required: true
   type: string
+router-external_gateways:
+  description: |
+    The list of external gateways of the router.
+  in: body
+  required: true
+  type: array
 router-flavor_id:
   description: |
     The ID of the flavor associated with the router.

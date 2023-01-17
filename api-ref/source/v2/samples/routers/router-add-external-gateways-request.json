@@ -1,0 +1,16 @@
+{
+   "router" : {
+      "external_gateways" : [
+         {
+            "enable_snat" : false,
+            "external_fixed_ips" : [
+               {
+                  "ip_address" : "192.0.2.2",
+                  "subnet_id" : "b189c314-ebb9-11eb-939c-9bde3f3867cb"
+               }
+            ],
+            "network_id" : "8edec774-ebb9-11eb-9b09-371108ef5905"
+         }
+      ]
+   }
+}

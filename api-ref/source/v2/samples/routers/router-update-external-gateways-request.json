@@ -1,0 +1,10 @@
+{
+   "router" : {
+      "external_gateways" : [
+         {
+            "enable_snat" : true,
+            "network_id" : "8edec774-ebb9-11eb-9b09-371108ef5905"
+         }
+      ]
+   }
+}

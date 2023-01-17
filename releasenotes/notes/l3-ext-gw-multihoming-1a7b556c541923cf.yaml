@@ -1,0 +1,14 @@
+---
+features:
+  - |
+    A definition for API extension: ``external-gateway-multihoming``.
+    Allows multiple gateway ports to be configured per router for the L3
+    service plugins implementing this functionality.
+  - |
+    A definition for API extension: ``enable-default-route-ecmp``.
+    Allows ECMP to be enabled or disabled for default routes inferred from
+    subnets of router's gateway ports.
+  - |
+    A definition for API extension: ``enable-default-route-bfd``.
+    Allows BFD to be enabled or disabled for default routes inferred from
+    subnets of router's gateway ports.
