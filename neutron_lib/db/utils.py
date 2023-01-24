@@ -15,7 +15,7 @@ import functools
 from oslo_db import exception as db_exc
 from oslo_utils import excutils
 import sqlalchemy
-from sqlalchemy.ext.associationproxy import ASSOCIATION_PROXY
+from sqlalchemy.ext import associationproxy
 from sqlalchemy.orm import exc
 from sqlalchemy.orm import properties
 
@@ -152,8 +152,14 @@ def filter_non_model_columns(data, model):
     """
     mapper = sqlalchemy.inspect(model)
     columns = set(c.name for c in mapper.columns)
+    try:
+        _association_proxy = associationproxy.ASSOCIATION_PROXY
+    except AttributeError:
+        # SQLAlchemy 2.0
+        _association_proxy = (
+            associationproxy.AssociationProxyExtensionType.ASSOCIATION_PROXY)
     columns.update(d.value_attr for d in mapper.all_orm_descriptors
-                   if d.extension_type is ASSOCIATION_PROXY)
+                   if d.extension_type is _association_proxy)
     return dict((k, v) for (k, v)
                 in data.items() if k in columns)
 
