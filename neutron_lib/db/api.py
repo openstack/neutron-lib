@@ -309,7 +309,7 @@ def _load_one_to_manys(session):
     if session.new:
         session.flush()
 
-    if session.transaction.nested:
+    if session.get_transaction().nested:
         # wait until final commit
         return
 
@@ -479,8 +479,8 @@ def is_session_active(session):
     if getattr(session, 'autocommit', None):
         # old behaviour, to be removed with sqlalchemy 2.0
         return session.is_active
-    if not session.transaction:
+    if not session.get_transaction():
         return False
-    if not session.transaction._connections:
+    if not session.get_transaction()._connections:
         return False
     return True
