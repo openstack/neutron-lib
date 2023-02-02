@@ -214,9 +214,9 @@ def _resource_model_map_helper(rs_map, resource, subclass):
         raise RuntimeError(_("Model %(sub)s tried to register for API "
                              "resource %(res)s which conflicts with model "
                              "%(other)s.") %
-                           dict(sub=subclass,
-                                other=rs_map[resource],
-                                res=resource))
+                           {'sub': subclass,
+                            'other': rs_map[resource],
+                            'res': resource})
     rs_map[resource] = subclass
 
 
@@ -242,8 +242,8 @@ def get_tag_resource_parent_map():
                 if collection in parent_map:
                     msg = (_("API parent %(collection)s/%(resource)s for "
                              "model %(subclass)s is already registered.") %
-                           dict(collection=collection, resource=resource,
-                                subclass=subclass))
+                           {'collection': collection, 'resource': resource,
+                            'subclass': subclass})
                     raise RuntimeError(msg)
                 parent_map[collection] = resource
     return parent_map
