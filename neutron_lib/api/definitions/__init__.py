@@ -46,6 +46,7 @@ from neutron_lib.api.definitions import extraroute
 from neutron_lib.api.definitions import extraroute_atomic
 from neutron_lib.api.definitions import filter_validation
 from neutron_lib.api.definitions import fip64
+from neutron_lib.api.definitions import fip_distributed
 from neutron_lib.api.definitions import fip_pf_description
 from neutron_lib.api.definitions import fip_pf_detail
 from neutron_lib.api.definitions import fip_pf_port_range
@@ -190,6 +191,7 @@ _ALL_API_DEFINITIONS = {
     filter_validation,
     fip64,
     firewall_v2,
+    fip_distributed,
     fip_pf_detail,
     fip_port_details,
     flavors,
