@@ -213,10 +213,9 @@ def get_client(target, version_cap=None, serializer=None):
     if TRANSPORT is None:
         raise AssertionError(_("'TRANSPORT' must not be None"))
     serializer = RequestContextSerializer(serializer)
-    return BackingOffClient(TRANSPORT,
-                            target,
-                            version_cap=version_cap,
-                            serializer=serializer)
+    return oslo_messaging.get_rpc_client(
+        TRANSPORT, target, version_cap=version_cap,
+        serializer=serializer, client_cls=BackingOffClient)
 
 
 def get_server(target, endpoints, serializer=None):
