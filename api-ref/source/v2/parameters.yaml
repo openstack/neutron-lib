@@ -3871,6 +3871,28 @@ heartbeat_timestamp:
   in: body
   required: true
   type: string
+hints:
+  description: |
+    Admin-only. The following values control Open vSwitch's Userspace Tx
+    packet steering feature:
+
+    - ``{"openvswitch": {"other_config": {"tx-steering": "hash|thread"}}}``
+  in: body
+  required: true
+  type: object
+hints-request:
+  description: |
+    Admin-only. A dict, at the top level keyed by mechanism driver
+    aliases (as defined in setup.cfg). To following values can be used to
+    control Open vSwitch's Userspace Tx packet steering feature:
+
+    - ``{"openvswitch": {"other_config": {"tx-steering": "hash"}}}``
+    - ``{"openvswitch": {"other_config": {"tx-steering": "thread"}}}``
+
+    If omitted the default is defined by Open vSwitch.
+  in: body
+  required: false
+  type: object
 host:
   description: |
     The hostname of the system the agent is running on.

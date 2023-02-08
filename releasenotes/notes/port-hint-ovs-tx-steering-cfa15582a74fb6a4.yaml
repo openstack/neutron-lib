@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    The ``port-hint-ovs-tx-steering`` extension allows new values (i.e. a
+    hint) in the ``hints`` port attribute. It allows the control of Open
+    vSwitch's Userspace Tx packet steering options. For Open vSwitch details
+    please see:
+    https://docs.openvswitch.org/en/latest/topics/userspace-tx-steering/

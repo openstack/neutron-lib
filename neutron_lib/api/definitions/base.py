@@ -140,6 +140,8 @@ KNOWN_EXTENSIONS = (
     'qos-rules-alias',
     'quotas',
     'quota-check-limit',
+    'port-hints',
+    'port-hint-ovs-tx-steering',
     'rbac-address-group',
     'rbac-address-scope',
     'rbac-bgpvpn',
