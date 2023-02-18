@@ -100,13 +100,10 @@ class _EnableSQLiteFKsFixture(fixtures.Fixture):
 
     def _setUp(self):
         if self.engine.name == 'sqlite':
-            self.engine.execute("PRAGMA foreign_keys=ON")
-
-            def disable_fks():
-                with self.engine.connect() as conn:
-                    conn.connection.rollback()
-                    conn.execute("PRAGMA foreign_keys=OFF")
-            self.addCleanup(disable_fks)
+            with self.engine.connect() as conn:
+                cursor = conn.connection.cursor()
+                cursor.execute('PRAGMA foreign_keys=ON')
+                cursor.close()
 
 
 class SqlFixture(fixtures.Fixture):
