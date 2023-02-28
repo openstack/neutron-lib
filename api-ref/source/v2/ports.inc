@@ -122,6 +122,15 @@ introducing concrete hints and signals the presence of the ``hints``
 port attribute to the API user. By default policy, use of the ``hints``
 attribute is restricted to admininstrative users.
 
+Port hint: Open vSwitch Tx steering
+===================================
+
+The ``port-hint-ovs-tx-steering`` extension allows new values (i.e. a
+hint) in the ``hints`` port attribute. It allows the control of Open
+vSwitch's Userspace Tx packet steering options. For Open vSwitch details
+please see:
+https://docs.openvswitch.org/en/latest/topics/userspace-tx-steering/
+
 Port resource request
 =====================
 
@@ -251,6 +260,7 @@ Response Parameters
    - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
+   - hints: hints
    - id: id
    - ip_allocation: ip_allocation
    - mac_address: mac_address
@@ -338,6 +348,7 @@ Request
    - dns_name: dns_name-request
    - extra_dhcp_opts: extra_dhcp_opts-request
    - fixed_ips: fixed_ips-request
+   - hints: hints-request
    - mac_address: mac_address-request-put
    - name: name-request
    - numa_affinity_policy: numa_affinity_policy-request
@@ -381,6 +392,7 @@ Response Parameters
    - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
+   - hints: hints
    - id: id
    - ip_allocation: ip_allocation
    - mac_address: mac_address
@@ -518,6 +530,7 @@ Response Parameters
    - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
+   - hints: hints
    - id: id
    - ip_allocation: ip_allocation
    - mac_address: mac_address
@@ -582,6 +595,7 @@ Request
    - dns_name: dns_name-request
    - extra_dhcp_opts: extra_dhcp_opts-request
    - fixed_ips: fixed_ips-request
+   - hints: hints-request
    - mac_address: mac_address-request
    - name: name-request
    - network_id: network_id
@@ -629,6 +643,7 @@ Response Parameters
    - dns_name: dns_name
    - extra_dhcp_opts: extra_dhcp_opts
    - fixed_ips: fixed_ips
+   - hints: hints
    - id: id
    - ip_allocation: ip_allocation
    - mac_address: mac_address

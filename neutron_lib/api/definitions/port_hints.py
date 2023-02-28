@@ -24,6 +24,11 @@ UPDATED_TIMESTAMP = '2023-01-01T00:00:00-00:00'
 RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
 HINTS = 'hints'
+HINTS_SPEC = {
+    'type:dict_or_none': {'openvswitch': {
+        'type:dict': {'other_config': {
+            'type:dict': {'tx-steering': {
+                'type:values': ['thread', 'hash']}}}}}}}
 
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
@@ -33,7 +38,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'default': None,
             'enforce_policy': True,
             'is_visible': True,
-            'validate': {'type:dict_or_none': None},
+            'validate': HINTS_SPEC,
         },
     },
 }
