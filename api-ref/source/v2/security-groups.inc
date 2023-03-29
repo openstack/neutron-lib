@@ -25,9 +25,19 @@ Stateful security groups extension (``stateful-security-group``)
 
 The stateful security group extension (``stateful-security-group``) adds the
 ``stateful`` field to security groups, allowing users to configure stateful
-or stateless security groups for ``ports``. The existing security groups
-will all be considered as stateful. Update of the ``stateful`` attribute is
-allowed when there is no port associated with the security group.
+or stateless security groups for ``ports``.
+
+A stateless security group bypasses connection tracking in the underlying
+firewall, potentially providing performance and simplicity benefits. On the
+other hand, using stateless security groups adds more complexity to rule
+definitions: the user now has to explicitly define rules for both directions of
+a duplex connection, so e.g. two rules have to be defined to allow a TCP flow:
+one for packets sent from a port and another one for packets received by the
+port.
+
+The existing security groups will all be considered as stateful. Update of the
+``stateful`` attribute is allowed when there is no port associated with the
+security group.
 
 Shared filtering extension
 ==========================
