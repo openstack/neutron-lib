@@ -39,6 +39,14 @@ The existing security groups will all be considered as stateful. Update of the
 ``stateful`` attribute is allowed when there is no port associated with the
 security group.
 
+Regardless of rules defined for a stateless security group, the following
+protocols are expected to work: ARP, DHCP, IPv6 SLAAC / DHCPv6 stateless
+address configuration, IPv6 Router and Neighbour Discovery.
+
+Note: metadata service is not enabled by default. If your workload requires
+metadata for configuration, make sure to create a security group rule that
+would allow HTTP replies from the metadata service IP address / port pair.
+
 Shared filtering extension
 ==========================
 
