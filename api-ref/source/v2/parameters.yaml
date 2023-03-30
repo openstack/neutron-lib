@@ -3890,6 +3890,7 @@ hints-request:
     - ``{"openvswitch": {"other_config": {"tx-steering": "thread"}}}``
 
     If omitted the default is defined by Open vSwitch.
+    The field cannot be longer than 4095 characters.
   in: body
   required: false
   type: object
