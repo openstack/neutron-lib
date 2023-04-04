@@ -6,7 +6,7 @@
       - openstack-python3-jobs
       - lib-forward-testing-python3
       - release-notes-jobs-python3
-      - neutron-tempest-plugin-jobs
+      - neutron-tempest-plugin-jobs-2023-1
     check:
       jobs:
         - neutron-functional-with-uwsgi:
