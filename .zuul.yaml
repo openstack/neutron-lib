@@ -8,7 +8,14 @@
       - release-notes-jobs-python3
     check:
       jobs:
-        - neutron-tempest-plugin-api-wallaby
+        - neutron-tempest-plugin-api-wallaby:
+            vars:
+              # NOTE(slaweq): In stable/wallaby we need to skip this dscp marking
+              # related test as fix
+              # https://review.opendev.org/c/openstack/neutron-tempest-plugin/+/854369
+              # is not available for this branch
+              tempest_exclude_regex: "\
+                (^neutron_tempest_plugin.api.test_qos.QosDscpMarkingRuleTestJSON.test_qos_dscp_create_and_update)"
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
@@ -16,7 +23,14 @@
             timeout: 10800
     gate:
       jobs:
-        - neutron-tempest-plugin-api-wallaby
+        - neutron-tempest-plugin-api-wallaby:
+            vars:
+              # NOTE(slaweq): In stable/wallaby we need to skip this dscp marking
+              # related test as fix
+              # https://review.opendev.org/c/openstack/neutron-tempest-plugin/+/854369
+              # is not available for this branch
+              tempest_exclude_regex: "\
+                (^neutron_tempest_plugin.api.test_qos.QosDscpMarkingRuleTestJSON.test_qos_dscp_create_and_update)"
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
