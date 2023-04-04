@@ -9,6 +9,10 @@
     check:
       jobs:
         - neutron-tempest-plugin-api-wallaby:
+            required-projects:
+              - openstack/neutron-lib
+              - name: openstack/tempest
+                override-checkout: wallaby-last
             vars:
               # NOTE(slaweq): In stable/wallaby we need to skip this dscp marking
               # related test as fix
@@ -24,6 +28,10 @@
     gate:
       jobs:
         - neutron-tempest-plugin-api-wallaby:
+            required-projects:
+              - openstack/neutron-lib
+              - name: openstack/tempest
+                override-checkout: wallaby-last
             vars:
               # NOTE(slaweq): In stable/wallaby we need to skip this dscp marking
               # related test as fix
