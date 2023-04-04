@@ -8,7 +8,9 @@
       - release-notes-jobs-python3
     check:
       jobs:
-        - neutron-tempest-plugin-api
+        - neutron-tempest-plugin-api-xena:
+            required-projects:
+              - openstack/neutron-lib
         - neutron-functional-with-uwsgi:
             required-projects:
               - openstack/neutron-lib
@@ -19,8 +21,12 @@
             timeout: 10800
     gate:
       jobs:
-        - neutron-tempest-plugin-api
-        - neutron-functional-with-uwsgi
+        - neutron-tempest-plugin-api-xena:
+            required-projects:
+              - openstack/neutron-lib
+        - neutron-functional-with-uwsgi:
+            required-projects:
+              - openstack/neutron-lib
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
