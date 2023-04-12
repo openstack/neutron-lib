@@ -176,13 +176,17 @@ class Context(ContextBaseWithSession):
 
 
 def get_admin_context():
+    # NOTE(slaweq): elevated() method will set is_admin=True but setting it
+    # explicity here will avoid checking in policy rules if is_admin should be
+    # set to True or not
     return Context(user_id=None,
                    tenant_id=None,
                    is_admin=True,
-                   overwrite=False)
+                   overwrite=False).elevated()
 
 
 def get_admin_context_without_session():
-    return ContextBase(user_id=None,
-                       tenant_id=None,
-                       is_admin=True)
+    # NOTE(slaweq): elevated() method will set is_admin=True but setting it
+    # explicity here will avoid checking in policy rules if is_admin should be
+    # set to True or not
+    return ContextBase(user_id=None, tenant_id=None, is_admin=True).elevated()
