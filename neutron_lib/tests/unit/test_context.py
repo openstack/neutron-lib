@@ -143,6 +143,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertIsNone(ctx_dict['tenant_id'])
         self.assertIsNone(ctx_dict['auth_token'])
         self.assertTrue(ctx_dict['is_admin'])
+        self.assertIn('admin', ctx_dict['roles'])
         self.assertIsNotNone(ctx.session)
         self.assertNotIn('session', ctx_dict)
 
@@ -152,6 +153,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertIsNone(ctx_dict['user_id'])
         self.assertIsNone(ctx_dict['tenant_id'])
         self.assertIsNone(ctx_dict['auth_token'])
+        self.assertIn('admin', ctx_dict['roles'])
         self.assertFalse(hasattr(ctx, 'session'))
 
     def test_neutron_context_elevated_retains_request_id(self):
