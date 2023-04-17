@@ -4,15 +4,6 @@
 FWaaS v2.0 (CURRENT) (fwaas, firewall_groups, firewall_policies, firewall_rules)
 ================================================================================
 
-.. warning::
-
-    Due to lack of maintenance of the ``neutron-fwaas`` project, the reference
-    implementation of the FWaaS API, is now deprecated and unmaintained
-    anymore.
-    This document describes the FWaaS API definitions without any official
-    implementation.
-    This API can be implemented by some third party solutions.
-
 Use the Firewall-as-a-Service (FWaaS) v2.0 extension to deploy
 firewall groups to protect your networks.
 
