@@ -1,0 +1,10 @@
+{
+   "port" : {
+        "allowed_address_pairs": [
+            {
+                "ip_address": "192.168.13.7",
+                "mac_address": "fa:16:3e:09:1f:b2"
+            }
+        ]
+   }
+}

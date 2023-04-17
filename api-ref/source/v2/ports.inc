@@ -25,6 +25,14 @@ is optional and will be taken from the port if not specified.
     with source IP address restrictions for all ports which use the same security
     group.
 
+Allowed address pairs (atomic) extension
+========================================
+
+The Allowed address pairs (atomic) extension (``allowedaddresspairs-atomic``)
+extends the ``port`` resource by adding two member actions
+(``add_allowed_address_pairs``/ ``remove_allowed_address_pairs``) to edit the set
+of Allowed address pairs atomically on the server side.
+
 Data plane status extension
 ===========================
 
@@ -771,4 +779,158 @@ Response Example
 ----------------
 
 .. literalinclude:: samples/ports/ports-bulk-create-response.json
+   :language: javascript
+
+Add allowed_address_pairs to port
+=================================
+
+.. rest_method::  PUT /v2.0/ports/{port_id}/add_allowed_address_pairs
+
+Atomically adds a set of allowed_address_pairs to the port's already
+existing allowed_address_pairs.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 412
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - port_id: port_id-path
+   - port: port
+   - allowed_address_pairs: allowed_address_pairs-request
+
+Request Example
+---------------
+
+.. literalinclude:: samples/ports/port-add-allowed-address-pairs-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - port: port
+   - admin_state_up: admin_state_up
+   - allowed_address_pairs: allowed_address_pairs
+   - binding:host_id: binding:host_id
+   - binding:profile: binding:profile
+   - binding:vif_details: binding:vif_details
+   - binding:vif_type: binding:vif_type
+   - binding:vnic_type: binding:vnic_type
+   - created_at: created_at_resource
+   - data_plane_status: data_plane_status
+   - description: description
+   - device_id: device_id
+   - device_owner: device_owner
+   - dns_assignment: dns_assignment
+   - dns_domain: dns_domain
+   - dns_name: dns_name
+   - extra_dhcp_opts: extra_dhcp_opts
+   - fixed_ips: fixed_ips
+   - hints: hints
+   - id: id
+   - ip_allocation: ip_allocation
+   - mac_address: mac_address
+   - name: name
+   - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy
+   - port_security_enabled: port_security_enabled
+   - project_id: project_id
+   - qos_network_policy_id: qos_network_policy_id-port-response
+   - qos_policy_id: qos_policy_id-port-response
+   - revision_number: revision_number
+   - resource_request: port-resource
+   - security_groups: port-security_groups
+   - status: port-status
+   - tags: tags
+   - tenant_id: project_id
+   - updated_at: updated_at_resource
+   - propagate_uplink_status: propagate_uplink_status
+   - mac_learning_enabled: mac_learning_enabled
+
+Response Example
+----------------
+
+.. literalinclude:: samples/ports/port-add-allowed-address-pairs-response.json
+   :language: javascript
+
+Remove allowed_address_pairs from port
+======================================
+
+.. rest_method::  PUT /v2.0/ports/{port_id}/remove_allowed_address_pairs
+
+Atomically removes a set of allowed_address_pairs from the port's already
+existing allowed_address_pairs.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 404, 412
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - port_id: port_id-path
+   - port: port
+   - allowed_address_pairs: allowed_address_pairs-request
+
+Request Example
+---------------
+
+.. literalinclude:: samples/ports/port-remove-allowed-address-pairs-request.json
+   :language: javascript
+
+Response Parameters
+-------------------
+
+.. rest_parameters:: parameters.yaml
+
+   - port: port
+   - admin_state_up: admin_state_up
+   - allowed_address_pairs: allowed_address_pairs
+   - binding:host_id: binding:host_id
+   - binding:profile: binding:profile
+   - binding:vif_details: binding:vif_details
+   - binding:vif_type: binding:vif_type
+   - binding:vnic_type: binding:vnic_type
+   - created_at: created_at_resource
+   - data_plane_status: data_plane_status
+   - description: description
+   - device_id: device_id
+   - device_owner: device_owner
+   - dns_assignment: dns_assignment
+   - dns_domain: dns_domain
+   - dns_name: dns_name
+   - extra_dhcp_opts: extra_dhcp_opts
+   - fixed_ips: fixed_ips
+   - hints: hints
+   - id: id
+   - ip_allocation: ip_allocation
+   - mac_address: mac_address
+   - name: name
+   - network_id: network_id
+   - numa_affinity_policy: numa_affinity_policy
+   - port_security_enabled: port_security_enabled
+   - project_id: project_id
+   - qos_network_policy_id: qos_network_policy_id-port-response
+   - qos_policy_id: qos_policy_id-port-response
+   - revision_number: revision_number
+   - resource_request: port-resource
+   - security_groups: port-security_groups
+   - status: port-status
+   - tags: tags
+   - tenant_id: project_id
+   - updated_at: updated_at_resource
+   - propagate_uplink_status: propagate_uplink_status
+   - mac_learning_enabled: mac_learning_enabled
+
+Response Example
+----------------
+
+.. literalinclude:: samples/ports/port-remove-allowed-address-pairs-response.json
    :language: javascript

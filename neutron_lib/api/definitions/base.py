@@ -82,6 +82,7 @@ KNOWN_EXTENSIONS = (
     'agent',
     'agent-resources-synced',
     'allowed-address-pairs',
+    'allowed-address-pairs-atomic',
     'auto-allocated-topology',
     'availability_zone',
     'binding',

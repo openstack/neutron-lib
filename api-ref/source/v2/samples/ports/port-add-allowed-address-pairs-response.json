@@ -1,0 +1,51 @@
+{
+    "port": {
+        "admin_state_up": true,
+        "allowed_address_pairs": [
+            {
+                "ip_address": "192.168.13.7",
+                "mac_address": "fa:16:3e:09:1f:b2"
+            }
+        ],
+        "binding:host_id": "",
+        "binding:profile": {},
+        "binding:vif_details": {},
+        "binding:vif_type": "unbound",
+        "binding:vnic_type": "normal",
+        "created_at": "2023-04-20T02:32:41",
+        "data_plane_status": null,
+        "description": "",
+        "device_id": "",
+        "device_owner": "",
+        "dns_assignment": [],
+        "dns_domain": "",
+        "dns_name": "",
+        "extra_dhcp_opts": [],
+        "fixed_ips": [
+            {
+                "ip_address": "192.168.13.6",
+                "subnet_id": "a4c3b506-2110-4929-a70a-bda534bc0b07"
+            }
+        ],
+        "id": "dc67ee67-7acd-464d-98fd-4abef6d8759d",
+        "ip_allocation": "immediate",
+        "mac_address": "fa:16:3e:09:1f:b2",
+        "mac_learning_enabled": false,
+        "name": "test-port",
+        "network_id": "99b8e526-e943-4463-aa28-a22395bed154",
+        "port_security_enabled": true,
+        "project_id": "294b394e8f454cc8b26bbe342bc210d3",
+        "revision_number": 1,
+        "security_groups": [
+            "751d740a-b52b-46d9-bca8-a21e75c8a727"
+        ],
+        "status": "DOWN",
+        "tags": [],
+        "tenant_id": "294b394e8f454cc8b26bbe342bc210d3",
+        "updated_at": "2023-04-20T02:32:41",
+        "qos_network_policy_id": null,
+        "qos_policy_id": null,
+        "resource_request": null,
+        "propagate_uplink_status": false
+    }
+}
