@@ -232,7 +232,7 @@ class AttributeInfo(object):
                 res = validator(res_dict[attr],
                                 attr_vals['validate'][rule])
                 if res:
-                    msg_dict = dict(attr=attr, reason=res)
+                    msg_dict = {'attr': attr, 'reason': res}
                     msg = _("Invalid input for %(attr)s. "
                             "Reason: %(reason)s.") % msg_dict
                     raise exc_cls(msg)
