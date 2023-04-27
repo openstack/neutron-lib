@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    New API definition: ``network-ha``. This boolean field can be used only
+    during the network creation. If enabled, the Neutron server will create
+    a ``ha_router_networks`` register, that binds the project with the network
+    and represents the only high availability network that can be created per
+    project.

@@ -62,6 +62,14 @@ class HasProjectPrimaryKey(HasProject):
                            nullable=False, primary_key=True)
 
 
+class HasProjectPrimaryUniqueKey(HasProject):
+    """Project mixin, add to subclasses that have a user."""
+
+    # NOTE: project_id is just a free form string
+    project_id = sa.Column(sa.String(db_const.PROJECT_ID_FIELD_SIZE),
+                           nullable=False, primary_key=True, unique=True)
+
+
 class HasId(object):
     """id mixin, add to subclasses that have an id."""
 

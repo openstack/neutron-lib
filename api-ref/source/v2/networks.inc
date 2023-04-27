@@ -47,6 +47,14 @@ The ``floatingip-autodelete-internal`` shim extension signals that the
 update of a network's ``router:external`` attribute from ``true`` to
 ``false`` autodeletes the unused Floating IPs of that network.
 
+HA extension
+============
+
+The ``network-ha`` extension allows to pass a boolean parameter during the
+network creation. If ``true`` is passed, a ``ha_router_networks`` database
+register will be created along with the ``network`` register. This field is
+not visible and, initially, not meant to be supported in the CLI.
+
 L2 adjacency extension
 ======================
 
