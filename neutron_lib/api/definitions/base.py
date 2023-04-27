@@ -160,6 +160,7 @@ KNOWN_EXTENSIONS = (
     'sort-key-validation',
     'sorting',
     'standard-attr-description',
+    'standard-attr-fwaas-v2',
     'standard-attr-revisions',
     'standard-attr-segment',
     'standard-attr-timestamp',

@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Add API extensions to advertise the support of standard attributes with
+    FWaaS v2 resources: ``standard-attr-fwaas-v2``.

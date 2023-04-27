@@ -52,6 +52,7 @@ from neutron_lib.api.definitions import fip_pf_detail
 from neutron_lib.api.definitions import fip_pf_port_range
 from neutron_lib.api.definitions import fip_port_details
 from neutron_lib.api.definitions import firewall_v2
+from neutron_lib.api.definitions import firewall_v2_stdattrs
 from neutron_lib.api.definitions import flavors
 from neutron_lib.api.definitions import floating_ip_port_forwarding
 from neutron_lib.api.definitions import floatingip_autodelete_internal
@@ -195,6 +196,7 @@ _ALL_API_DEFINITIONS = {
     filter_validation,
     fip64,
     firewall_v2,
+    firewall_v2_stdattrs,
     fip_distributed,
     fip_pf_detail,
     fip_port_details,
