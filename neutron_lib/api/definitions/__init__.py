@@ -16,6 +16,7 @@ from neutron_lib.api.definitions import agent
 from neutron_lib.api.definitions import agent_resources_synced
 from neutron_lib.api.definitions import agent_sort_key
 from neutron_lib.api.definitions import allowedaddresspairs
+from neutron_lib.api.definitions import allowedaddresspairs_atomic
 from neutron_lib.api.definitions import auto_allocated_topology
 from neutron_lib.api.definitions import availability_zone
 from neutron_lib.api.definitions import availability_zone_filter
@@ -165,6 +166,7 @@ _ALL_API_DEFINITIONS = {
     agent_resources_synced,
     agent_sort_key,
     allowedaddresspairs,
+    allowedaddresspairs_atomic,
     auto_allocated_topology,
     availability_zone,
     availability_zone_filter,
