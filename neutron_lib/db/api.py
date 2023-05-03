@@ -48,10 +48,7 @@ def _create_context_manager():
     global _CTX_MANAGER
     if _CTX_MANAGER is None:
         _CTX_MANAGER = enginefacade.transaction_context()
-        # TODO(stephenfin): Drop "__autocommit=False" when oslo.db changes its
-        # default (https://review.opendev.org/c/openstack/oslo.db/+/804775)
-        _CTX_MANAGER.configure(sqlite_fk=True, flush_on_subtransaction=True,
-                               __autocommit=False)
+        _CTX_MANAGER.configure(sqlite_fk=True, flush_on_subtransaction=True)
 
     return _CTX_MANAGER
 
