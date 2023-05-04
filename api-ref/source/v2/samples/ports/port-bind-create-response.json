@@ -47,6 +47,7 @@
                 "subnet_id": "a0304c3a-4f08-4c43-88af-d796509c97d2"
             }
         ],
+        "hints": {"openvswitch": {"other_config": {"tx-steering": "hash"}}},
         "id": "65c0ee9f-d634-4522-8954-51021b570b0d",
         "ip_allocation": "immediate",
         "mac_address": "fa:16:3e:c9:cb:f0",
