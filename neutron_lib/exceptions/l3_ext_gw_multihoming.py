@@ -27,7 +27,3 @@ class UnableToRemoveGateways(exceptions.NeutronException):
 class UnableToMatchGateways(exceptions.NeutronException):
     message = _("Unable to match a requested gateway port to"
                 " existing gateway ports for router %(router_id)s")
-
-
-class UnableToAddExtraGatewayPort(exceptions.NeutronException):
-    message = _("Unable to add an gateway port to a router %(router_id)s")
