@@ -4768,6 +4768,12 @@ network-admin_state_up-request:
   in: body
   required: false
   type: boolean
+network-ha:
+  description: |
+    The high availability input flag when creating a network.
+  in: body
+  required: false
+  type: boolean
 network-id:
   description: |
     The ID of the network.
