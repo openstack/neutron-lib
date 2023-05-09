@@ -691,3 +691,8 @@ MAX_ASNUM = 65535
 MAX_4BYTE_ASNUM = 4294967295
 
 SUPPORTED_AUTH_TYPES = ['none', 'md5']
+
+# Hardware offload types.
+HWOL_TYPE_SWITCHDEV = 'switchdev'
+VALID_HWOL_TYPES = (HWOL_TYPE_SWITCHDEV,
+                    )

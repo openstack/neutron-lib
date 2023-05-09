@@ -90,6 +90,7 @@ from neutron_lib.api.definitions import network_segment_range
 from neutron_lib.api.definitions import pagination
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_device_profile
+from neutron_lib.api.definitions import port_hardware_offload_type
 from neutron_lib.api.definitions import port_hint_ovs_tx_steering
 from neutron_lib.api.definitions import port_hints
 from neutron_lib.api.definitions import port_mac_address_override
@@ -243,6 +244,7 @@ _ALL_API_DEFINITIONS = {
     pagination,
     port,
     port_device_profile,
+    port_hardware_offload_type,
     port_hints,
     port_hint_ovs_tx_steering,
     port_mac_address_override,

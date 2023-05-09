@@ -1,0 +1,11 @@
+---
+features:
+  - |
+    The ``port-hardware-offload`` extension adds ``hardware_offload_type``
+    attribute to the port resource. This new attribute stores the type
+    of hardware offload the port is going to use and will be populated
+    in the port binding profile information with
+    "'capabilities': [<hardware_offload_type>]". This extension is still
+    not read by Nova; this is the reason Neutron still populates the port
+    binding profile. The value of this parameter will not be updated if
+    the port binding profile information is updated.

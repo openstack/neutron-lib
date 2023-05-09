@@ -13,6 +13,7 @@
                 "mac_address": "fa:14:2a:b3:cb:f0"
             }
         ],
-        "propagate_uplink_status": false
+        "propagate_uplink_status": false,
+        "hardware_offload_type": ""
     }
 }
