@@ -120,8 +120,9 @@ class ContextBase(oslo_context.RequestContext):
         context = copy.copy(self)
         context.is_admin = True
 
-        if 'admin' not in [x.lower() for x in context.roles]:
-            context.roles = context.roles + ["admin"]
+        context.roles = list(
+            set(context.roles) | set(['admin', 'member', 'reader'])
+        )
 
         return context
 
