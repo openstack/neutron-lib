@@ -157,6 +157,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertFalse(hasattr(ctx, 'session'))
 
     def test_neutron_context_elevated_retains_request_id(self):
+        expected_roles = ['admin', 'member', 'reader']
         ctx = context.Context('user_id', 'tenant_id')
         self.assertFalse(ctx.is_admin)
         req_id_before = ctx.request_id
@@ -164,24 +165,52 @@ class TestNeutronContext(_base.BaseTestCase):
         elevated_ctx = ctx.elevated()
         self.assertTrue(elevated_ctx.is_admin)
         self.assertEqual(req_id_before, elevated_ctx.request_id)
+        for expected_role in expected_roles:
+            self.assertIn(expected_role, elevated_ctx.roles)
 
     def test_neutron_context_elevated_idempotent(self):
         ctx = context.Context('user_id', 'tenant_id')
+        expected_roles = ['admin', 'member', 'reader']
         self.assertFalse(ctx.is_admin)
         elevated_ctx = ctx.elevated()
         self.assertTrue(elevated_ctx.is_admin)
+        for expected_role in expected_roles:
+            self.assertIn(expected_role, elevated_ctx.roles)
         elevated2_ctx = elevated_ctx.elevated()
         self.assertTrue(elevated2_ctx.is_admin)
+        for expected_role in expected_roles:
+            self.assertIn(expected_role, elevated_ctx.roles)
 
     def test_neutron_context_elevated_system_scope_for_new_policies(self):
         cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
+        expected_roles = ['admin', 'member', 'reader']
         ctx = context.Context('user_id', 'tenant_id')
         self.assertFalse(ctx.is_admin)
         self.assertNotEqual('all', ctx.system_scope)
         elevated_ctx = ctx.elevated()
         self.assertTrue(elevated_ctx.is_admin)
+        for expected_role in expected_roles:
+            self.assertIn(expected_role, elevated_ctx.roles)
         # make sure we do not set the system scope in context
         self.assertNotEqual('all', elevated_ctx.system_scope)
+
+    def test_neutron_context_elevated_keeps_custom_roles(self):
+        expected_admin_roles = ['admin', 'member', 'reader']
+        custom_roles = ['custom_role']
+        ctx = context.Context('user_id', 'tenant_id', roles=custom_roles)
+        self.assertFalse(ctx.is_admin)
+        self.assertNotEqual('all', ctx.system_scope)
+        for expected_admin_role in expected_admin_roles:
+            self.assertNotIn(expected_admin_role, ctx.roles)
+        for custom_role in custom_roles:
+            self.assertIn(custom_role, ctx.roles)
+
+        elevated_ctx = ctx.elevated()
+        self.assertTrue(elevated_ctx.is_admin)
+        for expected_admin_role in expected_admin_roles:
+            self.assertIn(expected_admin_role, elevated_ctx.roles)
+        for custom_role in custom_roles:
+            self.assertIn(custom_role, ctx.roles)
 
     def test_neutron_context_overwrite(self):
         ctx1 = context.Context('user_id', 'tenant_id')
