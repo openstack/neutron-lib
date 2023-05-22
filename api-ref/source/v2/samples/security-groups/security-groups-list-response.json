@@ -21,7 +21,8 @@
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
-                    "description": ""
+                    "description": "",
+                    "belongs_to_default_sg": false
                 },
                 {
                     "direction": "egress",
@@ -39,7 +40,8 @@
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
-                    "description": ""
+                    "description": "",
+                    "belongs_to_default_sg": false
                 },
                 {
                     "direction": "ingress",
@@ -57,7 +59,8 @@
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
-                    "description": ""
+                    "description": "",
+                    "belongs_to_default_sg": false
                 },
                 {
                     "direction": "ingress",
@@ -75,7 +78,8 @@
                     "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
                     "created_at": "2018-03-19T19:16:56Z",
                     "updated_at": "2018-03-19T19:16:56Z",
-                    "description": ""
+                    "description": "",
+                    "belongs_to_default_sg": false
                 }
             ],
             "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",

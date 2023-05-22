@@ -131,6 +131,8 @@ from neutron_lib.api.definitions import routerservicetype
 from neutron_lib.api.definitions import security_groups_normalized_cidr
 from neutron_lib.api.definitions import security_groups_port_filtering
 from neutron_lib.api.definitions import security_groups_remote_address_group
+from neutron_lib.api.definitions import \
+    security_groups_rules_belongs_to_default_sg
 from neutron_lib.api.definitions import security_groups_shared_filtering
 from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import segments_peer_subnet_host_routes
@@ -282,6 +284,7 @@ _ALL_API_DEFINITIONS = {
     security_groups_normalized_cidr,
     security_groups_port_filtering,
     security_groups_remote_address_group,
+    security_groups_rules_belongs_to_default_sg,
     security_groups_shared_filtering,
     segment,
     segments_peer_subnet_host_routes,

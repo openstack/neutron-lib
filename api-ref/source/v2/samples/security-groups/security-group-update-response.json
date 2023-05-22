@@ -11,6 +11,7 @@
         "description": "my security group",
         "tags": ["tag1,tag2"],
         "stateful": true,
-        "shared": false
+        "shared": false,
+        "belongs_to_default_sg": false
     }
 }

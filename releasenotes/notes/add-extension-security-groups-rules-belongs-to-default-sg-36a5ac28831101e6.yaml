@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    Add new API extension ``security-groups-rules-belongs-to-default-sg`` that
+    adds a new read only field ``belongs_to_default_sg`` in the security group
+    rules. This flag determines if this security group rule belongs to the
+    project's default security group.

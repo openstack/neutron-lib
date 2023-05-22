@@ -15,6 +15,12 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Belongs to the project's default security group
+===============================================
+
+This read only flag determines if the security group rule belongs to the
+project default security group. Is a syntethic field set by the server.
+
 List security group rules
 =========================
 
@@ -77,6 +83,7 @@ Response Parameters
    - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
+   - belongs_to_default_sg: security_group_rule-belongs-to-default-sg
 
 Response Example
 ----------------
@@ -138,6 +145,7 @@ Response Parameters
    - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
+   - belongs_to_default_sg: security_group_rule-belongs-to-default-sg
 
 Response Example
 ----------------
@@ -189,6 +197,7 @@ Response Parameters
    - revision_number: revision_number
    - id: security_group_rule-id
    - description: description
+   - belongs_to_default_sg: security_group_rule-belongs-to-default-sg
 
 Response Example
 ----------------
