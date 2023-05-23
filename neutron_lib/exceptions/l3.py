@@ -102,3 +102,15 @@ class L3ExtensionException(exceptions.NeutronException):
     message = _('The following L3 agent extensions do not inherit from '
                 '``neutron_lib.agent.l3_extension.L3AgentExtension``: '
                 '%(extensions)s.')
+
+
+class FipAssociated(exceptions.InUse):
+    """An operational error indicates that port still has an associated FIP.
+
+    A specialization of the InUse exception indicating an operation failed on
+    a port because it still has an associated FIP.
+
+    :param port_id: The UUID of the port requested.
+    """
+    message = _("Unable to complete the operation on port %(port_id)s "
+                "because the port still has an associated floating IP.")
