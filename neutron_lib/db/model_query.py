@@ -108,6 +108,7 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
     :param lazy_fields: list of fields for lazy loading
     :returns: The query with hooks applied to it.
     """
+    group_by = None
     if field:
         if hasattr(model, field):
             field = getattr(model, field)
@@ -129,6 +130,11 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
                     [constants.ACCESS_SHARED, constants.ACCESS_READONLY]) &
                  ((rbac_model.target_tenant == context.tenant_id) |
                   (rbac_model.target_tenant == '*'))))
+            # This "group_by" clause will limit the number of registers
+            # returned by the query, avoiding the problem of the low SQL
+            # query cardinality when the RBAC registers are in the requested
+            # project ID.
+            group_by = model.id
         elif hasattr(model, 'shared'):
             query_filter = ((model.tenant_id == context.tenant_id) |
                             (model.shared == sql.true()))
@@ -148,6 +154,9 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
     # condition, raising an exception
     if query_filter is not None:
         query = query.filter(query_filter)
+
+    if group_by:
+        query = query.group_by(group_by)
 
     if lazy_fields:
         for field in lazy_fields:
