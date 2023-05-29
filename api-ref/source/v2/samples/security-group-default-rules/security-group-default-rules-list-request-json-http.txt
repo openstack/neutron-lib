@@ -1,0 +1,2 @@
+GET /v2.0/default-security-group-rules/
+Accept: application/json

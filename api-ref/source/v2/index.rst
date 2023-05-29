@@ -44,6 +44,7 @@ Security
 .. include:: rbac-policy.inc
 .. include:: security-group-rules.inc
 .. include:: security-groups.inc
+.. include:: security_groups_default_rules.inc
 .. include:: vpnaas.inc
 ###################
 Resource Management

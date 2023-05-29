@@ -1,0 +1,16 @@
+{
+    "default_security_group_rule": {
+        "direction": "ingress",
+        "ethertype": "IPv4",
+        "id": "2bc0accf-312e-429a-956e-e4407625eb62",
+        "port_range_max": 80,
+        "port_range_min": 80,
+        "protocol": "tcp",
+        "remote_group_id": null,
+        "remote_ip_prefix": null,
+        "remote_address_group_id": null,
+        "used_in_default_sg": false,
+        "used_in_non_default_sg": true,
+        "description": ""
+    }
+}
