@@ -1,0 +1,16 @@
+{
+    "binding": {
+        "host": "compute",
+        "vif_type": "ovs",
+        "vnic_type": "normal",
+        "status": "ACTIVE",
+        "profile": {},
+        "vif_details": {
+            "connectivity": "l2",
+            "port_filter": true,
+            "ovs_hybrid_plug": false,
+            "datapath_type": "system",
+            "bridge_name": "br-int"
+        }
+    }
+}

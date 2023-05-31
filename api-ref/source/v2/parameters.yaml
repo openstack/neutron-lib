@@ -2538,6 +2538,12 @@ binding:vnic_type-request:
   in: body
   required: false
   type: string
+bindings:
+  description: |
+    A ``binding`` object.
+  in: body
+  required: true
+  type: object
 cidr:
   description: |
     The CIDR of the subnet.

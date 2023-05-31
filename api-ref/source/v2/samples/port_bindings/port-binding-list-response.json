@@ -1,0 +1,18 @@
+{
+    "bindings" : [
+        {
+            "host" : "jammy",
+            "profile" : {},
+            "status" : "ACTIVE",
+            "vif_details" : {
+                "bridge_name" : "br-int",
+                "connectivity" : "l2",
+                "datapath_type" : "system",
+                "ovs_hybrid_plug" : false,
+                "port_filter" : true
+            },
+            "vif_type" : "ovs",
+            "vnic_type" : "normal"
+        }
+   ]
+}
