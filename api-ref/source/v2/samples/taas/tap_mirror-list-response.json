@@ -1,0 +1,17 @@
+{
+    "tap_mirrors": [
+        {
+            "description": "My fancy tap mirror with direction IN and id 99",
+            "directions": {
+                "IN": 99
+            },
+            "id": "207e4809-5358-4592-891b-3312bed32c47",
+            "mirror_type": "gre",
+            "name": "my_tap_mirror",
+            "port_id": "81bc638f-e991-4306-ae5e-df8492890b39",
+            "project_id": "57425788f1a148059926c124a6ffabe6",
+            "remote_ip": "100.109.0.142",
+            "tenant_id": "57425788f1a148059926c124a6ffabe6"
+        }
+    ]
+}

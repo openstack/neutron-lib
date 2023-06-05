@@ -1751,6 +1751,12 @@ tags-query:
   in: query
   required: false
   type: string
+tap_mirror_id-query:
+  description: |
+    The id of the Tap Mirror.
+  in: query
+  required: true
+  type: string
 tap_service_id-query:
   description: |
     Tap Service to which the Tap Flow belongs.
@@ -2915,6 +2921,13 @@ direction_taf:
   in: body
   required: true
   type: string
+directions_tap_mirror:
+  description: |
+    A dictionary of ``direction`` and ``tunnel_id``.
+    Direction can be ``IN`` and ``OUT``.
+  in: body
+  required: true
+  type: object
 dns_assignment:
   description: |
     Data assigned to a port by the Networking internal DNS including the
@@ -4810,6 +4823,12 @@ mirror_port_tas:
   in: body
   required: true
   type: string
+mirror_type:
+  description: |
+    The type of the mirroring, it can be ``gre`` or ``erspanv1``.
+  in: body
+  required: true
+  type: string
 mtu:
   description: |
     The maximum transmission unit (MTU) value to
@@ -6058,6 +6077,13 @@ remote_ip_prefix-request:
   in: body
   required: false
   type: string
+remote_ip_tap_mirror:
+  description: |
+    The remote IP of the Tap Mirror, this will be the remote end of the
+    GRE or ERSPAN v1 tunnel.
+  in: body
+  required: true
+  type: string
 resource:
   description: |
     The resource type of the availability zone. The supported resource types
@@ -7144,6 +7170,26 @@ tags:
   in: body
   required: true
   type: array
+tap_mirror_id:
+  description: |
+    The ID of the Tap Mirror.
+  in: body
+  required: true
+  type: string
+tap_mirror_name:
+  description: |
+    The name of the Tap Mirror
+  in: body
+  required: true
+  type: string
+tap_mirror_port_id:
+  description: |
+    The Port ID of the Tap Mirror, this will be the source of the mirrored
+    traffic, and this traffic will be tunneled into the GRE or ERSPAN v1
+    tunnel. The tunnel itself is not starting from this port!
+  in: body
+  required: true
+  type: string
 tap_service_id:
   description: |
     Tap Service to which the Tap Flow belongs.

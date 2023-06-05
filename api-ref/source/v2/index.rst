@@ -121,6 +121,7 @@ Auto Allocated Topology
 Tap as a Service
 #################
 .. include:: taas.inc
+.. include:: tap_mirrors.inc
 ##################
 Networking SFC API
 ##################

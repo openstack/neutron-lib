@@ -1,0 +1,10 @@
+{
+    "tap_mirror": {
+        "name": "mirror2",
+        "description": "Two direction mirror",
+        "port_id":"c63e4f48-da76-466c-a6f1-f4e4a4902c6a",
+        "directions": {"IN": 99, "OUT": 100},
+        "remote_ip":"100.109.0.142",
+        "mirror_type":"erspanv1"
+    }
+}

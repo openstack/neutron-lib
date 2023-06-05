@@ -1,0 +1,6 @@
+{
+    "tap_mirror": {
+        "name": "my_tap_mirror",
+        "description":"My fancy tap mirror with direction IN and id 99"
+    }
+}
