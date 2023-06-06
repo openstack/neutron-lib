@@ -175,3 +175,8 @@ class FirewallGroupDefaultAlreadyExists(exceptions.InUse):
     """
     message = _("Default firewall group already exists. 'default' is the "
                 "reserved name for firewall group.")
+
+
+class FirewallGroupPortNotSupported(exceptions.Conflict):
+    message = _("Port %(port_id)s is not supported by firewall driver "
+                "'%(driver_name)s'.")
