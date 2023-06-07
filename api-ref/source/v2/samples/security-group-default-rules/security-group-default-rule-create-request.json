@@ -1,0 +1,9 @@
+{
+    "default_security_group_rule": {
+        "direction": "ingress",
+        "port_range_min": "80",
+        "ethertype": "IPv4",
+        "port_range_max": "80",
+        "protocol": "tcp"
+    }
+}

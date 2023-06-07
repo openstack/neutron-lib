@@ -67,6 +67,12 @@ conntrack_helper_id-path:
   in: path
   required: true
   type: string
+default_security_group_rule-id-path:
+  description: |
+    The ID of the security group default rule.
+  in: path
+  required: true
+  type: string
 dscp_rule_id:
   description: |
     The ID of the DSCP rule.
@@ -1355,10 +1361,34 @@ rbac_action-query:
   in: query
   required: false
   type: string
+remote_address_group_id-query:
+  description: |
+    Filter the security group rule list result by the ID of the remote address
+    group that associates with this security group rule.
+  in: query
+  required: false
+  type: string
+remote_address_group_id-request:
+  description: |
+    UUID of the remote address group that associates with the security group
+    rule created from this template.
+  in: query
+  required: false
+  type: string
 remote_group_id-query:
   description: |
     Filter the security group rule list result by the ID of the remote group
     that associates with this security group rule.
+  in: query
+  required: false
+  type: string
+remote_group_id_template-query:
+  description: |
+    Filter the security group rule list result by the ID of the remote group
+    that associates with this security group rule. This field can contains uuid
+    of the security group or special word ``PARENT`` which means that in the
+    real rule created from this template, uuid of the owner Security Group will
+    be put as ``remote_group_id``.
   in: query
   required: false
   type: string
@@ -2664,6 +2694,12 @@ default_quota:
   in: body
   required: false
   type: integer
+default_security_group_rule-id:
+  description: |
+    The ID of the security group default rule.
+  in: body
+  required: true
+  type: string
 description:
   description: |
     A human-readable description for the resource.
@@ -5804,6 +5840,13 @@ rbac_policy_id:
   in: body
   required: true
   type: string
+remote_address_group_id:
+  description: |
+    The remote address group UUID to associate with this
+    security group rule.
+  in: body
+  required: true
+  type: string
 remote_group_id:
   description: |
     The remote group UUID to associate with this
@@ -5819,6 +5862,17 @@ remote_group_id-request:
     security group rule. You can specify either the
     ``remote_group_id`` or ``remote_ip_prefix`` attribute in the
     request body.
+  in: body
+  required: false
+  type: string
+remote_group_id_template:
+  description: |
+    The remote group UUID to associate with this
+    security group rule. You can specify either the
+    ``remote_group_id`` or ``remote_ip_prefix`` attribute in the
+    request body. Special word ``PARENT`` can be specified and it means that
+    in the real rule created from this template, uuid of the owner Security
+    Group will be put as ``remote_group_id``.
   in: body
   required: false
   type: string
@@ -6309,6 +6363,12 @@ security_group-shared-response:
   in: body
   required: true
   type: boolean
+security_group_default_rule:
+  description: |
+    A ``default_security_group_rule`` object.
+  in: body
+  required: true
+  type: object
 security_group_id:
   description: |
     The security group UUID to associate with this
@@ -6946,6 +7006,35 @@ updated_at_resource:
 use_default_subnetpool:
   description: |
     Whether to allocate this subnet from the default subnet pool.
+  in: body
+  required: false
+  type: boolean
+used_in_default_sg:
+  description: |
+    Whether this security group rule template should be used in default
+    security group created automatically for each new project. Default value
+    is ``False``.
+  in: body
+  required: false
+  type: boolean
+used_in_default_sg-query:
+  description: |
+    Fiter by security group rule templates which should be used in default
+    security group created automatically for each new project.
+  in: body
+  required: false
+  type: boolean
+used_in_non_default_sg:
+  description: |
+    Whether this security group rule template should be used in custom
+    security groups created by project user. Default value is ``True``.
+  in: body
+  required: false
+  type: boolean
+used_in_non_default_sg-query:
+  description: |
+    Fiter by security group rule templates which should be used in custom
+    security groups created by project users.
   in: body
   required: false
   type: boolean

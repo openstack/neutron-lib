@@ -1,0 +1,88 @@
+{
+    "default_security_group_rules": [
+        {
+            "direction": "egress",
+            "ethertype": "IPv6",
+            "id": "3c0e45ff-adaf-4124-b083-bf390e5482ff",
+            "port_range_max": null,
+            "port_range_min": null,
+            "protocol": null,
+            "remote_group_id": null,
+            "remote_ip_prefix": null,
+            "remote_address_group_id": null,
+            "used_in_default_sg": true,
+            "used_in_default_non_sg": true,
+            "description": ""
+        },
+        {
+            "direction": "egress",
+            "ethertype": "IPv4",
+            "id": "93aa42e5-80db-4581-9391-3a608bd0e448",
+            "port_range_max": null,
+            "port_range_min": null,
+            "protocol": null,
+            "remote_group_id": null,
+            "remote_ip_prefix": null,
+            "remote_address_group_id": null,
+            "used_in_default_sg": true,
+            "used_in_default_non_sg": true,
+            "description": ""
+        },
+        {
+            "direction": "ingress",
+            "ethertype": "IPv6",
+            "id": "333e64bf-cab0-47ed-8303-fca711b74433",
+            "port_range_max": null,
+            "port_range_min": null,
+            "protocol": null,
+            "remote_group_id": "PARENT",
+            "remote_ip_prefix": null,
+            "remote_address_group_id": null,
+            "used_in_default_sg": true,
+            "used_in_default_non_sg": true,
+            "description": ""
+        },
+        {
+            "direction": "ingress",
+            "ethertype": "IPv4",
+            "id": "91eff177-4e20-4407-a7ac-843c625316e3",
+            "port_range_max": null,
+            "port_range_min": null,
+            "protocol": null,
+            "remote_group_id": "PARENT",
+            "remote_ip_prefix": null,
+            "remote_address_group_id": null,
+            "used_in_default_sg": true,
+            "used_in_default_non_sg": true,
+            "description": ""
+        },
+        {
+            "direction": "ingress",
+            "ethertype": "IPv6",
+            "id": "d41fc3d7-46bc-405e-a4f6-029cbb63c5c4",
+            "port_range_max": 22,
+            "port_range_min": 22,
+            "protocol": null,
+            "remote_group_id": null,
+            "remote_ip_prefix": null,
+            "remote_address_group_id": null,
+            "used_in_default_sg": false,
+            "used_in_default_non_sg": true,
+            "description": "Allow SSH connections over IPv6"
+        },
+        {
+            "direction": "ingress",
+            "ethertype": "IPv4",
+            "id": "03315f60-52dd-40e0-a769-04360cb3e6c1",
+            "port_range_max": 22,
+            "port_range_min": 22,
+            "protocol": null,
+            "remote_group_id": null,
+            "remote_ip_prefix": null,
+            "remote_address_group_id": null,
+            "used_in_default_sg": false,
+            "used_in_default_non_sg": true,
+            "description": "Allow SSH connections over IPv4"
+        }
+    ]
+}
