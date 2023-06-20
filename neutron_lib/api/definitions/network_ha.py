@@ -12,7 +12,6 @@
 # limitations under the License.
 
 from neutron_lib.api import converters
-from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import network
 
 ALIAS = 'network_ha'
@@ -38,6 +37,6 @@ RESOURCE_ATTRIBUTE_MAP = {
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
-REQUIRED_EXTENSIONS = [l3.ALIAS]
+REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}
