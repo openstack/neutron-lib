@@ -36,6 +36,7 @@ Layer 3 Networking
 .. include:: subnetpools.inc
 .. include:: subnetpool_prefix_ops.inc
 .. include:: subnets.inc
+.. include:: subnet_onboard_ops.inc
 .. include:: local-ips.inc
 ########
 Security
