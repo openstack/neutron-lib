@@ -80,7 +80,7 @@ Create security group default rule
 
 .. rest_method::  POST /v2.0/default-security-group-rules
 
-Creates an OpenStack Networking templale of the security group rule.
+Creates an Openstack Networking security group rule template.
 
 Normal response codes: 201
 
@@ -133,6 +133,15 @@ Response Example
 
 .. literalinclude:: samples/security-group-default-rules/security-group-default-rule-create-response.json
    :language: javascript
+
+.. warning::
+
+    The security group rule template APIs do not validate the UUID of the resources
+    like ``remote address group id`` or ``remote group ID``.  Any string can be
+    provided here, but please note that it will be used to create real security
+    group rules for projects, and if the UUID of a non-existing ``security
+    group`` or ``remote address group`` is used, it will cause errors during
+    creation of the security groups.
 
 Show security group default rule
 ================================
