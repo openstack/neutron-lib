@@ -1,0 +1,5 @@
+---
+other:
+  - |
+    Resource ``network`` was added to the ``EXT_PARENT_RESOURCE_MAPPING in
+    ``neutron_lib.services.constants``.
