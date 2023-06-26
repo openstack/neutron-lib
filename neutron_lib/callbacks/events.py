@@ -26,6 +26,7 @@ AFTER_CREATE = 'after_create'
 AFTER_READ = 'after_read'
 AFTER_UPDATE = 'after_update'
 AFTER_DELETE = 'after_delete'
+AFTER_STATUS_UPDATE = 'after_status_update'
 
 # String literals representing events associated to API operations
 BEFORE_RESPONSE = 'before_response'

@@ -1,0 +1,5 @@
+---
+features:
+  - A new ``AFTER_STATUS_UPDATE`` event is added. The first use case of this
+    new event is to indicate when the L3 DB layer has updated floating IPs
+    status.
