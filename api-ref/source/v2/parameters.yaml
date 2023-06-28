@@ -151,6 +151,12 @@ floatingip-id-path:
   in: path
   required: true
   type: string
+flow_classifier_id-path:
+  description: |
+    The ID of the flow classifier.
+  in: path
+  required: true
+  type: string
 ikepolicy_id-path:
   description: |
     The ID of the IKE policy.
@@ -217,9 +223,27 @@ network_segment_range_id-path:
   in: path
   required: true
   type: string
+port_chain_id-path:
+  description: |
+      The UUID of the port-chain.
+  in: path
+  required: true
+  type: string
 port_id-path:
   description: |
     The ID of the port.
+  in: path
+  required: true
+  type: string
+port_pair_group_id-path:
+  description: |
+      The UUID of the port-pair-group.
+  in: path
+  required: true
+  type: string
+port_pair_id-path:
+  description: |
+    The UUID of the port-pair.
   in: path
   required: true
   type: string
@@ -300,6 +324,12 @@ security_group_rule-id-path:
 segment_id-path:
   description: |
     The UUID of the segment.
+  in: path
+  required: true
+  type: string
+sfc_service_graph_id-path:
+  description: |
+    The UUID of the service graph
   in: path
   required: true
   type: string
@@ -2574,9 +2604,29 @@ bindings:
   in: body
   required: true
   type: object
+chain_id:
+  description: |
+      The UUID of the port-chain.
+  in: body
+  required: true
+  type: string
+chain_parameters:
+  description: |
+    A dictionary of chain parameters, in the form of
+    ``correlation``: ['mpls', 'nsh'], (default is mpls),
+    ``weight``: integer (defaults to 1).
+  in: body
+  required: false
+  type: object
 cidr:
   description: |
     The CIDR of the subnet.
+  in: body
+  required: true
+  type: string
+classifier_name:
+  description: |
+      The name of the flow-classifier.
   in: body
   required: true
   type: string
@@ -2763,6 +2813,18 @@ destination_ip_address-response:
   in: body
   required: true
   type: string
+destination_ip_prefix:
+  description: |
+    The destination IP prefix.
+  in: body
+  required: false
+  type: string
+destination_logical_port:
+  description: |
+    The UUID of the destination logical port.
+  in: body
+  required: false
+  type: string
 destination_port:
   description: |
     The destination port or port range.  A valid
@@ -2781,6 +2843,18 @@ destination_port-response:
   in: body
   required: true
   type: string
+destination_port_range_max:
+  description: |
+    Maximum destination protocol port.
+  in: body
+  required: false
+  type: integer
+destination_port_range_min:
+  description: |
+    Minimum destination protocol port.
+  in: body
+  required: false
+  type: integer
 device_id:
   description: |
     The ID of the device that uses this port.
@@ -2911,6 +2985,12 @@ egress_firewall_policy_id-body-optional:
 egress_firewall_policy_id-body-required:
   description: |
     The ID of the egress firewall policy for the firewall group.
+  in: body
+  required: true
+  type: string
+egress_port_id:
+  description: |
+    The UUID of the egress Neutron port.
   in: body
   required: true
   type: string
@@ -3885,6 +3965,18 @@ floatingips:
   in: body
   required: true
   type: array
+flow_classifier_id:
+  description: |
+      The UUID of the flow-classifier.
+  in: body
+  required: true
+  type: string
+flow_classifiers:
+  description: |
+      List of flow-classifier UUIDs.
+  in: body
+  required: false
+  type: array
 fw_event:
   description: |
     Type of firewall events to log.
@@ -4000,6 +4092,12 @@ ingress_firewall_policy_id-body-optional:
 ingress_firewall_policy_id-body-required:
   description: |
     The ID of the ingress firewall policy for the firewall group.
+  in: body
+  required: true
+  type: string
+ingress_port_id:
+  description: |
+    The UUID of the ingress Neutron port.
   in: body
   required: true
   type: string
@@ -4193,6 +4291,13 @@ l2_adjacency:
   in: body
   required: true
   type: boolean
+l7_parameters:
+  description: |
+    A dictionary of L7 parameters, in the form of
+    ``logical_source_network``: uuid, ``logical_destination_network``: uuid.
+  in: body
+  required: false
+  type: object
 lifetime:
   description: |
     The lifetime of the security association. The
@@ -5167,6 +5272,19 @@ port-status:
   in: body
   required: true
   type: string
+port_chain_name:
+  description: |
+      The name of the port-chain.
+  in: body
+  required: true
+  type: string
+port_chains:
+  description: |
+    A dictionary where the key is the source port chain and the value
+    is a list of destination port chains.
+  in: body
+  required: true
+  type: dict
 port_id:
   description: |
     The ID of the port.
@@ -5185,6 +5303,54 @@ port_id_subport:
   in: body
   required: true
   type: string
+port_pair_group_id:
+  description: |
+      The UUID of the port-pair-group.
+  in: body
+  required: true
+  type: string
+port_pair_group_name:
+  description: |
+      The name of the port-pair-group.
+  in: body
+  required: true
+  type: string
+port_pair_group_parameters:
+  description: |
+    Dictionary of port pair group parameters, in the form of
+    ``lb_fields``: list of regex (eth|ip|tcp|udp)_(src|dst)),
+    ``ppg_n_tuple_mapping``: ``ingress_n_tuple`` or ``egress_n_tuple``.
+    The ingress or egress tuple is a dict with the following keys:
+    source_ip_prefix, destination_ip_prefix, source_port_range_min,
+    source_port_range_max, destination_port_range_min,
+    destination_port_range_max.
+  in: body
+  required: false
+  type: dict
+port_pair_groups:
+  description: |
+      List of port-pair-group UUIDs.
+  in: body
+  required: true
+  type: array
+port_pair_id:
+  description: |
+      The UUID of the port-pair.
+  in: body
+  required: true
+  type: string
+port_pair_name:
+  description: |
+      The name of the port-pair.
+  in: body
+  required: true
+  type: string
+port_pairs:
+  description: |
+      List of port-pair UUIDs.
+  in: body
+  required: true
+  type: array
 port_range_max:
   description: |
     The maximum port number in the range that is
@@ -6461,6 +6627,13 @@ segments-request:
   in: body
   required: false
   type: array
+service_function_parameters:
+  description: |
+    A dictionary of service function parameters, in the form of
+    ``correlation``: ``mpls`` or ``nsh``, and ``weight``: integer.
+  in: body
+  required: false
+  type: object
 service_profile:
   description: |
     A ``service_profile`` object.
@@ -6544,6 +6717,25 @@ service_type:
   in: body
   required: true
   type: string
+sfc_service_graph_id:
+  description: |
+    The UUID of the service graph.
+  in: body
+  required: false
+  type: boolean
+sfc_service_graph_name:
+  description: |
+    The name of the service graph.
+  in: body
+  required: false
+  type: boolean
+sfc_tap_enabled:
+  description: |
+    True if passive Tap service functions support is enabled, default is
+    False.
+  in: body
+  required: false
+  type: boolean
 shared:
   description: |
     Indicates whether this resource is shared across all projects.
@@ -6575,6 +6767,18 @@ source_ip_address:
   in: body
   required: false
   type: string
+source_ip_prefix:
+  description: |
+    The source IP prefix.
+  in: body
+  required: false
+  type: string
+source_logical_port:
+  description: |
+    The UUID of the source logical port.
+  in: body
+  required: false
+  type: string
 source_port:
   description: |
     The source port or port range.  A valid value is
@@ -6593,6 +6797,18 @@ source_port-response:
   in: body
   required: false
   type: string
+source_port_range_max:
+  description: |
+    Maximum source protocol port.
+  in: body
+  required: false
+  type: integer
+source_port_range_min:
+  description: |
+    Minimum source protocol port.
+  in: body
+  required: false
+  type: integer
 source_port_taf:
   description: |
     Source port to which the Tap Flow is connected.
