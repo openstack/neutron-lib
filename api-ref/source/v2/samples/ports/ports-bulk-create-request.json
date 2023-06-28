@@ -9,7 +9,8 @@
         {
             "admin_state_up": false,
             "name": "sample_port_2",
-            "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7"
+            "network_id": "a87cc70a-3e15-4acf-8205-9b711a3531b7",
+            "hardware_offload_type": "switchdev"
         }
     ]
 }

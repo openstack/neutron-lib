@@ -220,6 +220,14 @@ attribute to port. If this attribute is set to ``false``, uplink status
 propagation is disabled. If this attribute is not specified, it is default to
 ``true`` which indicates uplink status propagation is enabled.
 
+Hardware offload extension
+==========================
+
+The ``port-hardware-offload`` extension adds ``hardware_offload_type``
+attribute to the port resource. This attribute stores the type of hardware
+offload the port is going to use and will be populated in the port binding
+profile information with "'capabilities': [<hardware_offload_type>]".
+
 Show port details
 =================
 

@@ -76,6 +76,7 @@
                 "b20bb47f-5d6d-45a6-8fe7-2c1b44f0db73"
             ]
         },
-        "propagate_uplink_status": false
+        "propagate_uplink_status": false,
+        "hardware_offload_type": ""
     }
 }

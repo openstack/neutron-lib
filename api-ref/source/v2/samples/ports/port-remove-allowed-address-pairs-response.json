@@ -41,6 +41,7 @@
         "qos_network_policy_id": null,
         "qos_policy_id": null,
         "resource_request": null,
-        "propagate_uplink_status": false
+        "propagate_uplink_status": false,
+        "hardware_offload_type": ""
     }
 }
