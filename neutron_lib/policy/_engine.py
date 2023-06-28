@@ -20,6 +20,7 @@ from oslo_policy import policy
 _ROLE_ENFORCER = None
 _ADMIN_CTX_POLICY = 'context_is_admin'
 _ADVSVC_CTX_POLICY = 'context_is_advsvc'
+_SERVICE_ROLE = 'service_api'
 
 
 # TODO(gmann): Remove setting the default value of config policy_file
@@ -38,6 +39,10 @@ _BASE_RULES = [
         _ADVSVC_CTX_POLICY,
         'role:advsvc',
         description='Rule for advanced service role access'),
+    policy.RuleDefault(
+        _SERVICE_ROLE,
+        'role:service',
+        description='Default rule for the service-to-service APIs.'),
 ]
 
 
@@ -89,6 +94,16 @@ def check_is_advsvc(context):
     enforcer) and False otherwise.
     """
     return _check_rule(context, _ADVSVC_CTX_POLICY)
+
+
+def check_is_service_role(context):
+    """Verify context is service role according to global policy settings.
+
+    :param context: The context object.
+    :returns: True if the context is service role (as per the global
+    enforcer) and False otherwise.
+    """
+    return _check_rule(context, _SERVICE_ROLE)
 
 
 def list_rules():

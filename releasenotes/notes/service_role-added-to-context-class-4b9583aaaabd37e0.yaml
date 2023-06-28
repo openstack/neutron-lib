@@ -1,0 +1,11 @@
+---
+features:
+  - |
+    New attribute ``is_service_role`` is added to the
+    ``neutron_lib.context.ContextBase`` class. This attribute indicates if the
+    context belongs to the service user which is used in the new secure RBAC
+    policies for service to service communication.
+deprecations:
+  - |
+    Atrribute ``is_advscv`` from the ``neutron_lib.context.ContextBase`` class
+    is deprecated and ``is_service_role`` should be used instead.

@@ -176,7 +176,7 @@ def model_query_scope_is_project(context, model):
         # If model doesn't have project_id, there is no need to scope query to
         # just one project
         return False
-    if context.is_advsvc:
+    if context.is_service_role:
         # For context which has 'advanced-service' rights the
         # query will not be scoped to a single project_id
         return False

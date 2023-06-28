@@ -72,3 +72,27 @@ class TestPolicyEnforcer(base.BaseTestCase):
         policy_engine.init(policy_file='no_policy.yaml')
         ctx = context.Context('me', 'my_project', roles=['advsvc'])
         self.assertTrue(policy_engine.check_is_advsvc(ctx))
+
+    def test_check_is_service_role(self):
+        ctx = context.Context('me', 'my_project', roles=['service'])
+        self.assertTrue(policy_engine.check_is_service_role(ctx))
+
+    def test_check_is_not_service_role_user(self):
+        ctx = context.Context('me', 'my_project', roles=['member'])
+        self.assertFalse(policy_engine.check_is_service_role(ctx))
+
+    def test_check_is_not_service_role_admin(self):
+        ctx = context.Context('me', 'my_project').elevated()
+        self.assertTrue(policy_engine.check_is_admin(ctx))
+        self.assertFalse(policy_engine.check_is_service_role(ctx))
+
+    def test_check_is_service_role_no_roles_no_service_role(self):
+        policy_engine.init(policy_file='dummy_policy.yaml')
+        ctx = context.Context('me', 'my_project', roles=['service'])
+        # No service role in the policy file, so cannot assume the role.
+        self.assertFalse(policy_engine.check_is_service_role(ctx))
+
+    def test_check_is_service_role_with_default_policy(self):
+        policy_engine.init(policy_file='no_policy.yaml')
+        ctx = context.Context('me', 'my_project', roles=['service'])
+        self.assertTrue(policy_engine.check_is_service_role(ctx))

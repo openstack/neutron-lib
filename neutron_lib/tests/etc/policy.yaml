@@ -1,3 +1,4 @@
 "context_is_admin": "role:admin"
 "context_is_advsvc": "role:advsvc"
+"service_api": "role:service"
 "default": "rule:admin_or_owner"

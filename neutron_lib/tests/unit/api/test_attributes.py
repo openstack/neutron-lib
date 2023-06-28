@@ -322,6 +322,16 @@ class TestValidatePriviliges(base.BaseTestCase):
         except exc.HTTPBadRequest:
             self.fail("HTTPBadRequest exception should not be raised.")
 
+    def test__validate_privileges_service_role_other_tenant(self):
+        project_id = 'fake_project'
+        ctx = context.Context(project_id='fake_project2',
+                              roles=['service'])
+        res_dict = {'project_id': project_id}
+        try:
+            attributes._validate_privileges(ctx, res_dict)
+        except exc.HTTPBadRequest:
+            self.fail("HTTPBadRequest exception should not be raised.")
+
 
 class TestRetrieveValidSortKeys(base.BaseTestCase):
 

@@ -124,6 +124,21 @@ class TestUtilsLegacyPolicies(base.BaseTestCase):
         self.assertFalse(
             utils.model_query_scope_is_project(ctx, model))
 
+    def test_model_query_scope_is_project_service_role(self):
+        ctx = context.Context(
+            project_id='some project',
+            is_admin=False,
+            roles=['service'])
+        model = mock.Mock(project_id='project')
+
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
+        # Ensure that project_id isn't mocked
+        del model.project_id
+        self.assertFalse(
+            utils.model_query_scope_is_project(ctx, model))
+
     def test_model_query_scope_is_project_regular_user(self):
         ctx = context.Context(
             project_id='some project',
