@@ -35,7 +35,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'convert_to': converters.convert_to_string,
             'enforce_policy': True,
             'required_by_policy': False,
-            'default': None,
+            'default': constants.ATTR_NOT_SPECIFIED,
             'is_visible': True,
             'validate': {
                 'type:values': constants.VALID_HWOL_TYPES}
