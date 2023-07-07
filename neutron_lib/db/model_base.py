@@ -46,14 +46,6 @@ class HasProjectNoIndex(HasProject):
     project_id = sa.Column(sa.String(db_const.PROJECT_ID_FIELD_SIZE))
 
 
-class HasProjectPrimaryKeyIndex(HasProject):
-    """Project mixin, add to subclasses that have a user."""
-
-    # NOTE: project_id is just a free form string
-    project_id = sa.Column(sa.String(db_const.PROJECT_ID_FIELD_SIZE),
-                           nullable=False, primary_key=True, index=True)
-
-
 class HasProjectPrimaryKey(HasProject):
     """Project mixin, add to subclasses that have a user."""
 
