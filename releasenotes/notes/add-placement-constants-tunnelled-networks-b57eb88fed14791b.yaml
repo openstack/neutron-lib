@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Added two constants to model tunnelled networks in the Placement
+    API: ``RP_TUNNELLED`` and ``TRAIT_NETWORK_TUNNEL``.
