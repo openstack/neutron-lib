@@ -27,3 +27,7 @@ INVENTORY_OPTIONS = set([
     'reserved',
     'step_size',
     ])
+
+# Tunnelled networks resource provider default name.
+RP_TUNNELLED = 'rp_tunnelled'
+TRAIT_NETWORK_TUNNEL = 'CUSTOM_NETWORK_TUNNEL_PROVIDER'
