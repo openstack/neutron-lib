@@ -121,3 +121,11 @@ Auto Allocated Topology
 Tap as a Service
 #################
 .. include:: taas.inc
+##################
+Networking SFC API
+##################
+.. include:: sfc-chains.inc
+.. include:: sfc-port-pair-groups.inc
+.. include:: sfc-port-pairs.inc
+.. include:: sfc-classifiers.inc
+.. include:: sfc-servicegraph.inc
