@@ -33,7 +33,7 @@ RESOURCE_ATTRIBUTE_MAP = {
         ENABLE_DEFAULT_ROUTE_ECMP: {
             'allow_post': True,
             'allow_put': True,
-            'default': False,
+            'default': None,
             'is_visible': True,
             'enforce_policy': True,
             'convert_to': converters.convert_to_boolean_if_not_none,
