@@ -1,0 +1,317 @@
+# Andi Chandler <andi@gowling.com>, 2018. #zanata
+# Andi Chandler <andi@gowling.com>, 2020. #zanata
+# Andi Chandler <andi@gowling.com>, 2022. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: Neutron Library Release Notes\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-07 12:33+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2022-09-15 09:03+0000\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>\n"
+"Language-Team: English (United Kingdom)\n"
+"Language: en_GB\n"
+"X-Generator: Zanata 4.3.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+msgid "1.0.0"
+msgstr "1.0.0"
+
+msgid "1.1.0"
+msgstr "1.1.0"
+
+msgid "1.10.0"
+msgstr "1.10.0"
+
+msgid "1.11.0"
+msgstr "1.11.0"
+
+msgid "1.12.0"
+msgstr "1.12.0"
+
+msgid "1.13.0"
+msgstr "1.13.0"
+
+msgid "1.14.0"
+msgstr "1.14.0"
+
+msgid "1.15.0"
+msgstr "1.15.0"
+
+msgid "1.16.0"
+msgstr "1.16.0"
+
+msgid "1.17.0"
+msgstr "1.17.0"
+
+msgid "1.18.0"
+msgstr "1.18.0"
+
+msgid "1.19.0"
+msgstr "1.19.0"
+
+msgid "1.2.0"
+msgstr "1.2.0"
+
+msgid "1.20.0"
+msgstr "1.20.0"
+
+msgid "1.21.0"
+msgstr "1.21.0"
+
+msgid "1.22.0"
+msgstr "1.22.0"
+
+msgid "1.23.0"
+msgstr "1.23.0"
+
+msgid "1.24.0"
+msgstr "1.24.0"
+
+msgid "1.25.0"
+msgstr "1.25.0"
+
+msgid "1.25.1-2"
+msgstr "1.25.1-2"
+
+msgid "1.26.0"
+msgstr "1.26.0"
+
+msgid "1.27.0"
+msgstr "1.27.0"
+
+msgid "1.28.0"
+msgstr "1.28.0"
+
+msgid "1.29.0"
+msgstr "1.29.0"
+
+msgid "1.29.1"
+msgstr "1.29.1"
+
+msgid "1.29.2-2"
+msgstr "1.29.2-2"
+
+msgid "1.3.0"
+msgstr "1.3.0"
+
+msgid "1.30.0"
+msgstr "1.30.0"
+
+msgid "1.31.0"
+msgstr "1.31.0"
+
+msgid "1.4.0"
+msgstr "1.4.0"
+
+msgid "1.5.0"
+msgstr "1.5.0"
+
+msgid "1.6.0"
+msgstr "1.6.0"
+
+msgid "1.7.0"
+msgstr "1.7.0"
+
+msgid "1.8.0"
+msgstr "1.8.0"
+
+msgid "1.9.0"
+msgstr "1.9.0"
+
+msgid "1.9.1"
+msgstr "1.9.1"
+
+msgid "2.0.0"
+msgstr "2.0.0"
+
+msgid "2.10.2"
+msgstr "2.10.2"
+
+msgid "2.11.0"
+msgstr "2.11.0"
+
+msgid "2.12.0"
+msgstr "2.12.0"
+
+msgid "2.13.0"
+msgstr "2.13.0"
+
+msgid "2.14.0"
+msgstr "2.14.0"
+
+msgid "2.15.0"
+msgstr "2.15.0"
+
+msgid "2.15.2"
+msgstr "2.15.2"
+
+msgid "2.16.0"
+msgstr "2.16.0"
+
+msgid "2.17.0"
+msgstr "2.17.0"
+
+msgid "2.18.0"
+msgstr "2.18.0"
+
+msgid "2.19.0"
+msgstr "2.19.0"
+
+msgid "2.2.0"
+msgstr "2.2.0"
+
+msgid "2.20.0"
+msgstr "2.20.0"
+
+msgid "2.21.0"
+msgstr "2.21.0"
+
+msgid "2.3.0-4"
+msgstr "2.3.0-4"
+
+msgid "2.4.0"
+msgstr "2.4.0"
+
+msgid "2.5.0"
+msgstr "2.5.0"
+
+msgid "2.6.0"
+msgstr "2.6.0"
+
+msgid "2.6.2"
+msgstr "2.6.2"
+
+msgid "2.7.0"
+msgstr "2.7.0"
+
+msgid "2.8.0"
+msgstr "2.8.0"
+
+msgid "2.9.0"
+msgstr "2.9.0"
+
+msgid "2.9.1"
+msgstr "2.9.1"
+
+msgid "3.0.0"
+msgstr "3.0.0"
+
+msgid "3.1.0"
+msgstr "3.1.0"
+
+msgid ""
+"A VIF type for Agilio OVS (``VIF_TYPE_AGILIO_OVS``) has been added to "
+"portbindings. This links the external Neutron plugin to the external OS-VIF "
+"plugin in Nova."
+msgstr ""
+"A VIF type for Agilio OVS (``VIF_TYPE_AGILIO_OVS``) has been added to "
+"portbindings. This links the external Neutron plugin to the external OS-VIF "
+"plugin in Nova."
+
+msgid ""
+"A bulk of the ``neutron.api.v2.attributes`` functionality is now available "
+"in ``neutron_lib.api.attributes``. A new ``AttributeInfo`` class is "
+"available in that acts as a wrapper for an API resource's attribute dict and "
+"allows consumers to perform operations with the underlying attribute dict. "
+"The ``populate_project_info`` function is now available. The global "
+"attribute map ``RESOURCES`` is now available and will take the place of "
+"neutron's global ``RESOURCE_ATTRIBUTE_MAP``."
+msgstr ""
+"A bulk of the ``neutron.api.v2.attributes`` functionality is now available "
+"in ``neutron_lib.api.attributes``. A new ``AttributeInfo`` class is "
+"available in that acts as a wrapper for an API resource's attribute dict and "
+"allows consumers to perform operations with the underlying attribute dict. "
+"The ``populate_project_info`` function is now available. The global "
+"attribute map ``RESOURCES`` is now available and will take the place of "
+"neutron's global ``RESOURCE_ATTRIBUTE_MAP``."
+
+msgid ""
+"A class called ``FilterObj`` is introduced. This is the base class from "
+"which the custom filter class should inherit. This release also implements "
+"two filter class: ``NotIn`` and ``NotEqual``. The class "
+"``StringMatchingFilterObj`` is now a subclass of ``FilterObj``."
+msgstr ""
+"A class called ``FilterObj`` is introduced. This is the base class from "
+"which the custom filter class should inherit. This release also implements "
+"two filter class: ``NotIn`` and ``NotEqual``. The class "
+"``StringMatchingFilterObj`` is now a subclass of ``FilterObj``."
+
+msgid ""
+"A converter ``convert_ip_to_canonical_format`` has been added to neutron-lib "
+"which allows IPv6 addresses to be stored and displayed in canonical format."
+msgstr ""
+"A converter ``convert_ip_to_canonical_format`` has been added to neutron-lib "
+"which allows IPv6 addresses to be stored and displayed in canonical format."
+
+msgid ""
+"A new API validation type ``type:availability_zone_hint_list`` has been "
+"added and validates a list of availability zone hints."
+msgstr ""
+"A new API validation type ``type:availability_zone_hint_list`` has been "
+"added and validates a list of availability zone hints."
+
+msgid ""
+"A new API validation type ``type:ethertype`` has been added and validates "
+"ethertypes either as a valid two byte octet or as 'IPv4' and 'IPv6' based on "
+"the sg_filter_ethertypes configuration setting."
+msgstr ""
+"A new API validation type ``type:ethertype`` has been added and validates "
+"ethertypes either as a valid two byte octet or as 'IPv4' and 'IPv6' based on "
+"the sg_filter_ethertypes configuration setting."
+
+msgid "Current Series Release Notes"
+msgstr "Current Series Release Notes"
+
+msgid "Rocky Series Release Notes"
+msgstr "Rocky Series Release Notes"
+
+msgid "Stein Series Release Notes"
+msgstr "Stein Series Release Notes"
+
+msgid "Train Series Release Notes"
+msgstr "Train Series Release Notes"
+
+msgid "Ussuri Series Release Notes"
+msgstr "Ussuri Series Release Notes"
+
+msgid "Victoria Series Release Notes"
+msgstr "Victoria Series Release Notes"
+
+msgid "Wallaby Series Release Notes"
+msgstr "Wallaby Series Release Notes"
+
+msgid "Xena Series Release Notes"
+msgstr "Xena Series Release Notes"
+
+msgid "Yoga Series Release Notes"
+msgstr "Yoga Series Release Notes"
+
+msgid "Zed Series Release Notes"
+msgstr "Zed Series Release Notes"
+
+msgid ""
+"``neutron_fwaas.extensions.firewall`` -> ``neutron_lib.exceptions."
+"firewall_v1``"
+msgstr ""
+"``neutron_fwaas.extensions.firewall`` -> ``neutron_lib.exceptions."
+"firewall_v1``"
+
+msgid ""
+"``neutron_fwaas.extensions.firewallrouterinsertion`` -> ``neutron_lib."
+"exceptions.firewall_v1``"
+msgstr ""
+"``neutron_fwaas.extensions.firewallrouterinsertion`` -> ``neutron_lib."
+"exceptions.firewall_v1``"
+
+msgid ""
+"``neutron_lib.db`` has a public module ``api`` that provides accessor "
+"functions for transactional context manager services."
+msgstr ""
+"``neutron_lib.db`` has a public module ``api`` that provides accessor "
+"functions for transactional context manager services."
+
+msgid "``neutron_lib.fixture`` has a new ``SqlFixture`` available."
+msgstr "``neutron_lib.fixture`` has a new ``SqlFixture`` available."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: neutron-lib VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/openstack-i18n/\n"
-"POT-Creation-Date: 2018-02-19 22:57+0000\n"
+"POT-Creation-Date: 2023-09-07 12:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,10 +21,6 @@ msgstr ""
 #, python-format
 msgid "%(child)s does not define a foreign key for %(parent)s"
 msgstr "%(child)s 没有为 %(parent)s定义外键"
-
-#, python-format
-msgid "%(data)s is not in %(valid_values)s"
-msgstr "“%(data)s”不在 %(valid_values)s 中"
 
 #, python-format
 msgid "%(driver)s: Internal driver error."
@@ -63,24 +59,8 @@ msgstr ""
 "度“%(max_len)s”"
 
 #, python-format
-msgid "'%(data)s' exceeds maximum length of %(max_len)s"
-msgstr "“%(data)s”超过最大长度 %(max_len)s"
-
-#, python-format
 msgid "'%(data)s' is neither a valid IP address, nor is it a valid IP subnet"
 msgstr "“%(data)s”不是一个合法的IP地址，也不是一个合法的IP子网"
-
-#, python-format
-msgid "'%(data)s' is not an accepted IP address, '%(ip)s' is recommended"
-msgstr "“%(data)s”并非已接受 IP 地址。建议使用“%(ip)s”"
-
-#, python-format
-msgid "'%(data)s' is too large - must be no larger than '%(limit)d'"
-msgstr "'%(data)s' 太大 - 必须不能大于 '%(limit)d'"
-
-#, python-format
-msgid "'%(data)s' is too small - must be at least '%(limit)d'"
-msgstr "'%(data)s' 太小 - 必须至少 '%(limit)d'"
 
 #, python-format
 msgid "'%(data)s' isn't a recognized IP subnet cidr, '%(cidr)s' is recommended"
@@ -91,24 +71,12 @@ msgid "'%(data)s' not a valid PQDN or FQDN. Reason: %(reason)s"
 msgstr "“%(data)s”是无效 PQDN 或 FQDN。原因：%(reason)s"
 
 #, python-format
-msgid "'%(host)s' is not a valid nameserver. %(msg)s"
-msgstr "'%(host)s' 不是合法的nameserver %(msg)s"
-
-#, python-format
 msgid "'%(trimmed)s' exceeds the %(maxlen)s character FQDN limit"
 msgstr "“%(trimmed)s”超过了 %(maxlen)s字符这一 FQDN 限制"
 
 #, python-format
-msgid "'%s' Blank strings are not permitted"
-msgstr "'%s' 不允许空白字符串"
-
-#, python-format
 msgid "'%s' cannot be converted to boolean"
 msgstr "无法将“%s”转换为布尔值"
-
-#, python-format
-msgid "'%s' contains whitespace"
-msgstr "'%s' 包含空格"
 
 #, python-format
 msgid "'%s' is a FQDN. It should be a relative domain name"
@@ -123,48 +91,12 @@ msgid "'%s' is not a FQDN"
 msgstr "“%s”并非 FQDN"
 
 #, python-format
-msgid "'%s' is not a dictionary"
-msgstr "“%s”不是字典"
-
-#, python-format
 msgid "'%s' is not a list"
 msgstr "“%s”不是列表"
 
 #, python-format
-msgid "'%s' is not a valid IP address"
-msgstr "“%s”是无效 IP 地址"
-
-#, python-format
-msgid "'%s' is not a valid IP subnet"
-msgstr "“%s”是无效 IP 子网"
-
-#, python-format
-msgid "'%s' is not a valid MAC address"
-msgstr "“%s”是无效 MAC 地址"
-
-#, python-format
-msgid "'%s' is not a valid UUID"
-msgstr "“%s”是无效 UUID"
-
-#, python-format
-msgid "'%s' is not a valid boolean value"
-msgstr "'%s' 不是一个有效的布尔值"
-
-#, python-format
-msgid "'%s' is not a valid input"
-msgstr "“%s”不是有效的输入"
-
-#, python-format
-msgid "'%s' is not a valid string"
-msgstr "“%s”是无效字符串"
-
-#, python-format
 msgid "'%s' is not an integer"
 msgstr "“%s”不是整数"
-
-#, python-format
-msgid "'%s' is not an integer:boolean"
-msgstr "“%s”不是一个整数：布尔"
 
 #, python-format
 msgid "'%s' is not of the form <key>=[value]"
@@ -174,26 +106,11 @@ msgstr "“%s”没有采用格式 <key>=[value]"
 msgid "'%s' must be a non negative decimal"
 msgstr "“%s”必须为非负十进制数"
 
-#, python-format
-msgid "'%s' should be non-negative"
-msgstr "“%s”应该为非负"
-
-#, python-format
-msgid ""
-"'data' of type '%(typedata)s' and 'valid_values'of type '%(typevalues)s' are "
-"not compatible for comparison"
-msgstr ""
-"“%(typedata)s”的“data”类型和“%(typevalues)s”的“valid_values”的类型是不兼容的"
-"比较"
-
 msgid "'project_id' and 'tenant_id' do not match"
 msgstr "“project_id”与“tenant_id”不匹配"
 
 msgid "'valid_values' does not support membership operations"
 msgstr "“valid_values”不支持会员操作"
-
-msgid "A valid port UUID must be specified"
-msgstr "必须指定一个有效的端口UUID"
 
 #, python-format
 msgid ""
@@ -302,24 +219,12 @@ msgstr "主机 %(host)s 的分布式虚拟路由器 MAC 地址不存在。"
 msgid "Domain %(dns_domain)s not found in the external DNS service"
 msgstr "在外部 DNS 服务中找不到域 %(dns_domain)s"
 
-#, python-format
-msgid "Duplicate IP address '%s'"
-msgstr "IP 地址“%s”重复"
-
 msgid "Duplicate Metering Rule in POST."
 msgstr "POST 中的测量规则重复。"
 
 #, python-format
-msgid "Duplicate hostroute '%s'"
-msgstr "主机路由“%s”重复"
-
-#, python-format
 msgid "Duplicate items in the list: '%s'"
 msgstr "列表“%s”中的项重复"
-
-#, python-format
-msgid "Duplicate nameserver '%s'"
-msgstr "名称服务器“%s”重复"
 
 msgid "Duplicate segment entry in request."
 msgstr "请求中的分段条目重复。"
@@ -400,14 +305,6 @@ msgid "Failed to parse request. Required attribute '%s' not specified"
 msgstr "未能解析请求。未指定必需属性“%s”"
 
 #, python-format
-msgid "Firewall %(firewall_id)s could not be found."
-msgstr "防火墙%(firewall_id)s没有找到。"
-
-#, python-format
-msgid "Firewall %(firewall_id)s is still active."
-msgstr "防火墙%(firewall_id)s仍处于active状态。"
-
-#, python-format
 msgid "Firewall group %(firewall_id)s could not be found."
 msgstr "没有发现防火墙组%(firewall_id)s。"
 
@@ -437,23 +334,6 @@ msgid ""
 "%(firewall_policy_id)s."
 msgstr ""
 "防火墙规则%(firewall_rule_id)s没有关联防火墙策略%(firewall_policy_id)s。"
-
-#, python-format
-msgid ""
-"Firewall rule action %(action)s is not supported. Only action values "
-"%(values)s are supported."
-msgstr "防火墙规则行为%(action)s不被支持。仅行为数值%(values)s被支持。"
-
-#, python-format
-msgid ""
-"Firewall rule protocol %(protocol)s is not supported. Only protocol values "
-"%(values)s and their integer representation (0 to 255) are supported."
-msgstr ""
-"防火墙规则协议%(protocol)s不被支持。仅支持协议数值%(values)s的整数类型范围"
-"(0-255)。"
-
-msgid "First port in a port range must be lower than the second port"
-msgstr "端口范围的第一个端口必须小于第二个端口"
 
 #, python-format
 msgid "Flavor %(flavor_id)s could not be found."
@@ -526,30 +406,6 @@ msgid "Invalid content type porn."
 msgstr "无效的内容类型 porn。"
 
 #, python-format
-msgid "Invalid data format for IP pool: '%s'"
-msgstr "IP 池的数据格式无效：“%s”"
-
-#, python-format
-msgid "Invalid data format for fixed IP: '%s'"
-msgstr "固定 IP 的数据格式无效：“%s”"
-
-#, python-format
-msgid "Invalid data format for hostroute: '%s'"
-msgstr "主机路由“%s”的数据格式无效"
-
-#, python-format
-msgid "Invalid data format for nameserver: '%s'"
-msgstr "名称服务器“%s”的数据格式无效"
-
-#, python-format
-msgid "Invalid data format for subport: '%s' is not a dict"
-msgstr "子端口无效的数据格式：“%s”不是一个字典"
-
-#, python-format
-msgid "Invalid data format for subports: '%s' is not a list"
-msgstr "子端口无效的数据格式：“%s”不是一个列表"
-
-#, python-format
 msgid "Invalid format for routes: %(routes)s, %(reason)s"
 msgstr "路由 %(routes)s 的格式无效，%(reason)s"
 
@@ -566,12 +422,6 @@ msgstr "针对操作的输入无效：%(error_message)s。"
 
 msgid "Invalid input for operation: warp core breach."
 msgstr "针对操作的输入无效：warp core breach。"
-
-#, python-format
-msgid ""
-"Invalid input. '%(target_dict)s' must be a dictionary with keys: "
-"%(expected_keys)s"
-msgstr "输入无效。“%(target_dict)s”必须是具有以下键的字典：%(expected_keys)s"
 
 #, python-format
 msgid "Invalid mapping: '%s'"
@@ -592,20 +442,8 @@ msgid "Invalid network tunnel range: 'rats' - present."
 msgstr "网络隧道范围“rats”无效。"
 
 #, python-format
-msgid "Invalid port: %s"
-msgstr "无效端口：'%s'"
-
-#, python-format
 msgid "Invalid service type: %(service_type)s."
 msgstr "无效服务类型： %(service_type)s 。"
-
-#, python-format
-msgid ""
-"Invalid subport details '%s': missing segmentation information. Must specify "
-"both segmentation_id and segmentation_type"
-msgstr ""
-"无效的子端口信息“%s”：没有的段信息。必须指定segmentation_id和"
-"segmentation_type"
 
 #, python-format
 msgid "Invalid value for port %(port)s."
@@ -641,9 +479,6 @@ msgstr "插入/删除规则操作缺省规则信息参数。"
 #, python-format
 msgid "Missing value in mapping: '%s'"
 msgstr "映射中缺少值：“%s”"
-
-msgid "More than one external network exists."
-msgstr "存在多个外部网络。"
 
 #, python-format
 msgid "Multiple agents with agent_type=%(agent_type)s and host=%(host)s found."
@@ -702,10 +537,6 @@ msgstr ""
 "的 HA 路由器数的限制为 254。"
 
 #, python-format
-msgid "No valid key specs matched for: %s"
-msgstr "“%s”没有匹配的有效使用者"
-
-#, python-format
 msgid "Non unique UUID for subport: '%s'"
 msgstr "不唯一的子端口UUID：“%s”"
 
@@ -731,12 +562,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Operation cannot be performed since associated firewall %(firewall_id)s is "
-"in %(pending_state)s."
-msgstr "相关联防火墙%(firewall_id)s处于%(pending_state)s，因此操作不会执行。"
-
-#, python-format
-msgid ""
 "Operation cannot be performed since associated firewall group "
 "%(firewall_id)s is in %(pending_state)s."
 msgstr "相关联防火墙组%(firewall_id)s处于%(pending_state)s，因此操作不会执行。"
@@ -758,22 +583,6 @@ msgid ""
 msgstr ""
 "相关操作不能执行，因为租户的防火墙策略 %(firewall_policy_id)s未找到。请确认防"
 "火墙策略是否存在并且是共享的 。"
-
-#, python-format
-msgid ""
-"Operation cannot be performed since firewall policy %(firewall_policy_id)s "
-"is not shared and does not belong to your project."
-msgstr ""
-"由于防火墙策略%(firewall_policy_id)s不共享，不属于您的租户，因此操作无法执"
-"行。"
-
-#, python-format
-msgid ""
-"Operation cannot be performed since firewall policy %(firewall_policy_id)s "
-"is shared but firewall rule %(firewall_rule_id)s is not shared."
-msgstr ""
-"防火墙策略%(firewall_policy_id)s共享，但防火墙规则%(firewall_rule_id)s不共"
-"享，因此操作无法执行。"
 
 #, python-format
 msgid ""
@@ -855,9 +664,6 @@ msgid ""
 "address until security group is removed."
 msgstr "端口已使安全组关联。直到除去安全组，才能禁用端口安全性或 IP 地址。"
 
-msgid "Port range must be two integers separated by a colon"
-msgstr "端口范围必须是用冒号分隔的两个整数。"
-
 msgid ""
 "Port security must be enabled and port must have an IP address in order to "
 "use security groups."
@@ -925,17 +731,8 @@ msgstr ""
 "无法删除路由器 %(router_id)s 上用于子网 %(subnet_id)s 的路由器接口，因为一个"
 "或多个路由需要该接口。"
 
-#, python-format
-msgid ""
-"Router(s) %(router_ids)s provided already associated with other firewall(s)."
-msgstr "路由%(router_ids)s已关联至其他防火墙。"
-
 msgid "Running without keystone AuthN requires that tenant_id is specified"
 msgstr "在没有 keystone AuthN 的情况下运行要求指定 tenant_id"
-
-#, python-format
-msgid "Segmentation ID '%(seg_id)s' for '%(subport)s' is not unique"
-msgstr "“%(subport)s” 的段ID “%(seg_id)s”不是唯一的"
 
 msgid "Segments and provider values cannot both be set."
 msgstr "无法同时设置段和提供程序值。"
@@ -968,11 +765,6 @@ msgstr "服务概要文件需要驱动程序或元信息。"
 
 msgid "Source/destination port requires a protocol."
 msgstr "源/目的端口需要一个协议。"
-
-msgid ""
-"Specifying 'project_id' or 'tenant_id' other than the authenticated project "
-"in request requires admin privileges"
-msgstr "在请求中指定除了已认证租户之外的“project_id”或“tenant_id”需要管理特权"
 
 #, python-format
 msgid "Subnet %(subnet_id)s could not be found."
@@ -1093,13 +885,6 @@ msgstr ""
 "无法对地址范围 %(address_scope_id)s 完成操作。在该地址范围内，正在使用一个或"
 "多个子网池。"
 
-#, python-format
-msgid ""
-"Unable to complete operation on network %(net_id)s. There are one or more "
-"ports still in use on the network."
-msgstr ""
-"无法在网络 %(net_id)s 上完成操作。在该网络上，一个或多个端口仍然在使用中。"
-
 msgid ""
 "Unable to complete operation on network foo. There are one or more ports "
 "still in use on the network."
@@ -1206,10 +991,6 @@ msgid "Unable to update the following object fields: %(fields)s"
 msgstr "无法更新下列对象字段：%(fields)s"
 
 #, python-format
-msgid "Unexpected keys supplied: %s"
-msgstr "提供未预期keys：%s"
-
-#, python-format
 msgid "Unknown attribute '%s'."
 msgstr "属性“%s”未知。"
 
@@ -1226,14 +1007,6 @@ msgstr "用户没有管理员特权：%(reason)s。"
 
 msgid "User does not have admin privileges: hoser."
 msgstr "用户没有管理员特权"
-
-#, python-format
-msgid ""
-"Validation of dictionary's keys failed. Expected keys: %(expected_keys)s "
-"Provided keys: %(provided_keys)s"
-msgstr ""
-"对字典的键进行的验证失败。期望的键是 %(expected_keys)s，提供的键是 "
-"%(provided_keys)s"
 
 #, python-format
 msgid "Validator '%s' does not exist"
