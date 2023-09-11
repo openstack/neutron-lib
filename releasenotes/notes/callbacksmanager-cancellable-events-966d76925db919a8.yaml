@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    ``CallbacksManager`` can now subscribe cancellable events. By default,
+    only ``before_`` and ``precommit_`` events, in case of error, can raise a
+    ``CallbackFailure`` exception. Now, if the event is subscribed with
+    the flag ``cancellable`` enabled, the ``publish`` method will raise this
+    exception if the callback fails and returns an error.

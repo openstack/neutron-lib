@@ -11,7 +11,6 @@
 #    under the License.
 
 import collections
-import itertools
 
 from oslo_log import log as logging
 from oslo_utils import reflection
@@ -22,6 +21,10 @@ from neutron_lib.callbacks import priority_group
 from neutron_lib.db import utils as db_utils
 
 LOG = logging.getLogger(__name__)
+PriorityCallbacks = collections.namedtuple(
+    'PriorityCallbacks', ['priority', 'pri_callbacks', 'cancellable'])
+Callback = collections.namedtuple(
+    'Callback', ['id', 'method', 'cancellable'])
 
 
 class CallbacksManager(object):
@@ -31,7 +34,8 @@ class CallbacksManager(object):
         self.clear()
 
     def subscribe(self, callback, resource, event,
-                  priority=priority_group.PRIORITY_DEFAULT):
+                  priority=priority_group.PRIORITY_DEFAULT,
+                  cancellable=False):
         """Subscribe callback for a resource event.
 
         The same callback may register for more than one event.
@@ -41,22 +45,26 @@ class CallbacksManager(object):
         :param event: the event. It must be a valid event.
         :param priority: the priority. Callbacks are sorted by priority
                          to be called. Smaller one is called earlier.
+        :param cancellable: if the callback is "cancellable", in case of
+                            returning an exception, the callback manager will
+                            raise a ``CallbackFailure`` exception.
         """
         LOG.debug("Subscribe: %(callback)s %(resource)s %(event)s "
-                  "%(priority)d",
+                  "%(priority)d, %(cancellable)s",
                   {'callback': callback, 'resource': resource, 'event': event,
-                   'priority': priority})
+                   'priority': priority, 'cancellable': cancellable})
 
         callback_id = _get_id(callback)
-        callbacks_list = self._callbacks[resource].setdefault(event, [])
-        for pc_pair in callbacks_list:
-            if pc_pair[0] == priority:
-                pri_callbacks = pc_pair[1]
+        pri_callbacks_list = self._callbacks[resource].setdefault(event, [])
+        for pri_callbacks in pri_callbacks_list:
+            if pri_callbacks.priority == priority:
+                pri_callbacks = pri_callbacks.pri_callbacks
                 break
         else:
             pri_callbacks = {}
-            callbacks_list.append((priority, pri_callbacks))
-            callbacks_list.sort(key=lambda x: x[0])
+            pri_callbacks_list.append(
+                PriorityCallbacks(priority, pri_callbacks, cancellable))
+            pri_callbacks_list.sort(key=lambda x: x.priority)
         pri_callbacks[callback_id] = callback
 
         # We keep a copy of callbacks to speed the unsubscribe operation.
@@ -64,13 +72,12 @@ class CallbacksManager(object):
             self._index[callback_id] = collections.defaultdict(set)
         self._index[callback_id][resource].add(event)
 
-    def _del_callback(self, callbacks_list, callback_id):
-        for pc_pair in callbacks_list:
-            pri_callbacks = pc_pair[1]
-            if callback_id in pri_callbacks:
-                del pri_callbacks[callback_id]
-                if not pri_callbacks:
-                    callbacks_list.remove(pc_pair)
+    def _del_callback(self, pri_callbacks, callback_id):
+        for pri_callback in pri_callbacks:
+            if callback_id in pri_callback.pri_callbacks:
+                del pri_callback.pri_callbacks[callback_id]
+                if not pri_callback.pri_callbacks:
+                    pri_callbacks.remove(pri_callback)
                 break
 
     def unsubscribe(self, callback, resource, event):
@@ -156,7 +163,8 @@ class CallbacksManager(object):
 
                 raise exceptions.CallbackFailure(errors=errors)
 
-            if event.startswith(events.PRECOMMIT):
+            if (event.startswith(events.PRECOMMIT) or
+                    any(error.is_cancellable for error in errors)):
                 raise exceptions.CallbackFailure(errors=errors)
 
     def clear(self):
@@ -167,32 +175,30 @@ class CallbacksManager(object):
     def _notify_loop(self, resource, event, trigger, payload):
         """The notification loop."""
         errors = []
-        # NOTE(yamahata): Since callback may unsubscribe it,
-        # convert iterator to list to avoid runtime error.
-        callbacks = list(itertools.chain(
-            *[pri_callbacks.items() for (priority, pri_callbacks)
-              in self._callbacks[resource].get(event, [])]))
+        callbacks = []
+        for pri_callbacks in self._callbacks[resource].get(event, []):
+            for cb_id, cb_method in pri_callbacks.pri_callbacks.items():
+                cb = Callback(cb_id, cb_method, pri_callbacks.cancellable)
+                callbacks.append(cb)
         resource_id = getattr(payload, "resource_id", None)
         LOG.debug("Publish callbacks %s for %s (%s), %s",
-                  [c[0] for c in callbacks], resource, resource_id, event)
+                  [c.id for c in callbacks], resource, resource_id, event)
         # TODO(armax): consider using a GreenPile
-        for callback_id, callback in callbacks:
+        for callback in callbacks:
             try:
-                callback(resource, event, trigger, payload=payload)
+                callback.method(resource, event, trigger, payload=payload)
             except Exception as e:
-                abortable_event = (
-                    event.startswith(events.BEFORE) or
-                    event.startswith(events.PRECOMMIT)
-                )
-                if not abortable_event:
+                if not (events.is_cancellable_event(event) or
+                        callback.cancellable):
                     LOG.exception("Error during notification for "
                                   "%(callback)s %(resource)s, %(event)s",
-                                  {'callback': callback_id,
+                                  {'callback': callback.id,
                                    'resource': resource, 'event': event})
                 else:
                     LOG.debug("Callback %(callback)s raised %(error)s",
-                              {'callback': callback_id, 'error': e})
-                errors.append(exceptions.NotificationError(callback_id, e))
+                              {'callback': callback.id, 'error': e})
+                errors.append(exceptions.NotificationError(
+                    callback.id, e, cancellable=callback.cancellable))
         return errors
 
     def _find(self, callback):

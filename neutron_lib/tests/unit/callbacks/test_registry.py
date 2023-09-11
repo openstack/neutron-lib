@@ -132,13 +132,13 @@ class TestCallbackRegistryDispatching(base.BaseTestCase):
         registry.subscribe(my_callback, 'my-resource', 'my-event')
         self.callback_manager.subscribe.assert_called_with(
             my_callback, 'my-resource', 'my-event',
-            priority_group.PRIORITY_DEFAULT)
+            priority_group.PRIORITY_DEFAULT, False)
 
     def test_subscribe_explicit_priority(self):
         registry.subscribe(my_callback, 'my-resource', 'my-event',
                            PRI_CALLBACK)
         self.callback_manager.subscribe.assert_called_with(
-            my_callback, 'my-resource', 'my-event', PRI_CALLBACK)
+            my_callback, 'my-resource', 'my-event', PRI_CALLBACK, False)
 
     def test_unsubscribe(self):
         registry.unsubscribe(my_callback, 'my-resource', 'my-event')

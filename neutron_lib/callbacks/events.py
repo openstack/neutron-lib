@@ -51,6 +51,12 @@ PRECOMMIT = 'precommit_'
 OVS_RESTARTED = 'ovs_restarted'
 
 
+def is_cancellable_event(event):
+    """Return if an event is cancellable by definition"""
+    return (event.startswith(BEFORE) or
+            event.startswith(PRECOMMIT))
+
+
 class EventPayload(object):
     """Base event payload object.
 

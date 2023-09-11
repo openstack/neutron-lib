@@ -6,6 +6,7 @@ hacking>=3.0.1,<3.1.0 # Apache-2.0
 
 bandit!=1.6.0,>=1.1.0 # Apache-2.0
 coverage!=4.4,>=4.0 # Apache-2.0
+ddt>=1.0.1 # MIT
 fixtures>=3.0.0 # Apache-2.0/BSD
 flake8-import-order==0.12 # LGPLv3
 pylint>=2.2.0 # GPLv2
