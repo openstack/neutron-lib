@@ -14,6 +14,7 @@
 
 from unittest import mock
 
+import ddt
 from oslo_db import exception as db_exc
 from oslotest import base
 
@@ -64,10 +65,15 @@ def callback_raise_retriable(*args, **kwargs):
     raise db_exc.DBDeadlock()
 
 
+def callback_raise_not_retriable(*args, **kwargs):
+    raise Exception()
+
+
 def callback_3(resource, event, trigger, payload):
     callback_3.counter += 1
 
 
+@ddt.ddt
 class CallBacksManagerTestCase(base.BaseTestCase):
 
     def setUp(self):
@@ -78,14 +84,19 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         callback_2.counter = 0
         callback_3.counter = 0
 
-    def test_subscribe(self):
+    @ddt.data(True, False)
+    def test_subscribe(self, cancellable):
         self.manager.subscribe(
-            callback_1, resources.PORT, events.BEFORE_CREATE)
+            callback_1, resources.PORT, events.BEFORE_CREATE,
+            cancellable=cancellable)
         self.assertIsNotNone(
             self.manager._callbacks[resources.PORT][events.BEFORE_CREATE])
         self.assertIn(callback_id_1, self.manager._index)
         self.assertEqual(self.__module__ + '.callback_1-%s' %
                          hash(callback_1), callback_id_1)
+        self.assertEqual(cancellable,
+                         self.manager._callbacks[resources.PORT]
+                         [events.BEFORE_CREATE][0][2])
 
     def test_subscribe_unknown(self):
         self.manager.subscribe(
@@ -95,13 +106,19 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.assertIn(callback_id_1, self.manager._index)
 
     def test_subscribe_is_idempotent(self):
-        self.manager.subscribe(
-            callback_1, resources.PORT, events.BEFORE_CREATE)
-        self.manager.subscribe(
-            callback_1, resources.PORT, events.BEFORE_CREATE)
+        for cancellable in (True, False):
+            self.manager.subscribe(
+                callback_1, resources.PORT, events.BEFORE_CREATE,
+                cancellable=cancellable)
+            self.manager.subscribe(
+                callback_1, resources.PORT, events.BEFORE_CREATE,
+                cancellable=cancellable)
         self.assertEqual(
             1,
             len(self.manager._callbacks[resources.PORT][events.BEFORE_CREATE]))
+        # The first event registered had cancellable=True.
+        self.assertTrue(self.manager._callbacks[resources.PORT]
+                        [events.BEFORE_CREATE][0][2])
         callbacks = self.manager._index[callback_id_1][resources.PORT]
         self.assertEqual(1, len(callbacks))
 
@@ -129,9 +146,11 @@ class CallBacksManagerTestCase(base.BaseTestCase):
                              payload=self.event_payload)
         self.assertNotIn(unsub, self.manager._index)
 
-    def test_unsubscribe(self):
+    @ddt.data(True, False)
+    def test_unsubscribe(self, cancellable):
         self.manager.subscribe(
-            callback_1, resources.PORT, events.BEFORE_CREATE)
+            callback_1, resources.PORT, events.BEFORE_CREATE,
+            cancellable=cancellable)
         self.manager.unsubscribe(
             callback_1, resources.PORT, events.BEFORE_CREATE)
         self.assertNotIn(
@@ -155,9 +174,11 @@ class CallBacksManagerTestCase(base.BaseTestCase):
                           self.manager.unsubscribe,
                           callback_1, None, events.BEFORE_CREATE)
 
-    def test_unsubscribe_is_idempotent(self):
+    @ddt.data(True, False)
+    def test_unsubscribe_is_idempotent(self, cancellable):
         self.manager.subscribe(
-            callback_1, resources.PORT, events.BEFORE_CREATE)
+            callback_1, resources.PORT, events.BEFORE_CREATE,
+            cancellable=cancellable)
         self.manager.unsubscribe(
             callback_1, resources.PORT, events.BEFORE_CREATE)
         self.manager.unsubscribe(
@@ -254,6 +275,28 @@ class CallBacksManagerTestCase(base.BaseTestCase):
             callback_raise_retriable, resources.PORT, events.BEFORE_CREATE)
         self.assertRaises(db_exc.RetryRequest, self.manager.publish,
                           resources.PORT, events.BEFORE_CREATE, self,
+                          payload=self.event_payload)
+
+    def test_publish_handle_not_retriable_exception(self):
+        self.manager.subscribe(
+            callback_raise_not_retriable, resources.PORT, events.BEFORE_CREATE)
+        self.assertRaises(exceptions.CallbackFailure, self.manager.publish,
+                          resources.PORT, events.BEFORE_CREATE, self,
+                          payload=self.event_payload)
+
+    def test_publish_handle_not_retriable_exception_no_cancellable_flag(self):
+        self.manager.subscribe(
+            callback_raise_not_retriable, resources.PORT, events.AFTER_INIT)
+        # No exception is raised.
+        self.manager.publish(resources.PORT, events.AFTER_INIT, self,
+                             payload=self.event_payload)
+
+    def test_publish_handle_not_retriable_exception_cancellable_flag(self):
+        self.manager.subscribe(
+            callback_raise_not_retriable, resources.PORT, events.AFTER_INIT,
+            cancellable=True)
+        self.assertRaises(exceptions.CallbackFailure, self.manager.publish,
+                          resources.PORT, events.AFTER_INIT, self,
                           payload=self.event_payload)
 
     def test_publish_called_once_with_no_failures(self):
