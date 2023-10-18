@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Added support for more ciphers to the neutron-vpnaas API.
+    Added encryption algorithms (AES CCM and AES GCM modes for 128/192/256
+    bit keys and 8/12/16 octet ICVs, e.g. aes-256-ccm-16),
+    authentication algorithms (AES-XCBC, AES-CMAC) and PFS choices
+    (Diffie Hellman groups 15 to 31).
