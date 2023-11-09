@@ -31,12 +31,12 @@ class SqlAlchemyTypesBaseTestCase(test_fixtures.OpportunisticDBTestMixin,
                                   test_base.BaseTestCase,
                                   metaclass=abc.ABCMeta):
     def setUp(self):
-        super(SqlAlchemyTypesBaseTestCase, self).setUp()
+        super().setUp()
         self.engine = enginefacade.writer.get_engine()
-        meta = sa.MetaData(bind=self.engine)
+        meta = sa.MetaData()
         self.test_table = self._get_test_table(meta)
-        self.test_table.create()
-        self.addCleanup(meta.drop_all)
+        meta.create_all(self.engine)
+        self.addCleanup(meta.drop_all, self.engine)
         self.ctxt = context.get_admin_context()
 
     @abc.abstractmethod
@@ -44,25 +44,24 @@ class SqlAlchemyTypesBaseTestCase(test_fixtures.OpportunisticDBTestMixin,
         """Returns a new sa.Table() object for this test case."""
 
     def _add_row(self, **kargs):
-        self.engine.execute(self.test_table.insert().values(**kargs))
+        row_insert = self.test_table.insert().values(**kargs)
+        with self.engine.connect() as conn, conn.begin():
+            conn.execute(row_insert)
 
     def _get_all(self):
         rows_select = self.test_table.select()
-        return self.engine.execute(rows_select).fetchall()
+        with self.engine.connect() as conn, conn.begin():
+            return conn.execute(rows_select).fetchall()
 
     def _update_row(self, **kargs):
-        self.engine.execute(self.test_table.update().values(**kargs))
+        row_update = self.test_table.update().values(**kargs)
+        with self.engine.connect() as conn, conn.begin():
+            conn.execute(row_update)
 
     def _delete_rows(self):
-        self.engine.execute(self.test_table.delete())
-
-    def _validate_crud(self, data_field_name, expected=None):
-        objs = self._get_all()
-        self.assertEqual(len(expected) if expected else 0, len(objs))
-        if expected:
-            for obj in objs:
-                name = obj['id']
-                self.assertEqual(expected[name], obj[data_field_name])
+        row_delete = self.test_table.delete()
+        with self.engine.connect() as conn, conn.begin():
+            conn.execute(row_delete)
 
 
 class IPAddressTestCase(SqlAlchemyTypesBaseTestCase):
@@ -74,27 +73,25 @@ class IPAddressTestCase(SqlAlchemyTypesBaseTestCase):
             sa.Column('id', sa.String(36), primary_key=True, nullable=False),
             sa.Column('ip', sqlalchemytypes.IPAddress))
 
-    def _validate_ip_address(self, data_field_name, expected=None):
+    def _validate_ip_address(self, expected=None):
         objs = self._get_all()
         self.assertEqual(len(expected) if expected else 0, len(objs))
         if expected:
             for obj in objs:
-                name = obj['id']
-                self.assertEqual(expected[name], obj[data_field_name])
+                name = obj.id
+                self.assertEqual(expected[name], obj.ip)
 
     def _test_crud(self, ip_addresses):
         ip = netaddr.IPAddress(ip_addresses[0])
         self._add_row(id='fake_id', ip=ip)
-        self._validate_ip_address(data_field_name='ip',
-                                  expected={'fake_id': ip})
+        self._validate_ip_address(expected={'fake_id': ip})
 
         ip2 = netaddr.IPAddress(ip_addresses[1])
         self._update_row(ip=ip2)
-        self._validate_ip_address(data_field_name='ip',
-                                  expected={'fake_id': ip2})
+        self._validate_ip_address(expected={'fake_id': ip2})
 
         self._delete_rows()
-        self._validate_ip_address(data_field_name='ip', expected=None)
+        self._validate_ip_address(expected=None)
 
     def test_crud(self):
         ip_addresses = ["10.0.0.1", "10.0.0.2"]
@@ -118,9 +115,9 @@ class IPAddressTestCase(SqlAlchemyTypesBaseTestCase):
             self._add_row(id=name, ip=ip)
             reference[name] = ip
 
-        self._validate_ip_address(data_field_name='ip', expected=reference)
+        self._validate_ip_address(expected=reference)
         self._delete_rows()
-        self._validate_ip_address(data_field_name='ip', expected=None)
+        self._validate_ip_address(expected=None)
 
     def test_multiple_create(self):
         ip_addresses = [
@@ -146,12 +143,14 @@ class CIDRTestCase(SqlAlchemyTypesBaseTestCase):
     def _get_one(self, value):
         row_select = self.test_table.select().\
             where(self.test_table.c.cidr == value)
-        return self.engine.execute(row_select).first()
+        with self.engine.connect() as conn, conn.begin():
+            return conn.execute(row_select).first()
 
     def _update_row(self, key, cidr):
-        self.engine.execute(
-            self.test_table.update().values(cidr=cidr).
-            where(self.test_table.c.cidr == key))
+        row_update = self.test_table.update().values(cidr=cidr).\
+                         where(self.test_table.c.cidr == key)
+        with self.engine.connect() as conn, conn.begin():
+            conn.execute(row_update)
 
     def test_crud(self):
         cidrs = ["10.0.0.0/24", "10.123.250.9/32", "2001:db8::/42",
@@ -161,11 +160,11 @@ class CIDRTestCase(SqlAlchemyTypesBaseTestCase):
             cidr = netaddr.IPNetwork(cidr_str)
             self._add_row(id=uuidutils.generate_uuid(), cidr=cidr)
             obj = self._get_one(cidr)
-            self.assertEqual(cidr, obj['cidr'])
+            self.assertEqual(cidr, obj.cidr)
             random_cidr = netaddr.IPNetwork(tools.get_random_cidr())
             self._update_row(cidr, random_cidr)
             obj = self._get_one(random_cidr)
-            self.assertEqual(random_cidr, obj['cidr'])
+            self.assertEqual(random_cidr, obj.cidr)
 
         objs = self._get_all()
         self.assertEqual(len(cidrs), len(objs))
@@ -194,20 +193,24 @@ class MACAddressTestCase(SqlAlchemyTypesBaseTestCase):
     def _get_one(self, value):
         row_select = self.test_table.select().\
             where(self.test_table.c.mac == value)
-        return self.engine.execute(row_select).first()
+        with self.engine.connect() as conn, conn.begin():
+            return conn.execute(row_select).first()
 
     def _get_all(self):
         rows_select = self.test_table.select()
-        return self.engine.execute(rows_select).fetchall()
+        with self.engine.connect() as conn, conn.begin():
+            return conn.execute(rows_select).fetchall()
 
     def _update_row(self, key, mac):
-        self.engine.execute(
-            self.test_table.update().values(mac=mac).
-            where(self.test_table.c.mac == key))
+        row_update = self.test_table.update().values(mac=mac).\
+                         where(self.test_table.c.mac == key)
+        with self.engine.connect() as conn, conn.begin():
+            conn.execute(row_update)
 
     def _delete_row(self):
-        self.engine.execute(
-            self.test_table.delete())
+        row_delete = self.test_table.delete()
+        with self.engine.connect() as conn, conn.begin():
+            conn.execute(row_delete)
 
     def test_crud(self):
         mac_addresses = ['FA:16:3E:00:00:01', 'FA:16:3E:00:00:02']
@@ -216,12 +219,12 @@ class MACAddressTestCase(SqlAlchemyTypesBaseTestCase):
             mac = netaddr.EUI(mac)
             self._add_row(id=uuidutils.generate_uuid(), mac=mac)
             obj = self._get_one(mac)
-            self.assertEqual(mac, obj['mac'])
+            self.assertEqual(mac, obj.mac)
             random_mac = netaddr.EUI(net.get_random_mac(
                 ['fe', '16', '3e', '00', '00', '00']))
             self._update_row(mac, random_mac)
             obj = self._get_one(random_mac)
-            self.assertEqual(random_mac, obj['mac'])
+            self.assertEqual(random_mac, obj.mac)
 
         objs = self._get_all()
         self.assertEqual(len(mac_addresses), len(objs))
