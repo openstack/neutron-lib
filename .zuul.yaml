@@ -9,9 +9,7 @@
       - neutron-tempest-plugin-jobs
     check:
       jobs:
-        # Move this to the py311 job when that merges
-        - openstack-tox-py310-with-sqlalchemy-master:
-            timeout: 3600
+        - openstack-tox-py311-with-sqlalchemy-master
         - neutron-functional-with-uwsgi:
             required-projects:
               - openstack/neutron-lib
