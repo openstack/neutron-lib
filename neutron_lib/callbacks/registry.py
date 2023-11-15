@@ -34,8 +34,10 @@ def _get_callback_manager():
 
 
 def subscribe(callback, resource, event,
-              priority=priority_group.PRIORITY_DEFAULT):
-    _get_callback_manager().subscribe(callback, resource, event, priority)
+              priority=priority_group.PRIORITY_DEFAULT,
+              cancellable=False):
+    _get_callback_manager().subscribe(callback, resource, event, priority,
+                                      cancellable)
 
 
 def unsubscribe(callback, resource, event):
