@@ -147,6 +147,8 @@ KNOWN_EXTENSIONS = (
     'quota-check-limit',
     'port-hints',
     'port-hint-ovs-tx-steering',
+    'port-numa-affinity-policy',
+    'port-numa-affinity-policy-socket',
     'rbac-address-group',
     'rbac-address-scope',
     'rbac-bgpvpn',
