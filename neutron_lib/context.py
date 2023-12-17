@@ -14,11 +14,11 @@
 
 import collections
 import copy
-import datetime
 
 from oslo_context import context as oslo_context
 from oslo_db.sqlalchemy import enginefacade
 from oslo_log import log as logging
+from oslo_utils import timeutils
 
 from neutron_lib.db import api as db_api
 from neutron_lib.policy import _engine as policy_engine
@@ -46,10 +46,7 @@ class ContextBase(oslo_context.RequestContext):
             is_admin=is_admin, user_id=user_id, **kwargs)
 
         self.user_name = user_name
-
-        if not timestamp:
-            timestamp = datetime.datetime.utcnow()
-        self.timestamp = timestamp
+        self.timestamp = timestamp or timeutils.utcnow()
         self._is_advsvc = is_advsvc
         if self._is_advsvc is None:
             self._is_advsvc = (self.is_admin or
