@@ -168,6 +168,7 @@ from neutron_lib.api.definitions import vlan_filter
 from neutron_lib.api.definitions import vlantransparent
 from neutron_lib.api.definitions import vpn
 from neutron_lib.api.definitions import vpn_aes_ccm_gcm
+from neutron_lib.api.definitions import vpn_aes_ctr
 from neutron_lib.api.definitions import vpn_endpoint_groups
 from neutron_lib.api.definitions import vpn_flavors
 
@@ -330,6 +331,7 @@ _ALL_API_DEFINITIONS = {
     vlantransparent,
     vpn,
     vpn_aes_ccm_gcm,
+    vpn_aes_ctr,
     vpn_endpoint_groups,
     vpn_flavors,
 }

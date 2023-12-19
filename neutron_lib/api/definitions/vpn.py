@@ -28,6 +28,9 @@ IPSEC_POLICIES = 'ipsecpolicies'
 IKE_POLICY = 'ikepolicy'
 IKE_POLICIES = 'ikepolicies'
 
+# Parameter constants
+ENCRYPTION_ALGORITHM = 'encryption_algorithm'
+
 # VPN initiator constants
 VPN_INITIATOR_BI_DIRECTIONAL = 'bi-directional'
 VPN_INITIATOR_RESPONSE_ONLY = 'response-only'
@@ -374,11 +377,12 @@ RESOURCE_ATTRIBUTE_MAP = {
             'default': VPN_AUTH_ALGORITHM_SHA1,
             'validate': {'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS},
             'is_visible': True},
-        'encryption_algorithm': {
+        ENCRYPTION_ALGORITHM: {
             'allow_post': True,
             'allow_put': True,
             'default': VPN_ENCRYPTION_ALGORITHM_AES_128,
-            'validate': {'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS},
+            'validate': {
+                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS},
             'is_visible': True},
         'encapsulation_mode': {
             'allow_post': True,
@@ -425,10 +429,11 @@ RESOURCE_ATTRIBUTE_MAP = {
             'default': VPN_AUTH_ALGORITHM_SHA1,
             'validate': {'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS},
             'is_visible': True},
-        'encryption_algorithm': {
+        ENCRYPTION_ALGORITHM: {
             'allow_post': True, 'allow_put': True,
             'default': VPN_ENCRYPTION_ALGORITHM_AES_128,
-            'validate': {'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS},
+            'validate': {
+                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS},
             'is_visible': True},
         'phase1_negotiation_mode': {
             'allow_post': True, 'allow_put': True,
