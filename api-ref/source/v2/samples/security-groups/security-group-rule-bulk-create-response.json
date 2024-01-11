@@ -1,0 +1,40 @@
+{
+    "security_group_rules": [
+        {
+            "direction": "ingress",
+            "ethertype": "IPv4",
+            "id": "2bc0accf-312e-429a-956e-e4407625eb62",
+            "port_range_max": 80,
+            "port_range_min": 80,
+            "protocol": "tcp",
+            "remote_group_id": "85cc3048-abc3-43cc-89b3-377341426ac5",
+            "remote_ip_prefix": null,
+            "security_group_id": "a7734e61-b545-452d-a3cd-0189cbd9747a",
+            "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
+            "revision_number": 1,
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
+            "created_at": "2018-03-19T19:16:56Z",
+            "updated_at": "2018-03-19T19:16:56Z",
+            "description": "",
+            "belongs_to_default_sg": false
+        },
+        {
+            "direction": "ingress",
+            "ethertype": "IPv4",
+            "id": "4d4a5704-749a-4525-958e-93844d1dd9a4",
+            "port_range_max": 443,
+            "port_range_min": 443,
+            "protocol": "tcp",
+            "remote_group_id": "85cc3048-abc3-43cc-89b3-377341426ac5",
+            "remote_ip_prefix": null,
+            "security_group_id": "a7734e61-b545-452d-a3cd-0189cbd9747a",
+            "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
+            "revision_number": 1,
+            "tenant_id": "e4f50856753b4dc6afee5fa6b9b6c550",
+            "created_at": "2018-03-19T19:16:56Z",
+            "updated_at": "2018-03-19T19:16:56Z",
+            "description": "",
+            "belongs_to_default_sg": false
+        }
+    ]
+}
