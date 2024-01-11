@@ -40,3 +40,7 @@ class HAMaximumAgentsNumberNotValid(exceptions.NeutronException):
     message = _("max_l3_agents_per_router %(max_agents)s config parameter "
                 "is not valid as it cannot be negative. It must be 1 or "
                 "greater. Alternatively, it can be 0 to mean unlimited.")
+
+
+class DuplicatedHANetwork(exceptions.Conflict):
+    message = _('Project %(project_id)s already has a HA network.')
