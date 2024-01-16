@@ -960,12 +960,12 @@ class TestAttributeValidation(base.BaseTestCase):
 
         items = [['a', 'b'], ['c', 'd'], ['a', 'b']]
         msg = validators._validate_list_of_items(mock.Mock(), items)
-        error = "Duplicate items in the list: '%s'" % ['a', 'b']
+        error = "Duplicate items in the list: '%s'" % str(['a', 'b'])
         self.assertEqual(error, msg)
 
         items = [{'a': 'b'}, {'c': 'd'}, {'a': 'b'}]
         msg = validators._validate_list_of_items(mock.Mock(), items)
-        error = "Duplicate items in the list: '%s'" % {'a': 'b'}
+        error = "Duplicate items in the list: '%s'" % str({'a': 'b'})
         self.assertEqual(error, msg)
 
     def test_validate_dict_type(self):

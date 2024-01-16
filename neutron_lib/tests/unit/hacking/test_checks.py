@@ -31,7 +31,7 @@ class HackingTestCase(base.BaseTestCase):
 
         def _reg(check_fn):
             self.assertTrue(hasattr(check_fn, '__call__'))
-            self.assertFalse(check_fn in check_fns)
+            self.assertNotIn(check_fn, check_fns)
             check_fns.append(check_fn)
 
         factory(_reg)

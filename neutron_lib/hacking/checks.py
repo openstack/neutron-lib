@@ -124,7 +124,7 @@ def check_no_contextlib_nested(logical_line, filename):
            "more information.")
 
     if contextlib_nested.match(logical_line):
-        yield(0, msg)
+        yield (0, msg)
 
 
 @core.flake8ext

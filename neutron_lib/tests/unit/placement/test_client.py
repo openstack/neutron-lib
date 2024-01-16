@@ -810,7 +810,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_update_qos_allocation_other_conflict(self):
         mock_rsp_get = self._get_allocation_response(
             {RESOURCE_PROVIDER_UUID: {'c': 3}})
-        self.placement_fixture.mock_get.side_effect = 10*[mock_rsp_get]
+        self.placement_fixture.mock_get.side_effect = 10 * [mock_rsp_get]
         mock_rsp_put = mock.Mock()
         mock_rsp_put.text = ''
         mock_rsp_put.json = lambda: {

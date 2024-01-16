@@ -28,7 +28,7 @@ class EventPayloadTestCase(base.BaseTestCase):
         self.assertEqual(meta, e.metadata)
         event_meta = e.metadata
         event_meta['k3'] = 'v3'
-        self.assertTrue('k3' in e.metadata)
+        self.assertIn('k3', e.metadata)
 
     def test_request_body(self):
         e = events.EventPayload(mock.ANY, request_body={'k', 'v'})
