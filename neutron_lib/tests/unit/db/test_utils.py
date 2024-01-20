@@ -26,14 +26,23 @@ from neutron_lib import exceptions as n_exc
 from neutron_lib.tests import _base as base
 
 
-class FakePort(declarative.declarative_base(cls=models.ModelBase)):
+try:
+    # SQLAlchemy 2.0
+    class ModelBaseV2(orm.DeclarativeBase, models.ModelBase):
+        pass
+except AttributeError:
+    # SQLAlchemy < 2.0
+    ModelBaseV2 = declarative.declarative_base(cls=models.ModelBase)
+
+
+class FakePort(ModelBaseV2):
     __tablename__ = 'fakeports'
     port_id = sa.Column(sa.String(36), primary_key=True)
     name = sa.Column(sa.String(64))
     status = sa.Column(sa.String(16), nullable=False)
 
 
-class FakeRouter(declarative.declarative_base(cls=models.ModelBase)):
+class FakeRouter(ModelBaseV2):
     __tablename__ = 'fakerouters'
     router_id = sa.Column(sa.String(36), primary_key=True)
     gw_port_id = sa.Column(sa.String(36), sa.ForeignKey(FakePort.port_id))
