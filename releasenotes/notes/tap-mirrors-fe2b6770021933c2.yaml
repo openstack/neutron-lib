@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    New API definition ``tap-mirror``, this new extension for tap-as-a-service
+    allows admins to mirror traffic from a Neutron port to a remote IP
+    address with GRE or ERSPAN v1 tunnels.
