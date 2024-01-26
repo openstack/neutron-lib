@@ -44,3 +44,11 @@ class TapServiceNotBelongToTenant(qexception.NotAuthorized):
 
 class TapServiceLimitReached(qexception.OverQuota):
     message = _("Reached the maximum quota for Tap Services")
+
+
+class TapMirrorNotFound(qexception.NotFound):
+    message = _("Tap Mirror %(mirror_id)s does not exist")
+
+
+class TapMirrorTunnelConflict(qexception.Conflict):
+    message = _("Tap Mirror with tunnel_id %(tunnel_id)s already exists")
