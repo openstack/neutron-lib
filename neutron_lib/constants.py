@@ -83,6 +83,23 @@ ROUTER_INTERFACE_OWNERS_SNAT = (DEVICE_OWNER_ROUTER_INTF,
                                 DEVICE_OWNER_DVR_INTERFACE,
                                 DEVICE_OWNER_ROUTER_SNAT)
 
+DEVICE_OWNER_DEFAULT = ''
+NO_PROVISIONING_BLOCKS_OWNERS = (DEVICE_OWNER_DEFAULT,
+                                 DEVICE_OWNER_DVR_INTERFACE,
+                                 DEVICE_OWNER_HA_REPLICATED_INT,
+                                 DEVICE_OWNER_ROUTER_INTF,
+                                 DEVICE_OWNER_ROUTER_GW,
+                                 DEVICE_OWNER_ROUTER_SNAT,
+                                 DEVICE_OWNER_DHCP,
+                                 DEVICE_OWNER_AGENT_GW,
+                                 DEVICE_OWNER_ROUTER_HA_INTF,
+                                 DEVICE_OWNER_FLOATINGIP)
+
+DHCP_CONFIG_NOT_REQUIRED_OWNERS = (DEVICE_OWNER_ROUTER_HA_INTF,
+                                   DEVICE_OWNER_FLOATINGIP,
+                                   DEVICE_OWNER_DHCP,
+                                   DEVICE_OWNER_DISTRIBUTED)
+
 DEVICE_ID_RESERVED_DHCP_PORT = 'reserved_dhcp_port'
 
 FLOATINGIP_KEY = '_floatingips'
@@ -104,7 +121,13 @@ IPv4_ANY = '0.0.0.0/0'
 IPv6_ANY = '::/0'
 IP_ANY = {IP_VERSION_4: IPv4_ANY, IP_VERSION_6: IPv6_ANY}
 
+IPv4_NETWORK_BROADCAST = "255.255.255.255"
+
 IPv6_LLA_PREFIX = 'fe80::/64'
+
+# All_DHCP_Relay_Agents_and_Servers
+# [RFC8415] https://datatracker.ietf.org/doc/html/rfc8415
+IPv6_ALL_DHCP_RELAY_AGENTS_AND_SERVERS = "ff02::1:2"
 
 DHCP_CLIENT_PORT = 68
 DHCP_RESPONSE_PORT = 67
@@ -315,6 +338,7 @@ ACTIVE_PENDING_STATUSES = (
 TYPE_FLAT = 'flat'
 TYPE_GENEVE = 'geneve'
 TYPE_GRE = 'gre'
+TYPE_GRE_IP6 = 'ip6gre'
 TYPE_LOCAL = 'local'
 TYPE_VXLAN = 'vxlan'
 TYPE_VLAN = 'vlan'
@@ -582,6 +606,7 @@ RPC_NAMESPACE_RESOURCES = None
 
 # Default network MTU value when not configured
 DEFAULT_NETWORK_MTU = 1500
+IPV4_MIN_MTU = 68
 IPV6_MIN_MTU = 1280
 
 ROUTER_MARK_MASK = "0xffff"
@@ -666,6 +691,7 @@ NO_ACTIVE_BINDING = 'no_active_binding'
 EXT_PARENT_PREFIX = 'ext_parent'
 
 RP_BANDWIDTHS = 'resource_provider_bandwidths'
+RP_HYPERVISORS = 'resource_provider_hypervisors'
 RP_INVENTORY_DEFAULTS = 'resource_provider_inventory_defaults'
 RP_PP_WITHOUT_DIRECTION = (
     'resource_provider_packet_processing_without_direction')
