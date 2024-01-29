@@ -62,6 +62,8 @@ def init(conf=cfg.CONF, policy_file=None):
     global _ROLE_ENFORCER
     if not _ROLE_ENFORCER:
         _ROLE_ENFORCER = policy.Enforcer(conf, policy_file=policy_file)
+        # Skip the undefined rule check to avoid unnecessary warning messages.
+        _ROLE_ENFORCER.skip_undefined_check = True
         _ROLE_ENFORCER.register_defaults(_BASE_RULES)
         _ROLE_ENFORCER.load_rules(True)
 
