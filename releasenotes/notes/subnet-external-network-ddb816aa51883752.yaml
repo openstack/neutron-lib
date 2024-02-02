@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Added new extension ``subnet-router:external``. This extension adds a
+    new field to the ``subnet`` resource definition, called
+    ``router:external``, that is a boolean that represents if the subnet
+    belongs to an external network. This is the same parameter name used in
+    the external network flag.

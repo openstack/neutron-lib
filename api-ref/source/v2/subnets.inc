@@ -165,6 +165,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
+   - router:external: subnet-router:external
 
 Response Example
 ----------------
@@ -289,6 +290,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
+   - router:external: subnet-router:external
 
 Response Example
 ----------------
@@ -372,6 +374,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
+   - router:external: subnet-router:external
 
 Response Example
 ----------------
@@ -428,6 +431,7 @@ Response Parameters
    - subnetpool_id: subnet-subnetpool_id
    - tags: tags
    - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
+   - router:external: subnet-router:external
 
 Response Example
 ----------------
@@ -502,6 +506,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - tags: tags
    - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip
+   - router:external: subnet-router:external
 
 Response Example
 ----------------
