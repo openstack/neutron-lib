@@ -110,4 +110,10 @@ class NeutronBaseV2(_NeutronBase):
         return cls.__name__.lower() + 's'
 
 
-BASEV2 = declarative.declarative_base(cls=NeutronBaseV2)
+try:
+    # SQLAlchemy 2.0
+    class BASEV2(orm.DeclarativeBase, NeutronBaseV2):
+        pass
+except AttributeError:
+    # SQLAlchemy < 2.0
+    BASEV2 = declarative.declarative_base(cls=NeutronBaseV2)
