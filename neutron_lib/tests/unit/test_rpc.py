@@ -34,18 +34,13 @@ class TestRPC(base.BaseTestCase):
     @mock.patch.object(rpc, 'RequestContextSerializer')
     @mock.patch.object(messaging, 'get_rpc_transport')
     @mock.patch.object(messaging, 'get_notification_transport')
-    @mock.patch.object(messaging, 'Notifier')
-    def test_init(self, mock_not, mock_noti_trans, mock_trans, mock_ser):
-        notifier = mock.Mock()
+    def test_init(self, mock_noti_trans, mock_trans, mock_ser):
         transport = mock.Mock()
         noti_transport = mock.Mock()
-        serializer = mock.Mock()
         conf = mock.Mock()
 
         mock_trans.return_value = transport
         mock_noti_trans.return_value = noti_transport
-        mock_ser.return_value = serializer
-        mock_not.return_value = notifier
 
         rpc.init(conf, rpc_ext_mods=['foo'])
 
@@ -54,14 +49,10 @@ class TestRPC(base.BaseTestCase):
             conf, allowed_remote_exmods=expected_mods)
         mock_noti_trans.assert_called_once_with(
             conf, allowed_remote_exmods=expected_mods)
-        mock_not.assert_called_once_with(noti_transport,
-                                         serializer=serializer)
         self.assertIsNotNone(rpc.TRANSPORT)
         self.assertIsNotNone(rpc.NOTIFICATION_TRANSPORT)
-        self.assertIsNotNone(rpc.NOTIFIER)
 
     def test_cleanup_transport_null(self):
-        rpc.NOTIFIER = mock.Mock()
         rpc.NOTIFICATION_TRANSPORT = mock.Mock()
         rpc.TRANSPORT = None
         self.assertRaises(AssertionError, rpc.cleanup)
@@ -69,20 +60,11 @@ class TestRPC(base.BaseTestCase):
 
     def test_cleanup_notification_transport_null(self):
         rpc.TRANSPORT = mock.Mock()
-        rpc.NOTIFIER = mock.Mock()
         rpc.NOTIFICATION_TRANSPORT = None
         self.assertRaises(AssertionError, rpc.cleanup)
         rpc.NOTIFICATION_TRANSPORT = mock.Mock()
 
-    def test_cleanup_notifier_null(self):
-        rpc.TRANSPORT = mock.Mock()
-        rpc.NOTIFICATION_TRANSPORT = mock.Mock()
-        rpc.NOTIFIER = None
-        self.assertRaises(AssertionError, rpc.cleanup)
-        rpc.NOTIFIER = mock.Mock()
-
     def test_cleanup(self):
-        rpc.NOTIFIER = mock.Mock()
         rpc.NOTIFICATION_TRANSPORT = mock.Mock()
         rpc.TRANSPORT = mock.Mock()
         trans_cleanup = mock.Mock()
@@ -96,10 +78,8 @@ class TestRPC(base.BaseTestCase):
         not_trans_cleanup.assert_called_once_with()
         self.assertIsNone(rpc.TRANSPORT)
         self.assertIsNone(rpc.NOTIFICATION_TRANSPORT)
-        self.assertIsNone(rpc.NOTIFIER)
 
         rpc.TRANSPORT = mock.Mock()
-        rpc.NOTIFIER = mock.Mock()
         rpc.NOTIFICATION_TRANSPORT = mock.Mock()
 
     @mock.patch.object(rpc, 'RequestContextSerializer')
@@ -123,7 +103,6 @@ class TestRPC(base.BaseTestCase):
     @mock.patch.object(rpc, 'RequestContextSerializer')
     @mock.patch.object(messaging, 'get_rpc_server')
     def test_get_server(self, mock_get, mock_ser):
-        rpc.TRANSPORT = mock.Mock()
         ser = mock.Mock()
         tgt = mock.Mock()
         ends = mock.Mock()
@@ -138,26 +117,18 @@ class TestRPC(base.BaseTestCase):
         self.assertEqual('server', server)
 
     def test_get_notifier(self):
-        rpc.NOTIFIER = mock.Mock()
-        mock_prep = mock.Mock()
-        mock_prep.return_value = 'notifier'
-        rpc.NOTIFIER.prepare = mock_prep
-
-        notifier = rpc.get_notifier('service', publisher_id='foo')
-
-        mock_prep.assert_called_once_with(publisher_id='foo')
-        self.assertEqual('notifier', notifier)
+        mock_notifier = mock.Mock(return_value=None)
+        messaging.Notifier.__init__ = mock_notifier
+        rpc.get_notifier('service', publisher_id='foo')
+        mock_notifier.assert_called_once_with(
+            mock.ANY, serializer=mock.ANY, publisher_id='foo')
 
     def test_get_notifier_null_publisher(self):
-        rpc.NOTIFIER = mock.Mock()
-        mock_prep = mock.Mock()
-        mock_prep.return_value = 'notifier'
-        rpc.NOTIFIER.prepare = mock_prep
-
-        notifier = rpc.get_notifier('service', host='bar')
-
-        mock_prep.assert_called_once_with(publisher_id='service.bar')
-        self.assertEqual('notifier', notifier)
+        mock_notifier = mock.Mock(return_value=None)
+        messaging.Notifier.__init__ = mock_notifier
+        rpc.get_notifier('service', host='bar')
+        mock_notifier.assert_called_once_with(
+            mock.ANY, serializer=mock.ANY, publisher_id='service.bar')
 
 
 class TestRequestContextSerializer(base.BaseTestCase):

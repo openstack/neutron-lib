@@ -35,7 +35,6 @@ from osprofiler import profiler
 LOG = logging.getLogger(__name__)
 TRANSPORT = None
 NOTIFICATION_TRANSPORT = None
-NOTIFIER = None
 
 _DFT_EXMODS = runtime.list_package_modules(exceptions.__name__)
 
@@ -47,7 +46,7 @@ def init(conf, rpc_ext_mods=None):
     :param rpc_ext_mods: Exception modules to expose via RPC.
     :returns: None.
     """
-    global TRANSPORT, NOTIFICATION_TRANSPORT, NOTIFIER
+    global TRANSPORT, NOTIFICATION_TRANSPORT
 
     if rpc_ext_mods is None:
         rpc_ext_mods = _DFT_EXMODS
@@ -58,9 +57,6 @@ def init(conf, rpc_ext_mods=None):
         conf, allowed_remote_exmods=rpc_ext_mods)
     NOTIFICATION_TRANSPORT = oslo_messaging.get_notification_transport(
         conf, allowed_remote_exmods=rpc_ext_mods)
-    serializer = RequestContextSerializer()
-    NOTIFIER = oslo_messaging.Notifier(NOTIFICATION_TRANSPORT,
-                                       serializer=serializer)
 
 
 def cleanup():
@@ -68,18 +64,16 @@ def cleanup():
 
     :returns: None.
     """
-    global TRANSPORT, NOTIFICATION_TRANSPORT, NOTIFIER
+    global TRANSPORT, NOTIFICATION_TRANSPORT
     if TRANSPORT is None:
         raise AssertionError(_("'TRANSPORT' must not be None"))
     if NOTIFICATION_TRANSPORT is None:
         raise AssertionError(
             _("'NOTIFICATION_TRANSPORT' must not be None"))
-    if NOTIFIER is None:
-        raise AssertionError(_("'NOTIFIER' must not be None"))
     TRANSPORT.cleanup()
     NOTIFICATION_TRANSPORT.cleanup()
     _BackingOffContextWrapper.reset_timeouts()
-    TRANSPORT = NOTIFICATION_TRANSPORT = NOTIFIER = None
+    TRANSPORT = NOTIFICATION_TRANSPORT = None
 
 
 def _get_default_method_timeout():
@@ -243,11 +237,14 @@ def get_notifier(service=None, host=None, publisher_id=None):
         `service` and `host` arguments.
     :returns: A new RPC notifier reference.
     """
-    if NOTIFIER is None:
-        raise AssertionError(_("'NOTIFIER' must not be None"))
+    if NOTIFICATION_TRANSPORT is None:
+        raise AssertionError(_("'NOTIFICATION_TRANSPORT' must not be None"))
     if not publisher_id:
         publisher_id = "%s.%s" % (service, host or cfg.CONF.host)
-    return NOTIFIER.prepare(publisher_id=publisher_id)
+    serializer = RequestContextSerializer()
+    return oslo_messaging.Notifier(NOTIFICATION_TRANSPORT,
+                                   serializer=serializer,
+                                   publisher_id=publisher_id)
 
 
 class RequestContextSerializer(om_serializer.Serializer):
