@@ -239,9 +239,9 @@ def get_notifier(service=None, host=None, publisher_id=None):
     """Get a new notifier reference.
 
     :param service: The optional service for the notifier.
-    :param host: The optional host for the notifier. If not given the host
+    :param host: The optional host for the notifier. If not given, the host
         will be taken from the global CONF.
-    :param publisher_id: The optional publisher ID for the notifer.
+    :param publisher_id: The optional publisher ID for the notifier.
     :returns: A new RPC notifier reference.
     """
     if NOTIFIER is None:
