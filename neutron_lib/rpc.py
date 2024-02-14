@@ -128,11 +128,10 @@ class _BackingOffContextWrapper(_ContextWrapper):
     @classmethod
     def set_max_timeout(cls, max_timeout):
         if max_timeout < cls.get_max_timeout():
-            cls._METHOD_TIMEOUTS = collections.defaultdict(
-                lambda: max_timeout, **{
-                    k: min(v, max_timeout)
-                    for k, v in cls._METHOD_TIMEOUTS.items()
-                })
+            cls._METHOD_TIMEOUTS.default_factory = lambda: max_timeout
+            for k, v in cls._METHOD_TIMEOUTS.items():
+                if v > max_timeout:
+                    cls._METHOD_TIMEOUTS[k] = max_timeout
             cls._max_timeout = max_timeout
 
     def call(self, ctxt, method, **kwargs):
