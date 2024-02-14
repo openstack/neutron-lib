@@ -26,7 +26,6 @@ from oslo_config import cfg
 from oslo_log import log as logging
 import oslo_messaging
 from oslo_messaging import exceptions as oslomsg_exc
-from oslo_messaging.rpc import dispatcher
 from oslo_messaging import serializer as om_serializer
 from oslo_service import service
 from oslo_utils import excutils
@@ -229,10 +228,8 @@ def get_server(target, endpoints, serializer=None):
     if TRANSPORT is None:
         raise AssertionError(_("'TRANSPORT' must not be None"))
     serializer = RequestContextSerializer(serializer)
-    access_policy = dispatcher.DefaultRPCAccessPolicy
     return oslo_messaging.get_rpc_server(TRANSPORT, target, endpoints,
-                                         'eventlet', serializer,
-                                         access_policy=access_policy)
+                                         'eventlet', serializer)
 
 
 def get_notifier(service=None, host=None, publisher_id=None):
