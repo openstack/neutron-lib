@@ -118,6 +118,16 @@ The extension defines several attributes whose names have a prefix
 ``binding:`` including ``binding:host_id``, ``binding:vnic_type``,
 ``binding:vif_type``, ``binding:vif_details``, and ``binding:profile``.
 
+.. warning::
+
+    When new defaults for the API policies are enabled (``enforce_new_defaults``
+    set to ``True`` in the Neutron's configuration), ``binding:profile`` can
+    be set or updated only by the user with granted ``SERVICE`` role.  In
+    case when it needs to be set by ``admin`` user e.g. for debugging
+    purpose, default API policies for ``create_port:binding:profile`` and/or
+    ``update_port:binding:profile`` needs to be overwritten in the
+    ``policy.yaml`` file.
+
 Port hints
 ==========
 
