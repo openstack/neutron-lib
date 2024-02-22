@@ -107,7 +107,8 @@ NUMA affinity policy
 
 The NUMA affinity policy extension (``port-numa-affinity-policy``) defines
 the Nova scheduling strategy according to the network backend NUMA topology.
-This parameter could be ``required``, ``preferred``, ``legacy`` or ``None``.
+This parameter could be ``required``, ``preferred``, ``legacy``, ``socket`` or
+``None``.
 
 Port binding extended attributes
 ================================

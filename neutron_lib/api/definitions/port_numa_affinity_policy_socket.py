@@ -1,4 +1,4 @@
-# Copyright (c) 2020 Red Hat, Inc.
+# Copyright (c) 2024 Red Hat, Inc.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -13,18 +13,19 @@
 #    under the License.
 
 from neutron_lib.api.definitions import port
+from neutron_lib.api.definitions import port_numa_affinity_policy
 from neutron_lib import constants
 
 
-ALIAS = 'port-numa-affinity-policy'
+ALIAS = 'port-numa-affinity-policy-socket'
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
-NAME = 'Port NUMA affinity policy'
-DESCRIPTION = "Expose the port NUMA affinity policy"
-UPDATED_TIMESTAMP = "2020-07-08T10:00:00-00:00"
+NAME = 'Port NUMA affinity policy "socket"'
+DESCRIPTION = 'Adds "socket" to the supported port NUMA affinity policies'
+UPDATED_TIMESTAMP = "2024-02-09T10:00:00-00:00"
 RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
-NUMA_AFFINITY_POLICY = 'numa_affinity_policy'
+NUMA_AFFINITY_POLICY = port_numa_affinity_policy.NUMA_AFFINITY_POLICY
 
 RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
@@ -32,10 +33,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_post': True,
             'allow_put': True,
             'validate': {
-                'type:values': (constants.PORT_NUMA_POLICY_REQUIRED,
-                                constants.PORT_NUMA_POLICY_PREFERRED,
-                                constants.PORT_NUMA_POLICY_LEGACY,
-                                None)},
+                'type:values': constants.PORT_NUMA_POLICIES + (None,)},
             'default': None,
             'is_visible': True}
     },
@@ -44,5 +42,5 @@ RESOURCE_ATTRIBUTE_MAP = {
 SUB_RESOURCE_ATTRIBUTE_MAP = None
 ACTION_MAP = {}
 ACTION_STATUS = {}
-REQUIRED_EXTENSIONS = []
+REQUIRED_EXTENSIONS = [port_numa_affinity_policy.ALIAS]
 OPTIONAL_EXTENSIONS = []

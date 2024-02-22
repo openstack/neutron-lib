@@ -1,0 +1,7 @@
+---
+features:
+ - |
+   New API definition: ``port-numa-affinity-policy-socket``. This extension
+   adds a new field, "socket", to the parent API extension
+   ``port-numa-affinity-policy``. Now the valid values are: None, "required",
+   "preferred", "legacy" and "socket".

@@ -337,7 +337,8 @@ class NumaAffinityPoliciesEnumFieldTest(test_base.BaseTestCase, TestField):
         self.field = common_types.NumaAffinityPoliciesEnumField()
         good_values = [const.PORT_NUMA_POLICY_REQUIRED,
                        const.PORT_NUMA_POLICY_PREFERRED,
-                       const.PORT_NUMA_POLICY_LEGACY]
+                       const.PORT_NUMA_POLICY_LEGACY,
+                       const.PORT_NUMA_POLICY_SOCKET]
         self.coerce_good_values = [(val, val) for val in good_values]
         self.coerce_bad_values = ['foo-invalid-policy']
         self.to_primitive_values = self.coerce_good_values

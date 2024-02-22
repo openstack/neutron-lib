@@ -96,6 +96,7 @@ from neutron_lib.api.definitions import port_hints
 from neutron_lib.api.definitions import port_mac_address_override
 from neutron_lib.api.definitions import port_mac_address_regenerate
 from neutron_lib.api.definitions import port_numa_affinity_policy
+from neutron_lib.api.definitions import port_numa_affinity_policy_socket
 from neutron_lib.api.definitions import port_resource_request
 from neutron_lib.api.definitions import port_resource_request_groups
 from neutron_lib.api.definitions import port_security
@@ -252,6 +253,7 @@ _ALL_API_DEFINITIONS = {
     port_mac_address_override,
     port_mac_address_regenerate,
     port_numa_affinity_policy,
+    port_numa_affinity_policy_socket,
     port_resource_request,
     port_resource_request_groups,
     port_security,
