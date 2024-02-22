@@ -62,10 +62,6 @@ DEVICE_OWNER_AGENT_GW = (DEVICE_OWNER_NETWORK_PREFIX +
 DEVICE_OWNER_ROUTER_SNAT = (DEVICE_OWNER_NETWORK_PREFIX +
                             "router_centralized_snat")
 DEVICE_OWNER_ROUTED = (DEVICE_OWNER_NETWORK_PREFIX + "routed")
-# TODO(johnsom) Remove after these stop being used. Neutron-LBaaS is now
-#               retired (train) and these should no longer be necessary.
-DEVICE_OWNER_LOADBALANCER = DEVICE_OWNER_NEUTRON_PREFIX + "LOADBALANCER"
-DEVICE_OWNER_LOADBALANCERV2 = DEVICE_OWNER_NEUTRON_PREFIX + "LOADBALANCERV2"
 
 # Device owner for distributed services (e.g OVN Metadata/DHCP).
 DEVICE_OWNER_DISTRIBUTED = DEVICE_OWNER_NETWORK_PREFIX + "distributed"
