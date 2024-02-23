@@ -1661,6 +1661,12 @@ subnet-network_id-query:
   in: query
   required: false
   type: string
+subnet-router:external:
+  description: |
+    The membership of a subnet to an external network.
+  in: query
+  required: false
+  type: boolean
 subnet-segment_id-query:
   description: |
     Filter the subnet list result by the ID of a network segment the subnet

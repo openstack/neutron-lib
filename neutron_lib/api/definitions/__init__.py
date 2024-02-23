@@ -146,6 +146,7 @@ from neutron_lib.api.definitions import standard_attr_segment
 from neutron_lib.api.definitions import stateful_security_group
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_dns_publish_fixed_ip
+from neutron_lib.api.definitions import subnet_external_network
 from neutron_lib.api.definitions import subnet_onboard
 from neutron_lib.api.definitions import subnet_segmentid_enforce
 from neutron_lib.api.definitions import subnet_segmentid_writable
@@ -302,6 +303,7 @@ _ALL_API_DEFINITIONS = {
     stateful_security_group,
     subnet,
     subnet_dns_publish_fixed_ip,
+    subnet_external_network,
     subnet_onboard,
     subnet_segmentid_enforce,
     subnet_segmentid_writable,

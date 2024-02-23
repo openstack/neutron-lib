@@ -28,7 +28,8 @@
             "service_types": [],
             "subnetpool_id": null,
             "tags": ["tag1,tag2"],
-            "updated_at": "2016-10-10T14:35:34Z"
+            "updated_at": "2016-10-10T14:35:34Z",
+            "router:external": false
         },
         {
             "name": "my_subnet",
@@ -58,7 +59,8 @@
             "service_types": [],
             "subnetpool_id": null,
             "tags": ["tag1,tag2"],
-            "updated_at": "2016-10-10T14:35:47Z"
+            "updated_at": "2016-10-10T14:35:47Z",
+            "router:external": true
         }
     ]
 }
