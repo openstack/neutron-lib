@@ -443,10 +443,15 @@ def validate_ip_address(data, valid_values=None):
     msg = None
     msg_data = data
     try:
-        # netaddr.core.ZEROFILL is only applicable to IPv4.
-        # it will remove leading zeros from IPv4 address octets.
-        ip = netaddr.IPAddress(validate_no_whitespace(data),
-                               flags=netaddr.core.ZEROFILL)
+        try:
+            # netaddr.core.ZEROFILL is only applicable to IPv4.
+            # it will remove leading zeros from IPv4 address octets.
+            ip = netaddr.IPAddress(validate_no_whitespace(data),
+                                   flags=netaddr.core.ZEROFILL)
+        except ValueError:
+            # It could be an IPv6 address and netaddr.core.ZEROFILL flag
+            # cannot be used in netaddr>=1.0.0
+            ip = netaddr.IPAddress(validate_no_whitespace(data))
         # The followings are quick checks for IPv6 (has ':') and
         # IPv4.  (has 3 periods like 'xx.xx.xx.xx')
         # NOTE(yamamoto): netaddr uses libraries provided by the underlying
