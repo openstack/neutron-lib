@@ -1,0 +1,6 @@
+---
+deprecations:
+  - |
+    The ``neutron_lib.rpc:get_notifier`` default value for ``service`` argument
+    (``None``) is deprecated. The argument will be required in a future
+    release.

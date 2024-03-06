@@ -229,7 +229,7 @@ def get_notifier(service=None, host=None, publisher_id=None):
     """Get a new notifier reference.
 
     :param service: The optional service for the notifier. If not given,
-        `None` is used as the service name.
+        `None` is used as the service name (deprecated since 2025.1).
     :param host: The optional host for the notifier. If not given, the host
         will be taken from the global CONF.
     :param publisher_id: The optional publisher ID for the notifier. Overrides
@@ -239,6 +239,11 @@ def get_notifier(service=None, host=None, publisher_id=None):
     if NOTIFICATION_TRANSPORT is None:
         raise AssertionError(_("'NOTIFICATION_TRANSPORT' must not be None"))
     if not publisher_id:
+        if service is None:
+            LOG.warning("The 'service' argument to get_notifier is set to "
+                        "None. This is deprecated since 2025.1 release and "
+                        "will be removed in one of the future releases. "
+                        "Please always pass the 'service' argument.")
         publisher_id = "%s.%s" % (service, host or cfg.CONF.host)
     serializer = RequestContextSerializer()
     return oslo_messaging.Notifier(NOTIFICATION_TRANSPORT,
