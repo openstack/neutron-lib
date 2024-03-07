@@ -7,6 +7,7 @@
 
    README.rst
    unreleased
+   2024.1
    2023.2
    2023.1
    zed
