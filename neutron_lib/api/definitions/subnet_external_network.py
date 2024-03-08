@@ -34,7 +34,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_put': False,
             'default': False,
             'is_visible': True,
-            'is_filter': False,
+            'is_filter': True,
             'convert_to': converters.convert_to_boolean,
             'enforce_policy': True,
             'required_by_policy': True
