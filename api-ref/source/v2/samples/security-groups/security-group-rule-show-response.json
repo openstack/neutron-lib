@@ -7,6 +7,7 @@
         "port_range_min": null,
         "protocol": null,
         "remote_group_id": null,
+        "remote_address_group_id": null,
         "remote_ip_prefix": null,
         "revision_number": 1,
         "created_at": "2018-03-19T19:16:56Z",

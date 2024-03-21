@@ -6,6 +6,7 @@
         "port_range_max": "80",
         "protocol": "tcp",
         "remote_group_id": "85cc3048-abc3-43cc-89b3-377341426ac5",
+        "remote_address_group_id": "a9baa1eb-0614-4d68-870e-fec6d8f8c221",
         "security_group_id": "a7734e61-b545-452d-a3cd-0189cbd9747a"
     }
 }
