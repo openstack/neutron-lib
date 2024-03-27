@@ -28,6 +28,11 @@ from neutron_lib.objects import utils as obj_utils
 from neutron_lib.utils import helpers
 
 
+DEFAULT_RBAC_ACTIONS = {constants.ACCESS_SHARED,
+                        constants.ACCESS_READONLY,
+                        }
+
+
 # Classes implementing extensions will register hooks into this dictionary
 # for "augmenting" the "core way" of building a query for retrieving objects
 # from a model class. Hooks are registered by invoking register_hook().
@@ -37,11 +42,13 @@ _model_query_hooks = {
     #                         'query': query_hook,
     #                         'filter': filter_hook,
     #                         'result_filters': result_filters
+    #                         'rbac_actions': rbac_actions
     #              },
     #              hook2: {
     #                         'query': query_hook,
     #                         'filter': filter_hook,
     #                         'result_filters': result_filters
+    #                         'rbac_actions': rbac_actions
     #              },
     #              ...
     #          },
@@ -50,11 +57,13 @@ _model_query_hooks = {
     #                         'query': query_hook,
     #                         'filter': filter_hook,
     #                         'result_filters': result_filters
+    #                         'rbac_actions': rbac_actions
     #              },
     #              hook2: {
     #                         'query': query_hook,
     #                         'filter': filter_hook,
     #                         'result_filters': result_filters
+    #                         'rbac_actions': rbac_actions
     #              },
     #              ...
     #          },
@@ -63,18 +72,20 @@ _model_query_hooks = {
 
 
 def register_hook(model, name, query_hook, filter_hook,
-                  result_filters=None):
+                  result_filters=None, rbac_actions=None):
     """Register a hook to be invoked when a query is executed.
 
     Adds the hook components to the _model_query_hooks dict. Models are the
     keys of this dict, whereas the value is another dict mapping hook names
-    to callables performing the hook.
+    to callables performing the hook or in the case of ``rbac_actions``, a set
+    of RBAC actions to filter the model.
 
     :param model: The DB Model that the hook applies to.
     :param name: A name for the hook.
     :param query_hook: The method to be called to augment the query.
     :param filter_hook: A method to be called to augment the query filter.
     :param result_filters: A Method to be called to filter the query result.
+    :param rbac_actions: An iterable of RBAC actions or a single one (string).
     :returns: None.
     """
     if callable(query_hook):
@@ -83,10 +94,16 @@ def register_hook(model, name, query_hook, filter_hook,
         filter_hook = helpers.make_weak_ref(filter_hook)
     if callable(result_filters):
         result_filters = helpers.make_weak_ref(result_filters)
+    if rbac_actions is not None:
+        if isinstance(rbac_actions, (set, list, tuple)):
+            rbac_actions = set(rbac_actions)
+        else:
+            rbac_actions = {rbac_actions}
     _model_query_hooks.setdefault(model, {})[name] = {
         'query': query_hook,
         'filter': filter_hook,
-        'result_filters': result_filters
+        'result_filters': result_filters,
+        'rbac_actions': rbac_actions,
     }
 
 
@@ -97,6 +114,23 @@ def get_hooks(model):
     :returns: list of hooks
     """
     return _model_query_hooks.get(model, {}).values()
+
+
+def get_rbac_actions(model):
+    """Retrieve and combine all RBAC actions requested in a model
+
+    :param model: The DB Model to look up for query hooks.
+    :returns: A set of RBAC actions defined in the model or the default RBAC
+              actions ('access_as_shared', 'access_as_readonly')
+    """
+    rbac_actions = None
+    for hook in get_hooks(model):
+        hook_rbac_actions = hook.get('rbac_actions')
+        if hook_rbac_actions is not None:
+            if rbac_actions is None:
+                rbac_actions = set()
+            rbac_actions.update(hook_rbac_actions)
+    return rbac_actions if rbac_actions is not None else DEFAULT_RBAC_ACTIONS
 
 
 def query_with_hooks(context, model, field=None, lazy_fields=None):
@@ -126,8 +160,7 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
             rbac_model = model.rbac_entries.property.mapper.class_
             query_filter = (
                 (model.tenant_id == context.tenant_id) |
-                (rbac_model.action.in_(
-                    [constants.ACCESS_SHARED, constants.ACCESS_READONLY]) &
+                (rbac_model.action.in_(get_rbac_actions(model)) &
                  ((rbac_model.target_project == context.tenant_id) |
                   (rbac_model.target_project == '*'))))
             # This "group_by" clause will limit the number of registers
