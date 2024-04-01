@@ -13,8 +13,9 @@ List routers hosted by an L3 agent
 
 .. rest_method::  GET /v2.0/agents/{agent_id}/l3-routers
 
-
 Lists routers that an l3 agent hosts.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -125,8 +126,9 @@ List L3 agents hosting a router
 
 .. rest_method::  GET /v2.0/routers/{router_id}/l3-agents
 
-
 Lists l3 agents hosting a specific router.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

@@ -33,6 +33,8 @@ List tap services that belong to a given project.
 
 The list might be empty.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: 401
@@ -186,6 +188,8 @@ Show Tap Service
 
 Show details for a tap service by passing tap service ``name`` or ``id`` as JSON-encoded data.
 
+.. include:: filtering-show.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 404
@@ -233,6 +237,8 @@ List Tap Flow
 List tap flow that belong to a given tenant.
 
 The list might be empty.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -393,6 +399,8 @@ Show Tap Flow
 .. rest_method:: GET /v2.0/taas/tap_flows/{tap_flows_id/name}
 
 Show details for a tap flow by passing tap flow ``name`` or ``id`` as JSON-encoded data.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

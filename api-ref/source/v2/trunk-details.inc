@@ -20,6 +20,8 @@ attribute contain the trunk ID and the array showing information
 about the subports that belong to the trunk: the port UUID, the
 segmentation type, the segmentation ID, and the MAC address.
 
+.. include:: filtering-show.inc
+
 Normal response codes: 200
 
 Request

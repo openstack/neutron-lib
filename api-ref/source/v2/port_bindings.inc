@@ -18,6 +18,8 @@ Show Port Binding of a Port
 
 .. rest_method:: GET /v2.0/ports/{port_id}/bindings
 
+.. include:: filtering-show.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 404

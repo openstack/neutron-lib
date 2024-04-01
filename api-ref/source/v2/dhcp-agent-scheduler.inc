@@ -14,8 +14,9 @@ List networks hosted by a DHCP agent
 
 .. rest_method::  GET /v2.0/agents/{agent_id}/dhcp-networks
 
-
 Lists networks that a DHCP agent hosts.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -137,8 +138,9 @@ List DHCP agents hosting a network
 
 .. rest_method::  GET /v2.0/networks/{network_id}/dhcp-agents
 
-
 Lists DHCP agents hosting a network.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

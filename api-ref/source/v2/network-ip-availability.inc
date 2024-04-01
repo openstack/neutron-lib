@@ -18,6 +18,8 @@ Shows network IP availability details for a network.
 By default policy configuration, only administrative users can retrieve
 IP availability. Otherwise, ``Not Found (404)`` will be returned.
 
+.. include:: filtering-show.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 404
@@ -62,6 +64,8 @@ Lists network IP availability of all networks.
 
 By default policy configuration, only administrative users can retrieve
 IP availabilities. Otherwise, an empty list will be returned.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

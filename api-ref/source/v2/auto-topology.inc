@@ -16,11 +16,7 @@ Show auto allocated topology details
 
 Shows details for an auto allocated topology.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. For information, see `Filtering and
-Column Selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

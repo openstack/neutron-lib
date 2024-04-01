@@ -17,6 +17,8 @@ List Port Pair Groups
 
 Lists port pair groups.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: unauthorized(401), forbidden(403)
@@ -94,6 +96,8 @@ Show Port Pair Group Details
 .. rest_method:: GET /v1.0/sfc/port_pair_groups/{port_pair_group_id}
 
 Shows details for a port pair group.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

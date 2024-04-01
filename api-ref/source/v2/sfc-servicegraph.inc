@@ -17,6 +17,8 @@ List Service Graphs
 
 Lists service graphs.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: unauthorized(401), forbidden(403)
@@ -88,6 +90,8 @@ Show Service Graph Details
 .. rest_method:: GET /v1.0/sfc/service_graphs/{sfc_service_graph_id-path}
 
 Shows details for a service graph.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

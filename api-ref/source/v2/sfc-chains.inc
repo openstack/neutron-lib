@@ -17,6 +17,8 @@ List Port Chains
 
 Lists port chains.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: unauthorized(401), forbidden(403)
@@ -97,6 +99,8 @@ Show Port Chain Details
 .. rest_method:: GET /v1.0/sfc/port_chains/{port_chain_id}
 
 Shows details for a port chain.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

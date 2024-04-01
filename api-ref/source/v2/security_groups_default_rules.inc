@@ -19,11 +19,7 @@ for every newly created Security Group.
 
 The list provides the ID for each security group default rule.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -152,6 +148,8 @@ Shows detailed information for a security group default rule.
 
 The response body contains the following information about the
 security group rule:
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

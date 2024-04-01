@@ -24,11 +24,7 @@ Lists Local IPs visible to the user.
 Default policy settings return only the Local IPs owned by the user's
 project, unless the user has admin role.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -168,11 +164,7 @@ Show Local IP details
 
 Shows details for a Local IP.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. For information, see `Filtering and
-Column Selection <http://specs.openstack.org/openstack /neutron-
-specs/specs/api/networking_general_api_information.html #filtering-
-and-column-selection>`__.
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -305,11 +297,7 @@ List Local IP Associations
 
 Lists Associations for the given Local IP.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

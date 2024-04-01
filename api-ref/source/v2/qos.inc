@@ -24,11 +24,7 @@ List QoS rule types
 
 Lists available qos rule types.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -63,11 +59,7 @@ Show QoS rule type details
 
 Shows details for an available QoS rule type.
 
-You can control which response parameters are returned by using the
-fields query parameter. For information, see `Filtering and column
-selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -136,11 +128,7 @@ more than one rule type.
 
 The list might be empty.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -398,6 +386,8 @@ Lists all bandwidth limit rules for a QoS policy.
 
 The list might be empty.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 404
@@ -602,6 +592,8 @@ Lists all DSCP marking rules for a QoS policy.
 
 The list may be empty.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 404
@@ -792,11 +784,7 @@ Lists all minimum bandwidth rules for a QoS policy.
 
 The list might be empty.
 
-You can control which response parameters are returned by using the
-fields query parameter. For information, see `Filtering and column
-selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -999,11 +987,7 @@ Lists all minimum packet rate rules for a QoS policy.
 
 The list might be empty.
 
-You can control which response parameters are returned by using the
-fields query parameter. For information, see `Filtering and column
-selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -1205,11 +1189,7 @@ Lists all packet rate limit rules for a QoS policy.
 
 The list might be empty.
 
-You can control which response parameters are returned by using the
-fields query parameter. For information, see `Filtering and column
-selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

@@ -41,6 +41,8 @@ List BGP speakers hosted by a Dynamic Routing Agent
 Issue a ``GET`` request to ``/v2.0/agents/{bgp-dragent-id}/bgp-drinstances`` to
 list all BGP Seakers hosted on the specified dynamic routing agent.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Request

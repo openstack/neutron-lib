@@ -20,11 +20,7 @@ List logs
 
 Lists all log resources associated with your project.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 The list might be empty.
 
@@ -155,6 +151,8 @@ Show log
 
 Shows details log resource.
 
+.. include:: filtering-show.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 404
@@ -279,6 +277,8 @@ List loggable resources
 .. rest_method::  GET /v2.0/log/loggable-resources
 
 Lists all resource log types are supporting.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

@@ -47,11 +47,7 @@ Lists all firewall groups.
 
 The list might be empty.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -98,6 +94,8 @@ Shows details for a firewall group.
 If the user is not an administrative user and the firewall group
 object does not belong to the project, this call returns the
 ``FirewallGroupNotFound (404)`` response code.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -287,11 +285,7 @@ Lists all firewall policies.
 
 The list might be empty.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -331,6 +325,8 @@ Show firewall policy details
 .. rest_method::  GET /v2.0/fwaas/firewall_policies/{firewall_policy_id}
 
 Shows details of a firewall policy.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -500,11 +496,7 @@ Lists all firewall rules.
 
 The list might be empty.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -557,6 +549,8 @@ Shows details for a firewall rule.
 If the user is not an administrative user and the firewall rule
 object does not belong to the project, this call returns the
 ``Forbidden (403)`` response code.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

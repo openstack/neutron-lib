@@ -16,6 +16,8 @@ List quotas for projects with non-default quota values
 
 Lists quotas for projects with non-default quota values.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 403
@@ -53,6 +55,8 @@ List quotas for a project
 .. rest_method::  GET /v2.0/quotas/{project_id}
 
 Lists quotas for a project.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -173,6 +177,8 @@ List default quotas for a project
 .. rest_method::  GET /v2.0/quotas/{project_id}/default
 
 Lists default quotas for a project.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

@@ -63,11 +63,7 @@ List IKE policies
 
 Lists IKE policies.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -179,6 +175,8 @@ Show IKE policy details
 .. rest_method::  GET /v2.0/vpn/ikepolicies/{ikepolicy_id}
 
 Shows details for an IKE policy.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -310,11 +308,7 @@ List IPsec policies
 
 Lists all IPsec policies.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -426,6 +420,8 @@ Show IPsec policy
 .. rest_method::  GET /v2.0/vpn/ipsecpolicies/{ipsecpolicy_id}
 
 Shows details for an IPsec policy.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -557,11 +553,7 @@ List IPsec connections
 
 Lists all IPsec connections.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. For information, see `Filtering and
-Column Selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -702,6 +694,8 @@ Show IPsec connection
 .. rest_method::  GET /v2.0/vpn/ipsec-site-connections/{connection_id}
 
 Shows details for an IPsec connection.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -861,11 +855,7 @@ List VPN endpoint groups
 
 Lists VPN endpoint groups.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -954,6 +944,8 @@ Show VPN endpoint group
 .. rest_method::  GET /v2.0/vpn/endpoint-groups/{endpoint_group_id}
 
 Shows details for a VPN endpoint group.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -1062,11 +1054,7 @@ Lists all VPN services.
 
 The list might be empty.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -1181,6 +1169,8 @@ Shows details for a VPN service.
 If the user is not an administrative user and the VPN service
 object does not belong to the tenant account for the user, the
 operation returns the ``Forbidden (403)`` response code.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

@@ -21,17 +21,7 @@ Lists all flavors visible to the project.
 
 The list can be empty.
 
-Standard query parameters are supported on the URI. Use the ``fields``
-query parameter to control which fields are returned in the response body.
-Additionally, you can filter results by using query string parameters.
-For information, see `Filtering and Column Selection
-<https://wiki.openstack.org/wiki/Neutron/APIv2-specification#
-Filtering_and_Column_Selection>`__. If Neutron configuration supports
-pagination by overriding allow_pagination = false, the ``marker`` query
-parameter can set the last element id the client has seen and ``limit``
-set the maximum number of items to return. if Neutron configuration has
-allow_sorting = true, ``sort_key`` and ``sort_dir`` pairs can be used
-where sort direction is 'asc' or 'desc'.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -153,6 +143,8 @@ This operation returns a flavor object by ID. If you are not an
 administrative user and the flavor object is not visible to your
 project account, the service returns the HTTP ``Forbidden (403)``
 response code.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -335,7 +327,7 @@ Lists all service profiles visible for the tenant account.
 
 The list can be empty.
 
-Standard query parameters are supported on the URI.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -448,6 +440,8 @@ This operation returns a service profile object by ID. If you are
 not an administrative user and the object is not visible to your
 tenant account, the service returns the HTTP ``Forbidden (403)``
 response code.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

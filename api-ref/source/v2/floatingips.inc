@@ -75,18 +75,14 @@ Lists floating IPs visible to the user.
 Default policy settings return only the floating IPs owned by the user's
 project, unless the user has admin role.
 
+.. include:: filtering-list.inc
+
 This example request lists floating IPs in JSON format:
 
 ::
 
    GET /v2.0/floatingips
    Accept: application/json
-
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
 
 Normal response codes: 200
 
@@ -278,11 +274,7 @@ Show floating IP details
 
 Shows details for a floating IP.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. For information, see `Filtering and
-Column Selection <http://specs.openstack.org/openstack /neutron-
-specs/specs/api/networking_general_api_information.html #filtering-
-and-column-selection>`__.
+.. include:: filtering-show.inc
 
 This example request shows details for a floating IP in JSON
 format. This example also filters the result by the
