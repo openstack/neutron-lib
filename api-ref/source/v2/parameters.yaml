@@ -6042,6 +6042,14 @@ remote_address_group_id:
   in: body
   required: true
   type: string
+remote_address_group_id-response:
+  description: |
+    The remote address group UUID that is associated with this
+    security group rule.
+  in: body
+  required: true
+  type: string
+
 remote_group_id:
   description: |
     The remote group UUID to associate with this

@@ -15,6 +15,12 @@ Resource timestamps
 The ``standard-attr-timestamp`` extension adds the ``created_at`` and
 ``updated_at`` attributes to all resources that have standard attributes.
 
+Remote address group id
+=======================
+
+The extension ``security-groups-remote-address-group`` adds a new field
+``remote_address_group_id`` in security group rules.
+
 Belongs to the project's default security group
 ===============================================
 
@@ -69,6 +75,7 @@ Response Parameters
 
    - security_group_rules: security_group_rules
    - remote_group_id: remote_group_id
+   - remote_address_group_id: remote_address_group_id-response
    - direction: direction
    - protocol: protocol
    - ethertype: ethertype
@@ -109,6 +116,7 @@ Request
 
    - security_group_rule: security_group_rule
    - remote_group_id: remote_group_id-request
+   - remote_address_group_id: remote_address_group_id-request
    - direction: direction
    - protocol: protocol-request
    - ethertype: ethertype-request
@@ -131,6 +139,7 @@ Response Parameters
 
    - security_group_rule: security_group_rule
    - remote_group_id: remote_group_id
+   - remote_address_group_id: remote_address_group_id-response
    - direction: direction
    - protocol: protocol
    - ethertype: ethertype
@@ -173,6 +182,7 @@ Request
 
    - security_group_rules: security_group_rules
    - remote_group_id: remote_group_id-request
+   - remote_address_group_id: remote_address_group_id-request
    - direction: direction
    - protocol: protocol-request
    - ethertype: ethertype-request
@@ -195,6 +205,7 @@ Response Parameters
 
    - security_group_rules: security_group_rules
    - remote_group_id: remote_group_id
+   - remote_address_group_id: remote_address_group_id-response
    - direction: direction
    - protocol: protocol
    - ethertype: ethertype
@@ -247,6 +258,7 @@ Response Parameters
 
    - security_group_rule: security_group_rule
    - remote_group_id: remote_group_id
+   - remote_address_group_id: remote_address_group_id-response
    - direction: direction
    - protocol: protocol
    - ethertype: ethertype
