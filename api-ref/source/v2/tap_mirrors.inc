@@ -16,6 +16,8 @@ List tap mirrors that belong to a given project.
 
 The list might be empty.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: 401
@@ -173,6 +175,8 @@ Show Tap Mirror
 .. rest_method:: GET /v2.0/taas/tap_mirrors/{tap_mirror_id}
 
 Shows details for a tap mirror.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

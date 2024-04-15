@@ -18,11 +18,7 @@ List Network Associations
 
 Lists network associations for a given BGP VPN.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -102,6 +98,8 @@ Show Network Association details
 .. rest_method::  GET /v2.0/bgpvpn/bgpvpns/{bgpvpn_id}/network_associations/{network_association_id}
 
 Shows details for a network association.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

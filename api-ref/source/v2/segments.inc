@@ -20,11 +20,7 @@ Show segment details
 
 Shows details for a segment.
 
-You can control which response parameters are returned by using the
-fields query parameter. For information, see `Filtering and column
-selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -137,10 +133,7 @@ List segments
 
 Lists segments to which the project has access.
 
-Use the ``fields`` query parameter to filter the response. For
-information, see `Filtering and Column Selection <https://wiki.open
-stack.org/wiki/Neutron/APIv2-specification#Filtering_and_Column_Sel
-ection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

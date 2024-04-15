@@ -23,11 +23,7 @@ List BGP Speakers
 Issue a ``GET`` request to ``/v2.0/bgp-speakers`` to retrieve this list of available
 BGP Speakers.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -69,6 +65,8 @@ Show BGP Speaker details
 
 Issue a ``GET`` request to ``/v2.0/bgp-speakers/<bgp-speaker-id>`` to retrieve the
 detail about a specific BGP Speaker.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 
@@ -340,6 +338,8 @@ List routes advertised by a BGP Speaker
 
 List all routes advertised by the specified BGP Speaker.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Response Parameters
@@ -363,6 +363,8 @@ List Dynamic Routing Agents hosting a specific BGP Speaker
 .. rest_method:: GET /v2.0/bgp-speakers/{bgp-speaker-id}/bgp-dragents
 
 List all BGP dynamic agents which are hosting the specified BGP Speaker.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 

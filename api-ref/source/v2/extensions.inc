@@ -15,8 +15,9 @@ List extensions
 
 Lists available extensions.
 
-Lists available Networking API v2.0 extensions and shows details
-for an extension.
+Lists available Networking API v2.0 extensions.
+
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -51,6 +52,8 @@ Show extension details
 Shows details for an extension, by alias.
 The response shows the extension name and its alias. To show
 details for an extension, you specify the alias.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

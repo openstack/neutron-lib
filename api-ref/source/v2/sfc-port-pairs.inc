@@ -17,6 +17,8 @@ List Port Pairs
 
 Lists port pairs.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: unauthorized(401), forbidden(403)
@@ -96,6 +98,8 @@ Show Port Pair Details
 .. rest_method:: GET /v1.0/sfc/port_pairs/{port_pair_id}
 
 Shows details for a port pair.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

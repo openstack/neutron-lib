@@ -11,6 +11,8 @@ List floating IP Pools
 
 Lists floating IP pools visible to the user.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: 401

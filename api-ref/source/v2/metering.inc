@@ -16,11 +16,7 @@ Lists all L3 metering labels that belong to the project.
 
 The list shows the ID for each metering label.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -115,6 +111,8 @@ Show metering label details
 
 Shows details for a metering label.
 
+.. include:: filtering-show.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 404
@@ -189,11 +187,7 @@ Lists a summary of all L3 metering label rules that belong to the project.
 
 The list shows the ID for each metering label rule.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -308,6 +302,8 @@ The response body shows this information for each metering label rule:
 
 - The metering label ID for the metering label with which the rule
   is associated.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

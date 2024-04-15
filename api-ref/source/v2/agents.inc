@@ -24,13 +24,9 @@ List all agents
 
 .. rest_method::  GET /v2.0/agents
 
-Shows details for an agent.
+Lists all agents.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. For information, see `Filtering and
-Column Selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -88,6 +84,8 @@ Show agent details
 .. rest_method::  GET /v2.0/agents/{agent_id}
 
 Shows details for an agent.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

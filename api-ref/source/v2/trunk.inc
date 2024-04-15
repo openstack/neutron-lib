@@ -47,10 +47,7 @@ Default policy settings return only those trunks that are
 owned by the user who submits the request, unless an admin user
 submits the request.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see the Filtering_
-section for more details.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -285,6 +282,8 @@ List subports for trunk
 
 Normal response codes: 200
 
+.. include:: filtering-list.inc
+
 Error response codes: 401, 404
 
 Request
@@ -374,11 +373,7 @@ Show trunk
 
 Shows details for a trunk.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. For information, see `Filtering and
-Column Selection <http://specs.openstack.org/openstack/neutron-
-specs/specs/api/networking_general_api_information.html#filtering-
-and-column-selection>`__.
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

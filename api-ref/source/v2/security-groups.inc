@@ -64,11 +64,7 @@ Lists OpenStack Networking security groups to which the project has access.
 The response is an array of ``security_group`` objects which contains a list of
 ``security_group_rules`` objects.
 
-Use the ``fields`` query parameter to control which fields are
-returned in the response body. Additionally, you can filter results
-by using query string parameters. For information, see `Filtering
-and Column Selection <https://wiki.openstack.org/wiki/Neutron/APIv2
--specification#Filtering_and_Column_Selection>`__.
+.. include:: filtering-list.inc
 
 Normal response codes: 200
 
@@ -184,6 +180,8 @@ Show security group
 Shows details for a security group.
 
 The associated security group rules are contained in the response.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

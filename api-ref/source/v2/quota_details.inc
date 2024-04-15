@@ -16,6 +16,8 @@ Show quota details for a tenant
 
 Shows quota details for a project.
 
+.. include:: filtering-show.inc
+
 Normal response codes: 200
 
 Error response codes: 401, 403

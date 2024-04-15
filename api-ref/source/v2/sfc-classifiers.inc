@@ -17,6 +17,8 @@ List Flow Classifiers
 
 Lists flow classifiers.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: unauthorized(401), forbidden(403)
@@ -110,6 +112,8 @@ Show Flow Classifier Details
 .. rest_method:: GET /v1.0/sfc/flow_classifiers/{flow_classifier_id}
 
 Shows details for a flow classifier.
+
+.. include:: filtering-show.inc
 
 Normal response codes: 200
 

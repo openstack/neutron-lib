@@ -13,6 +13,8 @@ List all availability zones
 
 Lists all availability zones.
 
+.. include:: filtering-list.inc
+
 Normal response codes: 200
 
 Error response codes: 401

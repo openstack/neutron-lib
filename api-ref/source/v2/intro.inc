@@ -137,7 +137,6 @@ with the different OR criteria. For example, to find all networks named
 
     GET /v2.0/networks?name=foobar&name=bizbaz
 
-
 ORs and ANDs can be combined. For example, if you want all networks with
 admin_state_up=True and shared=True and named ``foobar`` or ``bizbaz``:
 
@@ -171,8 +170,8 @@ available. If an API request contains an unknown or unsupported
 parameter, the server will return a ``400`` response instead of silently
 ignoring the invalid input.
 
-Note
-----
+Fields
+======
 
 By default, OpenStack Networking returns all attributes for any show or list
 call. The Networking API v2.0 has a mechanism to limit the set of attributes
@@ -187,49 +186,6 @@ network:
 .. code::
 
     GET /v2.0/networks.json?fields=id&fields=name
-
-Synchronous versus asynchronous plug-in behavior
-================================================
-
-The Networking API v2.0 presents a logical model of network connectivity
-consisting of networks, ports, and subnets. It is up to the OpenStack
-Networking plug-in to communicate with the underlying infrastructure to ensure
-packet forwarding is consistent with the logical model. A plug-in might perform
-these operations asynchronously.
-
-When an API client modifies the logical model by issuing an HTTP ``POST``,
-``PUT``, or ``DELETE`` request, the API call might return before the plug-in
-modifies underlying virtual and physical switching devices. However, an API
-client is guaranteed that all subsequent API calls properly reflect the changed
-logical model.
-
-For example, if a client issues an HTTP ``PUT`` request to set the attachment
-for a port, there is no guarantee that packets sent by the interface named in
-the attachment are forwarded immediately when the HTTP call returns. However,
-it is guaranteed that a subsequent HTTP ``GET`` request to view the attachment
-on that port returns the new attachment value.
-
-You can use the ``status`` attribute with the network and port resources to
-determine whether the OpenStack Networking plug-in has successfully completed
-the configuration of the resource.
-
-Bulk-create
-===========
-
-The Networking API v2.0 enables you to create several objects of the same type
-in the same API request. Bulk create operations use exactly the same API syntax
-as single create operations except that you specify a list of objects rather
-than a single object in the request body.
-
-Bulk operations are always performed atomically, meaning that either all or
-none of the objects in the request body are created. If a particular plug-in
-does not support atomic operations, the Networking API v2.0 emulates the atomic
-behavior so that users can expect the same behavior regardless of the
-particular plug-in running in the background.
-
-OpenStack Networking might be deployed without support for bulk operations and
-when the client attempts a bulk create operation, a ``400`` Bad request error is
-returned.
 
 Pagination
 ==========
@@ -371,7 +327,6 @@ The last page won't show the ``next`` links
         ]
     }
 
-
 Sorting
 =======
 
@@ -398,6 +353,49 @@ sorting attributes if the API extension ``sort-key-validation`` is available.
 If an API request contains an unknown or unsupported sort key,
 the server will return a ``400`` response instead of silently ignoring
 the invalid input.
+
+Synchronous versus asynchronous plug-in behavior
+================================================
+
+The Networking API v2.0 presents a logical model of network connectivity
+consisting of networks, ports, and subnets. It is up to the OpenStack
+Networking plug-in to communicate with the underlying infrastructure to ensure
+packet forwarding is consistent with the logical model. A plug-in might perform
+these operations asynchronously.
+
+When an API client modifies the logical model by issuing an HTTP ``POST``,
+``PUT``, or ``DELETE`` request, the API call might return before the plug-in
+modifies underlying virtual and physical switching devices. However, an API
+client is guaranteed that all subsequent API calls properly reflect the changed
+logical model.
+
+For example, if a client issues an HTTP ``PUT`` request to set the attachment
+for a port, there is no guarantee that packets sent by the interface named in
+the attachment are forwarded immediately when the HTTP call returns. However,
+it is guaranteed that a subsequent HTTP ``GET`` request to view the attachment
+on that port returns the new attachment value.
+
+You can use the ``status`` attribute with the network and port resources to
+determine whether the OpenStack Networking plug-in has successfully completed
+the configuration of the resource.
+
+Bulk-create
+===========
+
+The Networking API v2.0 enables you to create several objects of the same type
+in the same API request. Bulk create operations use exactly the same API syntax
+as single create operations except that you specify a list of objects rather
+than a single object in the request body.
+
+Bulk operations are always performed atomically, meaning that either all or
+none of the objects in the request body are created. If a particular plug-in
+does not support atomic operations, the Networking API v2.0 emulates the atomic
+behavior so that users can expect the same behavior regardless of the
+particular plug-in running in the background.
+
+OpenStack Networking might be deployed without support for bulk operations and
+when the client attempts a bulk create operation, a ``400`` Bad request error is
+returned.
 
 
 .. _Extensions:
