@@ -450,6 +450,27 @@ availability_zone-query:
   in: query
   required: false
   type: string
+bgpvpn-networks-query:
+  description: |
+      Filter result for BGPVPNs that have a network association to at least
+      one of the provided ``network_ids``.
+  in: query
+  required: false
+  type: array
+bgpvpn-ports-query:
+  description: |
+      Filter result for BGPVPNs that have a port association to at least
+      one of the provided ``port_ids``.
+  in: query
+  required: false
+  type: array
+bgpvpn-routers-query:
+  description: |
+      Filter result for BGPVPNs that have a router association to at least
+      one of the provided ``router_ids``.
+  in: query
+  required: false
+  type: array
 binary-query:
   description: |
     Filter the list result by the executable command used to start the agent
