@@ -691,21 +691,16 @@ def validate_subnet(data, valid_values=None):
     :returns: None if data is valid IP network address. Otherwise a human
         readable message as to why data is invalid.
     """
-    msg = None
-    msg_data = data
     try:
         net = netaddr.IPNetwork(validate_no_whitespace(data))
+        # TODO(ihar): remove this explicit check when the minimal version of
+        # netaddr is 1.0.0 that enforces the input format more strictly
         if '/' not in data or (net.version == 4 and str(net) != data):
-            msg_data = {"data": data, "cidr": net.cidr}
-            msg = ("'%(data)s' isn't a recognized IP subnet cidr,"
-                   " '%(cidr)s' is recommended")
-        else:
-            return
+            raise n_exc.InvalidInput
     except Exception:
         msg = "'%s' is not a valid IP subnet"
-    if msg:
-        LOG.debug(msg, msg_data)
-    return _(msg) % msg_data
+        LOG.debug(msg, data)
+        return _(msg) % data
 
 
 def validate_route_cidr(data, valid_values=None):
@@ -716,23 +711,19 @@ def validate_route_cidr(data, valid_values=None):
     :returns: None if data is valid CIDR. Otherwise a human
               readable message as to why data is invalid.
     """
-    msg = None
-    msg_data = data
+    msg = "'%s' is not a valid CIDR"
     try:
         net = netaddr.IPNetwork(validate_no_whitespace(data))
+        # TODO(ihar): remove this explicit check when the minimal version of
+        # netaddr is 1.0.0 that enforces the input format more strictly
         if '/' not in data or (net.network != net.ip):
-            msg_data = {"data": data, "cidr": net.cidr}
-            msg = ("'%(data)s' is not a recognized CIDR,"
-                   " '%(cidr)s' is recommended")
-        elif net.is_loopback():
+            raise n_exc.InvalidInput
+        if net.is_loopback():
             msg = "'%s' is not a routable CIDR"
-        else:
-            return
+            raise n_exc.InvalidInput
     except Exception:
-        msg = "'%s' is not a valid CIDR"
-    if msg:
-        LOG.debug(msg, msg_data)
-    return _(msg) % msg_data
+        LOG.debug(msg, data)
+        return _(msg) % data
 
 
 def validate_subnet_or_none(data, valid_values=None):
