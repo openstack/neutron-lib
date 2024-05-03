@@ -84,7 +84,9 @@ RESOURCE_ATTRIBUTE_MAP = {
         'allocation_pools': {
             'allow_post': True, 'allow_put': True,
             'default': constants.ATTR_NOT_SPECIFIED,
-            'convert_to': converters.convert_ip_to_canonical_format,
+            'convert_to': (
+                converters.convert_allocation_pools_to_canonical_format
+            ),
             'validate': {'type:ip_pools': None},
             'is_visible': True},
         'dns_nameservers': {'allow_post': True, 'allow_put': True,
