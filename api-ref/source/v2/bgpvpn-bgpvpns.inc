@@ -33,6 +33,10 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - fields: fields
+   - project_id: project_id-query
+   - networks: bgpvpn-networks-query
+   - routers: bgpvpn-routers-query
+   - ports: bgpvpn-ports-query
 
 Response Parameters
 -------------------
