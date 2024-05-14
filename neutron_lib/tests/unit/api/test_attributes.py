@@ -253,6 +253,11 @@ class TestAttributeInfo(base.BaseTestCase):
             {'tenant_id': 'foo', 'project_id': 'foo'}).verify_attributes(
             {'tenant_id': 'foo'})
 
+    def test_verify_attributes_ok_project_id_not_included(self):
+        attributes.AttributeInfo(
+            {'attr1': 'foo'}).verify_attributes(
+            {'tenant_id': 'foo', 'project_id': 'foo'})
+
     def test_verify_attributes_ok_subset(self):
         attributes.AttributeInfo(
             {'attr1': 'foo', 'attr2': 'bar'}).verify_attributes(

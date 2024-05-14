@@ -279,7 +279,9 @@ class AttributeInfo(object):
         :raises: HTTPBadRequest: If attrs_to_verify contains any unrecognized
             for this resource attributes instance.
         """
-        extra_keys = set(attrs_to_verify.keys()) - set(self.attributes.keys())
+        expected_attributes = (
+            set(self.attributes.keys()) | set(['project_id', 'tenant_id']))
+        extra_keys = set(attrs_to_verify.keys()) - expected_attributes
         if extra_keys:
             msg = _("Unrecognized attribute(s) '%s'") % ', '.join(extra_keys)
             raise exc.HTTPBadRequest(msg)
