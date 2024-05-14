@@ -76,6 +76,17 @@ class MechanismDriver(object, metaclass=abc.ABCMeta):
         called prior to this method being called.
         """
 
+    def start_rpc_listeners(self):
+        """Start RPC listeners.
+
+        Create and start RPC listeners required by this driver. To be used in
+        cases where the driver has an agent that requires extra RPC methods to
+        acquire some data. It is preferred to initialize RPC listeners here
+        instead of in initialize() to support the split between RPC and API
+        workers. It works similar to NeutronPluginBaseV2.start_rpc_listeners().
+        """
+        return []
+
     def create_network_precommit(self, context):
         """Allocate resources for a new network.
 
