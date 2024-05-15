@@ -116,4 +116,5 @@ try:
         pass
 except AttributeError:
     # SQLAlchemy < 2.0
-    BASEV2 = declarative.declarative_base(cls=NeutronBaseV2)
+    BASEV2 = declarative.declarative_base(  # type: ignore[misc]
+        cls=NeutronBaseV2)

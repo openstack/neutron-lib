@@ -32,7 +32,8 @@ try:
         pass
 except AttributeError:
     # SQLAlchemy < 2.0
-    ModelBaseV2 = declarative.declarative_base(cls=models.ModelBase)
+    ModelBaseV2 = declarative.declarative_base(  # type: ignore[misc]
+        cls=models.ModelBase)
 
 
 class FakePort(ModelBaseV2):

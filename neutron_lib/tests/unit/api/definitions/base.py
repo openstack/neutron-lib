@@ -12,6 +12,8 @@
 
 import importlib.util
 import os
+import types
+import typing
 
 from neutron_lib.api import definitions
 from neutron_lib.api.definitions import base
@@ -74,10 +76,10 @@ ASSERT_FUNCTIONS = {
 
 class DefinitionBaseTestCase(test_base.BaseTestCase):
 
-    extension_module = None
-    extension_resources = ()
-    extension_subresources = ()
-    extension_attributes = ()
+    extension_module: typing.Optional[types.ModuleType] = None
+    extension_resources: tuple[str, ...] = ()
+    extension_subresources: tuple[str, ...] = ()
+    extension_attributes: tuple[str, ...] = ()
 
     def setUp(self):
         super().setUp()

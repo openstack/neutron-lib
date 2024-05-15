@@ -161,7 +161,7 @@ class ContextBaseWithSession(ContextBase):
 
 
 _TransactionConstraint = collections.namedtuple(
-    'TransactionConstraint', ['if_revision_match', 'resource', 'resource_id'])
+    '_TransactionConstraint', ['if_revision_match', 'resource', 'resource_id'])
 
 
 class Context(ContextBaseWithSession):

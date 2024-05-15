@@ -13,6 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import typing
+
 from neutron_lib.api import converters
 from neutron_lib.db import constants
 
@@ -25,7 +27,7 @@ DESCRIPTION = 'The agent management extension.'
 UPDATED_TIMESTAMP = '2013-02-03T10:00:00-00:00'
 RESOURCE_NAME = ALIAS
 COLLECTION_NAME = ALIAS + 's'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: dict[str, typing.Any] = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

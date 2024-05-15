@@ -14,6 +14,7 @@
 #    under the License.
 
 import abc
+import typing
 
 from neutron_lib._i18n import _
 from neutron_lib import constants
@@ -183,7 +184,7 @@ class APIExtensionDescriptor(ExtensionDescriptor):
     If extension implementations need to override the default behavior of
     this class they can override the respective method directly.
     """
-    api_definition = _UNSET
+    api_definition: typing.Union[constants.Sentinel, object] = _UNSET
 
     @classmethod
     def _assert_api_definition(cls, attr=None):

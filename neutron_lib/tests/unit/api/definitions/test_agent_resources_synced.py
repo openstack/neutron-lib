@@ -18,4 +18,6 @@ from neutron_lib.tests.unit.api.definitions import test_agent as base
 
 class AgentResourcesSyncedDefinitionTestCase(base.AgentDefinitionTestCase):
     extension_module = agent_resources_synced
-    extension_attributes = (agent_resources_synced.RESOURCES_SYNCED,)
+    extension_attributes: tuple[str, ...] = (
+        agent_resources_synced.RESOURCES_SYNCED,
+    )

@@ -23,7 +23,7 @@ def reset():
     del NOTIFICATIONS[:]
 
 
-FakeMessage = collections.namedtuple('Message',
+FakeMessage = collections.namedtuple('FakeMessage',
                                      ['publisher_id', 'priority',
                                       'event_type', 'payload'])
 

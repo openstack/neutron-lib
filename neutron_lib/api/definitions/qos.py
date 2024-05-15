@@ -13,6 +13,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import typing
+
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import port
@@ -108,7 +110,7 @@ _PARENT = {
     'collection_name': POLICIES,
     'member_name': POLICY
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: dict[str, typing.Any] = {
     BANDWIDTH_LIMIT_RULES: {
         'parent': _PARENT,
         'parameters': dict(

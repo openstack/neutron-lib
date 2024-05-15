@@ -19,6 +19,6 @@ from neutron_lib.tests.unit.api.definitions import base
 class AgentDefinitionTestCase(base.DefinitionBaseTestCase):
     extension_module = agent
     extension_resources = (agent.COLLECTION_NAME,)
-    extension_attributes = ('topic', 'agent_type', 'created_at',
-                            'configurations', 'heartbeat_timestamp',
-                            'binary', 'started_at', 'host', 'alive',)
+    extension_attributes: tuple[str, ...] = (
+        'topic', 'agent_type', 'created_at', 'configurations',
+        'heartbeat_timestamp', 'binary', 'started_at', 'host', 'alive',)

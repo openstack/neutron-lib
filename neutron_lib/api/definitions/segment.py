@@ -12,6 +12,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import typing
+
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import subnet
@@ -35,7 +37,7 @@ DESCRIPTION = 'Segments extension.'
 UPDATED_TIMESTAMP = '2016-02-24T17:00:00-00:00'
 RESOURCE_NAME = 'segment'
 COLLECTION_NAME = RESOURCE_NAME + 's'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: dict[str, typing.Any] = {
     COLLECTION_NAME: {
         'id': {
             'allow_post': False,

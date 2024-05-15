@@ -26,8 +26,10 @@ is_sort_key = {'is_sort_key': True}
 agents_collection = agent.RESOURCE_ATTRIBUTE_MAP[agent.COLLECTION_NAME]
 RESOURCE_ATTRIBUTE_MAP = {
     agent.COLLECTION_NAME: {
-        k: {**v, **is_sort_key} for k, v in agents_collection.items() if
-        k != "configurations"}
+        k: {**v, **is_sort_key}
+        for k, v in agents_collection.items()
+        if k != "configurations"
+    }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
