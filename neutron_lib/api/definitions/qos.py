@@ -35,6 +35,11 @@ _QOS_RULE_COMMON_FIELDS = {
         'is_filter': True,
         'is_sort_key': True,
         'primary_key': True
+    },
+    'tenant_id': {
+        'allow_post': True, 'allow_put': False,
+        'required_by_policy': True,
+        'is_visible': True
     }
 }
 

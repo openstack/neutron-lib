@@ -47,6 +47,11 @@ RESOURCE_ATTRIBUTE_MAP = {
                              {'type:service_plugin_type': None},
                          'is_filter': True, 'is_sort_key': True,
                          'is_visible': True},
+        'tenant_id': {'allow_post': True, 'allow_put': False,
+                      'required_by_policy': True,
+                      'validate': {
+                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+                      'is_visible': True},
         'service_profiles': {'allow_post': True, 'allow_put': True,
                              'validate': {'type:uuid_list': None},
                              'is_visible': True, 'default': []},
@@ -73,6 +78,11 @@ RESOURCE_ATTRIBUTE_MAP = {
         'metainfo': {'allow_post': True, 'allow_put': True,
                      'is_visible': True, 'is_sort_key': True,
                      'default': ''},
+        'tenant_id': {'allow_post': True, 'allow_put': False,
+                      'required_by_policy': True,
+                      'validate': {
+                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+                      'is_visible': True},
         'enabled': {'allow_post': True, 'allow_put': True,
                     'convert_to': converters.convert_to_boolean_if_not_none,
                     'is_filter': True, 'is_sort_key': True,
@@ -91,14 +101,26 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                                   'is_visible': True},
                        'metainfo': {'allow_post': False,
                                     'allow_put': False,
-                                    'is_visible': True}}
+                                    'is_visible': True},
+                       'tenant_id': {'allow_post': True, 'allow_put': False,
+                                     'required_by_policy': True,
+                                     'validate': {
+                                         'type:string':
+                                             db_const.PROJECT_ID_FIELD_SIZE},
+                                     'is_visible': True}}
     },
     SERVICE_PROFILES: {
         'parent': {'collection_name': FLAVORS,
                    'member_name': FLAVOR},
         'parameters': {'id': {'allow_post': True, 'allow_put': False,
                               'validate': {'type:uuid': None},
-                              'is_visible': True}}
+                              'is_visible': True},
+                       'tenant_id': {'allow_post': True, 'allow_put': False,
+                                     'required_by_policy': True,
+                                     'validate': {
+                                         'type:string':
+                                             db_const.PROJECT_ID_FIELD_SIZE},
+                                     'is_visible': True}}
     }
 }
 ACTION_MAP = {}
