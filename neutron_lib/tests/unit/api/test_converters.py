@@ -210,6 +210,35 @@ class TestConvertIPv6AddrCanonicalFormat(base.BaseTestCase):
         self.assertEqual('2001:db8:0:1:1:1:1:1/128', result)
 
 
+class TestConvertAllocationPoolsCanonicalFormat(base.BaseTestCase):
+
+    def test_convert_allocation_pools_to_canonical_format_noop(self):
+        pools = [{'start': '1.1.1.1', 'end': '1.1.1.100'}]
+        result = converters.convert_allocation_pools_to_canonical_format(pools)
+        self.assertEqual(pools, result)
+
+    def test_convert_allocation_pools_to_canonical_format(self):
+        pools = [
+            {'start': 'Fe80:0:0:0:0:0:0:1', 'end': 'Fe80:0:0:0:0:0:0:100'},
+        ]
+        result = converters.convert_allocation_pools_to_canonical_format(pools)
+
+        expected = [
+            {'start': 'fe80::1', 'end': 'fe80::100'},
+        ]
+        self.assertEqual(expected, result)
+
+    def test_convert_allocation_pools_to_canonical_format_None(self):
+        result = converters.convert_allocation_pools_to_canonical_format(None)
+        self.assertEqual([], result)
+
+    def test_convert_allocation_pools_to_canonical_format_invalid_data(self):
+        self.assertRaises(
+            n_exc.InvalidInput,
+            converters.convert_allocation_pools_to_canonical_format,
+            '10.0.0.0/24')
+
+
 class TestConvertIPv6CIDRCanonicalFormat(base.BaseTestCase):
 
     def test_convert_ipv4_address_with_CIDR(self):

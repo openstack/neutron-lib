@@ -182,6 +182,28 @@ def convert_to_list(data):
         return [data]
 
 
+def convert_allocation_pools_to_canonical_format(value):
+    """Convert allocation pools to canonical format.
+
+    :param value: The allocation pools which need to be checked.
+    :returns: Allocation pools with addresses in canonical format.
+    :raises InvalidInput: If the value is not a list of allocation pools.
+    """
+    if value is None:
+        return []
+    try:
+        return [
+            {
+                k: convert_ip_to_canonical_format(v)
+                for k, v in pool.items()
+            }
+            for pool in value
+        ]
+    except Exception as e:
+        raise n_exc.InvalidInput(
+            error_message=_("Invalid data format for allocation pools")) from e
+
+
 def convert_ip_to_canonical_format(value):
     """IP Address is validated and then converted to canonical format.
 

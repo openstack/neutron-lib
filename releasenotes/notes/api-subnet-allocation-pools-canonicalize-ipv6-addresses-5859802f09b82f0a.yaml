@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    The ``subnet:allocation_pools`` field IPv6 addresses are now converted to
+    their canonical format.
