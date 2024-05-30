@@ -209,6 +209,11 @@ class TestConvertIPv6AddrCanonicalFormat(base.BaseTestCase):
             '2001:db8:0:1:1:1:1:1/128')
         self.assertEqual('2001:db8:0:1:1:1:1:1/128', result)
 
+    def test_convert_subnetpools(self):
+        pools = [{'start': '1.1.1.1', 'end': '1.1.1.100'}]
+        result = converters.convert_ip_to_canonical_format(pools)
+        self.assertEqual(pools, result)
+
 
 class TestConvertAllocationPoolsCanonicalFormat(base.BaseTestCase):
 
