@@ -77,7 +77,7 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - rbac_policy_id: rbac_policy_id-path
-   - target_tenant: target_tenant
+   - target_tenant: target_tenant-rbac-create-update
 
 Request Example
 ---------------
@@ -191,7 +191,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
-   - target_tenant: target_tenant
+   - target_tenant: target_tenant-rbac-create-update
    - object_type: object_type
    - object_id: object_id
    - action: rbac_action

@@ -7237,6 +7237,16 @@ target_tenant:
   in: body
   required: true
   type: string
+target_tenant-rbac-create-update:
+  description: |
+    The ID of the tenant to which the RBAC policy will be enforced. Please note
+    that Neutron does not perform any type of validation that the value provided is
+    actually the ID of the existing project. If, for example, the name of the project
+    is provided here, it will be accepted by the Neutron API, but the RBAC rule
+    created will not work as expected.
+  in: body
+  required: true
+  type: string
 tas_id:
   description: |
     Tha id for the Tap Service.
