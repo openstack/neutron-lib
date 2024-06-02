@@ -1162,7 +1162,7 @@ class TestAttributeValidation(base.BaseTestCase):
     def test_validate_subports_valid_empty_body(self):
         self.assertIsNone(validators.validate_subports([]))
 
-    def test_validate_subports_valid_suports_with_segmentation_details(self):
+    def test_validate_subports_valid_subports_with_segmentation_details(self):
         body = [
             {'port_id': '00000000-ffff-ffff-ffff-000000000000',
              'segmentation_id': '3', 'segmentation_type': 'vlan'},
