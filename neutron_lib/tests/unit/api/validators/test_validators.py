@@ -718,17 +718,13 @@ class TestAttributeValidation(base.BaseTestCase):
         # Invalid - abbreviated ipv4 address
         cidr = "10/24"
         msg = validator(cidr, None)
-        error = _("'%(data)s' isn't a recognized IP subnet cidr,"
-                  " '%(cidr)s' is recommended") % {"data": cidr,
-                                                   "cidr": "10.0.0.0/24"}
+        error = "'%s' is not a valid IP subnet" % cidr
         self.assertEqual(error, msg)
 
         # Invalid - IPv4 missing mask
         cidr = "10.0.2.0"
         msg = validator(cidr, None)
-        error = _("'%(data)s' isn't a recognized IP subnet cidr,"
-                  " '%(cidr)s' is recommended") % {"data": cidr,
-                                                   "cidr": "10.0.2.0/32"}
+        error = "'%s' is not a valid IP subnet" % cidr
         self.assertEqual(error, msg)
 
         # Valid - IPv4 with non-zero masked bits is ok
@@ -740,17 +736,13 @@ class TestAttributeValidation(base.BaseTestCase):
         # Invalid - IPv6 without final octets, missing mask
         cidr = "fe80::"
         msg = validator(cidr, None)
-        error = _("'%(data)s' isn't a recognized IP subnet cidr,"
-                  " '%(cidr)s' is recommended") % {"data": cidr,
-                                                   "cidr": "fe80::/128"}
+        error = "'%s' is not a valid IP subnet" % cidr
         self.assertEqual(error, msg)
 
         # Invalid - IPv6 with final octets, missing mask
         cidr = "fe80::0"
         msg = validator(cidr, None)
-        error = _("'%(data)s' isn't a recognized IP subnet cidr,"
-                  " '%(cidr)s' is recommended") % {"data": cidr,
-                                                   "cidr": "fe80::/128"}
+        error = "'%s' is not a valid IP subnet" % cidr
         self.assertEqual(error, msg)
 
         # Invalid - Address format error
@@ -790,9 +782,7 @@ class TestAttributeValidation(base.BaseTestCase):
         # Invalid - CIDR
         cidr = "192.168.1.1/8"
         msg = validators.validate_route_cidr(cidr, None)
-        error = _("'%(data)s' is not a recognized CIDR,"
-                  " '%(cidr)s' is recommended") % {"data": cidr,
-                                                   "cidr": "192.0.0.0/8"}
+        error = "'%s' is not a valid CIDR" % cidr
         self.assertEqual(error, msg)
 
         # Invalid - loopback CIDR
@@ -818,9 +808,11 @@ class TestAttributeValidation(base.BaseTestCase):
                                                '10.2.0.0/24',
                                                '10.1.0.0/24'])
         self.assertEqual(u"Duplicate items in the list: '10.1.0.0/24'", msg)
-        msg = validators.validate_subnet_list(['10.1.0.0/24', '10.2.0.0'])
-        self.assertEqual(u"'10.2.0.0' isn't a recognized IP subnet cidr, "
-                         u"'10.2.0.0/32' is recommended", msg)
+
+        cidrs = ['10.1.0.0/24', '10.2.0.0']
+        msg = validators.validate_subnet_list(cidrs)
+        error = "'%s' is not a valid IP subnet" % cidrs[1]
+        self.assertEqual(error, msg)
 
     def _test_validate_regex(self, validator, allow_none=False):
         pattern = '[hc]at'
