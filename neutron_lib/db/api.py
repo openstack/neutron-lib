@@ -330,7 +330,8 @@ def _load_one_to_manys(session):
         # identity map and not emit SELECT.  Otherwise, we are still
         # local in the transaction so a normal SELECT load will work fine.
         for relationship_attr in state.mapper.relationships:
-            if relationship_attr.lazy not in ('joined', 'subquery'):
+            if relationship_attr.lazy not in ('joined', 'subquery',
+                                              'selectin'):
                 # we only want to automatically load relationships that would
                 # automatically load during a lookup operation
                 continue
