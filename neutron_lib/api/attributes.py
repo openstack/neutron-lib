@@ -237,6 +237,11 @@ class AttributeInfo(object):
                             "Reason: %(reason)s.") % msg_dict
                     raise exc_cls(msg)
 
+    def _project_id_required(self, res_dict):
+        return (('tenant_id' in self.attributes or
+                    'project_id' in self.attributes) and
+                'project_id' not in res_dict)
+
     def populate_project_id(self, context, res_dict, is_create):
         """Populate the owner information in a request body.
 
@@ -256,14 +261,14 @@ class AttributeInfo(object):
         populate_project_info(res_dict)
         _validate_privileges(context, res_dict)
 
-        if is_create and 'project_id' not in res_dict:
+        if is_create and self._project_id_required(res_dict):
             if context.project_id:
                 res_dict['project_id'] = context.project_id
 
                 # For backward compatibility
                 res_dict['tenant_id'] = context.project_id
 
-            elif 'tenant_id' in self.attributes:
+            else:
                 msg = _("Running without keystone AuthN requires "
                         "that tenant_id is specified")
                 raise exc.HTTPBadRequest(msg)
