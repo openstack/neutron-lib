@@ -78,6 +78,14 @@ class BaseWorker(service.ServiceBase):
         """
         return self._worker_process_count
 
+    @property
+    def set_proctitle(self):
+        return self._set_proctitle
+
+    @set_proctitle.setter
+    def set_proctitle(self, value):
+        self._set_proctitle = value
+
     def setproctitle(self, name="neutron-server", desc=None):
         if self._set_proctitle == "off" or os.getpid() == self._my_pid:
             return
