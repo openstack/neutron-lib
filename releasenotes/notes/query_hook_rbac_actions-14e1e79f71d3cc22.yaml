@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    A new field is added to the model query hooks: "rbac_actions". This field
+    can modify the RBAC entries filter, setting the required RBAC actions for
+    this specific model. This field is implemented initially for the "network"
+    and the "subnet" model, that require an additional RBAC action
+    ("access_as_external").
