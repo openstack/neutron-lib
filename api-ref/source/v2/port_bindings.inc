@@ -131,3 +131,26 @@ Response Example (admin user)
 
 .. literalinclude:: samples/port_bindings/port-binding-activate-response.json
    :language: javascript
+
+Delete Port Binding
+===================
+
+.. rest_method:: DELETE /v2.0/ports/{port_id}/bindings/{host}
+
+Normal response codes: 204
+
+Error response codes: 401, 403, 404, 412
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - port_id: port_id-path
+   - host: host
+
+Response
+--------
+
+There is no body content for the response of a successful DELETE request.
+
