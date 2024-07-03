@@ -1,0 +1,7 @@
+---
+other:
+  - |
+    MechanismDrivers can now start their own RPC listeners by implementing
+    start_rpc_listeners(). It is preferred to use this method instead of
+    initialize() for this task to support the split between RPC and
+    API workers.
