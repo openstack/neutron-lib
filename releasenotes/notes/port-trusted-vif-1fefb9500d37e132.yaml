@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    The ``port-trusted-vif`` extension adds ``trusted`` attribute to the port
+    resource. This new attribute allows to set through the API ``SR-IOV`` port
+    to be ``trusted``. This was previosly only possible through the
+    ``binding:profile`` attribute of the port resource but that was invalid and
+    now is not possible.
+    Value of that new field will be populated in the port's ``binding:profile``.

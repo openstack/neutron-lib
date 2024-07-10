@@ -89,6 +89,7 @@
             ]
         },
         "propagate_uplink_status": false,
-        "hardware_offload_type": "switchdev"
+        "hardware_offload_type": "switchdev",
+        "trusted": true
     }
 }
