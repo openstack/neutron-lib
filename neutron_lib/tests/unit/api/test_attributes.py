@@ -214,10 +214,11 @@ class TestAttributeInfo(base.BaseTestCase):
     def test_populate_project_id_from_context(self):
         tenant_id = uuidutils.generate_uuid()
         ctx = context.Context(user_id=None, tenant_id=tenant_id)
-        # for each create request, the tenant_id should be added to the
-        # req body
+        # for each create request, for the resources which require tenant_id,
+        # it should be added to the req body
         res_dict = {}
-        attr_inst = attributes.AttributeInfo({})
+        attr_inst = attributes.AttributeInfo(
+            {'tenant_id': {'allow_post': True}})
         attr_inst.populate_project_id(ctx, res_dict, is_create=True)
         self.assertEqual(
             {'tenant_id': ctx.tenant_id, 'project_id': ctx.tenant_id},
@@ -244,6 +245,7 @@ class TestAttributeInfo(base.BaseTestCase):
         attr_inst = attributes.AttributeInfo({})
         ctx.tenant_id = None
         attr_inst.populate_project_id(ctx, res_dict, True)
+        self.assertEqual({'name': 'test_port'}, res_dict)
 
     def test_verify_attributes_null(self):
         attributes.AttributeInfo({}).verify_attributes({})

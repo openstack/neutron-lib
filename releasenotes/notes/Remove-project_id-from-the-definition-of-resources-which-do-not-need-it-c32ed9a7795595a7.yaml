@@ -1,0 +1,8 @@
+---
+other:
+  - |
+    API resources which do not really have ``project_id`` associated with them,
+    because either it belongs to the project to which their parent belongs (``QoS
+    rules``) or does not belong to any project (``flavor`` and ``service
+    profile``), do not accept ``project_id`` nor ``tenant_id`` to be sent in the
+    body of the POST or PUT request.
