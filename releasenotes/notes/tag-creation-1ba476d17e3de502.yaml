@@ -1,0 +1,5 @@
+---
+features:
+  - The ``tag-creation`` shim extension API definition enables the creation
+    of multiple tags for a single resource using a ``POST`` request. The value
+    of the tags is passed as an argument of the call.

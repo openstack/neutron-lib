@@ -17,6 +17,32 @@ standard attributes. This includes networks, ports, subnets, subnet pools,
 floating IPs, routers, security groups, security group rules, QoS policies and
 trunks.
 
+Create tags
+===========
+
+.. rest_method::  POST /v2.0/{resource_type}/{resource_id}/tags
+
+Creates multiple tags for a resource.
+
+Normal response codes: 200
+
+Error response codes: 400, 401, 403
+
+Request
+-------
+
+.. rest_parameters:: parameters.yaml
+
+   - resource_type: resource_type
+   - resource_id: resource_id
+   - tags: tags
+
+Request Example
+---------------
+
+.. literalinclude:: samples/tag/tag-create-request.json
+   :language: javascript
+
 Replace all tags
 ================
 
