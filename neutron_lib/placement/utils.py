@@ -183,11 +183,16 @@ def _parse_rp_options(options, dict_keys):
 def parse_rp_bandwidths(bandwidths):
     """Parse and validate config option: resource_provider_bandwidths.
 
-    Input in the config:
+    Input in the config::
+
         resource_provider_bandwidths = eth0:10000:10000,eth1::10000,eth2::,eth3
-    Input here:
+
+    Input here::
+
         ['eth0:10000:10000', 'eth1::10000', 'eth2::', 'eth3']
-    Output:
+
+    Output::
+
         {
             'eth0': {'egress': 10000, 'ingress': 10000},
             'eth1': {'egress': None, 'ingress': 10000},
@@ -224,12 +229,17 @@ def _rp_pp_set_default_hypervisor(cfg, host):
 def parse_rp_pp_with_direction(pkt_rates, host):
     """Parse and validate: resource_provider_packet_processing_with_direction.
 
-    Input in the config:
+    Input in the config::
+
         resource_provider_packet_processing_with_direction =
             host0:10000:10000,host1::10000,host2::,host3,:0:0
-    Input here:
+
+    Input here::
+
         ['host0:10000:10000', 'host1::10000', 'host2::', 'host3', ':0:0']
-    Output:
+
+    Output::
+
         {
             'host0': {'egress': 10000, 'ingress': 10000},
             'host1': {'egress': None, 'ingress': 10000},
@@ -263,12 +273,17 @@ def parse_rp_pp_with_direction(pkt_rates, host):
 def parse_rp_pp_without_direction(pkt_rates, host):
     """Parse: resource_provider_packet_processing_without_direction.
 
-    Input in the config:
+    Input in the config::
+
         resource_provider_packet_processing_without_direction =
             host0:10000,host1:,host2,:0
-    Input here:
+
+    Input here::
+
         ['host0:10000', 'host1:', 'host2', ':0']
-    Output:
+
+    Output::
+
         {
             'host0': {'any': 10000},
             'host1': {'any': None},
@@ -301,14 +316,19 @@ def parse_rp_inventory_defaults(inventory_defaults):
 
     Cast the dict values to the proper numerical types.
 
-    Input in the config:
+    Input in the config::
+
         resource_provider_inventory_defaults = allocation_ratio:1.0,min_unit:1
-    Input here:
+
+    Input here::
+
         {
             'allocation_ratio': '1.0',
             'min_unit': '1',
         }
-    Output here:
+
+    Output here::
+
         {
             'allocation_ratio': 1.0,
             'min_unit': 1,

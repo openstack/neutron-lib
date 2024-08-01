@@ -39,7 +39,9 @@ extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.ifconfig',
               'sphinx.ext.graphviz',
               'sphinx.ext.todo',
-              'openstackdocstheme',]
+              'openstackdocstheme',
+              'sphinxcontrib.apidoc',
+              ]
 
 todo_include_todos = True
 
@@ -232,3 +234,15 @@ linkcheck_anchors_ignore = [
     r'q\,.*',
     r'\/c\/.*'
 ]
+
+apidoc_module_dir = '../../neutron_lib/'
+apidoc_output_dir = 'reference/modules/'
+apidoc_excluded_paths = [
+    'db/model_base.py',
+    'db/resource_extend.py',
+    'db/sqlalchemytypes.py',
+    'fixture.py',
+    'hacking/*',
+    'tests/*',
+]
+apidoc_separate_modules = True

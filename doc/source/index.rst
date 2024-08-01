@@ -51,3 +51,4 @@ Enjoy!
       :maxdepth: 1
 
       reference/index
+      Package Reference <reference/modules/modules>
