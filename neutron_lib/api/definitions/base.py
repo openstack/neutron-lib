@@ -145,6 +145,7 @@ KNOWN_EXTENSIONS = (
     'qos-rules-alias',
     'quotas',
     'quota-check-limit',
+    'quota-check-limit-default',
     'port-hints',
     'port-hint-ovs-tx-steering',
     'port-numa-affinity-policy',

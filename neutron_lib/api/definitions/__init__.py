@@ -120,6 +120,7 @@ from neutron_lib.api.definitions import qos_rule_type_details
 from neutron_lib.api.definitions import qos_rule_type_filter
 from neutron_lib.api.definitions import qos_rules_alias
 from neutron_lib.api.definitions import quota_check_limit
+from neutron_lib.api.definitions import quota_check_limit_default
 from neutron_lib.api.definitions import rbac_address_groups
 from neutron_lib.api.definitions import rbac_address_scope
 from neutron_lib.api.definitions import rbac_bgpvpn
@@ -279,6 +280,7 @@ _ALL_API_DEFINITIONS = {
     qos_rule_type_filter,
     qos_rules_alias,
     quota_check_limit,
+    quota_check_limit_default,
     rbac_address_groups,
     rbac_address_scope,
     rbac_bgpvpn,

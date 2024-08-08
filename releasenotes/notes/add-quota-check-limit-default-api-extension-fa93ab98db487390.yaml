@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    Add API extension ``quota-check-limit-default``. This is a shim extension
+    that indicates if Neutron quota engine checks the resource usage before
+    updating any quota limit. That makes the extension ``quota-check-limit``
+    to be the default Neutron quota engine behaviour and aligns it with other
+    projects. To enforce a quota limit without checking the resource usage,
+    now it is needed to pass the CLI parameter "--force".

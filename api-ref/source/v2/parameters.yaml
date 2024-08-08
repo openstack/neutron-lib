@@ -5895,8 +5895,9 @@ quota:
   type: object
 quota-check-limit:
   description: |
-    A flag used in the ``quota`` update command. If enabled, the Quota engine
-    will first check the resource usage before applying the new quota limit.
+    (deprecated) A flag used in the ``quota`` update command. If enabled, the
+    Quota engine will first check the resource usage before applying the new
+    quota limit.
   in: body
   required: false
   type: object
@@ -5923,6 +5924,13 @@ quota-floatingip-request:
   in: body
   required: false
   type: integer
+quota-force:
+  description: |
+    A flag used in the ``quota`` update command. If enabled, the Quota engine
+    will not check the resource usage before applying the new quota limit.
+  in: body
+  required: false
+  type: object
 quota-network:
   description: |
     The number of networks allowed for each project.
