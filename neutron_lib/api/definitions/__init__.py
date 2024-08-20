@@ -154,6 +154,7 @@ from neutron_lib.api.definitions import subnet_service_types
 from neutron_lib.api.definitions import subnetpool
 from neutron_lib.api.definitions import subnetpool_prefix_ops
 from neutron_lib.api.definitions import taas
+from neutron_lib.api.definitions import tag_creation
 from neutron_lib.api.definitions import tag_ports_during_bulk_creation
 from neutron_lib.api.definitions import tap_mirror
 from neutron_lib.api.definitions import trunk
@@ -311,6 +312,7 @@ _ALL_API_DEFINITIONS = {
     subnetpool,
     subnetpool_prefix_ops,
     taas,
+    tag_creation,
     tag_ports_during_bulk_creation,
     tap_mirror,
     trunk,

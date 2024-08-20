@@ -175,6 +175,7 @@ KNOWN_EXTENSIONS = (
     'subnet-segmentid-enforce',
     'subnet-segmentid-writable',
     'tag',
+    'tag-creation',
     'trunk',
     'trunk-details',
     # Add here list of extensions with pointers to the project repo, e.g.
