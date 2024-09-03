@@ -162,6 +162,7 @@ from neutron_lib.api.definitions import tap_mirror
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
 from neutron_lib.api.definitions import uplink_status_propagation
+from neutron_lib.api.definitions import uplink_status_propagation_updatable
 from neutron_lib.api.definitions import vlan_filter
 from neutron_lib.api.definitions import vlantransparent
 from neutron_lib.api.definitions import vpn
@@ -322,6 +323,7 @@ _ALL_API_DEFINITIONS = {
     trunk,
     trunk_details,
     uplink_status_propagation,
+    uplink_status_propagation_updatable,
     vlan_filter,
     vlantransparent,
     vpn,
