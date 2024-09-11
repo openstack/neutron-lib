@@ -100,6 +100,7 @@ from neutron_lib.api.definitions import port_numa_affinity_policy_socket
 from neutron_lib.api.definitions import port_resource_request
 from neutron_lib.api.definitions import port_resource_request_groups
 from neutron_lib.api.definitions import port_security
+from neutron_lib.api.definitions import port_trusted_vif
 from neutron_lib.api.definitions import portbindings
 from neutron_lib.api.definitions import portbindings_extended
 from neutron_lib.api.definitions import project_default_networks
@@ -260,6 +261,7 @@ _ALL_API_DEFINITIONS = {
     port_resource_request,
     port_resource_request_groups,
     port_security,
+    port_trusted_vif,
     portbindings,
     portbindings_extended,
     project_default_networks,

@@ -179,6 +179,14 @@ attribute to ports. If a ``port-security`` value is not specified during
 port creation, a port will inherit the ``port_security_enabled`` from the
 network its connected to.
 
+Trusted VIF
+===========
+
+The ``port-trusted-vif`` extension adds ``trusted`` attribute to the port
+resource. This attribute stores information about if SR-IOV port should be
+trusted. It will be populated in the port binding profile information as the
+``trusted`` field.
+
 Tag Ports During Bulk Creation
 ==============================
 
@@ -303,6 +311,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
+   - port_trusted_vif: port_trusted_vif-response
 
 Response Example
 ----------------
@@ -383,6 +392,7 @@ Request
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - mac_learning_enabled: mac_learning_enabled-request
+   - port_trusted_vif: port_trusted_vif-request
 
 Request Example
 ---------------
@@ -439,6 +449,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
+   - port_trusted_vif: port_trusted_vif-response
 
 Response Example
 ----------------
@@ -573,6 +584,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
+   - port_trusted_vif: port_trusted_vif-response
 
 Response Example
 ----------------
@@ -630,6 +642,7 @@ Request
    - tenant_id: project_id-request
    - propagate_uplink_status: propagate_uplink_status-request
    - mac_learning_enabled: mac_learning_enabled-request
+   - port_trusted_vif: port_trusted_vif-request
 
 Request Example
 ---------------
@@ -686,6 +699,7 @@ Response Parameters
    - updated_at: updated_at_resource
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
+   - port_trusted_vif: port_trusted_vif-response
 
 Response Example
 ----------------

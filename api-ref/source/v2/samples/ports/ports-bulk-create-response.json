@@ -41,7 +41,8 @@
             "qos_policy_id": "29d5e02e-d5ab-4929-bee4-4a9fc12e22ae",
             "port_security_enabled": false,
             "propagate_uplink_status": false,
-            "hardware_offload_type": ""
+            "hardware_offload_type": "",
+            "trusted": null
         },
         {
             "admin_state_up": false,
@@ -85,7 +86,8 @@
             "qos_policy_id": null,
             "port_security_enabled": false,
             "propagate_uplink_status": false,
-            "hardware_offload_type": "switchdev"
+            "hardware_offload_type": "switchdev",
+            "trusted": null
         }
     ]
 }

@@ -5461,6 +5461,24 @@ port_security_enabled-request:
   in: body
   required: false
   type: boolean
+port_trusted_vif-request:
+  description: |
+    The port's trusted VIF status. A valid value is
+    ``true`` or ``false``.
+    Value of this field is included in the ``binding:profile`` dict of
+    the port.
+  in: body
+  required: false
+  type: boolean
+port_trusted_vif-response:
+  description: |
+    The port's trusted VIF status. A valid value is
+    ``true`` or ``false``.
+    Value of this field is included in the ``binding:profile`` dict of
+    the port.
+  in: body
+  required: true
+  type: boolean
 ports:
   description: |
     A list of ``port`` objects.
