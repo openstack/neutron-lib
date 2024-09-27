@@ -113,7 +113,7 @@ class TestRPC(base.BaseTestCase):
 
         mock_ser.assert_called_once_with('foo')
         mock_get.assert_called_once_with(rpc.TRANSPORT, tgt, ends,
-                                         'eventlet', ser)
+                                         serializer=ser)
         self.assertEqual('server', server)
 
     def test_get_notifier(self):

@@ -222,7 +222,7 @@ def get_server(target, endpoints, serializer=None):
         raise AssertionError(_("'TRANSPORT' must not be None"))
     serializer = RequestContextSerializer(serializer)
     return oslo_messaging.get_rpc_server(TRANSPORT, target, endpoints,
-                                         'eventlet', serializer)
+                                         serializer=serializer)
 
 
 def get_notifier(service=None, host=None, publisher_id=None):
