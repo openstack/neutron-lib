@@ -10,11 +10,14 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.api.definitions import uplink_status_propagation as apidef
+from neutron_lib.api.definitions import uplink_status_propagation as usp
+from neutron_lib.api.definitions import uplink_status_propagation_updatable \
+    as apidef
 from neutron_lib.tests.unit.api.definitions import base
 
 
-class UplinkStatusPropagationDefinitionTestCase(base.DefinitionBaseTestCase):
+class UplinkStatusPropagationUpdatableDefinitionTestCase(
+        base.DefinitionBaseTestCase):
     extension_module = apidef
-    extension_resources = (apidef.COLLECTION_NAME,)
+    extension_resources = (usp.COLLECTION_NAME,)
     extension_attributes = (apidef.PROPAGATE_UPLINK_STATUS,)

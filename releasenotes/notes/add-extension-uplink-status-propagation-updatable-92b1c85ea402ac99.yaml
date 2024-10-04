@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Add the API extension ``uplink-status-propagation-updatable`` to make the
+    port field ``propagate_uplink_status`` updatable. Now it is possible to send
+    a port PUT request to update the value defined during the creation. This
+    change will have an effect in the ML2/SR-IOV agent that will need to update
+    the VF status accordingly.

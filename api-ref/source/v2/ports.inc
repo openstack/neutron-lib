@@ -389,6 +389,7 @@ Request
    - name: name-request
    - numa_affinity_policy: numa_affinity_policy-request
    - port_security_enabled: port_security_enabled-request
+   - propagate_uplink_status: propagate_uplink_status
    - qos_policy_id: qos_policy_id-port-request
    - security_groups: port-security_groups-request
    - mac_learning_enabled: mac_learning_enabled-request

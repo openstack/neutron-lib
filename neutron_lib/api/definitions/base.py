@@ -179,6 +179,8 @@ KNOWN_EXTENSIONS = (
     'tag-creation',
     'trunk',
     'trunk-details',
+    'uplink-status-propagation',
+    'uplink-status-propagation-updatable',
     # Add here list of extensions with pointers to the project repo, e.g.
     'bgp',  # https://opendev.org/openstack/neutron-dynamic-routing
 
