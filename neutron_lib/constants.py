@@ -142,6 +142,7 @@ AGENT_PROCESS_METERING = 'neutron-metering-agent'
 AGENT_PROCESS_NIC_SWITCH = 'neutron-sriov-nic-agent'
 AGENT_PROCESS_OVN_METADATA = 'neutron-ovn-metadata-agent'
 AGENT_PROCESS_OVS = 'neutron-openvswitch-agent'
+AGENT_PROCESS_OVN = 'neutron-ovn-agent'
 
 AGENT_TYPE_DHCP = 'DHCP agent'
 AGENT_TYPE_L3 = 'L3 agent'
