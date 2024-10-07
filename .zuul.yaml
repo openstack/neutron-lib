@@ -1,9 +1,6 @@
 - job:
-    name: openstack-tox-py311-with-neutron
-    parent: openstack-tox-py311
-    # TODO(ykarel) Can switch to voting in next cycle(E)
-    # if job found to be stable
-    voting: false
+    name: openstack-tox-py312-with-neutron
+    parent: openstack-tox-py312
     timeout: 3600
     vars:
       zuul_work_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/neutron'].src_dir }}"
@@ -22,8 +19,8 @@
       - neutron-tempest-plugin-jobs
     check:
       jobs:
-        - openstack-tox-py311-with-neutron
-        - openstack-tox-py311-with-sqlalchemy-master
+        - openstack-tox-py312-with-neutron
+        - openstack-tox-py312-with-sqlalchemy-master
         - neutron-functional-with-uwsgi:
             required-projects:
               - openstack/neutron-lib
