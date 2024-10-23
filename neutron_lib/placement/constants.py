@@ -31,3 +31,6 @@ INVENTORY_OPTIONS = set([
 # Tunnelled networks resource provider default name.
 RP_TUNNELLED = 'rp_tunnelled'
 TRAIT_NETWORK_TUNNEL = 'CUSTOM_NETWORK_TUNNEL_PROVIDER'
+
+# Port allocation key, stored in the port "binding:profile" dictionary.
+ALLOCATION = 'allocation'
