@@ -32,7 +32,7 @@ def is_extension_supported(plugin, alias):
     return alias in getattr(plugin, "supported_extension_aliases", [])
 
 
-class ExtensionDescriptor(object, metaclass=abc.ABCMeta):
+class ExtensionDescriptor(metaclass=abc.ABCMeta):
     """Base class that defines the contract for extensions."""
 
     @abc.abstractmethod

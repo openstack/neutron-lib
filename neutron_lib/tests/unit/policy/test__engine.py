@@ -21,7 +21,7 @@ from neutron_lib.tests import _base as base
 
 class TestPolicyEnforcer(base.BaseTestCase):
     def setUp(self):
-        super(TestPolicyEnforcer, self).setUp()
+        super().setUp()
         # Isolate one _ROLE_ENFORCER per test case
         mock.patch.object(policy_engine, '_ROLE_ENFORCER', None).start()
 

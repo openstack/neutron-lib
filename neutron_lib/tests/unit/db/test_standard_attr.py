@@ -24,7 +24,7 @@ from neutron_lib.tests import _base as base
 
 class StandardAttrTestCase(base.BaseTestCase):
     def setUp(self):
-        super(StandardAttrTestCase, self).setUp()
+        super().setUp()
         self.addCleanup(gc.collect)
 
     def _make_decl_base(self):

@@ -115,7 +115,7 @@ class BaseTestCase(testtools.TestCase):
             conf(args)
 
     def setUp(self):
-        super(BaseTestCase, self).setUp()
+        super().setUp()
         self.useFixture(fixture.PluginDirectoryFixture())
 
         # Enabling 'use_fatal_exceptions' allows us to catch string

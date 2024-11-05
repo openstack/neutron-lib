@@ -20,13 +20,13 @@ TRAIT_PREFIX_PHYSNET = 'PHYSNET_'
 # are left out intentionally. See also:
 # https://docs.openstack.org/api-ref/placement
 #        /#update-resource-provider-inventory
-INVENTORY_OPTIONS = set([
+INVENTORY_OPTIONS = {
     'allocation_ratio',
     'max_unit',
     'min_unit',
     'reserved',
     'step_size',
-    ])
+    }
 
 # Tunnelled networks resource provider default name.
 RP_TUNNELLED = 'rp_tunnelled'

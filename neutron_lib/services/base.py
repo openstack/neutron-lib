@@ -13,7 +13,7 @@
 import abc
 
 
-class WorkerBase(object):
+class WorkerBase:
 
     @property
     def _workers(self):

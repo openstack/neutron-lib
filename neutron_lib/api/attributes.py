@@ -137,7 +137,7 @@ def _dict_populate_defaults(attr_value, attr_spec):
     return attr_value
 
 
-class AttributeInfo(object):
+class AttributeInfo:
     """Provides operations on a resource's attribute map.
 
     AttributeInfo wraps an API resource's attribute dict and provides methods
@@ -239,7 +239,7 @@ class AttributeInfo(object):
 
     def _project_id_required(self, res_dict):
         return (('tenant_id' in self.attributes or
-                    'project_id' in self.attributes) and
+                 'project_id' in self.attributes) and
                 'project_id' not in res_dict)
 
     def populate_project_id(self, context, res_dict, is_create):
@@ -313,5 +313,5 @@ def retrieve_valid_sort_keys(attr_info):
     :param attr_info: The attribute dict for common neutron resource.
     :returns: Set of sort keys.
     """
-    return set(attr for attr, schema in attr_info.items()
-               if schema.get('is_sort_key', False))
+    return {attr for attr, schema in attr_info.items()
+            if schema.get('is_sort_key', False)}

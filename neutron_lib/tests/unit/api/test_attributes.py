@@ -353,6 +353,6 @@ class TestRetrieveValidSortKeys(base.BaseTestCase):
                 "visible": True,
             }
         }
-        expect_val = set(["id", "name"])
+        expect_val = {"id", "name"}
         actual_val = attributes.retrieve_valid_sort_keys(attr_info)
         self.assertEqual(expect_val, actual_val)

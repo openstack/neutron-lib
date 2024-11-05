@@ -28,7 +28,7 @@ FakeMessage = collections.namedtuple('Message',
                                       'event_type', 'payload'])
 
 
-class FakeNotifier(object):
+class FakeNotifier:
 
     def __init__(self, transport, publisher_id=None,
                  driver=None, topics=None,

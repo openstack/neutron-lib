@@ -26,7 +26,7 @@ from neutron_lib.utils import helpers
 class TestHooks(_base.BaseTestCase):
 
     def setUp(self):
-        super(TestHooks, self).setUp()
+        super().setUp()
         self.useFixture(fixture.DBQueryHooksFixture())
 
     def _mock_hook(self, x):

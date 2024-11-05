@@ -38,14 +38,14 @@ class _BaseWorker(worker.BaseWorker):
 class _ProcWorker(_BaseWorker):
 
     def __init__(self, worker_process_count=1, set_proctitle='on'):
-        super(_ProcWorker, self).__init__(worker_process_count, set_proctitle)
+        super().__init__(worker_process_count, set_proctitle)
         self._my_pid = -1  # make it appear to be a separate process
 
 
 class TestBaseWorker(base.BaseTestCase):
 
     def setUp(self):
-        super(TestBaseWorker, self).setUp()
+        super().setUp()
         self._reg = mock.Mock()
         self.useFixture(fixture.CallbackRegistryFixture(
             callback_manager=self._reg))

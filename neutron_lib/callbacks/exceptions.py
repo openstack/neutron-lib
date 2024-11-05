@@ -48,7 +48,7 @@ class CallbackFailure(exceptions.MultipleExceptions):
         return exc
 
 
-class NotificationError(object):
+class NotificationError:
 
     def __init__(self, callback_id, error, cancellable=False):
         self.callback_id = callback_id
@@ -56,7 +56,8 @@ class NotificationError(object):
         self._cancellable = cancellable
 
     def __str__(self):
-        return 'Callback %s failed with "%s"' % (self.callback_id, self.error)
+        return 'Callback {} failed with "{}"'.format(
+            self.callback_id, self.error)
 
     @property
     def is_cancellable(self):

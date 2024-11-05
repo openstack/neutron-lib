@@ -13,7 +13,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
-from neutron_lib.api.definitions import network
+from neutron_lib.api.definitions import network as network_def
 from neutron_lib.api import validators
 from neutron_lib import constants
 
@@ -43,7 +43,7 @@ API_PREFIX = ''
 DESCRIPTION = 'Provides Vlan Transparent Networks'
 UPDATED_TIMESTAMP = '2015-03-23T09:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP = {
-    network.COLLECTION_NAME: {
+    network_def.COLLECTION_NAME: {
         VLANTRANSPARENT: {
             'allow_post': True,
             'allow_put': False,

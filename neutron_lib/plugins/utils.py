@@ -37,11 +37,11 @@ LOG = logging.getLogger(__name__)
 INTERFACE_HASH_LEN = 6
 
 
-def _is_valid_range(val, min, max):
+def _is_valid_range(val, min_val, max_val):
     try:
         # NOTE: use str value to not permit booleans
         val = int(str(val))
-        return min <= val <= max
+        return min_val <= val <= max_val
     except (ValueError, TypeError):
         return False
 

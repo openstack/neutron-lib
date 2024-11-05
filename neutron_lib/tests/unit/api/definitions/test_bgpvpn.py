@@ -34,8 +34,7 @@ class BgpvpnDefinitionTestCase(base.DefinitionBaseTestCase):
                   ['4294967295:65536'],
                   [''],
                   ]
-        for value in values:
-            yield value
+        yield from values
 
     def _data_for_valid_rtdt(self):
         values = [['1:1'],
@@ -48,8 +47,7 @@ class BgpvpnDefinitionTestCase(base.DefinitionBaseTestCase):
                   ['65536:65535'],
                   ['4294967295:65535'],
                   ]
-        for value in values:
-            yield value
+        yield from values
 
     def test_valid_rtrd(self):
         for rtrd in self._data_for_valid_rtdt():

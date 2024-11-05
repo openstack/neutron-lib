@@ -24,7 +24,7 @@ from neutron_lib.tests import tools
 from neutron_lib.utils import net
 
 
-class TestField(object):
+class TestField:
 
     def test_coerce_good_values(self):
         for in_val, out_val in self.coerce_good_values:
@@ -47,7 +47,7 @@ class TestField(object):
             self.assertEqual(prim, jsonutils.loads(jsencoded))
 
     def test_from_primitive(self):
-        class ObjectLikeThing(object):
+        class ObjectLikeThing:
             _context = 'context'
 
         for prim_val, out_val in self.from_primitive_values:
@@ -64,7 +64,7 @@ class TestField(object):
 
 class IPV6ModeEnumFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(IPV6ModeEnumFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.IPV6ModeEnumField()
         self.coerce_good_values = [(mode, mode)
                                    for mode in const.IPV6_MODES]
@@ -79,7 +79,7 @@ class IPV6ModeEnumFieldTest(test_base.BaseTestCase, TestField):
 
 class DscpMarkFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(DscpMarkFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.DscpMarkField()
         self.coerce_good_values = [(val, val)
                                    for val in const.VALID_DSCP_MARKS]
@@ -94,7 +94,7 @@ class DscpMarkFieldTest(test_base.BaseTestCase, TestField):
 
 class IPNetworkPrefixLenFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(IPNetworkPrefixLenFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.IPNetworkPrefixLenField()
         self.coerce_good_values = [(x, x) for x in (0, 32, 128, 42)]
         self.coerce_bad_values = ['len', '1', 129, -1]
@@ -108,7 +108,7 @@ class IPNetworkPrefixLenFieldTest(test_base.BaseTestCase, TestField):
 
 class MACAddressFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(MACAddressFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.MACAddressField()
         mac1 = tools.get_random_EUI()
         mac2 = tools.get_random_EUI()
@@ -131,7 +131,7 @@ class MACAddressFieldTest(test_base.BaseTestCase, TestField):
 
 class IPNetworkFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(IPNetworkFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.IPNetworkField()
         addrs = [
             tools.get_random_ip_network(version=ip_version)
@@ -156,7 +156,7 @@ class IPNetworkFieldTest(test_base.BaseTestCase, TestField):
 
 class IPVersionEnumFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(IPVersionEnumFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.IPVersionEnumField()
         self.coerce_good_values = [(val, val)
                                    for val in const.IP_ALLOWED_VERSIONS]
@@ -171,7 +171,7 @@ class IPVersionEnumFieldTest(test_base.BaseTestCase, TestField):
 
 class FlowDirectionEnumFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(FlowDirectionEnumFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.FlowDirectionEnumField()
         self.coerce_good_values = [(val, val)
                                    for val in const.VALID_DIRECTIONS]
@@ -186,7 +186,7 @@ class FlowDirectionEnumFieldTest(test_base.BaseTestCase, TestField):
 
 class FlowDirectionAndAnyEnumFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(FlowDirectionAndAnyEnumFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.FlowDirectionAndAnyEnumField()
         self.coerce_good_values = [
             (val, val) for val in const.VALID_DIRECTIONS_AND_ANY]
@@ -201,7 +201,7 @@ class FlowDirectionAndAnyEnumFieldTest(test_base.BaseTestCase, TestField):
 
 class PortRangesFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(PortRangesFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.PortRangesField()
         self.coerce_good_values = [(val, val) for val in (
             '80:80', '80:90', '80', 80)]
@@ -214,7 +214,7 @@ class PortRangesFieldTest(test_base.BaseTestCase, TestField):
 
 class DomainNameFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(DomainNameFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.DomainNameField()
         self.coerce_good_values = [
             (val, val)
@@ -231,7 +231,7 @@ class DomainNameFieldTest(test_base.BaseTestCase, TestField):
 
 class EtherTypeEnumFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(EtherTypeEnumFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.EtherTypeEnumField()
         self.coerce_good_values = [(val, val)
                                    for val in const.VALID_ETHERTYPES]
@@ -246,7 +246,7 @@ class EtherTypeEnumFieldTest(test_base.BaseTestCase, TestField):
 
 class IpProtocolEnumFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(IpProtocolEnumFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.IpProtocolEnumField()
         self.coerce_good_values = [
             (val, val)
@@ -266,7 +266,7 @@ class IpProtocolEnumFieldTest(test_base.BaseTestCase, TestField):
 
 class UUIDFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(UUIDFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.UUIDField()
         self.coerce_good_values = [
             ('f1d9cb3f-c263-45d3-907c-d12a9ef1629e',
@@ -286,7 +286,7 @@ class UUIDFieldTest(test_base.BaseTestCase, TestField):
 
 class DictOfMiscValuesFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
-        super(DictOfMiscValuesFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.DictOfMiscValues
         test_dict_1 = {'a': True,
                        'b': 1.23,
@@ -315,7 +315,7 @@ class DictOfMiscValuesFieldTest(test_base.BaseTestCase, TestField):
 class NetworkSegmentRangeNetworkTypeEnumFieldTest(test_base.BaseTestCase,
                                                   TestField):
     def setUp(self):
-        super(NetworkSegmentRangeNetworkTypeEnumFieldTest, self).setUp()
+        super().setUp()
         self.field = common_types.NetworkSegmentRangeNetworkTypeEnumField()
         self.coerce_good_values = [(val, val)
                                    for val in [const.TYPE_VLAN,

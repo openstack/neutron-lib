@@ -33,7 +33,7 @@ BOUND_DRIVER = 'bound_driver'
 BOUND_SEGMENT = 'bound_segment'
 
 
-class MechanismDriver(object, metaclass=abc.ABCMeta):
+class MechanismDriver(metaclass=abc.ABCMeta):
     """Define stable abstract interface for ML2 mechanism drivers.
 
     A mechanism driver is called on the creation, update, and deletion
@@ -493,7 +493,7 @@ class MechanismDriver(object, metaclass=abc.ABCMeta):
         return portbindings.CONNECTIVITY_LEGACY
 
 
-class _TypeDriverBase(object, metaclass=abc.ABCMeta):
+class _TypeDriverBase(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def get_type(self):
@@ -703,7 +703,7 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         """
 
 
-class NetworkContext(object, metaclass=abc.ABCMeta):
+class NetworkContext(metaclass=abc.ABCMeta):
     """Context passed to MechanismDrivers for changes to network resources.
 
     A NetworkContext instance wraps a network resource. It provides
@@ -740,7 +740,7 @@ class NetworkContext(object, metaclass=abc.ABCMeta):
         """Return the segments associated with this network resource."""
 
 
-class SubnetContext(object, metaclass=abc.ABCMeta):
+class SubnetContext(metaclass=abc.ABCMeta):
     """Context passed to MechanismDrivers for changes to subnet resources.
 
     A SubnetContext instance wraps a subnet resource. It provides
@@ -772,7 +772,7 @@ class SubnetContext(object, metaclass=abc.ABCMeta):
         """
 
 
-class PortContext(object, metaclass=abc.ABCMeta):
+class PortContext(metaclass=abc.ABCMeta):
     """Context passed to MechanismDrivers for changes to port resources.
 
     A PortContext instance wraps a port resource. It provides helper
@@ -1084,7 +1084,7 @@ class PortContext(object, metaclass=abc.ABCMeta):
         """
 
 
-class ExtensionDriver(object, metaclass=abc.ABCMeta):
+class ExtensionDriver(metaclass=abc.ABCMeta):
     """Define stable abstract interface for ML2 extension drivers.
 
     An extension driver extends the core resources implemented by the

@@ -27,7 +27,7 @@ Callback = collections.namedtuple(
     'Callback', ['id', 'method', 'cancellable'])
 
 
-class CallbacksManager(object):
+class CallbacksManager:
     """A callback system that allows objects to cooperate in a loose manner."""
 
     def __init__(self):
@@ -102,7 +102,7 @@ class CallbacksManager(object):
                 if not self._index[callback_id]:
                     del self._index[callback_id]
         else:
-            value = '%s,%s' % (resource, event)
+            value = '{},{}'.format(resource, event)
             raise exceptions.Invalid(element='resource,event', value=value)
 
     def unsubscribe_by_resource(self, callback, resource):

@@ -17,7 +17,7 @@ import functools
 import re
 import time
 from urllib import parse
-import uuid
+import uuid as uuid_lib
 
 import requests
 
@@ -77,12 +77,12 @@ def _get_version(openstack_api_version):
 
 class UUIDEncoder(jsonutils.JSONEncoder):
     def default(self, o):
-        if isinstance(o, uuid.UUID):
+        if isinstance(o, uuid_lib.UUID):
             return str(o)
         return super().default(o)
 
 
-class NoAuthClient(object):
+class NoAuthClient:
     """Placement NoAuthClient for fullstack testing"""
 
     def __init__(self, url):
@@ -127,22 +127,22 @@ class NoAuthClient(object):
         raise ks_exc.HttpError
 
     def get(self, url, endpoint_filter, **kwargs):
-        return self.request('%s%s' % (self.url, url), 'GET', **kwargs)
+        return self.request('{}{}'.format(self.url, url), 'GET', **kwargs)
 
     def post(self, url, json, endpoint_filter, **kwargs):
-        return self.request('%s%s' % (self.url, url), 'POST', body=json,
+        return self.request('{}{}'.format(self.url, url), 'POST', body=json,
                             **kwargs)
 
     def put(self, url, json, endpoint_filter, **kwargs):
-        resp = self.request('%s%s' % (self.url, url), 'PUT', body=json,
+        resp = self.request('{}{}'.format(self.url, url), 'PUT', body=json,
                             **kwargs)
         return resp
 
     def delete(self, url, endpoint_filter, **kwargs):
-        return self.request('%s%s' % (self.url, url), 'DELETE', **kwargs)
+        return self.request('{}{}'.format(self.url, url), 'DELETE', **kwargs)
 
 
-class PlacementAPIClient(object):
+class PlacementAPIClient:
     """Client class for placement ReST API."""
 
     def __init__(self, conf,
@@ -377,7 +377,7 @@ class PlacementAPIClient(object):
             filters['in_tree'] = in_tree
         if uuid:
             filters['uuid'] = uuid
-        url = '%s?%s' % (url, parse.urlencode(filters))
+        url = '{}?{}'.format(url, parse.urlencode(filters))
         return self._get(url).json()
 
     @_check_placement_api_available
@@ -454,7 +454,7 @@ class PlacementAPIClient(object):
         :raises PlacementInventoryNotFound: No inventory of class.
         :returns: None.
         """
-        url = '/resource_providers/%s/inventories/%s' % (
+        url = '/resource_providers/{}/inventories/{}'.format(
             resource_provider_uuid, resource_class)
         try:
             self._delete(url)
@@ -481,7 +481,7 @@ class PlacementAPIClient(object):
                                             for a resource provider.
         :returns: The inventory of the resource class as a dict.
         """
-        url = '/resource_providers/%s/inventories/%s' % (
+        url = '/resource_providers/{}/inventories/{}'.format(
             resource_provider_uuid, resource_class)
         try:
             return self._get(url).json()
@@ -515,7 +515,7 @@ class PlacementAPIClient(object):
                                                              server side.
         :returns: The updated inventory of the resource class as a dict.
         """
-        url = '/resource_providers/%s/inventories/%s' % (
+        url = '/resource_providers/{}/inventories/{}'.format(
             resource_provider_uuid, resource_class)
         body = inventory
 

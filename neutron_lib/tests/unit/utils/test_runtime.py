@@ -19,7 +19,7 @@ from neutron_lib.tests import _base as base
 from neutron_lib.utils import runtime
 
 
-class _DummyDriver(object):
+class _DummyDriver:
     driver = mock.sentinel.dummy_driver
 
 

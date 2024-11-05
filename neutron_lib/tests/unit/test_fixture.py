@@ -31,7 +31,7 @@ from neutron_lib.tests.unit.api import test_attributes
 class PluginDirectoryFixtureTestCase(base.BaseTestCase):
 
     def setUp(self):
-        super(PluginDirectoryFixtureTestCase, self).setUp()
+        super().setUp()
         self.directory = mock.Mock()
         self.useFixture(fixture.PluginDirectoryFixture(
             plugin_directory=self.directory))
@@ -44,7 +44,7 @@ class PluginDirectoryFixtureTestCase(base.BaseTestCase):
 class CallbackRegistryFixtureTestCase(base.BaseTestCase):
 
     def setUp(self):
-        super(CallbackRegistryFixtureTestCase, self).setUp()
+        super().setUp()
         self.manager = mock.Mock()
         self.useFixture(fixture.CallbackRegistryFixture(
             callback_manager=self.manager))
@@ -57,7 +57,7 @@ class CallbackRegistryFixtureTestCase(base.BaseTestCase):
 class SqlFixtureTestCase(base.BaseTestCase):
 
     def setUp(self):
-        super(SqlFixtureTestCase, self).setUp()
+        super().setUp()
         options.set_defaults(
             cfg.CONF,
             connection='sqlite://')

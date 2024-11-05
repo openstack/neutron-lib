@@ -165,7 +165,7 @@ class TestConvertToList(base.BaseTestCase):
             self.assertEqual([item], converters.convert_to_list(item))
 
     def test_convert_to_list_iterable(self):
-        for item in ([None], [1, 2, 3], (1, 2, 3), set([1, 2, 3]), ['foo']):
+        for item in ([None], [1, 2, 3], (1, 2, 3), {1, 2, 3}, ['foo']):
             self.assertEqual(list(item), converters.convert_to_list(item))
 
     def test_convert_to_list_non_iterable(self):
@@ -188,11 +188,11 @@ class TestConvertIPv6AddrCanonicalFormat(base.BaseTestCase):
 
     def test_convert_ipv6_extended_addr_to_compressed(self):
         result = converters.convert_ip_to_canonical_format(
-            u"Fe80:0:0:0:0:0:0:1")
+            "Fe80:0:0:0:0:0:0:1")
         self.assertEqual('fe80::1', result)
 
     def test_convert_ipv4_address(self):
-        result = converters.convert_ip_to_canonical_format(u"192.168.1.1")
+        result = converters.convert_ip_to_canonical_format("192.168.1.1")
         self.assertEqual('192.168.1.1', result)
 
     def test_convert_None_address(self):
@@ -264,7 +264,7 @@ class TestConvertIPv6CIDRCanonicalFormat(base.BaseTestCase):
 class TestConvertStringToCaseInsensitive(base.BaseTestCase):
 
     def test_convert_string_to_lower(self):
-        result = converters.convert_string_to_case_insensitive(u"THIS Is tEsT")
+        result = converters.convert_string_to_case_insensitive("THIS Is tEsT")
         self.assertIsInstance(result, str)
 
     def test_assert_error_on_non_string(self):

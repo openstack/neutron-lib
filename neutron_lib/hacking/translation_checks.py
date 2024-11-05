@@ -27,10 +27,10 @@ _log_warn = re.compile(
 
 
 _log_translation_hint = re.compile(
-    r".*LOG\.(%(levels)s)\(\s*(%(hints)s)\(" % {
-        'levels': '|'.join(_all_log_levels),
-        'hints': '|'.join(_all_hints),
-    })
+    r".*LOG\.({levels})\(\s*({hints})\(".format(
+        levels='|'.join(_all_log_levels),
+        hints='|'.join(_all_hints),
+    ))
 
 
 def _translation_checks_not_enforced(filename):

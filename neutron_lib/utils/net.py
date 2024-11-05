@@ -88,7 +88,7 @@ def is_port_trusted(port):
         constants.DEVICE_OWNER_NETWORK_PREFIX)
 
 
-class _AuthenticBase(object):
+class _AuthenticBase:
     def __init__(self, addr, **kwargs):
         super().__init__(addr, **kwargs)
         self._initial_value = addr

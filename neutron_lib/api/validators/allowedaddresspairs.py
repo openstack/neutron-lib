@@ -65,12 +65,12 @@ def _validate_allowed_address_pairs(address_pairs, valid_values=None):
             raise exceptions.DuplicateAddressPairInRequest(
                 mac_address=mac, ip_address=ip_address)
 
-        invalid_attrs = set(address_pair.keys()) - set(['mac_address',
-                                                        'ip_address'])
+        invalid_attrs = set(address_pair.keys()) - {'mac_address',
+                                                    'ip_address'}
         if invalid_attrs:
             msg = (_("Unrecognized attribute(s) '%s'") %
                    ', '.join(set(address_pair.keys()) -
-                             set(['mac_address', 'ip_address'])))
+                             {'mac_address', 'ip_address'}))
             raise exc.HTTPBadRequest(msg)
 
         if '/' in ip_address:

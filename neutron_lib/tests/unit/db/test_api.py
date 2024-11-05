@@ -140,7 +140,7 @@ class TestDeadLockDecorator(_base.BaseTestCase):
                       10, 10, 10, 10, 10,
                       10, 10, 10, 10, 10]
 
-        class FakeTime(object):
+        class FakeTime:
             def __init__(self):
                 self.counter = 0
 
