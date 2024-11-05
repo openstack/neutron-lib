@@ -154,7 +154,7 @@ class HasStandardAttributes(object):
     def standard_attr(cls):
         # NOTE(ralonsoh): the load method has been updated from "joined" to
         # "selectin". The first provides more complex queries but it is only
-        # needed one query. This is needed by PostgreSQL (LP#2072567).
+        # needed one query.
         return sa.orm.relationship(StandardAttribute,
                                    lazy='selectin',
                                    cascade='all, delete-orphan',

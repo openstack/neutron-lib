@@ -29,7 +29,7 @@ AZ_HINTS_DB_LEN = 255
 EXPAND_BRANCH = 'expand'
 CONTRACT_BRANCH = 'contract'
 
-# Maximum value integer can take in MySQL and PostgreSQL
+# Maximum value integer can take in MySQL.
 # In SQLite integer can be stored in 1, 2, 3, 4, 6, or 8 bytes,
 # but here it will be limited by this value for consistency.
 DB_INTEGER_MAX_VALUE = 2 ** 31 - 1
