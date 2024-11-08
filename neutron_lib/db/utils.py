@@ -151,7 +151,7 @@ def filter_non_model_columns(data, model):
         proxies of the model.
     """
     mapper = sqlalchemy.inspect(model)
-    columns = set(c.name for c in mapper.columns)
+    columns = {c.name for c in mapper.columns}
     try:
         _association_proxy = associationproxy.ASSOCIATION_PROXY
     except AttributeError:
@@ -160,8 +160,8 @@ def filter_non_model_columns(data, model):
             associationproxy.AssociationProxyExtensionType.ASSOCIATION_PROXY)
     columns.update(d.value_attr for d in mapper.all_orm_descriptors
                    if d.extension_type is _association_proxy)
-    return dict((k, v) for (k, v)
-                in data.items() if k in columns)
+    return {k: v for (k, v)
+            in data.items() if k in columns}
 
 
 def model_query_scope_is_project(context, model):

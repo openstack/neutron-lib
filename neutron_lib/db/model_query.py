@@ -192,8 +192,8 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
         query = query.group_by(group_by)
 
     if lazy_fields:
-        for field in lazy_fields:
-            query = query.options(lazyload(field))
+        for lfield in lazy_fields:
+            query = query.options(lazyload(lfield))
     return query
 
 

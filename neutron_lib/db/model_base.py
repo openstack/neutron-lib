@@ -19,7 +19,7 @@ from sqlalchemy import orm
 from neutron_lib.db import constants as db_const
 
 
-class HasProject(object):
+class HasProject:
     """Project mixin, add to subclasses that have a user."""
 
     # NOTE: project_id is just a free form string
@@ -62,7 +62,7 @@ class HasProjectPrimaryUniqueKey(HasProject):
                            nullable=False, primary_key=True, unique=True)
 
 
-class HasId(object):
+class HasId:
     """id mixin, add to subclasses that have an id."""
 
     id = sa.Column(sa.String(db_const.UUID_FIELD_SIZE),
@@ -70,7 +70,7 @@ class HasId(object):
                    default=uuidutils.generate_uuid)
 
 
-class HasStatusDescription(object):
+class HasStatusDescription:
     """Status with description mixin."""
 
     status = sa.Column(sa.String(db_const.STATUS_FIELD_SIZE),
@@ -95,11 +95,11 @@ class _NeutronBase(models.ModelBase):
 
     def __repr__(self):
         """sqlalchemy based automatic __repr__ method."""
-        items = ['%s=%r' % (col.name, getattr(self, col.name))
+        items = ['{}={!r}'.format(col.name, getattr(self, col.name))
                  for col in self.__table__.columns]
-        return "<%s.%s[object at %x] {%s}>" % (self.__class__.__module__,
-                                               self.__class__.__name__,
-                                               id(self), ', '.join(items))
+        return "<{}.{}[object at {:x}] {{{}}}>".format(
+            self.__class__.__module__, self.__class__.__name__,
+            id(self), ', '.join(items))
 
 
 class NeutronBaseV2(_NeutronBase):

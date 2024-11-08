@@ -23,7 +23,7 @@ class _Worker(base.WorkerBase):
 class Test_WorkerSupportServiceMixin(test_base.BaseTestCase):
 
     def setUp(self):
-        super(Test_WorkerSupportServiceMixin, self).setUp()
+        super().setUp()
         self.worker = _Worker()
 
     def test_allocate_workers(self):
@@ -65,7 +65,7 @@ class TestPluginInterface(test_base.BaseTestCase):
         self.assertTrue(issubclass(A, B))
 
     def test_issubclass_hook_class_without_abstract_methods(self):
-        class A(object):
+        class A:
             def f(self):
                 pass
 

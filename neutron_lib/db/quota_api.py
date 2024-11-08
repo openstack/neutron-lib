@@ -15,7 +15,7 @@
 import abc
 
 
-class QuotaDriverAPI(object, metaclass=abc.ABCMeta):
+class QuotaDriverAPI(metaclass=abc.ABCMeta):
 
     @staticmethod
     @abc.abstractmethod

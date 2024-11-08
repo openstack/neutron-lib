@@ -18,18 +18,19 @@ import collections
 import random
 import time
 
-from neutron_lib._i18n import _
-from neutron_lib import context
-from neutron_lib import exceptions
-from neutron_lib.utils import runtime
 from oslo_config import cfg
 from oslo_log import log as logging
 import oslo_messaging
 from oslo_messaging import exceptions as oslomsg_exc
 from oslo_messaging import serializer as om_serializer
-from oslo_service import service
+from oslo_service import service as os_service
 from oslo_utils import excutils
 from osprofiler import profiler
+
+from neutron_lib._i18n import _
+from neutron_lib import context
+from neutron_lib import exceptions
+from neutron_lib.utils import runtime
 
 
 LOG = logging.getLogger(__name__)
@@ -88,7 +89,7 @@ def _get_rpc_response_max_timeout():
     return TRANSPORT.conf.rpc_response_max_timeout
 
 
-class _ContextWrapper(object):
+class _ContextWrapper:
     def __init__(self, original_context):
         self._original_context = original_context
 
@@ -138,8 +139,8 @@ class _BackingOffContextWrapper(_ContextWrapper):
         # two methods with the same name in different namespaces should
         # be tracked independently
         if self._original_context.target.namespace:
-            scoped_method = '%s.%s' % (self._original_context.target.namespace,
-                                       method)
+            scoped_method = '{}.{}'.format(
+                self._original_context.target.namespace, method)
         else:
             scoped_method = method
         # set the timeout from the global method timeout tracker for this
@@ -244,7 +245,7 @@ def get_notifier(service=None, host=None, publisher_id=None):
                         "None. This is deprecated since 2025.1 release and "
                         "will be removed in one of the future releases. "
                         "Please always pass the 'service' argument.")
-        publisher_id = "%s.%s" % (service, host or cfg.CONF.host)
+        publisher_id = "{}.{}".format(service, host or cfg.CONF.host)
     serializer = RequestContextSerializer()
     return oslo_messaging.Notifier(NOTIFICATION_TRANSPORT,
                                    serializer=serializer,
@@ -288,7 +289,7 @@ class RequestContextSerializer(om_serializer.Serializer):
 
 
 @profiler.trace_cls("rpc")
-class Service(service.Service):
+class Service(os_service.Service):
     """Service object for binaries running on hosts.
 
     A service enables rpc by listening to queues based on topic and host.
@@ -332,7 +333,7 @@ class Service(service.Service):
         super().stop()
 
 
-class Connection(object):
+class Connection:
     """A utility class that manages a collection of RPC servers."""
 
     def __init__(self):

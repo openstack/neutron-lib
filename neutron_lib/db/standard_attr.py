@@ -89,7 +89,7 @@ class StandardAttribute(model_base.BASEV2):
         return self.id
 
 
-class HasStandardAttributes(object):
+class HasStandardAttributes:
 
     @classmethod
     def get_api_collections(cls):

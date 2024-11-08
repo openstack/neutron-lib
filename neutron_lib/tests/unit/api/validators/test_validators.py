@@ -159,13 +159,13 @@ class TestAttributeValidation(base.BaseTestCase):
 
     def test_validate_not_empty_string(self):
         msg = validators.validate_not_empty_string('    ', None)
-        self.assertEqual(u"'    ' Blank strings are not permitted", msg)
+        self.assertEqual("'    ' Blank strings are not permitted", msg)
         msg = validators.validate_not_empty_string(123, None)
-        self.assertEqual(u"'123' is not a valid string", msg)
+        self.assertEqual("'123' is not a valid string", msg)
 
     def test_validate_not_empty_string_or_none(self):
         msg = validators.validate_not_empty_string_or_none('    ', None)
-        self.assertEqual(u"'    ' Blank strings are not permitted", msg)
+        self.assertEqual("'    ' Blank strings are not permitted", msg)
 
         msg = validators.validate_not_empty_string_or_none(None, None)
         self.assertIsNone(msg)
@@ -231,7 +231,7 @@ class TestAttributeValidation(base.BaseTestCase):
         max_len = 4
         msg = validators.validate_oneline_not_empty_string(data, max_len)
         self.assertEqual(
-            "'%s' exceeds maximum length of %s" % (data, max_len),
+            "'{}' exceeds maximum length of {}".format(data, max_len),
             msg)
 
         data = "First line\nsecond line"
@@ -260,7 +260,7 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_oneline_not_empty_string_or_none(
             data, max_len)
         self.assertEqual(
-            "'%s' exceeds maximum length of %s" % (data, max_len),
+            "'{}' exceeds maximum length of {}".format(data, max_len),
             msg)
 
         data = "First line\nsecond line"
@@ -803,11 +803,11 @@ class TestAttributeValidation(base.BaseTestCase):
 
     def test_validate_subnet_list(self):
         msg = validators.validate_subnet_list('abc')
-        self.assertEqual(u"'abc' is not a list", msg)
+        self.assertEqual("'abc' is not a list", msg)
         msg = validators.validate_subnet_list(['10.1.0.0/24',
                                                '10.2.0.0/24',
                                                '10.1.0.0/24'])
-        self.assertEqual(u"Duplicate items in the list: '10.1.0.0/24'", msg)
+        self.assertEqual("Duplicate items in the list: '10.1.0.0/24'", msg)
 
         cidrs = ['10.1.0.0/24', '10.2.0.0']
         msg = validators.validate_subnet_list(cidrs)
@@ -1278,13 +1278,13 @@ class TestPortRangeValidation(base.BaseTestCase):
     def test_invalid_port_specific_range(self):
         result = validators.validate_port_range_or_none("4:500000",
                                                         [1, 65535])
-        self.assertEqual(u"Invalid port: 500000", result)
+        self.assertEqual("Invalid port: 500000", result)
 
     def test_invalid_port_for_specific_range(self):
         result = validators.validate_port_range_or_none("0:10",
                                                         [1, 65535])
-        self.assertEqual(u"Invalid port: 0, the port must be in"
-                         u" the range [1, 65535]", result)
+        self.assertEqual("Invalid port: 0, the port must be in"
+                         " the range [1, 65535]", result)
 
     def test_valid_port(self):
         result = validators.validate_port_range_or_none("80")
@@ -1302,43 +1302,43 @@ class TestPortRangeValidation(base.BaseTestCase):
 
     def test_port_too_high(self):
         result = validators.validate_port_range_or_none("99999")
-        self.assertEqual(u"Invalid port: 99999", result)
+        self.assertEqual("Invalid port: 99999", result)
 
     def test_port_too_low(self):
         result = validators.validate_port_range_or_none("-1")
-        self.assertEqual(u"Invalid port: -1", result)
+        self.assertEqual("Invalid port: -1", result)
 
     def test_range_too_high(self):
         result = validators.validate_port_range_or_none("80:99999")
-        self.assertEqual(u"Invalid port: 99999", result)
+        self.assertEqual("Invalid port: 99999", result)
 
     def test_range_too_low(self):
         result = validators.validate_port_range_or_none("-1:8888")
-        self.assertEqual(u"Invalid port: -1", result)
+        self.assertEqual("Invalid port: -1", result)
 
     def test_range_wrong_way(self):
         # NOTE(huntxu): This case would fail when ports are compared as
         # strings, since '1111' < '9'.
         result = validators.validate_port_range_or_none("1111:9")
-        self.assertEqual(u"First port in a port range must be lower than the "
+        self.assertEqual("First port in a port range must be lower than the "
                          "second port", result)
 
     def test_range_invalid(self):
         result = validators.validate_port_range_or_none("DEAD:BEEF")
-        self.assertEqual(u"Invalid port: DEAD", result)
+        self.assertEqual("Invalid port: DEAD", result)
 
     def test_range_bad_input(self):
         result = validators.validate_port_range_or_none(['a', 'b', 'c'])
-        self.assertEqual(u"Invalid port: ['a', 'b', 'c']", result)
+        self.assertEqual("Invalid port: ['a', 'b', 'c']", result)
 
     def test_range_colon(self):
         result = validators.validate_port_range_or_none(":")
-        self.assertEqual(u"Port range must be two integers separated by a "
+        self.assertEqual("Port range must be two integers separated by a "
                          "colon", result)
 
     def test_too_many_colons(self):
         result = validators.validate_port_range_or_none("80:888:8888")
-        self.assertEqual(u"Port range must be two integers separated by a "
+        self.assertEqual("Port range must be two integers separated by a "
                          "colon", result)
 
 
@@ -1390,7 +1390,7 @@ class TestAnyKeySpecs(base.BaseTestCase):
 class TestServicePluginType(base.BaseTestCase):
 
     def setUp(self):
-        super(TestServicePluginType, self).setUp()
+        super().setUp()
         self._plugins = directory._PluginDirectory()
         self._plugins.add_plugin('stype', mock.Mock())
         self.useFixture(fixture.PluginDirectoryFixture(

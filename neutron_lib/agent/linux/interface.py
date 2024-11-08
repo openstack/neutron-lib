@@ -15,7 +15,7 @@ import abc
 from neutron_lib import constants
 
 
-class LinuxInterfaceDriver(object, metaclass=abc.ABCMeta):
+class LinuxInterfaceDriver(metaclass=abc.ABCMeta):
 
     DEV_NAME_LEN = constants.LINUX_DEV_LEN
     DEV_NAME_PREFIX = constants.TAP_DEVICE_PREFIX

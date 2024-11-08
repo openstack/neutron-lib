@@ -137,7 +137,7 @@ class ContextBase(oslo_context.RequestContext):
         context.is_admin = True
 
         context.roles = list(
-            set(context.roles) | set(['admin', 'member', 'reader'])
+            set(context.roles) | {'admin', 'member', 'reader'}
         )
 
         return context

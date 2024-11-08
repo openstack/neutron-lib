@@ -32,10 +32,10 @@ class TestCreateRegNumbers(_base.BaseTestCase):
                 constants.INGRESS_BW_LIMIT_REG_NAME: 4,
                 constants.MIN_BW_REG_NAME: 5}
         expected_flow = {'foo': 'bar',
-                         'reg{:d}'.format(constants.REG_PORT): 1,
-                         'reg{:d}'.format(constants.REG_NET): 2,
-                         'reg{:d}'.format(constants.REG_REMOTE_GROUP): 3,
-                         'reg{:d}'.format(constants.REG_INGRESS_BW_LIMIT): 4,
-                         'reg{:d}'.format(constants.REG_MIN_BW): 5}
+                         f'reg{constants.REG_PORT:d}': 1,
+                         f'reg{constants.REG_NET:d}': 2,
+                         f'reg{constants.REG_REMOTE_GROUP:d}': 3,
+                         f'reg{constants.REG_INGRESS_BW_LIMIT:d}': 4,
+                         f'reg{constants.REG_MIN_BW:d}': 5}
         utils.create_reg_numbers(flow)
         self.assertEqual(expected_flow, flow)

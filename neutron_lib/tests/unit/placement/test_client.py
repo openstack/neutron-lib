@@ -46,7 +46,7 @@ INVENTORY = {
 class TestNoAuthClient(base.BaseTestCase):
 
     def setUp(self):
-        super(TestNoAuthClient, self).setUp()
+        super().setUp()
         self.noauth_client = place_client.NoAuthClient('placement/')
         self.body_json = jsonutils.dumps({'name': 'foo'})
         self.uuid = '42'
@@ -79,7 +79,7 @@ class TestNoAuthClient(base.BaseTestCase):
 
 class TestPlacementAPIClientNoAuth(base.BaseTestCase):
     def setUp(self):
-        super(TestPlacementAPIClientNoAuth, self).setUp()
+        super().setUp()
         self.config = mock.Mock()
 
     @mock.patch('neutron_lib.placement.client.NoAuthClient', autospec=True)
@@ -105,7 +105,7 @@ class TestPlacementAPIClientNoAuth(base.BaseTestCase):
 class TestPlacementAPIClient(base.BaseTestCase):
 
     def setUp(self):
-        super(TestPlacementAPIClient, self).setUp()
+        super().setUp()
         config = mock.Mock()
         config.region_name = 'region_name'
         self.openstack_api_version = (

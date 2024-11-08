@@ -26,7 +26,7 @@ def convert_filters(**kwargs):
     return result
 
 
-class FilterObj(object, metaclass=abc.ABCMeta):
+class FilterObj(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def filter(self, column):

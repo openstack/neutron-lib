@@ -68,7 +68,7 @@ class DirectoryTestCase(base.BaseTestCase):
 class PluginDirectoryTestCase(base.BaseTestCase):
 
     def setUp(self):
-        super(PluginDirectoryTestCase, self).setUp()
+        super().setUp()
         self.plugin_directory = directory._PluginDirectory()
 
     def test_add_plugin(self):

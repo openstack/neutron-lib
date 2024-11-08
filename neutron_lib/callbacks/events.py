@@ -57,7 +57,7 @@ def is_cancellable_event(event):
             event.startswith(PRECOMMIT))
 
 
-class EventPayload(object):
+class EventPayload:
     """Base event payload object.
 
     This class is intended to be the super class for all event payloads. As

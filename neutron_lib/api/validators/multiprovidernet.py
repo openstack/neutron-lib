@@ -34,6 +34,6 @@ def convert_and_validate_segments(segments, valid_values=None):
         if len(segment) != 3:
             msg = (_("Unrecognized attribute(s) '%s'") %
                    ', '.join(set(segment.keys()) -
-                             set([pnet.NETWORK_TYPE, pnet.PHYSICAL_NETWORK,
-                                  pnet.SEGMENTATION_ID])))
+                             {pnet.NETWORK_TYPE, pnet.PHYSICAL_NETWORK,
+                              pnet.SEGMENTATION_ID}))
             raise exc.HTTPBadRequest(msg)

@@ -20,7 +20,7 @@ class TestUtils(base.BaseTestCase):
 
     def test_get_objects_with_filters_not_in(self):
 
-        class FakeColumn(object):
+        class FakeColumn:
             def __init__(self, column):
                 self.column = column
 
@@ -45,7 +45,7 @@ class TestUtils(base.BaseTestCase):
 
     def test_get_objects_with_filters_not_equal(self):
 
-        class FakeColumn(object):
+        class FakeColumn:
             def __init__(self, column):
                 self.column = column
 

@@ -22,7 +22,7 @@ from neutron_lib.plugins import constants
 _synchronized = lockutils.synchronized_with_prefix("neutron-")
 
 
-class _PluginDirectory(object):
+class _PluginDirectory:
     """A directory of activated plugins in a Neutron Deployment.
 
     The directory is bootstrapped by a Neutron Manager running in
@@ -44,8 +44,8 @@ class _PluginDirectory(object):
     @property
     def plugins(self):
         """The mapping alias -> weak reference to the plugin."""
-        return dict((x, weakref.proxy(y))
-                    for x, y in self._plugins.items())
+        return {x: weakref.proxy(y)
+                for x, y in self._plugins.items()}
 
     @property
     def unique_plugins(self):

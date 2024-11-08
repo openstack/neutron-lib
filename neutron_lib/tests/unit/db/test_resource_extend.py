@@ -17,7 +17,7 @@ from neutron_lib import fixture
 
 
 @resource_extend.has_resource_extenders
-class _DBExtender(object):
+class _DBExtender:
 
     @resource_extend.extends('ExtendedA')
     def _extend_a(self, resp, db_obj):
@@ -38,7 +38,7 @@ class TestResourceExtendClass(base.BaseTestCase):
 class TestResourceExtend(base.BaseTestCase):
 
     def setUp(self):
-        super(TestResourceExtend, self).setUp()
+        super().setUp()
         self.useFixture(fixture.DBResourceExtendFixture())
 
     def test_register_funcs(self):

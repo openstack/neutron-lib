@@ -83,7 +83,7 @@ def _check_imports(regex, submatch, logical_line):
 def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
                              message_override=None):
     if message_override is not None:
-        msg_o = "%s: %s" % (failure_code, message_override)
+        msg_o = "{}: {}".format(failure_code, message_override)
     else:
         msg_o = None
 

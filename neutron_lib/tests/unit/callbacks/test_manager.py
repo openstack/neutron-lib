@@ -30,7 +30,7 @@ PRI_MED = 5000
 PRI_LOW = 10000
 
 
-class ObjectWithCallback(object):
+class ObjectWithCallback:
 
     def __init__(self):
         self.counter = 0
@@ -77,7 +77,7 @@ def callback_3(resource, event, trigger, payload):
 class CallBacksManagerTestCase(base.BaseTestCase):
 
     def setUp(self):
-        super(CallBacksManagerTestCase, self).setUp()
+        super().setUp()
         self.manager = manager.CallbacksManager()
         self.event_payload = events.EventPayload(object())
         callback_1.counter = 0

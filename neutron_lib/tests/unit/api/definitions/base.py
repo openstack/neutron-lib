@@ -23,7 +23,7 @@ from neutron_lib.tests import _base as test_base
 def assert_bool(tester, attribute, attribute_dict, keyword, value):
     tester.assertIsInstance(
         value, bool,
-        '%s must be a boolean for %s.' % (keyword, attribute))
+        '{} must be a boolean for {}.'.format(keyword, attribute))
 
 
 def assert_converter(tester, attribute, attribute_dict, keyword, value):
@@ -45,12 +45,13 @@ def assert_converter(tester, attribute, attribute_dict, keyword, value):
 
 def assert_true(tester, attribute, attribute_dict, keyword, value):
     tester.assertTrue(
-        value, '%s must be True for %s.' % (keyword, attribute))
+        value, '{} must be True for {}.'.format(keyword, attribute))
 
 
 def assert_validator(tester, attribute, attribute_dict, keyword, value):
     tester.assertIn(list(value)[0], validators.validators,
-                    '%s is not a known validator for %s.' % (value, attribute))
+                    '{} is not a known validator for {}.'.format(
+                        value, attribute))
 
 
 ASSERT_FUNCTIONS = {
@@ -79,7 +80,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
     extension_attributes = ()
 
     def setUp(self):
-        super(DefinitionBaseTestCase, self).setUp()
+        super().setUp()
         if not self.extension_module:
             self.fail("Missing extension module definition.")
         self.alias = self.extension_module.ALIAS

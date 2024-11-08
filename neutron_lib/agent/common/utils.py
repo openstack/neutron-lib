@@ -30,7 +30,7 @@ def _replace_register(flow_params, register_number, register_value):
     try:
         reg_port = flow_params[register_value]
         del flow_params[register_value]
-        flow_params['reg{:d}'.format(register_number)] = reg_port
+        flow_params[f'reg{register_number:d}'] = reg_port
     except KeyError:
         pass
 

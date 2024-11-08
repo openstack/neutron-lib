@@ -25,7 +25,7 @@ LOG = logging.getLogger(__name__)
 
 
 @registry.has_registry_receivers
-class DriverBase(object):
+class DriverBase:
 
     def __init__(self, name, vif_types, vnic_types,
                  supported_rules,

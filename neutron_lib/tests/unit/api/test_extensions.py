@@ -99,7 +99,7 @@ class DummyPlugin(service_base.ServicePluginBase):
 class TestExtensionIsSupported(base.BaseTestCase):
 
     def setUp(self):
-        super(TestExtensionIsSupported, self).setUp()
+        super().setUp()
         self._plugin = DummyPlugin()
 
     def test_extension_exists(self):
@@ -124,7 +124,7 @@ class TestAPIExtensionDescriptor(base.BaseTestCase):
     OPTIONAL_EXTENSIONS = ['fw']
 
     def setUp(self):
-        super(TestAPIExtensionDescriptor, self).setUp()
+        super().setUp()
         self.extn = _APIDefinition()
         self.empty_extn = _EmptyAPIDefinition()
         self.useFixture(fixture.APIDefinitionFixture(self))

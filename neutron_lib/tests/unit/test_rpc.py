@@ -28,7 +28,7 @@ CONF = cfg.CONF
 
 class TestRPC(base.BaseTestCase):
     def setUp(self):
-        super(TestRPC, self).setUp()
+        super().setUp()
         self.useFixture(fixture.RPCFixture())
 
     @mock.patch.object(rpc, 'RequestContextSerializer')
@@ -133,7 +133,7 @@ class TestRPC(base.BaseTestCase):
 
 class TestRequestContextSerializer(base.BaseTestCase):
     def setUp(self):
-        super(TestRequestContextSerializer, self).setUp()
+        super().setUp()
         self.mock_base = mock.Mock()
         self.ser = rpc.RequestContextSerializer(self.mock_base)
         self.ser_null = rpc.RequestContextSerializer(None)
@@ -214,7 +214,7 @@ class ServiceTestCase(base.BaseTestCase):
     # the class cannot be based on BaseTestCase since it mocks rpc.Connection
 
     def setUp(self):
-        super(ServiceTestCase, self).setUp()
+        super().setUp()
         self.host = 'foo'
         self.topic = 'neutron-agent'
 
@@ -246,7 +246,7 @@ class ServiceTestCase(base.BaseTestCase):
 
 class TimeoutTestCase(base.BaseTestCase):
     def setUp(self):
-        super(TimeoutTestCase, self).setUp()
+        super().setUp()
 
         self.messaging_conf = messaging_conffixture.ConfFixture(CONF)
         self.messaging_conf.transport_url = 'fake://'
@@ -406,7 +406,7 @@ class TimeoutTestCase(base.BaseTestCase):
 
 class CastExceptionTestCase(base.BaseTestCase):
     def setUp(self):
-        super(CastExceptionTestCase, self).setUp()
+        super().setUp()
 
         self.messaging_conf = messaging_conffixture.ConfFixture(CONF)
         self.messaging_conf.transport_url = 'fake://'
@@ -428,7 +428,7 @@ class CastExceptionTestCase(base.BaseTestCase):
 
 class TestConnection(base.BaseTestCase):
     def setUp(self):
-        super(TestConnection, self).setUp()
+        super().setUp()
         self.conn = rpc.Connection()
 
     @mock.patch.object(messaging, 'Target')

@@ -93,7 +93,7 @@ class BaseWorker(service.ServiceBase):
         if not desc:
             desc = self.__class__.__name__
 
-        proctitle = "%s: %s" % (name, desc)
+        proctitle = "{}: {}".format(name, desc)
         if self._set_proctitle == "on":
             proctitle += " (%s)" % self._parent_proctitle
 

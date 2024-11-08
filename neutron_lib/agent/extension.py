@@ -13,7 +13,7 @@
 import abc
 
 
-class AgentExtension(object, metaclass=abc.ABCMeta):
+class AgentExtension(metaclass=abc.ABCMeta):
     """Define stable abstract interface for agent extensions.
 
     An agent extension extends the agent core functionality.

@@ -22,7 +22,7 @@ from neutron_lib.tests import _base as base
 class TestPlacementUtils(base.BaseTestCase):
 
     def setUp(self):
-        super(TestPlacementUtils, self).setUp()
+        super().setUp()
 
         self._uuid_ns = uuid.UUID('94fedd4d-1ce0-4bb3-9c9a-c9c0f56de154')
 

@@ -21,7 +21,7 @@ from neutron_lib.utils import file
 class TestReplaceFile(base.BaseTestCase):
 
     def setUp(self):
-        super(TestReplaceFile, self).setUp()
+        super().setUp()
         temp_dir = self.get_default_temp_dir().path
         self.file_name = os.path.join(temp_dir, "new_file")
         self.data = "data to copy"

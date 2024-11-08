@@ -27,7 +27,7 @@ PRI_CALLBACK = 20
 
 
 @registry.has_registry_receivers
-class ObjectWithDecoratedCallback(object):
+class ObjectWithDecoratedCallback:
 
     def __init__(self):
         self.counter = 0
@@ -39,9 +39,9 @@ class ObjectWithDecoratedCallback(object):
         self.counter += 1
 
 
-class MixinWithNew(object):
+class MixinWithNew:
     def __new__(cls):
-        i = super(MixinWithNew, cls).__new__(cls)
+        i = super().__new__(cls)
         i.new_called = True
         return i
 
@@ -51,7 +51,7 @@ class AnotherObjectWithDecoratedCallback(ObjectWithDecoratedCallback,
                                          MixinWithNew):
 
     def __init__(self):
-        super(AnotherObjectWithDecoratedCallback, self).__init__()
+        super().__init__()
         self.counter2 = 0
 
     @registry.receives(resources.NETWORK, [events.AFTER_DELETE], PRI_CALLBACK)
@@ -60,7 +60,7 @@ class AnotherObjectWithDecoratedCallback(ObjectWithDecoratedCallback,
 
 
 @registry.has_registry_receivers
-class CallbackClassWithParameters(object):
+class CallbackClassWithParameters:
 
     def __init__(self, dummy):
         pass
@@ -122,7 +122,7 @@ class CallBacksManagerTestCase(base.BaseTestCase):
 class TestCallbackRegistryDispatching(base.BaseTestCase):
 
     def setUp(self):
-        super(TestCallbackRegistryDispatching, self).setUp()
+        super().setUp()
         self.callback_manager = mock.Mock()
         self.registry_fixture = fixture.CallbackRegistryFixture(
             callback_manager=self.callback_manager)

@@ -27,7 +27,7 @@ class TestTable(model_base.BASEV2, model_base.HasProject,
 class TestModelBase(db_base.SqlTestCase):
 
     def setUp(self):
-        super(TestModelBase, self).setUp()
+        super().setUp()
         self.ctx = context.Context('user', 'project')
         self.session = self.ctx.session
 

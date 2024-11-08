@@ -30,7 +30,7 @@ SYNCHRONIZED_PREFIX = 'neutron-'
 synchronized = lockutils.synchronized_with_prefix(SYNCHRONIZED_PREFIX)
 
 
-class NamespacedPlugins(object):
+class NamespacedPlugins:
     """Wraps a stevedore plugin namespace to load/access its plugins."""
 
     def __init__(self, namespace):
