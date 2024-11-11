@@ -23,11 +23,7 @@ _ADVSVC_CTX_POLICY = 'context_is_advsvc'
 _SERVICE_ROLE = 'service_api'
 
 
-# TODO(gmann): Remove setting the default value of config policy_file
-# once oslo_policy change the default value to 'policy.yaml'.
-# https://github.com/openstack/oslo.policy/blob/a626ad12fe5a3abd49d70e3e5b95589d279ab578/oslo_policy/opts.py#L49
-DEFAULT_POLICY_FILE = 'policy.yaml'
-opts.set_defaults(cfg.CONF, DEFAULT_POLICY_FILE)
+opts.set_defaults(cfg.CONF)
 
 
 _BASE_RULES = [
