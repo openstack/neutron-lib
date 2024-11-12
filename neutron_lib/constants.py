@@ -341,6 +341,15 @@ TYPE_VXLAN = 'vxlan'
 TYPE_VLAN = 'vlan'
 TYPE_NONE = 'none'
 
+TYPE_PHYSICAL = [TYPE_FLAT,
+                 TYPE_VLAN,
+                 ]
+TYPE_TUNNELLED = [TYPE_GENEVE,
+                  TYPE_GRE,
+                  TYPE_GRE_IP6,
+                  TYPE_VXLAN,
+                  ]
+
 # List of supported network segment range types
 NETWORK_SEGMENT_RANGE_TYPES = [TYPE_VLAN, TYPE_VXLAN, TYPE_GRE, TYPE_GENEVE]
 
