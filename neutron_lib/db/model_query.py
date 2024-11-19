@@ -159,9 +159,9 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
             query = query.outerjoin(model.rbac_entries)
             rbac_model = model.rbac_entries.property.mapper.class_
             query_filter = (
-                (model.tenant_id == context.tenant_id) |
+                (model.tenant_id == context.project_id) |
                 (rbac_model.action.in_(get_rbac_actions(model)) &
-                 ((rbac_model.target_project == context.tenant_id) |
+                 ((rbac_model.target_project == context.project_id) |
                   (rbac_model.target_project == '*'))))
             # This "group_by" clause will limit the number of registers
             # returned by the query, avoiding the problem of the low SQL
@@ -169,10 +169,10 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
             # project ID.
             group_by = model.id
         elif hasattr(model, 'shared'):
-            query_filter = ((model.tenant_id == context.tenant_id) |
+            query_filter = ((model.tenant_id == context.project_id) |
                             (model.shared == sql.true()))
         else:
-            query_filter = (model.tenant_id == context.tenant_id)
+            query_filter = (model.tenant_id == context.project_id)
     # Execute query hooks registered from mixins and plugins
     for hook in get_hooks(model):
         query_hook = helpers.resolve_ref(hook.get('query'))
@@ -261,7 +261,7 @@ def apply_filters(query, model, filters, context=None):
                 rbac = model.rbac_entries.property.mapper.class_
                 matches = [rbac.target_project == '*']
                 if context:
-                    matches.append(rbac.target_project == context.tenant_id)
+                    matches.append(rbac.target_project == context.project_id)
                 # any 'access_as_shared' records that match the
                 # wildcard or requesting tenant
                 is_shared = and_(rbac.action == constants.ACCESS_SHARED,

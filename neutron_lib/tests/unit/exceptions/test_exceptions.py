@@ -28,12 +28,15 @@ def _raise(exc_class, **kwargs):
     raise exc_class(**kwargs)
 
 
-class TestExceptions(base.BaseTestCase):
+class TestExceptionsBase(base.BaseTestCase):
 
     def _check_nexc(self, exc_class, expected_msg, **kwargs):
         raise_exc_class = functools.partial(_raise, exc_class)
         e = self.assertRaises(exc_class, raise_exc_class, **kwargs)
         self.assertEqual(expected_msg, str(e))
+
+
+class TestExceptions(TestExceptionsBase):
 
     def test_base(self):
         self._check_nexc(
