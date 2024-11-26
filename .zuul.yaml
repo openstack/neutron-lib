@@ -21,9 +21,11 @@
       jobs:
         - openstack-tox-py312-with-neutron
         - openstack-tox-py312-with-sqlalchemy-master
-        - neutron-functional-with-uwsgi:
+        - neutron-functional: &neutron-functional
             required-projects:
               - openstack/neutron-lib
+            vars:
+              zuul_work_dir: src/opendev.org/openstack/neutron
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
@@ -31,7 +33,7 @@
             timeout: 10800
     gate:
       jobs:
-        - neutron-functional-with-uwsgi
+        - neutron-functional: *neutron-functional
         # This job comes from lib-forward-testing-python3 template,
         # but it is limited to 2h there and we want to set
         # for it 3h timeout
