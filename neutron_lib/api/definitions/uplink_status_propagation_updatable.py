@@ -12,6 +12,7 @@
 
 import copy
 
+from neutron_lib.api.definitions import port as port_def
 from neutron_lib.api.definitions import uplink_status_propagation as usp
 
 
@@ -23,14 +24,16 @@ API_PREFIX = ''
 DESCRIPTION = 'Provides ability to update the port uplink status.'
 UPDATED_TIMESTAMP = '2024-09-03T18:00:00-00:00'
 PROPAGATE_UPLINK_STATUS = usp.PROPAGATE_UPLINK_STATUS
+RESOURCE_NAME = port_def.RESOURCE_NAME
+COLLECTION_NAME = port_def.COLLECTION_NAME
 
 
 propagate_uplink_status = copy.deepcopy(
-    usp.RESOURCE_ATTRIBUTE_MAP[usp.COLLECTION_NAME][PROPAGATE_UPLINK_STATUS])
+    usp.RESOURCE_ATTRIBUTE_MAP[COLLECTION_NAME][PROPAGATE_UPLINK_STATUS])
 propagate_uplink_status['allow_put'] = True
 
 RESOURCE_ATTRIBUTE_MAP = {
-    usp.COLLECTION_NAME: {PROPAGATE_UPLINK_STATUS: propagate_uplink_status},
+    COLLECTION_NAME: {PROPAGATE_UPLINK_STATUS: propagate_uplink_status},
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
