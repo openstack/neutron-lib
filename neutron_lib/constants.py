@@ -62,6 +62,10 @@ DEVICE_OWNER_AGENT_GW = (DEVICE_OWNER_NETWORK_PREFIX +
 DEVICE_OWNER_ROUTER_SNAT = (DEVICE_OWNER_NETWORK_PREFIX +
                             "router_centralized_snat")
 DEVICE_OWNER_ROUTED = (DEVICE_OWNER_NETWORK_PREFIX + "routed")
+DEVICE_OWNER_VPN_ROUTER_GW = (DEVICE_OWNER_NETWORK_PREFIX +
+                              "vpn_router_gateway")
+DEVICE_OWNER_VPN_TRANSIT_NETWORK = (DEVICE_OWNER_NETWORK_PREFIX +
+                                    "vpn_namespace")
 
 # Device owner for distributed services (e.g OVN Metadata/DHCP).
 DEVICE_OWNER_DISTRIBUTED = DEVICE_OWNER_NETWORK_PREFIX + "distributed"
