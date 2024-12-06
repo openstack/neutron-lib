@@ -1290,6 +1290,13 @@ provider:segmentation_id-query:
   in: query
   required: false
   type: integer
+qinq-query:
+  description: |
+    Filter the network list by the VLAN QinQ mode of the network,
+    which is VLAN QinQ enabled (``true``) or disabled (``false``).
+  in: query
+  required: false
+  type: boolean
 qos-rule-direction-query:
   description: |
     Filter the list result by the direction of the traffic to which the QoS
@@ -5681,6 +5688,20 @@ psk:
   in: body
   required: true
   type: string
+qinq:
+  description: |
+    Indicates the VLAN QinQ mode of the network, which is
+    VLAN QinQ enabled (``true``) or disabled (``false``).
+  in: body
+  required: true
+  type: boolean
+qinq-request:
+  description: |
+    Indicates the VLAN QinQ mode of the network, which is
+    VLAN QinQ enabled (``true``) or disabled (``false``).
+  in: body
+  required: false
+  type: boolean
 qos-backend-drivers:
   description: |
       List of loaded QoS drivers with supported

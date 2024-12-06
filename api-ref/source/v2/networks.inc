@@ -141,6 +141,15 @@ Most Networking plug-ins (e.g. ML2 Plugin) and drivers do not support updating
 any provider related attributes. Check your plug-in whether it supports
 updating.
 
+QinQ
+====
+
+The ``qinq`` extension adds the ``qinq`` boolean attribute which allows to
+control the VLAN QinQ (vlan in vlan) of the network. It uses ``0x8a88`` ethertype for
+the double tagged packets. If the service does not support VLAN QinQ and a user
+requests a VLAN QinQ network, the plug-in refuses to create one and returns an
+appropriate error to the user.
+
 QoS extension
 =============
 

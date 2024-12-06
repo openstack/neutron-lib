@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    The ``qinq`` extension adds a ``qinq`` attribute to the network
+    resource. This new attribute can be used in a similar way to
+    ``vlan_transparent`` but networks created with ``qinq`` set will use
+    ``0x8a88`` ethertype for the double vlan tagged traffic.
+    Attributes ``qinq`` and ``vlan_transparent`` can't be used together
+    for the same network.
