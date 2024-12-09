@@ -6359,6 +6359,8 @@ router-enable_snat:
     when the traffic is sent to/received from the external network.
     ``false`` means no NAT is applied for traffic from/to the external network.
     It is available when ``ext-gw-mode`` extension is enabled.
+    ``Note`` that depending on the backend and its configuration, the
+    SNAT behavior for nested routers may differ.
   in: body
   required: true
   type: boolean
