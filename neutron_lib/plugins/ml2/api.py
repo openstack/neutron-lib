@@ -408,6 +408,16 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         """
         pass
 
+    def check_vlan_qinq(self, context):
+        """Check if the network supports QinQ vlans.
+
+        :param context: NetworkContext instance describing the network.
+
+        Check if the network supports QinQ vlan (similar to vlan transparency
+        but this uses different ethertype, 0x8a88 for the outer tag) or not.
+        """
+        pass
+
     def get_workers(self):
         """Get any NeutronWorker instances that should have their own process
 
