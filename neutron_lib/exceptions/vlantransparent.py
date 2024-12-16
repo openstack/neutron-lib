@@ -16,6 +16,6 @@ from neutron_lib._i18n import _
 from neutron_lib import exceptions
 
 
-class VlanTransparencyDriverError(exceptions.NeutronException):
+class VlanTransparencyDriverError(exceptions.BadRequest):
     """Vlan Transparency not supported by all mechanism drivers."""
     message = _("Backend does not support VLAN Transparency.")
