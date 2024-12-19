@@ -780,7 +780,7 @@ class CTZoneExhaustedError(NeutronException):
 
 
 class TenantQuotaNotFound(NotFound):
-    message = _("Quota for tenant %(tenant_id)s could not be found.")
+    message = _("Quota for project %(tenant_id)s could not be found.")
 
 
 class MultipleFilterIDForIPFound(Conflict):

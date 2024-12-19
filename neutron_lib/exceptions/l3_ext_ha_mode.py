@@ -12,8 +12,12 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from oslo_log import log as logging
+
 from neutron_lib._i18n import _
 from neutron_lib import exceptions
+
+LOG = logging.getLogger(__name__)
 
 
 class MaxVRIDAllocationTriesReached(exceptions.NeutronException):
@@ -28,7 +32,19 @@ class NoVRIDAvailable(exceptions.Conflict):
 
 
 class HANetworkConcurrentDeletion(exceptions.Conflict):
-    message = _("Network for tenant %(tenant_id)s concurrently deleted.")
+    message = _("Network for project %(project_id)s concurrently deleted.")
+
+    # NOTE(haleyb): remove fall-back and warning in E+2 release, or when
+    # all callers have been changed to use project_id.
+    def __init__(self, **kwargs):
+        project_id = kwargs.get('project_id')
+        tenant_id = kwargs.get('tenant_id')
+        project_id = project_id or tenant_id
+        if tenant_id:
+            LOG.warning('Keyword tenant_id has been deprecated, use '
+                        'project_id instead')
+        kwargs.setdefault('project_id', project_id)
+        super().__init__(**kwargs)
 
 
 class HANetworkCIDRNotValid(exceptions.NeutronException):

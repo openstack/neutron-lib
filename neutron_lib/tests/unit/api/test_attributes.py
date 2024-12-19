@@ -198,11 +198,11 @@ class TestAttributeInfo(base.BaseTestCase):
                           {'key': 1}, self._EXC_CLS)
 
     def test_populate_project_id_admin_req(self):
-        tenant_id_1 = uuidutils.generate_uuid()
-        tenant_id_2 = uuidutils.generate_uuid()
+        project_id_1 = uuidutils.generate_uuid()
+        project_id_2 = uuidutils.generate_uuid()
         # non-admin users can't create a res on behalf of another project
-        ctx = context.Context(user_id=None, tenant_id=tenant_id_1)
-        res_dict = {'tenant_id': tenant_id_2}
+        ctx = context.Context(user_id=None, project_id=project_id_1)
+        res_dict = {'project_id': project_id_2}
         attr_inst = attributes.AttributeInfo({})
         self.assertRaises(exc.HTTPBadRequest,
                           attr_inst.populate_project_id,
@@ -212,26 +212,26 @@ class TestAttributeInfo(base.BaseTestCase):
         attr_inst.populate_project_id(ctx, res_dict, is_create=False)
 
     def test_populate_project_id_from_context(self):
-        tenant_id = uuidutils.generate_uuid()
-        ctx = context.Context(user_id=None, tenant_id=tenant_id)
-        # for each create request, for the resources which require tenant_id,
+        project_id = uuidutils.generate_uuid()
+        ctx = context.Context(user_id=None, project_id=project_id)
+        # for each create request, for the resources which require project_id,
         # it should be added to the req body
         res_dict = {}
         attr_inst = attributes.AttributeInfo(
-            {'tenant_id': {'allow_post': True}})
+            {'project_id': {'allow_post': True}})
         attr_inst.populate_project_id(ctx, res_dict, is_create=True)
         self.assertEqual(
-            {'tenant_id': ctx.tenant_id, 'project_id': ctx.tenant_id},
+            {'tenant_id': ctx.project_id, 'project_id': ctx.project_id},
             res_dict)
 
     def test_populate_project_id_mandatory_not_specified(self):
-        tenant_id = uuidutils.generate_uuid()
-        ctx = context.Context(user_id=None, tenant_id=tenant_id)
-        # if the tenant_id is mandatory for the resource and not specified
+        project_id = uuidutils.generate_uuid()
+        ctx = context.Context(user_id=None, project_id=project_id)
+        # if the project_id is mandatory for the resource and not specified
         # in the request nor in the context, an exception should be raised
         res_dict = {}
-        attr_info = {'tenant_id': {'allow_post': True}}
-        ctx.tenant_id = None
+        attr_info = {'project_id': {'allow_post': True}}
+        ctx.project_id = None
         attr_inst = attributes.AttributeInfo(attr_info)
         self.assertRaises(exc.HTTPBadRequest,
                           attr_inst.populate_project_id,
@@ -239,11 +239,11 @@ class TestAttributeInfo(base.BaseTestCase):
 
     def test_populate_project_id_not_mandatory(self):
         ctx = context.Context(user_id=None)
-        # if the tenant_id is not mandatory for the resource it should be
+        # if the project_id is not mandatory for the resource it should be
         # OK if it is not in the request.
         res_dict = {'name': 'test_port'}
         attr_inst = attributes.AttributeInfo({})
-        ctx.tenant_id = None
+        ctx.project_id = None
         attr_inst.populate_project_id(ctx, res_dict, True)
         self.assertEqual({'name': 'test_port'}, res_dict)
 
@@ -253,7 +253,7 @@ class TestAttributeInfo(base.BaseTestCase):
     def test_verify_attributes_ok_with_project_id(self):
         attributes.AttributeInfo(
             {'tenant_id': 'foo', 'project_id': 'foo'}).verify_attributes(
-            {'tenant_id': 'foo'})
+            {'project_id': 'foo'})
 
     def test_verify_attributes_ok_subset(self):
         attributes.AttributeInfo(
@@ -350,6 +350,9 @@ class TestRetrieveValidSortKeys(base.BaseTestCase):
                 "is_sort_key": False
             },
             "tenant_id": {
+                "visible": True,
+            },
+            "project_id": {
                 "visible": True,
             }
         }

@@ -33,15 +33,27 @@ class ContextBase(oslo_context.RequestContext):
 
     """
 
-    def __init__(self, user_id=None, tenant_id=None, is_admin=None,
-                 timestamp=None, tenant_name=None, user_name=None,
-                 is_advsvc=None, **kwargs):
-        # NOTE(jamielennox): We maintain this argument in order for tests that
+    def __init__(self, user_id=None, project_id=None, is_admin=None,
+                 timestamp=None, project_name=None, user_name=None,
+                 is_advsvc=None, tenant_id=None, tenant_name=None,
+                 **kwargs):
+        # NOTE(jamielennox): We maintain this argument order for tests that
         # pass arguments positionally.
-        kwargs.setdefault('project_id', tenant_id)
-        # prefer project_name, as that's what's going to be set by
-        # keystone. Fall back to tenant_name if for some reason it's blank.
-        kwargs.setdefault('project_name', tenant_name)
+
+        # Prefer project_id and project_name, as that's what's going to be
+        # set by keystone.
+        # NOTE(haleyb): remove fall-back and warning in E+2 release, or when
+        # all callers have been changed to use project_*.
+        project_id = project_id or tenant_id
+        project_name = project_name or tenant_name
+        if tenant_id:
+            LOG.warning('Keyword tenant_id has been deprecated, use '
+                        'project_id instead')
+        if tenant_name:
+            LOG.warning('Keyword tenant_name has been deprecated, use '
+                        'project_name instead')
+        kwargs.setdefault('project_id', project_id)
+        kwargs.setdefault('project_name', project_name)
         super().__init__(
             is_admin=is_admin, user_id=user_id, **kwargs)
 
@@ -199,7 +211,7 @@ def get_admin_context():
     # explicity here will avoid checking in policy rules if is_admin should be
     # set to True or not
     return Context(user_id=None,
-                   tenant_id=None,
+                   project_id=None,
                    is_admin=True,
                    overwrite=False).elevated()
 
@@ -208,4 +220,4 @@ def get_admin_context_without_session():
     # NOTE(slaweq): elevated() method will set is_admin=True but setting it
     # explicity here will avoid checking in policy rules if is_admin should be
     # set to True or not
-    return ContextBase(user_id=None, tenant_id=None, is_admin=True).elevated()
+    return ContextBase(user_id=None, project_id=None, is_admin=True).elevated()

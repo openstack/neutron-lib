@@ -23,7 +23,7 @@ import neutron_lib.callbacks.exceptions as ex
 from neutron_lib.tests.unit.exceptions import test_exceptions
 
 
-class TestCallbackExceptions(test_exceptions.TestExceptions):
+class TestCallbackExceptions(test_exceptions.TestExceptionsBase):
 
     def _check_exception(self, exc_class, expected_msg, **kwargs):
         raise_exc_class = functools.partial(test_exceptions._raise, exc_class)
