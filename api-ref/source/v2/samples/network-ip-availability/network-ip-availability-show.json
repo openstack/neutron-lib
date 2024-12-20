@@ -22,7 +22,7 @@
         "network_id": "6801d9c8-20e6-4b27-945d-62499f00002e",
         "project_id": "d56d3b8dd6894a508cf41b96b522328c",
         "tenant_id": "d56d3b8dd6894a508cf41b96b522328c",
-        "total_ips": 18446744073709552000,
+        "total_ips": 18446744073709552253,
         "network_name": "private"
     }
 }
