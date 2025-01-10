@@ -18,6 +18,7 @@ import platform
 import random
 import time
 
+from debtcollector import removals
 import netaddr
 
 from neutron_lib.utils import helpers
@@ -37,6 +38,7 @@ class UnorderedList(list):
         return not self == other
 
 
+@removals.remove
 def is_bsd():
     """Return True on BSD-based systems."""
 
