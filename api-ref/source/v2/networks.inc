@@ -149,6 +149,10 @@ control the VLAN QinQ (vlan in vlan) of the network. It uses ``0x8a88`` ethertyp
 the double tagged packets. If the service does not support VLAN QinQ and a user
 requests a VLAN QinQ network, the plug-in refuses to create one and returns an
 appropriate error to the user.
+This extension enables VLAN-In-VLAN feature where inner and outer frames are
+using different ethertypes. Inner (C-Tag) tag is using ethertype ``0x8100`` and
+outher (S-Tag) tag is using ethertype ``8x8a88``. This is described in the
+`802.1ad IEEE document <https://www.ieee802.org/1/pages/802.1ad.html>`_.
 
 QoS extension
 =============
@@ -180,6 +184,9 @@ This extension introduces a ``vlan_transparent`` attribute to control
 the VLAN transparency of the network. If the service does not support VLAN
 transparency and a user requests a VLAN transparent network,
 the plug-in refuses to create one and returns an appropriate error to the user.
+This extension enables feature called sometimes as ``QinQ`` which
+means "Q-tag-in-Q-tag" where both, inner and outer frame is using ``802.1q`` tag
+(ethertype ``0x8100``).
 
 Show network details
 ====================
