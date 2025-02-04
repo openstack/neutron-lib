@@ -152,11 +152,8 @@ class HasStandardAttributes:
     # pylint: disable=method-hidden
     @declarative.declared_attr
     def standard_attr(cls):
-        # NOTE(ralonsoh): the load method has been updated from "joined" to
-        # "selectin". The first provides more complex queries but it is only
-        # needed one query.
         return sa.orm.relationship(StandardAttribute,
-                                   lazy='selectin',
+                                   lazy='joined',
                                    cascade='all, delete-orphan',
                                    single_parent=True,
                                    uselist=False)
