@@ -11,9 +11,13 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import copy
+import typing
+
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
 from neutron_lib.api.definitions import qos
+from neutron_lib.services.qos import constants as qos_consts
 
 
 ALIAS = 'qos-gateway-ip'
@@ -25,18 +29,19 @@ DESCRIPTION = 'The Router gateway IP Quality of Service extension'
 UPDATED_TIMESTAMP = '2018-02-24T00:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
-    COLLECTION_NAME: {
-        l3.EXTERNAL_GW_INFO: {
-            'allow_post': True,
-            'allow_put': True,
-            'is_visible': True,
-            'default': None,
-            'enforce_policy': True,
-            'validate': {'type:external_gw_info': None},
-        }
-    }
+
+routers: typing.Dict[str, typing.Any] = copy.deepcopy(
+    l3_ext_gw_mode.RESOURCE_ATTRIBUTE_MAP[COLLECTION_NAME]
+)
+routers[l3.EXTERNAL_GW_INFO]['validate']['type:dict_or_nodata'][
+    qos_consts.QOS_POLICY_ID] = {
+    'type:uuid_or_none': None,
+    'required': False
 }
+RESOURCE_ATTRIBUTE_MAP = {
+    COLLECTION_NAME: routers
+}
+
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, qos.ALIAS, l3_ext_gw_mode.ALIAS]

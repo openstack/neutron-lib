@@ -13,6 +13,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import copy
+import typing
+
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 
@@ -27,29 +30,20 @@ DESCRIPTION = ('Extension of the router abstraction for specifying whether '
 UPDATED_TIMESTAMP = '2013-03-28T10:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
-    COLLECTION_NAME: {
-        l3.EXTERNAL_GW_INFO: {
-            'allow_post': True,
-            'allow_put': True,
-            'is_visible': True,
-            'default': None,
-            'enforce_policy': True,
-            'validate': {
-                'type:dict_or_nodata': {
-                    'network_id': {'type:uuid': None, 'required': True},
-                    'enable_snat': {'type:boolean': None, 'required': False,
-                                    'convert_to':
-                                        converters.convert_to_boolean},
-                    'external_fixed_ips': {
-                        'type:fixed_ips': None,
-                        'required': False
-                    }
-                }
-            }
-        }
-    }
+
+routers: typing.Dict[str, typing.Any] = copy.deepcopy(
+    l3.RESOURCE_ATTRIBUTE_MAP[COLLECTION_NAME]
+)
+routers[l3.EXTERNAL_GW_INFO]['validate']['type:dict_or_nodata'][
+    'enable_snat'] = {
+    'type:boolean': None,
+    'required': False,
+    'convert_to': converters.convert_to_boolean
 }
+RESOURCE_ATTRIBUTE_MAP = {
+    COLLECTION_NAME: routers
+}
+
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS]

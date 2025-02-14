@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Fixed the validation of router ``external_gateway_info`` field. Each
+    extension adding a new validator amends the previous definition, but
+    doesn't overwrite it.
