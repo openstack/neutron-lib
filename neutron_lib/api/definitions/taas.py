@@ -14,7 +14,12 @@
 # under the License.
 
 
-direction_enum = ['IN', 'OUT', 'BOTH']
+DIRECTION_IN = 'IN'
+DIRECTION_OUT = 'OUT'
+DIRECTION_BOTH = 'BOTH'
+DIRECTION_ENUM = [DIRECTION_IN, DIRECTION_OUT, DIRECTION_BOTH]
+DIRECTION_IN_BOTH = [DIRECTION_IN, DIRECTION_BOTH]
+DIRECTION_OUT_BOTH = [DIRECTION_OUT, DIRECTION_BOTH]
 
 '''
 Resource Attribute Map:
@@ -76,7 +81,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                         'validate': {'type:uuid': None},
                         'required_by_policy': True, 'is_visible': True},
         'direction': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:values': direction_enum},
+                      'validate': {'type:values': DIRECTION_ENUM},
                       'is_visible': True},
         'status': {'allow_post': False, 'allow_put': False,
                    'is_visible': True}
