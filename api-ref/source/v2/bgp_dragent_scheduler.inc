@@ -10,7 +10,19 @@ Add BGP Speaker to a Dynamic Routing Agent
 .. rest_method:: POST /v2.0/agents/{bgp-agent-id}/bgp-drinstances
 
 Issue a ``POST`` request to ``/v2.0/agents/{bgp-agent-id}/bgp-drinstances`` to
-add a BGP Speaker to the specified dynamic routing agent.
+add a BGP Speaker to the specified Dynamic Routing Agent.
+
+.. note::
+
+    The Dynamic Routing plugin can be configured to use static or dynamic
+    (chance) scheduling of BGP Speakers with Dynamic Routing Agents. When using
+    the static scheduler, this API must be used to associate a BGP Speaker with
+    one or more Dynamic Routing Agents. However, when using the chance
+    scheduler, this association happens automatically. As a result, it should
+    only be necessary to call this API when you wish to associate a BGP Speaker
+    with additional Dynamic Routing Agents (for example, before conducting
+    maintenance of a node).
+    Refer to the `Agent Scheduler`_ documentation for more information.
 
 Normal response codes: 201
 
@@ -39,7 +51,7 @@ List BGP speakers hosted by a Dynamic Routing Agent
 .. rest_method:: GET /v2.0/agents/{bgp-dragent-id}/bgp-drinstances
 
 Issue a ``GET`` request to ``/v2.0/agents/{bgp-dragent-id}/bgp-drinstances`` to
-list all BGP Seakers hosted on the specified dynamic routing agent.
+list all BGP Seakers hosted on the specified Dynamic Routing Agent.
 
 .. include:: filtering-list.inc
 
@@ -80,7 +92,31 @@ Delete BGP Speaker from a Dynamic Routing Agent
 .. rest_method:: DELETE /v2.0/agents/{bgp-agent-id}/bgp-drinstances/{bgp-speaker-id}
 
 Issue a ``DELETE`` request to ``/v2.0/agents/{bgp-agent-id}/bgp-drinstances/{bgp-speaker-id}``
-to delete the BGP Speaker hosted by the specified dynamic routing agent.
+to delete the BGP Speaker hosted by the specified Dynamic Routing Agent.
+
+.. note::
+
+    The Dynamic Routing plugin can be configured to use static or dynamic
+    (chance) scheduling of BGP Speakers with Dynamic Routing Agents. When using
+    the static scheduler, this API must be used to diassociate a BGP Speaker
+    from Dynamic Routing Agents. However, when using the chance scheduler, this
+    disassociation happens automatically. As a result, it should only be
+    necessary to call this API when you wish to disassociate a BGP Speaker from
+    additional Dynamic Routing Agents (for example, after conducting maintenance
+    of a nodes).
+    Refer to the `Agent Scheduler`_ documentation for more information.
+
+.. warning:
+
+    If the Dynamic Routing plugin is configured to use the dynamic (chance)
+    scheduler and a BGP Speaker is associated with a single Dynamic Routing
+    Agent, attempting to delete this association will result in a new
+    association being automatically created, potentially against the same
+    Dynamic Routing Agent. This can be confusing and may hinder maintenance
+    operations. To prevent this, you should either manually create an
+    additional association with another Dynamic Routing Agent in advance, or
+    you should configure the Dynamic Routing plugin to use the static
+    scheduler.
 
 Normal response codes: 204
 
@@ -97,3 +133,4 @@ Response
 
 There is no body content for the response of a successful DELETE request.
 
+.. _Agent Scheduler: https://docs.openstack.org/neutron-dynamic-routing/latest/admin/agent-scheduler.html
