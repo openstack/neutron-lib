@@ -22,6 +22,19 @@
         - openstack-tox-py312-with-neutron
         - openstack-tox-py312-with-sqlalchemy-master
         - neutron-functional: &neutron-functional
+            irrelevant-files:
+              - ^.*\.rst$
+              - ^\.coveragerc$
+              - ^\.git.*$
+              - ^\.pre-commit-config\.yaml$
+              - ^\.pylintrc$
+              - ^api-ref/.*$
+              - ^doc/.*$
+              - ^LICENSE$
+              - ^mypy.ini$
+              - ^neutron_lib/locale/.*$
+              - ^releasenotes/.*$
+              - ^tox.ini$
             required-projects:
               - openstack/neutron-lib
             vars:
