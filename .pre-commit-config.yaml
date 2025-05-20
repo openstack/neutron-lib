@@ -4,7 +4,7 @@ default_language_version:
   python: python3
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
     hooks:
       - id: trailing-whitespace
       - id: mixed-line-ending
@@ -15,7 +15,7 @@ repos:
       - id: check-merge-conflict
       - id: debug-statements
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.5
+    rev: 1.8.3
     hooks:
       - id: bandit
         # B104: Possible binding to all interfaces
@@ -25,25 +25,22 @@ repos:
         files: 'neutron_lib/'
         exclude: 'neutron_lib/tests'
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.5.4
+    rev: v1.5.5
     hooks:
       - id: remove-tabs
         exclude: '.*\.(svg)$'
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.14.1
+    rev: v1.15.0
     hooks:
       - id: mypy
         pass_filenames: false
-  - repo: local
+  - repo: https://opendev.org/openstack/hacking
+    rev: 7.0.0
     hooks:
-      - id: flake8
-        name: flake8
+      - id: hacking
         additional_dependencies:
-          - hacking>=6.1.0,<6.2.0
+          - flake8-import-order~=0.18.2
           - neutron
-        language: python
-        entry: flake8
-        files: '^.*\.py$'
         exclude: '^(doc|releasenotes|tools)/.*$'
 # TODO(slaweq): enable pylint check once all issues in the current code will
 # be solved
