@@ -31,7 +31,6 @@
               - ^api-ref/.*$
               - ^doc/.*$
               - ^LICENSE$
-              - ^mypy.ini$
               - ^neutron_lib/locale/.*$
               - ^releasenotes/.*$
               - ^tox.ini$
