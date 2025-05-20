@@ -12,6 +12,7 @@ repos:
         exclude: '.*\.(svg)$'
       - id: check-byte-order-marker
       - id: check-executables-have-shebangs
+      - id: check-json
       - id: check-merge-conflict
       - id: debug-statements
   - repo: https://github.com/PyCQA/bandit
@@ -41,6 +42,16 @@ repos:
         additional_dependencies:
           - flake8-import-order~=0.18.2
           - neutron
+        exclude: '^(doc|releasenotes|tools)/.*$'
+  - repo: local
+    hooks:
+      - id: check-unit-test-structure
+        name: check unit test structure
+        language: script
+        require_serial: true
+        pass_filenames: false
+        entry: './tools/check_unit_test_structure.sh'
+        files: '^.*\.py$'
         exclude: '^(doc|releasenotes|tools)/.*$'
 # TODO(slaweq): enable pylint check once all issues in the current code will
 # be solved
