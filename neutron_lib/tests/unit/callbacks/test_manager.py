@@ -14,7 +14,6 @@
 
 from unittest import mock
 
-import ddt
 from oslo_db import exception as db_exc
 from oslotest import base
 
@@ -73,7 +72,6 @@ def callback_3(resource, event, trigger, payload):
     callback_3.counter += 1
 
 
-@ddt.ddt
 class CallBacksManagerTestCase(base.BaseTestCase):
 
     def setUp(self):
@@ -84,8 +82,13 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         callback_2.counter = 0
         callback_3.counter = 0
 
-    @ddt.data(True, False)
-    def test_subscribe(self, cancellable):
+    def test_subscribe_cancellable(self):
+        self._test_subscribe(True)
+
+    def test_subscribe_uncancellable(self):
+        self._test_subscribe(False)
+
+    def _test_subscribe(self, cancellable):
         self.manager.subscribe(
             callback_1, resources.PORT, events.BEFORE_CREATE,
             cancellable=cancellable)
@@ -146,8 +149,13 @@ class CallBacksManagerTestCase(base.BaseTestCase):
                              payload=self.event_payload)
         self.assertNotIn(unsub, self.manager._index)
 
-    @ddt.data(True, False)
-    def test_unsubscribe(self, cancellable):
+    def test_unsubscribe_cancellable(self):
+        self._test_unsubscribe(True)
+
+    def test_unsubscribe_uncancellable(self):
+        self._test_unsubscribe(False)
+
+    def _test_unsubscribe(self, cancellable):
         self.manager.subscribe(
             callback_1, resources.PORT, events.BEFORE_CREATE,
             cancellable=cancellable)
@@ -174,8 +182,13 @@ class CallBacksManagerTestCase(base.BaseTestCase):
                           self.manager.unsubscribe,
                           callback_1, None, events.BEFORE_CREATE)
 
-    @ddt.data(True, False)
-    def test_unsubscribe_is_idempotent(self, cancellable):
+    def test_unsubscribe_is_idempotent_cancellable(self):
+        self._test_unsubscribe_is_idempotent(True)
+
+    def test_unsubscribe_is_idempotent_uncancellable(self):
+        self._test_unsubscribe_is_idempotent(False)
+
+    def _test_unsubscribe_is_idempotent(self, cancellable):
         self.manager.subscribe(
             callback_1, resources.PORT, events.BEFORE_CREATE,
             cancellable=cancellable)
