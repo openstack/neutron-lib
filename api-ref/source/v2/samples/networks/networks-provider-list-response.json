@@ -51,7 +51,6 @@
             "name": "net2",
             "port_security_enabled": true,
             "project_id": "26a7980765d0414dbc1fc1f88cdb7e6e",
-            "qos_policy_id": null,
             "provider:network_type": "local",
             "provider:physical_network": null,
             "provider:segmentation_id": null,
