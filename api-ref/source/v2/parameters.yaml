@@ -7046,6 +7046,13 @@ subnet-gateway_ip-request:
   in: body
   required: false
   type: string
+subnet-gateway_ip-update-request:
+  description: |
+    Gateway IP of this subnet. If the value is ``null`` that implies no
+    gateway is associated with the subnet.
+  in: body
+  required: false
+  type: string
 subnet-host_routes:
   description: |
     Additional routes for the subnet. A list of dictionaries with

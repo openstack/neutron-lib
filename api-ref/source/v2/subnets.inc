@@ -463,7 +463,7 @@ Request
    - dns_nameservers: subnet-dns_nameservers-request
    - allocation_pools: subnet-allocation_pools-request
    - host_routes: subnet-host_routes-request
-   - gateway_ip: subnet-gateway_ip-request
+   - gateway_ip: subnet-gateway_ip-update-request
    - description: description-request
    - service_types: subnet-service_types-optional
    - segment_id: subnet-segment_id-request
