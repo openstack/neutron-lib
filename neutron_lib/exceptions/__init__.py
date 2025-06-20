@@ -829,3 +829,13 @@ class InvalidSubnetServiceType(InvalidInput):
 
 class InvalidInputSubnetServiceType(InvalidInput):
     message = _("Subnet service type %(service_type)s is not a string.")
+
+
+class NetworkMTUSubnetConflict(Conflict):
+    """A conflict error due to MTU being invalid on said network.
+
+    :param net_id: The UUID of the network
+    :param    mtu: The minimum MTU required by a subnet for the network
+    """
+    message = _("MTU of %(net_id)s is not valid, subnet requires a "
+                "minimum of %(mtu)s")
