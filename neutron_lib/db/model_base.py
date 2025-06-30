@@ -13,7 +13,6 @@
 from oslo_db.sqlalchemy import models
 from oslo_utils import uuidutils
 import sqlalchemy as sa
-from sqlalchemy.ext import declarative
 from sqlalchemy import orm
 
 from neutron_lib.db import constants as db_const
@@ -32,7 +31,7 @@ class HasProject:
     def set_tenant_id(self, value):
         self.project_id = value
 
-    @declarative.declared_attr
+    @orm.declared_attr
     def tenant_id(cls):
         return orm.synonym(
             'project_id',
@@ -104,17 +103,11 @@ class _NeutronBase(models.ModelBase):
 
 class NeutronBaseV2(_NeutronBase):
 
-    @declarative.declared_attr
+    @orm.declared_attr
     def __tablename__(cls):
         # Use the pluralized name of the class as the table name.
         return cls.__name__.lower() + 's'
 
 
-try:
-    # SQLAlchemy 2.0
-    class BASEV2(orm.DeclarativeBase, NeutronBaseV2):
-        pass
-except AttributeError:
-    # SQLAlchemy < 2.0
-    BASEV2 = declarative.declarative_base(  # type: ignore[misc]
-        cls=NeutronBaseV2)
+class BASEV2(orm.DeclarativeBase, NeutronBaseV2):
+    pass

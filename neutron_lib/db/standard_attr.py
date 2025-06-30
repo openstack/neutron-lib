@@ -16,8 +16,8 @@ from oslo_utils import timeutils
 import sqlalchemy as sa
 from sqlalchemy import event  # noqa
 from sqlalchemy.ext.associationproxy import association_proxy
-from sqlalchemy.ext import declarative
 from sqlalchemy.orm import attributes
+from sqlalchemy.orm import declared_attr
 from sqlalchemy.orm import session as se
 
 from neutron_lib._i18n import _
@@ -138,7 +138,7 @@ class HasStandardAttributes:
     def validate_tag_support(cls):
         return getattr(cls, 'tag_support', False)
 
-    @declarative.declared_attr
+    @declared_attr
     def standard_attr_id(cls):
         return sa.Column(
             sa.BigInteger().with_variant(sa.Integer(), 'sqlite'),
@@ -150,7 +150,7 @@ class HasStandardAttributes:
     # NOTE(kevinbenton): we have to disable the following pylint check because
     # it thinks we are overriding this method in the __init__ method.
     # pylint: disable=method-hidden
-    @declarative.declared_attr
+    @declared_attr
     def standard_attr(cls):
         return sa.orm.relationship(StandardAttribute,
                                    lazy='joined',
@@ -174,15 +174,15 @@ class HasStandardAttributes:
         self.standard_attr = StandardAttribute(
             resource_type=self.__tablename__, **standard_attr_kwargs)
 
-    @declarative.declared_attr
+    @declared_attr
     def description(cls):
         return association_proxy('standard_attr', 'description')
 
-    @declarative.declared_attr
+    @declared_attr
     def created_at(cls):
         return association_proxy('standard_attr', 'created_at')
 
-    @declarative.declared_attr
+    @declared_attr
     def updated_at(cls):
         return association_proxy('standard_attr', 'updated_at')
 
@@ -193,7 +193,7 @@ class HasStandardAttributes:
         new_dict.pop('updated_at', None)
         super().update(new_dict)
 
-    @declarative.declared_attr
+    @declared_attr
     def revision_number(cls):
         return association_proxy('standard_attr', 'revision_number')
 
