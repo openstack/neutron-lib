@@ -15,7 +15,6 @@ from unittest import mock
 from oslo_config import cfg
 from oslo_db.sqlalchemy import models
 import sqlalchemy as sa
-from sqlalchemy.ext import declarative
 from sqlalchemy import orm
 
 from neutron_lib.api import attributes
@@ -26,14 +25,8 @@ from neutron_lib import exceptions as n_exc
 from neutron_lib.tests import _base as base
 
 
-try:
-    # SQLAlchemy 2.0
-    class ModelBaseV2(orm.DeclarativeBase, models.ModelBase):
-        pass
-except AttributeError:
-    # SQLAlchemy < 2.0
-    ModelBaseV2 = declarative.declarative_base(  # type: ignore[misc]
-        cls=models.ModelBase)
+class ModelBaseV2(orm.DeclarativeBase, models.ModelBase):
+    pass
 
 
 class FakePort(ModelBaseV2):

@@ -14,7 +14,6 @@
 
 import gc
 
-from sqlalchemy.ext import declarative
 from sqlalchemy import orm
 import testtools
 
@@ -30,17 +29,11 @@ class StandardAttrTestCase(base.BaseTestCase):
     def _make_decl_base(self):
         # construct a new base so we don't interfere with the main
         # base used in the sql test fixtures
-        try:
-            # SQLAlchemy 2.0
-            class BaseV2(orm.DeclarativeBase,
-                         standard_attr.model_base.NeutronBaseV2):
-                pass
+        class BaseV2(orm.DeclarativeBase,
+                     standard_attr.model_base.NeutronBaseV2):
+            pass
 
-            return BaseV2
-        except AttributeError:
-            # SQLAlchemy < 2.0
-            return declarative.declarative_base(
-                cls=standard_attr.model_base.NeutronBaseV2)
+        return BaseV2
 
     def test_standard_attr_resource_model_map(self):
         rs_map = standard_attr.get_standard_attr_resource_model_map()
