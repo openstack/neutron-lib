@@ -1,0 +1,10 @@
+---
+features:
+  - |
+    New attribute ``has_global_access`` is added to the context object. Value of
+    this attribute is set based on the API policy rule
+    ``context_with_global_access`` and should be used in case when there are
+    custom roles with access to the resources from all projects. For example,
+    ``auditor`` role which should have read only access to all of the resources
+    in the cloud.
+    By default ``context.has_global_access`` is granted to no one.

@@ -169,8 +169,8 @@ def model_query_scope_is_project(context, model):
 
     :param context: The context to check for admin and advsvc rights.
     :param model: The model to check the project_id of.
-    :returns: True if the context is not admin and not advsvc and the model
-        has a project_id. False otherwise.
+    :returns: True if the context has no global access and is not advsvc
+        and the model has a project_id. False otherwise.
     """
     if not hasattr(model, 'project_id'):
         # If model doesn't have project_id, there is no need to scope query to
@@ -180,9 +180,10 @@ def model_query_scope_is_project(context, model):
         # For context which has 'advanced-service' rights the
         # query will not be scoped to a single project_id
         return False
-    # Unless context has 'admin' rights the
-    # query will be scoped to a single project_id
-    return not context.is_admin
+    # Unless context has 'global' access the
+    # resources from the database query will be scoped to a single project_id
+    # context with 'admin' rights is treated as it has global access always.
+    return not context.has_global_access
 
 
 def model_query(context, model):

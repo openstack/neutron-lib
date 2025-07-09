@@ -36,7 +36,7 @@ class ContextBase(oslo_context.RequestContext):
     def __init__(self, user_id=None, project_id=None, is_admin=None,
                  timestamp=None, project_name=None, user_name=None,
                  is_advsvc=None, tenant_id=None, tenant_name=None,
-                 **kwargs):
+                 has_global_access=False, **kwargs):
         # NOTE(jamielennox): We maintain this argument order for tests that
         # pass arguments positionally.
 
@@ -54,6 +54,7 @@ class ContextBase(oslo_context.RequestContext):
                         'project_name instead')
         kwargs.setdefault('project_id', project_id)
         kwargs.setdefault('project_name', project_name)
+        self._has_global_access = has_global_access
         super().__init__(
             is_admin=is_admin, user_id=user_id, **kwargs)
 
@@ -66,6 +67,9 @@ class ContextBase(oslo_context.RequestContext):
         self._is_service_role = policy_engine.check_is_service_role(self)
         if self.is_admin is None:
             self.is_admin = policy_engine.check_is_admin(self)
+        if not self._has_global_access:
+            self._has_global_access = policy_engine.check_has_global_access(
+                self)
 
     @property
     def tenant_id(self):
@@ -100,6 +104,10 @@ class ContextBase(oslo_context.RequestContext):
                     "Please use method 'is_service_role' instead.")
         return self.is_service_role
 
+    @property
+    def has_global_access(self):
+        return self.is_admin or self._has_global_access
+
     def to_dict(self):
         context = super().to_dict()
         context.update({
@@ -110,6 +118,7 @@ class ContextBase(oslo_context.RequestContext):
             'tenant_name': self.project_name,
             'project_name': self.project_name,
             'user_name': self.user_name,
+            'has_global_access': self.has_global_access,
         })
         return context
 
@@ -117,6 +126,7 @@ class ContextBase(oslo_context.RequestContext):
         values = super().to_policy_values()
         values['tenant_id'] = self.project_id
         values['is_admin'] = self.is_admin
+        values['has_global_access'] = self.has_global_access
 
         # NOTE(jamielennox): These are almost certainly unused and non-standard
         # but kept for backwards compatibility. Remove them in Pike

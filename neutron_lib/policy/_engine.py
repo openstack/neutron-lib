@@ -19,6 +19,7 @@ from oslo_policy import policy
 
 _ROLE_ENFORCER = None
 _ADMIN_CTX_POLICY = 'context_is_admin'
+_GLOBAL_CTX_POLICY = 'context_with_global_access'
 _ADVSVC_CTX_POLICY = 'context_is_advsvc'
 _SERVICE_ROLE = 'service_api'
 
@@ -31,6 +32,16 @@ _BASE_RULES = [
         _ADMIN_CTX_POLICY,
         'role:admin',
         description='Rule for cloud admin access'),
+    policy.RuleDefault(
+        # By default, no one has global access to the resources.
+        # That is special meaning of the "!" in rule, see
+        # https://docs.openstack.org/oslo.policy/latest/admin/policy-yaml-file.html#examples.
+        # This policy rule should be overridden by the cloud administrator if
+        # there is need to have any custom role with global access to the
+        # resources from all projects.
+        _GLOBAL_CTX_POLICY,
+        '!',
+        description='Rule for context with global access to the resources'),
     policy.RuleDefault(
         _ADVSVC_CTX_POLICY,
         'role:advsvc',
@@ -82,6 +93,16 @@ def check_is_admin(context):
     enforcer) and False otherwise.
     """
     return _check_rule(context, _ADMIN_CTX_POLICY)
+
+
+def check_has_global_access(context):
+    """Verify context has rights to fetch resources no matter of the owner
+
+    :param context: The context object.
+    :returns: True if the context has global rights (as per the global
+    enforcer) and False otherwise.
+    """
+    return _check_rule(context, _GLOBAL_CTX_POLICY)
 
 
 def check_is_advsvc(context):
