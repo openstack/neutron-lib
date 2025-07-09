@@ -13,6 +13,7 @@
 # String literals representing core resources.
 ADDRESS_GROUP = 'address_group'
 AGENT = 'agent'
+ALLOWED_ADDRESS_PAIR = 'allowed_address_pair'
 FLOATING_IP = 'floatingip'
 LOCAL_IP_ASSOCIATION = 'local_ip_association'
 NETWORK = 'network'
