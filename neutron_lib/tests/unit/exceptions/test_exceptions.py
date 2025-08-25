@@ -237,7 +237,7 @@ class TestExceptions(TestExceptionsBase):
         self._check_nexc(
             ne.NoNetworkAvailable,
             _("Unable to create the network. "
-              "No tenant network is available for allocation."))
+              "No project network is available for allocation."))
 
     def test_subnet_mismatch_for_port(self):
         self._check_nexc(

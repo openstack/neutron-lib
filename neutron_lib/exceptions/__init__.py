@@ -375,10 +375,10 @@ class NoNetworkAvailable(ResourceExhausted):
     """A failure to create a network due to no tenant networks for allocation.
 
     A specialization of the ResourceExhausted exception indicating network
-    creation failed because no tenant network are available for allocation.
+    creation failed because no project network are available for allocation.
     """
     message = _("Unable to create the network. "
-                "No tenant network is available for allocation.")
+                "No project network is available for allocation.")
 
 
 class SubnetMismatchForPort(BadRequest):
@@ -648,7 +648,7 @@ class InvalidQuotaValue(Conflict):
 
 class InvalidSharedSetting(Conflict):
     message = _("Unable to reconfigure sharing settings for network "
-                "%(network)s. Multiple tenants are using it.")
+                "%(network)s. Multiple projects are using it.")
 
 
 class ExtensionsNotFound(NotFound):
@@ -684,7 +684,7 @@ class DriverCallError(MultipleExceptions):
 
 class DeviceIDNotOwnedByTenant(Conflict):
     message = _("The following device_id %(device_id)s is not owned by your "
-                "tenant or matches another tenants router.")
+                "project or matches another project router.")
 
 
 class InvalidCIDR(BadRequest):
@@ -762,7 +762,7 @@ class SubnetPoolDeleteError(BadRequest):
 
 
 class SubnetPoolQuotaExceeded(OverQuota):
-    message = _("Per-tenant subnet pool prefix quota exceeded.")
+    message = _("Per-project subnet pool prefix quota exceeded.")
 
 
 class NetworkSubnetPoolAffinityError(BadRequest):
