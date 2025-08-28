@@ -43,6 +43,7 @@ assert_is_none_re = re.compile(
     r"assertIs(Not)?\(.*,\s+None\)(( |\t)*#.*)?$|assertIs(Not)?\(None,")
 
 
+@core.off_by_default
 @core.flake8ext
 def use_jsonutils(logical_line, filename):
     """N521 - jsonutils must be used instead of json.
@@ -108,6 +109,7 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
         return (0, msg_o or msg)
 
 
+@core.off_by_default
 @core.flake8ext
 def check_no_contextlib_nested(logical_line, filename):
     """N524 - Use of contextlib.nested is deprecated.
@@ -127,6 +129,7 @@ def check_no_contextlib_nested(logical_line, filename):
         yield (0, msg)
 
 
+@core.off_by_default
 @core.flake8ext
 def no_mutable_default_args(logical_line):
     """N529 - Method's default argument shouldn't be mutable.
@@ -144,6 +147,7 @@ def no_mutable_default_args(logical_line):
 # Chances are that most projects will need to put an ignore on this rule
 # until they can fully migrate to the lib.
 
+@core.off_by_default
 @core.flake8ext
 def check_neutron_namespace_imports(logical_line):
     """N530 - Direct neutron imports not allowed.
@@ -160,6 +164,7 @@ def check_neutron_namespace_imports(logical_line):
         yield x
 
 
+@core.off_by_default
 @core.flake8ext
 def check_no_eventlet_imports(logical_line):
     """N535 - Usage of Python eventlet module not allowed.
@@ -174,6 +179,7 @@ def check_no_eventlet_imports(logical_line):
         yield logical_line.index('eventlet'), msg
 
 
+@core.off_by_default
 @core.flake8ext
 def assert_equal_none(logical_line):
     """N536 - Use assertIsNone."""
