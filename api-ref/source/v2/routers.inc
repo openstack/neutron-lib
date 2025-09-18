@@ -161,6 +161,13 @@ enable or disable automatic configuration of BFD for default routes of a router
 created based on the default gateways of subnets accessible from a router's
 gateway ports (see ``enable-default-route-ecmp`` extension).
 
+Router exposes the "enable_snat" flag extension (``router-enable-snat``)
+========================================================================
+
+The ``router-enable-snat`` extension exposes, via the API, the router property
+flag "enable_snat". This flag can be set during the router creation but can
+only be modified using the external gateway API commands.
+
 List routers
 ============
 
@@ -211,6 +218,7 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - status: router-status
+   - enable_snat: router-enable_snat
    - external_gateway_info: router-external_gateway_info
    - external_gateways: router-external_gateways
    - revision_number: revision_number
@@ -298,6 +306,7 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - status: router-status
+   - enable_snat: router-enable_snat
    - external_gateway_info: router-external_gateway_info
    - external_gateways: router-external_gateways
    - revision_number: revision_number
@@ -358,6 +367,7 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - status: router-status
+   - enable_snat: router-enable_snat
    - external_gateway_info: router-external_gateway_info
    - external_gateways: router-external_gateways
    - revision_number: revision_number
@@ -436,6 +446,7 @@ Response Parameters
    - description: description
    - admin_state_up: admin_state_up
    - status: router-status
+   - enable_snat: router-enable_snat
    - external_gateway_info: router-external_gateway_info
    - external_gateways: router-external_gateways
    - revision_number: revision_number
