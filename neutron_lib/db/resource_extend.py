@@ -58,9 +58,12 @@ def register_funcs(resource, funcs):
             return foo_res
 
     """
-    funcs = [helpers.make_weak_ref(f) if callable(f) else f
-             for f in funcs]
-    _resource_extend_functions.setdefault(resource, []).extend(funcs)
+    funcs = [helpers.make_weak_ref(f) if callable(f) else f for f in funcs]
+    existing_funcs = _resource_extend_functions.setdefault(resource, [])
+
+    for func in funcs:
+        if func not in existing_funcs:
+            existing_funcs.append(func)
 
 
 def get_funcs(resource):

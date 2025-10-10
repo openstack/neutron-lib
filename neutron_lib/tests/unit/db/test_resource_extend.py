@@ -49,6 +49,19 @@ class TestResourceExtend(base.BaseTestCase):
         for r in resources:
             self.assertIsNotNone(resource_extend.get_funcs(r))
 
+    def test_register_funcs_no_duplicates(self):
+        resource = 'A'
+
+        def _cb(resp, db_obj):
+            pass
+
+        resource_extend.register_funcs(resource, (_cb,))
+        resource_extend.register_funcs(resource, (_cb,))
+
+        funcs = resource_extend.get_funcs(resource)
+        self.assertEqual(funcs.count(funcs[0]), 1)
+        self.assertEqual(len(funcs), 1)
+
     def test_apply_funcs(self):
         resources = ['A', 'B', 'C']
         callbacks = []

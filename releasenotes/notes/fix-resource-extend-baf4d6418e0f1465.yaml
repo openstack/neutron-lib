@@ -1,0 +1,7 @@
+---
+other:
+  - |
+    Avoid the duplicated method registration in class methods decorated with
+    ``resource_extend.has_resource_extenders``. Before registering a new
+    extended method, it is first checked if this method is already registered.
+    See bug: `2127835 <https://bugs.launchpad.net/neutron/+bug/2127835>`_.
