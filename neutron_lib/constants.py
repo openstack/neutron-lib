@@ -125,6 +125,8 @@ IPv4_NETWORK_BROADCAST = "255.255.255.255"
 
 IPv6_LLA_PREFIX = 'fe80::/64'
 
+LOCALHOST_IP_ADDRESSES = ('127.0.0.1', '::1')
+
 # All_DHCP_Relay_Agents_and_Servers
 # [RFC8415] https://datatracker.ietf.org/doc/html/rfc8415
 IPv6_ALL_DHCP_RELAY_AGENTS_AND_SERVERS = "ff02::1:2"
