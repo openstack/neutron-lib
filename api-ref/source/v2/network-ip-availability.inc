@@ -8,6 +8,14 @@ The extension ``network-ip-availability`` allows users to list and show the
 network IP usage stats of all networks or of a specified network.
 By default policy configuration, only administrative users can use this API.
 
+Network IP availability detail
+==============================
+
+The ``network-ip-availability-detail`` extension adds the
+``ip_availability_details`` attribute to network IP availabilities. The value
+of this attribute contains detailed information about the network IP usage
+statistics.
+
 Show Network IP Availability
 ============================
 
@@ -43,6 +51,7 @@ Response Parameters
    - project_id: project_id
    - total_ips: total_ips
    - used_ips: used_ips
+   - ip_availability_details: ip_availability_details
    - subnet_ip_availability: subnet_ip_availability
    - subnet_id: network_ip_availability-subnet_id
    - subnet_name: subnet_name
@@ -94,6 +103,7 @@ Response Parameters
    - project_id: project_id
    - total_ips: total_ips
    - used_ips: used_ips
+   - ip_availability_details: ip_availability_details
    - subnet_ip_availability: subnet_ip_availability
    - subnet_id: network_ip_availability-subnet_id
    - subnet_name: subnet_name
