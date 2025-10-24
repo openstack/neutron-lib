@@ -1349,7 +1349,7 @@ class TestAnyKeySpecs(base.BaseTestCase):
             validators.validate_any_key_specs_or_none(None, key_specs={}))
 
     def test_data_is_not_list(self):
-        for t in [dict(), set(), 'abc', 1, True]:
+        for t in [{}, set(), 'abc', 1, True]:
             self.assertRaises(
                 n_exc.InvalidInput,
                 validators.validate_any_key_specs_or_none, t, key_specs={})

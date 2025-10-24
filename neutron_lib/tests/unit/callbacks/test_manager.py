@@ -57,7 +57,7 @@ callback_id_2 = manager._get_id(callback_2)
 
 
 def callback_raise(*args, **kwargs):
-    raise Exception()
+    raise exceptions.BadRequest()
 
 
 def callback_raise_retriable(*args, **kwargs):
@@ -65,7 +65,7 @@ def callback_raise_retriable(*args, **kwargs):
 
 
 def callback_raise_not_retriable(*args, **kwargs):
-    raise Exception()
+    raise exceptions.BadRequest()
 
 
 def callback_3(resource, event, trigger, payload):

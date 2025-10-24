@@ -49,11 +49,11 @@ class TestExceptionToRetryContextManager(_base.BaseTestCase):
 
     def test_inner_exception_preserved_in_retryrequest(self):
         try:
-            exc = ValueError('test')
+            vexc = ValueError('test')
             with db_api.exc_to_retry(ValueError):
-                raise exc
+                raise vexc
         except db_exc.RetryRequest as e:
-            self.assertEqual(exc, e.inner_exc)
+            self.assertEqual(vexc, e.inner_exc)
 
     def test_retries_on_multi_exception_containing_target(self):
         with testtools.ExpectedException(db_exc.RetryRequest):

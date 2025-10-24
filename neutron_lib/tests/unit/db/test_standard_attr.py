@@ -37,11 +37,11 @@ class StandardAttrTestCase(base.BaseTestCase):
 
     def test_standard_attr_resource_model_map(self):
         rs_map = standard_attr.get_standard_attr_resource_model_map()
-        base = self._make_decl_base()
+        decl_base = self._make_decl_base()
 
         class MyModel(standard_attr.HasStandardAttributes,
                       standard_attr.model_base.HasId,
-                      base):
+                      decl_base):
             api_collections = ['my_resource', 'my_resource2']
             api_sub_resources = ['my_subresource']
 
@@ -66,30 +66,30 @@ class StandardAttrTestCase(base.BaseTestCase):
 
         class Dup(standard_attr.HasStandardAttributes,
                   standard_attr.model_base.HasId,
-                  base):
+                  decl_base):
             api_collections = ['my_resource']
 
         with testtools.ExpectedException(RuntimeError):
             standard_attr.get_standard_attr_resource_model_map()
 
     def test_standard_attr_resource_parent_map(self):
-        base = self._make_decl_base()
+        decl_base = self._make_decl_base()
 
         class TagSupportModel(standard_attr.HasStandardAttributes,
                               standard_attr.model_base.HasId,
-                              base):
+                              decl_base):
             collection_resource_map = {'collection_name': 'member_name'}
             tag_support = True
 
         class TagUnsupportModel(standard_attr.HasStandardAttributes,
                                 standard_attr.model_base.HasId,
-                                base):
+                                decl_base):
             collection_resource_map = {'collection_name2': 'member_name2'}
             tag_support = False
 
         class TagUnsupportModel2(standard_attr.HasStandardAttributes,
                                  standard_attr.model_base.HasId,
-                                 base):
+                                 decl_base):
             collection_resource_map = {'collection_name3': 'member_name3'}
 
         parent_map = standard_attr.get_tag_resource_parent_map()
@@ -99,7 +99,7 @@ class StandardAttrTestCase(base.BaseTestCase):
 
         class DupTagSupportModel(standard_attr.HasStandardAttributes,
                                  standard_attr.model_base.HasId,
-                                 base):
+                                 decl_base):
             collection_resource_map = {'collection_name': 'member_name'}
             tag_support = True
 

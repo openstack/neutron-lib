@@ -45,8 +45,8 @@ class FakeNotifier:
         return self.__class__(self.transport, publisher_id)
 
     def _notify(self, ctxt, event_type, payload, priority):
-        msg = dict(publisher_id=self.publisher_id,
-                   priority=priority,
-                   event_type=event_type,
-                   payload=payload)
+        msg = {'publisher_id': self.publisher_id,
+               'priority': priority,
+               'event_type': event_type,
+               'payload': payload}
         NOTIFICATIONS.append(msg)

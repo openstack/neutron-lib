@@ -28,7 +28,7 @@ class TestReplaceFile(base.BaseTestCase):
 
     def _verify_result(self, file_mode):
         self.assertTrue(os.path.exists(self.file_name))
-        with open(self.file_name) as f:
+        with open(self.file_name, encoding='utf-8') as f:
             content = f.read()
         self.assertEqual(self.data, content)
         mode = os.stat(self.file_name).st_mode

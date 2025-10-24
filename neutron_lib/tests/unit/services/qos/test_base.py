@@ -38,10 +38,13 @@ def _make_rule(rule_type='fake-rule-type', params=None):
 
 
 def _make_driver(name='fake-driver',
-                 vif_types=[portbindings.VIF_TYPE_OVS],
-                 vnic_types=[portbindings.VNIC_NORMAL],
-                 supported_rules=SUPPORTED_RULES,
+                 vif_types=None,
+                 vnic_types=None,
+                 supported_rules=None,
                  requires_rpc_notifications=False):
+    vif_types = vif_types or [portbindings.VIF_TYPE_OVS]
+    vnic_types = vnic_types or [portbindings.VNIC_NORMAL]
+    supported_rules = supported_rules or SUPPORTED_RULES
     return qos_base.DriverBase(
         name, vif_types, vnic_types, supported_rules,
         requires_rpc_notifications=requires_rpc_notifications)

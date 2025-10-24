@@ -167,7 +167,7 @@ class DefinitionBaseTestCase(test_base.BaseTestCase):
                 self._assert_subresource(subresource)
             else:
                 self.assertEqual(
-                    ['parameters'], [p for p in sub_attrmap.keys()],
+                    ['parameters'], list(sub_attrmap.keys()),
                     'When extending sub-resources only use the parameters '
                     'keyword')
                 self.assertParams(sub_attrmap['parameters'])

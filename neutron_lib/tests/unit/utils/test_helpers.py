@@ -113,8 +113,8 @@ class TestDictUtils(base.BaseTestCase):
                     {"key2": "value2"},
                     {"key4": "value4"}]
         added, removed = helpers.diff_list_of_dict(old_list, new_list)
-        self.assertEqual(added, [dict(key4="value4")])
-        self.assertEqual(removed, [dict(key3="value3")])
+        self.assertEqual(added, [{"key4": "value4"}])
+        self.assertEqual(removed, [{"key3": "value3"}])
 
 
 class TestDict2Tuples(base.BaseTestCase):

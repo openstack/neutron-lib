@@ -398,11 +398,11 @@ class TestConvertToSanitizedMacAddress(base.BaseTestCase):
                      ('12345678901', '01:23:45:67:89:01'),
                      ('012345678901', '01:23:45:67:89:01'),
                      )
-        for input, expected in input_exp:
+        for eui, expected in input_exp:
             self.assertEqual(
                 expected,
-                converters.convert_to_sanitized_mac_address(input))
-            eui_address = netaddr.EUI(input)
+                converters.convert_to_sanitized_mac_address(eui))
+            eui_address = netaddr.EUI(eui)
             self.assertEqual(
                 expected,
                 converters.convert_to_sanitized_mac_address(eui_address))

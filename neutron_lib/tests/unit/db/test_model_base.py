@@ -32,30 +32,30 @@ class TestModelBase(db_base.SqlTestCase):
         self.session = self.ctx.session
 
     def test_model_base(self):
-        foo = TestTable(name='meh')
-        self.assertEqual('meh', foo.name)
-        self.assertIn('meh', str(foo))  # test foo.__repr__
-        cols = [k for k, _v in foo]  # test foo.__iter__ and foo.next
+        table = TestTable(name='meh')
+        self.assertEqual('meh', table.name)
+        self.assertIn('meh', str(table))  # test table.__repr__
+        cols = [k for k, _v in table]  # test table.__iter__ and table.next
         self.assertIn('name', cols)
 
     def test_get_set_tenant_id_tenant(self):
-        foo = TestTable(tenant_id='tenant')
-        self.assertEqual('tenant', foo.get_tenant_id())
-        foo.set_tenant_id('project')
-        self.assertEqual('project', foo.get_tenant_id())
+        table = TestTable(tenant_id='tenant')
+        self.assertEqual('tenant', table.get_tenant_id())
+        table.set_tenant_id('project')
+        self.assertEqual('project', table.get_tenant_id())
 
     def test_get_set_tenant_id_project(self):
-        foo = TestTable(project_id='project')
-        self.assertEqual('project', foo.get_tenant_id())
-        foo.set_tenant_id('tenant')
-        self.assertEqual('tenant', foo.get_tenant_id())
+        table = TestTable(project_id='project')
+        self.assertEqual('project', table.get_tenant_id())
+        table.set_tenant_id('tenant')
+        self.assertEqual('tenant', table.get_tenant_id())
 
     def test_project_id_attribute(self):
-        foo = TestTable(project_id='project')
-        self.assertEqual('project', foo.project_id)
-        self.assertEqual('project', foo.tenant_id)
+        table = TestTable(project_id='project')
+        self.assertEqual('project', table.project_id)
+        self.assertEqual('project', table.tenant_id)
 
     def test_tenant_id_attribute(self):
-        foo = TestTable(tenant_id='tenant')
-        self.assertEqual('tenant', foo.project_id)
-        self.assertEqual('tenant', foo.tenant_id)
+        table = TestTable(tenant_id='tenant')
+        self.assertEqual('tenant', table.project_id)
+        self.assertEqual('tenant', table.tenant_id)

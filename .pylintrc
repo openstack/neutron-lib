@@ -2,7 +2,7 @@
 [MASTER]
 # Add <file or directory> to the black list. It should be a base name, not a
 # path. You may set this option multiple times.
-ignore=.git,tests
+ignore=.git
 
 [MESSAGES CONTROL]
 # NOTE(gus): This is a long list.  A number of these are important and
