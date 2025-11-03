@@ -89,7 +89,7 @@ class TestHooks(_base.BaseTestCase):
         model_query.register_hook(
             mock_model, 'hook1', self._mock_hook,
             self._mock_hook, result_filters=self._mock_hook,
-            rbac_actions=constants.ACCESS_READONLY)
+            rbac_actions=constants.ACCESS_EXTERNAL)
         self.assertEqual(1, len(model_query._model_query_hooks.keys()))
         hook_ref = helpers.make_weak_ref(self._mock_hook)
         registered_hooks = model_query.get_hooks(mock_model)
@@ -97,7 +97,7 @@ class TestHooks(_base.BaseTestCase):
         expected_hooks = {'query': hook_ref,
                           'filter': hook_ref,
                           'result_filters': hook_ref,
-                          'rbac_actions': {constants.ACCESS_READONLY}}
+                          'rbac_actions': {constants.ACCESS_EXTERNAL}}
         self.check_registered_hooks(registered_hooks, expected_hooks)
 
     def test_get_values(self):
@@ -116,23 +116,23 @@ class TestHooks(_base.BaseTestCase):
         model = uuidutils.generate_uuid()
         model_query.register_hook(model, 'hook1', mock.ANY, mock.ANY)
         rbacs = model_query.get_rbac_actions(model)
-        self.assertEqual(model_query.DEFAULT_RBAC_ACTIONS, rbacs)
+        self.assertEqual({constants.ACCESS_SHARED}, rbacs)
 
     def test_get_rbac_actions_one_rbac(self):
         model = uuidutils.generate_uuid()
         model_query.register_hook(model, 'hook1', mock.ANY, mock.ANY,
-                                  rbac_actions=constants.ACCESS_READONLY)
+                                  rbac_actions=constants.ACCESS_EXTERNAL)
         rbacs = model_query.get_rbac_actions(model)
-        self.assertEqual({constants.ACCESS_READONLY}, rbacs)
+        self.assertEqual({constants.ACCESS_EXTERNAL}, rbacs)
 
     def test_get_rbac_actions_multiple_rbac(self):
         model = uuidutils.generate_uuid()
         model_query.register_hook(model, 'hook1', mock.ANY, mock.ANY,
-                                  rbac_actions=constants.ACCESS_READONLY)
+                                  rbac_actions=constants.ACCESS_EXTERNAL)
         model_query.register_hook(model, 'hook2', mock.ANY, mock.ANY,
-                                  rbac_actions=constants.ACCESS_READONLY)
+                                  rbac_actions=constants.ACCESS_EXTERNAL)
         model_query.register_hook(model, 'hook3', mock.ANY, mock.ANY,
                                   rbac_actions=constants.ACCESS_SHARED)
         rbacs = model_query.get_rbac_actions(model)
-        self.assertEqual({constants.ACCESS_READONLY, constants.ACCESS_SHARED},
+        self.assertEqual({constants.ACCESS_EXTERNAL, constants.ACCESS_SHARED},
                          rbacs)

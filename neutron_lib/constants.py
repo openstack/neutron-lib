@@ -722,7 +722,6 @@ PORT_NUMA_POLICIES = (PORT_NUMA_POLICY_REQUIRED,
 
 # RBAC Sharing Actions
 ACCESS_SHARED = 'access_as_shared'
-ACCESS_READONLY = 'access_as_readonly'
 ACCESS_EXTERNAL = 'access_as_external'
 
 # neutron-dynamic-routing constants

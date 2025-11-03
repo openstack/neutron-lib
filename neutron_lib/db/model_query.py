@@ -28,11 +28,6 @@ from neutron_lib.objects import utils as obj_utils
 from neutron_lib.utils import helpers
 
 
-DEFAULT_RBAC_ACTIONS = {constants.ACCESS_SHARED,
-                        constants.ACCESS_READONLY,
-                        }
-
-
 # Classes implementing extensions will register hooks into this dictionary
 # for "augmenting" the "core way" of building a query for retrieving objects
 # from a model class. Hooks are registered by invoking register_hook().
@@ -130,7 +125,10 @@ def get_rbac_actions(model):
             if rbac_actions is None:
                 rbac_actions = set()
             rbac_actions.update(hook_rbac_actions)
-    return rbac_actions if rbac_actions is not None else DEFAULT_RBAC_ACTIONS
+    return (
+        rbac_actions if rbac_actions is not None else
+        {constants.ACCESS_SHARED}
+    )
 
 
 def query_with_hooks(context, model, field=None, lazy_fields=None):
