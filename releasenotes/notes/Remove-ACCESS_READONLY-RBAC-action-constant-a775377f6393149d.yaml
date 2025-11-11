@@ -1,0 +1,8 @@
+---
+other:
+  - |
+    Constant ``ACCESS_READONLY`` which represented RBAC action `access as
+    readonly` was removed. This constant was added as part of the RFE `Allow
+    sharing security groups as read-only
+    <https://bugs.launchpad.net/neutron/+bug/1875516>`_ but was never fully
+    implemented and is not needed anymore.
