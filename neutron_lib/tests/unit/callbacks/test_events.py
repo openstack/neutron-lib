@@ -12,8 +12,9 @@
 
 from unittest import mock
 
-from neutron_lib.callbacks import events
 from oslotest import base
+
+from neutron_lib.callbacks import events
 
 
 class EventPayloadTestCase(base.BaseTestCase):

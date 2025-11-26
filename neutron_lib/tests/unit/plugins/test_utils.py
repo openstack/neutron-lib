@@ -155,7 +155,7 @@ class TestUtils(base.BaseTestCase):
         with mock.patch.object(excutils, 'save_and_reraise_exception'):
             with mock.patch.object(utils, 'LOG'):
                 with utils.delete_port_on_error(core_plugin, 'ctx', '1'):
-                    raise Exception()
+                    raise exceptions.BadRequest()
 
         core_plugin.delete_port.assert_called_once_with(
             'ctx', '1', l3_port_check=False)
@@ -165,7 +165,7 @@ class TestUtils(base.BaseTestCase):
         with mock.patch.object(excutils, 'save_and_reraise_exception'):
             with mock.patch.object(utils, 'LOG'):
                 with utils.update_port_on_error(core_plugin, 'ctx', '1', '2'):
-                    raise Exception()
+                    raise exceptions.BadRequest()
 
         core_plugin.update_port.assert_called_once_with(
             'ctx', '1', {'port': '2'})

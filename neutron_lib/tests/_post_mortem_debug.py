@@ -25,9 +25,9 @@ def get_exception_handler(debugger_name):
 def _get_debugger(debugger_name):
     try:
         debugger = __import__(debugger_name)
-    except ImportError:
+    except ImportError as exc:
         raise ValueError("can't import %s module as a post mortem debugger" %
-                         debugger_name)
+                         debugger_name) from exc
     if 'post_mortem' in dir(debugger):
         return debugger
     else:
@@ -88,9 +88,9 @@ def get_ignored_traceback(tb):
 
     # Find all members of an ignored trailing chain
     ignored_tracebacks = []
-    for tb in reversed(tb_list):
+    for memb in reversed(tb_list):
         if '__unittest' in tb.tb_frame.f_globals:
-            ignored_tracebacks.append(tb)
+            ignored_tracebacks.append(memb)
         else:
             break
 

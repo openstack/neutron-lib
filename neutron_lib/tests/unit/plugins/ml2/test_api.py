@@ -17,8 +17,8 @@ from neutron_lib.tests import _base as base
 
 
 class _MechanismDriver(api.MechanismDriver):
-    def bind_port(s, c):
-        return c
+    def bind_port(self, context):
+        return context
 
     def initialize(self):
         pass
