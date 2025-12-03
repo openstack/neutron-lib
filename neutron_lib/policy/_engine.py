@@ -22,6 +22,7 @@ _ADMIN_CTX_POLICY = 'context_is_admin'
 _GLOBAL_CTX_POLICY = 'context_with_global_access'
 _ADVSVC_CTX_POLICY = 'context_is_advsvc'
 _SERVICE_ROLE = 'service_api'
+_CAN_SET_PROJECT_ID_CTX_POLICY = 'context_can_set_project_id'
 
 
 opts.set_defaults(cfg.CONF)
@@ -42,6 +43,20 @@ _BASE_RULES = [
         _GLOBAL_CTX_POLICY,
         '!',
         description='Rule for context with global access to the resources'),
+    policy.RuleDefault(
+        # By default, no one except admin can send project id in the request
+        # body.
+        # That is special meaning of the "!" in rule, see
+        # https://docs.openstack.org/oslo.policy/latest/admin/policy-yaml-file.html#examples.
+        # This policy rule should be overridden by the cloud administrator if
+        # there is need to have any custom role with privileges to send
+        # project_id in the request body of the POST requests to create
+        # resources for other projects.
+        _CAN_SET_PROJECT_ID_CTX_POLICY,
+        '!',
+        description='Rule for context with privileges to send project_id in '
+                    'the request body of the requests to create resources '
+                    'for other projects'),
     policy.RuleDefault(
         _ADVSVC_CTX_POLICY,
         'role:advsvc',
@@ -103,6 +118,16 @@ def check_has_global_access(context):
     enforcer) and False otherwise.
     """
     return _check_rule(context, _GLOBAL_CTX_POLICY)
+
+
+def check_can_set_project_id(context):
+    """Verify context has rights to send project_id in the request body
+
+    :param context: The context object.
+    :returns: True if the context has rights to send project_id in
+    the request body (as per the global enforcer) and False otherwise.
+    """
+    return _check_rule(context, _CAN_SET_PROJECT_ID_CTX_POLICY)
 
 
 def check_is_advsvc(context):

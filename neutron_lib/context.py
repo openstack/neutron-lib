@@ -36,7 +36,7 @@ class ContextBase(oslo_context.RequestContext):
     def __init__(self, user_id=None, project_id=None, is_admin=None,
                  timestamp=None, project_name=None, user_name=None,
                  is_advsvc=None, tenant_id=None, tenant_name=None,
-                 has_global_access=False, **kwargs):
+                 has_global_access=False, can_set_project_id=False, **kwargs):
         # NOTE(jamielennox): We maintain this argument order for tests that
         # pass arguments positionally.
 
@@ -55,6 +55,7 @@ class ContextBase(oslo_context.RequestContext):
         kwargs.setdefault('project_id', project_id)
         kwargs.setdefault('project_name', project_name)
         self._has_global_access = has_global_access
+        self._can_set_project_id = can_set_project_id
         super().__init__(
             is_admin=is_admin, user_id=user_id, **kwargs)
 
@@ -69,6 +70,9 @@ class ContextBase(oslo_context.RequestContext):
             self.is_admin = policy_engine.check_is_admin(self)
         if not self._has_global_access:
             self._has_global_access = policy_engine.check_has_global_access(
+                self)
+        if not self._can_set_project_id:
+            self._can_set_project_id = policy_engine.check_can_set_project_id(
                 self)
 
     @property
@@ -108,6 +112,14 @@ class ContextBase(oslo_context.RequestContext):
     def has_global_access(self):
         return self.is_admin or self._has_global_access
 
+    @property
+    def can_set_project_id(self):
+        # TODO(slaweq): add also self.is_service_role to the condition
+        # once is_advsvc attribute will be deprecated and is_service_role
+        # will be possible to set through the argument to the __init__
+        # method
+        return self.is_admin or self._can_set_project_id
+
     def to_dict(self):
         context = super().to_dict()
         context.update({
@@ -119,6 +131,7 @@ class ContextBase(oslo_context.RequestContext):
             'project_name': self.project_name,
             'user_name': self.user_name,
             'has_global_access': self.has_global_access,
+            'can_set_project_id': self.can_set_project_id,
         })
         return context
 
@@ -127,6 +140,7 @@ class ContextBase(oslo_context.RequestContext):
         values['tenant_id'] = self.project_id
         values['is_admin'] = self.is_admin
         values['has_global_access'] = self.has_global_access
+        values['can_set_project_id'] = self.can_set_project_id
 
         # NOTE(jamielennox): These are almost certainly unused and non-standard
         # but kept for backwards compatibility. Remove them in Pike

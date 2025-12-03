@@ -1,0 +1,12 @@
+---
+features:
+  - |
+    New attribute ``can_set_project_id`` is added to the context object. Value of
+    this attribute is set based on the API policy rule
+    ``context_can_set_project_id`` and should be used in case when there are
+    custom roles with granted permission to send project_id in the request body of the
+    POST requests to create resources for other projects.
+    For example, ``network_admin`` role which should have persmission to create
+    networks for all projects in the cloud.
+    By default ``context.can_set_project_id`` is granted to no one and only admin and
+    service users can send project_id in the request body.

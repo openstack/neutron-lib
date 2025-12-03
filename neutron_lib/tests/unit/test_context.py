@@ -117,11 +117,13 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertFalse(ctx.is_admin)
         self.assertTrue(ctx.is_advsvc)
         self.assertFalse(ctx.has_global_access)
+        self.assertFalse(ctx.can_set_project_id)
 
     def test_neutron_context_create_is_service_role(self):
         ctx = context.Context('user_id', 'project_id', roles=['service'])
         self.assertFalse(ctx.is_admin)
         self.assertTrue(ctx.is_service_role)
+        self.assertFalse(ctx.has_global_access)
         self.assertFalse(ctx.has_global_access)
 
     def test_neutron_context_create_with_auth_token(self):
@@ -226,6 +228,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertIsNone(ctx_dict['auth_token'])
         self.assertTrue(ctx_dict['is_admin'])
         self.assertTrue(ctx_dict['has_global_access'])
+        self.assertTrue(ctx_dict['can_set_project_id'])
         self.assertIn('admin', ctx_dict['roles'])
         self.assertIsNotNone(ctx.session)
         self.assertNotIn('session', ctx_dict)
@@ -274,6 +277,7 @@ class TestNeutronContext(_base.BaseTestCase):
         elevated_ctx = ctx.elevated()
         self.assertTrue(elevated_ctx.is_admin)
         self.assertTrue(elevated_ctx.has_global_access)
+        self.assertTrue(elevated_ctx.can_set_project_id)
         for expected_role in expected_roles:
             self.assertIn(expected_role, elevated_ctx.roles)
         # make sure we do not set the system scope in context
@@ -285,6 +289,7 @@ class TestNeutronContext(_base.BaseTestCase):
         ctx = context.Context('user_id', 'project_id', roles=custom_roles)
         self.assertFalse(ctx.is_admin)
         self.assertFalse(ctx.has_global_access)
+        self.assertFalse(ctx.can_set_project_id)
         self.assertNotEqual('all', ctx.system_scope)
         for expected_admin_role in expected_admin_roles:
             self.assertNotIn(expected_admin_role, ctx.roles)
@@ -294,6 +299,7 @@ class TestNeutronContext(_base.BaseTestCase):
         elevated_ctx = ctx.elevated()
         self.assertTrue(elevated_ctx.is_admin)
         self.assertTrue(elevated_ctx.has_global_access)
+        self.assertTrue(elevated_ctx.can_set_project_id)
         for expected_admin_role in expected_admin_roles:
             self.assertIn(expected_admin_role, elevated_ctx.roles)
         for custom_role in custom_roles:
@@ -335,6 +341,17 @@ class TestNeutronContext(_base.BaseTestCase):
                         return_value=True):
             ctx = context.Context('user_id', 'project_id')
             self.assertTrue(ctx.has_global_access)
+
+    def test_neutron_context_can_set_project_id(self):
+        with mock.patch('neutron_lib.policy._engine.check_can_set_project_id',
+                        return_value=False):
+            ctx = context.Context('user_id', 'project_id')
+            self.assertFalse(ctx.can_set_project_id)
+
+        with mock.patch('neutron_lib.policy._engine.check_can_set_project_id',
+                        return_value=True):
+            ctx = context.Context('user_id', 'project_id')
+            self.assertTrue(ctx.can_set_project_id)
 
     def test_to_policy_values(self):
         values = {
