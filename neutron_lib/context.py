@@ -128,11 +128,11 @@ class ContextBase(oslo_context.RequestContext):
 
     @property
     def can_set_project_id(self):
-        # TODO(slaweq): add also self.is_service_role to the condition
-        # once is_advsvc attribute will be deprecated and is_service_role
-        # will be possible to set through the argument to the __init__
-        # method
-        return self.is_admin or self._can_set_project_id
+        return (
+            self.is_admin or
+            self.is_service_role or
+            self._can_set_project_id
+        )
 
     def to_dict(self):
         context = super().to_dict()

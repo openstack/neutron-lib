@@ -25,7 +25,7 @@ from neutron_lib import exceptions
 def _validate_privileges(context, res_dict):
     if ('project_id' in res_dict and
             res_dict['project_id'] != context.project_id and
-            not (context.can_set_project_id or context.is_service_role)):
+            not context.can_set_project_id):
         msg = _("Specifying 'project_id' or 'tenant_id' other than the "
                 "authenticated project in request is not allowed for "
                 "current user.")
