@@ -2958,7 +2958,7 @@ direction_taf:
 directions_tap_mirror:
   description: |
     A dictionary of ``direction`` and ``tunnel_id``.
-    Direction can be ``IN`` and ``OUT``.
+    Direction can be ``IN``, ``OUT`` and ``BOTH``.
   in: body
   required: true
   type: object

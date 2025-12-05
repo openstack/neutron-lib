@@ -204,6 +204,7 @@ KNOWN_EXTENSIONS = (
     # https://opendev.org/openstack/tap-as-a-service
     'taas',
     'tap-mirror',
+    'tap-mirror-both-direction',
     'taas-vlan-filter',
 )
 

@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    New extension ``tap-mirror-both-direction`` extends ``tap_mirror``
+    with both direction to mirror in and out traffic at the same time.

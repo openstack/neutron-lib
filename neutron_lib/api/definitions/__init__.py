@@ -162,6 +162,7 @@ from neutron_lib.api.definitions import taas
 from neutron_lib.api.definitions import tag_creation
 from neutron_lib.api.definitions import tag_ports_during_bulk_creation
 from neutron_lib.api.definitions import tap_mirror
+from neutron_lib.api.definitions import tap_mirror_both_direction
 from neutron_lib.api.definitions import trunk
 from neutron_lib.api.definitions import trunk_details
 from neutron_lib.api.definitions import uplink_status_propagation
@@ -327,6 +328,7 @@ _ALL_API_DEFINITIONS = {
     tag_creation,
     tag_ports_during_bulk_creation,
     tap_mirror,
+    tap_mirror_both_direction,
     trunk,
     trunk_details,
     uplink_status_propagation,
