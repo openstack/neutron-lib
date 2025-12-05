@@ -124,7 +124,7 @@ class TestNeutronContext(_base.BaseTestCase):
         self.assertFalse(ctx.is_admin)
         self.assertTrue(ctx.is_service_role)
         self.assertFalse(ctx.has_global_access)
-        self.assertFalse(ctx.has_global_access)
+        self.assertFalse(ctx.can_set_project_id)
 
     def test_neutron_context_create_with_auth_token(self):
         ctx = context.Context('user_id', 'project_id',
