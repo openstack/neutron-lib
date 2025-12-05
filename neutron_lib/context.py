@@ -35,7 +35,8 @@ class ContextBase(oslo_context.RequestContext):
 
     def __init__(self, user_id=None, project_id=None, is_admin=None,
                  timestamp=None, project_name=None, user_name=None,
-                 is_advsvc=None, tenant_id=None, tenant_name=None,
+                 is_advsvc=None, is_service_role=None,
+                 tenant_id=None, tenant_name=None,
                  has_global_access=False, can_set_project_id=False, **kwargs):
         # NOTE(jamielennox): We maintain this argument order for tests that
         # pass arguments positionally.
@@ -56,16 +57,29 @@ class ContextBase(oslo_context.RequestContext):
         kwargs.setdefault('project_name', project_name)
         self._has_global_access = has_global_access
         self._can_set_project_id = can_set_project_id
+        self._is_advsvc = is_advsvc
+        self._is_service_role = is_service_role
         super().__init__(
             is_admin=is_admin, user_id=user_id, **kwargs)
 
         self.user_name = user_name
         self.timestamp = timestamp or timeutils.utcnow()
-        self._is_advsvc = is_advsvc
-        if self._is_advsvc is None:
+
+        if self._is_advsvc is not None:
+            LOG.warning(
+                "Argument 'is_advsvc' is deprecated since 2026.1 release "
+                "(neutron-lib 3.23.0) and will be removed once support for "
+                "the old RBAC API policies will be removed from Neutron. "
+                "Please use argument 'is_service_role' instead.")
+        else:
+            # TODO(slaweq): remove this once is_advsvc will be removed and
+            # we will rely on is_service_role only
             self._is_advsvc = (self.is_admin or
                                policy_engine.check_is_advsvc(self))
-        self._is_service_role = policy_engine.check_is_service_role(self)
+
+        if self._is_service_role is None:
+            self._is_service_role = policy_engine.check_is_service_role(self)
+
         if self.is_admin is None:
             self.is_admin = policy_engine.check_is_admin(self)
         if not self._has_global_access:
