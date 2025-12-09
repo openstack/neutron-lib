@@ -347,3 +347,18 @@ class NumaAffinityPoliciesEnumFieldTest(test_base.BaseTestCase, TestField):
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
             self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+
+
+class PortHardwareOffloadTypeEnumFieldTest(test_base.BaseTestCase, TestField):
+    def setUp(self):
+        super().setUp()
+        self.field = common_types.PortHardwareOffloadTypeEnumField()
+        good_values = [const.HWOL_TYPE_SWITCHDEV]
+        self.coerce_good_values = [(val, val) for val in good_values]
+        self.coerce_bad_values = ['foo-invalid-type']
+        self.to_primitive_values = self.coerce_good_values
+        self.from_primitive_values = self.coerce_good_values
+
+    def test_stringify(self):
+        for in_val, out_val in self.coerce_good_values:
+            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
