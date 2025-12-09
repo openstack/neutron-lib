@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    New base class ``ovn.db_sync.BaseOvnDbSynchronizer`` was added. This new
+    class should be used by the projects providing sync plugins for the
+    ovn_db_sync CLI tool.
