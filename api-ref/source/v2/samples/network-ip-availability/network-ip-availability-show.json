@@ -8,7 +8,13 @@
                 "subnet_name": "private-subnet",
                 "ip_version": 4,
                 "cidr": "10.0.0.0/24",
-                "total_ips": 253
+                "total_ips": 253,
+                "ip_availability_details": {
+                    "total_ips_in_subnet": 254,
+                    "total_ips_in_allocation_pool": 253,
+                    "used_ips_in_subnet": 2,
+                    "used_ips_in_allocation_pool": 1
+                }
             },
             {
                 "used_ips": 2,
@@ -16,13 +22,25 @@
                 "subnet_name": "ipv6-private-subnet",
                 "ip_version": 6,
                 "cidr": "fdbf:ac66:9be8::/64",
-                "total_ips": 18446744073709552000
+                "total_ips": 18446744073709551000,
+                "ip_availability_details": {
+                    "total_ips_in_subnet": 18446744073709551616,
+                    "total_ips_in_allocation_pool": 18446744073709551000,
+                    "used_ips_in_subnet": 2,
+                    "used_ips_in_allocation_pool": 1
+                }
             }
         ],
         "network_id": "6801d9c8-20e6-4b27-945d-62499f00002e",
         "project_id": "d56d3b8dd6894a508cf41b96b522328c",
         "tenant_id": "d56d3b8dd6894a508cf41b96b522328c",
-        "total_ips": 18446744073709552253,
-        "network_name": "private"
+        "total_ips": 18446744073709551253,
+        "network_name": "private",
+        "ip_availability_details": {
+            "total_ips_in_subnet": 18446744073709551870,
+            "total_ips_in_allocation_pool": 18446744073709551253,
+            "used_ips_in_subnet": 4,
+            "used_ips_in_allocation_pool": 2
+        }
     }
 }

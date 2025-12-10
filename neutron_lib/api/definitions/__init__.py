@@ -84,6 +84,7 @@ from neutron_lib.api.definitions import network_availability_zone
 from neutron_lib.api.definitions import network_cascade_delete
 from neutron_lib.api.definitions import network_ha
 from neutron_lib.api.definitions import network_ip_availability
+from neutron_lib.api.definitions import network_ip_availability_details
 from neutron_lib.api.definitions import network_mtu
 from neutron_lib.api.definitions import network_mtu_writable
 from neutron_lib.api.definitions import network_segment_range
@@ -249,6 +250,7 @@ _ALL_API_DEFINITIONS = {
     network_cascade_delete,
     network_ha,
     network_ip_availability,
+    network_ip_availability_details,
     network_mtu,
     network_mtu_writable,
     network_segment_range,
