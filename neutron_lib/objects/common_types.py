@@ -390,3 +390,7 @@ class NetworkSegmentRangeNetworkTypeEnumField(obj_fields.AutoTypedField):
 
 class NumaAffinityPoliciesEnumField(obj_fields.AutoTypedField):
     AUTO_TYPE = obj_fields.Enum(valid_values=lib_constants.PORT_NUMA_POLICIES)
+
+
+class PortHardwareOffloadTypeEnumField(obj_fields.AutoTypedField):
+    AUTO_TYPE = obj_fields.Enum(valid_values=lib_constants.VALID_HWOL_TYPES)
