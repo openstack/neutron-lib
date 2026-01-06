@@ -15,5 +15,5 @@ Neutron Library Specific Commandments
 - [N532] Validate that LOG.warning is used instead of LOG.warn. The latter is deprecated.
 - [N534] Exception messages should be translated
 - [N535] Usage of Python eventlet module not allowed
-- [N536] Use assertIsNone/assertIsNotNone rather than assertEqual/assertIs to check None values.
+- [N536] DEPRECATED: Use assertIsNone/assertIsNotNone rather than assertEqual/assertIs to check None values.
 - [N537] Don't translate logs.

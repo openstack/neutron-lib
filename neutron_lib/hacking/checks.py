@@ -14,6 +14,7 @@
 
 import re
 
+from debtcollector import removals
 from hacking import core
 
 from neutron_lib.hacking import translation_checks
@@ -179,6 +180,7 @@ def check_no_eventlet_imports(logical_line):
         yield logical_line.index('eventlet'), msg
 
 
+@removals.remove(message='Use H203 check instead')
 @core.off_by_default
 @core.flake8ext
 def assert_equal_none(logical_line):
@@ -212,4 +214,3 @@ def factory(register):
     register(translation_checks.no_translate_logs)
     register(translation_checks.check_log_warn_deprecated)
     register(translation_checks.check_raised_localized_exceptions)
-    register(assert_equal_none)
