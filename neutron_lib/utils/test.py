@@ -27,8 +27,8 @@ def unstable_test(reason):
             try:
                 return f(self, *args, **kwargs)
             except Exception as e:
-                msg = ("%s was marked as unstable because of %s, "
-                       "failure was: %s") % (self.id(), reason, e)
+                msg = (f"{self.id()} was marked as unstable because of "
+                       f"{reason}, failure was: {e}")
                 raise self.skipTest(msg)
         return inner
     return decor

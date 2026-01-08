@@ -19,8 +19,8 @@ from neutron_lib.db import constants as db_constants
 
 ADDRESS_SCOPE = 'address_scope'
 ADDRESS_SCOPE_ID = 'address_scope_id'
-IPV4_ADDRESS_SCOPE = 'ipv4_%s' % ADDRESS_SCOPE
-IPV6_ADDRESS_SCOPE = 'ipv6_%s' % ADDRESS_SCOPE
+IPV4_ADDRESS_SCOPE = f'ipv4_{ADDRESS_SCOPE}'
+IPV6_ADDRESS_SCOPE = f'ipv6_{ADDRESS_SCOPE}'
 
 ALIAS = 'address-scope'
 IS_SHIM_EXTENSION = False

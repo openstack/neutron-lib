@@ -13,3 +13,17 @@ disable_error_code = "import-untyped,var-annotated,import-not-found"
 # honor excludes by not following there through imports
 follow_imports = "silent"
 files = "neutron_lib"
+
+[tool.ruff]
+line-length = 79
+
+[tool.ruff.lint]
+select = ["E4", "E5", "E7", "E9", "F", "S", "UP"]
+ignore = [
+    "S104",  # Possible binding to all interfaces
+    "S311",  # Suspicious non-cryptographic random usage
+    "UP031", # Use format specifiers instead of percent format
+]
+
+[tool.ruff.lint.per-file-ignores]
+"neutron_lib/tests/*" = ["S"]

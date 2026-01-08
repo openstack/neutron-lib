@@ -42,30 +42,30 @@ class HackingTestCase(base.BaseTestCase):
 
     def test_use_jsonutils(self):
         def __get_msg(fun):
-            msg = ("N521: jsonutils.%(fun)s must be used instead of "
-                   "json.%(fun)s" % {'fun': fun})
+            msg = (f"N521: jsonutils.{fun} must be used instead of "
+                   f"json.{fun}")
             return [(0, msg)]
 
         for method in ('dump', 'dumps', 'load', 'loads'):
             self.assertEqual(
                 __get_msg(method),
-                list(checks.use_jsonutils("json.%s(" % method,
+                list(checks.use_jsonutils(f"json.{method}(",
                                           "./neutron/common/rpc.py")))
 
             self.assertEqual(
                 0,
-                len(list(checks.use_jsonutils("jsonx.%s(" % method,
+                len(list(checks.use_jsonutils(f"jsonx.{method}(",
                                               "./neutron/common/rpc.py"))))
 
             self.assertEqual(
                 0,
-                len(list(checks.use_jsonutils("json.%sx(" % method,
+                len(list(checks.use_jsonutils(f"json.{method}x(",
                                               "./neutron/common/rpc.py"))))
 
             self.assertEqual(
                 0,
                 len(list(checks.use_jsonutils(
-                    "json.%s" % method,
+                    f"json.{method}",
                     "./neutron/plugins/ml2/drivers/openvswitch/agent/xenapi/"
                     "etc/xapi.d/plugins/netwrap"))))
 
@@ -100,15 +100,15 @@ class HackingTestCase(base.BaseTestCase):
     def test_no_log_translations(self):
         for log in tc._all_log_levels:
             for hint in tc._all_hints:
-                bad = 'LOG.{}({}("Bad"))'.format(log, hint)
+                bad = f'LOG.{log}({hint}("Bad"))'
                 self.assertEqual(
                     1, len(list(tc.no_translate_logs(bad, 'f'))))
                 # Catch abuses when used with a variable and not a literal
-                bad = 'LOG.{}({}(msg))'.format(log, hint)
+                bad = f'LOG.{log}({hint}(msg))'
                 self.assertEqual(
                     1, len(list(tc.no_translate_logs(bad, 'f'))))
                 # Do not do validations in tests
-                ok = 'LOG.%s(_("OK - unit tests"))' % log
+                ok = f'LOG.{log}(_("OK - unit tests"))'
                 self.assertEqual(
                     0, len(list(tc.no_translate_logs(ok, 'f/tests/f'))))
 

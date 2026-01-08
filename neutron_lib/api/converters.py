@@ -218,7 +218,7 @@ def convert_ip_to_canonical_format(value):
         ip = netaddr.IPAddress(value)
         if ip.version == constants.IP_VERSION_6:
             return str(ip.format(dialect=netaddr.ipv6_compact))
-    except Exception:  # nosec B110
+    except Exception:  # noqa: S110
         # netaddr may raise all kinds of exceptions (ValueError,
         # AttributeError...) if the input is not a valid IP address. Instead of
         # catching them one by one, just catch all exceptions at once.

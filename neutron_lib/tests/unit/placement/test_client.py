@@ -64,17 +64,17 @@ class TestNoAuthClient(base.BaseTestCase):
 
     @mock.patch.object(place_client.NoAuthClient, 'request')
     def test_put(self, mock_request):
-        self.noauth_client.put('resource_providers/%s' % self.uuid,
+        self.noauth_client.put(f'resource_providers/{self.uuid}',
                                self.body_json, '')
         mock_request.assert_called_with(
-            'placement/resource_providers/%s' % self.uuid, 'PUT',
+            f'placement/resource_providers/{self.uuid}', 'PUT',
             body=self.body_json)
 
     @mock.patch.object(place_client.NoAuthClient, 'request')
     def test_delete(self, mock_request):
-        self.noauth_client.delete('resource_providers/%s' % self.uuid, '')
+        self.noauth_client.delete(f'resource_providers/{self.uuid}', '')
         mock_request.assert_called_with(
-            'placement/resource_providers/%s' % self.uuid, 'DELETE')
+            f'placement/resource_providers/{self.uuid}', 'DELETE')
 
 
 class TestPlacementAPIClientNoAuth(base.BaseTestCase):
@@ -127,7 +127,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.update_resource_provider(
             RESOURCE_PROVIDER)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%s' % RESOURCE_PROVIDER_UUID,
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}',
             {'name': RESOURCE_PROVIDER_NAME}
         )
 
@@ -135,7 +135,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.ensure_resource_provider(
             RESOURCE_PROVIDER)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%s' % RESOURCE_PROVIDER_UUID,
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}',
             {'name': RESOURCE_PROVIDER_NAME}
         )
         self.placement_fixture.mock_post.assert_not_called()
@@ -155,12 +155,12 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.delete_resource_provider(
             RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_delete.assert_called_once_with(
-            '/resource_providers/%s' % RESOURCE_PROVIDER_UUID)
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}')
 
     def test_get_resource_provider(self):
         self.placement_api_client.get_resource_provider(RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers/%s' % RESOURCE_PROVIDER_UUID)
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}')
 
     def test_get_resource_provider_no_resource_provider(self):
         self.placement_fixture.mock_get.side_effect = ks_exc.NotFound()
@@ -213,7 +213,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.update_resource_provider_inventories(
             RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_PROVIDER_GENERATION)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%s/inventories' % RESOURCE_PROVIDER_UUID,
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/inventories',
             expected_body)
 
     def test_update_resource_provider_inventories_no_generation(self):
@@ -227,7 +227,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
             self.placement_api_client.update_resource_provider_inventories(
                 RESOURCE_PROVIDER_UUID, INVENTORY)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%s/inventories' % RESOURCE_PROVIDER_UUID,
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/inventories',
             expected_body)
 
     def test_update_resource_provider_inventories_no_rp(self):
@@ -243,9 +243,8 @@ class TestPlacementAPIClient(base.BaseTestCase):
             RESOURCE_PROVIDER_UUID, RESOURCE_CLASS_NAME
         )
         self.placement_fixture.mock_delete.assert_called_once_with(
-            '/resource_providers/%(rp_uuid)s/inventories/%(rc_name)s' %
-            {'rp_uuid': RESOURCE_PROVIDER_UUID,
-             'rc_name': RESOURCE_CLASS_NAME}
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/inventories/'
+            f'{RESOURCE_CLASS_NAME}'
         )
 
     def test_delete_resource_provider_inventory_no_rp(self):
@@ -263,9 +262,8 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.get_inventory(RESOURCE_PROVIDER_UUID,
                                                 RESOURCE_CLASS_NAME)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers/%(rp_uuid)s/inventories/%(rc_name)s' %
-            {'rp_uuid': RESOURCE_PROVIDER_UUID,
-             'rc_name': RESOURCE_CLASS_NAME})
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/inventories/'
+            f'{RESOURCE_CLASS_NAME}')
 
     def test_get_inventory_no_resource_provider(self):
         _exception = ks_exc.NotFound()
@@ -301,9 +299,8 @@ class TestPlacementAPIClient(base.BaseTestCase):
             RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_CLASS_NAME,
             resource_provider_generation=1)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%(rp_uuid)s/inventories/%(rc_name)s' %
-            {'rp_uuid': RESOURCE_PROVIDER_UUID,
-             'rc_name': RESOURCE_CLASS_NAME},
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/inventories/'
+            f'{RESOURCE_CLASS_NAME}',
             expected_body)
 
     def test_update_resource_provider_inventory_no_generation(self):
@@ -317,9 +314,8 @@ class TestPlacementAPIClient(base.BaseTestCase):
             self.placement_api_client.update_resource_provider_inventory(
                 RESOURCE_PROVIDER_UUID, INVENTORY, RESOURCE_CLASS_NAME)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%(rp_uuid)s/inventories/%(rc_name)s' %
-            {'rp_uuid': RESOURCE_PROVIDER_UUID,
-             'rc_name': RESOURCE_CLASS_NAME},
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/inventories/'
+            f'{RESOURCE_CLASS_NAME}',
             expected_body)
 
     def test_update_resource_provider_inventory_not_found(self):
@@ -336,13 +332,13 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.associate_aggregates(RESOURCE_PROVIDER_UUID,
                                                        mock.ANY)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%s/aggregates' % RESOURCE_PROVIDER_UUID,
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/aggregates',
             mock.ANY)
 
     def test_list_aggregates(self):
         self.placement_api_client.list_aggregates(RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers/%s/aggregates' % RESOURCE_PROVIDER_UUID)
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/aggregates')
 
     def test_list_aggregates_no_resource_provider(self):
         self.placement_fixture.mock_get.side_effect = ks_exc.NotFound()
@@ -358,7 +354,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_get_trait(self):
         self.placement_api_client.get_trait(TRAIT_NAME)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/traits/%s' % TRAIT_NAME)
+            f'/traits/{TRAIT_NAME}')
 
     def test_get_trait_no_trait(self):
         self.placement_fixture.mock_get.side_effect = ks_exc.NotFound()
@@ -370,7 +366,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_create_trait(self):
         self.placement_api_client.update_trait(TRAIT_NAME)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/traits/%s' % TRAIT_NAME, None)
+            f'/traits/{TRAIT_NAME}', None)
 
     def test_update_resource_provider_traits_generation(self):
         traits = [TRAIT_NAME]
@@ -378,8 +374,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
             RESOURCE_PROVIDER_UUID, traits,
             resource_provider_generation=RESOURCE_PROVIDER_GENERATION)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%(rp_uuid)s/traits' %
-            {'rp_uuid': RESOURCE_PROVIDER_UUID},
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/traits',
             {'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
              'traits': traits})
 
@@ -391,8 +386,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
             self.placement_api_client.update_resource_provider_traits(
                 RESOURCE_PROVIDER_UUID, traits)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_providers/%(rp_uuid)s/traits' %
-            {'rp_uuid': RESOURCE_PROVIDER_UUID},
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/traits',
             {'resource_provider_generation': RESOURCE_PROVIDER_GENERATION,
              'traits': traits})
 
@@ -416,7 +410,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.list_resource_provider_traits(
             RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_providers/%s/traits' % RESOURCE_PROVIDER_UUID)
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/traits')
 
     def test_list_resource_provider_traits_no_rp(self):
         self.placement_fixture.mock_get.side_effect = ks_exc.NotFound()
@@ -428,7 +422,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_delete_trait(self):
         self.placement_api_client.delete_trait(TRAIT_NAME)
         self.placement_fixture.mock_delete.assert_called_once_with(
-            '/traits/%s' % TRAIT_NAME)
+            f'/traits/{TRAIT_NAME}')
 
     def test_delete_trait_no_trait(self):
         self.placement_fixture.mock_delete.side_effect = ks_exc.NotFound()
@@ -441,7 +435,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_api_client.delete_resource_provider_traits(
             RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_delete.assert_called_once_with(
-            '/resource_providers/%s/traits' % RESOURCE_PROVIDER_UUID)
+            f'/resource_providers/{RESOURCE_PROVIDER_UUID}/traits')
 
     def test_delete_resource_provider_traits_no_rp(self):
         self.placement_fixture.mock_delete.side_effect = ks_exc.NotFound()
@@ -459,7 +453,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_get_resource_class(self):
         self.placement_api_client.get_resource_class(RESOURCE_CLASS_NAME)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/resource_classes/%s' % RESOURCE_CLASS_NAME
+            f'/resource_classes/{RESOURCE_CLASS_NAME}'
         )
 
     def test_get_resource_class_no_resource_class(self):
@@ -480,12 +474,12 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_update_resource_class(self):
         self.placement_api_client.update_resource_class(RESOURCE_CLASS_NAME)
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/resource_classes/%s' % RESOURCE_CLASS_NAME, None)
+            f'/resource_classes/{RESOURCE_CLASS_NAME}', None)
 
     def test_delete_resource_class(self):
         self.placement_api_client.delete_resource_class(RESOURCE_CLASS_NAME)
         self.placement_fixture.mock_delete.assert_called_once_with(
-            '/resource_classes/%s' % RESOURCE_CLASS_NAME
+            f'/resource_classes/{RESOURCE_CLASS_NAME}'
         )
 
     def test_delete_resource_class_no_resource_class(self):
@@ -704,7 +698,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
     def test_list_allocations(self):
         self.placement_api_client.list_allocations(CONSUMER_UUID)
         self.placement_fixture.mock_get.assert_called_once_with(
-            '/allocations/%s' % CONSUMER_UUID)
+            f'/allocations/{CONSUMER_UUID}')
 
     def test_update_allocation(self):
         mock_rsp = mock.Mock()
@@ -721,7 +715,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
                     'resources': {'a': 20}}
             }})
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/allocations/%s' % CONSUMER_UUID,
+            f'/allocations/{CONSUMER_UUID}',
             {'allocations': {
                 RESOURCE_PROVIDER_UUID: {
                     'resources': {'a': 20}}
@@ -744,7 +738,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
             alloc_diff={RESOURCE_PROVIDER_UUID: {'a': 2, 'b': 2}},
         )
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/allocations/%s' % CONSUMER_UUID,
+            f'/allocations/{CONSUMER_UUID}',
             {'allocations': {
                 RESOURCE_PROVIDER_UUID: {
                     'resources': {'a': 5, 'b': 4}}
@@ -834,7 +828,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
             alloc_diff={RESOURCE_PROVIDER_UUID: {'a': -3, 'b': -2}},
         )
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/allocations/%s' % CONSUMER_UUID,
+            f'/allocations/{CONSUMER_UUID}',
             {'allocations': {}})
 
     def test_update_qos_allocation_one_class_to_zero(self):
@@ -846,7 +840,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
             alloc_diff={RESOURCE_PROVIDER_UUID: {'a': -3, 'b': 1}},
         )
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/allocations/%s' % CONSUMER_UUID,
+            f'/allocations/{CONSUMER_UUID}',
             {'allocations': {
                 RESOURCE_PROVIDER_UUID: {
                     'resources': {'b': 3}}
@@ -861,7 +855,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
             alloc_diff={RESOURCE_PROVIDER_UUID: {'a': -3, 'b': 1}},
         )
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/allocations/%s' % CONSUMER_UUID,
+            f'/allocations/{CONSUMER_UUID}',
             {'allocations': {
                 RESOURCE_PROVIDER_UUID: {
                     'resources': {'b': 1}}
@@ -881,7 +875,7 @@ class TestPlacementAPIClient(base.BaseTestCase):
                 },
         )
         self.placement_fixture.mock_put.assert_called_once_with(
-            '/allocations/%s' % CONSUMER_UUID,
+            f'/allocations/{CONSUMER_UUID}',
             {'allocations': {
                 RESOURCE_PROVIDER_UUID: {
                     'resources': {'b': 4}},

@@ -15,26 +15,29 @@ repos:
       - id: check-json
       - id: check-merge-conflict
       - id: debug-statements
+      - id: check-yaml
+        files: .*\.(yaml|yml)$
   - repo: https://github.com/PyCQA/bandit
     rev: 1.8.3
     hooks:
       - id: bandit
         # B104: Possible binding to all interfaces
+        # B110: Try, Except, Pass detected
         # B303: Blacklist use of insecure MD2, MD4, MD5, or SHA1 hash functions
         # B311: Standard pseudo-random generators are not suitable for security/cryptographic purpose
-        args: ['-n5', '-sB104,B303,B311']
+        args: ['-n5', '-sB104,B110,B303,B311']
         files: 'neutron_lib/'
         exclude: 'neutron_lib/tests'
-  - repo: https://github.com/Lucas-C/pre-commit-hooks
+  - repo: https://github.com/lucas-c/pre-commit-hooks
     rev: v1.5.5
     hooks:
       - id: remove-tabs
         exclude: '.*\.(svg)$'
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.15.0
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.1
     hooks:
-      - id: mypy
-        pass_filenames: false
+      - id: ruff-check
+        args: ['--fix', '--unsafe-fixes']
   - repo: https://opendev.org/openstack/hacking
     rev: 7.0.0
     hooks:
@@ -43,6 +46,16 @@ repos:
           - flake8-import-order~=0.18.2
           - neutron
         exclude: '^(doc|releasenotes|tools)/.*$'
+  - repo: https://github.com/hhatto/autopep8
+    rev: v2.3.2
+    hooks:
+      - id: autopep8
+        files: '^.*\.py$'
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.16.1
+    hooks:
+      - id: mypy
+        pass_filenames: false
   - repo: local
     hooks:
       - id: check-unit-test-structure

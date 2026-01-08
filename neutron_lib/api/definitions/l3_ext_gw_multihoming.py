@@ -30,7 +30,7 @@ UPDATED_TIMESTAMP = '2023-01-18T00:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
 
-external_gw_info_validate: typing.Dict[str, typing.Any] = copy.deepcopy(
+external_gw_info_validate: dict[str, typing.Any] = copy.deepcopy(
     l3_ext_gw_mode.RESOURCE_ATTRIBUTE_MAP[COLLECTION_NAME][l3.EXTERNAL_GW_INFO]
     ['validate']['type:dict_or_nodata']
 )

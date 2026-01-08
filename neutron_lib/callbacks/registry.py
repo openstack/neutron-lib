@@ -67,7 +67,7 @@ def receives(resource, events, priority=priority_group.PRIORITY_DEFAULT):
     @has_registry_receivers decorator to setup the __new__ method to
     actually register the instance methods after initialization.
     """
-    if not isinstance(events, (list, tuple, set)):
+    if not isinstance(events, list | tuple | set):
         msg = _("'events' must be a collection (list, tuple, set)")
         raise AssertionError(msg)
 

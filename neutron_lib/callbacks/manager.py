@@ -102,7 +102,7 @@ class CallbacksManager:
                 if not self._index[callback_id]:
                     del self._index[callback_id]
         else:
-            value = '{},{}'.format(resource, event)
+            value = f'{resource},{event}'
             raise exceptions.Invalid(element='resource,event', value=value)
 
     def unsubscribe_by_resource(self, callback, resource):

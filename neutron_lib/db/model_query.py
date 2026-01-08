@@ -90,7 +90,7 @@ def register_hook(model, name, query_hook, filter_hook,
     if callable(result_filters):
         result_filters = helpers.make_weak_ref(result_filters)
     if rbac_actions is not None:
-        if isinstance(rbac_actions, (set, list, tuple)):
+        if isinstance(rbac_actions, set | list | tuple):
             rbac_actions = set(rbac_actions)
         else:
             rbac_actions = {rbac_actions}

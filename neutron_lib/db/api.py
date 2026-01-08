@@ -142,7 +142,7 @@ def _tag_retriables_as_unretriable(f):
 
 def _copy_if_lds(item):
     """Deepcopy lists/dicts/sets, leave everything else alone."""
-    return copy.deepcopy(item) if isinstance(item, (list, dict, set)) else item
+    return copy.deepcopy(item) if isinstance(item, list | dict | set) else item
 
 
 _retry_db_errors = oslo_db_api.wrap_db_retry(
@@ -338,8 +338,8 @@ def _load_one_to_manys(session):
             if relationship_attr.key not in state.dict:
                 getattr(new_object, relationship_attr.key)
                 if relationship_attr.key not in state.dict:
-                    msg = ("Relationship %s attributes must be loaded in db "
-                           "object %s" % (relationship_attr.key, state.dict))
+                    msg = (f"Relationship {relationship_attr.key} attributes "
+                           f"must be loaded in db object {state.dict}")
                     raise AssertionError(msg)
 
 
@@ -448,7 +448,7 @@ def _listen_for_changes(cls, key, inst):
         # can look up the parent.  so here we make one if it doesn't
         # have it already, as is the case in this example
         if not prop.back_populates:
-            name = "_%s_backref" % prop.key
+            name = f"_{prop.key}_backref"
             backref_prop = orm.relationship(
                 prop.parent, back_populates=prop.key)
 

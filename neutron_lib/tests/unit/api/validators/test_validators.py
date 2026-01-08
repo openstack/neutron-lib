@@ -149,9 +149,9 @@ class TestAttributeValidation(base.BaseTestCase):
         # Check that value is not comparable to valid_values and got Exception
         data = 1
         valid_values = '[2, 3, 4, 5]'
-        response = "'data' of type '%s' and 'valid_values' of type" \
-                   " '%s' are not compatible for comparison" % (
-                       type(data), type(valid_values))
+        response = (f"'data' of type '{type(data)}' and 'valid_values' of "
+                    f"type '{type(valid_values)}' are not compatible for "
+                    "comparison")
         self.assertRaisesRegex(TypeError, response,
                                validators.validate_values, data,
                                valid_values,
@@ -231,19 +231,19 @@ class TestAttributeValidation(base.BaseTestCase):
         max_len = 4
         msg = validators.validate_oneline_not_empty_string(data, max_len)
         self.assertEqual(
-            "'{}' exceeds maximum length of {}".format(data, max_len),
+            f"'{data}' exceeds maximum length of {max_len}",
             msg)
 
         data = "First line\nsecond line"
         msg = validators.validate_oneline_not_empty_string(data, None)
         self.assertEqual(
-            "Multi-line string is not allowed: '%s'" % data,
+            f"Multi-line string is not allowed: '{data}'",
             msg)
 
         data = ""
         msg = validators.validate_oneline_not_empty_string(data, None)
         self.assertEqual(
-            "'%s' Blank strings are not permitted" % data,
+            f"'{data}' Blank strings are not permitted",
             msg)
 
     def test_validate_oneline_not_empty_string_or_none(self):
@@ -260,19 +260,19 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_oneline_not_empty_string_or_none(
             data, max_len)
         self.assertEqual(
-            "'{}' exceeds maximum length of {}".format(data, max_len),
+            f"'{data}' exceeds maximum length of {max_len}",
             msg)
 
         data = "First line\nsecond line"
         msg = validators.validate_oneline_not_empty_string_or_none(data, None)
         self.assertEqual(
-            "Multi-line string is not allowed: '%s'" % data,
+            f"Multi-line string is not allowed: '{data}'",
             msg)
 
         data = ""
         msg = validators.validate_oneline_not_empty_string(data, None)
         self.assertEqual(
-            "'%s' Blank strings are not permitted" % data,
+            f"'{data}' Blank strings are not permitted",
             msg)
 
     def test_validate_boolean(self):
@@ -325,10 +325,10 @@ class TestAttributeValidation(base.BaseTestCase):
         for ws in string.whitespace:
             self.assertRaises(n_exc.InvalidInput,
                               validators.validate_no_whitespace,
-                              '%swhitespace-at-head' % ws)
+                              f'{ws}whitespace-at-head')
             self.assertRaises(n_exc.InvalidInput,
                               validators.validate_no_whitespace,
-                              'whitespace-at-tail%s' % ws)
+                              f'whitespace-at-tail{ws}')
 
     def test_validate_range(self):
         msg = validators.validate_range(1, [1, 9])
@@ -426,35 +426,35 @@ class TestAttributeValidation(base.BaseTestCase):
 
         ip_addr = '1111.1.1.1'
         msg = validators.validate_ip_address(ip_addr)
-        self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+        self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
         # Depending on platform to run UTs, this case might or might not be
         # an equivalent to test_validate_ip_address_bsd.
         ip_addr = '1' * 59
         msg = validators.validate_ip_address(ip_addr)
-        self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+        self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
         ip_addr = '1.1.1.1 has whitespace'
         msg = validators.validate_ip_address(ip_addr)
-        self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+        self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
         ip_addr = '111.1.1.1\twhitespace'
         msg = validators.validate_ip_address(ip_addr)
-        self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+        self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
         ip_addr = '111.1.1.1\nwhitespace'
         msg = validators.validate_ip_address(ip_addr)
-        self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+        self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
         for ws in string.whitespace:
-            ip_addr = '%s111.1.1.1' % ws
+            ip_addr = f'{ws}111.1.1.1'
             msg = validators.validate_ip_address(ip_addr)
-            self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+            self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
         for ws in string.whitespace:
-            ip_addr = '111.1.1.1%s' % ws
+            ip_addr = f'111.1.1.1{ws}'
             msg = validators.validate_ip_address(ip_addr)
-            self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+            self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
     def test_validate_ip_address_with_leading_zero(self):
         ip_addr = '1.1.1.01'
@@ -489,7 +489,7 @@ class TestAttributeValidation(base.BaseTestCase):
             msg = validators.validate_ip_address(ip_addr)
         ip_address_cls.assert_called_once_with(ip_addr,
                                                flags=netaddr.core.ZEROFILL)
-        self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+        self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
     def test_validate_ip_pools(self):
         pools = [[{'end': '10.0.0.254'}],
@@ -517,7 +517,7 @@ class TestAttributeValidation(base.BaseTestCase):
         pools = [[{'end': '10.0.0.254', 'start': invalid_ip}]]
         for pool in pools:
             msg = validators.validate_ip_pools(pool)
-            self.assertEqual("'%s' is not a valid IP address" % invalid_ip,
+            self.assertEqual(f"'{invalid_ip}' is not a valid IP address",
                              msg)
 
     def test_validate_fixed_ips(self):
@@ -622,7 +622,7 @@ class TestAttributeValidation(base.BaseTestCase):
 
         ip_addr = '1111.1.1.1'
         msg = validators.validate_ip_address_or_none(ip_addr)
-        self.assertEqual("'%s' is not a valid IP address" % ip_addr, msg)
+        self.assertEqual(f"'{ip_addr}' is not a valid IP address", msg)
 
     def test_uuid_pattern(self):
         data = 'garbage'
@@ -718,37 +718,37 @@ class TestAttributeValidation(base.BaseTestCase):
         # Invalid - abbreviated ipv4 address
         cidr = "10/24"
         msg = validator(cidr, None)
-        error = "'%s' is not a valid IP subnet" % cidr
+        error = f"'{cidr}' is not a valid IP subnet"
         self.assertEqual(error, msg)
 
         # Invalid - IPv4 missing mask
         cidr = "10.0.2.0"
         msg = validator(cidr, None)
-        error = "'%s' is not a valid IP subnet" % cidr
+        error = f"'{cidr}' is not a valid IP subnet"
         self.assertEqual(error, msg)
 
         # Valid - IPv4 with non-zero masked bits is ok
         for i in range(1, 255):
-            cidr = "192.168.1.%s/24" % i
+            cidr = f"192.168.1.{i}/24"
             msg = validator(cidr, None)
             self.assertIsNone(msg)
 
         # Invalid - IPv6 without final octets, missing mask
         cidr = "fe80::"
         msg = validator(cidr, None)
-        error = "'%s' is not a valid IP subnet" % cidr
+        error = f"'{cidr}' is not a valid IP subnet"
         self.assertEqual(error, msg)
 
         # Invalid - IPv6 with final octets, missing mask
         cidr = "fe80::0"
         msg = validator(cidr, None)
-        error = "'%s' is not a valid IP subnet" % cidr
+        error = f"'{cidr}' is not a valid IP subnet"
         self.assertEqual(error, msg)
 
         # Invalid - Address format error
         cidr = 'invalid'
         msg = validator(cidr, None)
-        error = "'%s' is not a valid IP subnet" % cidr
+        error = f"'{cidr}' is not a valid IP subnet"
         self.assertEqual(error, msg)
 
         cidr = None
@@ -756,13 +756,13 @@ class TestAttributeValidation(base.BaseTestCase):
         if allow_none:
             self.assertIsNone(msg)
         else:
-            error = "'%s' is not a valid IP subnet" % cidr
+            error = f"'{cidr}' is not a valid IP subnet"
             self.assertEqual(error, msg)
 
         # Invalid - IPv4 with trailing CR
         cidr = "10.0.2.0/24\r"
         msg = validator(cidr, None)
-        error = "'%s' is not a valid IP subnet" % cidr
+        error = f"'{cidr}' is not a valid IP subnet"
         self.assertEqual(error, msg)
 
     def test_validate_subnet(self):
@@ -782,7 +782,7 @@ class TestAttributeValidation(base.BaseTestCase):
         # Invalid - CIDR
         cidr = "192.168.1.1/8"
         msg = validators.validate_route_cidr(cidr, None)
-        error = "'%s' is not a valid CIDR" % cidr
+        error = f"'{cidr}' is not a valid CIDR"
         self.assertEqual(error, msg)
 
         # Invalid - loopback CIDR
@@ -794,7 +794,7 @@ class TestAttributeValidation(base.BaseTestCase):
         # Invalid - CIDR format error
         cidr = 'invalid'
         msg = validators.validate_route_cidr(cidr, None)
-        error = "'%s' is not a valid CIDR" % cidr
+        error = f"'{cidr}' is not a valid CIDR"
         self.assertEqual(error, msg)
 
     def test_validate_subnet_or_none(self):
@@ -811,7 +811,7 @@ class TestAttributeValidation(base.BaseTestCase):
 
         cidrs = ['10.1.0.0/24', '10.2.0.0']
         msg = validators.validate_subnet_list(cidrs)
-        error = "'%s' is not a valid IP subnet" % cidrs[1]
+        error = f"'{cidrs[1]}' is not a valid IP subnet"
         self.assertEqual(error, msg)
 
     def _test_validate_regex(self, validator, allow_none=False):
@@ -826,7 +826,7 @@ class TestAttributeValidation(base.BaseTestCase):
 
         data = 'bat'
         msg = validator(data, pattern)
-        self.assertEqual("'%s' is not a valid input" % data, msg)
+        self.assertEqual(f"'{data}' is not a valid input", msg)
 
         data = 'hat'
         msg = validator(data, pattern)
@@ -881,7 +881,7 @@ class TestAttributeValidation(base.BaseTestCase):
                          'e5069610-744bb-42a7-8bd8-ceac1a229cd4']
         for uuid in invalid_uuids:
             msg = validators.validate_uuid(uuid)
-            error = "'%s' is not a valid UUID" % uuid
+            error = f"'{uuid}' is not a valid UUID"
             self.assertEqual(error, msg)
 
         msg = validators.validate_uuid('00000000-ffff-ffff-ffff-000000000000')
@@ -893,7 +893,7 @@ class TestAttributeValidation(base.BaseTestCase):
                          '123']
         msg = validators.validate_uuid_list(bad_uuid_list,
                                             valid_values='parameter not used')
-        error = "'%s' is not a valid UUID" % bad_uuid_list[2]
+        error = f"'{bad_uuid_list[2]}' is not a valid UUID"
         self.assertEqual(error, msg)
 
         good_uuid_list = ['00000000-ffff-ffff-ffff-000000000000',
@@ -911,7 +911,7 @@ class TestAttributeValidation(base.BaseTestCase):
                  {'uuid': 'e5069610-744b-42a7-8bd8-ceac1a229cd4'}]
         for item in items:
             msg = validators._validate_list_of_items(mock.Mock(), item)
-            error = "'%s' is not a list" % item
+            error = f"'{item}' is not a list"
             self.assertEqual(error, msg)
 
         # check duplicate items in a list
@@ -935,7 +935,7 @@ class TestAttributeValidation(base.BaseTestCase):
     def test__test__validate_list_of_items_non_empty(self):
         items = None
         msg = validators._validate_list_of_items_non_empty(mock.Mock(), items)
-        error = "'%s' is not a list" % items
+        error = f"'{items}' is not a list"
         self.assertEqual(error, msg)
 
         items = []
@@ -946,23 +946,23 @@ class TestAttributeValidation(base.BaseTestCase):
         items = ['a', 'b', 'duplicate_1', 'duplicate_2', 'duplicate_1',
                  'duplicate_2', 'duplicate_2', 'c']
         msg = validators._validate_list_of_items(mock.Mock(), items)
-        error = ("Duplicate items in the list: '%s'"
-                 % 'duplicate_1, duplicate_2')
+        error = ("Duplicate items in the list: '{}'".format(
+            'duplicate_1, duplicate_2'))
         self.assertEqual(error, msg)
 
         items = [['a', 'b'], ['c', 'd'], ['a', 'b']]
         msg = validators._validate_list_of_items(mock.Mock(), items)
-        error = "Duplicate items in the list: '%s'" % str(['a', 'b'])
+        error = "Duplicate items in the list: '{}'".format(str(['a', 'b']))
         self.assertEqual(error, msg)
 
         items = [{'a': 'b'}, {'c': 'd'}, {'a': 'b'}]
         msg = validators._validate_list_of_items(mock.Mock(), items)
-        error = "Duplicate items in the list: '%s'" % str({'a': 'b'})
+        error = "Duplicate items in the list: '{}'".format(str({'a': 'b'}))
         self.assertEqual(error, msg)
 
     def test_validate_dict_type(self):
         for value in (None, True, '1', []):
-            self.assertEqual("'%s' is not a dictionary" % value,
+            self.assertEqual(f"'{value}' is not a dictionary",
                              validators.validate_dict(value))
 
     def test_validate_dict_without_constraints(self):
@@ -1077,7 +1077,7 @@ class TestAttributeValidation(base.BaseTestCase):
         self.assertEqual("'abc' is not an integer", msg)
 
         for value in (-1, '-2'):
-            self.assertEqual("'%s' should be non-negative" % value,
+            self.assertEqual(f"'{value}' should be non-negative",
                              validators.validate_non_negative(value))
 
         for value in (0, 1, '2', True, False):

@@ -94,7 +94,7 @@ class _NeutronBase(models.ModelBase):
 
     def __repr__(self):
         """sqlalchemy based automatic __repr__ method."""
-        items = ['{}={!r}'.format(col.name, getattr(self, col.name))
+        items = [f'{col.name}={getattr(self, col.name)!r}'
                  for col in self.__table__.columns]
         return "<{}.{}[object at {:x}] {{{}}}>".format(
             self.__class__.__module__, self.__class__.__name__,

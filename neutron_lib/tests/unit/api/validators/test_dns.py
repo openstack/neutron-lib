@@ -32,38 +32,37 @@ class TestDnsValidators(base.BaseTestCase):
 
         invalid_data = 'A' * 256
         max_len = 255
-        expected = ("'%(data)s' not a valid PQDN or FQDN. Reason: "
-                    "'%(data)s' exceeds the %(maxlen)s character FQDN "
-                    "limit") % {'data': invalid_data, 'maxlen': max_len}
+        expected = (f"'{invalid_data}' not a valid PQDN or FQDN. Reason: "
+                    f"'{invalid_data}' exceeds the {max_len} character FQDN "
+                    "limit")
         msg = dns.validate_dns_name(invalid_data, max_len)
         self.assertEqual(expected, msg)
 
         invalid_data = '.hostname'
-        expected = ("'%(data)s' not a valid PQDN or FQDN. Reason: "
-                    "Encountered an empty component") % {'data': invalid_data}
+        expected = (f"'{invalid_data}' not a valid PQDN or FQDN. Reason: "
+                    "Encountered an empty component")
         msg = dns.validate_dns_name(invalid_data)
         self.assertEqual(expected, msg)
 
         invalid_data = 'hostname-'
-        expected = ("'%(data)s' not a valid PQDN or FQDN. Reason: "
-                    "Name '%(data)s' must not start or end with a "
-                    "hyphen") % {'data': invalid_data}
+        expected = (f"'{invalid_data}' not a valid PQDN or FQDN. Reason: "
+                    f"Name '{invalid_data}' must not start or end with a "
+                    "hyphen")
         msg = dns.validate_dns_name(invalid_data)
         self.assertEqual(expected, msg)
 
         invalid_data = 'hostname@host'
-        expected = ("'%(data)s' not a valid PQDN or FQDN. Reason: "
-                    "Name '%(data)s' must be 1-63 characters long, each of "
-                    "which can only be alphanumeric or a "
-                    "hyphen") % {'data': invalid_data}
+        expected = (f"'{invalid_data}' not a valid PQDN or FQDN. Reason: "
+                    f"Name '{invalid_data}' must be 1-63 characters long, "
+                    "each of which can only be alphanumeric or a "
+                    "hyphen")
         msg = dns.validate_dns_name(invalid_data)
         self.assertEqual(expected, msg)
         invalid_suffix = '1234'
         invalid_data = 'hostname.' + invalid_suffix
-        expected = ("'%(data)s' not a valid PQDN or FQDN. Reason: "
-                    "TLD '%(suffix)s' must not be all "
-                    "numeric") % {'data': invalid_data,
-                                  'suffix': invalid_suffix}
+        expected = (f"'{invalid_data}' not a valid PQDN or FQDN. Reason: "
+                    f"TLD '{invalid_suffix}' must not be all "
+                    "numeric")
         msg = dns.validate_dns_name(invalid_data)
         self.assertEqual(expected, msg)
 
@@ -72,16 +71,13 @@ class TestDnsValidators(base.BaseTestCase):
         CONF.dns_domain = invalid_domain
         dns_name = 'hostname'
         expected = ("The dns_name passed is a PQDN and its size is "
-                    "'%(dns_name_len)s'. The dns_domain option in "
-                    "neutron.conf is set to %(dns_domain)s, with a "
-                    "length of '%(higher_labels_len)s'. When the two are "
+                    f"'{len(dns_name)}'. The dns_domain option in "
+                    f"neutron.conf is set to {invalid_domain}, with a "
+                    f"length of '{len(invalid_domain) + 1}'. When the two are "
                     "concatenated to form a FQDN (with a '.' at the end), "
                     "the resulting length exceeds the maximum size "
-                    "of '%(fqdn_max_len)s'"
-                    ) % {'dns_name_len': len(dns_name),
-                         'dns_domain': invalid_domain,
-                         'higher_labels_len': len(invalid_domain) + 1,
-                         'fqdn_max_len': db_constants.FQDN_FIELD_SIZE}
+                    f"of '{db_constants.FQDN_FIELD_SIZE}'"
+                    )
         msg = dns.validate_dns_name(dns_name)
         self.assertEqual(expected, msg)
 
@@ -90,9 +86,9 @@ class TestDnsValidators(base.BaseTestCase):
         CONF.dns_domain = dns_domain
         expected = ("The dns_name passed is a FQDN. Its higher level labels "
                     "must be equal to the dns_domain option in neutron.conf, "
-                    "that has been set to '%(dns_domain)s'. It must also "
+                    f"that has been set to '{dns_domain}'. It must also "
                     "include one or more valid DNS labels to the left "
-                    "of '%(dns_domain)s'") % {'dns_domain': dns_domain}
+                    f"of '{dns_domain}'")
         msg = dns.validate_dns_name(dns_name)
         self.assertEqual(expected, msg)
 
@@ -106,24 +102,22 @@ class TestDnsValidators(base.BaseTestCase):
         self.assertIsNone(msg)
 
         invalid_data = 1234
-        expected = "'%s' is not a valid string" % invalid_data
+        expected = f"'{invalid_data}' is not a valid string"
         msg = dns.validate_fip_dns_name(invalid_data)
         self.assertEqual(expected, msg)
 
         invalid_data = 'host.'
-        expected = ("'%s' is a FQDN. It should be a relative domain "
-                    "name") % invalid_data
+        expected = (f"'{invalid_data}' is a FQDN. It should be a relative "
+                    "domain name")
         msg = dns.validate_fip_dns_name(invalid_data)
         self.assertEqual(expected, msg)
 
         length = 10
         invalid_data = 'a' * length
         max_len = 12
-        expected = ("'%(data)s' contains %(length)s characters. Adding a "
+        expected = (f"'{invalid_data}' contains {length} characters. Adding a "
                     "domain name will cause it to exceed the maximum length "
-                    "of a FQDN of '%(max_len)s'") % {"data": invalid_data,
-                                                     "length": length,
-                                                     "max_len": max_len}
+                    f"of a FQDN of '{max_len}'")
         msg = dns.validate_fip_dns_name(invalid_data, max_len)
         self.assertEqual(expected, msg)
 
@@ -137,22 +131,20 @@ class TestDnsValidators(base.BaseTestCase):
         self.assertIsNone(msg)
 
         invalid_data = 1234
-        expected = "'%s' is not a valid string" % invalid_data
+        expected = f"'{invalid_data}' is not a valid string"
         msg = dns.validate_dns_domain(invalid_data)
         self.assertEqual(expected, msg)
 
         invalid_data = 'example.com'
-        expected = "'%s' is not a FQDN" % invalid_data
+        expected = f"'{invalid_data}' is not a FQDN"
         msg = dns.validate_dns_domain(invalid_data)
         self.assertEqual(expected, msg)
 
         length = 9
         invalid_data = 'a' * length + '.'
         max_len = 11
-        expected = ("'%(data)s' contains %(length)s characters. Adding a "
-                    "sub-domain will cause it to exceed the maximum length "
-                    "of a FQDN of '%(max_len)s'") % {"data": invalid_data,
-                                                     "length": length + 1,
-                                                     "max_len": max_len}
+        expected = (f"'{invalid_data}' contains {length + 1} characters. "
+                    "Adding a sub-domain will cause it to exceed the maximum "
+                    f"length of a FQDN of '{max_len}'")
         msg = dns.validate_dns_domain(invalid_data, max_len)
         self.assertEqual(expected, msg)

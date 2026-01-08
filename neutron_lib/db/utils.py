@@ -125,7 +125,7 @@ def get_marker_obj(plugin, context, resource, limit, marker):
         are given.
     """
     if limit and marker:
-        return getattr(plugin, '_get_%s' % resource)(context, marker)
+        return getattr(plugin, f'_get_{resource}')(context, marker)
 
 
 def resource_fields(resource, fields):

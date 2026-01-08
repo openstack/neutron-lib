@@ -127,19 +127,19 @@ class NoAuthClient:
         raise ks_exc.HttpError
 
     def get(self, url, endpoint_filter, **kwargs):
-        return self.request('{}{}'.format(self.url, url), 'GET', **kwargs)
+        return self.request(f'{self.url}{url}', 'GET', **kwargs)
 
     def post(self, url, json, endpoint_filter, **kwargs):
-        return self.request('{}{}'.format(self.url, url), 'POST', body=json,
+        return self.request(f'{self.url}{url}', 'POST', body=json,
                             **kwargs)
 
     def put(self, url, json, endpoint_filter, **kwargs):
-        resp = self.request('{}{}'.format(self.url, url), 'PUT', body=json,
+        resp = self.request(f'{self.url}{url}', 'PUT', body=json,
                             **kwargs)
         return resp
 
     def delete(self, url, endpoint_filter, **kwargs):
-        return self.request('{}{}'.format(self.url, url), 'DELETE', **kwargs)
+        return self.request(f'{self.url}{url}', 'DELETE', **kwargs)
 
 
 class PlacementAPIClient:
@@ -277,7 +277,7 @@ class PlacementAPIClient:
         :returns: The updated resource provider.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_providers/%s' % resource_provider['uuid']
+        url = '/resource_providers/{}'.format(resource_provider['uuid'])
         # update does not tolerate if the uuid is repeated in the body
         update_body = resource_provider.copy()
         update_body.pop('uuid')
@@ -314,7 +314,7 @@ class PlacementAPIClient:
 
         :param resource_provider_uuid: UUID of the resource provider.
         """
-        url = '/resource_providers/%s' % resource_provider_uuid
+        url = f'/resource_providers/{resource_provider_uuid}'
         self._delete(url)
 
     @_check_placement_api_available
@@ -326,7 +326,7 @@ class PlacementAPIClient:
         :returns: The Resource Provider matching the UUID.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_providers/%s' % resource_provider_uuid
+        url = f'/resource_providers/{resource_provider_uuid}'
         try:
             return self._get(url).json()
         except ks_exc.NotFound:
@@ -377,7 +377,7 @@ class PlacementAPIClient:
             filters['in_tree'] = in_tree
         if uuid:
             filters['uuid'] = uuid
-        url = '{}?{}'.format(url, parse.urlencode(filters))
+        url = f'{url}?{parse.urlencode(filters)}'
         return self._get(url).json()
 
     @_check_placement_api_available
@@ -409,7 +409,7 @@ class PlacementAPIClient:
         :returns: The updated set of inventory records.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_providers/%s/inventories' % resource_provider_uuid
+        url = f'/resource_providers/{resource_provider_uuid}/inventories'
         body = {
             'resource_provider_generation': resource_provider_generation,
             'inventories': inventories
@@ -432,8 +432,7 @@ class PlacementAPIClient:
                                                    is not found.
         :returns: None.
         """
-        url = '/resource_providers/%s/inventories' % (
-            resource_provider_uuid)
+        url = f'/resource_providers/{resource_provider_uuid}/inventories'
         try:
             self._delete(url)
         except ks_exc.NotFound as e:
@@ -454,8 +453,8 @@ class PlacementAPIClient:
         :raises PlacementInventoryNotFound: No inventory of class.
         :returns: None.
         """
-        url = '/resource_providers/{}/inventories/{}'.format(
-            resource_provider_uuid, resource_class)
+        url = (f'/resource_providers/{resource_provider_uuid}'
+               f'/inventories/{resource_class}')
         try:
             self._delete(url)
         except ks_exc.NotFound as e:
@@ -481,8 +480,8 @@ class PlacementAPIClient:
                                             for a resource provider.
         :returns: The inventory of the resource class as a dict.
         """
-        url = '/resource_providers/{}/inventories/{}'.format(
-            resource_provider_uuid, resource_class)
+        url = (f'/resource_providers/{resource_provider_uuid}/'
+               f'inventories/{resource_class}')
         try:
             return self._get(url).json()
         except ks_exc.NotFound as e:
@@ -515,8 +514,8 @@ class PlacementAPIClient:
                                                              server side.
         :returns: The updated inventory of the resource class as a dict.
         """
-        url = '/resource_providers/{}/inventories/{}'.format(
-            resource_provider_uuid, resource_class)
+        url = (f'/resource_providers/{resource_provider_uuid}/'
+               f'inventories/{resource_class}')
         body = inventory
 
         try:
@@ -535,7 +534,7 @@ class PlacementAPIClient:
                            provider.
         :returns: All aggregates associated with the resource provider.
         """
-        url = '/resource_providers/%s/aggregates' % resource_provider_uuid
+        url = f'/resource_providers/{resource_provider_uuid}/aggregates'
         return self._put(url, aggregates).json()
 
     @_check_placement_api_available
@@ -549,7 +548,7 @@ class PlacementAPIClient:
                   generation.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_providers/%s/aggregates' % resource_provider_uuid
+        url = f'/resource_providers/{resource_provider_uuid}/aggregates'
         try:
             return self._get(url).json()
         except ks_exc.NotFound:
@@ -571,7 +570,7 @@ class PlacementAPIClient:
         :returns: Evaluates to True if the trait exists.
         """
         # pylint: disable=raise-missing-from
-        url = '/traits/%s' % name
+        url = f'/traits/{name}'
         try:
             return self._get(url)
         except ks_exc.NotFound:
@@ -584,7 +583,7 @@ class PlacementAPIClient:
         :param name: name of the trait to create.
         :returns: The Response object so you may access response headers.
         """
-        url = '/traits/%s' % (name)
+        url = f'/traits/{name}'
         return self._put(url, None)
 
     @_check_placement_api_available
@@ -596,7 +595,7 @@ class PlacementAPIClient:
         :returns: None.
         """
         # pylint: disable=raise-missing-from
-        url = '/traits/%s' % (name)
+        url = f'/traits/{name}'
         try:
             self._delete(url)
         except ks_exc.NotFound:
@@ -629,7 +628,7 @@ class PlacementAPIClient:
                   resource provider generation.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_providers/%s/traits' % (resource_provider_uuid)
+        url = f'/resource_providers/{resource_provider_uuid}/traits'
         body = {
             'resource_provider_generation': resource_provider_generation,
             'traits': traits
@@ -657,7 +656,7 @@ class PlacementAPIClient:
                   with the resource provider generation.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_providers/%s/traits' % (resource_provider_uuid)
+        url = f'/resource_providers/{resource_provider_uuid}/traits'
         try:
             return self._get(url).json()
         except ks_exc.NotFound:
@@ -675,7 +674,7 @@ class PlacementAPIClient:
         :returns: None.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_providers/%s/traits' % (resource_provider_uuid)
+        url = f'/resource_providers/{resource_provider_uuid}/traits'
         try:
             self._delete(url)
         except ks_exc.NotFound:
@@ -698,7 +697,7 @@ class PlacementAPIClient:
         :returns: The name of resource class and its set of links.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_classes/%s' % (name)
+        url = f'/resource_classes/{name}'
         try:
             return self._get(url).json()
         except ks_exc.NotFound:
@@ -722,7 +721,7 @@ class PlacementAPIClient:
         :param name: the name of the resource class to be updated or validated
         :returns: None.
         """
-        url = '/resource_classes/%s' % name
+        url = f'/resource_classes/{name}'
         self._put(url, None)
 
     @_check_placement_api_available
@@ -735,7 +734,7 @@ class PlacementAPIClient:
         :returns: None.
         """
         # pylint: disable=raise-missing-from
-        url = '/resource_classes/%s' % (name)
+        url = f'/resource_classes/{name}'
         try:
             self._delete(url)
         except ks_exc.NotFound:
@@ -749,7 +748,7 @@ class PlacementAPIClient:
                               owned by a VM, the VM uuid.
         :returns: All allocation records for the consumer.
         """
-        url = '/allocations/%s' % consumer_uuid
+        url = f'/allocations/{consumer_uuid}'
         return self._get(url).json()
 
     def update_qos_allocation(self, consumer_uuid, alloc_diff):
@@ -804,5 +803,5 @@ class PlacementAPIClient:
         :param allocations: Dict in the form described in placement API ref:
                             https://tinyurl.com/yxeuzn6l
         """
-        url = '/allocations/%s' % consumer_uuid
+        url = f'/allocations/{consumer_uuid}'
         self._put(url, allocations)

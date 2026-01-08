@@ -74,7 +74,7 @@ class IPV6ModeEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class DscpMarkFieldTest(test_base.BaseTestCase, TestField):
@@ -89,7 +89,7 @@ class DscpMarkFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("%s" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"{in_val}", self.field.stringify(in_val))
 
 
 class IPNetworkPrefixLenFieldTest(test_base.BaseTestCase, TestField):
@@ -103,7 +103,7 @@ class IPNetworkPrefixLenFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("%s" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"{in_val}", self.field.stringify(in_val))
 
 
 class MACAddressFieldTest(test_base.BaseTestCase, TestField):
@@ -126,7 +126,7 @@ class MACAddressFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual('%s' % in_val, self.field.stringify(in_val))
+            self.assertEqual(f'{in_val}', self.field.stringify(in_val))
 
 
 class IPNetworkFieldTest(test_base.BaseTestCase, TestField):
@@ -151,7 +151,7 @@ class IPNetworkFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual('%s' % in_val, self.field.stringify(in_val))
+            self.assertEqual(f'{in_val}', self.field.stringify(in_val))
 
 
 class IPVersionEnumFieldTest(test_base.BaseTestCase, TestField):
@@ -166,7 +166,7 @@ class IPVersionEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("%s" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"{in_val}", self.field.stringify(in_val))
 
 
 class FlowDirectionEnumFieldTest(test_base.BaseTestCase, TestField):
@@ -181,7 +181,7 @@ class FlowDirectionEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class FlowDirectionAndAnyEnumFieldTest(test_base.BaseTestCase, TestField):
@@ -196,7 +196,7 @@ class FlowDirectionAndAnyEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class PortRangesFieldTest(test_base.BaseTestCase, TestField):
@@ -226,7 +226,7 @@ class DomainNameFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class EtherTypeEnumFieldTest(test_base.BaseTestCase, TestField):
@@ -241,7 +241,7 @@ class EtherTypeEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class IpProtocolEnumFieldTest(test_base.BaseTestCase, TestField):
@@ -261,7 +261,7 @@ class IpProtocolEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class UUIDFieldTest(test_base.BaseTestCase, TestField):
@@ -281,7 +281,7 @@ class UUIDFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual('%s' % in_val, self.field.stringify(in_val))
+            self.assertEqual(f'{in_val}', self.field.stringify(in_val))
 
 
 class DictOfMiscValuesFieldTest(test_base.BaseTestCase, TestField):
@@ -328,7 +328,7 @@ class NetworkSegmentRangeNetworkTypeEnumFieldTest(test_base.BaseTestCase,
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class NumaAffinityPoliciesEnumFieldTest(test_base.BaseTestCase, TestField):
@@ -346,7 +346,7 @@ class NumaAffinityPoliciesEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))
 
 
 class PortHardwareOffloadTypeEnumFieldTest(test_base.BaseTestCase, TestField):
@@ -361,4 +361,4 @@ class PortHardwareOffloadTypeEnumFieldTest(test_base.BaseTestCase, TestField):
 
     def test_stringify(self):
         for in_val, out_val in self.coerce_good_values:
-            self.assertEqual("'%s'" % in_val, self.field.stringify(in_val))
+            self.assertEqual(f"'{in_val}'", self.field.stringify(in_val))

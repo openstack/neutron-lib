@@ -27,8 +27,8 @@ def physnet_trait(physnet):
     :param physnet: The physnet name.
     :returns: The trait name representing the physnet.
     """
-    return os_traits.normalize_name('{}{}'.format(
-        place_const.TRAIT_PREFIX_PHYSNET, physnet))
+    return os_traits.normalize_name(
+        f'{place_const.TRAIT_PREFIX_PHYSNET}{physnet}')
 
 
 def vnic_type_trait(vnic_type):
@@ -37,8 +37,8 @@ def vnic_type_trait(vnic_type):
     :param physnet: The vnic_type.
     :returns: The trait name representing the vnic_type.
     """
-    return os_traits.normalize_name('{}{}'.format(
-        place_const.TRAIT_PREFIX_VNIC_TYPE, vnic_type))
+    return os_traits.normalize_name(
+        f'{place_const.TRAIT_PREFIX_VNIC_TYPE}{vnic_type}')
 
 
 def six_uuid5(namespace, name):

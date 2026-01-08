@@ -172,26 +172,26 @@ class TestDeadLockDecorator(_base.BaseTestCase):
         context.session.is_active = False
         list_arg = [1, 2, 3, 4]
         dict_arg = {1: 'a', 2: 'b'}
-        l, d = self._context_function(context, list_arg, dict_arg,
-                                      5, db_exc.DBDeadlock())
+        la, da = self._context_function(context, list_arg, dict_arg,
+                                        5, db_exc.DBDeadlock())
         # even though we had 5 failures the list and dict should only
         # be mutated once
-        self.assertEqual(5, len(l))
-        self.assertEqual(3, len(d))
+        self.assertEqual(5, len(la))
+        self.assertEqual(3, len(da))
 
     def test_retry_if_session_inactive_kwargs_not_mutated_after_retries(self):
         context = mock.Mock()
         context.session.is_active = False
         list_arg = [1, 2, 3, 4]
         dict_arg = {1: 'a', 2: 'b'}
-        l, d = self._context_function(context, list_arg=list_arg,
-                                      dict_arg=dict_arg,
-                                      fail_count=5,
-                                      exc_to_raise=db_exc.DBDeadlock())
+        la, da = self._context_function(context, list_arg=list_arg,
+                                        dict_arg=dict_arg,
+                                        fail_count=5,
+                                        exc_to_raise=db_exc.DBDeadlock())
         # even though we had 5 failures the list and dict should only
         # be mutated once
-        self.assertEqual(5, len(l))
-        self.assertEqual(3, len(d))
+        self.assertEqual(5, len(la))
+        self.assertEqual(3, len(da))
 
     def test_retry_if_session_inactive_no_retry_in_active_session(self):
         context = mock.Mock()

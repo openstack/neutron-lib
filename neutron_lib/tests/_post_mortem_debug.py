@@ -26,13 +26,14 @@ def _get_debugger(debugger_name):
     try:
         debugger = __import__(debugger_name)
     except ImportError as exc:
-        raise ValueError("can't import %s module as a post mortem debugger" %
-                         debugger_name) from exc
+        raise ValueError(
+            f"can't import {debugger_name} module as a "
+            "post mortem debugger") from exc
     if 'post_mortem' in dir(debugger):
         return debugger
     else:
-        raise ValueError("%s is not a supported post mortem debugger" %
-                         debugger_name)
+        raise ValueError(
+            f"{debugger_name} is not a supported post mortem debugger")
 
 
 def _exception_handler(debugger, exc_info):

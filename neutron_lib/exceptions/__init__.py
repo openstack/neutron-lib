@@ -396,6 +396,7 @@ class SubnetMismatchForPort(BadRequest):
 
 class Invalid(NeutronException):
     """A generic base class for invalid errors."""
+
     def __init__(self, message=None):
         self.message = message
         super().__init__()

@@ -28,7 +28,7 @@ DESCRIPTION = ("Discover and advertise routes for Neutron prefixes "
 UPDATED_TIMESTAMP = '2016-05-10T15:37:00-00:00'
 BGP_SPEAKER_RESOURCE_NAME = 'bgp-speaker'
 BGP_SPEAKER_BODY_KEY_NAME = 'bgp_speaker'
-BGP_SPEAKERS = '%ss' % BGP_SPEAKER_BODY_KEY_NAME
+BGP_SPEAKERS = f'{BGP_SPEAKER_BODY_KEY_NAME}s'
 BGP_PEER_BODY_KEY_NAME = 'bgp_peer'
 
 

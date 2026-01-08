@@ -13,7 +13,6 @@
 import importlib.util
 import os
 import types
-import typing
 
 from neutron_lib.api import definitions
 from neutron_lib.api.definitions import base
@@ -25,7 +24,7 @@ from neutron_lib.tests import _base as test_base
 def assert_bool(tester, attribute, attribute_dict, keyword, value):
     tester.assertIsInstance(
         value, bool,
-        '{} must be a boolean for {}.'.format(keyword, attribute))
+        f'{keyword} must be a boolean for {attribute}.')
 
 
 def assert_converter(tester, attribute, attribute_dict, keyword, value):
@@ -40,20 +39,19 @@ def assert_converter(tester, attribute, attribute_dict, keyword, value):
             attribute_dict['convert_list_to'](attribute_dict['default'])
         except KeyError:
             if validators.is_attr_set(value) and not isinstance(
-                    value, (str, list)):
-                tester.fail("Default value '%s' cannot be converted for "
-                            "attribute %s." % (value, attribute))
+                    value, str | list):
+                tester.fail(f"Default value '{value}' cannot be converted for "
+                            f"attribute {attribute}.")
 
 
 def assert_true(tester, attribute, attribute_dict, keyword, value):
     tester.assertTrue(
-        value, '{} must be True for {}.'.format(keyword, attribute))
+        value, f'{keyword} must be True for {attribute}.')
 
 
 def assert_validator(tester, attribute, attribute_dict, keyword, value):
     tester.assertIn(list(value)[0], validators.validators,
-                    '{} is not a known validator for {}.'.format(
-                        value, attribute))
+                    f'{value} is not a known validator for {attribute}.')
 
 
 ASSERT_FUNCTIONS = {
@@ -76,7 +74,7 @@ ASSERT_FUNCTIONS = {
 
 class DefinitionBaseTestCase(test_base.BaseTestCase):
 
-    extension_module: typing.Optional[types.ModuleType] = None
+    extension_module: types.ModuleType | None = None
     extension_resources: tuple[str, ...] = ()
     extension_subresources: tuple[str, ...] = ()
     extension_attributes: tuple[str, ...] = ()

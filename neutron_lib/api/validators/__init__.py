@@ -37,8 +37,8 @@ UNLIMITED = None
 
 # Note: In order to ensure that the MAC address is unicast the first byte
 # must be even.
-MAC_PATTERN = "^{}[aceACE02468](:{}{{2}}){{5}}$".format(constants.HEX_ELEM,
-                                                        constants.HEX_ELEM)
+_HEX_ELEM = constants.HEX_ELEM
+MAC_PATTERN = f"^{_HEX_ELEM}[aceACE02468](:{_HEX_ELEM}{{2}}){{5}}$"
 
 
 def _verify_dict_keys(expected_keys, target_dict, strict=True):

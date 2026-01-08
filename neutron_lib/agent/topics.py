@@ -65,5 +65,5 @@ def get_topic_name(prefix, table, operation, host=None):
     :returns: The topic name.
     """
     if host:
-        return '{}-{}-{}.{}'.format(prefix, table, operation, host)
-    return '{}-{}-{}'.format(prefix, table, operation)
+        return f'{prefix}-{table}-{operation}.{host}'
+    return f'{prefix}-{table}-{operation}'

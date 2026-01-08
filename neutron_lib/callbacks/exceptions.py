@@ -56,8 +56,7 @@ class NotificationError:
         self._cancellable = cancellable
 
     def __str__(self):
-        return 'Callback {} failed with "{}"'.format(
-            self.callback_id, self.error)
+        return f'Callback {self.callback_id} failed with "{self.error}"'
 
     @property
     def is_cancellable(self):

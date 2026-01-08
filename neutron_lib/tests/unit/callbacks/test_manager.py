@@ -95,8 +95,8 @@ class CallBacksManagerTestCase(base.BaseTestCase):
         self.assertIsNotNone(
             self.manager._callbacks[resources.PORT][events.BEFORE_CREATE])
         self.assertIn(callback_id_1, self.manager._index)
-        self.assertEqual(self.__module__ + '.callback_1-%s' %
-                         hash(callback_1), callback_id_1)
+        self.assertEqual(self.__module__ +
+                         f'.callback_1-{hash(callback_1)}', callback_id_1)
         self.assertEqual(cancellable,
                          self.manager._callbacks[resources.PORT]
                          [events.BEFORE_CREATE][0][2])

@@ -139,8 +139,8 @@ class _BackingOffContextWrapper(_ContextWrapper):
         # two methods with the same name in different namespaces should
         # be tracked independently
         if self._original_context.target.namespace:
-            scoped_method = '{}.{}'.format(
-                self._original_context.target.namespace, method)
+            scoped_method = (
+                f'{self._original_context.target.namespace}.{method}')
         else:
             scoped_method = method
         # set the timeout from the global method timeout tracker for this
@@ -181,6 +181,7 @@ class BackingOffClient(oslo_messaging.RPCClient):
     returned will track when call timeout exceptions occur and exponentially
     increase the timeout for the given call method.
     """
+
     def prepare(self, *args, **kwargs):
         ctx = super().prepare(*args, **kwargs)
         # don't back off contexts that explicitly set a timeout
@@ -245,7 +246,7 @@ def get_notifier(service=None, host=None, publisher_id=None):
                         "None. This is deprecated since 2025.1 release and "
                         "will be removed in one of the future releases. "
                         "Please always pass the 'service' argument.")
-        publisher_id = "{}.{}".format(service, host or cfg.CONF.host)
+        publisher_id = f"{service}.{host or cfg.CONF.host}"
     serializer = RequestContextSerializer()
     return oslo_messaging.Notifier(NOTIFICATION_TRANSPORT,
                                    serializer=serializer,
@@ -254,6 +255,7 @@ def get_notifier(service=None, host=None, publisher_id=None):
 
 class RequestContextSerializer(om_serializer.Serializer):
     """Convert RPC common context into Neutron Context."""
+
     def __init__(self, base=None):
         super().__init__()
         self._base = base
@@ -294,6 +296,7 @@ class Service(os_service.Service):
 
     A service enables rpc by listening to queues based on topic and host.
     """
+
     def __init__(self, host, topic, manager=None, serializer=None):
         super().__init__()
         self.host = host
@@ -328,7 +331,8 @@ class Service(os_service.Service):
         # errors, go ahead and ignore them.. as we're shutting down anyway
         try:
             self.conn.close()
-        except Exception:  # nosec
+        except Exception as e:
+            LOG.debug("Ignored exception during stop: %s", str(e))
             pass
         super().stop()
 

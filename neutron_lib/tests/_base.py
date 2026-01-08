@@ -110,7 +110,7 @@ class BaseTestCase(testtools.TestCase):
         if conf is None:
             version_info = pbr.version.VersionInfo('neutron-lib')
             cfg.CONF(args=args, project='neutron_lib',
-                     version='%%(prog)s %s' % version_info.release_string())
+                     version=f'%(prog)s {version_info.release_string()}')
         else:
             conf(args)
 
@@ -224,16 +224,18 @@ class BaseTestCase(testtools.TestCase):
         be reported upon failure.
         """
         if not isinstance(expected_subset, dict):
-            self.fail("expected_subset (%s) is not an instance of dict" %
-                      type(expected_subset))
+            self.fail(
+                f"expected_subset ({type(expected_subset)}) is not "
+                "an instance of dict")
         if not isinstance(actual_superset, dict):
-            self.fail("actual_superset (%s) is not an instance of dict" %
-                      type(actual_superset))
+            self.fail(
+                f"actual_superset ({type(actual_superset)}) is not "
+                "an instance of dict")
         for k, v in expected_subset.items():
             self.assertIn(k, actual_superset)
             self.assertEqual(v, actual_superset[k],
-                             "Key %(key)s expected: %(exp)r, actual %(act)r" %
-                             {'key': k, 'exp': v, 'act': actual_superset[k]})
+                             f"Key {k} expected: {v!r}, actual "
+                             f"{actual_superset[k]!r}")
 
     def setup_config(self, args=None):
         """Tests that need a non-default config can override this method."""

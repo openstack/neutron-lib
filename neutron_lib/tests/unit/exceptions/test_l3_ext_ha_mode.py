@@ -12,6 +12,7 @@
 
 from unittest import mock
 
+from neutron_lib._i18n import _
 import neutron_lib.exceptions.l3_ext_ha_mode as lehm
 from neutron_lib.tests.unit.exceptions import test_exceptions
 

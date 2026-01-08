@@ -421,6 +421,7 @@ TC_QDISC_PARENTS = {'root': 0xffffffff,
 
 class Sentinel:
     """A constant object that does not change even when copied."""
+
     def __deepcopy__(self, memo):
         # Always return the same object because this is essentially a constant.
         return self

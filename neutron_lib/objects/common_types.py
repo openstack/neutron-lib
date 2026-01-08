@@ -55,6 +55,7 @@ class RangeConstrainedInteger(obj_fields.Integer):
 
 class IPNetworkPrefixLen(RangeConstrainedInteger):
     """IP network (CIDR) prefix length custom Enum"""
+
     def __init__(self, **kwargs):
         super().__init__(start=0, end=lib_constants.IPv6_BITS, **kwargs)
 
@@ -205,6 +206,7 @@ class IntegerEnum(obj_fields.Integer):
 
 class IPVersionEnum(IntegerEnum):
     """IP version integer Enum"""
+
     def __init__(self, **kwargs):
         super().__init__(
             valid_values=lib_constants.IP_ALLOWED_VERSIONS, **kwargs)
@@ -243,6 +245,7 @@ class EtherTypeEnumField(obj_fields.AutoTypedField):
 
 class IpProtocolEnum(obj_fields.Enum):
     """IP protocol number Enum"""
+
     def __init__(self, **kwargs):
         super().__init__(
             valid_values=list(
@@ -269,6 +272,7 @@ class MACAddress(obj_fields.FieldType):
     This custom field is different from the one provided by
     oslo.versionedobjects library: it uses netaddr.EUI type instead of strings.
     """
+
     def coerce(self, obj, attr, value):
         if not isinstance(value, netaddr.EUI):
             msg = _("Field value %s is not a netaddr.EUI") % value
@@ -340,6 +344,7 @@ class IPNetwork(obj_fields.FieldType):
     oslo.versionedobjects library: it does not reset string representation for
     the field.
     """
+
     def coerce(self, obj, attr, value):
         if not isinstance(value, netaddr.IPNetwork):
             msg = _("Field value %s is not a netaddr.IPNetwork") % value

@@ -288,9 +288,9 @@ def get_interface_name(name, prefix='', max_len=constants.DEVICE_NAME_MAX_LEN):
     namelen = max_len - len(prefix) - INTERFACE_HASH_LEN
     hashed_name = hashlib.new('sha1', usedforsecurity=False)
     hashed_name.update(encodeutils.to_utf8(name))
-    new_name = ('%(prefix)s%(truncated)s%(hash)s' %
-                {'prefix': prefix, 'truncated': name[0:namelen],
-                 'hash': hashed_name.hexdigest()[0:INTERFACE_HASH_LEN]})
+    new_name = (
+        f'{prefix}{name[0:namelen]}'
+        f'{hashed_name.hexdigest()[0:INTERFACE_HASH_LEN]}')
     LOG.info("The requested interface name %(requested_name)s exceeds the "
              "%(limit)d character limitation. It was shortened to "
              "%(new_name)s to fit.",

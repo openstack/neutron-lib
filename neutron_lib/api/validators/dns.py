@@ -61,7 +61,7 @@ def _validate_dns_name_with_dns_domain(request_dns_name, dns_domain):
     # legal size
     higher_labels = dns_domain
     if dns_domain:
-        higher_labels = '.%s' % dns_domain
+        higher_labels = f'.{dns_domain}'
     higher_labels_len = len(higher_labels)
     dns_name_len = len(request_dns_name)
     if not request_dns_name.endswith('.'):
@@ -97,7 +97,7 @@ def _get_dns_domain_config():
         return ''
     if cfg.CONF.dns_domain.endswith('.'):
         return cfg.CONF.dns_domain
-    return '%s.' % cfg.CONF.dns_domain
+    return f'{cfg.CONF.dns_domain}.'
 
 
 def _get_request_dns_name(dns_name):

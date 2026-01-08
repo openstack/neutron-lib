@@ -71,7 +71,7 @@ def use_jsonutils(logical_line, filename):
     if "json." in logical_line:
         json_funcs = ['dumps(', 'dump(', 'loads(', 'load(']
         for f in json_funcs:
-            pos = logical_line.find('json.%s' % f)
+            pos = logical_line.find(f'json.{f}')
             if pos != -1:
                 yield (pos, msg % {'fun': f[:-1]})
 
@@ -85,25 +85,25 @@ def _check_imports(regex, submatch, logical_line):
 def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
                              message_override=None):
     if message_override is not None:
-        msg_o = "{}: {}".format(failure_code, message_override)
+        msg_o = f"{failure_code}: {message_override}"
     else:
         msg_o = None
 
     if _check_imports(namespace_imports_from_dot, namespace, logical_line):
-        msg = ("%s: '%s' must be used instead of '%s'.") % (
+        msg = ("{}: '{}' must be used instead of '{}'.").format(
             failure_code,
-            logical_line.replace('%s.' % namespace, new_ns),
+            logical_line.replace(f'{namespace}.', new_ns),
             logical_line)
         return (0, msg_o or msg)
     elif _check_imports(namespace_imports_from_root, namespace, logical_line):
-        msg = ("%s: '%s' must be used instead of '%s'.") % (
+        msg = ("{}: '{}' must be used instead of '{}'.").format(
             failure_code,
             logical_line.replace(
-                'from %s import ' % namespace, 'import %s' % new_ns),
+                f'from {namespace} import ', f'import {new_ns}'),
             logical_line)
         return (0, msg_o or msg)
     elif _check_imports(namespace_imports_dot, namespace, logical_line):
-        msg = ("%s: '%s' must be used instead of '%s'.") % (
+        msg = ("{}: '{}' must be used instead of '{}'.").format(
             failure_code,
             logical_line.replace('import', 'from').replace('.', ' import '),
             logical_line)

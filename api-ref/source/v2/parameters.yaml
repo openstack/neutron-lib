@@ -1971,7 +1971,6 @@ agent:
   in: body
   required: true
   type: object
-  type: string
 agent_resources_synced:
   description: |
     The value ``null`` means no resource view synchronization to Placement
