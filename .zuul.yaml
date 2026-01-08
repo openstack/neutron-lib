@@ -1,6 +1,6 @@
 - job:
-    name: openstack-tox-py312-with-neutron
-    parent: openstack-tox-py312
+    name: openstack-tox-py313-with-neutron
+    parent: openstack-tox-py313
     timeout: 3600
     vars:
       zuul_work_dir: "{{ ansible_user_dir }}/{{ zuul.projects['opendev.org/openstack/neutron'].src_dir }}"
@@ -19,8 +19,8 @@
       - neutron-tempest-plugin-jobs
     check:
       jobs:
-        - openstack-tox-py312-with-neutron
-        - openstack-tox-py312-with-sqlalchemy-master
+        - openstack-tox-py313-with-neutron
+        - openstack-tox-py313-with-sqlalchemy-master
         - neutron-functional: &neutron-functional
             irrelevant-files:
               - ^.*\.rst$
