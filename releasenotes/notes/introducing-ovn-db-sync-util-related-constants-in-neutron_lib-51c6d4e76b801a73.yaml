@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Added a new module ``neutron_lib.ovn.constants`` which contanins OVN related
+    constants which can be used by various projects.  Currently constants
+    ``OVN_DB_SYNC_MODE_OFF``, ``OVN_DB_SYNC_MODE_LOG``,
+    ``OVN_DB_SYNC_MODE_REPAIR`` and ``OVN_DB_SYNC_MODE_MIGRATE`` are available
+    there.
