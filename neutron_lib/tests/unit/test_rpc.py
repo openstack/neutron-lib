@@ -171,7 +171,7 @@ class TestRequestContextSerializer(base.BaseTestCase):
     def test_deserialize_context(self):
         context_dict = {'foo': 'bar',
                         'user_id': 1,
-                        'tenant_id': 1,
+                        'project_id': 1,
                         'is_admin': True}
 
         c = self.ser.deserialize_context(context_dict)
@@ -182,17 +182,6 @@ class TestRequestContextSerializer(base.BaseTestCase):
     def test_deserialize_context_no_user_id(self):
         context_dict = {'foo': 'bar',
                         'user': 1,
-                        'tenant_id': 1,
-                        'is_admin': True}
-
-        c = self.ser.deserialize_context(context_dict)
-
-        self.assertEqual(1, c.user_id)
-        self.assertEqual(1, c.project_id)
-
-    def test_deserialize_context_no_tenant_id(self):
-        context_dict = {'foo': 'bar',
-                        'user_id': 1,
                         'project_id': 1,
                         'is_admin': True}
 

@@ -32,76 +32,38 @@ class TestNeutronContext(_base.BaseTestCase):
         ctx = context.Context('user_id', 'project_id')
         self.assertEqual('user_id', ctx.user_id)
         self.assertEqual('project_id', ctx.project_id)
-        self.assertEqual('project_id', ctx.tenant_id)
         request_id = ctx.request_id
         if isinstance(request_id, bytes):
             request_id = request_id.decode('utf-8')
         self.assertThat(request_id, matchers.StartsWith('req-'))
         self.assertIsNone(ctx.user_name)
-        self.assertIsNone(ctx.tenant_name)
-        self.assertIsNone(ctx.project_name)
-        self.assertIsNone(ctx.auth_token)
-
-    def _test_neutron_context_create(self, project_id, tenant_id):
-        p_id = project_id or tenant_id
-        ctx = context.Context('user_id', project_id=project_id,
-                              tenant_id=tenant_id)
-        self.assertEqual('user_id', ctx.user_id)
-        self.assertEqual(p_id, ctx.project_id)
-        self.assertEqual(p_id, ctx.tenant_id)
-        request_id = ctx.request_id
-        if isinstance(request_id, bytes):
-            request_id = request_id.decode('utf-8')
-        self.assertThat(request_id, matchers.StartsWith('req-'))
-        self.assertIsNone(ctx.user_name)
-        self.assertIsNone(ctx.tenant_name)
         self.assertIsNone(ctx.project_name)
         self.assertIsNone(ctx.auth_token)
 
     def test_neutron_context_create(self):
-        self._test_neutron_context_create('project_id', None)
+        project_id = 'project_id'
+        ctx = context.Context('user_id', project_id=project_id)
+        self.assertEqual('user_id', ctx.user_id)
+        self.assertEqual(project_id, ctx.project_id)
+        request_id = ctx.request_id
+        if isinstance(request_id, bytes):
+            request_id = request_id.decode('utf-8')
+        self.assertThat(request_id, matchers.StartsWith('req-'))
+        self.assertIsNone(ctx.user_name)
+        self.assertIsNone(ctx.project_name)
+        self.assertIsNone(ctx.auth_token)
 
-    def test_neutron_context_create_tenant_id(self):
-        self._test_neutron_context_create(None, 'tenant_id')
-
-    def _test_neutron_context_getter_setter(self, project_id, tenant_id):
-        p_id = project_id or tenant_id
-        ctx = context.Context('Anakin', project_id=project_id,
-                              tenant_id=tenant_id)
-        self.assertEqual('Anakin', ctx.user_id)
-        self.assertEqual(p_id, ctx.tenant_id)
-        ctx.user_id = 'Darth'
-        ctx.project_id = 'Vader'
-        self.assertEqual('Darth', ctx.user_id)
-        self.assertEqual('Vader', ctx.tenant_id)
-        self.assertEqual('Vader', ctx.project_id)
-
-    def test_neutron_context_getter_setter(self):
-        self._test_neutron_context_getter_setter('Skywalker', None)
-
-    def test_neutron_context_getter_setter_tenant_id(self):
-        self._test_neutron_context_getter_setter(None, 'Skywalker')
-
-    def _test_neutron_context_create_with_name(
-            self, project_name, tenant_name):
-        project_name = project_name or tenant_name
+    def test_neutron_context_create_with_name(self):
+        project_name = 'project_name'
         ctx = context.Context('user_id', 'project_id',
-                              tenant_name=tenant_name, user_name='user_name',
+                              user_name='user_name',
                               project_name=project_name)
         # Check name is set
         self.assertEqual('user_name', ctx.user_name)
-        self.assertEqual(project_name, ctx.tenant_name)
         self.assertEqual(project_name, ctx.project_name)
-        # Check user/tenant contains its ID even if user/tenant_name is passed
+        # Check user contains its ID
         self.assertEqual('user_id', ctx.user_id)
         self.assertEqual('project_id', ctx.project_id)
-        self.assertEqual('project_id', ctx.tenant_id)
-
-    def test_neutron_context_create_with_name(self):
-        self._test_neutron_context_create_with_name('project_name', None)
-
-    def test_neutron_context_create_with_name_tenant_name(self):
-        self._test_neutron_context_create_with_name(None, 'tenant_name')
 
     def test_neutron_context_create_with_request_id(self):
         ctx = context.Context('user_id', 'project_id', request_id='req_id_xxx')
@@ -136,26 +98,20 @@ class TestNeutronContext(_base.BaseTestCase):
         ctx = context.Context.from_dict(owner)
         self.assertEqual(owner['user_id'], ctx.user_id)
         self.assertEqual(owner['project_id'], ctx.project_id)
-        self.assertEqual(owner['project_id'], ctx.tenant_id)
 
-    def _test_neutron_context_from_dict_validate(
-            self, project_id, project_name, tenant_id, tenant_name):
-        project_id = project_id or tenant_id
-        project_name = project_name or tenant_name
+    def test_neutron_context_from_dict_validate(self):
+        project_id = 'project_id'
+        project_name = 'project_name'
         ctx = context.Context(user_id='user_id1',
                               user_name='user',
                               project_id=project_id,
                               project_name=project_name,
-                              tenant_id=tenant_id,
-                              tenant_name=tenant_name,
                               request_id='request_id1',
                               auth_token='auth_token1')
         values = {'user_id': 'user_id1',
                   'user_name': 'user',
                   'project_id': project_id,
                   'project_name': project_name,
-                  'tenant_id': project_id,
-                  'tenant_name': project_name,
                   'request_id': 'request_id1',
                   'auth_token': 'auth_token1'}
         ctx2 = context.Context.from_dict(values)
@@ -166,51 +122,26 @@ class TestNeutronContext(_base.BaseTestCase):
         ctx2_dict.pop('timestamp')
         self.assertEqual(ctx_dict, ctx2_dict)
 
-    def test_neutron_context_from_dict_validate(self):
-        self._test_neutron_context_from_dict_validate(
-            'project_id', 'project_name', None, None)
-
-    def test_neutron_context_from_dict_validate_tenant(self):
-        self._test_neutron_context_from_dict_validate(
-            None, None, 'tenant_id', 'tenant_name')
-
-    def _test_neutron_context_to_dict(self, project_id, tenant_id):
-        project_id = project_id or tenant_id
-        ctx = context.Context('user_id', project_id, tenant_id=tenant_id)
+    def test_neutron_context_to_dict(self):
+        project_id = 'project_id'
+        ctx = context.Context('user_id', project_id)
         ctx_dict = ctx.to_dict()
         self.assertEqual('user_id', ctx_dict['user_id'])
         self.assertEqual(project_id, ctx_dict['project_id'])
-        self.assertEqual(project_id, ctx_dict['tenant_id'])
         self.assertEqual(ctx.request_id, ctx_dict['request_id'])
         self.assertEqual('user_id', ctx_dict['user'])
         self.assertIsNone(ctx_dict['user_name'])
-        self.assertIsNone(ctx_dict['tenant_name'])
         self.assertIsNone(ctx_dict['project_name'])
         self.assertIsNone(ctx_dict['auth_token'])
 
-    def test_neutron_context_to_dict(self):
-        self._test_neutron_context_to_dict('project_id', None)
-
-    def test_neutron_context_to_dict_tenant(self):
-        self._test_neutron_context_to_dict(None, 'tenant_id')
-
-    def _test_neutron_context_to_dict_with_name(
-            self, project_name, tenant_name):
-        project_name = project_name or tenant_name
+    def _test_neutron_context_to_dict_with_name(self):
+        project_name = 'project_name'
         ctx = context.Context('user_id', 'project_id',
                               project_name=project_name,
-                              tenant_name=tenant_name,
                               user_name='user_name')
         ctx_dict = ctx.to_dict()
         self.assertEqual('user_name', ctx_dict['user_name'])
-        self.assertEqual(project_name, ctx_dict['tenant_name'])
         self.assertEqual(project_name, ctx_dict['project_name'])
-
-    def test_neutron_context_to_dict_with_name(self):
-        self._test_neutron_context_to_dict_with_name('project_name', None)
-
-    def test_neutron_context_to_dict_with_name_tenant(self):
-        self._test_neutron_context_to_dict_with_name(None, 'tenant_name')
 
     def test_neutron_context_to_dict_with_auth_token(self):
         ctx = context.Context('user_id', 'project_id',
@@ -224,7 +155,6 @@ class TestNeutronContext(_base.BaseTestCase):
         ctx_dict = ctx.to_dict()
         self.assertIsNone(ctx_dict['user_id'])
         self.assertIsNone(ctx_dict['project_id'])
-        self.assertIsNone(ctx_dict['tenant_id'])
         self.assertIsNone(ctx_dict['auth_token'])
         self.assertTrue(ctx_dict['is_admin'])
         self.assertTrue(ctx_dict['has_global_access'])
@@ -238,7 +168,6 @@ class TestNeutronContext(_base.BaseTestCase):
         ctx_dict = ctx.to_dict()
         self.assertIsNone(ctx_dict['user_id'])
         self.assertIsNone(ctx_dict['project_id'])
-        self.assertIsNone(ctx_dict['tenant_id'])
         self.assertIsNone(ctx_dict['auth_token'])
         self.assertIn('admin', ctx_dict['roles'])
         self.assertFalse(hasattr(ctx, 'session'))
@@ -366,9 +295,6 @@ class TestNeutronContext(_base.BaseTestCase):
         }
         additional_values = {
             'user': 'user_id',
-            'tenant': 'project_id',
-            'tenant_id': 'project_id',
-            'tenant_name': 'project_name',
         }
         ctx = context.Context(**values)
         # apply dict() to get a real dictionary, needed for newer oslo.context
