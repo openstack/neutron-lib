@@ -39,7 +39,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_visible': True,
             'validate': {
                 'type:values': constants.VALID_HWOL_TYPES}
-            }
+        }
     },
 }
 

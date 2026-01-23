@@ -118,9 +118,9 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                                'is_visible': True,
                                'is_sort_key': True,
                                'is_filter': True},
-            }
         }
     }
+}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource.

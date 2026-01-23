@@ -863,16 +863,16 @@ class TestPlacementAPIClient(base.BaseTestCase):
 
     def test_update_qos_allocation_multiple_rps(self):
         mock_rsp_get = self._get_allocation_response({
-                RESOURCE_PROVIDER_UUID: {'resources': {'a': 3, 'b': 2}},
-                SECOND_RESOURCE_PROVIDER_UUID: {'resources': {'c': 1, 'd': 5}},
-                })
+            RESOURCE_PROVIDER_UUID: {'resources': {'a': 3, 'b': 2}},
+            SECOND_RESOURCE_PROVIDER_UUID: {'resources': {'c': 1, 'd': 5}},
+        })
         self.placement_fixture.mock_get.side_effect = [mock_rsp_get]
         self.placement_api_client.update_qos_allocation(
             consumer_uuid=CONSUMER_UUID,
             alloc_diff={
                 RESOURCE_PROVIDER_UUID: {'a': -3, 'b': 2},
                 SECOND_RESOURCE_PROVIDER_UUID: {'e': 3, 'd': -5},
-                },
+            },
         )
         self.placement_fixture.mock_put.assert_called_once_with(
             f'/allocations/{CONSUMER_UUID}',

@@ -18,7 +18,7 @@ from neutron_lib.tests.unit.api.definitions import base
 
 
 class NetworkIPAvailabilityDetailsDefinitionTestCase(
-                                    base.DefinitionBaseTestCase):
+        base.DefinitionBaseTestCase):
     extension_module = network_ip_availability_details
     extension_resources = (network_ip_availability.RESOURCE_PLURAL,)
     extension_attributes = (
