@@ -40,35 +40,37 @@ SUB_RES_ATTR_MAP.update({
         'parent': qos_apidef._PARENT,
         'parameters': dict(
             qos_apidef._QOS_RULE_COMMON_FIELDS,
-            **{qos_const.MAX_KPPS: {
-                'allow_post': True, 'allow_put': True,
-                'convert_to': converters.convert_to_int,
-                'is_visible': True,
-                'is_filter': True,
-                'is_sort_key': True,
-                'validate': {
-                    'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
-              },
-              qos_const.MAX_BURST_KPPS: {
-                'allow_post': True, 'allow_put': True,
-                'is_visible': True, 'default': 0,
-                'is_filter': True,
-                'is_sort_key': True,
-                'convert_to': converters.convert_to_int,
-                'validate': {
-                    'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
-              },
-              qos_const.DIRECTION: {
-                'allow_post': True,
-                'allow_put': True,
-                'is_visible': True,
-                'is_filter': True,
-                'is_sort_key': True,
-                'default': constants.EGRESS_DIRECTION,
-                'validate': {
-                    'type:values': constants.VALID_DIRECTIONS}
-              }
-            }),
+            **{
+                qos_const.MAX_KPPS: {
+                    'allow_post': True, 'allow_put': True,
+                    'convert_to': converters.convert_to_int,
+                    'is_visible': True,
+                    'is_filter': True,
+                    'is_sort_key': True,
+                    'validate': {
+                        'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
+                },
+                qos_const.MAX_BURST_KPPS: {
+                    'allow_post': True, 'allow_put': True,
+                    'is_visible': True, 'default': 0,
+                    'is_filter': True,
+                    'is_sort_key': True,
+                    'convert_to': converters.convert_to_int,
+                    'validate': {
+                        'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
+                },
+                qos_const.DIRECTION: {
+                    'allow_post': True,
+                    'allow_put': True,
+                    'is_visible': True,
+                    'is_filter': True,
+                    'is_sort_key': True,
+                    'default': constants.EGRESS_DIRECTION,
+                    'validate': {
+                        'type:values': constants.VALID_DIRECTIONS}
+                }
+            }
+        ),
     }
 })
 SUB_RES_ATTR_MAP.update(

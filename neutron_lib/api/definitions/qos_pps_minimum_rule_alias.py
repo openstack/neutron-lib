@@ -34,14 +34,14 @@ RESOURCE_ATTRIBUTE_MAP = {
     MIN_PACKET_RATE_RULES_ALIAS: {
         **qos._QOS_RULE_COMMON_FIELDS,
         qos_constants.MIN_KPPS: {
-                'allow_post': False,
-                'allow_put': True,
-                'convert_to': converters.convert_to_int,
-                'is_visible': True,
-                'is_filter': True,
-                'is_sort_key': True,
-                'validate': {
-                    'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
+            'allow_post': False,
+            'allow_put': True,
+            'convert_to': converters.convert_to_int,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'validate': {
+                'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
         },
         qos_constants.DIRECTION: {
             'allow_post': False,

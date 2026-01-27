@@ -148,7 +148,7 @@ class CIDRTestCase(SqlAlchemyTypesBaseTestCase):
 
     def _update_row(self, key, cidr):
         row_update = self.test_table.update().values(cidr=cidr).\
-                         where(self.test_table.c.cidr == key)
+            where(self.test_table.c.cidr == key)
         with self.engine.connect() as conn, conn.begin():
             conn.execute(row_update)
 
@@ -203,7 +203,7 @@ class MACAddressTestCase(SqlAlchemyTypesBaseTestCase):
 
     def _update_row(self, key, mac):
         row_update = self.test_table.update().values(mac=mac).\
-                         where(self.test_table.c.mac == key)
+            where(self.test_table.c.mac == key)
         with self.engine.connect() as conn, conn.begin():
             conn.execute(row_update)
 

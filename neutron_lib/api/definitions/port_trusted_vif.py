@@ -39,7 +39,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'default': constants.ATTR_NOT_SPECIFIED,
             'is_visible': True,
             'validate': {'type:boolean': None}
-            }
+        }
     },
 }
 

@@ -38,7 +38,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_visible': True,
             'is_filter': True,
             'validate': {'type:boolean': None}
-            }
+        }
     },
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None

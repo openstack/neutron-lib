@@ -112,7 +112,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                 'validate': {
                     'type:values': constants.VALID_DIRECTIONS
                 }
-            }
+        }
         }
     )
 }

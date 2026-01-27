@@ -26,7 +26,7 @@ INVENTORY_OPTIONS = {
     'min_unit',
     'reserved',
     'step_size',
-    }
+}
 
 # Tunnelled networks resource provider default name.
 RP_TUNNELLED = 'rp_tunnelled'

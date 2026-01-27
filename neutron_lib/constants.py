@@ -389,8 +389,7 @@ DNS_DOMAIN_DEFAULT = 'openstacklocal.'
 DNS_LABEL_KEYWORDS = ['project_id', 'project_name', 'user_name', 'user_id']
 DNS_LABEL_MAX_LEN = 63
 DNS_LABEL_REGEX = "^([a-z0-9-]{1,%d}|%s)$" % (
-                   DNS_LABEL_MAX_LEN,
-                   '<' + '>|<'.join(DNS_LABEL_KEYWORDS) + '>')
+    DNS_LABEL_MAX_LEN, '<' + '>|<'.join(DNS_LABEL_KEYWORDS) + '>')
 
 # max value for TCP, UDP, SCTP ports
 PORT_MAX = 2**16 - 1
