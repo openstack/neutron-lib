@@ -5701,6 +5701,64 @@ psk:
   in: body
   required: true
   type: string
+pvlan:
+  description: |
+    Indicates the Private VLAN mode of the network, which is
+    Private VLAN enabled (``true``) or disabled (``false``).
+    When enabled, the network supports Private VLAN semantics
+    allowing port isolation within the same network.
+  in: body
+  required: true
+  type: boolean
+pvlan-request:
+  description: |
+    Indicates the Private VLAN mode of the network, which is
+    Private VLAN enabled (``true``) or disabled (``false``).
+    When enabled, the network supports Private VLAN semantics
+    allowing port isolation within the same network.
+  in: body
+  required: false
+  type: boolean
+pvlan_community:
+  description: |
+    The Private VLAN community name. Used to group ports within the same
+    community. Ports in the same community can communicate with each other and
+    with promiscuous ports but are isolated from ports in other communities.
+    Must match the pattern: ``[a-zA-Z_.][a-zA-Z_.0-9]*``. Maximum length is 232
+    characters.
+  in: body
+  required: false
+  type: string
+pvlan_community-request:
+  description: |
+    The Private VLAN community name. Used to group ports
+    within the same community. Ports in the same community can
+    communicate with each other but are isolated from ports
+    in other communities. Must match the pattern: ``[a-zA-Z_.][a-zA-Z_.0-9]*``.
+    Maximum length is 232 characters.
+  in: body
+  required: false
+  type: string
+pvlan_type:
+  description: |
+    The Private VLAN type for the port. Valid values are:
+    ``isolated`` (port can only communicate with promiscuous ports),
+    ``promiscuous`` (port can communicate with all ports),
+    or ``community`` (port can communicate with ports in the same community
+    and promiscuous ports).
+  in: body
+  required: false
+  type: string
+pvlan_type-request:
+  description: |
+    The Private VLAN type for the port. Valid values are:
+    ``isolated`` (port can only communicate with promiscuous ports),
+    ``promiscuous`` (port can communicate with all ports),
+    or ``community`` (port can communicate with ports in the same community
+    and promiscuous ports).
+  in: body
+  required: false
+  type: string
 qinq:
   description: |
     Indicates the VLAN QinQ mode of the network, which is

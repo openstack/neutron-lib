@@ -179,6 +179,16 @@ attribute to ports. If a ``port-security`` value is not specified during
 port creation, a port will inherit the ``port_security_enabled`` from the
 network its connected to.
 
+PVLAN
+=====
+
+The ``pvlan`` extension adds the ``pvlan_type`` and the ``pvlan_community``
+attributes to ports. ``pvlan_type`` value can be either "promiscuous",
+"community" or "isolated". When the ``pvlan`` service plugin is enabled, ports
+will be set to promiscuous by default. The ``pvlan_community`` attribute is a
+string that defines the name of the community the port is in, and should be set
+only if ports are of the "community" type.
+
 Trusted VIF
 ===========
 
@@ -312,6 +322,8 @@ Response Parameters
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
    - port_trusted_vif: port_trusted_vif-response
+   - pvlan_type: pvlan_type
+   - pvlan_community: pvlan_community
 
 Response Example
 ----------------
@@ -394,6 +406,8 @@ Request
    - security_groups: port-security_groups-request
    - mac_learning_enabled: mac_learning_enabled-request
    - port_trusted_vif: port_trusted_vif-request
+   - pvlan_type: pvlan_type-request
+   - pvlan_community: pvlan_community-request
 
 Request Example
 ---------------
@@ -451,6 +465,8 @@ Response Parameters
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
    - port_trusted_vif: port_trusted_vif-response
+   - pvlan_type: pvlan_type
+   - pvlan_community: pvlan_community
 
 Response Example
 ----------------
@@ -541,6 +557,8 @@ Request
    - not-tags-any: not-tags-any-query
    - fields: fields
    - mac_learning_enabled: mac_learning_enabled-query
+   - pvlan_type: pvlan_type-request
+   - pvlan_community: pvlan_community-request
 
 Response Parameters
 -------------------
@@ -586,6 +604,8 @@ Response Parameters
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
    - port_trusted_vif: port_trusted_vif-response
+   - pvlan_type: pvlan_type
+   - pvlan_community: pvlan_community
 
 Response Example
 ----------------
@@ -644,6 +664,8 @@ Request
    - propagate_uplink_status: propagate_uplink_status-request
    - mac_learning_enabled: mac_learning_enabled-request
    - port_trusted_vif: port_trusted_vif-request
+   - pvlan_type: pvlan_type-request
+   - pvlan_community: pvlan_community-request
 
 Request Example
 ---------------
@@ -701,6 +723,8 @@ Response Parameters
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
    - port_trusted_vif: port_trusted_vif-response
+   - pvlan_type: pvlan_type
+   - pvlan_community: pvlan_community
 
 Response Example
 ----------------
@@ -756,6 +780,8 @@ Request
    - tenant_id: project_id-request
    - propagate_uplink_status: propagate_uplink_status-request
    - mac_learning_enabled: mac_learning_enabled-request
+   - pvlan_type: pvlan_type-request
+   - pvlan_community: pvlan_community-request
 
 Request Example
 ---------------
@@ -804,6 +830,8 @@ Response Parameters
    - updated_at: updated_at_resource
    - propagate_uplink_status: propagate_uplink_status
    - mac_learning_enabled: mac_learning_enabled
+   - pvlan_type: pvlan_type
+   - pvlan_community: pvlan_community
 
 Response Example
 ----------------

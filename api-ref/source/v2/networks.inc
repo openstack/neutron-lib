@@ -141,6 +141,13 @@ Most Networking plug-ins (e.g. ML2 Plugin) and drivers do not support updating
 any provider related attributes. Check your plug-in whether it supports
 updating.
 
+PVLAN
+=====
+
+The ``pvlan`` extension adds the ``pvlan`` boolean attribute to a network.
+This attribute allows the use of PVLAN port security mechanism for ports
+whithin the network.
+
 QinQ
 ====
 
@@ -231,6 +238,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
+   - pvlan: pvlan
    - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
@@ -289,6 +297,7 @@ Request
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
+   - pvlan: pvlan-request
    - qos_policy_id: qos_policy_id-network-request
    - router:external: router:external-request
    - segments: segments
@@ -336,6 +345,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
+   - pvlan: pvlan
    - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
@@ -421,6 +431,7 @@ Request
    - provider:network_type: provider:network_type-query
    - provider:physical_network: provider:physical_network-query
    - provider:segmentation_id: provider:segmentation_id-query
+   - pvlan: pvlan
    - revision_number: revision_number-query
    - router:external: router:external-query
    - shared: network-shared-query
@@ -459,6 +470,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
+   - pvlan: pvlan
    - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
@@ -520,6 +532,7 @@ Request
    - provider:network_type: provider:network_type-request
    - provider:physical_network: provider:physical_network-request
    - provider:segmentation_id: provider:segmentation_id-request
+   - pvlan: pvlan-request
    - qos_policy_id: qos_policy_id-network-request
    - router:external: router:external-request
    - segments: segments-request
@@ -570,6 +583,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
+   - pvlan: pvlan
    - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external
@@ -670,6 +684,7 @@ Response Parameters
    - provider:network_type: provider:network_type
    - provider:physical_network: provider:physical_network
    - provider:segmentation_id: provider:segmentation_id
+   - pvlan: pvlan
    - qos_policy_id: qos_policy_id-network-response
    - revision_number: revision_number
    - router:external: router:external

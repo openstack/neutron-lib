@@ -133,6 +133,7 @@ KNOWN_EXTENSIONS = (
     'port-security',
     'project-id',
     'provider',
+    'pvlan',
     'qos',
     'qos-bw-limit-direction',
     'qos-fip',
