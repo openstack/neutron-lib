@@ -214,7 +214,7 @@ def timecost(f):
 
     @timeutils.time_it(LOG, message=end_message, min_duration=None)
     def wrapper(*args, **kwargs):
-        LOG.debug(message_base + "start")
+        LOG.debug('%s start', message_base)
         ret = f(*args, **kwargs)
         return ret
     return wrapper
