@@ -50,7 +50,7 @@ class NamespacedPlugins:
             invoke_on_load=False)
 
         if not self._extension_manager.names():
-            LOG.debug("No plugins found in namespace: ", self.namespace)
+            LOG.debug("No plugins found in namespace: %s", self.namespace)
             return
         self._extension_manager.map(self._add_extension)
 
