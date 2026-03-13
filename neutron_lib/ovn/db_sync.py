@@ -64,6 +64,14 @@ class BaseOvnDbSynchronizer(metaclass=abc.ABCMeta):
     def get_required_ml2_extension_drivers(cls):
         return cls._get_parent_class_attribute('_required_ml2_ext_drivers')
 
+    @classmethod
+    def prepare_additional_configuration(cls, conf):
+        """Do any additional configuration changes required by plugin.
+
+        :param: conf: The oslo_config.cfg.CONF object
+        """
+        pass
+
     @abc.abstractmethod
     def do_sync(self):
         """Method to sync the OVN DB."""
