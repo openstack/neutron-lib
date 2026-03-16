@@ -49,6 +49,9 @@ class WorkerBase:
 class ServicePluginBase(WorkerBase, metaclass=abc.ABCMeta):
     """Define base interface for any Advanced Service plugin."""
     supported_extension_aliases = []
+    # This attribute specifies whether the plugin supports or not filter
+    # validations.
+    _filter_validation_support = True
 
     @classmethod
     def __subclasshook__(cls, klass):
@@ -82,3 +85,7 @@ class ServicePluginBase(WorkerBase, metaclass=abc.ABCMeta):
     def get_plugin_description(self):
         """Return string description of the plugin."""
         pass
+
+    @property
+    def filter_validation_support(self):
+        return self._filter_validation_support
