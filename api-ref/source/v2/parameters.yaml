@@ -157,6 +157,12 @@ flow_classifier_id-path:
   in: path
   required: true
   type: string
+host-path:
+  description: |
+    The hostname of the system.
+  in: path
+  required: true
+  type: string
 ikepolicy_id-path:
   description: |
     The ID of the IKE policy.

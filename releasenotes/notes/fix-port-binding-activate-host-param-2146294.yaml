@@ -1,0 +1,14 @@
+---
+fixes:
+  - |
+    Fixed API reference documentation for port binding activation and deletion
+    endpoints. The ``host`` parameter is now correctly documented as a path
+    parameter instead of a body parameter for the following endpoints:
+
+    * ``PUT /v2.0/ports/{port_id}/bindings/{host}/activate``
+    * ``DELETE /v2.0/ports/{port_id}/bindings/{host}``
+
+    This fixes the issue where clients (like openstacksdk) were incorrectly
+    sending the host parameter in both the path and the body, causing a
+    TypeError. For more information see bug
+    `2146294 <https://bugs.launchpad.net/neutron/+bug/2146294>`_

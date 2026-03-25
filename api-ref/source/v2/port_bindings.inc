@@ -111,7 +111,7 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - port_id: port_id-path
-   - host: host
+   - host: host-path
 
 Response Parameters
 -------------------
@@ -147,7 +147,7 @@ Request
 .. rest_parameters:: parameters.yaml
 
    - port_id: port_id-path
-   - host: host
+   - host: host-path
 
 Response
 --------
