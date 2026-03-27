@@ -25,6 +25,4 @@ class FirewallDefinitionTestCase(base.DefinitionBaseTestCase):
                             'firewall_policy_id', 'firewall_rules',
                             'ingress_firewall_policy_id', 'ip_version',
                             'ports', 'position', 'protocol', constants.SHARED,
-                            'source_ip_address', 'source_port',
-                            'source_firewall_group_id',
-                            'destination_firewall_group_id')
+                            'source_ip_address', 'source_port')

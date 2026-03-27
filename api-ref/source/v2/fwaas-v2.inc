@@ -517,7 +517,6 @@ Response Parameters
    - firewall_rules: firewall_rules_object
    - action: firewall_rule_action-body-required
    - description: firewall_rule_description-body-required
-   - destination_firewall_group_id: destination_firewall_group_id-body-required
    - destination_ip_address: firewall_rule_destination_ip_address-body-required
    - destination_port: firewall_rule_destination_port-body-required
    - enabled: firewall_rule_enabled-body-required
@@ -528,7 +527,6 @@ Response Parameters
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
    - shared: firewall_rule_shared-body-required
-   - source_firewall_group_id: source_firewall_group_id-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
@@ -571,7 +569,6 @@ Response Parameters
    - firewall_rule: firewall_rule_object
    - action: firewall_rule_action-body-required
    - description: firewall_rule_description-body-required
-   - destination_firewall_group_id: destination_firewall_group_id-body-required
    - destination_ip_address: firewall_rule_destination_ip_address-body-required
    - destination_port: firewall_rule_destination_port-body-required
    - enabled: firewall_rule_enabled-body-required
@@ -582,7 +579,6 @@ Response Parameters
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
    - shared: firewall_rule_shared-body-required
-   - source_firewall_group_id: source_firewall_group_id-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
@@ -612,7 +608,6 @@ Request
    - firewall_rule: firewall_rule_object
    - action: firewall_rule_action-body-optional
    - description: firewall_rule_description-body-optional
-   - destination_firewall_group_id: destination_firewall_group_id-body-optional
    - destination_ip_address: firewall_rule_destination_ip_address-body-optional
    - destination_port: firewall_rule_destination_port-body-optional
    - enabled: firewall_rule_enabled-body-optional
@@ -621,7 +616,6 @@ Request
    - project_id: project_id-body-optional
    - protocol: firewall_rule_protocol-body-optional
    - shared: firewall_rule_shared-body-optional
-   - source_firewall_group_id: source_firewall_group_id-body-optional
    - source_ip_address: firewall_rule_source_ip_address-body-optional
    - source_port: firewall_rule_source_port-body-optional
    - tenant_id: project_id-body-optional
@@ -640,7 +634,6 @@ Response Parameters
    - firewall_rule: firewall_rule_object
    - action: firewall_rule_action-body-required
    - description: firewall_rule_description-body-required
-   - destination_firewall_group_id: destination_firewall_group_id-body-required
    - destination_ip_address: firewall_rule_destination_ip_address-body-required
    - destination_port: firewall_rule_destination_port-body-required
    - enabled: firewall_rule_enabled-body-required
@@ -651,7 +644,6 @@ Response Parameters
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
    - shared: firewall_rule_shared-body-required
-   - source_firewall_group_id: source_firewall_group_id-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
@@ -682,7 +674,6 @@ Request
    - firewall_rule: firewall_rule_object
    - action: firewall_rule_action-body-optional
    - description: firewall_rule_description-body-optional
-   - destination_firewall_group_id: destination_firewall_group_id-body-optional
    - destination_ip_address: firewall_rule_destination_ip_address-body-optional
    - destination_port: firewall_rule_destination_port-body-optional
    - enabled: firewall_rule_enabled-body-optional
@@ -692,7 +683,6 @@ Request
    - project_id: project_id-body-optional
    - protocol: firewall_rule_protocol-body-optional
    - shared: firewall_rule_shared-body-optional
-   - source_firewall_group_id: source_firewall_group_id-body-optional
    - source_ip_address: firewall_rule_source_ip_address-body-optional
    - source_port: firewall_rule_source_port-body-optional
    - tenant_id: project_id-body-optional
@@ -711,7 +701,6 @@ Response Parameters
    - firewall_rule: firewall_rule_object
    - action: firewall_rule_action-body-required
    - description: firewall_rule_description-body-required
-   - destination_firewall_group_id: destination_firewall_group_id-body-required
    - destination_ip_address: firewall_rule_destination_ip_address-body-required
    - destination_port: firewall_rule_destination_port-body-required
    - enabled: firewall_rule_enabled-body-required
@@ -722,7 +711,6 @@ Response Parameters
    - project_id: project_id-body-required
    - protocol: firewall_rule_protocol-body-required
    - shared: firewall_rule_shared-body-required
-   - source_firewall_group_id: source_firewall_group_id-body-required
    - source_ip_address: firewall_rule_source_ip_address-body-required
    - source_port: firewall_rule_source_port-body-required
    - tenant_id: project_id-body-required
