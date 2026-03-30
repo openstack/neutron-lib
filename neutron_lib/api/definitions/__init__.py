@@ -174,6 +174,7 @@ from neutron_lib.api.definitions import vpn_aes_ccm_gcm
 from neutron_lib.api.definitions import vpn_aes_ctr
 from neutron_lib.api.definitions import vpn_endpoint_groups
 from neutron_lib.api.definitions import vpn_flavors
+from neutron_lib.api.definitions import vpn_no_sha1_3des
 
 
 _ALL_API_DEFINITIONS = {
@@ -340,4 +341,5 @@ _ALL_API_DEFINITIONS = {
     vpn_aes_ctr,
     vpn_endpoint_groups,
     vpn_flavors,
+    vpn_no_sha1_3des,
 }
