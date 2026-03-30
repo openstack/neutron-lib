@@ -10,6 +10,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from neutron_lib.api.definitions import aap_reject_multicast
 from neutron_lib.api.definitions import address_group
 from neutron_lib.api.definitions import address_scope
 from neutron_lib.api.definitions import agent
@@ -179,6 +180,7 @@ from neutron_lib.api.definitions import vpn_no_sha1_3des
 
 
 _ALL_API_DEFINITIONS = {
+    aap_reject_multicast,
     address_group,
     address_scope,
     agent,

@@ -1404,3 +1404,63 @@ class TestServicePluginType(base.BaseTestCase):
             n_exc.InvalidServiceType,
             'Invalid service type',
             validators.validate_service_plugin_type, 'ntype')
+
+
+class TestAddressNotMulticastValidation(base.BaseTestCase):
+
+    def test_validate_ip_not_multicast(self):
+        # not multicast
+        for data in (
+            '1.2.3.4', '223.255.255.255', '240.0.0.0',
+            '::0', '::1',
+            '2001:0db8:85a3::8a2e:0370:7334',
+            'feff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
+        ):
+            result = validators.validate_ip_not_multicast(data)
+            self.assertIsNone(result)
+
+        # multicast
+        for data in (
+            '224.0.0.0', '224.0.0.1', '239.255.255.255',
+            'ff00::', 'ff02::1',
+            'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
+        ):
+            result = validators.validate_ip_not_multicast(data)
+            self.assertIsNotNone(result)
+
+    def test_validate_subnet_not_multicast(self):
+        # does not overlap with multicast
+        for data in (
+            '0.0.0.0/0',
+            '1.2.3.0/24',
+            '2001:0db8:85a3::/56',
+        ):
+            result = validators.validate_subnet_not_multicast(data)
+            self.assertIsNone(result)
+
+        # overlaps with multicast
+        for data in (
+            '224.0.0.0/2', '224.0.0.0/4', '224.0.0.0/8',
+            'ff00::/4', 'ff00::/8', 'ff00::/12',
+        ):
+            result = validators.validate_subnet_not_multicast(data)
+            self.assertIsNotNone(result)
+
+    def test_validate_mac_address_not_multicast(self):
+        # not multicast
+        for data in (
+            '00:00:00:00:00:00',
+            '02:00:00:00:00:00',
+            '00:00:5e:00:00:64',
+        ):
+            result = validators.validate_mac_address_not_multicast(data)
+            self.assertIsNone(result)
+
+        # multicast
+        for data in (
+            '01:00:00:00:00:00',
+            '03:00:00:00:00:00',
+            '01:00:5e:00:00:64',
+        ):
+            result = validators.validate_mac_address_not_multicast(data)
+            self.assertIsNotNone(result)
