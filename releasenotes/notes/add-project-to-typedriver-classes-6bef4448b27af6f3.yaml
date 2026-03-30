@@ -1,0 +1,9 @@
+---
+deprecations:
+  - |
+    A new method was added to the TypeDriver and ML2TypeDriver API
+    classes called ``allocate_project_segment``. It take the same arguments
+    as ``allocate_tenant_segment`` just uses a different name. By default,
+    it calls the ``allocate_tenant_segment`` method to avoid any compatibility
+    issues, but callers are expected to change to the new method, after
+    which ``allocate_tenant_segment`` will be deprecated.

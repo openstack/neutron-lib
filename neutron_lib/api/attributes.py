@@ -26,9 +26,8 @@ def _validate_privileges(context, res_dict):
     if ('project_id' in res_dict and
             res_dict['project_id'] != context.project_id and
             not context.can_set_project_id):
-        msg = _("Specifying 'project_id' or 'tenant_id' other than the "
-                "authenticated project in request is not allowed for "
-                "current user.")
+        msg = _("Specifying 'project_id' other than the authenticated "
+                "project in request is not allowed for the current user.")
         raise exc.HTTPBadRequest(msg)
 
 
@@ -270,7 +269,7 @@ class AttributeInfo:
 
             else:
                 msg = _("Running without keystone AuthN requires "
-                        "that tenant_id is specified")
+                        "that project_id is specified")
                 raise exc.HTTPBadRequest(msg)
 
     def verify_attributes(self, attrs_to_verify):

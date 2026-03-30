@@ -563,7 +563,7 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """Define abstract interface for ML2 type drivers.
 
     ML2 type drivers each support a specific network_type for provider
-    and/or tenant network segments. Type drivers must implement this
+    and/or project network segments. Type drivers must implement this
     abstract interface, which defines the API by which the plugin uses
     the driver to manage the persistent type-specific resource
     allocation state associated with network segments of that type.
@@ -578,6 +578,7 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     TypeDriver passes session as argument for:
     - reserve_provider_segment
     - allocate_tenant_segment
+    - allocate_project_segment
     - release_segment
     - get_allocation
     """
@@ -599,19 +600,25 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def allocate_tenant_segment(self, session, filters=None):
-        """Allocate resource for a new tenant network segment.
+        """Allocate resource for a new project network segment.
 
         :param session: database session
         :param filters: a dictionary that is used as search criteria
         :returns: segment dictionary using keys defined above
 
         Called inside transaction context on session to allocate a new
-        tenant network, typically from a type-specific resource
+        project network, typically from a type-specific resource
         pool. If successful, return a segment dictionary describing
-        the segment. If tenant network segment cannot be allocated
-        (i.e. tenant networks not supported or resource pool is
+        the segment. If project network segment cannot be allocated
+        (i.e. project networks not supported or resource pool is
         exhausted), return None.
         """
+
+    # NOTE(haleyb): when all sub-classes support the new method, we can
+    # remove the tenant version and make this an abtract method
+    def allocate_project_segment(self, session, filters=None):
+        """For backwards-compatibility, call allocate_tenant_segment()"""
+        return self.allocate_tenant_segment(session, filters=filters)
 
     @abc.abstractmethod
     def release_segment(self, session, segment):
@@ -621,7 +628,7 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         :param segment: segment dictionary using keys defined above
 
         Called inside transaction context on session to release a
-        tenant or provider network's type-specific resource. Runtime
+        project or provider network's type-specific resource. Runtime
         errors are not expected, but raising an exception will result
         in rollback of the transaction.
         """
@@ -631,7 +638,7 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """Define abstract interface for ML2 type drivers.
 
     ML2 type drivers each support a specific network_type for provider
-    and/or tenant network segments. Type drivers must implement this
+    and/or project network segments. Type drivers must implement this
     abstract interface, which defines the API by which the plugin uses
     the driver to manage the persistent type-specific resource
     allocation state associated with network segments of that type.
@@ -646,6 +653,7 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     ML2TypeDriver passes context as argument for:
     - reserve_provider_segment
     - allocate_tenant_segment
+    - allocate_project_segment
     - release_segment
     - get_allocation
     """
@@ -667,19 +675,25 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def allocate_tenant_segment(self, context, filters=None):
-        """Allocate resource for a new tenant network segment.
+        """Allocate resource for a new project network segment.
 
         :param context: instance of neutron context with DB session
         :param filters: a dictionary that is used as search criteria
         :returns: segment dictionary using keys defined above
 
         Called inside transaction context on session to allocate a new
-        tenant network, typically from a type-specific resource
+        project network, typically from a type-specific resource
         pool. If successful, return a segment dictionary describing
-        the segment. If tenant network segment cannot be allocated
-        (i.e. tenant networks not supported or resource pool is
+        the segment. If project network segment cannot be allocated
+        (i.e. project networks not supported or resource pool is
         exhausted), return None.
         """
+
+    # NOTE(haleyb): when all sub-classes support the new method, we can
+    # remove the tenant version and make this an abtract method
+    def allocate_project_segment(self, context, filters=None):
+        """For backwards-compatibility, call allocate_tenant_segment()"""
+        return self.allocate_tenant_segment(context, filters=filters)
 
     @abc.abstractmethod
     def release_segment(self, context, segment):
@@ -689,7 +703,7 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         :param segment: segment dictionary using keys defined above
 
         Called inside transaction context on session to release a
-        tenant or provider network's type-specific resource. Runtime
+        project or provider network's type-specific resource. Runtime
         errors are not expected, but raising an exception will result
         in rollback of the transaction.
         """

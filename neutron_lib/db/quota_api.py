@@ -68,7 +68,7 @@ class QuotaDriverAPI(metaclass=abc.ABCMeta):
     @staticmethod
     @abc.abstractmethod
     def get_all_quotas(context, resources):
-        """Given a list of resources, retrieve the quotas for the all tenants.
+        """Given a list of resources, retrieve the quotas for the all projects.
 
         :param context: The request context, for access checks.
         :param resources: A dictionary of the registered resource keys.
