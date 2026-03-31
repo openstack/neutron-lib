@@ -64,6 +64,7 @@ from neutron_lib.api.definitions import ip_allocation
 from neutron_lib.api.definitions import ip_substring_port_filtering
 from neutron_lib.api.definitions import l2_adjacency
 from neutron_lib.api.definitions import l3
+from neutron_lib.api.definitions import l3_agent_scheduler_ha_chassis_priority
 from neutron_lib.api.definitions import l3_conntrack_helper
 from neutron_lib.api.definitions import l3_enable_default_route_bfd
 from neutron_lib.api.definitions import l3_enable_default_route_ecmp
@@ -234,6 +235,7 @@ _ALL_API_DEFINITIONS = {
     l2_adjacency,
     flowclassifier,
     l3,
+    l3_agent_scheduler_ha_chassis_priority,
     l3_conntrack_helper,
     l3_ext_gw_mode,
     l3_ext_ha_mode,

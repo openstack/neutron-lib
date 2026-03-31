@@ -112,6 +112,7 @@ KNOWN_EXTENSIONS = (
     'floatingip-autodelete-internal',
     'floatingip-pools',
     'ip-substring-filtering',
+    'l3-agent-scheduler-ha-chassis-priority',
     'l3-conntrack-helper',
     'l3-ha',
     'l3_agent_scheduler',

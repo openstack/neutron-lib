@@ -1,0 +1,10 @@
+---
+features:
+  - |
+    Added the ``l3-agent-scheduler-ha-chassis-priority`` API extension
+    definition. This extension adds an ``ha_chassis_priority`` attribute
+    to the agent resource in the L3 Agent Scheduler API, exposing the OVN
+    ``HA_Chassis`` priority that determines gateway failover ordering.
+    The attribute is readable (GET), optionally settable when
+    scheduling a router to a chassis (POST), and updatable for an
+    existing chassis assignment (PUT).
