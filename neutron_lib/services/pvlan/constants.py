@@ -1,3 +1,4 @@
+# Copyright (c) 2026 Red Hat Inc.
 # All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -12,21 +13,19 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-# Well-known service type constants:
-FIREWALL = "FIREWALL"
-VPN = "VPN"
-METERING = "METERING"
-FLAVORS = "FLAVORS"
-QOS = "QOS"
-CORE = 'CORE'
-L3 = 'L3_ROUTER_NAT'
-LOG_API = "LOGGING"
-PORTFORWARDING = "PORTFORWARDING"
-FLOATINGIPPOOL = "FLOATINGIPPOOL"
-NETWORK_SEGMENT_RANGE = "NETWORK_SEGMENT_RANGE"
-CONNTRACKHELPER = "CONNTRACKHELPER"
-PLACEMENT_REPORT = "placement_report"
-PVLAN = "PVLAN"
-LOCAL_IP = "LOCAL_IP"
+PVLAN = "pvlan"
+PVLAN_COMMUNITY = "pvlan_community"
+PVLAN_TYPE = "pvlan_type"
 
-NDPPROXY = 'NDPPROXY'
+ISOLATED_TYPE = 'isolated'
+PROMISCUOUS_TYPE = 'promiscuous'
+COMMUNITY_TYPE = 'community'
+COMMUNITY_NAME_MAX_LEN = 232
+
+PVLAN_TYPES = [ISOLATED_TYPE, PROMISCUOUS_TYPE, COMMUNITY_TYPE]
+
+PVLAN_PLUGIN = 'pvlan-plugin'
+
+COMMUNITY_NAME_REGEX = (
+    "[a-zA-Z_.][a-zA-Z_.0-9]{0,%d}$" % (COMMUNITY_NAME_MAX_LEN - 1)
+)

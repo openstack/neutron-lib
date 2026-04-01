@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    New extension ``pvlan``: Adds support for Private VLANs (PVLANs), enabling
+    a new way of port isolation within a shared VLAN. With PVLAN, users can
+    define networks that allow selective communication between ports using
+    modes such as ``promiscuous``, ``isolated``, and ``community``. The
+    extension introduces new port and network attributes: ``pvlan_type``,
+    ``pvlan_community``, and ``pvlan``.
