@@ -1,7 +1,0 @@
----
-features:
-  - |
-    Added ``VIF_TYPE_VIRTUAL`` VIF type for port_bindings to identify bound
-    virtual ports (e.g. ports referenced by their IP in allowed-address-pairs).
-    This will prevent mechanism drivers from binding these ports, avoiding
-    potential connectivity issues.
