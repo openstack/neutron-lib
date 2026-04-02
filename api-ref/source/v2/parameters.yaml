@@ -2173,10 +2173,10 @@ bgp_speaker-name-body:
   type: string
 bgp_speaker-networks-body:
   description: |
-    The ID of the network to which the BGP Speaker is associated.
+    A list of network IDs to which the BGP Speaker is associated.
   in: body
   required: true
-  type: string
+  type: array
 bgp_speaker_advertise_fip_host_routes-body:
   description: |
     Whether to enable or disable the advertisement of floating ip host
