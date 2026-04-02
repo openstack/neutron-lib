@@ -1,0 +1,13 @@
+---
+other:
+  - |
+    API policy rules ``SERVICE``, ``ADMIN``, ``PROJECT_MANAGER``,
+    ``PROJECT_MEMBER``, ``PROJECT_READER``, ``ADMIN_OR_SERVICE``,
+    ``ADMIN_OR_PROJECT_MANAGER``, ``ADMIN_OR_PROJECT_MEMBER``,
+    ``ADMIN_OR_PROJECT_READER``, ``RULE_PARENT_OWNER``,
+    ``PARENT_OWNER_MANAGER``, ``PARENT_OWNER_MEMBER``,
+    ``PARENT_OWNER_READER``, ``ADMIN_OR_PARENT_OWNER_MANAGER``,
+    ``ADMIN_OR_PARENT_OWNER_MEMBER``, ``ADMIN_OR_PARENT_OWNER_READER``
+    are moved from ``neutron.conf.policy.base``
+    module to neutron_lib and are now available in ``neutron_lib.policy.rules``
+    module.

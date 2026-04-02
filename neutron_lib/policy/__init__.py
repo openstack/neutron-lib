@@ -19,6 +19,7 @@ def policy_or(*args):
     return ' or '.join(args)
 
 
+# Deprecated rules:
 RULE_ADMIN_OR_OWNER = 'rule:admin_or_owner'
 RULE_ADMIN_ONLY = 'rule:admin_only'
 RULE_ANY = 'rule:regular_user'
