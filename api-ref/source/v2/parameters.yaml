@@ -2550,6 +2550,20 @@ binary:
   in: body
   required: true
   type: string
+binary-dhcp:
+  description: |
+    The executable command used to start the agent,
+    which is ``neutron-dhcp-agent`` for DHCP agents.
+  in: body
+  required: true
+  type: string
+binary-l3:
+  description: |
+    The executable command used to start the agent,
+    which is ``neutron-l3-agent`` for L3 agents.
+  in: body
+  required: true
+  type: string
 binding:host_id:
   description: |
     The ID of the host where the port resides.

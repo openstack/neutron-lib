@@ -162,7 +162,7 @@ Response Parameters
    - agents: agents
    - agent_type: agent_type
    - alive: alive
-   - binary: binary
+   - binary: binary-dhcp
    - configurations: configurations
    - created_at: created_at_resource
    - description: description
