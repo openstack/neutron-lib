@@ -59,7 +59,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
             'is_filter': True, 'is_sort_key': True,
-            'validate': {'type:string': db_const.NAME_FIELD_SIZE}},
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE}},
         constants.SHARED: {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': False,

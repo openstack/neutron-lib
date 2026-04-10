@@ -275,6 +275,32 @@ class TestAttributeValidation(base.BaseTestCase):
             f"'{data}' Blank strings are not permitted",
             msg)
 
+    def test_validate_name_string(self):
+        msg = validators.validate_name_string(None, None)
+        self.assertEqual("'None' is not a valid string", msg)
+        msg = validators.validate_string("the network name", None)
+        self.assertIsNone(msg)
+        msg = validators.validate_string(" the network name ", None)
+        self.assertIsNone(msg)
+        msg = validators.validate_string('', None)
+        self.assertIsNone(msg)
+        msg = validators.validate_name_string(123, None)
+        self.assertEqual("'123' is not a valid string", msg)
+        msg = validators.validate_name_string("🤦")
+        self.assertEqual("'🤦' is not a valid string", msg)
+        msg = validators.validate_name_string('    ', None)
+        self.assertEqual("'    ' is not a valid string", msg)
+
+    def test_validate_name_string_or_none(self):
+        msg = validators.validate_name_string_or_none('test', None)
+        self.assertIsNone(msg)
+        msg = validators.validate_name_string_or_none(None, None)
+        self.assertIsNone(msg)
+
+    def test_validate_not_empty_name_string(self):
+        msg = validators.validate_not_empty_name_string('', None)
+        self.assertEqual("'' Blank strings are not permitted", msg)
+
     def test_validate_boolean(self):
         msg = validators.validate_boolean(True)
         self.assertIsNone(msg)

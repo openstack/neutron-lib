@@ -90,7 +90,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                       'enforce_policy': True},
         'name': {'allow_post': True, 'allow_put': True,
                  'default': '',
-                 'validate': {'type:string': db_const.NAME_FIELD_SIZE},
+                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
                  'is_visible': True,
                  'enforce_policy': True},
         'type': {'allow_post': True, 'allow_put': False,

@@ -35,7 +35,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                'primary_key': True},
         'name': {'allow_post': True, 'allow_put': True, 'default': '',
                  'validate': {
-                     'type:string': db_const.NAME_FIELD_SIZE},
+                     'type:name_string': db_const.NAME_FIELD_SIZE},
                  'is_filter': True,
                  'is_sort_key': True,
                  'is_visible': True},

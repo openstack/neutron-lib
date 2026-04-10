@@ -14,6 +14,7 @@ import collections
 import functools
 import inspect
 import re
+import unicodedata
 
 import netaddr
 from os_ken.lib.packet import ether_types
@@ -39,6 +40,93 @@ UNLIMITED = None
 # must be even.
 _HEX_ELEM = constants.HEX_ELEM
 MAC_PATTERN = f"^{_HEX_ELEM}[aceACE02468](:{_HEX_ELEM}{{2}}){{5}}$"
+
+
+def _is_printable(char):
+    """determine if a unicode code point is printable.
+
+    This checks if the character is either "other" (mostly control
+    codes), or a non-horizontal space. All characters that don't match
+    those criteria are considered printable; that is: letters;
+    combining marks; numbers; punctuation; symbols; (horizontal) space
+    separators.
+    """
+    category = unicodedata.category(char)
+    return (not category.startswith("C") and
+            (not category.startswith("Z") or category == "Zs"))
+
+
+def _get_all_chars():
+    for i in range(0xFFFF):
+        yield chr(i)
+
+
+# build a regex that matches all printable characters. This allows
+# spaces in the middle of the name. Also note that the regexp below
+# deliberately allows the empty string. This is so only the constraint
+# which enforces a minimum length for the name is triggered when an
+# empty string is tested. Otherwise it is not deterministic which
+# constraint fails and this causes issues for some unittests when
+# PYTHONHASHSEED is set randomly.
+def _build_regex_range(ws=True, invert=False):
+    """Build a range regex for a set of characters in utf8.
+
+    This builds a valid range regex for characters in utf8 by
+    iterating the entire space and building up a set of x-y ranges for
+    all the characters we find which are valid.
+
+    :param ws: should we include whitespace in this range.
+    :param invert: invert the logic
+
+    The inversion is useful when we want to generate a set of ranges
+    which is everything that's not a certain class. For instance,
+    produce all the non printable characters as a set of ranges.
+    """
+    regex = ""
+    # are we currently in a range
+    in_range = False
+    # last character we found, for closing ranges
+    last = None
+    # last character we added to the regex, this lets us know that we
+    # already have B in the range, which means we don't need to close
+    # it out with B-B. While the later seems to work, it's kind of bad form.
+    last_added = None
+
+    def valid_char(char):
+        if ws:
+            result = _is_printable(char)
+        else:
+            # Zs is the unicode class for space characters, of which
+            # there are about 10 in this range.
+            result = _is_printable(char) and unicodedata.category(char) != 'Zs'
+        if invert is True:
+            return not result
+        return result
+
+    # iterate through the entire character range.
+    for c in _get_all_chars():
+        if valid_char(c):
+            if not in_range:
+                regex += re.escape(c)
+                last_added = c
+            in_range = True
+        else:
+            if in_range and last != last_added:
+                regex += "-" + re.escape(last)
+            in_range = False
+        last = c
+    if in_range:
+        regex += "-" + re.escape(last)
+    return regex
+
+
+valid_name_regex_base = '^(?![%s])[%s]*(?<![%s])$'
+
+valid_name_regex = (
+    valid_name_regex_base % (
+        _build_regex_range(ws=False, invert=True),
+        _build_regex_range(),
+        _build_regex_range(ws=False, invert=True)))
 
 
 def _verify_dict_keys(expected_keys, target_dict, strict=True):
@@ -285,6 +373,61 @@ def validate_oneline_not_empty_string_or_none(data, max_len=None):
     """
     if data is not None:
         return validate_oneline_not_empty_string(data, max_len=max_len)
+
+
+def validate_name_string(data, max_len=None):
+    """Validate data is a valid name string object.
+
+    :param data: The data to validate.
+    :param max_len: An optional cap on the length of the string.
+    :returns: None if the data is a valid name string type and (optionally)
+        within the given max_len. Otherwise a human readable message
+        indicating why the data is invalid.
+    """
+    msg = validate_string(data, max_len=max_len)
+    if msg:
+        return msg
+
+    try:
+        if re.search(valid_name_regex, data):
+            return
+    except TypeError:
+        # The name must be string type. If data isn't string type,
+        # TypeError will be raised here.
+        pass
+    msg = "'%s' is not a valid string"
+    LOG.debug(msg, data)
+    return _(msg) % data
+
+
+def validate_name_string_or_none(data, max_len=None):
+    """Validate data is a name string or None.
+
+    :param data: The data to validate.
+    :param max_len: An optional cap on the length of the string data.
+    :returns: None if the data is None or a valid name string, otherwise a
+        human readable message indicating why validation failed.
+    """
+    if data is not None:
+        return validate_name_string(data, max_len=max_len)
+
+
+def validate_not_empty_name_string(data, max_len=None):
+    """Validate data is a non-empty/non-blank name string.
+
+    :param data: The data to validate.
+    :param max_len: An optional cap on the length of the string data.
+    :returns: None if the data is non-empty/non-blank and a valid name
+        string, otherwise a human readable string message indicating why
+        validation failed.
+    """
+    msg = validate_not_empty_string(data, max_len=max_len)
+    if msg:
+        return msg
+
+    msg = validate_name_string(data, max_len=max_len)
+    if msg:
+        return msg
 
 
 def validate_boolean(data, valid_values=None):
@@ -1255,6 +1398,9 @@ validators = {'type:dict': validate_dict,
               validate_oneline_not_empty_string,
               'type:oneline_not_empty_string_or_none':
               validate_oneline_not_empty_string_or_none,
+              'type:name_string': validate_name_string,
+              'type:name_string_or_none': validate_name_string_or_none,
+              'type:not_empty_name_string': validate_not_empty_name_string,
               'type:subnet': validate_subnet,
               'type:subnet_list': validate_subnet_list,
               'type:subnet_or_none': validate_subnet_or_none,

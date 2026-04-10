@@ -101,7 +101,7 @@ RESOURCE_ATTRIBUTE_MAP: dict[str, typing.Any] = {
             'allow_put': True,
             'default': constants.ATTR_NOT_SPECIFIED,
             'validate': {
-                'type:string_or_none': NAME_LEN
+                'type:name_string_or_none': NAME_LEN
             },
             'is_filter': True,
             'is_sort_key': True,

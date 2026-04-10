@@ -64,7 +64,7 @@ RESOURCE_ATTRIBUTE_MAP = {
         'name': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': None,
-            'validate': {'type:string': db_const.NAME_FIELD_SIZE},
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
             'convert_to': converters.convert_none_to_empty_string},
         'description': {
             'allow_post': True, 'allow_put': True,

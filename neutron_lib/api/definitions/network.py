@@ -41,7 +41,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                'primary_key': True},
         'name': {'allow_post': True, 'allow_put': True,
                  'validate': {
-                     'type:string': db_const.NAME_FIELD_SIZE},
+                     'type:name_string': db_const.NAME_FIELD_SIZE},
                  'default': '', 'is_visible': True, 'is_filter': True,
                  'is_sort_key': True},
         subnet.COLLECTION_NAME: {'allow_post': False, 'allow_put': False,

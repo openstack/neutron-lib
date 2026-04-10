@@ -50,7 +50,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                       'validate': {'type:string': None},
                       'required_by_policy': True, 'is_visible': True},
         'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:string': None},
+                 'validate': {'type:name_string': None},
                  'is_visible': True, 'default': ''},
         'description': {'allow_post': True, 'allow_put': True,
                         'validate': {'type:string': None},

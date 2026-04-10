@@ -68,7 +68,7 @@ RESOURCE_ATTRIBUTE_MAP = {
                'is_sort_key': True,
                'primary_key': True},
         'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:string': constants.NAME_FIELD_SIZE},
+                 'validate': {'type:name_string': constants.NAME_FIELD_SIZE},
                  'is_filter': True,
                  'is_sort_key': True,
                  'is_visible': True, 'default': ''},
