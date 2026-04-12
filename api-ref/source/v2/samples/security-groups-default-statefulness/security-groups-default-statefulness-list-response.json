@@ -1,0 +1,14 @@
+{
+    "security_groups_default_statefulness": [
+        {
+            "id": "a7734e61-b545-452d-a3cd-0189cbd9747a",
+            "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
+            "stateful": true
+        },
+        {
+            "id": "faf27750-e2f0-4eff-8e3a-4ab3faab3a60",
+            "project_id": null,
+            "stateful": false
+        }
+    ]
+}

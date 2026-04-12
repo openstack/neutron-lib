@@ -1,0 +1,6 @@
+{
+    "security_groups_default_statefulness": {
+        "project_id": "e4f50856753b4dc6afee5fa6b9b6c550",
+        "stateful": false
+    }
+}

@@ -47,6 +47,7 @@ Security
 .. include:: security-group-rules.inc
 .. include:: security-groups.inc
 .. include:: security_groups_default_rules.inc
+.. include:: security-groups-default-statefulness.inc
 .. include:: vpnaas.inc
 ###################
 Resource Management

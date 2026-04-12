@@ -136,6 +136,7 @@ from neutron_lib.api.definitions import router_admin_state_down_before_update
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_enable_snat
 from neutron_lib.api.definitions import routerservicetype
+from neutron_lib.api.definitions import security_groups_default_statefulness
 from neutron_lib.api.definitions import security_groups_normalized_cidr
 from neutron_lib.api.definitions import security_groups_port_filtering
 from neutron_lib.api.definitions import security_groups_remote_address_group
@@ -305,6 +306,7 @@ _ALL_API_DEFINITIONS = {
     router_availability_zone,
     router_enable_snat,
     routerservicetype,
+    security_groups_default_statefulness,
     security_groups_normalized_cidr,
     security_groups_port_filtering,
     security_groups_remote_address_group,
