@@ -33,6 +33,26 @@ extends the ``port`` resource by adding two member actions
 (``add_allowed_address_pairs``/ ``remove_allowed_address_pairs``) to edit the set
 of Allowed address pairs atomically on the server side.
 
+Allowed address pairs reject multicast extension
+================================================
+
+The Allowed address pairs reject multicast extension
+(``aap-reject-multicast``) changes the API to reject allowed address
+pairs containing multicast addresses.  Multicast allowed address pairs
+were never properly supported, but without this extension the API silently
+accepted them.
+
+The rejected addresses are:
+
+- IPs from the ranges ``224.0.0.0/4`` and ``ff00::/8``
+- subnets overlapping these ranges, but not ``0.0.0.0/0``
+- MAC addresses with the multicast bit (``01:00:00:00:00:00``) set
+
+.. warning::
+
+    About ``224.0.0.0/24`` please see:
+    https://docs.openstack.org/neutron/latest/admin/config-ovsfwdriver.html#differences-between-ovs-and-iptables-firewall-drivers
+
 Data plane status extension
 ===========================
 

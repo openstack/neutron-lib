@@ -1279,6 +1279,82 @@ validators = {'type:dict': validate_dict,
               }
 
 
+def validate_ip_not_multicast(data, valid_values=None):
+    """Validate IP is not a multicast address.
+
+    :param data: The IP address to validate.
+    :param valid_values: Not used!
+    :returns: None if data is not a multicast IP address, otherwise a human
+        readable message indicating the reason for validation failure.
+
+    We assume the IP address passed to us was already validated by
+    validate_ip_address().
+    """
+    ip = netaddr.IPAddress(data)
+    if ip.is_multicast():
+        msg_data = {'ip': data}
+        msg = 'IP %(ip)s is a multicast address, which is not supported.'
+        return _(msg) % msg_data
+
+
+def validate_subnet_not_multicast(data, valid_values=None):
+    """Validate IP subnet does not overlap with multicast ranges.
+
+    :param data: The IP subnet to validate.
+    :param valid_values: Not used!
+    :returns: None if data does not overlap with multicast IP ranges,
+        otherwise a human readable message indicating the reason for
+        validation failure.
+
+    We assume the IP address passed to us was already validated by
+    validate_subnet().
+    """
+    net = netaddr.IPNetwork(data)
+    if net == netaddr.IPNetwork('0.0.0.0/0'):
+        return
+    if net.version == 4:
+        mcast_net = netaddr.IPNetwork('224.0.0.0/4')
+    else:  # net.version == 6:
+        mcast_net = netaddr.IPNetwork('ff00::/8')
+    min_prefix = min(net.prefixlen, mcast_net.prefixlen)
+    # Take the shorter prefix (i.e. the prefix of the broader IP range)
+    # and compare that part of the two subnets. If they are equal, then the
+    # broader subnet contains the narrower subnet or the two subnets are the
+    # same. Partial overlap of the subnets is not possible in CIDR notation.
+    if (netaddr.IPNetwork('%s/%s' % (str(net.ip), min_prefix)) ==
+            netaddr.IPNetwork('%s/%s' % (str(mcast_net.ip), min_prefix))):
+        msg_data = {'net': net, 'mcast_net': mcast_net}
+        msg = (
+            'Subnet %(net)s overlaps with multicast range %(mcast_net)s, '
+            'which is not supported.')
+        return _(msg) % msg_data
+
+
+def validate_mac_address_not_multicast(data, valid_values=None):
+    """Validate MAC address is not a multicast address.
+
+    :param data: The MAC address to validate.
+    :param valid_values: Not used!
+    :returns: None if data is not a multicast MAC address, otherwise a human
+        readable message indicating the reason for validation failure.
+
+    We assume the MAC address passed to us was already validated by
+    validate_mac_address().
+    """
+    # The least-significant bit of the first octet of a MAC address
+    # is the multicast bit.
+    mcast_bit = (
+        netaddr.EUI(data, version=48).value &
+        0x01_00_00_00_00_00
+    ) >> (5 * 8)
+    if mcast_bit:
+        msg_data = {'mac_address': data}
+        msg = (
+            'MAC address %(mac_address)s is a multicast address, '
+            'which is not supported.')
+        return _(msg) % msg_data
+
+
 class UndefinedValidator(Exception):
 
     def __init__(self, validator_name):

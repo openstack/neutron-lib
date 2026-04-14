@@ -79,3 +79,15 @@ def _validate_allowed_address_pairs(address_pairs, valid_values=None):
             msg = validators.validate_ip_address(ip_address)
         if msg:
             raise exc.HTTPBadRequest(msg)
+
+        if '/' in ip_address:
+            msg = validators.validate_subnet_not_multicast(ip_address)
+        else:
+            msg = validators.validate_ip_not_multicast(ip_address)
+        if msg:
+            raise exc.HTTPBadRequest(msg)
+
+        if mac is not None:
+            msg = validators.validate_mac_address_not_multicast(mac)
+            if msg:
+                raise exc.HTTPBadRequest(msg)
