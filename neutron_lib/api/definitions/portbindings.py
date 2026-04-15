@@ -91,14 +91,6 @@ VIF_TYPE_OVS = 'ovs'
 VIF_TYPE_BRIDGE = 'bridge'
 VIF_TYPE_OTHER = 'other'
 VIF_TYPE_TAP = 'tap'
-# vif_type_virtual: Used to identify bound virtual ports (e.g. ports referenced
-#                   by their IP in allowed-address-pairs). When the virtual
-#                   port is not bound to a host, the vif_type will remain
-#                   'unbound'. This vif_type will allow neutron to uniquely
-#                   identify the port as virtual, allowing it to receive
-#                   configuration updates, when other ports update their
-#                   allowed-address-pairs.
-VIF_TYPE_VIRTUAL = 'virtual'
 # vif_type_macvtap: Tells Nova that the macvtap vif_driver should be used to
 #                   create a vif. It does not require the VNIC_TYPE_MACVTAP,
 #                   which is defined further below. E.g. Macvtap agent uses
