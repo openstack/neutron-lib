@@ -34,12 +34,22 @@ class InvalidSourcePort(qexception.NotFound):
     message = _("Source Port  %(port)s does not exist")
 
 
+# TODO(haleyb): remove in H+2
 class PortDoesNotBelongToTenant(qexception.NotAuthorized):
     message = _("The specified port does not belong to the tenant")
 
 
+class PortDoesNotBelongToProject(qexception.NotAuthorized):
+    message = _("The specified port does not belong to the project")
+
+
+# TODO(haleyb): remove in H+2
 class TapServiceNotBelongToTenant(qexception.NotAuthorized):
     message = _("Specified Tap Service does not belong to the tenant")
+
+
+class TapServiceNotBelongToProject(qexception.NotAuthorized):
+    message = _("Specified Tap Service does not belong to the project")
 
 
 class TapServiceLimitReached(qexception.OverQuota):

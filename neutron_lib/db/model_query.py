@@ -157,7 +157,7 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
             query = query.outerjoin(model.rbac_entries)
             rbac_model = model.rbac_entries.property.mapper.class_
             query_filter = (
-                (model.tenant_id == context.project_id) |
+                (model.project_id == context.project_id) |
                 (rbac_model.action.in_(get_rbac_actions(model)) &
                  ((rbac_model.target_project == context.project_id) |
                   (rbac_model.target_project == '*'))))
@@ -167,10 +167,10 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
             # project ID.
             group_by = model.id
         elif hasattr(model, 'shared'):
-            query_filter = ((model.tenant_id == context.project_id) |
+            query_filter = ((model.project_id == context.project_id) |
                             (model.shared == sql.true()))
         else:
-            query_filter = (model.tenant_id == context.project_id)
+            query_filter = (model.project_id == context.project_id)
     # Execute query hooks registered from mixins and plugins
     for hook in get_hooks(model):
         query_hook = helpers.resolve_ref(hook.get('query'))
@@ -261,7 +261,7 @@ def apply_filters(query, model, filters, context=None):
                 if context:
                     matches.append(rbac.target_project == context.project_id)
                 # any 'access_as_shared' records that match the
-                # wildcard or requesting tenant
+                # wildcard or requesting project
                 is_shared = and_(rbac.action == constants.ACCESS_SHARED,
                                  or_(*matches))
                 if not value[0]:
@@ -270,8 +270,8 @@ def apply_filters(query, model, filters, context=None):
                     # we use a subquery to exclude them.
                     # We can't just filter the inverse of the query above
                     # because that will still give us a network shared to
-                    # our tenant (or wildcard) if it's shared to another
-                    # tenant.
+                    # our project (or wildcard) if it's shared to another
+                    # project.
                     # This is the column joining the table to rbac via
                     # the object_id. We can't just use model.id because
                     # subnets join on network.id so we have to inspect the

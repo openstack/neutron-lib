@@ -372,7 +372,7 @@ class ResourceExhausted(ServiceUnavailable):
 
 
 class NoNetworkAvailable(ResourceExhausted):
-    """A failure to create a network due to no tenant networks for allocation.
+    """A failure to create a network due to no project networks for allocation.
 
     A specialization of the ResourceExhausted exception indicating network
     creation failed because no project network are available for allocation.
@@ -638,6 +638,11 @@ class QuotaResourceUnknown(NotFound):
     message = _("Unknown quota resources %(unknown)s.")
 
 
+class QuotaMissingProject(BadRequest):
+    message = _("Project-id was missing from quota request.")
+
+
+# NOTE(haleyb): Remove in H+2
 class QuotaMissingTenant(BadRequest):
     message = _("Tenant-id was missing from quota request.")
 
@@ -683,6 +688,12 @@ class DriverCallError(MultipleExceptions):
         super().__init__(exc_list or [])
 
 
+class DeviceIDNotOwnedByProject(Conflict):
+    message = _("The following device_id %(device_id)s is not owned by your "
+                "project or matches another project router.")
+
+
+# NOTE(haleyb): Remove in H+2
 class DeviceIDNotOwnedByTenant(Conflict):
     message = _("The following device_id %(device_id)s is not owned by your "
                 "project or matches another project router.")
@@ -780,6 +791,11 @@ class CTZoneExhaustedError(NeutronException):
                 "be applied.")
 
 
+class ProjectQuotaNotFound(NotFound):
+    message = _("Quota for project %(project_id)s could not be found.")
+
+
+# NOTE(haleyb): Remove in H+2
 class TenantQuotaNotFound(NotFound):
     message = _("Quota for project %(tenant_id)s could not be found.")
 

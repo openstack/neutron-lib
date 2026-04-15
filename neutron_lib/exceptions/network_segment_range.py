@@ -27,7 +27,7 @@ class NetworkSegmentRangeNotFound(exceptions.NotFound):
 
 class NetworkSegmentRangeReferencedByProject(exceptions.InUse):
     message = _("Network Segment Range %(range_id)s is referenced by "
-                "one or more tenant networks.")
+                "one or more project networks.")
 
 
 class NetworkSegmentRangeDefaultReadOnly(exceptions.BadRequest):
