@@ -287,7 +287,7 @@ class UUIDFieldTest(test_base.BaseTestCase, TestField):
 class DictOfMiscValuesFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):
         super().setUp()
-        self.field = common_types.DictOfMiscValues
+        self.field = common_types.DictOfMiscValuesField()
         test_dict_1 = {'a': True,
                        'b': 1.23,
                        'c': ['1', 1.23, True],
