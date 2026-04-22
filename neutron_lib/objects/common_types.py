@@ -279,12 +279,10 @@ class MACAddress(obj_fields.FieldType):
             raise ValueError(msg)
         return super().coerce(obj, attr, value)
 
-    @staticmethod
-    def to_primitive(obj, attr, value):
+    def to_primitive(self, obj, attr, value):
         return str(value)
 
-    @staticmethod
-    def from_primitive(obj, attr, value):
+    def from_primitive(self, obj, attr, value):
         try:
             return net_utils.AuthenticEUI(value)
         except Exception as e:
@@ -302,8 +300,8 @@ class DictOfMiscValues(obj_fields.FieldType):
     This custom field is handling dictionary with miscellaneous value types,
     including integer, float, boolean and list and nested dictionaries.
     """
-    @staticmethod
-    def coerce(obj, attr, value):
+
+    def coerce(self, obj, attr, value):
         if isinstance(value, dict):
             return value
         if isinstance(value, str):
@@ -316,21 +314,18 @@ class DictOfMiscValues(obj_fields.FieldType):
                % value)
         raise ValueError(msg)
 
-    @staticmethod
-    def from_primitive(obj, attr, value):
-        return DictOfMiscValues.coerce(obj, attr, value)
+    def from_primitive(self, obj, attr, value):
+        return self.coerce(obj, attr, value)
 
-    @staticmethod
-    def to_primitive(obj, attr, value):
+    def to_primitive(self, obj, attr, value):
         return jsonutils.dumps(value)
 
-    @staticmethod
-    def stringify(value):
+    def stringify(self, value):
         return jsonutils.dumps(value)
 
 
 class DictOfMiscValuesField(obj_fields.AutoTypedField):
-    AUTO_TYPE = DictOfMiscValues
+    AUTO_TYPE = DictOfMiscValues()
 
 
 class ListOfDictOfMiscValuesField(obj_fields.AutoTypedField):
@@ -351,12 +346,10 @@ class IPNetwork(obj_fields.FieldType):
             raise ValueError(msg)
         return super().coerce(obj, attr, value)
 
-    @staticmethod
-    def to_primitive(obj, attr, value):
+    def to_primitive(self, obj, attr, value):
         return str(value)
 
-    @staticmethod
-    def from_primitive(obj, attr, value):
+    def from_primitive(self, obj, attr, value):
         try:
             return net_utils.AuthenticIPNetwork(value)
         except Exception as e:
