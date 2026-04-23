@@ -1,0 +1,8 @@
+---
+upgrade:
+  - |
+    In version 3.16.0 of neutron-lib, in the 2025.1 release cycle, the
+    ``tenant_id`` argument in the ContextBase class was marked deprecated,
+    and a warning was printed if it was used. That argument is now removed,
+    callers should be using ``project_id`` instead when accessing the
+    contents of a context object, for example ``context.project_id``.

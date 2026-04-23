@@ -36,23 +36,10 @@ class ContextBase(oslo_context.RequestContext):
     def __init__(self, user_id=None, project_id=None, is_admin=None,
                  timestamp=None, project_name=None, user_name=None,
                  is_advsvc=None, is_service_role=None,
-                 tenant_id=None, tenant_name=None,
                  has_global_access=False, can_set_project_id=False, **kwargs):
         # NOTE(jamielennox): We maintain this argument order for tests that
         # pass arguments positionally.
 
-        # Prefer project_id and project_name, as that's what's going to be
-        # set by keystone.
-        # NOTE(haleyb): remove fall-back and warning in E+2 release, or when
-        # all callers have been changed to use project_*.
-        project_id = project_id or tenant_id
-        project_name = project_name or tenant_name
-        if tenant_id:
-            LOG.warning('Keyword tenant_id has been deprecated, use '
-                        'project_id instead')
-        if tenant_name:
-            LOG.warning('Keyword tenant_name has been deprecated, use '
-                        'project_name instead')
         kwargs.setdefault('project_id', project_id)
         kwargs.setdefault('project_name', project_name)
         self._has_global_access = has_global_access
@@ -90,22 +77,6 @@ class ContextBase(oslo_context.RequestContext):
                 self)
 
     @property
-    def tenant_id(self):
-        return self.project_id
-
-    @tenant_id.setter
-    def tenant_id(self, tenant_id):
-        self.project_id = tenant_id
-
-    @property
-    def tenant_name(self):
-        return self.project_name
-
-    @tenant_name.setter
-    def tenant_name(self, tenant_name):
-        self.project_name = tenant_name
-
-    @property
     def is_service_role(self):
         # TODO(slaweq): we will not need to check ContextBase._is_advsvc once
         # we will get rid of the old API policies
@@ -138,10 +109,8 @@ class ContextBase(oslo_context.RequestContext):
         context = super().to_dict()
         context.update({
             'user_id': self.user_id,
-            'tenant_id': self.project_id,
             'project_id': self.project_id,
             'timestamp': str(self.timestamp),
-            'tenant_name': self.project_name,
             'project_name': self.project_name,
             'user_name': self.user_name,
             'has_global_access': self.has_global_access,
@@ -151,7 +120,6 @@ class ContextBase(oslo_context.RequestContext):
 
     def to_policy_values(self):
         values = super().to_policy_values()
-        values['tenant_id'] = self.project_id
         values['is_admin'] = self.is_admin
         values['has_global_access'] = self.has_global_access
         values['can_set_project_id'] = self.can_set_project_id
@@ -161,11 +129,9 @@ class ContextBase(oslo_context.RequestContext):
         # (oslo.context from Ocata release already issues deprecation warnings
         # for non-standard keys).
         values['user'] = self.user_id
-        values['tenant'] = self.project_id
         values['domain'] = self.domain_id
         values['user_domain'] = self.user_domain_id
         values['project_domain'] = self.project_domain_id
-        values['tenant_name'] = self.project_name
         values['project_name'] = self.project_name
         values['user_name'] = self.user_name
 
@@ -177,8 +143,6 @@ class ContextBase(oslo_context.RequestContext):
         if values.get('timestamp'):
             cls_obj.timestamp = values['timestamp']
         cls_obj.user_id = values.get('user_id', values.get('user'))
-        cls_obj.tenant_id = values.get('tenant_id', values.get('project_id'))
-        cls_obj.tenant_name = values.get('tenant_name')
         return cls_obj
 
     def elevated(self):
