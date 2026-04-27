@@ -167,26 +167,33 @@ class TestDeadLockDecorator(_base.BaseTestCase):
     def test_not_deadlock_time_elapsed(self):
         self._test_retry_time_cost(db_exc.DBConnectionError)
 
+    def _restore_max_retries(self, value):
+        db_api.MAX_RETRIES = value
+
     def test_retry_if_session_inactive_args_not_mutated_after_retries(self):
+        self.addCleanup(self._restore_max_retries, db_api.MAX_RETRIES)
+        db_api.MAX_RETRIES = 1
         context = mock.Mock()
         context.session.is_active = False
         list_arg = [1, 2, 3, 4]
         dict_arg = {1: 'a', 2: 'b'}
         la, da = self._context_function(context, list_arg, dict_arg,
-                                        5, db_exc.DBDeadlock())
+                                        2, db_exc.DBDeadlock())
         # even though we had 5 failures the list and dict should only
         # be mutated once
         self.assertEqual(5, len(la))
         self.assertEqual(3, len(da))
 
     def test_retry_if_session_inactive_kwargs_not_mutated_after_retries(self):
+        self.addCleanup(self._restore_max_retries, db_api.MAX_RETRIES)
+        db_api.MAX_RETRIES = 1
         context = mock.Mock()
         context.session.is_active = False
         list_arg = [1, 2, 3, 4]
         dict_arg = {1: 'a', 2: 'b'}
         la, da = self._context_function(context, list_arg=list_arg,
                                         dict_arg=dict_arg,
-                                        fail_count=5,
+                                        fail_count=2,
                                         exc_to_raise=db_exc.DBDeadlock())
         # even though we had 5 failures the list and dict should only
         # be mutated once
