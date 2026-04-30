@@ -103,18 +103,6 @@ firewall_group_id-path-required:
   in: path
   required: true
   type: string
-firewall_id:
-  description: |
-    The ID of the firewall.
-  in: path
-  required: true
-  type: string
-firewall_log_id:
-  description: |
-    The ID of the firewall log resource.
-  in: path
-  required: true
-  type: string
 firewall_policy_id-path:
   description: |
     The ID of the firewall policy.
@@ -190,12 +178,6 @@ local_ip_association-fixed_port_id-path:
 log_id-path:
   description: |
     The ID of the log resource.
-  in: path
-  required: true
-  type: string
-logging_resource_id:
-  description: |
-    The ID of the logging resource.
   in: path
   required: true
   type: string
@@ -3412,34 +3394,10 @@ firewall_groups_object:
   in: body
   required: true
   type: array
-firewall_id-body:
-  description: |
-    The ID of the FWaaS v1 firewall.
-  in: body
-  required: true
-  type: string
 firewall_list:
   description: |
     A list of the IDs of firewalls associated with
     the firewall policy.
-  in: body
-  required: true
-  type: array
-firewall_log:
-  description: |
-    A ``firewall_log`` object.
-  in: body
-  required: true
-  type: object
-firewall_log_id-body:
-  description: |
-    The ID of the firewall log resource.
-  in: body
-  required: true
-  type: string
-firewall_logs:
-  description: |
-    A list of ``firewall_log`` objects.
   in: body
   required: true
   type: array
@@ -4036,28 +3994,6 @@ flow_classifiers:
   in: body
   required: false
   type: array
-fw_event:
-  description: |
-    Type of firewall events to log.
-    ``ACCEPT``, ``DROP``, or ``ALL``.
-  in: body
-  required: true
-  type: string
-fw_event-request:
-  description: |
-    Type of firewall events to log.
-    ``ACCEPT``, ``DROP``, or ``ALL``.
-    Default is ``ALL``.
-  in: body
-  required: false
-  type: string
-fw_event-request-put:
-  description: |
-    Type of firewall events to log.
-    ``ACCEPT``, ``DROP``, or ``ALL``.
-  in: body
-  required: false
-  type: string
 heartbeat_timestamp:
   description: |
     Time at which the last heartbeat was received.
@@ -4590,43 +4526,6 @@ loggable_resources:
   in: body
   required: true
   type: object
-logging_resource:
-  description: |
-    A ``logging_resource`` object.
-  in: body
-  required: true
-  type: object
-logging_resource_enabled:
-  description: |
-    Indicates whether this logging resource is enabled or disabled.
-  in: body
-  required: true
-  type: boolean
-logging_resource_enabled-request:
-  description: |
-    Indicates whether this logging resource is enabled or disabled.
-    Default is false.
-  in: body
-  required: false
-  type: boolean
-logging_resource_enabled-request-put:
-  description: |
-    Indicates whether this logging resource is enabled or disabled.
-  in: body
-  required: false
-  type: boolean
-logging_resource_id-body:
-  description: |
-    The ID of the logging resource.
-  in: body
-  required: true
-  type: string
-logging_resources:
-  description: |
-    A list of ``logging_resource`` objects.
-  in: body
-  required: true
-  type: array
 logs:
   description: |
     A list of ``log`` objects.

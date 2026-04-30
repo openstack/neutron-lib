@@ -75,11 +75,6 @@ API.
 
 Please see the FAQ at https://wiki.openstack.org/wiki/Neutron/LBaaS/Deprecation
 
-#####################################
-Logging Resource (networking-midonet)
-#####################################
-.. include:: logging_resource.inc
-.. include:: firewall_log.inc
 #################################################
 Router interface floating IP (networking-midonet)
 #################################################

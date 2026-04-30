@@ -1,0 +1,9 @@
+---
+upgrade:
+  - |
+    The ``logging-resource`` API definition and documentation have been
+    removed. This extension was only used by networking-midonet, which
+    is no longer maintained. The API definition module
+    ``neutron_lib.api.definitions.logging_resource``, its unit test,
+    and the corresponding api-ref documentation (``logging_resource.inc``,
+    ``firewall_log.inc``, and related sample files) have all been deleted.

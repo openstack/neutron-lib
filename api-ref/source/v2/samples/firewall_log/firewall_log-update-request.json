@@ -1,6 +1,0 @@
-{
-    "firewall_log": {
-        "description": "my firewall log 3",
-        "fw_event": "ALL"
-    }
-}
