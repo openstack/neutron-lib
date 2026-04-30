@@ -1,0 +1,8 @@
+---
+upgrade:
+  - |
+    The ``router-interface-fip`` API definition and documentation have
+    been removed. This extension was only used by networking-midonet,
+    which is no longer maintained. The API definition module
+    ``neutron_lib.api.definitions.router_interface_fip``, its unit test,
+    and the corresponding api-ref documentation have all been deleted.
