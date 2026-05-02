@@ -517,6 +517,11 @@ Specify the ID of a subnet or port in the request body:
 - Port ID. The IP address associated with the port is used as
   an IP address of the created router interface.
 
+If the ``evpn`` extension is enabled and the router has a VNI assigned
+(``evpn_vni`` is not null), the ``advertise_host`` parameter
+can be set to ``true`` to instruct the EVPN plugin to advertise connected
+routes from this subnet as host routes via EVPN Type-5.
+
 When you specify an IPv6 subnet, this operation adds the subnet to
 an existing internal port with same network ID, on the router. If
 a port with the same network ID does not exist, this operation
@@ -564,6 +569,7 @@ Request
    - router_id: router_id
    - subnet_id: router-subnet_id-request
    - port_id: router-port_id-request
+   - advertise_host: router-advertise_host-request
 
 Request Example
 ---------------
@@ -588,6 +594,7 @@ Response Parameters
    - project_id: router-project_id-interface
    - port_id: router-port_id
    - network_id: router-network_id-interface
+   - advertise_host: router-advertise_host
    - tags: tags
 
 Response Example

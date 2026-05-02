@@ -6242,6 +6242,22 @@ router:
   in: body
   required: true
   type: object
+router-advertise_host:
+  description: |
+    Whether connected routes from this subnet are advertised as host routes
+    via EVPN Type-5. It is available when the ``evpn`` extension is enabled.
+  in: body
+  required: true
+  type: boolean
+router-advertise_host-request:
+  description: |
+    When ``true``, connected routes from this subnet are advertised as /32
+    (IPv4) or /128 (IPv6) host routes via EVPN Type-5. When ``false`` or
+    omitted, no host route advertisement takes place. It is available when
+    the ``evpn`` extension is enabled.
+  in: body
+  required: false
+  type: boolean
 router-availability_zone_hints:
   description: |
     The availability zone candidates for the router.
