@@ -95,32 +95,38 @@ RESOURCE_ATTRIBUTE_MAP = {
         'name': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.NAME_FIELD_SIZE},
         },
         'description': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
         },
         'tenant_id': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
             'required_by_policy': True
         },
         'ingress': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:uuid': None}
         },
         'egress': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:uuid': None}
         },
         'service_function_parameters': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'dict_populate_defaults': True,
             'validate': {
                 'type:dict': {
@@ -150,28 +156,33 @@ RESOURCE_ATTRIBUTE_MAP = {
         'name': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.NAME_FIELD_SIZE},
         },
         'description': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
         },
         'tenant_id': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
             'required_by_policy': True
         },
         'port_pairs': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': None,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:uuid_list': None},
             'convert_to': converters.convert_none_to_empty_list
         },
         'port_pair_group_parameters': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'dict_populate_defaults': True,
             'validate': {
                 'type:dict': {
@@ -207,40 +218,47 @@ RESOURCE_ATTRIBUTE_MAP = {
         'chain_id': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': 0,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:range': (0, MAX_CHAIN_ID)},
             'convert_to': converters.convert_to_int
         },
         'name': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.NAME_FIELD_SIZE},
         },
         'description': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': '',
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
         },
         'tenant_id': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
             'required_by_policy': True
         },
         'port_pair_groups': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:uuid_list_non_empty': None},
             'default': None
         },
         'flow_classifiers': {
             'allow_post': True, 'allow_put': True,
             'is_visible': True, 'default': None,
+            'is_filter': True, 'is_sort_key': True,
             'validate': {'type:uuid_list': None},
             'convert_to': converters.convert_to_list
         },
         'chain_parameters': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True,
+            'is_filter': True, 'is_sort_key': True,
             'dict_populate_defaults': True,
             'validate': {
                 'type:dict': {
