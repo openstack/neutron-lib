@@ -580,7 +580,6 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     - allocate_tenant_segment
     - allocate_project_segment
     - release_segment
-    - get_allocation
     """
 
     @abc.abstractmethod
@@ -655,7 +654,6 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     - allocate_tenant_segment
     - allocate_project_segment
     - release_segment
-    - get_allocation
     """
 
     @abc.abstractmethod
