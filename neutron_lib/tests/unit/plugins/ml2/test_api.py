@@ -41,6 +41,12 @@ class TestMechanismDriver(base.BaseTestCase):
             _MechanismDriver().filter_hosts_with_segment_access(
                 dummy_token, dummy_token, dummy_token, dummy_token))
 
+    def test_check_vlan_transparency_default(self):
+        self.assertIsNone(_MechanismDriver().check_vlan_transparency(None))
+
+    def test_check_vlan_qinq_default(self):
+        self.assertIsNone(_MechanismDriver().check_vlan_qinq(None))
+
 
 class _TypeDriver_Base:
     def get_type(self):

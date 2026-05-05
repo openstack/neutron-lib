@@ -402,21 +402,39 @@ class MechanismDriver(metaclass=abc.ABCMeta):
     def check_vlan_transparency(self, context):
         """Check if the network supports vlan transparency.
 
-        :param context: NetworkContext instance describing the network.
+        Return ``True`` when this mechanism driver explicitly supports vlan
+        transparency for the network and ``False`` when it explicitly does not
+        support it. Return ``None`` to abstain / have no opinion on the
+        decision (default behavior).
 
-        Check if the network supports vlan transparency or not.
+        Neutron aggregates values from all loaded mechanism drivers and accepts
+        the capability only if at least one driver returns ``True`` and no
+        driver returns ``False``.
+
+        :param context: NetworkContext instance describing the network.
+        :returns: ``True``, ``False`` or ``None``
         """
-        pass
+        return None
 
     def check_vlan_qinq(self, context):
         """Check if the network supports QinQ vlans.
 
-        :param context: NetworkContext instance describing the network.
+        Return ``True`` when this mechanism driver explicitly supports QinQ
+        vlan for the network and ``False`` when it explicitly does not support
+        it. Return ``None`` to abstain / have no opinion on the decision
+        (default behavior).
 
-        Check if the network supports QinQ vlan (similar to vlan transparency
-        but this uses different ethertype, 0x88a8 for the outer tag) or not.
+        QinQ is similar to vlan transparency but uses a different ethertype,
+        ``0x88a8`` for the outer tag.
+
+        Neutron aggregates values from all loaded mechanism drivers and accepts
+        the capability only if at least one driver returns ``True`` and no
+        driver returns ``False``.
+
+        :param context: NetworkContext instance describing the network.
+        :returns: ``True``, ``False`` or ``None``
         """
-        pass
+        return None
 
     def get_workers(self):
         """Get any NeutronWorker instances that should have their own process

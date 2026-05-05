@@ -1,0 +1,11 @@
+---
+other:
+  - |
+    Clarified the contract for ``MechanismDriver.check_vlan_transparency()``
+    and ``MechanismDriver.check_vlan_qinq()`` in
+    ``neutron_lib.plugins.ml2.api``. Each method may return ``True``
+    (explicit support), ``False`` (explicit non-support), or ``None`` (abstain
+    / no opinion). Neutron's ML2 plugin aggregates driver responses and
+    accepts the capability only when at least one driver returns ``True`` and
+    none return ``False``. This is a documentation-only clarification;
+    default base behavior remains abstention.
