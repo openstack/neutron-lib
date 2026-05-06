@@ -1,0 +1,6 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` and ``is_sort_key`` to the attributes
+    of the SFC API definitions for ``port_pairs``, ``port_pair_groups``
+    and ``port_chains``.
