@@ -135,7 +135,6 @@ from neutron_lib.api.definitions import revisionifmatch
 from neutron_lib.api.definitions import router_admin_state_down_before_update
 from neutron_lib.api.definitions import router_availability_zone
 from neutron_lib.api.definitions import router_enable_snat
-from neutron_lib.api.definitions import router_interface_fip
 from neutron_lib.api.definitions import routerservicetype
 from neutron_lib.api.definitions import security_groups_normalized_cidr
 from neutron_lib.api.definitions import security_groups_port_filtering
@@ -305,7 +304,6 @@ _ALL_API_DEFINITIONS = {
     router_admin_state_down_before_update,
     router_availability_zone,
     router_enable_snat,
-    router_interface_fip,
     routerservicetype,
     security_groups_normalized_cidr,
     security_groups_port_filtering,

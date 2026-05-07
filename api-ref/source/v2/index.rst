@@ -75,10 +75,6 @@ API.
 
 Please see the FAQ at https://wiki.openstack.org/wiki/Neutron/LBaaS/Deprecation
 
-#################################################
-Router interface floating IP (networking-midonet)
-#################################################
-.. include:: router-interface-fip.inc
 ############################
 BGP/MPLS VPN Interconnection
 ############################
