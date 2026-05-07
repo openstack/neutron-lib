@@ -13,8 +13,13 @@
 #    under the License.
 
 import abc
+from collections.abc import Mapping
+from typing import NotRequired, TypedDict
+
+from sqlalchemy.orm.session import Session
 
 from neutron_lib.api.definitions import portbindings
+from neutron_lib.context import Context
 
 
 # The following keys are used in the segment dictionaries passed via
@@ -25,6 +30,16 @@ PHYSICAL_NETWORK = 'physical_network'
 SEGMENTATION_ID = 'segmentation_id'
 MTU = 'mtu'
 NETWORK_ID = 'network_id'
+
+
+class Segment(TypedDict):
+    network_type: str
+    id: NotRequired[str]
+    network_id: NotRequired[str]
+    physical_network: NotRequired[str | None]
+    segmentation_id: NotRequired[int | None]
+    mtu: NotRequired[int]
+
 
 # The following keys are used in the binding level dictionaries
 # available via the binding_levels and original_binding_levels
@@ -519,14 +534,14 @@ class MechanismDriver(metaclass=abc.ABCMeta):
 class _TypeDriverBase(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
-    def get_type(self):
+    def get_type(self) -> str:
         """Get driver's network type.
 
         :returns: network_type value handled by this driver
         """
 
     @abc.abstractmethod
-    def initialize(self):
+    def initialize(self) -> None:
         """Perform driver initialization.
 
         Called after all drivers have been loaded and the database has
@@ -535,7 +550,7 @@ class _TypeDriverBase(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def is_partial_segment(self, segment):
+    def is_partial_segment(self, segment: Segment) -> bool:
         """Return True if segment is a partially specified segment.
 
         :param segment: segment dictionary
@@ -543,7 +558,7 @@ class _TypeDriverBase(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def validate_provider_segment(self, segment):
+    def validate_provider_segment(self, segment: Segment) -> None:
         """Validate attributes of a provider network segment.
 
         :param segment: segment dictionary using keys defined above
@@ -562,7 +577,7 @@ class _TypeDriverBase(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def get_mtu(self, physical):
+    def get_mtu(self, physical: str | None) -> int:
         """Get driver's network MTU.
 
         :returns: mtu maximum transmission unit
@@ -596,7 +611,12 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """
 
     @abc.abstractmethod
-    def reserve_provider_segment(self, session, segment, filters=None):
+    def reserve_provider_segment(
+        self,
+        session: Session,
+        segment: Segment,
+        filters: Mapping[str, object] | None = None
+    ) -> Segment:
         """Reserve resource associated with a provider network segment.
 
         :param session: database session
@@ -611,7 +631,11 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def allocate_tenant_segment(self, session, filters=None):
+    def allocate_tenant_segment(
+        self,
+        session: Session,
+        filters: Mapping[str, object] | None = None
+    ) -> Segment | None:
         """Allocate resource for a new project network segment.
 
         :param session: database session
@@ -628,12 +652,16 @@ class TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
 
     # NOTE(haleyb): when all sub-classes support the new method, we can
     # remove the tenant version and make this an abtract method
-    def allocate_project_segment(self, session, filters=None):
+    def allocate_project_segment(
+        self,
+        session: Session,
+        filters: Mapping[str, object] | None = None
+    ) -> Segment | None:
         """For backwards-compatibility, call allocate_tenant_segment()"""
         return self.allocate_tenant_segment(session, filters=filters)
 
     @abc.abstractmethod
-    def release_segment(self, session, segment):
+    def release_segment(self, session: Session, segment: Segment) -> None:
         """Release network segment.
 
         :param session: database session
@@ -670,7 +698,12 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
     """
 
     @abc.abstractmethod
-    def reserve_provider_segment(self, context, segment, filters=None):
+    def reserve_provider_segment(
+        self,
+        context: Context,
+        segment: Segment,
+        filters: Mapping[str, object] | None = None
+    ) -> Segment | None:
         """Reserve resource associated with a provider network segment.
 
         :param context: instance of neutron context with DB session
@@ -685,7 +718,11 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def allocate_tenant_segment(self, context, filters=None):
+    def allocate_tenant_segment(
+        self,
+        context: Context,
+        filters: Mapping[str, object] | None = None
+    ) -> Segment | None:
         """Allocate resource for a new project network segment.
 
         :param context: instance of neutron context with DB session
@@ -702,12 +739,20 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
 
     # NOTE(haleyb): when all sub-classes support the new method, we can
     # remove the tenant version and make this an abtract method
-    def allocate_project_segment(self, context, filters=None):
+    def allocate_project_segment(
+        self,
+        context: Context,
+        filters: Mapping[str, object] | None = None
+    ) -> Segment | None:
         """For backwards-compatibility, call allocate_tenant_segment()"""
         return self.allocate_tenant_segment(context, filters=filters)
 
     @abc.abstractmethod
-    def release_segment(self, context, segment):
+    def release_segment(
+        self,
+        context: Context,
+        segment: Segment,
+    ) -> None:
         """Release network segment.
 
         :param context: instance of neutron context with DB session
@@ -720,7 +765,7 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def initialize_network_segment_range_support(self):
+    def initialize_network_segment_range_support(self) -> None:
         """Perform driver network segment range initialization.
 
         Called during the initialization of the ``network-segment-range``
@@ -730,7 +775,7 @@ class ML2TypeDriver(_TypeDriverBase, metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def update_network_segment_range_allocations(self):
+    def update_network_segment_range_allocations(self) -> None:
         """Update driver network segment range allocations.
 
         This syncs the driver segment allocations when network segment ranges
