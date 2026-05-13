@@ -1,0 +1,5 @@
+{
+    "security_groups_default_statefulness": {
+        "stateful": true
+    }
+}

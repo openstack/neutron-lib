@@ -321,6 +321,12 @@ sfc_service_graph_id-path:
   in: path
   required: true
   type: string
+sg_default_statefulness-id-path:
+  description: |
+    The ID of the security groups default statefulness configuration.
+  in: path
+  required: true
+  type: string
 subnet_id-path:
   description: |
     The ID of the subnet.
@@ -1587,6 +1593,24 @@ service_profile-sort_key:
   in: query
   required: false
   type: string
+sg_default_statefulness-sort_key:
+  description: |
+    Sorts by a security groups default statefulness attribute. You can specify
+    multiple pairs of sort key and sort direction query parameters. The sort
+    keys are limited to:
+
+    - ``id``
+    - ``project_id``
+    - ``stateful``
+  in: query
+  required: false
+  type: string
+sg_default_statefulness-stateful-query:
+  description: |
+    Filter the list result by the default statefulness value.
+  in: query
+  required: false
+  type: boolean
 shared-query:
   description: |
     Admin-only. Filter the list result based on whether the resource is
@@ -6841,6 +6865,52 @@ sfc_tap_enabled:
   description: |
     True if passive Tap service functions support is enabled, default is
     False.
+  in: body
+  required: false
+  type: boolean
+sg_default_statefulness-id:
+  description: |
+    The ID of the security groups default statefulness configuration.
+  in: body
+  required: true
+  type: string
+sg_default_statefulness-list:
+  description: |
+    A list of ``security_groups_default_statefulness`` objects.
+  in: body
+  required: true
+  type: array
+sg_default_statefulness-obj:
+  description: |
+    A ``security_groups_default_statefulness`` object.
+  in: body
+  required: true
+  type: object
+sg_default_statefulness-project_id:
+  description: |
+    The ID of the project that owns the resource. If not specified, the
+    configuration applies system-wide as the global default.
+  in: body
+  required: true
+  type: string
+sg_default_statefulness-project_id-request:
+  description: |
+    The ID of the project for this default statefulness configuration. If not
+    specified (or ``null``), the configuration applies system-wide.
+  in: body
+  required: false
+  type: string
+sg_default_statefulness-stateful:
+  description: |
+    The default value of the ``stateful`` attribute for new security groups
+    created in the scope of this configuration.
+  in: body
+  required: true
+  type: boolean
+sg_default_statefulness-stateful-request:
+  description: |
+    The default value of the ``stateful`` attribute for new security groups.
+    Defaults to ``true``.
   in: body
   required: false
   type: boolean

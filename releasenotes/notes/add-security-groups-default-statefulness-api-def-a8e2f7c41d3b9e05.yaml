@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    Add the ``security-groups-default-statefulness`` API extension definition
+    in ``neutron_lib.api.definitions.security_groups_default_statefulness``.
+    This extension introduces a top-level resource at
+    ``/security-groups-default-statefulness`` that allows configuring the
+    default value of the ``stateful`` attribute for new security groups, on a
+    per-project or system-wide basis.
