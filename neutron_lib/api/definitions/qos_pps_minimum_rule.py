@@ -17,6 +17,7 @@ from neutron_lib.api.definitions import qos as qos_apidef
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'qos-pps-minimum'
@@ -28,7 +29,7 @@ NAME = 'QoS minimum packet rate rule'
 API_PREFIX = '/' + qos_apidef.ALIAS
 DESCRIPTION = ("Allow to configure QoS minimum packet rate rule.")
 UPDATED_TIMESTAMP = '2021-07-14T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {
     COLLECTION_NAME: {
         'parent': qos_apidef._PARENT,
@@ -42,7 +43,8 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
                 'is_filter': True,
                 'is_sort_key': True,
                 'validate': {
-                    'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
+                    'type:range': (0, db_const.DB_INTEGER_MAX_VALUE),
+                },
             },
             qos_constants.DIRECTION: {
                 'allow_post': True,

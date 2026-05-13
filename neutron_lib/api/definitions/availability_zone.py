@@ -14,7 +14,7 @@
 from neutron_lib.api.definitions import agent
 from neutron_lib.api import validators
 from neutron_lib.api.validators import availability_zone as az_validator
-
+from neutron_lib.types import ResourceAttributeMap
 
 validators.add_validator('availability_zone_hint_list',
                          az_validator._validate_availability_zone_hints)
@@ -30,7 +30,7 @@ DESCRIPTION = 'The availability zone extension.'
 UPDATED_TIMESTAMP = '2015-01-01T10:00:00-00:00'
 RESOURCE_NAME = 'availability_zone'
 COLLECTION_NAME = RESOURCE_NAME + 's'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'name': {'is_visible': True, 'is_filter': True},
         'resource': {'is_visible': True, 'is_filter': True},

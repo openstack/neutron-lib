@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 NAME = 'Neutron L3 Subnet Pool'
@@ -24,7 +25,7 @@ UPDATED_TIMESTAMP = "2012-01-01T10:00:00-00:00"
 RESOURCE_NAME = 'subnetpool'
 COLLECTION_NAME = 'subnetpools'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False,
                'allow_put': False,

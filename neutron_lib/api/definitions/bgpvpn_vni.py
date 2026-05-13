@@ -17,6 +17,7 @@
 from neutron_lib.api import converters as lib_converters
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 VNI = 'vni'
@@ -50,15 +51,17 @@ DESCRIPTION = "BGPVPN VXLAN VNI extension"
 UPDATED_TIMESTAMP = "2017-09-12T10:00:00-00:00"
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     bgpvpn.COLLECTION_NAME: {
-        VNI: {'allow_post': True, 'allow_put': False,
-              'convert_to': lib_converters.convert_to_int_if_not_none,
-              'default': None,
-              'validate': {'type:range_or_none': [constants.MIN_VXLAN_VNI,
-                                                  constants.MAX_VXLAN_VNI]
-                           },
-              'is_visible': True, 'enforce_policy': True},
+        VNI: {
+            'allow_post': True, 'allow_put': False,
+            'convert_to': lib_converters.convert_to_int_if_not_none,
+            'default': None,
+            'validate': {
+                'type:range_or_none': (constants.MIN_VXLAN_VNI,
+                                       constants.MAX_VXLAN_VNI),
+            },
+            'is_visible': True, 'enforce_policy': True},
     },
 }
 

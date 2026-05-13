@@ -19,6 +19,7 @@ from neutron_lib.api import validators
 from neutron_lib.api.validators import multiprovidernet as mp_validator
 from neutron_lib import constants
 from neutron_lib.exceptions import multiprovidernet as mp_exc
+from neutron_lib.types import ResourceAttributeMap
 
 
 def check_duplicate_segments(segments, is_partial_func=None):
@@ -52,7 +53,7 @@ DESCRIPTION = ("Expose mapping of virtual networks to multiple physical "
 UPDATED_TIMESTAMP = '2013-06-27T10:00:00-00:00'
 RESOURCE_NAME = network.RESOURCE_NAME
 COLLECTION_NAME = network.COLLECTION_NAME
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         SEGMENTS: {
             'allow_post': True, 'allow_put': True,

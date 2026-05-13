@@ -247,6 +247,7 @@ apidoc_modules = [
             os.path.join(_neutron_lib_dir, 'fixture.py'),
             os.path.join(_neutron_lib_dir, 'hacking'),
             os.path.join(_neutron_lib_dir, 'tests'),
+            os.path.join(_neutron_lib_dir, 'types.py'),
         ],
         'separate_modules': True,
     },

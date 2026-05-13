@@ -11,6 +11,8 @@
 #    under the License.
 
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'security-groups-normalized-cidr'
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
@@ -18,7 +20,7 @@ NAME = 'Normalized CIDR field for security group rules'
 DESCRIPTION = 'Add new field with normalized remote_ip_prefix cidr in SG rule'
 UPDATED_TIMESTAMP = '2020-07-28T10:00:00-00:00'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     'security_group_rules': {
         'normalized_cidr': {
             'allow_post': False, 'allow_put': False,

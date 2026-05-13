@@ -15,6 +15,7 @@ from neutron_lib.api.definitions import constants as api_const
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'fwaas_v2'
@@ -43,7 +44,7 @@ UPDATED_TIMESTAMP = "2016-10-06T10:00:00-00:00"
 # Base for the API calls
 API_PREFIX = '/fwaas'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     api_const.FIREWALL_RULES: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

@@ -14,6 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import port
+from neutron_lib.types import ResourceAttributeMap
 
 
 # Common definitions for maximum string field length
@@ -97,7 +98,7 @@ COLLECTION_NAME = port.COLLECTION_NAME
 
 # The resource attribute map for the extension. It is effectively the
 # bulk of the API contract alongside ACTION_MAP (mandatory).
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         EXTRADHCPOPTS: {
             'allow_post': True,

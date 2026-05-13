@@ -17,6 +17,7 @@ from neutron_lib.api.definitions import port
 from neutron_lib.api import validators
 from neutron_lib.api.validators import allowedaddresspairs as addr_validation
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 validators.add_validator('allowed_address_pairs',
                          addr_validation._validate_allowed_address_pairs)
@@ -32,7 +33,7 @@ DESCRIPTION = 'Provides allowed address pairs'
 UPDATED_TIMESTAMP = '2013-07-23T10:00:00-00:00'
 RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         ADDRESS_PAIRS: {
             'allow_post': True, 'allow_put': True,

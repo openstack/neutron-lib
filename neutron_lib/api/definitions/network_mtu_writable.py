@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import network_mtu
+from neutron_lib.types import ResourceAttributeMap
 
 
 MTU = 'mtu'
@@ -49,7 +50,7 @@ DESCRIPTION = (
 UPDATED_TIMESTAMP = "2017-07-12T00:00:00-00:00"
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     network.COLLECTION_NAME: {
         MTU: {'allow_post': True, 'allow_put': True, 'is_visible': True,
               'is_filter': True, 'is_sort_key': True,

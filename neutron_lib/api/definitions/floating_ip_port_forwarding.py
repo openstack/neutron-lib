@@ -17,6 +17,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 PROTOCOLS = constants.IPTABLES_PROTOCOL_MAP.keys()
@@ -65,7 +66,7 @@ INTERNAL_PORT = 'internal_port'
 INTERNAL_IP_ADDRESS = 'internal_ip_address'
 PROTOCOL = 'protocol'
 INTERNAL_PORT_ID = 'internal_port_id'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 # The subresource attribute map for the extension. It adds child resources
 # to main extension's resource. The subresource map must have a parent and
@@ -92,14 +93,14 @@ SUB_RESOURCE_ATTRIBUTE_MAP = {
             EXTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
                 'convert_to': converters.convert_to_int,
-                'validate': {'type:range': [1, 65535]},
+                'validate': {'type:range': (1, 65535)},
                 'is_visible': True,
                 'is_sort_key': True,
                 'is_filter': True},
             INTERNAL_PORT: {
                 'allow_post': True, 'allow_put': True,
                 'convert_to': converters.convert_to_int,
-                'validate': {'type:range': [1, 65535]},
+                'validate': {'type:range': (1, 65535)},
                 'is_visible': True},
             INTERNAL_IP_ADDRESS: {'allow_post': True,
                                   'allow_put': True,

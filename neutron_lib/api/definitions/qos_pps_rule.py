@@ -21,6 +21,7 @@ from neutron_lib.api.definitions import qos_bw_minimum_ingress
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'qos-pps'
@@ -30,7 +31,7 @@ NAME = 'QoS Rule Type Packet per Second Extension'
 API_PREFIX = ''
 DESCRIPTION = 'Add QoS Rule Type Packet per Second'
 UPDATED_TIMESTAMP = '2021-05-12T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 PACKET_RATE_LIMIT_RULES = 'packet_rate_limit_rules'
 RESOURCE_NAME = 'packet_rate_limit_rule'
 SUB_RES_ATTR_MAP = copy.deepcopy(
@@ -48,7 +49,7 @@ SUB_RES_ATTR_MAP.update({
                     'is_filter': True,
                     'is_sort_key': True,
                     'validate': {
-                        'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
+                        'type:range': (0, db_const.DB_INTEGER_MAX_VALUE)}
                 },
                 qos_const.MAX_BURST_KPPS: {
                     'allow_post': True, 'allow_put': True,
@@ -57,7 +58,7 @@ SUB_RES_ATTR_MAP.update({
                     'is_sort_key': True,
                     'convert_to': converters.convert_to_int,
                     'validate': {
-                        'type:range': [0, db_const.DB_INTEGER_MAX_VALUE]}
+                        'type:range': (0, db_const.DB_INTEGER_MAX_VALUE)}
                 },
                 qos_const.DIRECTION: {
                     'allow_post': True,

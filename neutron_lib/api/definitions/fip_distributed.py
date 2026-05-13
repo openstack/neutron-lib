@@ -16,6 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import dvr
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'floating-ip-distributed'
@@ -25,7 +26,7 @@ NAME = 'Floating IP Distributed Extension'
 DESCRIPTION = 'Add distributed attribute to Floating IP resource'
 UPDATED_TIMESTAMP = '2022-08-30T10:00:00-00:00'
 DISTRIBUTED = 'distributed'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     l3.FLOATINGIPS: {
         DISTRIBUTED: {
             'allow_post': True,

@@ -14,6 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.db import constants
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'router'
@@ -59,7 +60,7 @@ FIXED_IP_ADDRESS = 'fixed_ip_address'
 EXTERNAL_GW_INFO = 'external_gateway_info'
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     ROUTERS: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

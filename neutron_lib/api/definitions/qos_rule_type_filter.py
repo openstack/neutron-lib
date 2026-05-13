@@ -16,6 +16,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import qos as qos_apidef
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'qos-rule-type-filter'
@@ -30,7 +31,7 @@ DESCRIPTION = ('Allows to filter the QoS rule type list adding two new flags. '
 UPDATED_TIMESTAMP = '2022-02-02T10:00:00-00:00'
 QOS_RULE_TYPE_ALL_SUPPORTED = 'all_supported'
 QOS_RULE_TYPE_ALL_RULES = 'all_rules'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     qos_apidef.RULE_TYPES: {
         QOS_RULE_TYPE_ALL_RULES: {
             'allow_post': True, 'allow_put': True,

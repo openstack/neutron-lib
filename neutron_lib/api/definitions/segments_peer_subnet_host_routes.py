@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import segment
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'segments-peer-subnet-host-routes'
@@ -19,7 +20,7 @@ IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Segments peer-subnet host routes'
 DESCRIPTION = 'Add host routes to subnets on a routed network (segments)'
 UPDATED_TIMESTAMP = '2018-06-12T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [segment.ALIAS]

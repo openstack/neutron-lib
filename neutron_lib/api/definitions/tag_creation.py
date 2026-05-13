@@ -14,13 +14,15 @@
 #    under the License.
 
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'tag-creation'
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Tag creation extension'
 DESCRIPTION = 'Allow to create multiple tags for a resource'
 UPDATED_TIMESTAMP = '2024-23-07T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []

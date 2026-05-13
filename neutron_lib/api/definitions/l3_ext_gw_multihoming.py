@@ -13,10 +13,10 @@
 # under the License.
 
 import copy
-import typing
 
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
+from neutron_lib.types import ResourceAttributeMap
 
 EXTERNAL_GATEWAYS = 'external_gateways'
 
@@ -30,11 +30,11 @@ UPDATED_TIMESTAMP = '2023-01-18T00:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
 
-external_gw_info_validate: dict[str, typing.Any] = copy.deepcopy(
+external_gw_info_validate = copy.deepcopy(
     l3_ext_gw_mode.RESOURCE_ATTRIBUTE_MAP[COLLECTION_NAME][l3.EXTERNAL_GW_INFO]
     ['validate']['type:dict_or_nodata']
 )
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         EXTERNAL_GATEWAYS: {
             'allow_post': False,

@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import segment
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'standard-attr-segment'
@@ -19,7 +20,7 @@ IS_STANDARD_ATTR_EXTENSION = True
 NAME = 'Standard Attribute Segment Extension'
 DESCRIPTION = 'Add standard attributes to Segment resource'
 UPDATED_TIMESTAMP = '2018-04-09T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [segment.ALIAS]

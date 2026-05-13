@@ -14,6 +14,7 @@
 # limitations under the License.
 
 from neutron_lib.api.definitions import agent
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'agent_sort_key'
 IS_SHIM_EXTENSION = False
@@ -22,11 +23,10 @@ NAME = 'Agents Sort Key'
 API_PREFIX = ''
 DESCRIPTION = 'Enabling the keyword sort_key for sorting in agents.'
 UPDATED_TIMESTAMP = '2013-02-03T10:00:00-00:00'
-is_sort_key = {'is_sort_key': True}
 agents_collection = agent.RESOURCE_ATTRIBUTE_MAP[agent.COLLECTION_NAME]
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     agent.COLLECTION_NAME: {
-        k: {**v, **is_sort_key}
+        k: {**v, 'is_sort_key': True}
         for k, v in agents_collection.items()
         if k != "configurations"
     }

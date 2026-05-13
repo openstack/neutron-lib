@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import vpn
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'vpn-aes-ctr'
@@ -39,7 +40,7 @@ VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_WITH_CTR = (
 )
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     vpn.IKE_POLICIES: {
         vpn.ENCRYPTION_ALGORITHM: {
             'allow_post': True,

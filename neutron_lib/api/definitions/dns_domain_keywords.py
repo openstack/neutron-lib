@@ -13,6 +13,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import dns
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'dns-integration-domain-keywords'
@@ -45,7 +46,7 @@ UPDATED_TIMESTAMP = "2020-06-15T18:00:00-00:00"
 
 # The resource attribute map for the extension. It is effectively the
 # bulk of the API contract alongside ACTION_MAP (mandatory).
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 # The subresource attribute map for the extension. It adds child resources
 # to main extension's resource. The subresource map must have a parent and

@@ -11,13 +11,15 @@
 #    under the License.
 
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'empty-string-filtering'
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Empty String Filtering Extension'
 DESCRIPTION = 'Allow filtering by attributes with empty string value'
 UPDATED_TIMESTAMP = '2018-05-01T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []

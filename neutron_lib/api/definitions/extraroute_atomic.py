@@ -14,6 +14,7 @@
 
 from neutron_lib.api.definitions import extraroute
 from neutron_lib.api.definitions import l3
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'extraroute-atomic'
@@ -23,7 +24,7 @@ NAME = 'Atomically add/remove extra routes'
 DESCRIPTION = ('Edit extra routes of a router on server side by atomically '
                'adding/removing extra routes')
 UPDATED_TIMESTAMP = '2019-07-10T00:00:00+00:00'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     l3.ROUTERS: {}
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None

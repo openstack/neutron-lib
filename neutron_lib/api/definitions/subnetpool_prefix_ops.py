@@ -16,6 +16,7 @@
 
 from neutron_lib.api.definitions import subnetpool as subnetpool_def
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = "subnetpool-prefix-ops"
 IS_SHIM_EXTENSION = False
@@ -25,7 +26,7 @@ DESCRIPTION = "Provides support for adjusting the prefix list of subnet pools"
 UPDATED_TIMESTAMP = "2019-02-08T10:00:00-00:00"
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 # The subresource attribute map for the extension.  This extension has only

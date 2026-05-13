@@ -13,10 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import typing
-
 from neutron_lib.api import converters
 from neutron_lib.db import constants
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'agent'
 IS_SHIM_EXTENSION = False
@@ -27,7 +26,7 @@ DESCRIPTION = 'The agent management extension.'
 UPDATED_TIMESTAMP = '2013-02-03T10:00:00-00:00'
 RESOURCE_NAME = ALIAS
 COLLECTION_NAME = ALIAS + 's'
-RESOURCE_ATTRIBUTE_MAP: dict[str, typing.Any] = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

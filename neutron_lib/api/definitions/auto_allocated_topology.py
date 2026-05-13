@@ -18,6 +18,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import constants
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import network
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'auto-allocated-topology'
 IS_SHIM_EXTENSION = False
@@ -28,7 +29,7 @@ DESCRIPTION = 'Auto Allocated Topology Services.'
 UPDATED_TIMESTAMP = '2016-01-01T00:00:00-00:00'
 RESOURCE_NAME = 'auto_allocated_topology'
 COLLECTION_NAME = 'auto_allocated_topologies'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

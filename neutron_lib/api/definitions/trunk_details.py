@@ -15,6 +15,7 @@
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import trunk
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 # The alias of the extension.
@@ -54,7 +55,7 @@ COLLECTION_NAME = port.COLLECTION_NAME
 TRUNK_DETAILS = 'trunk_details'
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {TRUNK_DETAILS: {'allow_post': False, 'allow_put': False,
                                       'default': constants.ATTR_NOT_SPECIFIED,
                                       'is_visible': True,

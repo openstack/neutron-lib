@@ -13,6 +13,7 @@
 
 from neutron_lib.api.definitions import availability_zone as az
 from neutron_lib.api.definitions import l3
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'router_availability_zone'
@@ -24,7 +25,7 @@ DESCRIPTION = 'Availability zone support for router.'
 UPDATED_TIMESTAMP = '2015-01-01T10:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         az.COLLECTION_NAME: {
             'allow_post': False, 'allow_put': False,

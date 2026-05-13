@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import subnet
+from neutron_lib.types import ResourceAttributeMap
 
 DNS_PUBLISH_FIXED_IP = 'dns_publish_fixed_ip'
 
@@ -47,7 +48,7 @@ RESOURCE_NAME = subnet.RESOURCE_NAME
 COLLECTION_NAME = subnet.COLLECTION_NAME
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         DNS_PUBLISH_FIXED_IP: {
             'allow_post': True, 'allow_put': True,

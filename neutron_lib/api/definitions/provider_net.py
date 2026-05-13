@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'provider'
@@ -59,7 +60,7 @@ ATTRIBUTES = (NETWORK_TYPE, PHYSICAL_NETWORK, SEGMENTATION_ID)
 NETWORK_TYPE_MAX_LEN = 32
 PHYSICAL_NETWORK_MAX_LEN = 64
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         NETWORK_TYPE: {'allow_post': True, 'allow_put': True,
                        'validate': {'type:string': NETWORK_TYPE_MAX_LEN},

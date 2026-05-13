@@ -16,6 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 DEFAULT_PORT_SECURITY = True
@@ -51,7 +52,7 @@ DESCRIPTION = "Provides port security"
 UPDATED_TIMESTAMP = "2012-07-23T10:00:00-00:00"
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     network.COLLECTION_NAME: {
         PORTSECURITY: {'allow_post': True, 'allow_put': True,
                        'convert_to': converters.convert_to_boolean,

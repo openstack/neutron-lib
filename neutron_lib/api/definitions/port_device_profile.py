@@ -14,6 +14,7 @@
 
 from neutron_lib.api.definitions import port
 from neutron_lib.db import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'port-device-profile'
@@ -26,7 +27,7 @@ RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
 DEVICE_PROFILE = 'device_profile'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         DEVICE_PROFILE: {
             'allow_post': True,

@@ -19,6 +19,7 @@ from neutron_lib.api.definitions import port
 from neutron_lib.api import validators
 from neutron_lib.api.validators import dns as dns_validator
 from neutron_lib.db import constants
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'dns-integration'
@@ -60,7 +61,7 @@ validators.add_validator('dns_domain_name',
 
 # The resource attribute map for the extension. It is effectively the
 # bulk of the API contract alongside ACTION_MAP (mandatory).
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     port.COLLECTION_NAME: {
         DNSNAME: {'allow_post': True, 'allow_put': True,
                   'default': '',

@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'port-hardware-offload-type'
@@ -27,7 +28,7 @@ RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
 HARDWARE_OFFLOAD_TYPE = 'hardware_offload_type'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         HARDWARE_OFFLOAD_TYPE: {
             'allow_post': True,

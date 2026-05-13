@@ -14,6 +14,7 @@
 
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'port-resource-request'
@@ -26,7 +27,7 @@ RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
 RESOURCE_REQUEST = 'resource_request'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         RESOURCE_REQUEST: {'allow_post': False,
                            'allow_put': False,

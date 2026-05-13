@@ -12,6 +12,7 @@
 # under the License.
 
 from neutron_lib.api.definitions import metering
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'metering_source_and_destination_fields'
 IS_SHIM_EXTENSION = False
@@ -22,7 +23,7 @@ DESCRIPTION = 'Neutron Metering extension that enables the use of source ' \
               'and destination IP prefixes to create metering label rules.'
 UPDATED_TIMESTAMP = '2020-08-21T08:12:00-00:00'
 
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 REQUIRED_EXTENSIONS = [metering.ALIAS]
 

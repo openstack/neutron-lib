@@ -14,6 +14,7 @@
 #  limitations under the License.
 
 from neutron_lib.api.definitions import network_ip_availability
+from neutron_lib.types import ResourceAttributeMap
 
 
 IP_AVAILABILITY_DETAILS = "ip_availability_details"
@@ -26,7 +27,7 @@ DESCRIPTION = ('Add ip_availability_details attribute to'
                ' network-ip-availabilities resource.')
 UPDATED_TIMESTAMP = '2025-10-31T00:00:00-00:00'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     network_ip_availability.RESOURCE_PLURAL: {
         IP_AVAILABILITY_DETAILS: {
             'allow_post': False, 'allow_put': False,

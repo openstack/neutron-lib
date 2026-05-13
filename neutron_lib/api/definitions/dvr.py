@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 DISTRIBUTED = 'distributed'
 
@@ -27,7 +28,7 @@ DESCRIPTION = 'Enables configuration of Distributed Virtual Routers.'
 UPDATED_TIMESTAMP = '2014-06-1T10:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         DISTRIBUTED: {'allow_post': True,
                       'allow_put': True,

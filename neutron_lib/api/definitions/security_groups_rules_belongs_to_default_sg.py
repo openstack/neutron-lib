@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'security-groups-rules-belongs-to-default-sg'
@@ -22,7 +23,7 @@ DESCRIPTION = ("Flag to determine if the security group rule belongs to the "
 UPDATED_TIMESTAMP = '2023-05-23T10:00:00-00:00'
 BELONGS_TO_DEFAULT_SG = 'belongs_to_default_sg'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     'security_group_rules': {
         BELONGS_TO_DEFAULT_SG: {
             'allow_post': False,

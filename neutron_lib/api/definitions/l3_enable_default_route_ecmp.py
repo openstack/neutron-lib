@@ -16,6 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_multihoming
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 ENABLE_DEFAULT_ROUTE_ECMP = 'enable_default_route_ecmp'
 
@@ -28,7 +29,7 @@ DESCRIPTION = 'Enables configurable ECMP behavior for default routes'
 UPDATED_TIMESTAMP = '2023-02-27T00:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         ENABLE_DEFAULT_ROUTE_ECMP: {
             'allow_post': True,

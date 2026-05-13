@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import agent
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'l3-agent-scheduler-ha-chassis-priority'
@@ -28,7 +29,7 @@ RESOURCE_NAME = agent.RESOURCE_NAME
 COLLECTION_NAME = agent.COLLECTION_NAME
 HA_CHASSIS_PRIORITY = 'ha_chassis_priority'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         HA_CHASSIS_PRIORITY: {
             'allow_post': True,

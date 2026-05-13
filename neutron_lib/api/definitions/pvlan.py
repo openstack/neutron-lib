@@ -16,6 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import port
 from neutron_lib.services.pvlan import constants as pvlan_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'pvlan'
@@ -25,7 +26,7 @@ NAME = 'Private VLAN'
 DESCRIPTION = 'The Private VLAN semantics extension.'
 UPDATED_TIMESTAMP = '2026-02-03T10:00:00-00:00'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     network.COLLECTION_NAME: {
         pvlan_const.PVLAN: {
             'allow_post': True,

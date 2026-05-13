@@ -13,6 +13,7 @@
 # under the License.
 
 from neutron_lib.api.definitions import port
+from neutron_lib.types import AttributeValidator, ResourceAttributeMap
 
 
 ALIAS = 'port-hints'
@@ -24,13 +25,13 @@ UPDATED_TIMESTAMP = '2023-01-01T00:00:00-00:00'
 RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
 HINTS = 'hints'
-HINTS_SPEC = {
+HINTS_SPEC: AttributeValidator = {
     'type:dict_or_none': {'openvswitch': {
         'type:dict': {'other_config': {
             'type:dict': {'tx-steering': {
                 'type:values': ['thread', 'hash']}}}}}}}
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         HINTS: {
             'allow_post': True,

@@ -14,6 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'logging'
@@ -53,7 +54,7 @@ ALL_EVENT = 'ALL'
 LOG_EVENTS = [ACCEPT_EVENT, DROP_EVENT, ALL_EVENT]
 
 # Attribute Map
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     LOGS: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

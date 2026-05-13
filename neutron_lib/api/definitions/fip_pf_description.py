@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import floating_ip_port_forwarding as pfw
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 DESCRIPTION_FIELD = "description"
 
@@ -21,7 +22,7 @@ IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Floating IP Port Forwarding new attribute description'
 DESCRIPTION = 'Add a description field to Port Forwarding rules'
 UPDATED_TIMESTAMP = '2019-11-01T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {
     pfw.COLLECTION_NAME: {
         'parameters': {

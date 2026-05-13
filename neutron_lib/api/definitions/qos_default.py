@@ -15,6 +15,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import qos as qos_apidef
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'qos-default'
 IS_SHIM_EXTENSION = False
@@ -23,7 +24,7 @@ NAME = 'QoS default policy'
 API_PREFIX = ''
 DESCRIPTION = 'Expose the QoS default policy per project'
 UPDATED_TIMESTAMP = '2017-041-06T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     qos_apidef.POLICIES: {
         'is_default': {
             'allow_post': True,

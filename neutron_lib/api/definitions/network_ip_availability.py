@@ -13,6 +13,8 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'network-ip-availability'
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
@@ -23,7 +25,7 @@ UPDATED_TIMESTAMP = '2015-09-24T00:00:00-00:00'
 RESOURCE_NAME = "network_ip_availability"
 RESOURCE_PLURAL = "network_ip_availabilities"
 COLLECTION_NAME = RESOURCE_PLURAL.replace('_', '-')
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     RESOURCE_PLURAL: {
         'network_id': {
             'allow_post': False, 'allow_put': False,

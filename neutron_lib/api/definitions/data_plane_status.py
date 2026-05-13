@@ -14,6 +14,7 @@
 
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 VALID_VALUES = [None, constants.ACTIVE, constants.DOWN]
@@ -52,7 +53,7 @@ COLLECTION_NAME = port.COLLECTION_NAME
 DATA_PLANE_STATUS = 'data_plane_status'
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         DATA_PLANE_STATUS: {'allow_post': False, 'allow_put': True,
                             'default': constants.ATTR_NOT_SPECIFIED,

@@ -14,6 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 # The alias of the extension.
@@ -46,7 +47,7 @@ TRUNKS = 'trunks'
 SUB_PORTS = 'sub_ports'
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     TRUNKS: {
         'admin_state_up': {'allow_post': True, 'allow_put': True,
                            'default': True,

@@ -16,6 +16,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import external_net as extnet_def
 from neutron_lib.api.definitions import subnet as subnet_def
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'subnet-external-network'
@@ -27,7 +28,7 @@ DESCRIPTION = 'Informs if the subnet belongs to an external network'
 UPDATED_TIMESTAMP = '2024-02-05T18:00:00-00:00'
 RESOURCE_NAME = extnet_def.EXTERNAL  # 'router:external'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     subnet_def.COLLECTION_NAME: {
         RESOURCE_NAME: {
             'allow_post': False,

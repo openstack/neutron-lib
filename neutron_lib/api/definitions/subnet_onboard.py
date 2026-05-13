@@ -16,6 +16,7 @@
 
 from neutron_lib.api.definitions import subnetpool as subnetpool_def
 import neutron_lib.constants
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = "subnet_onboard"
 IS_SHIM_EXTENSION = False
@@ -28,7 +29,7 @@ UPDATED_TIMESTAMP = "2018-12-18T09:00:00-00:00"
 ONBOARD_SUBNETS = 'onboard_network_subnets'
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     subnetpool_def.COLLECTION_NAME: {
     }
 }

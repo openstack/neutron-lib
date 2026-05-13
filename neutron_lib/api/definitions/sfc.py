@@ -16,6 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import flowclassifier as fc_api
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'sfc'
@@ -64,27 +65,27 @@ PPG_N_TUPLE_DICT_SPEC = {
     'source_port_range_min': {
         'default': None,
         'convert_to': converters.convert_to_int_if_not_none,
-        'type:range_or_none': [0, constants.PORT_MAX]
+        'type:range_or_none': (0, constants.PORT_MAX),
     },
     'source_port_range_max': {
         'default': None,
         'convert_to': converters.convert_to_int_if_not_none,
-        'type:range_or_none': [0, constants.PORT_MAX]
+        'type:range_or_none': (0, constants.PORT_MAX),
     },
     'destination_port_range_min': {
         'default': None,
         'convert_to': converters.convert_to_int_if_not_none,
-        'type:range_or_none': [0, constants.PORT_MAX]
+        'type:range_or_none': (0, constants.PORT_MAX),
     },
     'destination_port_range_max': {
         'default': None,
         'convert_to': converters.convert_to_int_if_not_none,
-        'type:range_or_none': [0, constants.PORT_MAX]
+        'type:range_or_none': (0, constants.PORT_MAX),
     }
 }
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     PORT_PAIRS: {
         'id': {
             'allow_post': False, 'allow_put': False,

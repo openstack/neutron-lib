@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import taas
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import AttributeValidator, ResourceAttributeMap
 
 
 ALIAS = 'tap-mirror'
@@ -24,14 +25,14 @@ RESOURCE_NAME = 'tap_mirror'
 COLLECTION_NAME = 'tap_mirrors'
 
 mirror_types_list = ['erspanv1', 'gre']
-DIRECTION_SPEC = {
+DIRECTION_SPEC: AttributeValidator = {
     'type:dict': {
         'IN': {'type:integer': None, 'default': None, 'required': False},
         'OUT': {'type:integer': None, 'default': None, 'required': False}
     }
 }
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {
             'allow_post': False, 'allow_put': False,

@@ -14,6 +14,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'qinq'
 IS_SHIM_EXTENSION = False
@@ -28,7 +29,7 @@ UPDATED_TIMESTAMP = "2024-12-02T10:00:00-00:00"
 RESOURCE_NAME = network.RESOURCE_NAME
 COLLECTION_NAME = network.COLLECTION_NAME
 QINQ_FIELD = 'qinq'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         QINQ_FIELD: {
             'allow_post': True,

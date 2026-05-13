@@ -11,13 +11,15 @@
 #    under the License.
 
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'filter-validation'
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
 NAME = 'Filter parameters validation'
 DESCRIPTION = 'Provides validation on filter parameters.'
 UPDATED_TIMESTAMP = '2018-07-04T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []

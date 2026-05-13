@@ -13,6 +13,8 @@
 #    under the License.
 
 
+from neutron_lib.types import ResourceAttributeMap
+
 NAME = 'Floating IP port forwarding detail'
 ALIAS = 'floating-ip-port-forwarding-detail'
 DESCRIPTION = (
@@ -21,7 +23,7 @@ DESCRIPTION = (
 
 UPDATED_TIMESTAMP = "2022-05-06T10:00:00-00:00"
 
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False

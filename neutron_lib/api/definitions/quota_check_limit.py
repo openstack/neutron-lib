@@ -12,6 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'quota-check-limit'
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
@@ -19,7 +21,7 @@ NAME = 'Quota engine limit check'
 DESCRIPTION = ('Support for checking the resource usage before applying a new '
                'quota limit')
 UPDATED_TIMESTAMP = '2021-09-08T16:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []

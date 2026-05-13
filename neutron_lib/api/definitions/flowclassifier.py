@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'flow_classifier'
@@ -54,7 +55,7 @@ COLLECTION_NAME = 'flow_classifiers'
 
 
 # Attribute Map
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {
             'allow_post': False, 'allow_put': False,
@@ -90,22 +91,22 @@ RESOURCE_ATTRIBUTE_MAP = {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': None,
             'convert_to': converters.convert_to_int_if_not_none,
-            'validate': {'type:range_or_none': [0, constants.PORT_MAX]}},
+            'validate': {'type:range_or_none': (0, constants.PORT_MAX)}},
         'source_port_range_max': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': None,
             'convert_to': converters.convert_to_int_if_not_none,
-            'validate': {'type:range_or_none': [0, constants.PORT_MAX]}},
+            'validate': {'type:range_or_none': (0, constants.PORT_MAX)}},
         'destination_port_range_min': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': None,
             'convert_to': converters.convert_to_int_if_not_none,
-            'validate': {'type:range_or_none': [0, constants.PORT_MAX]}},
+            'validate': {'type:range_or_none': (0, constants.PORT_MAX)}},
         'destination_port_range_max': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': None,
             'convert_to': converters.convert_to_int_if_not_none,
-            'validate': {'type:range_or_none': [0, constants.PORT_MAX]}},
+            'validate': {'type:range_or_none': (0, constants.PORT_MAX)}},
         'source_ip_prefix': {
             'allow_post': True, 'allow_put': False,
             'is_visible': True, 'default': None,

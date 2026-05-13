@@ -13,7 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'address-group'
 IS_SHIM_EXTENSION = False
@@ -25,7 +25,7 @@ UPDATED_TIMESTAMP = '2020-07-15T10:00:00-00:00'
 RESOURCE_NAME = 'address_group'
 COLLECTION_NAME = 'address_groups'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

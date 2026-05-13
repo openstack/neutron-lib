@@ -14,6 +14,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import bgpvpn_routes_control
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'standard-attr-bgpvpn-port-association'
 IS_SHIM_EXTENSION = True
@@ -21,7 +22,7 @@ IS_STANDARD_ATTR_EXTENSION = True
 NAME = 'BGPVPN Port Association Standard Attributes'
 DESCRIPTION = 'Add standard attributes to BGPVPN Port Association resources'
 UPDATED_TIMESTAMP = '2018-04-19T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [bgpvpn_routes_control.ALIAS]

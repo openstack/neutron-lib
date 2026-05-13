@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 HA_INFO = 'ha'
@@ -28,7 +29,7 @@ DESCRIPTION = 'Adds HA capability to routers.'
 UPDATED_TIMESTAMP = '2014-04-26T00:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         HA_INFO: {
             'allow_post': True, 'allow_put': True,

@@ -10,6 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'ip-substring-filtering'
@@ -36,7 +37,7 @@ DESCRIPTION = "Provides IP address substring filtering when listing ports"
 UPDATED_TIMESTAMP = "2017-11-28T09:00:00-00:00"
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 # The subresource attribute map for the extension.

@@ -14,6 +14,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import subnet
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 NAME = 'Neutron L2 Network'
@@ -31,7 +32,7 @@ RESOURCE_FOREIGN_KEYS = {
     COLLECTION_NAME: 'network_id'
 }
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

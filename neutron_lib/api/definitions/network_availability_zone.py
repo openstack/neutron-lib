@@ -13,6 +13,7 @@
 
 from neutron_lib.api.definitions import availability_zone as az_def
 from neutron_lib.api.definitions import network
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'network_availability_zone'
 IS_SHIM_EXTENSION = False
@@ -23,7 +24,7 @@ DESCRIPTION = 'Availability zone support for network.'
 UPDATED_TIMESTAMP = '2015-01-01T10:00:00-00:00'
 RESOURCE_NAME = network.RESOURCE_NAME
 COLLECTION_NAME = network.COLLECTION_NAME
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         az_def.COLLECTION_NAME: {
             'allow_post': False, 'allow_put': False,

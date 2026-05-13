@@ -11,6 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import vpn
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'vpn-no-sha1-3des'
@@ -36,7 +37,7 @@ VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_V2 = [
 ]
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     vpn.IKE_POLICIES: {
         'auth_algorithm': {
             'allow_post': True,

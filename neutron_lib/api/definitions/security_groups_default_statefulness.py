@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import stateful_security_group
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'security-groups-default-statefulness'
 
@@ -35,7 +36,7 @@ ID = 'id'
 PROJECT_ID = 'project_id'
 STATEFUL = 'stateful'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         ID: {'allow_post': False,
              'allow_put': False,

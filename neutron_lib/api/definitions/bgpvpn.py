@@ -15,6 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # Regular expression to validate 32 bits unsigned int
 UINT32_REGEX = (r'(0|[1-9]\d{0,8}|[1-3]\d{9}|4[01]\d{8}|42[0-8]\d{7}'
@@ -75,7 +76,7 @@ ROUTER_ASSOCIATION = 'router_association'
 ROUTER_ASSOCIATIONS = 'router_associations'
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

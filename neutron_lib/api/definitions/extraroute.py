@@ -16,6 +16,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 ROUTES = 'routes'
 
@@ -28,7 +29,7 @@ DESCRIPTION = 'Extra routes configuration for L3 router'
 UPDATED_TIMESTAMP = '2013-02-01T10:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         ROUTES: {
             'allow_post': False, 'allow_put': True,

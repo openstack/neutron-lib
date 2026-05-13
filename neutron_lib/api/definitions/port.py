@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 NAME = 'Neutron Port'
@@ -27,7 +28,7 @@ COLLECTION_NAME_BULK = 'ports_bulk'
 
 PORT_MAC_ADDRESS = 'mac_address'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

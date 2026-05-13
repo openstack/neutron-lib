@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 FLAVOR_ID = 'flavor_id'
@@ -25,7 +26,7 @@ DESCRIPTION = 'Flavor support for routers.'
 UPDATED_TIMESTAMP = '2016-05-17T00:00:00-00:00'
 RESOURCE_NAME = l3.ROUTER
 COLLECTION_NAME = l3.ROUTERS
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         FLAVOR_ID: {
             'allow_post': True, 'allow_put': False,

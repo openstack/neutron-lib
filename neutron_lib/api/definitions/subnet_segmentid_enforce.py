@@ -18,6 +18,7 @@ import copy
 from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_segmentid_writable
+from neutron_lib.types import ResourceAttributeMap
 
 
 # The alias of the extension.
@@ -53,7 +54,7 @@ segment_id_attr_info = copy.deepcopy(
         subnet.COLLECTION_NAME][segment.SEGMENT_ID])
 segment_id_attr_info['enforce_policy'] = True
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     subnet.COLLECTION_NAME: {
         segment.SEGMENT_ID: segment_id_attr_info
     }

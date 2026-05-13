@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import bgp
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'bgp_4byte_asn'
@@ -22,7 +23,7 @@ DESCRIPTION = "Support bgp 4-byte AS number"
 UPDATED_TIMESTAMP = '2017-09-07T00:00:00-00:00'
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     'bgp-speakers': {
         'local_as': {'allow_post': True, 'allow_put': False,
                      'validate': {'type:range': (constants.MIN_ASNUM,

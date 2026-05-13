@@ -18,6 +18,7 @@ from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
 from neutron_lib.api.definitions import qos
 from neutron_lib.services.qos import constants as qos_consts
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'qos-gateway-ip'
@@ -38,7 +39,7 @@ routers[l3.EXTERNAL_GW_INFO]['validate']['type:dict_or_nodata'][
     'type:uuid_or_none': None,
     'required': False
 }
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: routers
 }
 

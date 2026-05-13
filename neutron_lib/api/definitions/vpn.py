@@ -17,6 +17,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib.api import validators
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # Resource constants
 VPNSERVICE = 'vpnservice'
@@ -222,7 +223,7 @@ API_PREFIX = '/vpn'
 
 _vpn_lifetime_limits = (60, validators.UNLIMITED)
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 
     VPNSERVICES: {
         'id': {'allow_post': False, 'allow_put': False,

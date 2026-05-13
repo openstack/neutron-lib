@@ -12,11 +12,11 @@
 # implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 from neutron_lib.api import converters as n_conv
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'bgp'
@@ -32,7 +32,7 @@ BGP_SPEAKERS = f'{BGP_SPEAKER_BODY_KEY_NAME}s'
 BGP_PEER_BODY_KEY_NAME = 'bgp_peer'
 
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     BGP_SPEAKER_RESOURCE_NAME + 's': {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

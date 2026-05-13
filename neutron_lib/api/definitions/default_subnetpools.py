@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import subnet as subnet_def
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 USE_DEFAULT_SUBNETPOOL = 'use_default_subnetpool'
 
@@ -25,7 +26,7 @@ DESCRIPTION = 'Provides ability to mark and use a subnetpool as the default.'
 UPDATED_TIMESTAMP = '2016-02-18T18:00:00-00:00'
 RESOURCE_NAME = subnet_def.RESOURCE_NAME
 COLLECTION_NAME = subnet_def.COLLECTION_NAME
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         USE_DEFAULT_SUBNETPOOL: {'allow_post': True,
                                  'allow_put': False,

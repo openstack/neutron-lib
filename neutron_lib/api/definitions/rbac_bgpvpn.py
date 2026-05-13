@@ -14,6 +14,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'rbac-bgpvpn'
@@ -25,7 +26,7 @@ UPDATED_TIMESTAMP = '2021-06-07T00:00:00-00:00'
 API_PREFIX = bgpvpn.API_PREFIX
 RESOURCE_NAME = bgpvpn.RESOURCE_NAME
 COLLECTION_NAME = bgpvpn.COLLECTION_NAME
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         constants.SHARED: {
             'allow_post': False,

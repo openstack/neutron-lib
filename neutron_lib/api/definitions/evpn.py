@@ -16,6 +16,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'evpn'
@@ -31,7 +32,7 @@ COLLECTION_NAME = l3.ROUTERS
 EVPN_VNI = 'evpn_vni'
 ADVERTISE_HOST = 'advertise_host'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         EVPN_VNI: {
             'allow_post': True,
@@ -42,8 +43,7 @@ RESOURCE_ATTRIBUTE_MAP = {
             'is_filter': True,
             'is_sort_key': True,
             'enforce_policy': True,
-            'validate': {'type:range':
-                         [0, constants.MAX_VXLAN_VNI]},
+            'validate': {'type:range': (0, constants.MAX_VXLAN_VNI)},
         },
     },
 }

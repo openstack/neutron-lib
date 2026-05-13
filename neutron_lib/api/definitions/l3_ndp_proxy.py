@@ -15,6 +15,7 @@
 
 from neutron_lib.api.definitions import l3
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'l3-ndp-proxy'
@@ -59,7 +60,7 @@ IP_ADDRESS = 'ip_address'
 DESCRIPTION = 'description'
 
 # The resource attribute map for the extension.
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         ID: {'allow_post': False,
              'allow_put': False,

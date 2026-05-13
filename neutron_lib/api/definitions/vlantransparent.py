@@ -16,6 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import network as network_def
 from neutron_lib.api import validators
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 VLANTRANSPARENT = 'vlan_transparent'
@@ -42,7 +43,7 @@ NAME = 'Vlantransparent'
 API_PREFIX = ''
 DESCRIPTION = 'Provides Vlan Transparent Networks'
 UPDATED_TIMESTAMP = '2015-03-23T09:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     network_def.COLLECTION_NAME: {
         VLANTRANSPARENT: {
             'allow_post': True,

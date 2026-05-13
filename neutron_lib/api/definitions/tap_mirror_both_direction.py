@@ -10,10 +10,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import copy
 
 from neutron_lib.api.definitions import taas
 from neutron_lib.api.definitions import tap_mirror
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'tap-mirror-both-direction'
@@ -24,16 +24,23 @@ DESCRIPTION = ("Neutron Tap as a Service extension mirroring with support "
                "for BOTH direction.")
 UPDATED_TIMESTAMP = "2025-12-15T11:45:00-00:00"
 
-DIRECTION_SPEC = copy.deepcopy(tap_mirror.DIRECTION_SPEC)
-DIRECTION_SPEC['type:dict'][taas.DIRECTION_BOTH] = {
-    'type:integer': None, 'default': None, 'required': False
-}
-
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     tap_mirror.COLLECTION_NAME: {
         'directions': {
             'allow_post': True, 'allow_put': False,
-            'validate': DIRECTION_SPEC,
+            'validate': {
+                'type:dict': {
+                    'IN': {
+                        'type:integer': None, 'default': None,
+                        'required': False},
+                    'OUT': {
+                        'type:integer': None, 'default': None,
+                        'required': False},
+                    taas.DIRECTION_BOTH: {
+                        'type:integer': None, 'default': None,
+                        'required': False},
+                }
+            },
             'is_visible': True},
     }
 }

@@ -11,6 +11,8 @@
 #    under the License.
 
 
+from neutron_lib.types import ResourceAttributeMap
+
 REMOTE_ADDRESS_GROUP_ID = 'remote_address_group_id'
 
 ALIAS = 'security-groups-remote-address-group'
@@ -20,7 +22,7 @@ NAME = 'Remote address group id field for security group rules'
 DESCRIPTION = 'Add new field of remote address group id in SG rules'
 UPDATED_TIMESTAMP = '2020-08-25T10:00:00-00:00'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     'security_group_rules': {
         REMOTE_ADDRESS_GROUP_ID: {
             'allow_post': True, 'allow_put': False,

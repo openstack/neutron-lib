@@ -16,6 +16,7 @@ from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import portbindings
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # Plural of the resource
 COLLECTION_NAME = 'bindings'
@@ -64,7 +65,7 @@ STATUS = 'status'
 PROJECT_ID = 'project_id'
 
 # No attribute map, this extension defines only sub resource
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 # Attribute map of bindings
 SUB_RESOURCE_ATTRIBUTE_MAP = {

@@ -12,6 +12,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'floatingip-autodelete-internal'
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
@@ -19,7 +21,7 @@ NAME = 'Autodelete floating IPs of internal networks'
 DESCRIPTION = 'Autodelete unused floating IPs' \
               ' of networks being turned to router:external=False'
 UPDATED_TIMESTAMP = '2019-01-24T00:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []

@@ -16,6 +16,7 @@
 from neutron_lib.api.definitions import l3 as l3_apidef
 from neutron_lib.api.definitions import qos as qos_apidef
 from neutron_lib.services.qos import constants as qos_consts
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'qos-fip'
 IS_SHIM_EXTENSION = False
@@ -24,7 +25,7 @@ NAME = 'Floating IP QoS'
 API_PREFIX = ''
 DESCRIPTION = 'The floating IP Quality of Service extension'
 UPDATED_TIMESTAMP = '2017-07-20T00:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     l3_apidef.FLOATINGIPS: {
         qos_consts.QOS_POLICY_ID: {
             'allow_post': True,

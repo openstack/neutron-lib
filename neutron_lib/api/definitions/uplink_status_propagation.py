@@ -12,6 +12,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import port as port_def
+from neutron_lib.types import ResourceAttributeMap
 
 PROPAGATE_UPLINK_STATUS = 'propagate_uplink_status'
 
@@ -24,7 +25,7 @@ DESCRIPTION = 'Provides ability to propagate port uplink status.'
 UPDATED_TIMESTAMP = '2018-05-31T18:00:00-00:00'
 RESOURCE_NAME = port_def.RESOURCE_NAME
 COLLECTION_NAME = port_def.COLLECTION_NAME
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         PROPAGATE_UPLINK_STATUS: {'allow_post': True,
                                   'allow_put': False,

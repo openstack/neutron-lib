@@ -13,6 +13,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import port
+from neutron_lib.types import ResourceAttributeMap
 
 
 IP_ALLOCATION = 'ip_allocation'
@@ -29,7 +30,7 @@ DESCRIPTION = 'IP allocation extension.'
 UPDATED_TIMESTAMP = '2016-06-10T23:00:00-00:00'
 RESOURCE_NAME = port.RESOURCE_NAME
 COLLECTION_NAME = port.COLLECTION_NAME
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         IP_ALLOCATION: {
             'allow_post': False,

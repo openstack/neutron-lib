@@ -15,6 +15,7 @@
 
 from neutron_lib.api.definitions import flavors
 from neutron_lib.api.definitions import vpn
+from neutron_lib.types import ResourceAttributeMap
 
 FLAVOR_ID = 'flavor_id'
 
@@ -27,7 +28,7 @@ UPDATED_TIMESTAMP = '2017-04-19T00:00:00-00:00'
 API_PREFIX = '/vpn'
 RESOURCE_NAME = vpn.VPNSERVICE
 COLLECTION_NAME = vpn.VPNSERVICES
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         FLAVOR_ID: {'allow_post': True, 'allow_put': False,
                     'validate': {'type:uuid_or_none': None},

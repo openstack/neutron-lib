@@ -14,6 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 FLAVOR = 'flavor'
 FLAVORS = FLAVOR + 's'
@@ -27,7 +28,7 @@ NAME = 'Neutron Service Flavors'
 API_PREFIX = ''
 DESCRIPTION = 'Flavor specification for Neutron advanced services.'
 UPDATED_TIMESTAMP = '2015-09-17T10:00:00-00:00'
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     FLAVORS: {
         'id': {'allow_post': False, 'allow_put': False,
                'validate': {'type:uuid': None},

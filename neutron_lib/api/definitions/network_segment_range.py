@@ -16,6 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import provider_net as providernet
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
+from neutron_lib.types import ResourceAttributeMap
 
 # The name of the extension.
 NAME = 'Neutron Network Segment Range'
@@ -35,9 +36,9 @@ COLLECTION_NAME = 'network_segment_ranges'
 # Min ID for VLAN, VXLAN, GRE and GENEVE all equal to 1; Max ID for them are
 # 4094, 2 ** 24 - 1, 2 ** 32 - 1 and 2 ** 24 - 1 respectively.
 # Take the largest range: [MIN_GRE_ID, MAX_GRE_ID] as the limit for validation.
-NETWORK_SEGMENT_RANGE_LIMIT = [constants.MIN_GRE_ID, constants.MAX_GRE_ID]
+NETWORK_SEGMENT_RANGE_LIMIT = (constants.MIN_GRE_ID, constants.MAX_GRE_ID)
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {'allow_post': False,
                'allow_put': False,

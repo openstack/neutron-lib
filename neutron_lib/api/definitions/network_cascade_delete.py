@@ -11,6 +11,8 @@
 #    under the License.
 
 
+from neutron_lib.types import ResourceAttributeMap
+
 ALIAS = 'network-cascade-delete'
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
@@ -18,7 +20,7 @@ NAME = 'Network Cascade Deletion Extension'
 DESCRIPTION = ('Allows for cascade deletion of networks and all '
                'associated ports.')
 UPDATED_TIMESTAMP = ''
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []

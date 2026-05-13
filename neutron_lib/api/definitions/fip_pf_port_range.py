@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import fip_pf_description as pfw_desc
 from neutron_lib.api.definitions import floating_ip_port_forwarding as pfw
+from neutron_lib.types import ResourceAttributeMap
 
 ALIAS = 'floating-ip-port-forwarding-port-ranges'
 IS_SHIM_EXTENSION = False
@@ -21,7 +22,7 @@ DESCRIPTION = 'Add support to port ranges'
 UPDATED_TIMESTAMP = '2020-07-01T10:00:00-00:00'
 EXTERNAL_PORT_RANGE = 'external_port_range'
 INTERNAL_PORT_RANGE = 'internal_port_range'
-RESOURCE_ATTRIBUTE_MAP = {}
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP = {
     pfw.COLLECTION_NAME: {
         'parameters': {

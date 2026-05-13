@@ -13,6 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import port as port_def
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 NAME = 'Neutron Port MAC address regenerate'
@@ -21,7 +22,7 @@ DESCRIPTION = "Network port MAC address regenerate"
 
 UPDATED_TIMESTAMP = "2018-05-03T10:00:00-00:00"
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     port_def.COLLECTION_NAME: {
         port_def.PORT_MAC_ADDRESS: {
             'allow_post': True, 'allow_put': True,

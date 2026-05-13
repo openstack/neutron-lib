@@ -12,6 +12,7 @@
 
 from neutron_lib.api.definitions import subnet as subnet_def
 from neutron_lib import constants
+from neutron_lib.types import ResourceAttributeMap
 
 
 ALIAS = 'subnet-service-types'
@@ -24,7 +25,7 @@ UPDATED_TIMESTAMP = "2016-03-15T18:00:00-00:00"
 RESOURCE_NAME = 'service_type'
 COLLECTION_NAME = 'service_types'
 
-RESOURCE_ATTRIBUTE_MAP = {
+RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     subnet_def.COLLECTION_NAME: {
         COLLECTION_NAME: {
             'allow_post': True,
