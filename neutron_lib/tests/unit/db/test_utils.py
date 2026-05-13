@@ -170,6 +170,90 @@ class TestUtilsLegacyPolicies(base.BaseTestCase):
             utils.model_query_scope_is_project(ctx, model))
 
 
+class TestContextIfTransaction(base.BaseTestCase):
+
+    @mock.patch('neutron_lib.db.api.CONTEXT_WRITER')
+    def test_context_if_transaction_writer(self, mock_writer):
+        ctx = mock.Mock()
+        result = utils.context_if_transaction(ctx, transaction=True,
+                                              writer=True)
+        mock_writer.using.assert_called_once_with(ctx)
+        self.assertEqual(mock_writer.using.return_value, result)
+
+    @mock.patch('neutron_lib.db.api.CONTEXT_READER')
+    def test_context_if_transaction_reader(self, mock_reader):
+        ctx = mock.Mock()
+        result = utils.context_if_transaction(ctx, transaction=True,
+                                              writer=False)
+        mock_reader.using.assert_called_once_with(ctx)
+        self.assertEqual(mock_reader.using.return_value, result)
+
+    def test_context_if_transaction_no_transaction(self):
+        ctx = mock.Mock()
+        cm = utils.context_if_transaction(ctx, transaction=False)
+        with cm:
+            pass
+
+
+class TestSafeCreation(base.BaseTestCase):
+
+    def test_safe_creation_success(self):
+        ctx = mock.Mock()
+        create_fn = mock.Mock(return_value={'id': 'obj-1'})
+        updated = {'id': 'obj-1', 'extra': 'data'}
+        create_bindings = mock.Mock(return_value=(updated, 'value'))
+        delete_fn = mock.Mock()
+
+        with mock.patch.object(utils, 'context_if_transaction',
+                               return_value=utils._noop_context_manager()):
+            obj, value = utils.safe_creation(
+                ctx, create_fn, delete_fn, create_bindings)
+
+        self.assertEqual(updated, obj)
+        self.assertEqual('value', value)
+        create_bindings.assert_called_once_with('obj-1')
+        delete_fn.assert_not_called()
+
+    def test_safe_creation_bindings_fail_triggers_delete(self):
+        ctx = mock.Mock()
+        create_fn = mock.Mock(return_value={'id': 'obj-1'})
+        create_bindings = mock.Mock(side_effect=ValueError)
+        delete_fn = mock.Mock()
+
+        with mock.patch.object(utils, 'context_if_transaction',
+                               return_value=utils._noop_context_manager()):
+            self.assertRaises(ValueError, utils.safe_creation,
+                              ctx, create_fn, delete_fn, create_bindings)
+        delete_fn.assert_called_once_with('obj-1')
+
+    def test_safe_creation_delete_also_fails(self):
+        ctx = mock.Mock()
+        create_fn = mock.Mock(return_value={'id': 'obj-1'})
+        create_bindings = mock.Mock(side_effect=ValueError)
+        delete_fn = mock.Mock(side_effect=EnvironmentError)
+
+        with mock.patch.object(utils, 'context_if_transaction',
+                               return_value=utils._noop_context_manager()):
+            self.assertRaises(ValueError, utils.safe_creation,
+                              ctx, create_fn, delete_fn, create_bindings)
+        delete_fn.assert_called_once_with('obj-1')
+
+    def test_safe_creation_returns_original_when_updated_is_none(self):
+        ctx = mock.Mock()
+        original = {'id': 'obj-1'}
+        create_fn = mock.Mock(return_value=original)
+        create_bindings = mock.Mock(return_value=(None, 'value'))
+        delete_fn = mock.Mock()
+
+        with mock.patch.object(utils, 'context_if_transaction',
+                               return_value=utils._noop_context_manager()):
+            obj, value = utils.safe_creation(
+                ctx, create_fn, delete_fn, create_bindings)
+
+        self.assertEqual(original, obj)
+        self.assertEqual('value', value)
+
+
 class TestUtilsWithScopeEnforcement(TestUtilsLegacyPolicies):
 
     def setUp(self):

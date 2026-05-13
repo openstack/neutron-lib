@@ -10,9 +10,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+import contextlib
 import functools
 
 from oslo_db import exception as db_exc
+from oslo_log import log as logging
 from oslo_utils import excutils
 import sqlalchemy
 from sqlalchemy.ext import associationproxy
@@ -21,7 +23,11 @@ from sqlalchemy.orm import properties
 
 from neutron_lib._i18n import _
 from neutron_lib.api import attributes
+from neutron_lib.db import api as db_api
 from neutron_lib import exceptions as n_exc
+
+
+LOG = logging.getLogger(__name__)
 
 
 def get_and_validate_sort_keys(sorts, model):
@@ -202,3 +208,65 @@ def model_query(context, model):
     if query_filter is not None:
         query = query.filter(query_filter)
     return query
+
+
+@contextlib.contextmanager
+def _noop_context_manager():
+    yield
+
+
+def context_if_transaction(context, transaction, writer=True):
+    """Return a context manager for a DB transaction or a no-op.
+
+    If ``transaction`` is True, return a CONTEXT_WRITER or CONTEXT_READER
+    context manager (depending on the ``writer`` flag). Otherwise return a
+    no-op context manager so that callers can always use a ``with`` block.
+
+    :param context: The request context.
+    :param transaction: If True, wrap in a DB transaction.
+    :param writer: If True use a writer transaction, otherwise a reader.
+    :returns: A context manager.
+    """
+    if transaction:
+        return (db_api.CONTEXT_WRITER.using(context) if writer else
+                db_api.CONTEXT_READER.using(context))
+    else:
+        return _noop_context_manager()
+
+
+def safe_creation(context, create_fn, delete_fn, create_bindings,
+                  transaction=True):
+    """Wrap object creation in a safe atomic way.
+
+    In case of exception during binding creation, the object is deleted.
+
+    More information when this method could be used can be found in
+    developer guide - Effective Neutron: Database interaction section.
+    https://docs.openstack.org/neutron/latest/contributor/effective_neutron.html
+
+    :param context: The request context.
+    :param create_fn: A callable (no arguments) that creates the object and
+        returns it. The returned object must support ``obj['id']``.
+    :param delete_fn: A callable that deletes the object. Called with the
+        object's id as an argument.
+    :param create_bindings: A callable that creates bindings for the object.
+        Called with the object's id as an argument. Must return a tuple
+        ``(updated_obj, value)``.
+    :param transaction: If True the operation is wrapped in a transaction.
+    :returns: A tuple ``(obj, value)`` where obj is the created (or updated)
+        object and value is the second element returned by create_bindings.
+    """
+    with context_if_transaction(context, transaction):
+        obj = create_fn()
+        try:
+            updated_obj, value = create_bindings(obj['id'])
+            obj = updated_obj or obj
+        except Exception:
+            with excutils.save_and_reraise_exception():
+                try:
+                    delete_fn(obj['id'])
+                except Exception as e:
+                    LOG.error("Cannot clean up created object %(obj)s. "
+                              "Exception: %(exc)s", {'obj': obj['id'],
+                                                     'exc': e})
+        return obj, value
