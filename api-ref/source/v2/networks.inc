@@ -152,7 +152,7 @@ QinQ
 ====
 
 The ``qinq`` extension adds the ``qinq`` boolean attribute which allows to
-control the VLAN QinQ (vlan in vlan) of the network. It uses ``0x8a88`` ethertype for
+control the VLAN QinQ (vlan in vlan) of the network. It uses ``0x88a8`` ethertype for
 the double tagged packets. If the service does not support VLAN QinQ and a user
 requests a VLAN QinQ network, the plug-in refuses to create one and returns an
 appropriate error to the user.

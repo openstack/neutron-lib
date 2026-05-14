@@ -22,7 +22,7 @@ NAME = "QinQ networks"
 DESCRIPTION = (
     "Expose network 'qinq' attribute in the API. "
     "This allows to configure network to allow vlan in vlan "
-    "configuration using 0x8a88 ethertype (QinQ)."
+    "configuration using 0x88a8 ethertype (QinQ)."
 )
 UPDATED_TIMESTAMP = "2024-12-02T10:00:00-00:00"
 RESOURCE_NAME = network.RESOURCE_NAME
