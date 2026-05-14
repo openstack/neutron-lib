@@ -110,4 +110,4 @@ class NeutronBaseV2(_NeutronBase):
 
 
 class BASEV2(orm.DeclarativeBase, NeutronBaseV2):
-    pass
+    __mapper_args__ = {}
