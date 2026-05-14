@@ -59,11 +59,11 @@ def _validate_allowed_address_pairs(address_pairs, valid_values=None):
 
         mac = address_pair.get('mac_address')
         ip_address = address_pair['ip_address']
-        if (mac, ip_address) not in unique_check:
-            unique_check[(mac, ip_address)] = None
-        else:
+        if (mac, ip_address) in unique_check:
             raise exceptions.DuplicateAddressPairInRequest(
                 mac_address=mac, ip_address=ip_address)
+
+        unique_check[(mac, ip_address)] = None
 
         invalid_attrs = set(address_pair.keys()) - {'mac_address',
                                                     'ip_address'}
