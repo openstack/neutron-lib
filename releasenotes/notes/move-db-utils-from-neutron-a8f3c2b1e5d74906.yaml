@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    Added ``context_if_transaction`` and ``safe_creation`` helper functions
+    to ``neutron_lib.db.utils``. These were previously in
+    ``neutron.db._utils`` and are now available for all networking projects
+    to consume from neutron-lib.
