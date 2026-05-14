@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    ``neutron_lib.worker.BaseWorker.start`` now passes ``self`` (the worker
+    instance) as the ``trigger`` argument when publishing the
+    ``PROCESS/AFTER_INIT`` registry event, instead of the ``start`` method
+    reference. This allows registry callbacks to identify the concrete worker
+    class that triggered the event (e.g. ``WorkerService`` vs
+    ``MaintenanceWorker``) and act accordingly.
