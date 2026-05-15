@@ -414,7 +414,7 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         :param context: NetworkContext instance describing the network.
 
         Check if the network supports QinQ vlan (similar to vlan transparency
-        but this uses different ethertype, 0x8a88 for the outer tag) or not.
+        but this uses different ethertype, 0x88a8 for the outer tag) or not.
         """
         pass
 
