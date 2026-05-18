@@ -1,5 +1,3 @@
 {
-    "address_group": {
-        "addresses": ["10.0.2.100/32"]
-    }
+    "addresses": ["10.0.2.100/32"]
 }
