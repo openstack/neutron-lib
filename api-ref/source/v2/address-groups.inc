@@ -212,7 +212,7 @@ Response Example
 Add IP addresses to address group
 =================================
 
-.. rest_method::  PUT /v2.0/address-group/{address_group_id}/add_addresses
+.. rest_method::  PUT /v2.0/address-groups/{address_group_id}/add_addresses
 
 Atomically adds a set of IP addresses to the address group's already existing
 addresses.
@@ -257,7 +257,7 @@ Response Example
 Remove IP addresses to address group
 ====================================
 
-.. rest_method::  PUT /v2.0/address-group/{address_group_id}/remove_addresses
+.. rest_method::  PUT /v2.0/address-groups/{address_group_id}/remove_addresses
 
 Atomically removes a set of IP addresses from the address group's already
 existing addresses.
