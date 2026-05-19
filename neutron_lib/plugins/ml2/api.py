@@ -52,6 +52,12 @@ class MechanismDriver(metaclass=abc.ABCMeta):
     Because rollback outside of the transaction is not done in the
     update network/port case, all data validation must be done within
     methods that are part of the database transaction.
+
+    For ports with hierarchical bindings, delete methods are called in
+    LIFO order relative to the binding levels: starting from the
+    bottom-level binding (closest to the compute node) back to the
+    top-level binding (closest to the network fabric). This is the
+    reverse of the order in which bindings are established.
     """
 
     # Used in generating resource provider UUIDs for physical network
@@ -332,9 +338,13 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         :param context: PortContext instance describing the current
             state of the port, prior to the call to delete it.
 
-        Called inside transaction context on session. Runtime errors
-        are not expected, but raising an exception will result in
-        rollback of the transaction.
+        Called inside transaction context on session. For ports with
+        hierarchical bindings, drivers are called in LIFO order:
+        from the bottom-level binding (closest to the compute node,
+        index -1) back to the top-level binding (closest to the
+        network fabric, index 0). Runtime errors are not expected, but
+        raising an exception will result in rollback of the
+        transaction.
         """
         pass
 
@@ -344,11 +354,14 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         :param context: PortContext instance describing the current
             state of the port, prior to the call to delete it.
 
-        Called after the transaction completes. Call can block, though
-        will block the entire process so care should be taken to not
-        drastically affect performance.  Runtime errors are not
-        expected, and will not prevent the resource from being
-        deleted.
+        Called after the transaction completes. For ports with
+        hierarchical bindings, drivers are called in LIFO order:
+        from the bottom-level binding (closest to the compute node,
+        index -1) back to the top-level binding (closest to the
+        network fabric, index 0). Call can block, though will block
+        the entire process so care should be taken to not drastically
+        affect performance. Runtime errors are not expected, and will
+        not prevent the resource from being deleted.
         """
         pass
 
@@ -360,9 +373,10 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         This method is called outside any transaction to attempt to
         establish a port binding using this mechanism driver. Bindings
         may be created at each of multiple levels of a hierarchical
-        network, and are established from the top level downward. At
-        each level, the mechanism driver determines whether it can
-        bind to any of the network segments in the
+        network, and are established from the top level downward (from
+        the network fabric at level 0 toward the compute node at the
+        bottom level). At each level, the mechanism driver determines
+        whether it can bind to any of the network segments in the
         context.segments_to_bind property, based on the value of the
         context.host property, any relevant port or network
         attributes, and its own knowledge of the network topology. At
@@ -875,13 +889,16 @@ class PortContext(metaclass=abc.ABCMeta):
 
         The first entry (index 0) describes the top-level binding,
         which always involves one of the port's network's static
-        segments. In the case of a hierarchical binding, subsequent
-        entries describe the lower-level bindings in descending order,
-        which may involve dynamic segments. Adjacent levels where
-        different drivers bind the same static or dynamic segment are
-        possible. The last entry (index -1) describes the bottom-level
-        binding that supplied the port's binding:vif_type and
-        binding:vif_details attribute values.
+        segments, and is closest to the physical network fabric (e.g.,
+        the provider network segment). In the case of a hierarchical
+        binding, subsequent entries describe the lower-level bindings
+        in descending order, which may involve dynamic segments.
+        Adjacent levels where different drivers bind the same static or
+        dynamic segment are possible. The last entry (index -1)
+        describes the bottom-level binding that supplied the port's
+        binding:vif_type and binding:vif_details attribute values, and
+        is closest to the compute node (e.g., the hypervisor vSwitch
+        for VMs or the ToR switch for bare metal).
 
         Within calls to MechanismDriver.bind_port, descriptions of the
         levels above the level currently being bound are returned.
@@ -911,7 +928,8 @@ class PortContext(metaclass=abc.ABCMeta):
         dictionary, or None if the port is unbound. For a bound port,
         top_bound_segment is equivalent to
         binding_levels[0][BOUND_SEGMENT], and returns one of the
-        port's network's static segments.
+        port's network's static segments. This is the segment closest
+        to the physical network fabric.
         """
 
     @property
@@ -940,7 +958,9 @@ class PortContext(metaclass=abc.ABCMeta):
         bottom_bound_segment is equivalent to
         binding_levels[-1][BOUND_SEGMENT], and returns the segment
         whose binding supplied the port's binding:vif_type and
-        binding:vif_details attribute values.
+        binding:vif_details attribute values. This is the segment
+        closest to the compute node (e.g., the hypervisor vSwitch for
+        VMs or the ToR switch for bare metal).
         """
 
     @property
