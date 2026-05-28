@@ -17,6 +17,7 @@ import os
 from oslo_service import service
 import setproctitle
 
+from neutron_lib._i18n import _
 from neutron_lib.callbacks import events
 from neutron_lib.callbacks import registry
 from neutron_lib.callbacks import resources
@@ -63,6 +64,9 @@ class BaseWorker(service.ServiceBase):
             desc:
                 process descriptive string
         """
+        if worker_process_count < 0:
+            raise RuntimeError(_(
+                'Neutron worker classes `worker_process_count` must be >= 0'))
         self._worker_process_count = worker_process_count
         self._my_pid = os.getpid()
         self._set_proctitle = set_proctitle
