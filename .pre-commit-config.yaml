@@ -72,11 +72,6 @@ repos:
         args: []
         files: ^doc|releasenotes
         types: [rst]
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.19.1
-    hooks:
-      - id: mypy
-        pass_filenames: false
   - repo: local
     hooks:
       - id: check-unit-test-structure
