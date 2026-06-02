@@ -329,7 +329,7 @@ class DictOfMiscValuesField(obj_fields.AutoTypedField):
 
 
 class ListOfDictOfMiscValuesField(obj_fields.AutoTypedField):
-    AUTO_TYPE = obj_fields.List(DictOfMiscValuesField())
+    AUTO_TYPE = obj_fields.List(DictOfMiscValues())
 
 
 class IPNetwork(obj_fields.FieldType):
