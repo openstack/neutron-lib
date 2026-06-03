@@ -16,7 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import dvr
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = 'floating-ip-distributed'
@@ -38,7 +38,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, dvr.ALIAS]
 OPTIONAL_EXTENSIONS = []

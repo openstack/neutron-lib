@@ -16,7 +16,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ROUTES = 'routes'
 
@@ -39,7 +39,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'default': constants.ATTR_NOT_SPECIFIED},
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS]
 OPTIONAL_EXTENSIONS = []

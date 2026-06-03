@@ -11,7 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import sorting
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = 'sort-key-validation'
@@ -21,7 +21,7 @@ NAME = 'Sort keys validation'
 DESCRIPTION = 'Provides validation on sort keys.'
 UPDATED_TIMESTAMP = '2018-07-04T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [sorting.ALIAS]
 OPTIONAL_EXTENSIONS = []

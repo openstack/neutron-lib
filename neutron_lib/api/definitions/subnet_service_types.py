@@ -12,7 +12,7 @@
 
 from neutron_lib.api.definitions import subnet as subnet_def
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = 'subnet-service-types'
@@ -37,7 +37,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = []

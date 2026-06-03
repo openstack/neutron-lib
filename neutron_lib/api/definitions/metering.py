@@ -16,7 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_consts
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 METERING_LABELS = 'metering_labels'
@@ -104,7 +104,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

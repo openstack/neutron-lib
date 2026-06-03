@@ -14,7 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 FLAVOR = 'flavor'
 FLAVORS = FLAVOR + 's'
@@ -80,7 +80,8 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                     'is_visible': True, 'default': True},
     },
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     NEXT_PROVIDERS: {
         'parent': {'collection_name': FLAVORS,
                    'member_name': FLAVOR},

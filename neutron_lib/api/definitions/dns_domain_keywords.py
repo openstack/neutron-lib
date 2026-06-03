@@ -13,7 +13,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import dns
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'dns-integration-domain-keywords'
@@ -52,7 +52,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 # to main extension's resource. The subresource map must have a parent and
 # a parameters entry. If an extension does not need such a map, None can
 # be specified (mandatory). For example:
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource (mandatory).

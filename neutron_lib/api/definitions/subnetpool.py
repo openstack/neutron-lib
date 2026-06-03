@@ -13,7 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 NAME = 'Neutron L3 Subnet Pool'
@@ -116,7 +116,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 # This is a core resource so the following are not applicable.
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

@@ -15,7 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'bgpvpn-routes-control'
@@ -105,7 +105,7 @@ ROUTE_SPECS = [
      },
 ]
 
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     PORT_ASSOCIATIONS: {
         'parent': {
             'collection_name': COLLECTION_NAME,

@@ -15,7 +15,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import qos as qos_apidef
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'qos-default'
 IS_SHIM_EXTENSION = False
@@ -36,7 +36,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [qos_apidef.ALIAS]
 OPTIONAL_EXTENSIONS = []

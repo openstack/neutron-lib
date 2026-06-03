@@ -15,7 +15,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.db import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'agent'
 IS_SHIM_EXTENSION = False
@@ -61,7 +61,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                 'type:string_or_none': constants.DESCRIPTION_FIELD_SIZE}},
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

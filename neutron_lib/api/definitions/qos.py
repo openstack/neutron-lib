@@ -13,15 +13,18 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import typing
-
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_const
-from neutron_lib.types import ResourceAttributeMap, ResourceAttributeMapItem
+from neutron_lib.types import (
+    ResourceAttributeMap,
+    ResourceAttributeMapItem,
+    SubResourceAttributeMap,
+    SubResourceParent,
+)
 
 BANDWIDTH_LIMIT_RULES = "bandwidth_limit_rules"
 RULE_TYPES = "rule_types"
@@ -106,11 +109,11 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-_PARENT = {
+_PARENT: SubResourceParent = {
     'collection_name': POLICIES,
     'member_name': POLICY
 }
-SUB_RESOURCE_ATTRIBUTE_MAP: dict[str, typing.Any] = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     BANDWIDTH_LIMIT_RULES: {
         'parent': _PARENT,
         'parameters': dict(

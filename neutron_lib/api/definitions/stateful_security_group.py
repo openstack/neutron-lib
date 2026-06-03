@@ -14,7 +14,7 @@
 
 
 from neutron_lib.api import converters
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 # The alias of the extension.
@@ -43,8 +43,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 # The subresource attribute map for the extension.
-SUB_RESOURCE_ATTRIBUTE_MAP = {
-}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
 ACTION_MAP = {

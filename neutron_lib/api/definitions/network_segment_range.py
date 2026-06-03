@@ -16,7 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import provider_net as providernet
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # The name of the extension.
 NAME = 'Neutron Network Segment Range'
@@ -124,7 +124,7 @@ IS_STANDARD_ATTR_EXTENSION = False
 # to main extension's resource. The subresource map must have a parent and
 # a parameters entry. If an extension does not need such a map, None can
 # be specified (mandatory).
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource.

@@ -16,7 +16,7 @@
 from neutron_lib.api.definitions import agent as agent_apidef
 from neutron_lib.api.definitions import network as net_apidef
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 DHCP_NET = 'dhcp-network'
@@ -32,7 +32,7 @@ API_PREFIX = ''
 DESCRIPTION = 'Schedule networks among dhcp agents'
 UPDATED_TIMESTAMP = '2013-02-07T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     DHCP_NETS: {
         'parent': {
             'collection_name': agent_apidef.COLLECTION_NAME,

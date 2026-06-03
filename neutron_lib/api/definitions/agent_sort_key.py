@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from neutron_lib.api.definitions import agent
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'agent_sort_key'
 IS_SHIM_EXTENSION = False
@@ -31,7 +31,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         if k != "configurations"
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

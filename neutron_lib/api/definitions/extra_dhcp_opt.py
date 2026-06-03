@@ -14,7 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import port
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 # Common definitions for maximum string field length
@@ -116,7 +116,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 # to main extension's resource. The subresource map must have a parent and
 # a parameters entry. If an extension does not need such a map, None can
 # be specified (mandatory).
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource (mandatory).

@@ -17,7 +17,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 PROTOCOLS = constants.IPTABLES_PROTOCOL_MAP.keys()
@@ -72,7 +72,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 # to main extension's resource. The subresource map must have a parent and
 # a parameters entry. If an extension does not need such a map, None can
 # be specified (mandatory).
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     COLLECTION_NAME: {
         'parent': {'collection_name': PARENT_COLLECTION_NAME,
                    'member_name': PARENT_RESOURCE_NAME},

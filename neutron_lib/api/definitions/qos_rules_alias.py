@@ -19,6 +19,7 @@ from neutron_lib.services.qos import constants as q_const
 from neutron_lib.types import (
     ResourceAttributeMap,
     ResourceAttributeMapItem,
+    SubResourceAttributeMap,
 )
 
 
@@ -120,7 +121,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     )
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [qos.ALIAS, qos_bw_limit_direction.ALIAS]
 OPTIONAL_EXTENSIONS = []

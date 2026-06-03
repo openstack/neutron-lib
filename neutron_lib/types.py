@@ -45,7 +45,7 @@ AttributeValidator = TypedDict(
         'type:network_segments': None,
         'type:not_empty_name_string': None,
         'type:non_negative': None,
-        'type:port_range': None,
+        'type:port_range': tuple[int, int] | None,
         'type:range': tuple[int, int],
         'type:range_or_none': tuple[int, int],
         'type:regex_or_none': str | None,
@@ -87,3 +87,16 @@ class ResourceAttributeMapItem(TypedDict, total=False):
 ResourceAttributeMap: TypeAlias = dict[
     str, dict[str, ResourceAttributeMapItem]
 ]
+
+
+class SubResourceParent(TypedDict):
+    collection_name: str
+    member_name: str
+
+
+class SubResourceAttributeMapItem(TypedDict, total=False):
+    parent: SubResourceParent
+    parameters: dict[str, ResourceAttributeMapItem]
+
+
+SubResourceAttributeMap: TypeAlias = dict[str, SubResourceAttributeMapItem]

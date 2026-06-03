@@ -15,8 +15,7 @@
 from neutron_lib.api.definitions import qos as qos_apidef
 from neutron_lib import constants
 from neutron_lib.services.qos import constants as qos_constants
-from neutron_lib.types import ResourceAttributeMap
-
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'qos-bw-minimum-ingress'
 IS_SHIM_EXTENSION = False
@@ -26,7 +25,7 @@ DESCRIPTION = ("Allow to configure QoS minumum bandwidth rule with ingress "
                "direction.")
 UPDATED_TIMESTAMP = '2018-07-09T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     qos_apidef.MIN_BANDWIDTH_RULES: {
         'parameters': {
             qos_constants.DIRECTION: {

@@ -12,7 +12,7 @@
 
 from neutron_lib.api.definitions import l3
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 FLOATINGIP_POOLS = 'floatingip_pools'
@@ -45,7 +45,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                        'is_visible': True},
     },
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS]
 OPTIONAL_EXTENSIONS = []

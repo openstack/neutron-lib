@@ -16,7 +16,7 @@ from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import portbindings
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # Plural of the resource
 COLLECTION_NAME = 'bindings'
@@ -68,7 +68,7 @@ PROJECT_ID = 'project_id'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 # Attribute map of bindings
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     COLLECTION_NAME: {
         'parent': {
             'collection_name': PARENT_COLLECTION_NAME,

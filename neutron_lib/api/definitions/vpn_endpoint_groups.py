@@ -15,7 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import vpn
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # VPN Endpoint type constants
 VPN_ENDPOINT_TYPE_CIDR = 'cidr'
@@ -63,7 +63,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                       'default': []},
     },
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [vpn.ALIAS]
 OPTIONAL_EXTENSIONS = []

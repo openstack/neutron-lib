@@ -101,7 +101,7 @@ overwrite its existing definition. For example:
 
 .. code-block:: python
 
-        SUB_RESOURCE_ATTRIBUTE_MAP = {
+        SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
             'existing_subresource_to_extend': {
                 'parameters': {
                     'new_attr1': {

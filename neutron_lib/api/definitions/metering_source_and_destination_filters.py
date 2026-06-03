@@ -12,7 +12,11 @@
 # under the License.
 
 from neutron_lib.api.definitions import metering
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import (
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+    SubResourceParent,
+)
 
 ALIAS = 'metering_source_and_destination_fields'
 IS_SHIM_EXTENSION = False
@@ -27,11 +31,11 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 REQUIRED_EXTENSIONS = [metering.ALIAS]
 
-_PARENT = {
+_PARENT: SubResourceParent = {
     'collection_name': metering.METERING_LABEL_RULES,
     'member_name': metering.METERING_LABEL_RULES
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     metering.METERING_LABEL_RULES: {
         'parent': _PARENT,
         'parameters': {

@@ -11,7 +11,7 @@
 #    under the License.
 
 
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 NAME = 'Neutron Port MAC address override'
 ALIAS = 'port-mac-override'
@@ -25,7 +25,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

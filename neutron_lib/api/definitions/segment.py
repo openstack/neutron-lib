@@ -12,13 +12,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import subnet
 from neutron_lib import constants
 from neutron_lib.db import constants as db_constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 SEGMENT_ID = 'segment_id'
 NETWORK_TYPE = 'network_type'
@@ -121,7 +120,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [
     'standard-attr-description'

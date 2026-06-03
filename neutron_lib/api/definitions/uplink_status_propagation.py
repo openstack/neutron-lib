@@ -12,7 +12,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import port as port_def
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 PROPAGATE_UPLINK_STATUS = 'propagate_uplink_status'
 
@@ -34,7 +34,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                                   'is_visible': True},
     },
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

@@ -15,7 +15,7 @@
 
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 RESOURCE_NAME = 'local_ip'
 COLLECTION_NAME = RESOURCE_NAME + 's'
@@ -104,7 +104,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     LOCAL_IP_ASSOCIATIONS: {
         'parent': {'collection_name': COLLECTION_NAME,
                    'member_name': RESOURCE_NAME},

@@ -16,7 +16,7 @@ import copy
 
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 EXTERNAL_GATEWAYS = 'external_gateways'
 
@@ -48,7 +48,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         },
     },
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = l3.ACTION_MAP
 ACTION_MAP[l3.ROUTER].update({
     'add_external_gateways': 'PUT',

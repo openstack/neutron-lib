@@ -17,7 +17,7 @@
 from neutron_lib.api import converters as lib_converters
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 VNI = 'vni'
@@ -69,7 +69,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 # to main extension's resource. The subresource map must have a parent and
 # a parameters entry. If an extension does not need such a map, None can
 # be specified (mandatory).
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource.

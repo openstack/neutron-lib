@@ -15,7 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ADDRESS_SCOPE = 'address_scope'
 ADDRESS_SCOPE_ID = 'address_scope_id'
@@ -90,7 +90,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                              'is_visible': True},
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

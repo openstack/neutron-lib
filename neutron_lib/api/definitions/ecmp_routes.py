@@ -12,7 +12,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'ecmp_routes'
 IS_SHIM_EXTENSION = True
@@ -23,7 +23,7 @@ DESCRIPTION = ("Allows traffic to reach the"
                "same destination via multiple different links ")
 UPDATED_TIMESTAMP = "2020-11-26T18:00:00-00:00"
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = []

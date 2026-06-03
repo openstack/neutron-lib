@@ -11,7 +11,7 @@
 #    under the License.
 
 from neutron_lib.api.definitions import vpn
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = 'vpn-aes-ccm-gcm'
@@ -21,7 +21,7 @@ NAME = 'VPN support for AES CCM, GCM modes'
 DESCRIPTION = 'Add choices for encryption, auth and pfs'
 UPDATED_TIMESTAMP = '2023-10-24T11:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [vpn.ALIAS]
 OPTIONAL_EXTENSIONS = []

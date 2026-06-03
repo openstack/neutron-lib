@@ -12,7 +12,7 @@
 
 from neutron_lib.api.definitions import floating_ip_port_forwarding
 from neutron_lib.api.definitions import l3
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = "expose-port-forwarding-in-fip"
@@ -34,7 +34,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, floating_ip_port_forwarding.ALIAS]
 OPTIONAL_EXTENSIONS = []

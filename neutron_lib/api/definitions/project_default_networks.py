@@ -12,8 +12,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
-from neutron_lib.types import ResourceAttributeMap
-
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 PROJECT_DEFAULT = 'project_default'
 
@@ -60,8 +59,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 # The subresource attribute map for the extension.
-SUB_RESOURCE_ATTRIBUTE_MAP = {
-}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
 ACTION_MAP = {

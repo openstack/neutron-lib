@@ -16,7 +16,7 @@
 from neutron_lib.api.definitions import l3 as l3_apidef
 from neutron_lib.api.definitions import qos as qos_apidef
 from neutron_lib.services.qos import constants as qos_consts
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'qos-fip'
 IS_SHIM_EXTENSION = False
@@ -36,7 +36,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'validate': {'type:uuid_or_none': None}}
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3_apidef.ALIAS, qos_apidef.ALIAS]
 OPTIONAL_EXTENSIONS = []

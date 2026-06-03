@@ -18,7 +18,7 @@ import typing
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = 'ext-gw-mode'
@@ -45,7 +45,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: routers
 }
 
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS]
 OPTIONAL_EXTENSIONS = []

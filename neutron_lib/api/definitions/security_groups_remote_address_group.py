@@ -10,8 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 REMOTE_ADDRESS_GROUP_ID = 'remote_address_group_id'
 
@@ -31,8 +30,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 
-SUB_RESOURCE_ATTRIBUTE_MAP = {
-}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 ACTION_MAP = {
 }

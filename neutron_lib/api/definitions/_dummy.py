@@ -16,7 +16,7 @@
 # constants being defined, and their aim is to document as much about
 # the extension as possible.
 
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'dummy'
@@ -78,7 +78,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 # Note that if an existing sub-resource is being extended, the
 # existing resources to extend the new extension attributes must be
 # defined under the 'parameters' key.
-SUB_RESOURCE_ATTRIBUTE_MAP = {
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     'subfoo': {
         'parent': {
             'collection_name': COLLECTION_NAME,

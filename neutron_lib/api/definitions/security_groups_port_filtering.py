@@ -10,7 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'port-security-groups-filtering'
@@ -41,8 +41,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 # The subresource attribute map for the extension.
-SUB_RESOURCE_ATTRIBUTE_MAP = {
-}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
 ACTION_MAP = {

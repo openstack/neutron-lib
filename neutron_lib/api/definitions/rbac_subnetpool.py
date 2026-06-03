@@ -11,7 +11,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'rbac-subnetpool'
 IS_SHIM_EXTENSION = True
@@ -20,7 +20,7 @@ NAME = 'Add subnetpool type to RBAC'
 DESCRIPTION = 'Add subnetpool type to RBAC'
 UPDATED_TIMESTAMP = '2020-02-05T00:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = ['rbac-policies', 'rbac-address-scope']
 OPTIONAL_EXTENSIONS = []

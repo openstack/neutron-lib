@@ -11,7 +11,7 @@
 #    under the License.
 
 from neutron_lib.api import converters
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = 'security-groups-rules-belongs-to-default-sg'
@@ -36,8 +36,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 
-SUB_RESOURCE_ATTRIBUTE_MAP = {
-}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 ACTION_MAP = {
 }

@@ -16,7 +16,7 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_multihoming
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ENABLE_DEFAULT_ROUTE_BFD = 'enable_default_route_bfd'
@@ -42,7 +42,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, l3_ext_gw_multihoming.ALIAS]
 OPTIONAL_EXTENSIONS = []

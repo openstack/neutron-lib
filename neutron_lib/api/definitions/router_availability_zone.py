@@ -13,7 +13,7 @@
 
 from neutron_lib.api.definitions import availability_zone as az
 from neutron_lib.api.definitions import l3
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ALIAS = 'router_availability_zone'
@@ -38,7 +38,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, az.ALIAS]
 OPTIONAL_EXTENSIONS = []

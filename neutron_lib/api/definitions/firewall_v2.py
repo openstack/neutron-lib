@@ -15,7 +15,7 @@ from neutron_lib.api.definitions import constants as api_const
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'fwaas_v2'
@@ -186,8 +186,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 
 # The subresource attribute map for the extension.  This extension has only
 # top level resources, not child resources, so this is set to an empty dict.
-SUB_RESOURCE_ATTRIBUTE_MAP = {
-}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
 ACTION_MAP = {

@@ -13,7 +13,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'network-ip-availability'
 IS_SHIM_EXTENSION = False
@@ -67,7 +67,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         # TODO(wwriverrat) Make composite attribute for subnet_ip_availability
     }
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

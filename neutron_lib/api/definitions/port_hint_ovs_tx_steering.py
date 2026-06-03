@@ -13,7 +13,7 @@
 # under the License.
 
 
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 ALIAS = 'port-hint-ovs-tx-steering'
 IS_SHIM_EXTENSION = True
@@ -22,7 +22,7 @@ NAME = 'Port hint: Open vSwitch Tx steering'
 DESCRIPTION = 'Enable Port hint: Open vSwitch Tx steering'
 UPDATED_TIMESTAMP = '2023-01-01T00:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = ['port-hints']

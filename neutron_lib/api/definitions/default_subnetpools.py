@@ -13,7 +13,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import subnet as subnet_def
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 USE_DEFAULT_SUBNETPOOL = 'use_default_subnetpool'
 
@@ -35,7 +35,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                                  'is_visible': False},
     },
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = [constants.SUBNET_ALLOCATION_EXT_ALIAS]
 OPTIONAL_EXTENSIONS = []

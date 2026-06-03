@@ -14,7 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 
 ENABLE_SNAT = 'enable_snat'
@@ -41,7 +41,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                       },
     },
 }
-SUB_RESOURCE_ATTRIBUTE_MAP = {}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

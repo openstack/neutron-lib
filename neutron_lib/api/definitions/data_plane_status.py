@@ -14,8 +14,7 @@
 
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
-
+from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
 
 VALID_VALUES = [None, constants.ACTIVE, constants.DOWN]
 
@@ -64,8 +63,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 # The subresource attribute map for the extension.
-SUB_RESOURCE_ATTRIBUTE_MAP = {
-}
+SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
 ACTION_MAP = {
