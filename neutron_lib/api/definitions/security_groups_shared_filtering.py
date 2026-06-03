@@ -13,7 +13,11 @@
 
 from neutron_lib.api import converters
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 # The alias of the extension.
 ALIAS = 'security-groups-shared-filtering'
@@ -50,8 +54,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

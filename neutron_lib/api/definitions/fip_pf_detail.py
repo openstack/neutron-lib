@@ -13,7 +13,11 @@
 #    under the License.
 
 
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 NAME = 'Floating IP port forwarding detail'
 ALIAS = 'floating-ip-port-forwarding-detail'
@@ -28,7 +32,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 IS_SHIM_EXTENSION = True
 IS_STANDARD_ATTR_EXTENSION = False
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

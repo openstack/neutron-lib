@@ -16,7 +16,11 @@
 from neutron_lib.api.definitions import agent as agent_apidef
 from neutron_lib.api.definitions import network as net_apidef
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 DHCP_NET = 'dhcp-network'
@@ -59,7 +63,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
             agent_apidef.COLLECTION_NAME]
     }
 }
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [agent_apidef.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

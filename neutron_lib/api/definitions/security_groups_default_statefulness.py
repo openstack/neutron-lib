@@ -13,7 +13,11 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import stateful_security_group
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'security-groups-default-statefulness'
 
@@ -69,8 +73,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 ACTION_STATUS = {
 }

@@ -16,7 +16,7 @@
 from neutron_lib.api import converters as n_conv
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 ALIAS = 'bgp'
@@ -118,7 +118,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {
+ACTION_MAP: ActionMap = {
     BGP_SPEAKER_RESOURCE_NAME: {
         'add_bgp_peer': 'PUT',
         'remove_bgp_peer': 'PUT',

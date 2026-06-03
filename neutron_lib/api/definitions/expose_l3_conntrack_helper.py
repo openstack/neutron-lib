@@ -15,7 +15,11 @@
 
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_conntrack_helper
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = "expose-l3-conntrack-helper"
 IS_SHIM_EXTENSION = False
@@ -37,7 +41,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, l3_conntrack_helper.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

@@ -21,7 +21,7 @@ from neutron_lib.api.definitions import qos_bw_minimum_ingress
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 ALIAS = 'qos-pps'
@@ -77,7 +77,7 @@ SUB_RES_ATTR_MAP.update({
 SUB_RES_ATTR_MAP.update(
     qos_bw_minimum_ingress.SUB_RESOURCE_ATTRIBUTE_MAP)
 SUB_RESOURCE_ATTRIBUTE_MAP = SUB_RES_ATTR_MAP
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [qos_apidef.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

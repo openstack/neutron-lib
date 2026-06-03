@@ -15,7 +15,7 @@
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import trunk
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 # The alias of the extension.
@@ -67,7 +67,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 SUB_RESOURCE_ATTRIBUTE_MAP = None
 
 # The action map.
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

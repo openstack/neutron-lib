@@ -13,7 +13,11 @@
 
 from neutron_lib.api.definitions import availability_zone as az_def
 from neutron_lib.api.definitions import network
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'network_availability_zone'
 IS_SHIM_EXTENSION = False
@@ -39,7 +43,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [az_def.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

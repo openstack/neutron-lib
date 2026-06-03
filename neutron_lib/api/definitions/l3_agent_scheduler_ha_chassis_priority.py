@@ -13,7 +13,11 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import agent
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'l3-agent-scheduler-ha-chassis-priority'
@@ -42,7 +46,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [
     agent.ALIAS,

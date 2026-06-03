@@ -13,7 +13,11 @@
 # under the License.
 
 from neutron_lib.api.definitions import quota_check_limit
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'quota-check-limit-default'
 IS_SHIM_EXTENSION = True
@@ -24,7 +28,7 @@ DESCRIPTION = ('By default, the Neutron quota engine checks the resource '
 UPDATED_TIMESTAMP = '2024-08-21T16:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [quota_check_limit.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

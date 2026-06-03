@@ -16,7 +16,11 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import external_net as extnet_def
 from neutron_lib.api.definitions import subnet as subnet_def
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'subnet-external-network'
@@ -44,7 +48,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [extnet_def.ALIAS]
 OPTIONAL_EXTENSIONS = []

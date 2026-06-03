@@ -14,7 +14,7 @@
 #
 
 from neutron_lib.api.definitions import taas as taas_api_def
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 ALIAS = 'taas-vlan-filter'
 IS_SHIM_EXTENSION = False
@@ -40,7 +40,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [taas_api_def.ALIAS]
 OPTIONAL_EXTENSIONS = []

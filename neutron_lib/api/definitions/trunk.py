@@ -14,7 +14,7 @@
 
 from neutron_lib.api import converters
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 # The alias of the extension.
@@ -95,7 +95,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 SUB_RESOURCE_ATTRIBUTE_MAP = None
 
 # The action map.
-ACTION_MAP = {
+ACTION_MAP: ActionMap = {
     TRUNK: {
         'add_subports': 'PUT',
         'remove_subports': 'PUT',

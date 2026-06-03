@@ -11,7 +11,7 @@
 # under the License.
 
 from collections.abc import Callable, Iterable
-from typing import TypedDict, TypeAlias
+from typing import Literal, TypedDict, TypeAlias
 
 
 AttributeValidator = TypedDict(
@@ -100,3 +100,7 @@ class SubResourceAttributeMapItem(TypedDict, total=False):
 
 
 SubResourceAttributeMap: TypeAlias = dict[str, SubResourceAttributeMapItem]
+
+ActionMap: TypeAlias = dict[
+    str, dict[str, Literal['PUT', 'GET']]
+]

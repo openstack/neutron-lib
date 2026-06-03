@@ -15,7 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'provider'
@@ -100,8 +100,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = None
 #        'get_my_foo_bars': 'GET'
 #    }
 # }
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

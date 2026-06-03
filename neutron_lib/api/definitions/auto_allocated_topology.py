@@ -18,7 +18,11 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import constants
 from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import network
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'auto-allocated-topology'
 IS_SHIM_EXTENSION = False
@@ -50,7 +54,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'required_by_policy': True}},
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, 'subnet_allocation', 'external-net']
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

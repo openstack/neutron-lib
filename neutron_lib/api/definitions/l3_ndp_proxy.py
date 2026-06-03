@@ -15,7 +15,11 @@
 
 from neutron_lib.api.definitions import l3
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 # The alias of the extension.
 ALIAS = 'l3-ndp-proxy'
@@ -115,8 +119,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource.
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

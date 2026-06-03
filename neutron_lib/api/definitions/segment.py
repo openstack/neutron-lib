@@ -17,7 +17,11 @@ from neutron_lib.api.definitions import provider_net
 from neutron_lib.api.definitions import subnet
 from neutron_lib import constants
 from neutron_lib.db import constants as db_constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 SEGMENT_ID = 'segment_id'
 NETWORK_TYPE = 'network_type'
@@ -121,7 +125,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [
     'standard-attr-description'
 ]

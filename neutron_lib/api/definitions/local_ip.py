@@ -15,7 +15,11 @@
 
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 RESOURCE_NAME = 'local_ip'
 COLLECTION_NAME = RESOURCE_NAME + 's'
@@ -150,7 +154,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     }
 }
 
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 
 ACTION_STATUS = {}
 

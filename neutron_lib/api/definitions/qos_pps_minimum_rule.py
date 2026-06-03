@@ -17,7 +17,11 @@ from neutron_lib.api.definitions import qos as qos_apidef
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'qos-pps-minimum'
 IS_SHIM_EXTENSION = False
@@ -60,7 +64,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     }
 }
 
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [qos_apidef.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

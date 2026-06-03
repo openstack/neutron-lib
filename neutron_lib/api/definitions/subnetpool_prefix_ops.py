@@ -16,7 +16,11 @@
 
 from neutron_lib.api.definitions import subnetpool as subnetpool_def
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = "subnetpool-prefix-ops"
 IS_SHIM_EXTENSION = False
@@ -34,7 +38,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
-ACTION_MAP = {
+ACTION_MAP: ActionMap = {
     subnetpool_def.RESOURCE_NAME: {
         'add_prefixes': 'PUT',
         'remove_prefixes': 'PUT'

@@ -14,7 +14,11 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import bgpvpn
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'rbac-bgpvpn'
@@ -41,7 +45,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     },
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = ['rbac-policies', bgpvpn.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

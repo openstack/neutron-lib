@@ -15,7 +15,7 @@
 from neutron_lib.api.definitions import port
 from neutron_lib.api.definitions import port_numa_affinity_policy
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 ALIAS = 'port-numa-affinity-policy-socket'
@@ -41,7 +41,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [port_numa_affinity_policy.ALIAS]
 OPTIONAL_EXTENSIONS = []

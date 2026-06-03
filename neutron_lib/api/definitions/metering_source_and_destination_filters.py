@@ -13,6 +13,7 @@
 
 from neutron_lib.api.definitions import metering
 from neutron_lib.types import (
+    ActionMap,
     ResourceAttributeMap,
     SubResourceAttributeMap,
     SubResourceParent,
@@ -57,6 +58,6 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
         }
     }
 }
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

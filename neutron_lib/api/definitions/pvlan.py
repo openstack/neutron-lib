@@ -16,7 +16,11 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import port
 from neutron_lib.services.pvlan import constants as pvlan_const
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'pvlan'
@@ -58,7 +62,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 
 
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = []

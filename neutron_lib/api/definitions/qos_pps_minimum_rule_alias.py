@@ -18,7 +18,11 @@ from neutron_lib.api.definitions import qos_pps_minimum_rule
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 MIN_PACKET_RATE_RULES_ALIAS = 'alias_minimum_packet_rate_rules'
@@ -58,7 +62,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [qos.ALIAS, qos_pps_minimum_rule.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

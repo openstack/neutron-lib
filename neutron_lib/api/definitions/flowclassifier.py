@@ -15,7 +15,7 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 # The alias of the extension.
 ALIAS = 'flow_classifier'
@@ -158,8 +158,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP = None
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource.
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

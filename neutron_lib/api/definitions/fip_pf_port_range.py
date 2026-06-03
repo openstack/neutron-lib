@@ -12,7 +12,11 @@
 
 from neutron_lib.api.definitions import fip_pf_description as pfw_desc
 from neutron_lib.api.definitions import floating_ip_port_forwarding as pfw
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'floating-ip-port-forwarding-port-ranges'
 IS_SHIM_EXTENSION = False
@@ -53,7 +57,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
         }
     }
 }
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [pfw.ALIAS]
 OPTIONAL_EXTENSIONS = [pfw_desc.ALIAS]
 ACTION_STATUS = {}

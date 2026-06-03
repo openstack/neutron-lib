@@ -13,7 +13,11 @@
 #    under the License.
 
 from neutron_lib.api.definitions import l3
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 SERVICE_TYPE_ID = 'service_type_id'
@@ -38,7 +42,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

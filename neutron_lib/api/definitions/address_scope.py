@@ -15,7 +15,11 @@
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ADDRESS_SCOPE = 'address_scope'
 ADDRESS_SCOPE_ID = 'address_scope_id'
@@ -91,7 +95,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

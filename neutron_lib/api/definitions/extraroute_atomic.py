@@ -14,7 +14,7 @@
 
 from neutron_lib.api.definitions import extraroute
 from neutron_lib.api.definitions import l3
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 ALIAS = 'extraroute-atomic'
@@ -28,7 +28,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     l3.ROUTERS: {}
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = l3.ACTION_MAP
+ACTION_MAP: ActionMap = l3.ACTION_MAP
 ACTION_MAP[l3.ROUTER].update({
     'add_extraroutes': 'PUT',
     'remove_extraroutes': 'PUT',

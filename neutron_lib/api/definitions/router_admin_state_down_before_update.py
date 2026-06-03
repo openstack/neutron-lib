@@ -11,7 +11,11 @@
 #    under the License.
 
 from neutron_lib.api.definitions import dvr as dvr_apidef
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'router-admin-state-down-before-update'
 IS_SHIM_EXTENSION = True
@@ -23,7 +27,7 @@ DESCRIPTION = ('Ensure that the admin state of a router is DOWN '
 UPDATED_TIMESTAMP = '2019-07-02T15:56:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [dvr_apidef.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

@@ -13,7 +13,11 @@
 #    under the License.
 
 from neutron_lib.api.definitions import firewall_v2
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'standard-attr-fwaas-v2'
@@ -24,7 +28,7 @@ DESCRIPTION = 'Add standard attributes to FWaaS v2 resources'
 UPDATED_TIMESTAMP = '2023-04-027T01:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [firewall_v2.ALIAS]
 OPTIONAL_EXTENSIONS = [
     'standard-attr-description',

@@ -20,6 +20,7 @@ from neutron_lib import constants
 from neutron_lib.db import constants as db_const
 from neutron_lib.services.qos import constants as qos_const
 from neutron_lib.types import (
+    ActionMap,
     ResourceAttributeMap,
     ResourceAttributeMapItem,
     SubResourceAttributeMap,
@@ -173,7 +174,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
                         'type:values': [constants.EGRESS_DIRECTION]}}})
     }
 }
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

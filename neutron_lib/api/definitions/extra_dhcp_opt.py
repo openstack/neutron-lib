@@ -14,7 +14,11 @@
 
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import port
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 # Common definitions for maximum string field length
@@ -120,7 +124,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource (mandatory).
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 
 # The list of required extensions (mandatory).
 REQUIRED_EXTENSIONS = []

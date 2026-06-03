@@ -13,7 +13,7 @@
 
 from neutron_lib.api.definitions import taas
 from neutron_lib.api.definitions import tap_mirror
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 ALIAS = 'tap-mirror-both-direction'
@@ -46,7 +46,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [tap_mirror.ALIAS]
 OPTIONAL_EXTENSIONS = []

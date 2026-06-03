@@ -14,7 +14,11 @@ import copy
 
 from neutron_lib.api.definitions import port as port_def
 from neutron_lib.api.definitions import uplink_status_propagation as usp
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'uplink-status-propagation-updatable'
@@ -38,7 +42,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [usp.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

@@ -12,7 +12,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'ecmp_routes'
 IS_SHIM_EXTENSION = True
@@ -24,7 +28,7 @@ DESCRIPTION = ("Allows traffic to reach the"
 UPDATED_TIMESTAMP = "2020-11-26T18:00:00-00:00"
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

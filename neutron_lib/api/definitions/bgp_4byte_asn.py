@@ -12,7 +12,7 @@
 
 from neutron_lib.api.definitions import bgp
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 ALIAS = 'bgp_4byte_asn'
@@ -42,7 +42,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [bgp.ALIAS]
 OPTIONAL_EXTENSIONS = []

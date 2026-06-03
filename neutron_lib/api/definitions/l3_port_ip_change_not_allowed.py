@@ -11,7 +11,11 @@
 #    under the License.
 
 from neutron_lib.api.definitions import l3
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'l3-port-ip-change-not-allowed'
@@ -22,7 +26,7 @@ DESCRIPTION = 'Prevent change of IP address for some L3 router ports'
 UPDATED_TIMESTAMP = '2018-10-09T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [
     l3.ALIAS
 ]

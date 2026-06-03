@@ -14,7 +14,11 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import subnet
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 NAME = 'Neutron L2 Network'
@@ -80,7 +84,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 IS_SHIM_EXTENSION = False
 IS_STANDARD_ATTR_EXTENSION = False
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

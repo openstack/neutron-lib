@@ -12,7 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'quota-check-limit'
 IS_SHIM_EXTENSION = True
@@ -23,7 +27,7 @@ DESCRIPTION = ('Support for checking the resource usage before applying a new '
 UPDATED_TIMESTAMP = '2021-09-08T16:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

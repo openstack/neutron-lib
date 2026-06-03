@@ -11,7 +11,11 @@
 #    under the License.
 
 from neutron_lib.api.definitions import vpn
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'vpn-aes-ctr'
@@ -21,7 +25,7 @@ NAME = 'VPN support for AES CTR mode'
 DESCRIPTION = 'Add AES CTR choices for encryption algorithm'
 UPDATED_TIMESTAMP = '2024-01-09T09:00:00-00:00'
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [vpn.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

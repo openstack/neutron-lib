@@ -14,7 +14,11 @@
 #    under the License.
 
 
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'tag-ports-during-bulk-creation'
 IS_SHIM_EXTENSION = True
@@ -24,7 +28,7 @@ DESCRIPTION = 'Allow to tag ports during bulk creation'
 UPDATED_TIMESTAMP = '2019-12-29T19:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

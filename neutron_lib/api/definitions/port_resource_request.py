@@ -14,7 +14,7 @@
 
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 
 ALIAS = 'port-resource-request'
@@ -37,7 +37,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []

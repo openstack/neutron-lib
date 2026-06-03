@@ -14,7 +14,7 @@
 
 from neutron_lib.api.definitions import agent
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap
+from neutron_lib.types import ActionMap, ResourceAttributeMap
 
 ALIAS = 'agent-resources-synced'
 IS_SHIM_EXTENSION = False
@@ -38,7 +38,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [agent.ALIAS]
 OPTIONAL_EXTENSIONS = []

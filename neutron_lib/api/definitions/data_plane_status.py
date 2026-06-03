@@ -14,7 +14,11 @@
 
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 VALID_VALUES = [None, constants.ACTIVE, constants.DOWN]
 
@@ -66,8 +70,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

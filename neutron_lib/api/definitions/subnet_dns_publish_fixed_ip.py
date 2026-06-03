@@ -13,7 +13,11 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import dns_domain_ports
 from neutron_lib.api.definitions import subnet
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 DNS_PUBLISH_FIXED_IP = 'dns_publish_fixed_ip'
 
@@ -63,8 +67,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map.
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

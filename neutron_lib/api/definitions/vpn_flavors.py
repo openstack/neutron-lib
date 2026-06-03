@@ -15,7 +15,11 @@
 
 from neutron_lib.api.definitions import flavors
 from neutron_lib.api.definitions import vpn
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 FLAVOR_ID = 'flavor_id'
 
@@ -36,7 +40,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     },
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [vpn.ALIAS]
 OPTIONAL_EXTENSIONS = [flavors.ALIAS]
 ACTION_STATUS = {}

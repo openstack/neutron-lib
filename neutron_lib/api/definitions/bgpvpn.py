@@ -15,7 +15,11 @@
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import l3
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 # Regular expression to validate 32 bits unsigned int
 UINT32_REGEX = (r'(0|[1-9]\d{0,8}|[1-3]\d{9}|4[01]\d{8}|42[0-8]\d{7}'
@@ -179,8 +183,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
     }
 }
 
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

@@ -11,7 +11,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'rbac-address-scope'
 IS_SHIM_EXTENSION = True
@@ -21,7 +25,7 @@ DESCRIPTION = 'Add address_scope type to RBAC'
 UPDATED_TIMESTAMP = '2020-02-12T00:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = ['rbac-policies', 'address-scope']
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

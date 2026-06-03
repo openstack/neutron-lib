@@ -11,7 +11,11 @@
 #    under the License.
 
 
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 ALIAS = 'empty-string-filtering'
 IS_SHIM_EXTENSION = True
@@ -21,7 +25,7 @@ DESCRIPTION = 'Allow filtering by attributes with empty string value'
 UPDATED_TIMESTAMP = '2018-05-01T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {}
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = []
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

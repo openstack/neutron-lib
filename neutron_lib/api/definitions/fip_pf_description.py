@@ -12,7 +12,11 @@
 
 from neutron_lib.api.definitions import floating_ip_port_forwarding as pfw
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 DESCRIPTION_FIELD = "description"
 
@@ -40,7 +44,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
         }
     }
 }
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [pfw.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}

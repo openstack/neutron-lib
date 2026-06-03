@@ -16,7 +16,11 @@ from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 DEFAULT_PORT_SECURITY = True
@@ -77,7 +81,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 
 # The action map: it associates verbs with methods to be performed on
 # the API resource.
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 
 # The action status.
 ACTION_STATUS = {

@@ -12,7 +12,11 @@
 
 from neutron_lib.api.definitions import taas
 from neutron_lib.db import constants as db_const
-from neutron_lib.types import AttributeValidator, ResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    AttributeValidator,
+    ResourceAttributeMap,
+)
 
 
 ALIAS = 'tap-mirror'
@@ -71,7 +75,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP = None
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 ACTION_STATUS = {}
 REQUIRED_EXTENSIONS = [taas.ALIAS]
 OPTIONAL_EXTENSIONS = []

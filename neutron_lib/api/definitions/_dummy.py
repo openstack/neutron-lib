@@ -16,7 +16,11 @@
 # constants being defined, and their aim is to document as much about
 # the extension as possible.
 
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 # The alias of the extension.
 ALIAS = 'dummy'
@@ -102,8 +106,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
 #        'get_my_foo_bars': 'GET'
 #    }
 # }
-ACTION_MAP = {
-}
+ACTION_MAP: ActionMap = {}
 
 # The action status: it associates response statuses with methods to be
 # performed on the API resource (mandatory). For example:

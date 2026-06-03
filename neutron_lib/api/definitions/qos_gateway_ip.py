@@ -18,7 +18,11 @@ from neutron_lib.api.definitions import l3
 from neutron_lib.api.definitions import l3_ext_gw_mode
 from neutron_lib.api.definitions import qos
 from neutron_lib.services.qos import constants as qos_consts
-from neutron_lib.types import ResourceAttributeMap, SubResourceAttributeMap
+from neutron_lib.types import (
+    ActionMap,
+    ResourceAttributeMap,
+    SubResourceAttributeMap,
+)
 
 
 ALIAS = 'qos-gateway-ip'
@@ -44,7 +48,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 }
 
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
-ACTION_MAP = {}
+ACTION_MAP: ActionMap = {}
 REQUIRED_EXTENSIONS = [l3.ALIAS, qos.ALIAS, l3_ext_gw_mode.ALIAS]
 OPTIONAL_EXTENSIONS = []
 ACTION_STATUS = {}
