@@ -9,7 +9,7 @@ authors = [
     {name = "OpenStack", email = "openstack-discuss@lists.openstack.org"},
 ]
 readme = {file = "README.rst", content-type = "text/x-rst"}
-license = {text = "Apache-2.0"}
+license = "Apache-2.0"
 dynamic = ["version", "dependencies"]
 requires-python = ">=3.10"
 classifiers = [
@@ -17,11 +17,9 @@ classifiers = [
     "Environment :: OpenStack",
     "Intended Audience :: Information Technology",
     "Intended Audience :: System Administrators",
-    "License :: OSI Approved :: Apache Software License",
     "Operating System :: POSIX :: Linux",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -55,10 +53,8 @@ N536 = "neutron_lib.hacking.checks:assert_equal_none"
 N537 = "neutron_lib.hacking.translation_checks:no_translate_logs"
 N535 = "neutron_lib.hacking.checks:check_no_eventlet_imports"
 
-[tool.setuptools]
-packages = [
-    "neutron_lib"
-]
+[tool.setuptools.packages.find]
+include = ["neutron_lib*"]
 
 [tool.mypy]
 incremental = true
@@ -76,7 +72,8 @@ files = "neutron_lib"
 line-length = 79
 
 [tool.ruff.lint]
-select = ["E4", "E5", "E7", "E9", "F", "G", "S", "UP"]
+select = ["C90", "E", "F", "G", "S", "UP", "W"]
+preview = true
 ignore = [
     "S104",  # Possible binding to all interfaces
     "S311",  # Suspicious non-cryptographic random usage
@@ -85,3 +82,6 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "neutron_lib/tests/*" = ["S"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 16
