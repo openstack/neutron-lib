@@ -2804,9 +2804,9 @@ default_quota:
     be allocated from the subnet pool for project subnets. Default is
     no quota is enforced on allocations from the subnet pool. For IPv4
     subnet pools, ``default_quota`` is measured in units of /32. For
-    IPv6 subnet pools, ``default_quota`` is measured units of /64. All
+    IPv6 subnet pools, ``default_quota`` is measured in units of /64. All
     projects that use the subnet pool have the same prefix quota
-    applied.
+    applied. If ``default_quota`` is ``0``, no quota will be enforced.
   in: body
   required: false
   type: integer
