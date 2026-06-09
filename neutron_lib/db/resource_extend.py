@@ -78,8 +78,10 @@ def get_funcs(resource):
     """
     return _resource_extend_functions.get(resource, [])
 
+# https://review.opendev.org/c/openstack/oslo.utils/+/991151
 
-@timeutils.time_it(LOG, min_duration=0.1)
+
+@timeutils.time_it(LOG, min_duration=0.1)  # type: ignore[arg-type]
 def apply_funcs(resource_type, response, db_object):
     """Appy registered functions for the said resource type.
 
