@@ -50,3 +50,11 @@ class L2AgentExtension(extension.AgentExtension, metaclass=abc.ABCMeta):
         :param context: RPC context.
         :param data: Port data.
         """
+
+    def handle_switch_restart(self):
+        """Handle the restart of the switch.
+
+        If switch state is lost when the switch is restarted, here you can
+        re-initialize it.
+        """
+        pass

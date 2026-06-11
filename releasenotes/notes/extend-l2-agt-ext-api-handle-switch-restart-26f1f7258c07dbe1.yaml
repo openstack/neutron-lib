@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Extend the L2AgentExtension API with a new optional method:
+    handle_switch_restart(). This is needed if an agent extension needs
+    (partial) re-initialization when the switch managed by the agent is
+    restarted. If your agent extension is not affected, there is nothing
+    to do.
