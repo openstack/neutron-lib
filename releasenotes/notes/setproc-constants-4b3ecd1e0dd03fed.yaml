@@ -1,0 +1,10 @@
+---
+features:
+  - |
+    Introduced the following constrants to the ``neutron_lib.constants``
+    module, which can be used to define the desired setprotitle behavior of
+    ``neutron_lib.worker.BaseWorker`` .
+
+    - ``SETPROCTITLE_ON``
+    - ``SETPROCTITLE_OFF``
+    - ``SETPROCTITLE_BRIEF``

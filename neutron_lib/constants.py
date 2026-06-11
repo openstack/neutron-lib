@@ -737,3 +737,8 @@ SUPPORTED_AUTH_TYPES = ['none', 'md5']
 HWOL_TYPE_SWITCHDEV = 'switchdev'
 VALID_HWOL_TYPES = (HWOL_TYPE_SWITCHDEV,
                     )
+
+# setproctitle
+SETPROCTITLE_ON = 'on'
+SETPROCTITLE_OFF = 'off'
+SETPROCTITLE_BRIEF = 'brief'
