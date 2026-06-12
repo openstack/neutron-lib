@@ -1,6 +1,0 @@
----
-features:
-  - |
-    New API definition: ``allowedaddresspairs-atomic``. It adds
-    ``add_allowed_address_pairs`` and ``remove_allowed_address_pairs``
-    API endpoints.
