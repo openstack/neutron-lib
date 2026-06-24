@@ -26,8 +26,7 @@ class CallbackFailure(exceptions.MultipleExceptions):
     def __str__(self):
         if isinstance(self.errors, list):
             return ','.join(str(error) for error in self.errors)
-        else:
-            return str(self.errors)
+        return str(self.errors)
 
     @property
     def inner_exceptions(self):

@@ -475,7 +475,7 @@ def validate_integer(data, valid_values=None):
     if fl_n != int_n:
         LOG.debug(msg)
         return _(msg) % data
-    elif isinstance(data, bool):
+    if isinstance(data, bool):
         msg = "'%s' is not an integer:boolean"
         LOG.debug(msg, data)
         return _(msg) % data
@@ -1242,10 +1242,10 @@ def validate_subports(data, valid_values=None):
             msg = "A valid port UUID must be specified"
             LOG.debug(msg)
             return _(msg)
-        elif validate_uuid(subport["port_id"]):
+        if validate_uuid(subport["port_id"]):
             msg = _("Invalid UUID for subport: '%s'") % subport["port_id"]
             return msg
-        elif subport["port_id"] in subport_ids:
+        if subport["port_id"] in subport_ids:
             msg = _("Non unique UUID for subport: '%s'") % subport["port_id"]
             return msg
         subport_ids.add(subport["port_id"])
@@ -1343,15 +1343,15 @@ def validate_ethertype(ethertype, valid_values=None):
                "number or ethertype name.")
         LOG.debug(msg, ethertype)
         return _(msg) % ethertype
-    else:
-        if ethertype in constants.VALID_ETHERTYPES:
-            return None
-        valids = ','.join(map(str, constants.VALID_ETHERTYPES))
-        msg_data = {'ethertype': ethertype, 'valid_ethertypes': valids}
-        msg = ("Ethertype %(ethertype)s is not a valid ethertype, must be "
-               "one of %(valid_ethertypes)s.")
-        LOG.debug(msg, msg_data)
-        return _(msg) % msg_data
+
+    if ethertype in constants.VALID_ETHERTYPES:
+        return None
+    valids = ','.join(map(str, constants.VALID_ETHERTYPES))
+    msg_data = {'ethertype': ethertype, 'valid_ethertypes': valids}
+    msg = ("Ethertype %(ethertype)s is not a valid ethertype, must be "
+           "one of %(valid_ethertypes)s.")
+    LOG.debug(msg, msg_data)
+    return _(msg) % msg_data
 
 
 def validate_list_of_dict_or_nodata(data, valid_values=None):

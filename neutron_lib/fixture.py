@@ -167,17 +167,16 @@ class StaticSqlFixture(SqlFixture):
         # it running throughout all tests.
         if cls._GLOBAL_RESOURCES:
             return
-        else:
-            cls._GLOBAL_RESOURCES = True
-            cls.schema_resource = provision.SchemaResource(
-                provision.DatabaseResource(
-                    "sqlite", db_api.get_context_manager()),
-                cls._generate_schema, teardown=False)
-            dependency_resources = {}
-            for name, resource in cls.schema_resource.resources:
-                dependency_resources[name] = resource.getResource()
-            cls.schema_resource.make(dependency_resources)
-            cls.engine = dependency_resources['database'].engine
+        cls._GLOBAL_RESOURCES = True
+        cls.schema_resource = provision.SchemaResource(
+            provision.DatabaseResource(
+                "sqlite", db_api.get_context_manager()),
+            cls._generate_schema, teardown=False)
+        dependency_resources = {}
+        for name, resource in cls.schema_resource.resources:
+            dependency_resources[name] = resource.getResource()
+        cls.schema_resource.make(dependency_resources)
+        cls.engine = dependency_resources['database'].engine
 
 
 class APIDefinitionFixture(fixtures.Fixture):

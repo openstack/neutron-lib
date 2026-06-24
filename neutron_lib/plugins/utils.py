@@ -179,8 +179,8 @@ def parse_network_vlan_range(network_vlan_range):
         vlan_range = (vlan_min, vlan_max)
         verify_vlan_range(vlan_range)
         return network, vlan_range
-    else:
-        return entry, None
+
+    return entry, None
 
 
 def parse_network_vlan_ranges(network_vlan_ranges_cfg_entries):

@@ -95,14 +95,14 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
             logical_line.replace(f'{namespace}.', new_ns),
             logical_line)
         return (0, msg_o or msg)
-    elif _check_imports(namespace_imports_from_root, namespace, logical_line):
+    if _check_imports(namespace_imports_from_root, namespace, logical_line):
         msg = ("{}: '{}' must be used instead of '{}'.").format(
             failure_code,
             logical_line.replace(
                 f'from {namespace} import ', f'import {new_ns}'),
             logical_line)
         return (0, msg_o or msg)
-    elif _check_imports(namespace_imports_dot, namespace, logical_line):
+    if _check_imports(namespace_imports_dot, namespace, logical_line):
         msg = ("{}: '{}' must be used instead of '{}'.").format(
             failure_code,
             logical_line.replace('import', 'from').replace('.', ' import '),

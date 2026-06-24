@@ -238,8 +238,7 @@ class APIExtensionDescriptor(ExtensionDescriptor):
             return dict(
                 list(cls.api_definition.RESOURCE_ATTRIBUTE_MAP.items()) +
                 list(sub_attrs.items()))
-        else:
-            return {}
+        return {}
 
     @classmethod
     def get_required_extensions(cls):

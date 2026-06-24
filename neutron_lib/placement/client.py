@@ -169,12 +169,11 @@ class PlacementAPIClient:
         # (used for communicating the url for the NoAuthClient)
         if self._conf.placement.auth_type == 'noauth':
             return NoAuthClient(self._conf.placement.auth_section)
-        else:
-            auth_plugin = keystone.load_auth_from_conf_options(
-                self._conf, 'placement')
-            return keystone.load_session_from_conf_options(
-                self._conf, 'placement', auth=auth_plugin,
-                additional_headers={'accept': 'application/json'})
+        auth_plugin = keystone.load_auth_from_conf_options(
+            self._conf, 'placement')
+        return keystone.load_session_from_conf_options(
+            self._conf, 'placement', auth=auth_plugin,
+            additional_headers={'accept': 'application/json'})
 
     def _extend_header_with_api_version(self, **kwargs):
         headers = kwargs.get('headers', {})
@@ -259,8 +258,7 @@ class PlacementAPIClient:
         if (self._target_version <
                 _get_version(PLACEMENT_API_RETURN_PROVIDER_BODY)):
             return
-        else:
-            return rsp.json()
+        return rsp.json()
 
     @_check_placement_api_available
     def update_resource_provider(self, resource_provider):

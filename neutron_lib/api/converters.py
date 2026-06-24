@@ -176,10 +176,9 @@ def convert_to_list(data):
     """
     if data is None:
         return []
-    elif hasattr(data, '__iter__') and not isinstance(data, str):
+    if hasattr(data, '__iter__') and not isinstance(data, str):
         return list(data)
-    else:
-        return [data]
+    return [data]
 
 
 def convert_allocation_pools_to_canonical_format(value):
@@ -290,8 +289,7 @@ def convert_to_protocol(data):
     try:
         if validators.validate_range(convert_to_int(data), [0, 255]) is None:
             return data
-        else:
-            raise n_exc.InvalidInput(error_message=error_message)
+        raise n_exc.InvalidInput(error_message=error_message)
     except n_exc.InvalidInput as e:
         raise n_exc.InvalidInput(error_message=error_message) from e
 
