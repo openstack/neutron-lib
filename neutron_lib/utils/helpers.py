@@ -209,8 +209,8 @@ def resolve_ref(ref):
 
 def timecost(f):
     call_id = uuidutils.generate_uuid()
-    message_base = (f"Time-cost: call {call_id} function {f.__name__} ")
-    end_message = (message_base + "took %(seconds).3fs seconds to run")
+    message_base = f"Time-cost: call {call_id} function {f.__name__} "
+    end_message = message_base + "took %(seconds).3fs seconds to run"
 
     @timeutils.time_it(LOG, message=end_message, min_duration=None)
     def wrapper(*args, **kwargs):

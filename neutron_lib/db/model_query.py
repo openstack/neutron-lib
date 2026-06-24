@@ -170,7 +170,7 @@ def query_with_hooks(context, model, field=None, lazy_fields=None):
             query_filter = ((model.project_id == context.project_id) |
                             (model.shared == sql.true()))
         else:
-            query_filter = (model.project_id == context.project_id)
+            query_filter = model.project_id == context.project_id
     # Execute query hooks registered from mixins and plugins
     for hook in get_hooks(model):
         query_hook = helpers.resolve_ref(hook.get('query'))

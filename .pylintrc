@@ -32,7 +32,6 @@ disable=
  consider-using-f-string,
  invalid-name,
  missing-docstring,
- superfluous-parens,
 # "R" Refactor recommendations
  duplicate-code,
  inconsistent-return-statements,
