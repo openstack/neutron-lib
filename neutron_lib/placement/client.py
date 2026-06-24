@@ -110,7 +110,8 @@ class NoAuthClient:
                     url,
                     data=body,
                     headers=headers,
-                    verify=False,
+                    # TODO(stephenfin): Should we really be ignoring this?
+                    verify=False,  # noqa: S501
                     timeout=self.timeout,
                     **kwargs)
                 return resp

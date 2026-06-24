@@ -28,7 +28,7 @@ repos:
       - id: check-docstring-first
         exclude: 'neutron_lib/api/definitions/taas.py'
   - repo: https://github.com/PyCQA/bandit
-    rev: 1.8.3
+    rev: 1.9.4
     hooks:
       - id: bandit
         # B104: Possible binding to all interfaces
@@ -44,7 +44,7 @@ repos:
       - id: remove-tabs
         exclude: '.*\.(svg)$'
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.0
+    rev: v0.15.19
     hooks:
       - id: ruff-check
         args: ['--fix', '--unsafe-fixes']
@@ -58,7 +58,7 @@ repos:
   # fixing an issue changes the code and that should
   # not happen in CI.
   - repo: https://opendev.org/openstack/hacking
-    rev: 8.0.0
+    rev: 8.1.0
     hooks:
       - id: hacking
         additional_dependencies:
