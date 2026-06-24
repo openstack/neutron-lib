@@ -333,7 +333,6 @@ class Service(os_service.Service):
             self.conn.close()
         except Exception as e:
             LOG.debug("Ignored exception during stop: %s", str(e))
-            pass
         super().stop()
 
 

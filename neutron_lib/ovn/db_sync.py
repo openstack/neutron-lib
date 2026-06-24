@@ -70,7 +70,6 @@ class BaseOvnDbSynchronizer(metaclass=abc.ABCMeta):
 
         :param: conf: The oslo_config.cfg.CONF object
         """
-        pass
 
     @abc.abstractmethod
     def do_sync(self):

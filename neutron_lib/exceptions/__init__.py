@@ -66,12 +66,10 @@ class BadRequest(NeutronException):
 
 class NotFound(NeutronException):
     """A generic not found exception."""
-    pass
 
 
 class Conflict(NeutronException):
     """A generic conflict exception."""
-    pass
 
 
 class NotAuthorized(NeutronException):
@@ -368,7 +366,6 @@ class TunnelIdInUse(InUse):
 
 class ResourceExhausted(ServiceUnavailable):
     """A service unavailable error indicating a resource is exhausted."""
-    pass
 
 
 class NoNetworkAvailable(ResourceExhausted):

@@ -79,12 +79,10 @@ class ServicePluginBase(WorkerBase, metaclass=abc.ABCMeta):
         """Return one of predefined service types.
 
         """
-        pass
 
     @abc.abstractmethod
     def get_plugin_description(self):
         """Return string description of the plugin."""
-        pass
 
     @property
     def filter_validation_support(self):

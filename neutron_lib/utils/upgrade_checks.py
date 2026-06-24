@@ -30,4 +30,3 @@ class BaseChecks(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def get_checks(self):
         """Get tuple with check methods and check names to run."""
-        pass
