@@ -31,9 +31,8 @@ def _get_debugger(debugger_name):
             "post mortem debugger") from exc
     if 'post_mortem' in dir(debugger):
         return debugger
-    else:
-        raise ValueError(
-            f"{debugger_name} is not a supported post mortem debugger")
+    raise ValueError(
+        f"{debugger_name} is not a supported post mortem debugger")
 
 
 def _exception_handler(debugger, exc_info):

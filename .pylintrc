@@ -23,7 +23,6 @@ disable=
  broad-except,
  global-statement,
  protected-access,
- signature-differs,
  super-init-not-called,
  unused-argument,
  unused-variable,
@@ -35,7 +34,6 @@ disable=
 # "R" Refactor recommendations
  duplicate-code,
  inconsistent-return-statements,
- no-else-return,
  too-few-public-methods,
  too-many-ancestors,
  too-many-arguments,
