@@ -262,7 +262,7 @@ def validate_values(data, valid_values=None, valid_values_display=None):
             raise TypeError(msg) from e
     else:
         # This is a programming error
-        msg = (_("'valid_values' does not support membership operations"))
+        msg = _("'valid_values' does not support membership operations")
         raise TypeError(msg)
 
 

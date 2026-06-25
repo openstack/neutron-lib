@@ -61,7 +61,7 @@ DEVICE_OWNER_AGENT_GW = (DEVICE_OWNER_NETWORK_PREFIX +
                          "floatingip_agent_gateway")
 DEVICE_OWNER_ROUTER_SNAT = (DEVICE_OWNER_NETWORK_PREFIX +
                             "router_centralized_snat")
-DEVICE_OWNER_ROUTED = (DEVICE_OWNER_NETWORK_PREFIX + "routed")
+DEVICE_OWNER_ROUTED = DEVICE_OWNER_NETWORK_PREFIX + "routed"
 DEVICE_OWNER_VPN_ROUTER_GW = (DEVICE_OWNER_NETWORK_PREFIX +
                               "vpn_router_gateway")
 DEVICE_OWNER_VPN_TRANSIT_NETWORK = (DEVICE_OWNER_NETWORK_PREFIX +
