@@ -104,7 +104,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         cannot block.  Raising an exception will result in a rollback
         of the current transaction.
         """
-        pass
 
     def create_network_postcommit(self, context):
         """Create a network.
@@ -117,7 +116,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         drastically affect performance. Raising an exception will
         cause the deletion of the resource.
         """
-        pass
 
     def update_network_precommit(self, context):
         """Update resources of a network.
@@ -135,7 +133,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         network state. It is up to the mechanism driver to ignore
         state or state changes that it does not know or care about.
         """
-        pass
 
     def update_network_postcommit(self, context):
         """Update a network.
@@ -153,7 +150,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         network state.  It is up to the mechanism driver to ignore
         state or state changes that it does not know or care about.
         """
-        pass
 
     def delete_network_precommit(self, context):
         """Delete resources for a network.
@@ -167,7 +163,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         raising an exception will result in rollback of the
         transaction.
         """
-        pass
 
     def delete_network_postcommit(self, context):
         """Delete a network.
@@ -181,7 +176,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         expected, and will not prevent the resource from being
         deleted.
         """
-        pass
 
     def create_subnet_precommit(self, context):
         """Allocate resources for a new subnet.
@@ -194,7 +188,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         cannot block.  Raising an exception will result in a rollback
         of the current transaction.
         """
-        pass
 
     def create_subnet_postcommit(self, context):
         """Create a subnet.
@@ -207,7 +200,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         drastically affect performance. Raising an exception will
         cause the deletion of the resource.
         """
-        pass
 
     def update_subnet_precommit(self, context):
         """Update resources of a subnet.
@@ -225,7 +217,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         subnet state. It is up to the mechanism driver to ignore
         state or state changes that it does not know or care about.
         """
-        pass
 
     def update_subnet_postcommit(self, context):
         """Update a subnet.
@@ -243,7 +234,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         subnet state.  It is up to the mechanism driver to ignore
         state or state changes that it does not know or care about.
         """
-        pass
 
     def delete_subnet_precommit(self, context):
         """Delete resources for a subnet.
@@ -257,7 +247,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         raising an exception will result in rollback of the
         transaction.
         """
-        pass
 
     def delete_subnet_postcommit(self, context):
         """Delete a subnet.
@@ -271,7 +260,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         expected, and will not prevent the resource from being
         deleted.
         """
-        pass
 
     def create_port_precommit(self, context):
         """Allocate resources for a new port.
@@ -283,7 +271,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         cannot block.  Raising an exception will result in a rollback
         of the current transaction.
         """
-        pass
 
     def create_port_postcommit(self, context):
         """Create a port.
@@ -295,7 +282,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         drastically affect performance.  Raising an exception will
         result in the deletion of the resource.
         """
-        pass
 
     def update_port_precommit(self, context):
         """Update resources of a port.
@@ -312,7 +298,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         state. It is up to the mechanism driver to ignore state or
         state changes that it does not know or care about.
         """
-        pass
 
     def update_port_postcommit(self, context):
         """Update a port.
@@ -330,7 +315,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         state. It is up to the mechanism driver to ignore state or
         state changes that it does not know or care about.
         """
-        pass
 
     def delete_port_precommit(self, context):
         """Delete resources of a port.
@@ -346,7 +330,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         raising an exception will result in rollback of the
         transaction.
         """
-        pass
 
     def delete_port_postcommit(self, context):
         """Delete a port.
@@ -363,7 +346,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         affect performance. Runtime errors are not expected, and will
         not prevent the resource from being deleted.
         """
-        pass
 
     def bind_port(self, context):
         """Attempt to bind a port.
@@ -407,7 +389,6 @@ class MechanismDriver(metaclass=abc.ABCMeta):
         by the QoS service to identify the available QoS rules you
         can use with ports.
         """
-        pass
 
     @property
     def _supports_port_binding(self):
@@ -1197,7 +1178,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         driver. Extended attribute values must also be added to
         result.
         """
-        pass
 
     def process_create_subnet(self, plugin_context, data, result):
         """Process extended attributes for create subnet.
@@ -1211,7 +1191,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         driver. Extended attribute values must also be added to
         result.
         """
-        pass
 
     def process_create_port(self, plugin_context, data, result):
         """Process extended attributes for create port.
@@ -1225,7 +1204,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         driver. Extended attribute values must also be added to
         result.
         """
-        pass
 
     def process_update_network(self, plugin_context, data, result):
         """Process extended attributes for update network.
@@ -1239,7 +1217,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         driver. Extended attribute values, whether updated or not,
         must also be added to result.
         """
-        pass
 
     def process_update_subnet(self, plugin_context, data, result):
         """Process extended attributes for update subnet.
@@ -1253,7 +1230,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         driver. Extended attribute values, whether updated or not,
         must also be added to result.
         """
-        pass
 
     def process_update_port(self, plugin_context, data, result):
         """Process extended attributes for update port.
@@ -1267,7 +1243,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         driver. Extended attribute values, whether updated or not,
         must also be added to result.
         """
-        pass
 
     def extend_network_dict(self, session, base_model, result):
         """Add extended attributes to network dictionary.
@@ -1281,7 +1256,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         dictionary to be used for mechanism driver calls and/or
         returned as the result of a network operation.
         """
-        pass
 
     def extend_subnet_dict(self, session, base_model, result):
         """Add extended attributes to subnet dictionary.
@@ -1295,7 +1269,6 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         dictionary to be used for mechanism driver calls and/or
         returned as the result of a subnet operation.
         """
-        pass
 
     def extend_port_dict(self, session, base_model, result):
         """Add extended attributes to port dictionary.
@@ -1309,4 +1282,3 @@ class ExtensionDriver(metaclass=abc.ABCMeta):
         dictionary to be used for mechanism driver calls
         and/or returned as the result of a port operation.
         """
-        pass
