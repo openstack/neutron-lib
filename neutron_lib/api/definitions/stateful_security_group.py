@@ -40,9 +40,13 @@ UPDATED_TIMESTAMP = "2019-11-26T09:00:00-00:00"
 # The resource attribute map for the extension.
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     'security_groups': {
-        'stateful': {'allow_post': True, 'allow_put': True,
-                     'is_visible': True, 'default': True,
-                     'convert_to': converters.convert_to_boolean}
+        'stateful': {'allow_post': True,
+                     'allow_put': True,
+                     'is_visible': True,
+                     'is_filter': True,
+                     'default': True,
+                     'convert_to': converters.convert_to_boolean,
+                     }
     }
 }
 
