@@ -35,6 +35,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         pvlan_const.PVLAN: {
             'allow_post': True,
             'allow_put': True,
+            'is_filter': True,
             'is_visible': True,
             'default': False,
             'validate': {'type:boolean': None},
@@ -52,6 +53,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         pvlan_const.PVLAN_COMMUNITY: {
             'allow_post': True,
             'allow_put': True,
+            'is_filter': True,
             'is_visible': True,
             'default': None,
             'validate': {
