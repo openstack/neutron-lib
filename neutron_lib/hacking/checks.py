@@ -36,8 +36,6 @@ mutable_default_args = re.compile(r"^\s*def .+\((.+=\{\}|.+=\[\])")
 namespace_imports_dot = re.compile(r"import[\s]+([\w]+)[.][^\s]+")
 namespace_imports_from_dot = re.compile(r"from[\s]+([\w]+)[.]")
 namespace_imports_from_root = re.compile(r"from[\s]+([\w]+)[\s]+import[\s]+")
-contextlib_nested = re.compile(r"^\s*with (contextlib\.)?nested\(")
-
 assert_equal_none_re = re.compile(
     r"assertEqual\(.*?,\s+None\)(( |\t)*#.*)?$|assertEqual\(None,")
 assert_is_none_re = re.compile(
@@ -108,26 +106,6 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
             logical_line.replace('import', 'from').replace('.', ' import '),
             logical_line)
         return (0, msg_o or msg)
-
-
-@core.off_by_default
-@core.flake8ext
-def check_no_contextlib_nested(logical_line, filename):
-    """N524 - Use of contextlib.nested is deprecated.
-
-    :param logical_line: The logical line to check.
-    :param filename: The file name where the logical line exists.
-    :returns: None if the logical line passes the check, otherwise a tuple
-        is yielded that contains the offending index in logical line and a
-        message describe the check validation failure.
-    """
-    msg = ("N524: contextlib.nested is deprecated. With Python 2.7 and later "
-           "the with-statement supports multiple nested objects. See https://"
-           "docs.python.org/2/library/contextlib.html#contextlib.nested for "
-           "more information.")
-
-    if contextlib_nested.match(logical_line):
-        yield (0, msg)
 
 
 @core.off_by_default
@@ -208,7 +186,6 @@ def factory(register):
     :returns: None.
     """
     register(use_jsonutils)
-    register(check_no_contextlib_nested)
     register(no_mutable_default_args)
     register(check_neutron_namespace_imports)
     register(translation_checks.no_translate_logs)

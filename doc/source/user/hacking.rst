@@ -20,7 +20,6 @@ To adopt neutron-lib's hacking checks:
      extension =
        # Checks from neutron-lib
        N521 = neutron_lib.hacking.checks:use_jsonutils
-       N524 = neutron_lib.hacking.checks:check_no_contextlib_nested
        N529 = neutron_lib.hacking.checks:no_mutable_default_args
        N530 = neutron_lib.hacking.checks:check_neutron_namespace_imports
        N532 = neutron_lib.hacking.translation_checks:check_log_warn_deprecated
