@@ -303,22 +303,6 @@ class DBRetryErrorsFixture(fixtures.Fixture):
             p.stop()
 
 
-class DBAPIContextManagerFixture(fixtures.Fixture):
-
-    def __init__(self, mock_context_manager=mock.ANY):
-        self.cxt_manager = (mock.Mock() if mock_context_manager == mock.ANY
-                            else mock_context_manager)
-        self._backup_mgr = None
-
-    def _setUp(self):
-        self._backup_mgr = db_api._CTX_MANAGER
-        db_api._CTX_MANAGER = self.cxt_manager
-        self.addCleanup(self._restore)
-
-    def _restore(self):
-        db_api._CTX_MANAGER = self._backup_mgr
-
-
 class DBQueryHooksFixture(fixtures.Fixture):
 
     def _setUp(self, query_hooks=None):
