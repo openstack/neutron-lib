@@ -12,7 +12,6 @@
 
 from unittest import mock
 
-from oslo_config import cfg
 from oslo_db.sqlalchemy import models
 import sqlalchemy as sa
 from sqlalchemy import orm
@@ -43,11 +42,7 @@ class FakeRouter(ModelBaseV2):
     gw_port = orm.relationship(FakePort, lazy='joined')
 
 
-class TestUtilsLegacyPolicies(base.BaseTestCase):
-
-    def setUp(self):
-        cfg.CONF.set_override('enforce_scope', False, group='oslo_policy')
-        super().setUp()
+class TestUtils(base.BaseTestCase):
 
     def test_get_sort_dirs(self):
         sorts = [(1, True), (2, False), (3, True)]
@@ -252,10 +247,3 @@ class TestSafeCreation(base.BaseTestCase):
 
         self.assertEqual(original, obj)
         self.assertEqual('value', value)
-
-
-class TestUtilsWithScopeEnforcement(TestUtilsLegacyPolicies):
-
-    def setUp(self):
-        super().setUp()
-        cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
