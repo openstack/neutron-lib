@@ -20,10 +20,6 @@ class MeteringLabelNotFound(exceptions.NotFound):
     message = _("Metering label '%(label_id)s' does not exist.")
 
 
-class DuplicateMeteringRuleInPost(exceptions.InUse):
-    message = _("Duplicate Metering Rule in POST.")
-
-
 class MeteringLabelRuleNotFound(exceptions.NotFound):
     message = _("Metering label rule '%(rule_id)s' does not exist.")
 
