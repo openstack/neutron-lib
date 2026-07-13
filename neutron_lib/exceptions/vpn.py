@@ -174,19 +174,3 @@ class NoProviderFoundForFlavor(exceptions.NotFound):
 class IpsecValidationFailure(exceptions.BadRequest):
     message = _("IPSec does not support %(resource)s attribute %(key)s "
                 "with value '%(value)s'")
-
-
-class IkeValidationFailure(exceptions.BadRequest):
-    message = _("IKE does not support %(resource)s attribute %(key)s "
-                "with value '%(value)s'")
-
-
-# Cisco Csr Driver Exceptions
-class CsrInternalError(exceptions.NeutronException):
-    message = _("Fatal - %(reason)s")
-
-
-# Cisco CSR Driver Validator Exceptions
-class CsrValidationFailure(exceptions.BadRequest):
-    message = _("Cisco CSR does not support %(resource)s attribute %(key)s "
-                "with value '%(value)s'")
