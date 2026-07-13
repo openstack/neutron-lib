@@ -95,17 +95,6 @@ class FirewallRuleNotAssociatedWithPolicy(exceptions.InvalidInput):
                 "with firewall policy %(firewall_policy_id)s.")
 
 
-class FirewallRuleInvalidProtocol(exceptions.InvalidInput):
-    message = _("Protocol %(protocol)s is not supported. "
-                "Only protocol values %(values)s and their integer "
-                "representation (0 to 255) are supported.")
-
-
-class FirewallRuleInvalidAction(exceptions.InvalidInput):
-    message = _("Action %(action)s is not supported. "
-                "Only action values %(values)s are supported.")
-
-
 class FirewallRuleInvalidICMPParameter(exceptions.InvalidInput):
     message = _("%(param)s are not allowed when protocol "
                 "is set to ICMP.")
@@ -162,19 +151,6 @@ class FirewallRuleAlreadyAssociated(exceptions.Conflict):
 
 class FirewallGroupCannotRemoveDefault(exceptions.InUse):
     message = _("Deleting default firewall group not allowed.")
-
-
-class FirewallGroupCannotUpdateDefault(exceptions.InUse):
-    message = _("Updating default firewall group not allowed.")
-
-
-class FirewallGroupDefaultAlreadyExists(exceptions.InUse):
-    """Default firewall group conflict exception
-
-    Occurs when a user creates firewall group named 'default'.
-    """
-    message = _("Default firewall group already exists. 'default' is the "
-                "reserved name for firewall group.")
 
 
 class FirewallGroupPortNotSupported(exceptions.Conflict):
