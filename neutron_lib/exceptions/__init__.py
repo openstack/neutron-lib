@@ -536,14 +536,6 @@ class HostMacAddressGenerationFailure(ServiceUnavailable):
     message = _("Unable to generate unique mac for host %(host)s.")
 
 
-class NetworkMacAddressGenerationFailure(ServiceUnavailable):
-    """An error related to MAC address generation on a network.
-
-        :param net_id: The ID of the network MAC address generation failed on.
-        """
-    message = _("Unable to generate unique mac on network %(net_id)s.")
-
-
 class InvalidServiceType(InvalidInput):
     """An error due to an invalid service type.
 
@@ -576,10 +568,6 @@ class SubnetPoolNotFound(NotFound):
 
 class StateInvalid(BadRequest):
     message = _("Unsupported port state: %(port_state)s.")
-
-
-class DhcpPortInUse(InUse):
-    message = _("Port %(port_id)s is already acquired by another DHCP agent")
 
 
 class HostRoutesExhausted(BadRequest):
@@ -670,10 +658,6 @@ class GatewayIpInUse(InUse):
 
 class NetworkVxlanPortRangeError(NeutronException):
     message = _("Invalid network VXLAN port range: '%(vxlan_range)s'.")
-
-
-class VxlanNetworkUnsupported(NeutronException):
-    message = _("VXLAN network unsupported.")
 
 
 class DuplicatedExtension(NeutronException):
