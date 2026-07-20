@@ -12,7 +12,6 @@
 
 from unittest import mock
 
-from oslo_config import cfg
 from oslo_context import context as oslo_context
 from testtools import matchers
 
@@ -198,7 +197,6 @@ class TestNeutronContext(_base.BaseTestCase):
             self.assertIn(expected_role, elevated_ctx.roles)
 
     def test_neutron_context_elevated_system_scope_for_new_policies(self):
-        cfg.CONF.set_override('enforce_scope', True, group='oslo_policy')
         expected_roles = ['admin', 'member', 'reader']
         ctx = context.Context('user_id', 'project_id')
         self.assertFalse(ctx.is_admin)
