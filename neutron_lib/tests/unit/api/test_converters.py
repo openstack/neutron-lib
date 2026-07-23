@@ -376,10 +376,21 @@ class TestConvertUppercasePrefix(base.BaseTestCase):
 
 class TestConvertPortMacAddress(base.BaseTestCase):
 
-    def test_mac_address_does_not_convert(self):
+    def test_returns_provided_mac_address(self):
         valid_mac = 'fa:16:3e:b6:78:1f'
         self.assertEqual(valid_mac,
                          converters.convert_to_mac_if_none(valid_mac))
+
+    def test_mac_address_is_sanitized(self):
+        # A provided MAC address is normalized to xx:xx:xx:xx:xx:xx even
+        # when it comes in a different (but valid) dialect or shorthand form.
+        mac_exp = (('FA:16:3E:B6:78:1F', 'fa:16:3e:b6:78:1f'),
+                   ('fa-16-3e-b6-78-1f', 'fa:16:3e:b6:78:1f'),
+                   ('0:1:2:3:4:5', '00:01:02:03:04:05'),
+                   )
+        for mac, expected in mac_exp:
+            self.assertEqual(
+                expected, converters.convert_to_mac_if_none(mac))
 
     @mock.patch('oslo_config.cfg.CONF')
     def test_convert_none_to_mac_address(self, CONF):
