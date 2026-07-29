@@ -22,6 +22,7 @@ from neutron_lib.api.definitions import extra_dhcp_opt
 from neutron_lib.api import validators
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
+from neutron_lib.exceptions import security_group as sg_exc
 from neutron_lib import fixture
 from neutron_lib.plugins import directory
 from neutron_lib.tests import _base as base
@@ -300,6 +301,46 @@ class TestAttributeValidation(base.BaseTestCase):
     def test_validate_not_empty_name_string(self):
         msg = validators.validate_not_empty_name_string('', None)
         self.assertEqual("'' Blank strings are not permitted", msg)
+
+    def test_validate_name_string_not_default(self):
+        msg = validators.validate_name_string_not_default('my-sg', None)
+        self.assertIsNone(msg)
+
+        msg = validators.validate_name_string_not_default('', None)
+        self.assertIsNone(msg)
+
+        msg = validators.validate_name_string_not_default('valid name', None)
+        self.assertIsNone(msg)
+
+        self.assertRaises(
+            sg_exc.SecurityGroupDefaultAlreadyExists,
+            validators.validate_name_string_not_default, 'default', None)
+
+        self.assertRaises(
+            sg_exc.SecurityGroupDefaultAlreadyExists,
+            validators.validate_name_string_not_default, 'Default', None)
+
+        self.assertRaises(
+            sg_exc.SecurityGroupDefaultAlreadyExists,
+            validators.validate_name_string_not_default, 'DEFAULT', None)
+
+        msg = validators.validate_name_string_not_default(' leading', None)
+        self.assertEqual("' leading' is not a valid string", msg)
+
+        msg = validators.validate_name_string_not_default('trailing ', None)
+        self.assertEqual("'trailing ' is not a valid string", msg)
+
+        msg = validators.validate_name_string_not_default(None, None)
+        self.assertEqual("'None' is not a valid string", msg)
+
+        msg = validators.validate_name_string_not_default(123, None)
+        self.assertEqual("'123' is not a valid string", msg)
+
+        msg = validators.validate_name_string_not_default('    ', None)
+        self.assertEqual("'    ' is not a valid string", msg)
+
+        msg = validators.validate_name_string_not_default('toolong', 4)
+        self.assertEqual("'toolong' exceeds maximum length of 4", msg)
 
     def test_validate_boolean(self):
         msg = validators.validate_boolean(True)
