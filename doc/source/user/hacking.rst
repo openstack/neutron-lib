@@ -35,11 +35,6 @@ To adopt neutron-lib's hacking checks:
    to ``[flake8.local-plugin] extension`` along with hacking checks
    from neutron-lib.
 
-   .. note::
-
-      The above configuration assumes hacking 2.x.
-      If your project uses hacking 1.x, see :ref:`hacking1_support` below.
-
 #. Update your project's ``tox.ini`` enable any flake8 extensions neutron-lib's
    ``tox.ini`` does. These are hacking checks otherwise disabled by default
    that neutron-lib expects to run.
@@ -60,41 +55,3 @@ To adopt neutron-lib's hacking checks:
    watching for announcements. Announcements regarding neutron-lib adopter
    hacking checks will be communicated via openstack-discuss email list
    and `neutron meetings <https://wiki.openstack.org/wiki/Network/Meetings>`_.
-
-.. _hacking1_support:
-
-Hacking 1.x support
--------------------
-
-If your project uses hacking 1.x, you need a different way to consume hacking
-checks from neutron-lib.
-
-.. warning::
-
-   hacking 1.x support is deprecated and will be dropped once all neutron
-   related projects migrate to hacking 2.x.
-
-Update your project's ``tox.ini`` to use
-``neutron_lib.hacking.checks.factory`` for its ``local-check-factory``.
-
-For example in your ``tox.ini``::
-
-    [hacking]
-    local-check-factory = neutron_lib.hacking.checks.factory
-
-If your project needs to register additional project specific hacking
-checks, you can define your own factory function that calls neutron-lib's
-``factory`` function.
-
-For example in your project's python source::
-
-    def my_factory(register):
-        # register neutron-lib checks
-        neutron_lib_checks.factory(register)
-        # register project specific checks
-        register(my_project_check)
-
-And use your project's own factory in ``tox.ini``::
-
-    [hacking]
-    local-check-factory = myproject.mypkg.my_factory

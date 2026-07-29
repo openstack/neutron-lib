@@ -26,20 +26,6 @@ class HackingTestCase(base.BaseTestCase):
     def assertLineFails(self, func, *args):
         self.assertIsInstance(next(func(*args)), tuple)
 
-    def _get_factory_checks(self, factory):
-        check_fns = []
-
-        def _reg(check_fn):
-            self.assertTrue(hasattr(check_fn, '__call__'))
-            self.assertNotIn(check_fn, check_fns)
-            check_fns.append(check_fn)
-
-        factory(_reg)
-        return check_fns
-
-    def test_factory(self):
-        self.assertGreater(len(self._get_factory_checks(checks.factory)), 0)
-
     def test_use_jsonutils(self):
         def __get_msg(fun):
             msg = (f"N521: jsonutils.{fun} must be used instead of "
