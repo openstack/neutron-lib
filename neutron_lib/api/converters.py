@@ -343,12 +343,13 @@ def convert_to_mac_if_none(data):
     """Convert to a random mac address if data is None
 
     :param data: The data value
-    :return: Random mac address if data is None, else return data.
+    :return: Random mac address if data is None, else the given MAC address
+             sanitized to the xx:xx:xx:xx:xx:xx format.
     """
     if data is None:
         return net_utils.get_random_mac(cfg.CONF.base_mac.split(':'))
 
-    return data
+    return convert_to_sanitized_mac_address(data)
 
 
 def convert_to_sanitized_mac_address(mac_address):

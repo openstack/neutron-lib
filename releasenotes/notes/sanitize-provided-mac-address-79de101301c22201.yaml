@@ -1,0 +1,10 @@
+---
+fixes:
+  - |
+    The ``mac_address`` provided when creating or updating a port is now
+    sanitized to the canonical ``xx:xx:xx:xx:xx:xx`` format when the
+    ``port-mac-address-regenerate`` extension is enabled. Previously that
+    extension overrode the base port converter with
+    ``convert_to_mac_if_none``, which returned the provided MAC address
+    verbatim, so the API did not enforce the canonical format on that path.
+    Both paths now behave consistently.
