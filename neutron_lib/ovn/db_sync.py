@@ -11,8 +11,11 @@
 #    under the License.
 
 import abc
+import itertools
 import threading
 import time
+
+from oslo_config import cfg
 
 
 class BaseOvnDbSynchronizer(metaclass=abc.ABCMeta):
@@ -21,7 +24,8 @@ class BaseOvnDbSynchronizer(metaclass=abc.ABCMeta):
     _required_service_plugins = []
     _required_ml2_ext_drivers = []
 
-    def __init__(self, core_plugin, ovn_driver, mode, is_maintenance=False):
+    def __init__(self, core_plugin, ovn_driver, mode, is_maintenance=False,
+                 plugin_conf=None):
         """Initialize the OVN DB synchronizer.
 
         :param core_plugin: The Neutron core plugin instance
@@ -31,6 +35,8 @@ class BaseOvnDbSynchronizer(metaclass=abc.ABCMeta):
                      'off', 'log', 'repair' or 'migrate'
         :param is_maintenance: Flag indicating if running in maintenance mode.
                                Defaults to False
+        :param plugin_conf: Optional isolated oslo.config object with
+                            plugin-specific configuration
         """
         self.core_plugin = core_plugin
         self.ovn_nb_api = ovn_driver.nb_ovn
@@ -38,6 +44,7 @@ class BaseOvnDbSynchronizer(metaclass=abc.ABCMeta):
         self.ovn_driver = ovn_driver
         self.mode = mode
         self.is_maintenance = is_maintenance
+        self.plugin_conf = plugin_conf
         self._thread = None
 
     def sync(self, delay_seconds=10):
@@ -70,6 +77,35 @@ class BaseOvnDbSynchronizer(metaclass=abc.ABCMeta):
 
         :param: conf: The oslo_config.cfg.CONF object
         """
+
+    @classmethod
+    def register_additional_cli_opts(cls, conf):
+        """Register plugin-specific CLI opts on global CONF before parsing."""
+
+    @classmethod
+    def register_plugin_config_opts(cls, conf):
+        """Register plugin config opts on an isolated ConfigOpts object."""
+
+    @classmethod
+    def get_plugin_config_files(cls, global_conf):
+        """Return list of config file paths from CLI, or [] if none."""
+        return []
+
+    @classmethod
+    def load_plugin_configuration(cls, global_conf):
+        """Parse plugin config files into isolated ConfigOpts.
+
+        :returns: cfg.ConfigOpts instance or None if no config files specified
+        """
+        config_files = cls.get_plugin_config_files(global_conf)
+        if not config_files:
+            return None
+        plugin_conf = cfg.ConfigOpts()
+        cls.register_plugin_config_opts(plugin_conf)
+        args = list(itertools.chain.from_iterable(
+            ['--config-file', f] for f in config_files))
+        plugin_conf(args)
+        return plugin_conf
 
     @abc.abstractmethod
     def do_sync(self):
