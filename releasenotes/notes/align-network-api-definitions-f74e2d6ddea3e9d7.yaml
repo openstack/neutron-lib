@@ -1,0 +1,19 @@
+---
+fixes:
+  - |
+    Several API attributes were not declared as nullable, although Neutron
+    returns ``null`` for them. Their validators now accept ``None``, so that
+    tooling generating schemas from the attribute maps (such as OpenAPI
+    specifications) no longer rejects real Neutron responses:
+
+    * ``ipv4_address_scope`` and ``ipv6_address_scope`` of the ``network``
+      resource use ``type:string_or_none``. They are ``null`` when the
+      network is not associated with any address scope.
+    * ``ipv6_ra_mode`` and ``ipv6_address_mode`` of the ``subnet`` resource
+      accept ``None`` in addition to ``constants.IPV6_MODES``. They are
+      always ``null`` for IPv4 subnets.
+    * ``resource_request`` of the ``port`` resource uses
+      ``type:dict_or_none``. This read-only attribute is ``null`` unless the
+      port requests Placement resources.
+    * ``binding:vif_details`` of the ``port`` resource and ``vif_details``
+      of the ``port binding`` sub-resource use ``type:dict_or_none``.

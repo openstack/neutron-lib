@@ -122,14 +122,15 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         'ipv6_ra_mode': {'allow_post': True, 'allow_put': False,
                          'default': constants.ATTR_NOT_SPECIFIED,
                          'validate': {
-                             'type:values': constants.IPV6_MODES},
+                             'type:values': constants.IPV6_MODES + [None]},
                          'is_filter': True,
                          'is_sort_key': True,
                          'is_visible': True},
         'ipv6_address_mode': {'allow_post': True, 'allow_put': False,
                               'default': constants.ATTR_NOT_SPECIFIED,
                               'validate': {
-                                  'type:values': constants.IPV6_MODES},
+                                  'type:values':
+                                      constants.IPV6_MODES + [None]},
                               'is_filter': True,
                               'is_sort_key': True,
                               'is_visible': True},

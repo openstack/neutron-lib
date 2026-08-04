@@ -4309,12 +4309,16 @@ ipsecpolicy_id-body-response:
 ipv4_address_scope:
   description: |
     The ID of the IPv4 address scope that the network is associated with.
+    This value is ``null`` if the network is not associated with any IPv4
+    address scope.
   in: body
   required: true
   type: string
 ipv6_address_scope:
   description: |
     The ID of the IPv6 address scope that the network is associated with.
+    This value is ``null`` if the network is not associated with any IPv6
+    address scope.
   in: body
   required: true
   type: string
@@ -5252,7 +5256,8 @@ port-resource:
     by the port, and a ``resources`` key contains a mapping of requested
     resource class name and requested amount from the QoS policy.
     ``same_subtree`` key contains a list of ``id`` values from every resource
-    group.
+    group. This value is ``null`` if the port does not request any Placement
+    resources.
   in: body
   required: false
   type: object
@@ -7143,7 +7148,7 @@ subnet-ipv6_address_mode:
 subnet-ipv6_address_mode-request:
   description: |
     The IPv6 address modes specifies mechanisms for assigning IP addresses.
-    Value is ``slaac``, ``dhcpv6-stateful``, ``dhcpv6-stateless``.
+    Value is ``slaac``, ``dhcpv6-stateful``, ``dhcpv6-stateless`` or ``null``.
   in: body
   required: false
   type: string
@@ -7159,7 +7164,7 @@ subnet-ipv6_ra_mode-request:
   description: |
     The IPv6 router advertisement specifies whether the networking service
     should transmit ICMPv6 packets, for a subnet. Value is ``slaac``,
-    ``dhcpv6-stateful``, ``dhcpv6-stateless``.
+    ``dhcpv6-stateful``, ``dhcpv6-stateless`` or ``null``.
   in: body
   required: false
   type: string

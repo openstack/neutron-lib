@@ -87,6 +87,7 @@ SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {
                        'is_visible': True, 'is_filter': True},
             VIF_DETAILS: {'allow_post': False, 'allow_put': False,
                           'default': constants.ATTR_NOT_SPECIFIED,
+                          'validate': {'type:dict_or_none': None},
                           'enforce_policy': True,
                           'is_visible': True},
             VNIC_TYPE: {'allow_post': True, 'allow_put': True,

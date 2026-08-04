@@ -88,9 +88,11 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     'networks': {
         IPV4_ADDRESS_SCOPE: {'allow_post': False,
                              'allow_put': False,
+                             'validate': {'type:string_or_none': None},
                              'is_visible': True},
         IPV6_ADDRESS_SCOPE: {'allow_post': False,
                              'allow_put': False,
+                             'validate': {'type:string_or_none': None},
                              'is_visible': True},
     }
 }
