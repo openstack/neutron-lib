@@ -32,6 +32,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         RESOURCE_REQUEST: {'allow_post': False,
                            'allow_put': False,
                            'default': constants.ATTR_NOT_SPECIFIED,
+                           'validate': {'type:dict_or_none': None},
                            'is_visible': True}
     },
 }
