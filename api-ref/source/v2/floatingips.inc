@@ -52,6 +52,16 @@ The ``qos-fip`` extension adds the read only parameter
 ``qos_network_policy_id`` to the floating IP responses. This parameter contains
 the QoS policy ID of the network where this floating IP is allocated.
 
+Floating IP router writable
+===========================
+
+The ``floating-ip-router-writable`` extension makes the ``router_id`` attribute
+writable on floating IP create and update. When ``router_id`` is supplied, the
+server stores the named router as the hosting router for the floating IP
+instead of selecting one based on direct subnet adjacency to the associated
+port. When ``router_id`` is omitted, the server continues to compute
+``router_id`` using the existing direct-connectivity logic.
+
 Resource timestamps
 ===================
 
@@ -220,6 +230,7 @@ Request
    - fixed_ip_address: floatingip-fixed_ip_address-request
    - floating_ip_address: floating_ip_address-request
    - port_id: floatingip-port_id-post-request
+   - router_id: floatingip-router_id-request
    - subnet_id: floatingip-subnet_id
    - distributed: fip-distributed-request
    - description: description-request
@@ -366,6 +377,7 @@ Request
    - floatingip: floatingip
    - floatingip_id: floatingip-id-path
    - port_id: floatingip-port_id-put-request
+   - router_id: floatingip-router_id-put-request
    - fixed_ip_address: floatingip-fixed_ip_address-request
    - description: description-request
    - distributed: fip-distributed-request
