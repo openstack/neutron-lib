@@ -51,8 +51,12 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'allow_put': True,
             'default': vpn.VPN_ENCRYPTION_ALGORITHM_AES_128,
             'validate': {
-                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_WITH_CTR},
-            'is_visible': True},
+                'type:values':
+                    VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_WITH_CTR
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
     },
     vpn.IPSEC_POLICIES: {
         vpn.ENCRYPTION_ALGORITHM: {
@@ -60,7 +64,11 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'allow_put': True,
             'default': vpn.VPN_ENCRYPTION_ALGORITHM_AES_128,
             'validate': {
-                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_WITH_CTR},
-            'is_visible': True},
+                'type:values':
+                    VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_WITH_CTR
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
     },
 }

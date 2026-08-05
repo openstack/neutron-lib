@@ -34,9 +34,14 @@ RESOURCE_NAME = vpn.VPNSERVICE
 COLLECTION_NAME = vpn.VPNSERVICES
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        FLAVOR_ID: {'allow_post': True, 'allow_put': False,
-                    'validate': {'type:uuid_or_none': None},
-                    'is_visible': True, 'default': None}
+        FLAVOR_ID: {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid_or_none': None},
+            'default': None,
+            'is_visible': True,
+            'is_filter': True
+        },
     },
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}

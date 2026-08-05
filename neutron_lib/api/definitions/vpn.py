@@ -230,240 +230,450 @@ _vpn_lifetime_limits = (60, validators.UNLIMITED)
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
 
     VPNSERVICES: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True,
-               'is_sort_key': True,
-               'primary_key': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {
-                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                      'required_by_policy': True,
-                      'is_sort_key': True,
-                      'is_visible': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'is_visible': True, 'is_sort_key': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {
-                            'type:string': db_const.DESCRIPTION_FIELD_SIZE},
-                        'is_visible': True, 'default': ''},
-        'subnet_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:uuid_or_none': None},
-                      'is_visible': True, 'default': None},
-        'router_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:uuid': None},
-                      'is_sort_key': True,
-                      'is_visible': True},
-        'admin_state_up': {'allow_post': True, 'allow_put': True,
-                           'default': True,
-                           'convert_to': converters.convert_to_boolean,
-                           'is_visible': True},
-        'external_v4_ip': {'allow_post': False, 'allow_put': False,
-                           'is_visible': True},
-        'external_v6_ip': {'allow_post': False, 'allow_put': False,
-                           'is_visible': True},
-        'status': {'allow_post': False, 'allow_put': False,
-                   'is_visible': True},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'subnet_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid_or_none': None},
+            'default': None,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'router_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'admin_state_up': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': True,
+            'convert_to': converters.convert_to_boolean,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'external_v4_ip': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'external_v6_ip': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'status': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
+        },
     },
 
     IPSEC_SITE_CONNECTIONS: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True,
-               'is_sort_key': True,
-               'primary_key': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {
-                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                      'required_by_policy': True,
-                      'is_sort_key': True,
-                      'is_visible': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'is_visible': True, 'is_sort_key': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {
-                            'type:string': db_const.DESCRIPTION_FIELD_SIZE},
-                        'is_visible': True, 'default': ''},
-        'local_id': {'allow_post': True, 'allow_put': True,
-                     'validate': {'type:string': None},
-                     'is_visible': True, 'default': ''},
-        'peer_address': {'allow_post': True, 'allow_put': True,
-                         'validate': {'type:string': None},
-                         'is_visible': True},
-        'peer_id': {'allow_post': True, 'allow_put': True,
-                    'validate': {'type:string': None},
-                    'is_visible': True},
-        'peer_cidrs': {'allow_post': True, 'allow_put': True,
-                       'convert_to': converters.convert_to_list,
-                       'validate': {'type:list_of_subnets_or_none': None},
-                       'is_visible': True,
-                       'default': None},
-        'local_ep_group_id': {'allow_post': True, 'allow_put': True,
-                              'validate': {'type:uuid_or_none': None},
-                              'is_visible': True, 'default': None},
-        'peer_ep_group_id': {'allow_post': True, 'allow_put': True,
-                             'validate': {'type:uuid_or_none': None},
-                             'is_visible': True, 'default': None},
-        'route_mode': {'allow_post': False, 'allow_put': False,
-                       'is_visible': True},
-        'mtu': {'allow_post': True, 'allow_put': True,
-                'default': 1500,
-                'validate': {'type:non_negative': None},
-                'convert_to': converters.convert_to_int,
-                'is_visible': True},
-        'initiator': {'allow_post': True, 'allow_put': True,
-                      'default': VPN_INITIATOR_BI_DIRECTIONAL,
-                      'validate': {'type:values': VPN_SUPPORTED_INITIATORS},
-                      'is_visible': True},
-        'auth_mode': {'allow_post': False, 'allow_put': False,
-                      'default': VPN_AUTH_MODE_PSK,
-                      'validate': {'type:values': VPN_SUPPORTED_AUTH_MODES},
-                      'is_visible': True},
-        'psk': {'allow_post': True, 'allow_put': True,
-                'validate': {'type:string': None},
-                'is_visible': True},
-        'dpd': {
-            'allow_post': True, 'allow_put': True,
-            'convert_to': converters.convert_none_to_empty_dict,
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
             'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'local_id': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'peer_address': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'peer_id': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'peer_cidrs': {
+            'allow_post': True,
+            'allow_put': True,
+            'convert_to': converters.convert_to_list,
+            'validate': {'type:list_of_subnets_or_none': None},
+            'default': None,
+            'is_visible': True
+        },
+        'local_ep_group_id': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:uuid_or_none': None},
+            'default': None,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'peer_ep_group_id': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:uuid_or_none': None},
+            'default': None,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'route_mode': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'mtu': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': 1500,
+            'convert_to': converters.convert_to_int,
+            'validate': {'type:non_negative': None},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'initiator': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': VPN_INITIATOR_BI_DIRECTIONAL,
+            'validate': {'type:values': VPN_SUPPORTED_INITIATORS},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'auth_mode': {
+            'allow_post': False,
+            'allow_put': False,
+            'default': VPN_AUTH_MODE_PSK,
+            'validate': {'type:values': VPN_SUPPORTED_AUTH_MODES},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'psk': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'dpd': {
+            'allow_post': True,
+            'allow_put': True,
+            'convert_to': converters.convert_none_to_empty_dict,
             'default': {},
             'validate': {
                 'type:dict_or_empty': {
                     'action': {'type:values': VPN_SUPPORTED_DPD_ACTIONS},
                     'interval': {'type:non_negative': None},
-                    'timeout': {'type:non_negative': None}}}},
-        'admin_state_up': {'allow_post': True, 'allow_put': True,
-                           'default': True,
-                           'convert_to': converters.convert_to_boolean,
-                           'is_visible': True},
-        'status': {'allow_post': False, 'allow_put': False,
-                   'is_visible': True},
-        'vpnservice_id': {'allow_post': True, 'allow_put': False,
-                          'validate': {'type:uuid': None},
-                          'is_visible': True},
-        'ikepolicy_id': {'allow_post': True, 'allow_put': False,
-                         'validate': {'type:uuid': None},
-                         'is_visible': True},
-        'ipsecpolicy_id': {'allow_post': True, 'allow_put': False,
-                           'validate': {'type:uuid': None},
-                           'is_visible': True},
+                    'timeout': {'type:non_negative': None}
+                }
+            },
+            'is_visible': True
+        },
+        'admin_state_up': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': True,
+            'convert_to': converters.convert_to_boolean,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'status': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'vpnservice_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'ikepolicy_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'ipsecpolicy_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True
+        },
     },
 
     IPSEC_POLICIES: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True,
-               'is_sort_key': True,
-               'primary_key': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {
-                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                      'required_by_policy': True,
-                      'is_sort_key': True,
-                      'is_visible': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'is_visible': True, 'is_sort_key': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {
-                            'type:string': db_const.DESCRIPTION_FIELD_SIZE},
-                        'is_visible': True, 'default': ''},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
         'transform_protocol': {
             'allow_post': True,
             'allow_put': True,
             'default': VPN_TRANSFORM_PROTOCOL_ESP,
-            'validate': {'type:values': VPN_SUPPORTED_TRANSFORM_PROTOCOLS},
-            'is_visible': True},
+            'validate': {
+                'type:values': VPN_SUPPORTED_TRANSFORM_PROTOCOLS
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
         'auth_algorithm': {
             'allow_post': True,
             'allow_put': True,
             'default': VPN_AUTH_ALGORITHM_SHA1,
             'validate': {'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS},
-            'is_visible': True},
+            'is_visible': True,
+            'is_filter': True
+        },
         ENCRYPTION_ALGORITHM: {
             'allow_post': True,
             'allow_put': True,
             'default': VPN_ENCRYPTION_ALGORITHM_AES_128,
             'validate': {
-                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS},
-            'is_visible': True},
+                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
         'encapsulation_mode': {
             'allow_post': True,
             'allow_put': True,
             'default': VPN_ENCAPSULATION_MODE_TUNNEL,
-            'validate': {'type:values': VPN_SUPPORTED_ENCAPSULATION_MODES},
-            'is_visible': True},
+            'validate': {
+                'type:values': VPN_SUPPORTED_ENCAPSULATION_MODES
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
         'lifetime': {
-            'allow_post': True, 'allow_put': True,
+            'allow_post': True,
+            'allow_put': True,
             'convert_to': converters.convert_none_to_empty_dict,
             'default': {},
             'validate': {
                 'type:dict_or_empty': {
-                    'units': {'type:values': VPN_SUPPORTED_LIFETIME_UNITS},
-                    'value': {'type:range': _vpn_lifetime_limits}}},
-            'is_visible': True},
-        'pfs': {'allow_post': True, 'allow_put': True,
-                'default': VPN_PFS_GROUP5,
-                'validate': {'type:values': VPN_SUPPORTED_PFSES},
-                'is_visible': True},
+                    'units': {
+                        'type:values': VPN_SUPPORTED_LIFETIME_UNITS
+                    },
+                    'value': {'type:range': _vpn_lifetime_limits}
+                }
+            },
+            'is_visible': True
+        },
+        'pfs': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': VPN_PFS_GROUP5,
+            'validate': {'type:values': VPN_SUPPORTED_PFSES},
+            'is_visible': True,
+            'is_filter': True
+        },
     },
 
     IKE_POLICIES: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True,
-               'is_sort_key': True,
-               'primary_key': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {
-                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                      'required_by_policy': True,
-                      'is_sort_key': True,
-                      'is_visible': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'is_visible': True, 'is_sort_key': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {
-                            'type:string': db_const.DESCRIPTION_FIELD_SIZE},
-                        'is_visible': True, 'default': ''},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
         'auth_algorithm': {
-            'allow_post': True, 'allow_put': True,
+            'allow_post': True,
+            'allow_put': True,
             'default': VPN_AUTH_ALGORITHM_SHA1,
             'validate': {'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS},
-            'is_visible': True},
+            'is_visible': True,
+            'is_filter': True
+        },
         ENCRYPTION_ALGORITHM: {
-            'allow_post': True, 'allow_put': True,
+            'allow_post': True,
+            'allow_put': True,
             'default': VPN_ENCRYPTION_ALGORITHM_AES_128,
             'validate': {
-                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS},
-            'is_visible': True},
+                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
         'phase1_negotiation_mode': {
-            'allow_post': True, 'allow_put': True,
+            'allow_post': True,
+            'allow_put': True,
             'default': VPN_PHASE1_NEGOTIATION_MODE_MAIN,
             'validate': {
-                'type:values': VPN_SUPPORTED_PHASE1_NEGOTIATION_MODES},
-            'is_visible': True},
+                'type:values': VPN_SUPPORTED_PHASE1_NEGOTIATION_MODES
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
         'lifetime': {
-            'allow_post': True, 'allow_put': True,
+            'allow_post': True,
+            'allow_put': True,
             'convert_to': converters.convert_none_to_empty_dict,
             'default': {},
             'validate': {
                 'type:dict_or_empty': {
-                    'units': {'type:values': VPN_SUPPORTED_LIFETIME_UNITS},
-                    'value': {'type:range': _vpn_lifetime_limits}}},
-            'is_visible': True},
+                    'units': {
+                        'type:values': VPN_SUPPORTED_LIFETIME_UNITS
+                    },
+                    'value': {'type:range': _vpn_lifetime_limits}
+                }
+            },
+            'is_visible': True
+        },
         'ike_version': {
-            'allow_post': True, 'allow_put': True,
+            'allow_post': True,
+            'allow_put': True,
             'default': VPN_IKE_VERSION_V1,
             'validate': {'type:values': VPN_SUPPORTED_IKE_VERSIONS},
-            'is_visible': True},
-        'pfs': {'allow_post': True, 'allow_put': True,
-                'default': VPN_PFS_GROUP5,
-                'validate': {'type:values': VPN_SUPPORTED_PFSES},
-                'is_visible': True},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'pfs': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': VPN_PFS_GROUP5,
+            'validate': {'type:values': VPN_SUPPORTED_PFSES},
+            'is_visible': True,
+            'is_filter': True
+        },
     },
 }
 

@@ -1,0 +1,12 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to all scalar DB-backed attributes in the VPN API
+    definitions (``vpnservices``, ``ipsec_site_connections``,
+    ``ipsecpolicies``, ``ikepolicies``, ``endpoint_groups``, and the
+    ``vpn-flavors``, ``vpn-no-sha1-3des``, ``vpn-aes-ctr`` extensions).
+    Previously, no VPN attribute was declared as filterable, which caused
+    list operations with query filters (e.g. ``?name=foo``) to return
+    HTTP 400. This also broke ``openstack vpn service show <name>``
+    because the client falls back to filtering by name when the initial
+    UUID-based lookup returns 404.
