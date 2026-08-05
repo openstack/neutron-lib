@@ -127,6 +127,7 @@ KNOWN_EXTENSIONS = (
     'network-ip-availability',
     'network-segment-range',
     'network_availability_zone',
+    'ovn-bgp',
     'pagination',
     'port-mac-address-override',
     'port-resource-request',

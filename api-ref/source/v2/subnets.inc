@@ -154,6 +154,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - leak_routes: subnet-leak_routes
    - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
@@ -279,6 +280,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - leak_routes: subnet-leak_routes
    - revision_number: revision_number
    - service_types: subnet-service_types
    - subnetpool_id: subnet-subnetpool_id
@@ -363,6 +365,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - leak_routes: subnet-leak_routes
    - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
@@ -423,6 +426,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - leak_routes: subnet-leak_routes
    - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types
@@ -465,6 +469,7 @@ Request
    - host_routes: subnet-host_routes-request
    - gateway_ip: subnet-gateway_ip-update-request
    - description: description-request
+   - leak_routes: subnet-leak_routes-request
    - service_types: subnet-service_types-optional
    - segment_id: subnet-segment_id-request
    - dns_publish_fixed_ip: subnet-dns_publish_fixed_ip-request
@@ -497,6 +502,7 @@ Response Parameters
    - description: description
    - ipv6_address_mode: subnet-ipv6_address_mode
    - ipv6_ra_mode: subnet-ipv6_ra_mode
+   - leak_routes: subnet-leak_routes
    - revision_number: revision_number
    - segment_id: subnet-segment_id
    - service_types: subnet-service_types

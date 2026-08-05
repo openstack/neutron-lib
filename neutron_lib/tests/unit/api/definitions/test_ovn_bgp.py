@@ -1,3 +1,4 @@
+# Copyright 2026 Red Hat, LLC
 # All Rights Reserved.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -12,25 +13,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-# Well-known service type constants:
-FIREWALL = "FIREWALL"
-VPN = "VPN"
-METERING = "METERING"
-FLAVORS = "FLAVORS"
-QOS = "QOS"
-CORE = 'CORE'
-L3 = 'L3_ROUTER_NAT'
-LOG_API = "LOGGING"
-PORTFORWARDING = "PORTFORWARDING"
-FLOATINGIPPOOL = "FLOATINGIPPOOL"
-NETWORK_SEGMENT_RANGE = "NETWORK_SEGMENT_RANGE"
-CONNTRACKHELPER = "CONNTRACKHELPER"
-PLACEMENT_REPORT = "placement_report"
-PVLAN = "PVLAN"
-LOCAL_IP = "LOCAL_IP"
+from neutron_lib.api.definitions import ovn_bgp
+from neutron_lib.tests.unit.api.definitions import base
 
-NDPPROXY = 'NDPPROXY'
 
-EVPN = 'EVPN'
-
-OVN_BGP = 'OVN_BGP'
+class OVNBGPDefinitionTestCase(base.DefinitionBaseTestCase):
+    extension_module = ovn_bgp
+    extension_attributes = (ovn_bgp.LEAK_ROUTES,)

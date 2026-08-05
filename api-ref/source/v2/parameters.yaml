@@ -7163,6 +7163,24 @@ subnet-ipv6_ra_mode-request:
   in: body
   required: false
   type: string
+subnet-leak_routes:
+  description: |
+    Whether BGP route leaking is enabled for this subnet. When ``true``,
+    connected host routes for ports on this subnet are advertised via BGP
+    through the OVN BGP service plugin. It is available when the ``ovn-bgp``
+    extension is enabled.
+  in: body
+  required: true
+  type: boolean
+subnet-leak_routes-request:
+  description: |
+    Whether BGP route leaking should be enabled for this subnet. When
+    ``true``, connected host routes for ports on this subnet are advertised
+    via BGP through the OVN BGP service plugin. Default is ``false``. It is
+    available when the ``ovn-bgp`` extension is enabled.
+  in: body
+  required: false
+  type: boolean
 subnet-name:
   description: |
     Human-readable name of the resource.
