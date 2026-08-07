@@ -42,29 +42,52 @@ UPDATED_TIMESTAMP = '2015-08-04T10:00:00-00:00'
 API_PREFIX = '/vpn'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     'endpoint_groups': {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True,
-               'primary_key': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {
-                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                      'required_by_policy': True,
-                      'is_visible': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'is_visible': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {
-                            'type:string': db_const.DESCRIPTION_FIELD_SIZE},
-                        'is_visible': True, 'default': ''},
-        'type': {'allow_post': True, 'allow_put': False,
-                 'validate': {'type:values': VPN_SUPPORTED_ENDPOINT_TYPES},
-                 'is_visible': True},
-        'endpoints': {'allow_post': True, 'allow_put': False,
-                      'convert_to': converters.convert_to_list,
-                      'is_visible': True,
-                      'default': []},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'primary_key': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': db_const.DESCRIPTION_FIELD_SIZE},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'type': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:values': VPN_SUPPORTED_ENDPOINT_TYPES},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'endpoints': {
+            'allow_post': True,
+            'allow_put': False,
+            'convert_to': converters.convert_to_list,
+            'default': [],
+            'is_visible': True
+        },
     },
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}

@@ -48,15 +48,21 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'allow_put': True,
             'default': vpn.VPN_AUTH_ALGORITHM_SHA256,
             'validate': {
-                'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS_V2},
-            'is_visible': True},
+                'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS_V2
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
         vpn.ENCRYPTION_ALGORITHM: {
             'allow_post': True,
             'allow_put': True,
             'default': vpn.VPN_ENCRYPTION_ALGORITHM_AES_128,
             'validate': {
-                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_V2},
-            'is_visible': True},
+                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_V2
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
     },
     vpn.IPSEC_POLICIES: {
         'auth_algorithm': {
@@ -64,14 +70,20 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'allow_put': True,
             'default': vpn.VPN_AUTH_ALGORITHM_SHA256,
             'validate': {
-                'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS_V2},
-            'is_visible': True},
+                'type:values': VPN_SUPPORTED_AUTH_ALGORITHMS_V2
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
         vpn.ENCRYPTION_ALGORITHM: {
             'allow_post': True,
             'allow_put': True,
             'default': vpn.VPN_ENCRYPTION_ALGORITHM_AES_128,
             'validate': {
-                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_V2},
-            'is_visible': True},
+                'type:values': VPN_SUPPORTED_ENCRYPTION_ALGORITHMS_V2
+            },
+            'is_visible': True,
+            'is_filter': True
+        },
     },
 }
