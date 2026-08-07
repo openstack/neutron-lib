@@ -108,6 +108,7 @@ KNOWN_EXTENSIONS = (
     'flavors',
     'floating-ip-port-forwarding',
     'floating-ip-port-forwarding-description',
+    'floating-ip-router-writable',
     'floatingip-autodelete-internal',
     'floatingip-pools',
     'ip-substring-filtering',

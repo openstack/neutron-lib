@@ -1,0 +1,10 @@
+---
+features:
+  - |
+    The new ``floating-ip-router-writable`` extension API definition has been
+    added as ``neutron_lib.api.definitions.floatingip_router_writable``. The
+    extension makes the floating IP ``router_id`` attribute writable on create
+    and update so callers can explicitly select the hosting router for NAT.
+    When ``router_id`` is omitted, Neutron continues to compute it using the
+    existing direct-connectivity logic. Plugins supporting the new extension
+    are expected to also support the core L3 ``router`` extension.

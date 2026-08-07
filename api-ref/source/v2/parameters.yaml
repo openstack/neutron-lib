@@ -3983,6 +3983,30 @@ floatingip-router_id:
   in: body
   required: true
   type: string
+floatingip-router_id-put-request:
+  description: |
+    The ID of the router that hosts NAT for the floating IP. When provided on
+    update, Neutron validates that the router exists and has an external
+    gateway on the floating IP external network, then stores the supplied
+    router instead of selecting one based on direct subnet adjacency. When
+    omitted, Neutron computes ``router_id`` using the existing
+    direct-connectivity logic. Available when the
+    ``floating-ip-router-writable`` extension is enabled.
+  in: body
+  required: false
+  type: string
+floatingip-router_id-request:
+  description: |
+    The ID of the router that hosts NAT for the floating IP. When provided on
+    create, Neutron validates that the router exists and has an external
+    gateway on the floating IP external network, then stores the supplied
+    router instead of selecting one based on direct subnet adjacency. When
+    omitted, Neutron computes ``router_id`` using the existing
+    direct-connectivity logic. Available when the
+    ``floating-ip-router-writable`` extension is enabled.
+  in: body
+  required: false
+  type: string
 floatingip-status:
   description: |
     The status of the floating IP. Values are
