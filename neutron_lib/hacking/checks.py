@@ -17,7 +17,6 @@ import re
 from debtcollector import removals
 from hacking import core
 
-from neutron_lib.hacking import translation_checks
 
 # Guidelines for writing new hacking checks
 #
@@ -172,22 +171,3 @@ def assert_equal_none(logical_line):
         msg = ("N536: Use assertIsNone or assertIsNotNone rather than "
                "assertIs or assertIsNone to check for None values.")
         yield logical_line.index('assert'), msg
-
-
-# TODO(amotoki): Drop this once all neutron related projects
-# have switched to hacking 2.x
-def factory(register):
-    """Hacking check factory for neutron-lib adopter compliant checks.
-
-    Hacking check factory for use with tox.ini. This factory registers all
-    neutron-lib adopter checks consumers should seek to comply with.
-
-    :param register: The function to register the check functions with.
-    :returns: None.
-    """
-    register(use_jsonutils)
-    register(no_mutable_default_args)
-    register(check_neutron_namespace_imports)
-    register(translation_checks.no_translate_logs)
-    register(translation_checks.check_log_warn_deprecated)
-    register(translation_checks.check_raised_localized_exceptions)
