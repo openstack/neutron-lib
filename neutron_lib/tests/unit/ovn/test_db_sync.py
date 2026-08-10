@@ -10,7 +10,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import tempfile
 from unittest import mock
+
+from oslo_config import cfg
 
 from neutron_lib.ovn import db_sync
 from neutron_lib.tests import _base as base
@@ -136,3 +139,112 @@ class TestBaseOvnDbSynchronizer(base.BaseTestCase):
             get_required_ml2_extension_drivers()
         self.assertEqual(['ext_driver1', 'ext_driver2'],
                          sorted(ml2_ext_drivers))
+
+
+class TestPluginConfiguration(base.BaseTestCase):
+
+    _testplugin_config_file_opt = cfg.ListOpt(
+        'testplugin_config_file', default=[])
+
+    def test_register_additional_cli_opts(self):
+        conf = cfg.ConfigOpts()
+
+        class TestSynchronizer(db_sync.BaseOvnDbSynchronizer):
+            @classmethod
+            def register_additional_cli_opts(cls, conf):
+                conf.register_cli_opts(
+                    [TestPluginConfiguration._testplugin_config_file_opt])
+
+            def do_sync(self):
+                pass
+
+        TestSynchronizer.register_additional_cli_opts(conf)
+        conf(['--testplugin_config_file', '/tmp/test.conf'])
+        self.assertEqual(['/tmp/test.conf'], conf.testplugin_config_file)
+
+    def test_load_plugin_configuration(self):
+        with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
+            f.write('[testgroup]\n')
+            f.write('test_value = plugin_value\n')
+            config_path = f.name
+
+        conf = cfg.ConfigOpts()
+        conf.register_cli_opts([self._testplugin_config_file_opt])
+        conf(['--testplugin_config_file', config_path])
+
+        class TestSynchronizer(db_sync.BaseOvnDbSynchronizer):
+            @classmethod
+            def register_additional_cli_opts(cls, conf):
+                conf.register_cli_opts(
+                    [TestPluginConfiguration._testplugin_config_file_opt])
+
+            @classmethod
+            def register_plugin_config_opts(cls, conf):
+                conf.register_opts(
+                    [cfg.StrOpt('test_value', default='default')],
+                    group='testgroup')
+
+            @classmethod
+            def get_plugin_config_files(cls, global_conf):
+                return global_conf.testplugin_config_file
+
+            def do_sync(self):
+                pass
+
+        plugin_conf = TestSynchronizer.load_plugin_configuration(conf)
+        self.assertEqual('plugin_value', plugin_conf.testgroup.test_value)
+
+    def test_load_plugin_configuration_returns_none_without_files(self):
+        conf = cfg.ConfigOpts()
+
+        class TestSynchronizer(db_sync.BaseOvnDbSynchronizer):
+            def do_sync(self):
+                pass
+
+        self.assertIsNone(
+            TestSynchronizer.load_plugin_configuration(conf))
+
+    def test_plugin_conf_does_not_affect_global_conf(self):
+        with tempfile.NamedTemporaryFile(mode='w', delete=False) as f:
+            f.write('[testgroup]\n')
+            f.write('test_value = plugin_value\n')
+            config_path = f.name
+
+        global_conf = cfg.ConfigOpts()
+        global_conf.register_opts(
+            [cfg.StrOpt('test_value', default='global_value')],
+            group='testgroup')
+        global_conf.register_cli_opts([self._testplugin_config_file_opt])
+        global_conf(['--testplugin_config_file', config_path])
+
+        class TestSynchronizer(db_sync.BaseOvnDbSynchronizer):
+            @classmethod
+            def register_plugin_config_opts(cls, conf):
+                conf.register_opts(
+                    [cfg.StrOpt('test_value', default='default')],
+                    group='testgroup')
+
+            @classmethod
+            def get_plugin_config_files(cls, global_conf):
+                return global_conf.testplugin_config_file
+
+            def do_sync(self):
+                pass
+
+        plugin_conf = TestSynchronizer.load_plugin_configuration(global_conf)
+        self.assertEqual('global_value', global_conf.testgroup.test_value)
+        self.assertEqual('plugin_value', plugin_conf.testgroup.test_value)
+
+    def test_synchronizer_stores_plugin_conf(self):
+        plugin_conf = cfg.ConfigOpts()
+        ovn_driver = mock.Mock()
+        ovn_driver.nb_ovn = mock.Mock()
+        ovn_driver.sb_ovn = mock.Mock()
+
+        class TestSynchronizer(db_sync.BaseOvnDbSynchronizer):
+            def do_sync(self):
+                pass
+
+        sync_obj = TestSynchronizer(
+            mock.Mock(), ovn_driver, 'repair', plugin_conf=plugin_conf)
+        self.assertIs(plugin_conf, sync_obj.plugin_conf)
