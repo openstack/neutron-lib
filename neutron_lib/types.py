@@ -42,6 +42,7 @@ AttributeValidator = TypedDict(
         'type:nameservers': None,
         'type:name_string': int | None,
         'type:name_string_or_none': int | None,
+        'type:name_string_not_default': int | None,
         'type:network_segments': None,
         'type:not_empty_name_string': None,
         'type:non_negative': None,

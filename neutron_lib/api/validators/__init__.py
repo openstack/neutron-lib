@@ -28,6 +28,7 @@ from webob import exc
 from neutron_lib._i18n import _
 from neutron_lib import constants
 from neutron_lib import exceptions as n_exc
+from neutron_lib.exceptions import security_group as sg_exc
 from neutron_lib.plugins import directory
 
 
@@ -428,6 +429,25 @@ def validate_not_empty_name_string(data, max_len=None):
     msg = validate_name_string(data, max_len=max_len)
     if msg:
         return msg
+
+
+def validate_name_string_not_default(data, max_len=None):
+    """Validate data is a valid name string and not 'default'.
+
+    :param data: The data to validate.
+    :param max_len: An optional cap on the length of the string data.
+    :returns: None if the data is a valid name string and not 'default',
+        otherwise raises SecurityGroupDefaultAlreadyExists if the name
+        is 'default', or returns a human readable message indicating why
+        validation failed.
+    :raises: SecurityGroupDefaultAlreadyExists if data is 'default'
+        (case-insensitive).
+    """
+    msg = validate_name_string(data, max_len=max_len)
+    if msg:
+        return msg
+    if data.lower() == "default":
+        raise sg_exc.SecurityGroupDefaultAlreadyExists()
 
 
 def validate_boolean(data, valid_values=None):
@@ -1400,6 +1420,8 @@ validators = {'type:dict': validate_dict,
               validate_oneline_not_empty_string_or_none,
               'type:name_string': validate_name_string,
               'type:name_string_or_none': validate_name_string_or_none,
+              'type:name_string_not_default':
+              validate_name_string_not_default,
               'type:not_empty_name_string': validate_not_empty_name_string,
               'type:subnet': validate_subnet,
               'type:subnet_list': validate_subnet_list,
