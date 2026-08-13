@@ -64,9 +64,15 @@ class TestExceptionToRetryContextManager(_base.BaseTestCase):
 
 class TestDeadLockDecorator(_base.BaseTestCase):
 
+    def setUp(self):
+        super().setUp()
+        self.fail_count = None
+
     @db_api.retry_db_errors
     def _decorated_function(self, fail_count, exc_to_raise):
-        self.fail_count = getattr(self, 'fail_count', fail_count + 1) - 1
+        if self.fail_count is None:
+            self.fail_count = fail_count + 1
+        self.fail_count -= 1
         if self.fail_count:
             raise exc_to_raise
 
@@ -119,7 +125,9 @@ class TestDeadLockDecorator(_base.BaseTestCase):
                           fail_count, exc_to_raise):
         list_arg.append(1)
         dict_arg[max(dict_arg.keys()) + 1] = True
-        self.fail_count = getattr(self, 'fail_count', fail_count + 1) - 1
+        if self.fail_count is None:
+            self.fail_count = fail_count + 1
+        self.fail_count -= 1
         if self.fail_count:
             raise exc_to_raise
         return list_arg, dict_arg

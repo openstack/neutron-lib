@@ -17,7 +17,6 @@ disable=
  no-self-argument,
  not-an-iterable,
 # "W" Warnings for stylistic problems or minor programming issues
- attribute-defined-outside-init,
  broad-except,
  global-statement,
  protected-access,

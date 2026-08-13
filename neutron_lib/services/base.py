@@ -20,6 +20,7 @@ class WorkerBase:
         try:
             return self.__workers
         except AttributeError:
+            # pylint: disable=attribute-defined-outside-init
             self.__workers = []
         return self.__workers
 

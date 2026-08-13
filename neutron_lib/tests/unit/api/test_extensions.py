@@ -67,6 +67,11 @@ class InheritFromExtensionDescriptor(extensions.ExtensionDescriptor):
 
 class TestExtensionDescriptor(base.BaseTestCase):
 
+    def setUp(self):
+        super().setUp()
+        self.extended_attributes = None
+        self.extension_attrs_map = None
+
     def _setup_attribute_maps(self):
         self.extended_attributes = {'resource_one': {'one': 'first'},
                                     'resource_two': {'two': 'second'}}

@@ -157,6 +157,8 @@ class PlacementAPIClient:
         self._api_version_header = {API_VERSION_REQUEST_HEADER:
                                     self._openstack_api_version}
         self._client = None
+        self._resource_providers = {}
+        self._provider_aggregate_map = {}
 
     def _create_client(self):
         """Create the HTTP session accessing the placement service."""

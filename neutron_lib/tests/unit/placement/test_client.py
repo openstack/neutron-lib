@@ -81,6 +81,7 @@ class TestPlacementAPIClientNoAuth(base.BaseTestCase):
     def setUp(self):
         super().setUp()
         self.config = mock.Mock()
+        self.placement_api_client = None
 
     @mock.patch('neutron_lib.placement.client.NoAuthClient', autospec=True)
     def test__create_client_noauth(self, mock_auth_client):

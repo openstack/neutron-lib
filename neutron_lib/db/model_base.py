@@ -81,6 +81,7 @@ class _NeutronBase(models.ModelBase):
     """Base class for Neutron Models."""
 
     __table_args__ = {'mysql_engine': 'InnoDB'}
+    _i = None
 
     def __iter__(self):
         self._i = iter(orm.object_mapper(self).columns)

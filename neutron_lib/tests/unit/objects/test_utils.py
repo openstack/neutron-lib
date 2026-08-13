@@ -23,6 +23,7 @@ class TestUtils(base.BaseTestCase):
         class FakeColumn:
             def __init__(self, column):
                 self.column = column
+                self.value = None
 
             def in_(self, value):
                 self.value = value

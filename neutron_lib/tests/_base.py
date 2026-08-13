@@ -175,6 +175,8 @@ class BaseTestCase(testtools.TestCase):
 
         self.addOnException(self.check_for_systemexit)
         self.orig_pid = os.getpid()
+        self._temp_dir = None
+        self.force_failure = False
 
     def get_new_temp_dir(self):
         """Create a new temporary directory.
@@ -190,7 +192,7 @@ class BaseTestCase(testtools.TestCase):
 
         :returns fixtures.TempDir
         """
-        if not hasattr(self, '_temp_dir'):
+        if self._temp_dir is None:
             self._temp_dir = self.get_new_temp_dir()
         return self._temp_dir
 
