@@ -52,6 +52,7 @@ class DriverBase:
             # trigger is the QosServiceDriverManager
             trigger.register_driver(self)
 
+    @property
     def is_loaded(self):
         """True if the driver is active for the Neutron Server.
 

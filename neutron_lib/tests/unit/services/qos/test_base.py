@@ -53,7 +53,7 @@ def _make_driver(name='fake-driver',
 class TestDriverBase(_base.BaseTestCase):
 
     def test_is_loaded(self):
-        self.assertTrue(_make_driver().is_loaded())
+        self.assertTrue(_make_driver().is_loaded)
 
     def test_is_vif_type_compatible(self):
         self.assertTrue(
