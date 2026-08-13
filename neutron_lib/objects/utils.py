@@ -34,6 +34,10 @@ class FilterObj(metaclass=abc.ABCMeta):
 
 
 class StringMatchingFilterObj(FilterObj):
+    @abc.abstractmethod
+    def filter(self, column):
+        pass
+
     @property
     def is_contains(self):
         return bool(getattr(self, "contains", False))

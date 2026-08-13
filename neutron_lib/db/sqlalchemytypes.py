@@ -24,6 +24,13 @@ class IPAddress(types.TypeDecorator):
 
     cache_ok = True
 
+    @property
+    def python_type(self):
+        return netaddr.IPAddress
+
+    def process_literal_param(self, value, dialect):
+        return self.process_bind_param(value, dialect)
+
     def process_result_value(self, value, dialect):
         return netaddr.IPAddress(value)
 
@@ -43,6 +50,13 @@ class CIDR(types.TypeDecorator):
 
     cache_ok = True
 
+    @property
+    def python_type(self):
+        return netaddr.IPNetwork
+
+    def process_literal_param(self, value, dialect):
+        return self.process_bind_param(value, dialect)
+
     def process_result_value(self, value, dialect):
         return netaddr.IPNetwork(value)
 
@@ -60,6 +74,13 @@ class MACAddress(types.TypeDecorator):
     impl = types.String(64)
 
     cache_ok = True
+
+    @property
+    def python_type(self):
+        return netaddr.EUI
+
+    def process_literal_param(self, value, dialect):
+        return self.process_bind_param(value, dialect)
 
     def process_result_value(self, value, dialect):
         return netaddr.EUI(value)
@@ -84,6 +105,13 @@ class TruncatedDateTime(types.TypeDecorator):
     impl = types.DateTime
 
     cache_ok = True
+
+    @property
+    def python_type(self):
+        return self.impl.python_type
+
+    def process_literal_param(self, value, dialect):
+        return self.process_bind_param(value, dialect)
 
     def process_bind_param(self, value, dialect):
         return value.replace(microsecond=0) if value else value

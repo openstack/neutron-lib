@@ -70,6 +70,12 @@ class TestPluginInterface(test_base.BaseTestCase):
                 pass
 
         class B(base.ServicePluginBase):
+            def get_plugin_type(self):
+                pass
+
+            def get_plugin_description(self):
+                pass
+
             def f(self):
                 pass
 

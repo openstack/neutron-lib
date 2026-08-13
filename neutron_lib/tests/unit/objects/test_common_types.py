@@ -211,6 +211,10 @@ class PortRangesFieldTest(test_base.BaseTestCase, TestField):
         self.to_primitive_values = self.coerce_good_values
         self.from_primitive_values = self.coerce_good_values
 
+    def test_stringify(self):
+        for in_val, _ in self.coerce_good_values:
+            self.assertEqual(str(in_val), self.field.stringify(in_val))
+
 
 class DomainNameFieldTest(test_base.BaseTestCase, TestField):
     def setUp(self):

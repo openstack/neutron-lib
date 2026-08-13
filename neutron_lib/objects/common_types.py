@@ -289,6 +289,9 @@ class MACAddress(obj_fields.FieldType):
             msg = _("Field value %s is not a netaddr.EUI") % value
             raise ValueError(msg) from e
 
+    def get_schema(self):
+        return {'type': 'string'}
+
 
 class MACAddressField(obj_fields.AutoTypedField):
     AUTO_TYPE = MACAddress()
@@ -323,6 +326,9 @@ class DictOfMiscValues(obj_fields.FieldType):
     def stringify(self, value):
         return jsonutils.dumps(value)
 
+    def get_schema(self):
+        return {'type': 'object'}
+
 
 class DictOfMiscValuesField(obj_fields.AutoTypedField):
     AUTO_TYPE = DictOfMiscValues()
@@ -355,6 +361,9 @@ class IPNetwork(obj_fields.FieldType):
         except Exception as e:
             msg = _("Field value %s is not a netaddr.IPNetwork") % value
             raise ValueError(msg) from e
+
+    def get_schema(self):
+        return {'type': 'string'}
 
 
 class IPNetworkField(obj_fields.AutoTypedField):
