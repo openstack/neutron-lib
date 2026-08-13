@@ -26,7 +26,6 @@ disable=
  super-init-not-called,
  unused-argument,
  unused-variable,
- using-constant-test,
 # "C" Coding convention violations
  consider-using-f-string,
  invalid-name,
