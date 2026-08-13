@@ -35,29 +35,33 @@ def is_extension_supported(plugin, alias):
 class ExtensionDescriptor(metaclass=abc.ABCMeta):
     """Base class that defines the contract for extensions."""
 
+    @classmethod
     @abc.abstractmethod
-    def get_name(self):
+    def get_name(cls):
         """The name of the extension.
 
         e.g. 'Fox In Socks'
         """
 
+    @classmethod
     @abc.abstractmethod
-    def get_alias(self):
+    def get_alias(cls):
         """The alias for the extension.
 
         e.g. 'FOXNSOX'
         """
 
+    @classmethod
     @abc.abstractmethod
-    def get_description(self):
+    def get_description(cls):
         """Friendly description for the extension.
 
         e.g. 'The Fox In Socks Extension'
         """
 
+    @classmethod
     @abc.abstractmethod
-    def get_updated(self):
+    def get_updated(cls):
         """The timestamp when the extension was last updated.
 
         e.g. '2011-01-22T13:25:27-06:00'
@@ -85,7 +89,8 @@ class ExtensionDescriptor(metaclass=abc.ABCMeta):
         """
         return []
 
-    def get_extended_resources(self, version):
+    @classmethod
+    def get_extended_resources(cls, version):
         """Retrieve extended resources or attributes for core resources.
 
         Extended attributes are implemented by a core plugin similarly
@@ -109,7 +114,8 @@ class ExtensionDescriptor(metaclass=abc.ABCMeta):
         Methods in this abstract class should be decorated as abstractmethod
         """
 
-    def get_required_extensions(self):
+    @classmethod
+    def get_required_extensions(cls):
         """Return list of extensions required for processing this descriptor.
 
         Without these extensions present in a neutron deployment, the
@@ -117,7 +123,8 @@ class ExtensionDescriptor(metaclass=abc.ABCMeta):
         """
         return []
 
-    def get_optional_extensions(self):
+    @classmethod
+    def get_optional_extensions(cls):
         """Returns a list of optionally required extensions.
 
         Unlike get_required_extensions. This will not fail the loading of
