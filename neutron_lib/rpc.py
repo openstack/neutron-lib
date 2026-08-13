@@ -171,6 +171,7 @@ class _BackingOffContextWrapper(_ContextWrapper):
                                 {'method': scoped_method, 'new': new_timeout})
                     self._METHOD_TIMEOUTS[scoped_method] = new_timeout
                 time.sleep(wait)
+        return None
 
 
 class BackingOffClient(oslo_messaging.RPCClient):

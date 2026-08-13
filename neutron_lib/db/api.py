@@ -137,6 +137,7 @@ def _tag_retriables_as_unretriable(f):
             with excutils.save_and_reraise_exception():
                 if is_retriable(e):
                     setattr(e, '_RETRY_EXCEEDED', True)
+        return None
     return wrapped
 
 
@@ -185,6 +186,7 @@ def retry_db_errors(f):
                     LOG.debug("Retry wrapper got retriable exception: %s", e)
                     if context_reference and context_reference.session:
                         context_reference.session.rollback()
+        return None
     return wrapped
 
 

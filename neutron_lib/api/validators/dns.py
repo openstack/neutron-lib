@@ -25,7 +25,7 @@ def _validate_dns_format(data, max_len=db_constants.FQDN_FIELD_SIZE):
     # because its easier to make correct. The logic should validate that the
     # dns_name matches RFC 1123 (section 2.1) and RFC 952.
     if not data:
-        return
+        return None
     try:
         # A trailing period is allowed to indicate that a name is fully
         # qualified per RFC 1034 (page 7).
@@ -54,6 +54,7 @@ def _validate_dns_format(data, max_len=db_constants.FQDN_FIELD_SIZE):
         msg = _("'%(data)s' not a valid PQDN or FQDN. Reason: %(reason)s") % {
             'data': data, 'reason': e}
         return msg
+    return None
 
 
 def _validate_dns_name_with_dns_domain(request_dns_name, dns_domain):
@@ -78,7 +79,7 @@ def _validate_dns_name_with_dns_domain(request_dns_name, dns_domain):
                          'higher_labels_len': higher_labels_len,
                          'fqdn_max_len': db_constants.FQDN_FIELD_SIZE}
             return msg
-        return
+        return None
 
     # A FQDN was passed
     if (dns_name_len <= higher_labels_len or not
@@ -90,6 +91,7 @@ def _validate_dns_name_with_dns_domain(request_dns_name, dns_domain):
                 "of '%(dns_domain)s'") % {'dns_domain':
                                           cfg.CONF.dns_domain}
         return msg
+    return None
 
 
 def _get_dns_domain_config():
@@ -130,6 +132,7 @@ def validate_dns_name(data, max_len=db_constants.FQDN_FIELD_SIZE):
         msg = _validate_dns_name_with_dns_domain(request_dns_name, dns_domain)
         if msg:
             return msg
+    return None
 
 
 def validate_fip_dns_name(data, max_len=db_constants.FQDN_FIELD_SIZE):
@@ -144,7 +147,7 @@ def validate_fip_dns_name(data, max_len=db_constants.FQDN_FIELD_SIZE):
     if msg:
         return msg
     if not data:
-        return
+        return None
     if data.endswith('.'):
         msg = _("'%s' is a FQDN. It should be a relative domain name") % data
         return msg
@@ -159,6 +162,7 @@ def validate_fip_dns_name(data, max_len=db_constants.FQDN_FIELD_SIZE):
                                                  "length": length,
                                                  "max_len": max_len}
         return msg
+    return None
 
 
 def validate_dns_domain(data, max_len=db_constants.FQDN_FIELD_SIZE):
@@ -173,7 +177,7 @@ def validate_dns_domain(data, max_len=db_constants.FQDN_FIELD_SIZE):
     if msg:
         return msg
     if not data:
-        return
+        return None
     if not data.endswith('.'):
         msg = _("'%s' is not a FQDN") % data
         return msg
@@ -188,3 +192,4 @@ def validate_dns_domain(data, max_len=db_constants.FQDN_FIELD_SIZE):
                                             "length": length,
                                             "max_len": max_len}
         return msg
+    return None

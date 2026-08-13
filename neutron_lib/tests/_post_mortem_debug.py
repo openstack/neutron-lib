@@ -97,6 +97,7 @@ def get_ignored_traceback(tb):
     # Return the first member of the ignored trailing chain
     if ignored_tracebacks:
         return ignored_tracebacks[-1]
+    return None
 
 
 class FilteredTraceback:
@@ -120,3 +121,4 @@ class FilteredTraceback:
         tb_next = self._tb.tb_next
         if tb_next and tb_next != self._filtered_traceback:
             return FilteredTraceback(tb_next, self._filtered_traceback)
+        return None

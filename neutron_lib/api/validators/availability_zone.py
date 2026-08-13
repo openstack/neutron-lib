@@ -45,3 +45,4 @@ def _validate_availability_zone_hints(data, valid_value=None):
     if len(az_string) > db_const.AZ_HINTS_DB_LEN:
         msg = _("Too many availability_zone_hints specified")
         raise exceptions.InvalidInput(error_message=msg)
+    return None

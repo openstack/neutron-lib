@@ -113,6 +113,7 @@ def reraise_as_retryrequest(function):
                 if is_retriable(e):
                     ctx.reraise = False
                     raise db_exc.RetryRequest(e)
+        return None
     return _wrapped
 
 
@@ -132,6 +133,7 @@ def get_marker_obj(plugin, context, resource, limit, marker):
     """
     if limit and marker:
         return getattr(plugin, f'_get_{resource}')(context, marker)
+    return None
 
 
 def resource_fields(resource, fields):

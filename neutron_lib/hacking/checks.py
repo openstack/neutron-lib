@@ -77,6 +77,7 @@ def _check_imports(regex, submatch, logical_line):
     m = re.match(regex, logical_line)
     if m and m.group(1) == submatch:
         return True
+    return None
 
 
 def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
@@ -105,6 +106,7 @@ def _check_namespace_imports(failure_code, namespace, new_ns, logical_line,
             logical_line.replace('import', 'from').replace('.', ' import '),
             logical_line)
         return (0, msg_o or msg)
+    return None
 
 
 @core.off_by_default
