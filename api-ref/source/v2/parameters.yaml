@@ -1861,6 +1861,20 @@ trunk_port_id-query:
   in: query
   required: false
   type: string
+used_in_default_sg-query:
+  description: |
+    Filter by security group rule templates which should be used in default
+    security group created automatically for each new project.
+  in: query
+  required: false
+  type: boolean
+used_in_non_default_sg-query:
+  description: |
+    Filter by security group rule templates which should be used in custom
+    security groups created by project users.
+  in: query
+  required: false
+  type: boolean
 verbose:
   description: |
     Show detailed information.
@@ -7488,24 +7502,10 @@ used_in_default_sg:
   in: body
   required: false
   type: boolean
-used_in_default_sg-query:
-  description: |
-    Fiter by security group rule templates which should be used in default
-    security group created automatically for each new project.
-  in: body
-  required: false
-  type: boolean
 used_in_non_default_sg:
   description: |
     Whether this security group rule template should be used in custom
     security groups created by project user. Default value is ``True``.
-  in: body
-  required: false
-  type: boolean
-used_in_non_default_sg-query:
-  description: |
-    Fiter by security group rule templates which should be used in custom
-    security groups created by project users.
   in: body
   required: false
   type: boolean
