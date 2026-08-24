@@ -157,6 +157,12 @@ class TestPlacementAPIClient(base.BaseTestCase):
         self.placement_fixture.mock_delete.assert_called_once_with(
             f'/resource_providers/{RESOURCE_PROVIDER_UUID}')
 
+    def test_delete_resource_provider_not_found(self):
+        self.placement_fixture.mock_delete.side_effect = ks_exc.NotFound()
+        self.assertRaises(n_exc.PlacementResourceProviderNotFound,
+                          self.placement_api_client.delete_resource_provider,
+                          RESOURCE_PROVIDER_UUID)
+
     def test_get_resource_provider(self):
         self.placement_api_client.get_resource_provider(RESOURCE_PROVIDER_UUID)
         self.placement_fixture.mock_get.assert_called_once_with(

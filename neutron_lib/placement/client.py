@@ -312,9 +312,16 @@ class PlacementAPIClient:
         """Delete a resource provider.
 
         :param resource_provider_uuid: UUID of the resource provider.
+        :raises PlacementResourceProviderNotFound: If the resource provider
+                                                   is not found.
         """
+        # pylint: disable=raise-missing-from
         url = f'/resource_providers/{resource_provider_uuid}'
-        self._delete(url)
+        try:
+            self._delete(url)
+        except ks_exc.NotFound:
+            raise n_exc.PlacementResourceProviderNotFound(
+                resource_provider=resource_provider_uuid)
 
     @_check_placement_api_available
     def get_resource_provider(self, resource_provider_uuid):
