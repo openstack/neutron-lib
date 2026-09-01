@@ -28,7 +28,7 @@ COLLECTION_NAME = 'tap_services'
 TAP_FLOW = 'tap_flow'
 TAP_FLOWS = 'tap_flows'
 
-# Regex for a comma-seperate list of integer values (VLANs)
+# Regex for a comma-separated list of integer values (VLANs)
 # For ex. "9,18,27-36,45-54" or "0-4095" or "9,18,27,36"
 RANGE_REGEX = r"^([0-9]+(-[0-9]+)?)(,([0-9]+(-[0-9]+)?))*$"
 
