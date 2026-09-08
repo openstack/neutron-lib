@@ -51,6 +51,7 @@ def convert_to_boolean_if_not_none(data):
     """
     if data is not None:
         return convert_to_boolean(data)
+    return None
 
 
 def convert_to_int(data):
@@ -96,7 +97,7 @@ def convert_to_positive_float_or_none(val):
     # It is deemed however generic enough to be in this module as it
     # might be used in future for other API attributes.
     if val is None:
-        return
+        return None
     try:
         val = float(val)
         if val < 0:
@@ -278,7 +279,7 @@ def convert_to_protocol(data):
     """
 
     if data is None:
-        return
+        return None
     val = convert_string_to_case_insensitive(data)
     if val in constants.IPTABLES_PROTOCOL_MAP:
         return data
@@ -292,6 +293,7 @@ def convert_to_protocol(data):
         raise n_exc.InvalidInput(error_message=error_message)
     except n_exc.InvalidInput as e:
         raise n_exc.InvalidInput(error_message=error_message) from e
+    return None
 
 
 def convert_to_string(data):
@@ -303,6 +305,7 @@ def convert_to_string(data):
 
     if data is not None:
         return str(data)
+    return None
 
 
 def convert_prefix_forced_case(data, prefix):

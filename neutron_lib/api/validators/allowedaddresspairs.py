@@ -91,3 +91,4 @@ def _validate_allowed_address_pairs(address_pairs, valid_values=None):
             msg = validators.validate_mac_address_not_multicast(mac)
             if msg:
                 raise exc.HTTPBadRequest(msg)
+    return None

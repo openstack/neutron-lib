@@ -32,7 +32,6 @@ disable=
  missing-docstring,
 # "R" Refactor recommendations
  duplicate-code,
- inconsistent-return-statements,
  too-few-public-methods,
  too-many-ancestors,
  too-many-arguments,

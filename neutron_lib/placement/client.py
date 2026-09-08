@@ -258,7 +258,7 @@ class PlacementAPIClient:
         rsp = self._post(url, resource_provider)
         if (self._target_version <
                 _get_version(PLACEMENT_API_RETURN_PROVIDER_BODY)):
-            return
+            return None
         return rsp.json()
 
     @_check_placement_api_available

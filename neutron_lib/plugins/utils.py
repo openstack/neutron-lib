@@ -386,6 +386,7 @@ def get_port_binding_by_status_and_host(bindings, status, host='',
                 return binding
     if raise_if_not_found:
         raise exceptions.PortBindingNotFound(port_id=port_id, host=host)
+    return None
 
 
 def can_port_be_bound_to_virtual_bridge(port):
