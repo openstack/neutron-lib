@@ -146,7 +146,7 @@ class CIDRTestCase(SqlAlchemyTypesBaseTestCase):
         with self.engine.connect() as conn, conn.begin():
             return conn.execute(row_select).first()
 
-    def _update_row(self, key, cidr):
+    def _update_row_by_key(self, key, cidr):
         row_update = self.test_table.update().values(cidr=cidr).\
             where(self.test_table.c.cidr == key)
         with self.engine.connect() as conn, conn.begin():
@@ -162,7 +162,7 @@ class CIDRTestCase(SqlAlchemyTypesBaseTestCase):
             obj = self._get_one(cidr)
             self.assertEqual(cidr, obj.cidr)
             random_cidr = netaddr.IPNetwork(tools.get_random_cidr())
-            self._update_row(cidr, random_cidr)
+            self._update_row_by_key(cidr, random_cidr)
             obj = self._get_one(random_cidr)
             self.assertEqual(random_cidr, obj.cidr)
 
@@ -201,7 +201,7 @@ class MACAddressTestCase(SqlAlchemyTypesBaseTestCase):
         with self.engine.connect() as conn, conn.begin():
             return conn.execute(rows_select).fetchall()
 
-    def _update_row(self, key, mac):
+    def _update_row_by_key(self, key, mac):
         row_update = self.test_table.update().values(mac=mac).\
             where(self.test_table.c.mac == key)
         with self.engine.connect() as conn, conn.begin():
@@ -222,7 +222,7 @@ class MACAddressTestCase(SqlAlchemyTypesBaseTestCase):
             self.assertEqual(mac, obj.mac)
             random_mac = netaddr.EUI(net.get_random_mac(
                 ['fe', '16', '3e', '00', '00', '00']))
-            self._update_row(mac, random_mac)
+            self._update_row_by_key(mac, random_mac)
             obj = self._get_one(random_mac)
             self.assertEqual(random_mac, obj.mac)
 

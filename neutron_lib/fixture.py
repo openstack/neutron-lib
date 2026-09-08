@@ -118,7 +118,8 @@ class SqlFixture(fixtures.Fixture):
                     model_base.BASEV2.metadata.sorted_tables):
                 conn.execute(table.delete())
 
-    def _init_resources(self):
+    @classmethod
+    def _init_resources(cls):
         pass
 
     def _setUp(self):

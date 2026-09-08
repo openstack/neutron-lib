@@ -138,8 +138,8 @@ class ContextBase(oslo_context.RequestContext):
         return values
 
     @classmethod
-    def from_dict(cls, values):
-        cls_obj = super().from_dict(values)
+    def from_dict(cls, values, **kwargs):
+        cls_obj = super().from_dict(values, **kwargs)
         if values.get('timestamp'):
             cls_obj.timestamp = values['timestamp']
         cls_obj.user_id = values.get('user_id', values.get('user'))

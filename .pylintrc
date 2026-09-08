@@ -18,7 +18,6 @@ disable=
  not-an-iterable,
 # "W" Warnings for stylistic problems or minor programming issues
  abstract-method,
- arguments-differ,
  attribute-defined-outside-init,
  broad-except,
  global-statement,
