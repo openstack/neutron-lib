@@ -39,38 +39,68 @@ DIRECTION_SPEC: AttributeValidator = {
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
         'id': {
-            'allow_post': False, 'allow_put': False,
-            'validate': {'type:uuid': None}, 'is_visible': True,
-            'primary_key': True},
-        'project_id': {
-            'allow_post': True, 'allow_put': False,
-            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-            'required_by_policy': True, 'is_filter': True,
-            'is_sort_key': True, 'is_visible': True},
-        'name': {
-            'allow_post': True, 'allow_put': True,
-            'validate': {'type:name_string': None},
-            'is_visible': True, 'default': ''},
-        'description': {
-            'allow_post': True, 'allow_put': True,
-            'validate': {'type:string': None},
-            'is_visible': True, 'default': ''},
-        'port_id': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': False,
+            'allow_put': False,
             'validate': {'type:uuid': None},
-            'enforce_policy': True, 'is_visible': True},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'project_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': None},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'port_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'enforce_policy': True,
+            'is_visible': True,
+            'is_filter': True
+        },
         'directions': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'validate': DIRECTION_SPEC,
-            'is_visible': True},
+            'is_visible': True
+        },
         'remote_ip': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'validate': {'type:ip_address': None},
-            'is_visible': True},
+            'is_visible': True,
+            'is_filter': True
+        },
         'mirror_type': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'validate': {'type:values': mirror_types_list},
-            'is_visible': True},
+            'is_visible': True,
+            'is_filter': True
+        },
     }
 }
 

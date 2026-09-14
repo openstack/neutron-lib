@@ -45,48 +45,120 @@ TAP_FLOWS = 'tap_flows'
 
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None}, 'is_visible': True,
-               'primary_key': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:string': None},
-                      'required_by_policy': True, 'is_visible': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:name_string': None},
-                 'is_visible': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {'type:string': None},
-                        'is_visible': True, 'default': ''},
-        'port_id': {'allow_post': True, 'allow_put': False,
-                    'validate': {'type:uuid': None},
-                    'is_visible': True},
-        'status': {'allow_post': False, 'allow_put': False,
-                   'is_visible': True}
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': None},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': None},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'port_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'status': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
+        },
     },
     TAP_FLOWS: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None}, 'is_visible': True,
-               'primary_key': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:string': None},
-                      'required_by_policy': True, 'is_visible': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:string': None},
-                 'is_visible': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {'type:string': None},
-                        'is_visible': True, 'default': ''},
-        'tap_service_id': {'allow_post': True, 'allow_put': False,
-                           'validate': {'type:uuid': None},
-                           'required_by_policy': True, 'is_visible': True},
-        'source_port': {'allow_post': True, 'allow_put': False,
-                        'validate': {'type:uuid': None},
-                        'required_by_policy': True, 'is_visible': True},
-        'direction': {'allow_post': True, 'allow_put': False,
-                      'validate': {'type:values': DIRECTION_ENUM},
-                      'is_visible': True},
-        'status': {'allow_post': False, 'allow_put': False,
-                   'is_visible': True}
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': None},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:string': None},
+            'default': '',
+            'is_visible': True,
+            'is_filter': True
+        },
+        'tap_service_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'source_port': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'required_by_policy': True,
+            'is_visible': True,
+            'is_filter': True
+        },
+        'direction': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:values': DIRECTION_ENUM},
+            'is_visible': True,
+            'is_filter': True
+        },
+        'status': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
+        },
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP = None
