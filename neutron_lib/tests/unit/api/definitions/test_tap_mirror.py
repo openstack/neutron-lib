@@ -21,3 +21,19 @@ class TapMirrorDefinitionTestCase(base.DefinitionBaseTestCase):
     extension_resources = (tap_mirror.COLLECTION_NAME, )
     extension_attributes = ('port_id', 'remote_ip', 'directions',
                             'mirror_type')
+
+    FILTERABLE_ATTRIBUTES = (
+        'id', 'project_id', 'name', 'description', 'port_id',
+        'remote_ip', 'mirror_type',
+    )
+    NON_FILTERABLE_ATTRIBUTES = ('directions',)
+
+    def test_scalar_attributes_are_filterable(self):
+        attr_map = tap_mirror.RESOURCE_ATTRIBUTE_MAP[
+            tap_mirror.COLLECTION_NAME]
+        for attribute in self.FILTERABLE_ATTRIBUTES:
+            self.assertTrue(
+                attr_map[attribute].get('is_filter'),
+                f'{attribute} must be filterable')
+        for attribute in self.NON_FILTERABLE_ATTRIBUTES:
+            self.assertNotIn('is_filter', attr_map[attribute])

@@ -21,3 +21,7 @@ class TaasVlanFilterDefinitionTestCase(base.DefinitionBaseTestCase):
     extension_module = vlan_filter
     extension_resources = (taas.TAP_FLOWS,)
     extension_attributes = ('vlan_filter',)
+
+    def test_vlan_filter_is_filterable(self):
+        attr_map = vlan_filter.RESOURCE_ATTRIBUTE_MAP[taas.TAP_FLOWS]
+        self.assertTrue(attr_map['vlan_filter'].get('is_filter'))
