@@ -178,7 +178,6 @@ KNOWN_EXTENSIONS = (
     'subnet_dns_publish_fixed_ip',
     'subnet_onboard',
     'subnetpool-prefix-ops',
-    'subnet-segmentid-enforce',
     'subnet-segmentid-writable',
     'tag',
     'tag-creation',

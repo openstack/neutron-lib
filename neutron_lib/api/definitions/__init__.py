@@ -157,7 +157,6 @@ from neutron_lib.api.definitions import subnet
 from neutron_lib.api.definitions import subnet_dns_publish_fixed_ip
 from neutron_lib.api.definitions import subnet_external_network
 from neutron_lib.api.definitions import subnet_onboard
-from neutron_lib.api.definitions import subnet_segmentid_enforce
 from neutron_lib.api.definitions import subnet_segmentid_writable
 from neutron_lib.api.definitions import subnet_service_types
 from neutron_lib.api.definitions import subnetpool
@@ -328,7 +327,6 @@ _ALL_API_DEFINITIONS = {
     subnet_dns_publish_fixed_ip,
     subnet_external_network,
     subnet_onboard,
-    subnet_segmentid_enforce,
     subnet_segmentid_writable,
     subnet_service_types,
     subnetpool,
