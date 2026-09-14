@@ -109,7 +109,6 @@ KNOWN_EXTENSIONS = (
     'floating-ip-port-forwarding',
     'floating-ip-port-forwarding-description',
     'floating-ip-router-writable',
-    'floatingip-autodelete-internal',
     'floatingip-pools',
     'ip-substring-filtering',
     'l3-agent-scheduler-ha-chassis-priority',
