@@ -202,10 +202,6 @@ KNOWN_EXTENSIONS = (
     'vpn-endpoint-groups',
     'vpn-flavors',
 
-    # https://opendev.org/openstack/networking-sfc:
-    'flow_classifier',
-    'sfc',
-
     # https://opendev.org/openstack/tap-as-a-service
     'taas',
     'tap-mirror',

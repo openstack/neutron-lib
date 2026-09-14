@@ -391,9 +391,6 @@ DNS_LABEL_MAX_LEN = 63
 DNS_LABEL_REGEX = "^([a-z0-9-]{1,%d}|%s)$" % (
     DNS_LABEL_MAX_LEN, '<' + '>|<'.join(DNS_LABEL_KEYWORDS) + '>')
 
-# max value for TCP, UDP, SCTP ports
-PORT_MAX = 2**16 - 1
-
 VALID_DSCP_MARKS = [0, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34,
                     36, 38, 40, 44, 46, 48, 56]
 

@@ -159,15 +159,6 @@ def convert_none_to_empty_dict(value):
     return {} if value is None else value
 
 
-def convert_none_to_empty_string(value):
-    """Convert the value to an empty string if it's None.
-
-    :param value: The value to convert.
-    :returns: An empty string if 'value' is None, otherwise 'value'.
-    """
-    return '' if value is None else value
-
-
 def convert_to_list(data):
     """Convert a value into a list.
 

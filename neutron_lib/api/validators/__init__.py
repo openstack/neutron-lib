@@ -1076,18 +1076,6 @@ def validate_uuid_list(data, valid_values=None):
     return _validate_uuid_list(data, valid_values)
 
 
-def validate_uuid_list_non_empty(data, valid_values=None):
-    """Validate data is a non-empty list of UUID like values.
-
-    :param data: The data to validate.
-    :param valid_values: Not used!
-    :returns: None if data is a non-empty iterable that contains valid UUID
-        values, otherwise a message is returned indicating why validation
-        failed.
-    """
-    return _validate_list_of_items_non_empty(validate_uuid, data)
-
-
 def _extract_validator(key_validator):
     # Find validator function in key validation spec
     #
@@ -1476,7 +1464,6 @@ validators = {'type:dict': validate_dict,
               'type:uuid': validate_uuid,
               'type:uuid_or_none': validate_uuid_or_none,
               'type:uuid_list': validate_uuid_list,
-              'type:uuid_list_non_empty': validate_uuid_list_non_empty,
               'type:values': validate_values,
               'type:boolean': validate_boolean,
               'type:integer': validate_integer,
