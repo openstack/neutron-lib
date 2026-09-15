@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the ``tenant_id`` attribute in the metering
+    label rules API definition. The ``metering_labels`` resource already
+    declared all attributes as filterable, but ``tenant_id`` on
+    ``metering_label_rules`` did not, which caused list operations with
+    query filters to return HTTP 400 when the filter-validation extension
+    is enabled.
