@@ -36,74 +36,102 @@ UPDATED_TIMESTAMP = '2013-06-12T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     METERING_LABELS: {
         'id': {
-            'allow_post': False, 'allow_put': False,
+            'allow_post': False,
+            'allow_put': False,
             'is_visible': True,
             'is_filter': True,
             'is_sort_key': True,
             'primary_key': True
         },
         'name': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-            'is_filter': True, 'is_sort_key': True,
-            'is_visible': True, 'default': ''
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': ''
         },
         'description': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'validate': {
                 'type:string': db_const.LONG_DESCRIPTION_FIELD_SIZE},
-            'is_filter': True, 'is_sort_key': True,
-            'is_visible': True, 'default': ''
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': ''
         },
         'tenant_id': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'required_by_policy': True,
             'validate': {
                 'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-            'is_filter': True, 'is_sort_key': True,
+            'is_filter': True,
+            'is_sort_key': True,
             'is_visible': True
         },
         constants.SHARED: {
-            'allow_post': True, 'allow_put': False,
-            'is_filter': True, 'is_sort_key': True,
-            'is_visible': True, 'default': False,
+            'allow_post': True,
+            'allow_put': False,
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': False,
             'convert_to': converters.convert_to_boolean
         }
     },
     METERING_LABEL_RULES: {
         'id': {
-            'allow_post': False, 'allow_put': False,
-            'is_visible': True, 'is_filter': True,
-            'is_sort_key': True, 'primary_key': True
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
         },
         'metering_label_id': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'validate': {'type:uuid': None},
-            'is_filter': True, 'is_sort_key': True,
-            'is_visible': True, 'required_by_policy': True
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'required_by_policy': True
         },
         qos_consts.DIRECTION: {
-            'allow_post': True, 'allow_put': False,
-            'is_visible': True, 'is_filter': True,
+            'allow_post': True,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True,
             'is_sort_key': True,
             'validate': {'type:values': constants.VALID_DIRECTIONS}
         },
         'excluded': {
-            'allow_post': True, 'allow_put': False,
-            'is_visible': True, 'default': False,
-            'is_filter': True, 'is_sort_key': True,
+            'allow_post': True,
+            'allow_put': False,
+            'is_visible': True,
+            'default': False,
+            'is_filter': True,
+            'is_sort_key': True,
             'convert_to': converters.convert_to_boolean
         },
         'remote_ip_prefix': {
-            'allow_post': True, 'allow_put': False,
-            'is_visible': True, 'required_by_policy': True,
-            'is_filter': True, 'is_sort_key': True,
+            'allow_post': True,
+            'allow_put': False,
+            'is_visible': True,
+            'required_by_policy': True,
+            'is_filter': True,
+            'is_sort_key': True,
             'validate': {'type:subnet': None}
         },
         'tenant_id': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'required_by_policy': True,
             'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'is_filter': True,
             'is_visible': True
         }
     }
