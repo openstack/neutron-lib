@@ -59,7 +59,6 @@ from neutron_lib.api.definitions import floating_ip_port_forwarding
 from neutron_lib.api.definitions import floatingip_autodelete_internal
 from neutron_lib.api.definitions import floatingip_pools
 from neutron_lib.api.definitions import floatingip_router_writable
-from neutron_lib.api.definitions import flowclassifier
 from neutron_lib.api.definitions import ip_allocation
 from neutron_lib.api.definitions import ip_substring_port_filtering
 from neutron_lib.api.definitions import l2_adjacency
@@ -147,7 +146,6 @@ from neutron_lib.api.definitions import security_groups_shared_filtering
 from neutron_lib.api.definitions import segment
 from neutron_lib.api.definitions import segments_peer_subnet_host_routes
 from neutron_lib.api.definitions import servicetype
-from neutron_lib.api.definitions import sfc
 from neutron_lib.api.definitions import sort_key_validation
 from neutron_lib.api.definitions import sorting
 from neutron_lib.api.definitions import standard_attr_segment
@@ -233,7 +231,6 @@ _ALL_API_DEFINITIONS = {
     ip_allocation,
     ip_substring_port_filtering,
     l2_adjacency,
-    flowclassifier,
     l3,
     l3_agent_scheduler_ha_chassis_priority,
     l3_conntrack_helper,
@@ -317,7 +314,6 @@ _ALL_API_DEFINITIONS = {
     segment,
     segments_peer_subnet_host_routes,
     servicetype,
-    sfc,
     sort_key_validation,
     sorting,
     standard_attr_segment,
