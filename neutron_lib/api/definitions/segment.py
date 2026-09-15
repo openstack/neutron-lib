@@ -95,6 +95,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'allow_put': False,
             'default': constants.ATTR_NOT_SPECIFIED,
             'convert_to': converters.convert_to_int,
+            'is_filter': True,
             'is_sort_key': True,
             'is_visible': True
         },
