@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the remaining scalar attributes in the network
+    IP availability API definition (``total_ips``, ``used_ips``, and
+    ``subnet_ip_availability``). Some attributes already had
+    ``is_filter``, but these three did not, which caused list operations
+    with query filters to return HTTP 400 when the filter-validation
+    extension is enabled.

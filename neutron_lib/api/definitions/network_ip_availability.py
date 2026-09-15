@@ -32,28 +32,41 @@ COLLECTION_NAME = RESOURCE_PLURAL.replace('_', '-')
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     RESOURCE_PLURAL: {
         'network_id': {
-            'allow_post': False, 'allow_put': False,
-            'is_visible': True, 'is_filter': True,
-            'primary_key': True, 'is_sort_key': True
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True,
+            'primary_key': True,
+            'is_sort_key': True
         },
         'network_name': {
-            'allow_post': False, 'allow_put': False,
-            'is_visible': True, 'is_filter': True
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
         },
         'tenant_id': {
-            'allow_post': False, 'allow_put': False,
-            'is_visible': True, 'is_filter': True
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'is_filter': True
         },
         'total_ips': {
-            'allow_post': False, 'allow_put': False,
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         },
         'used_ips': {
-            'allow_post': False, 'allow_put': False,
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         },
         'subnet_ip_availability': {
-            'allow_post': False, 'allow_put': False,
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         },
         # NOTE(hongbin): This 'ip_version' attribute (top-level) is only used
@@ -65,8 +78,10 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         # because this attribute should be used as filter only. Please do not
         # set it to True to avoid introducing inconsistency.
         'ip_version': {
-            'allow_post': False, 'allow_put': False,
-            'is_visible': False, 'is_filter': True
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': False,
+            'is_filter': True
         }
         # TODO(wwriverrat) Make composite attribute for subnet_ip_availability
     }
