@@ -34,54 +34,108 @@ DESCRIPTION = 'Flavor specification for Neutron advanced services.'
 UPDATED_TIMESTAMP = '2015-09-17T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     FLAVORS: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True, 'is_filter': True,
-               'is_sort_key': True, 'primary_key': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'is_filter': True, 'is_sort_key': True,
-                 'is_visible': True, 'default': ''},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {'type:string_or_none':
-                                     db_const.LONG_DESCRIPTION_FIELD_SIZE},
-                        'is_filter': True, 'is_sort_key': True,
-                        'is_visible': True, 'default': ''},
-        'service_type': {'allow_post': True, 'allow_put': False,
-                         'validate':
-                             {'type:service_plugin_type': None},
-                         'is_filter': True, 'is_sort_key': True,
-                         'is_visible': True},
-        'service_profiles': {'allow_post': True, 'allow_put': True,
-                             'validate': {'type:uuid_list': None},
-                             'is_visible': True, 'default': []},
-        'enabled': {'allow_post': True, 'allow_put': True,
-                    'convert_to': converters.convert_to_boolean_if_not_none,
-                    'default': True, 'is_filter': True, 'is_sort_key': True,
-                    'is_visible': True},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': ''
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {
+                'type:string_or_none':
+                    db_const.LONG_DESCRIPTION_FIELD_SIZE},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': ''
+        },
+        'service_type': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:service_plugin_type': None},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
+        'service_profiles': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:uuid_list': None},
+            'is_visible': True,
+            'default': []
+        },
+        'enabled': {
+            'allow_post': True,
+            'allow_put': True,
+            'convert_to': converters.convert_to_boolean_if_not_none,
+            'default': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
     },
     SERVICE_PROFILES: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True, 'is_filter': True,
-               'is_sort_key': True, 'primary_key': True},
-        'description': {'allow_post': True, 'allow_put': True,
-                        'validate': {'type:string_or_none':
-                                     db_const.LONG_DESCRIPTION_FIELD_SIZE},
-                        'is_filter': True, 'is_sort_key': True,
-                        'is_visible': True, 'default': ''},
-        'driver': {'allow_post': True, 'allow_put': True,
-                   'validate': {'type:string':
-                                db_const.LONG_DESCRIPTION_FIELD_SIZE},
-                   'is_visible': True, 'is_filter': True,
-                   'is_sort_key': True, 'default': ''},
-        'metainfo': {'allow_post': True, 'allow_put': True,
-                     'is_visible': True, 'is_sort_key': True,
-                     'default': ''},
-        'enabled': {'allow_post': True, 'allow_put': True,
-                    'convert_to': converters.convert_to_boolean_if_not_none,
-                    'is_filter': True, 'is_sort_key': True,
-                    'is_visible': True, 'default': True},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True
+        },
+        'description': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {
+                'type:string_or_none':
+                    db_const.LONG_DESCRIPTION_FIELD_SIZE},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': ''
+        },
+        'driver': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {
+                'type:string': db_const.LONG_DESCRIPTION_FIELD_SIZE},
+            'is_visible': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'default': ''
+        },
+        'metainfo': {
+            'allow_post': True,
+            'allow_put': True,
+            'is_filter': True,
+            'is_visible': True,
+            'is_sort_key': True,
+            'default': ''
+        },
+        'enabled': {
+            'allow_post': True,
+            'allow_put': True,
+            'convert_to': converters.convert_to_boolean_if_not_none,
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': True
+        },
     },
 }
 
