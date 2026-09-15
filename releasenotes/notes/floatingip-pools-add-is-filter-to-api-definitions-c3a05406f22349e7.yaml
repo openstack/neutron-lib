@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to all scalar attributes in the floating IP pools
+    API definition (``subnet_id``, ``subnet_name``, ``network_id``, ``cidr``,
+    and ``project_id``). Previously, no floating IP pool attribute was
+    declared as filterable, which caused list operations with query filters
+    (e.g. ``?subnet_name=foo``) to return HTTP 400 when the
+    filter-validation extension is enabled.
