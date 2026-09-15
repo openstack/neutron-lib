@@ -44,71 +44,96 @@ NETWORK_SEGMENT_RANGE_LIMIT = (constants.MIN_GRE_ID, constants.MAX_GRE_ID)
 
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        'id': {'allow_post': False,
-               'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_filter': True,
-               'is_sort_key': True,
-               'primary_key': True,
-               'is_visible': True},
-        'name': {'allow_post': True,
-                 'allow_put': True,
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'default': '',
-                 'is_filter': True,
-                 'is_sort_key': True,
-                 'is_visible': True},
-        'default': {'allow_post': False,
-                    'allow_put': False,
-                    'convert_to': converters.convert_to_boolean,
-                    'default': False,
-                    'is_visible': True},
-        constants.SHARED: {'allow_post': True,
-                           'allow_put': False,
-                           'convert_to': converters.convert_to_boolean,
-                           'default': True,
-                           'is_visible': True},
-        'project_id': {'allow_post': True,
-                       'allow_put': False,
-                       'validate': {
-                           'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                       'required_by_policy': True,
-                       'is_filter': True,
-                       'is_sort_key': True,
-                       'is_visible': True},
-        'network_type': {'allow_post': True,
-                         'allow_put': False,
-                         'validate': {
-                             'type:values':
-                                 constants.NETWORK_SEGMENT_RANGE_TYPES},
-                         'default': constants.ATTR_NOT_SPECIFIED,
-                         'is_filter': True,
-                         'is_visible': True},
-        'physical_network': {'allow_post': True,
-                             'allow_put': False,
-                             'validate': {
-                                 'type:string':
-                                     providernet.PHYSICAL_NETWORK_MAX_LEN},
-                             'default': constants.ATTR_NOT_SPECIFIED,
-                             'is_filter': True,
-                             'is_visible': True},
-        'minimum': {'allow_post': True,
-                    'allow_put': True,
-                    'convert_to': converters.convert_to_int,
-                    'validate': {'type:range': NETWORK_SEGMENT_RANGE_LIMIT},
-                    'is_visible': True},
-        'maximum': {'allow_post': True,
-                    'allow_put': True,
-                    'convert_to': converters.convert_to_int,
-                    'validate': {'type:range': NETWORK_SEGMENT_RANGE_LIMIT},
-                    'is_visible': True},
-        'used': {'allow_post': False,
-                 'allow_put': False,
-                 'is_visible': True},
-        'available': {'allow_post': False,
-                      'allow_put': False,
-                      'convert_to': converters.convert_none_to_empty_list,
-                      'is_visible': True}
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_sort_key': True,
+            'primary_key': True,
+            'is_visible': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'default': '',
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
+        'default': {
+            'allow_post': False,
+            'allow_put': False,
+            'convert_to': converters.convert_to_boolean,
+            'default': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        constants.SHARED: {
+            'allow_post': True,
+            'allow_put': False,
+            'convert_to': converters.convert_to_boolean,
+            'default': True,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'project_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
+        'network_type': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {
+                'type:values': constants.NETWORK_SEGMENT_RANGE_TYPES},
+            'default': constants.ATTR_NOT_SPECIFIED,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'physical_network': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {
+                'type:string': providernet.PHYSICAL_NETWORK_MAX_LEN},
+            'default': constants.ATTR_NOT_SPECIFIED,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'minimum': {
+            'allow_post': True,
+            'allow_put': True,
+            'convert_to': converters.convert_to_int,
+            'validate': {'type:range': NETWORK_SEGMENT_RANGE_LIMIT},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'maximum': {
+            'allow_post': True,
+            'allow_put': True,
+            'convert_to': converters.convert_to_int,
+            'validate': {'type:range': NETWORK_SEGMENT_RANGE_LIMIT},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'used': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'available': {
+            'allow_post': False,
+            'allow_put': False,
+            'convert_to': converters.convert_none_to_empty_list,
+            'is_filter': True,
+            'is_visible': True
+        }
     }
 }
 
