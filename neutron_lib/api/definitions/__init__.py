@@ -129,7 +129,6 @@ from neutron_lib.api.definitions import quota_check_limit
 from neutron_lib.api.definitions import quota_check_limit_default
 from neutron_lib.api.definitions import rbac_address_groups
 from neutron_lib.api.definitions import rbac_address_scope
-from neutron_lib.api.definitions import rbac_bgpvpn
 from neutron_lib.api.definitions import rbac_security_groups
 from neutron_lib.api.definitions import rbac_subnetpool
 from neutron_lib.api.definitions import revisionifmatch
@@ -301,7 +300,6 @@ _ALL_API_DEFINITIONS = {
     quota_check_limit_default,
     rbac_address_groups,
     rbac_address_scope,
-    rbac_bgpvpn,
     rbac_security_groups,
     rbac_subnetpool,
     revisionifmatch,
