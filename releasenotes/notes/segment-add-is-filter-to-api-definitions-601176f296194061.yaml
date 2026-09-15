@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the ``segmentation_id`` attribute in the
+    segment API definition. Other ``segments`` attributes already
+    declared ``is_filter``, but ``segmentation_id`` did not, which caused
+    list operations with query filters to return HTTP 400 when the
+    filter-validation extension is enabled.
