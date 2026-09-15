@@ -54,38 +54,52 @@ UPDATED_TIMESTAMP = '2015-06-08T10:00:00-00:00'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     POLICIES: {
         'id': {
-            'allow_post': False, 'allow_put': False,
+            'allow_post': False,
+            'allow_put': False,
             'validate': {'type:uuid': None},
-            'is_filter': True, 'is_sort_key': True,
-            'is_visible': True, 'primary_key': True
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'primary_key': True
         },
         'name': {
-            'allow_post': True, 'allow_put': True,
-            'is_visible': True, 'default': '',
-            'is_filter': True, 'is_sort_key': True,
-            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE}},
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': '',
+            'is_filter': True,
+            'is_sort_key': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE}
+        },
         constants.SHARED: {
-            'allow_post': True, 'allow_put': True,
-            'is_visible': True, 'default': False,
+            'allow_post': True,
+            'allow_put': True,
+            'is_visible': True,
+            'default': False,
             'is_filter': True,
             'convert_to': converters.convert_to_boolean
         },
         'tenant_id': {
-            'allow_post': True, 'allow_put': False,
+            'allow_post': True,
+            'allow_put': False,
             'required_by_policy': True,
             'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-            'is_filter': True, 'is_sort_key': True,
+            'is_filter': True,
+            'is_sort_key': True,
             'is_visible': True
         },
         'rules': {
             'allow_post': False,
             'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         }
     },
     RULE_TYPES: {
         'type': {
-            'allow_post': False, 'allow_put': False,
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         }
     },
