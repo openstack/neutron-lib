@@ -32,37 +32,82 @@ RESOURCE_NAME = ALIAS
 COLLECTION_NAME = ALIAS + 's'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_filter': True,
-               'is_visible': True},
-        'agent_type': {'allow_post': False, 'allow_put': False,
-                       'is_filter': True, 'is_visible': True},
-        'binary': {'allow_post': False, 'allow_put': False,
-                   'is_filter': True, 'is_visible': True},
-        'topic': {'allow_post': False, 'allow_put': False,
-                  'is_filter': True, 'is_visible': True},
-        'host': {'allow_post': False, 'allow_put': False,
-                 'is_filter': True, 'is_visible': True},
-        'admin_state_up': {'allow_post': False, 'allow_put': True,
-                           'convert_to': converters.convert_to_boolean,
-                           'is_filter': True,
-                           'is_visible': True},
-        'created_at': {'allow_post': False, 'allow_put': False,
-                       'is_visible': True},
-        'started_at': {'allow_post': False, 'allow_put': False,
-                       'is_visible': True},
-        'heartbeat_timestamp': {'allow_post': False, 'allow_put': False,
-                                'is_visible': True},
-        'alive': {'allow_post': False, 'allow_put': False,
-                  'is_filter': True, 'is_visible': True},
-        'configurations': {'allow_post': False, 'allow_put': False,
-                           'is_visible': True},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'agent_type': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'binary': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'topic': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'host': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'admin_state_up': {
+            'allow_post': False,
+            'allow_put': True,
+            'convert_to': converters.convert_to_boolean,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'created_at': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'started_at': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'heartbeat_timestamp': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'alive': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
+        'configurations': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_filter': True,
+            'is_visible': True
+        },
         'description': {
-            'allow_post': False, 'allow_put': True,
-            'is_visible': True, 'is_filter': True,
+            'allow_post': False,
+            'allow_put': True,
+            'is_visible': True,
+            'is_filter': True,
             'validate': {
-                'type:string_or_none': constants.DESCRIPTION_FIELD_SIZE}},
+                'type:string_or_none': constants.DESCRIPTION_FIELD_SIZE}
+        },
     }
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
