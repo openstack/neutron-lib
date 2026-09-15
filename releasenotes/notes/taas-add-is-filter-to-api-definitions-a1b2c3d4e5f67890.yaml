@@ -1,0 +1,12 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to all scalar DB-backed attributes in the TaaS API
+    definitions (``tap_services``, ``tap_flows``, ``tap_mirrors``, and the
+    ``taas-vlan-filter`` extension). Previously, no TaaS attribute was
+    declared as filterable, which caused list operations with query filters
+    (e.g. ``?name=foo``) to return HTTP 400. This also broke
+    ``openstack tap service show <name>``, ``openstack tap flow show
+    <name>``, and ``openstack tap mirror show <name>`` because the client
+    falls back to filtering by name when the initial UUID-based lookup
+    returns 404.

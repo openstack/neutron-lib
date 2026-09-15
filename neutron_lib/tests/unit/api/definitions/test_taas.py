@@ -21,3 +21,21 @@ class TaasDefinitionTestCase(base.DefinitionBaseTestCase):
     extension_resources = (taas.COLLECTION_NAME, taas.TAP_FLOWS,)
     extension_attributes = ('port_id', 'tap_service_id', 'source_port',
                             'direction')
+
+    FILTERABLE_ATTRIBUTES = {
+        taas.COLLECTION_NAME: (
+            'id', 'tenant_id', 'name', 'description', 'port_id', 'status',
+        ),
+        taas.TAP_FLOWS: (
+            'id', 'tenant_id', 'name', 'description', 'tap_service_id',
+            'source_port', 'direction', 'status',
+        ),
+    }
+
+    def test_scalar_attributes_are_filterable(self):
+        for resource, attributes in self.FILTERABLE_ATTRIBUTES.items():
+            attr_map = taas.RESOURCE_ATTRIBUTE_MAP[resource]
+            for attribute in attributes:
+                self.assertTrue(
+                    attr_map[attribute].get('is_filter'),
+                    f'{resource}.{attribute} must be filterable')
