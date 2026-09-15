@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the remaining scalar attributes in the network
+    segment range API definition (``default``, ``shared``, ``minimum``,
+    ``maximum``, ``used``, and ``available``). Some attributes already had
+    ``is_filter``, but these six did not, which caused list operations with
+    query filters to return HTTP 400 when the filter-validation extension
+    is enabled.
