@@ -31,22 +31,41 @@ UPDATED_TIMESTAMP = '2018-03-21T10:00:00-00:00'
 COLLECTION_NAME = FLOATINGIP_POOLS
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        'subnet_id': {'allow_post': False, 'allow_put': False,
-                      'validate': {'type:uuid': None},
-                      'is_visible': True},
-        'subnet_name': {'allow_post': False, 'allow_put': False,
-                        'validate': {'type:string': db_const.NAME_FIELD_SIZE},
-                        'is_visible': True},
-        'network_id': {'allow_post': False, 'allow_put': False,
-                       'validate': {'type:uuid': None},
-                       'is_visible': True},
-        'cidr': {'allow_post': False, 'allow_put': False,
-                 'validate': {'type:subnet_or_none': None},
-                 'is_visible': True},
-        'project_id': {'allow_post': False, 'allow_put': False,
-                       'validate': {
-                           'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                       'is_visible': True},
+        'subnet_id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'subnet_name': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:string': db_const.NAME_FIELD_SIZE},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'network_id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'cidr': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:subnet_or_none': None},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'project_id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'is_filter': True,
+            'is_visible': True
+        },
     },
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
