@@ -464,19 +464,14 @@ def _expire_prop_on_col(cls, prop, colkey):
 
 
 def is_session_active(session):
-    """Return if the session is active
+    """Return if the session is active.
 
-    Since sqlalchemy 1.4, "autocommit=False" by default; in sqlalchemy 2.0,
-    that will be the only possible value. If session autocommit is False, the
-    session transaction will not end at the end of a reader/writer context.
-    In this case, a session could have an active transaction even when it is
-    not inside a reader/writer context. In order to mimic the previous
-    behaviour, this method checks if there is a transaction created and if
-    the transaction has any active connection against the database server.
+    With autocommit disabled, the session transaction does not end at the end
+    of a reader/writer context. A session can therefore have an active
+    transaction even when it is not inside a reader/writer context. This
+    method checks if there is a transaction and if it has any active
+    connection against the database server.
     """
-    if getattr(session, 'autocommit', None):
-        # old behaviour, to be removed with sqlalchemy 2.0
-        return session.is_active
     if not session.get_transaction():
         return False
     if not session.get_transaction()._connections:

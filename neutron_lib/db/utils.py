@@ -160,12 +160,8 @@ def filter_non_model_columns(data, model):
     """
     mapper = sqlalchemy.inspect(model)
     columns = {c.name for c in mapper.columns}
-    try:
-        _association_proxy = associationproxy.ASSOCIATION_PROXY
-    except AttributeError:
-        # SQLAlchemy 2.0
-        _association_proxy = (
-            associationproxy.AssociationProxyExtensionType.ASSOCIATION_PROXY)
+    _association_proxy = (
+        associationproxy.AssociationProxyExtensionType.ASSOCIATION_PROXY)
     columns.update(d.value_attr for d in mapper.all_orm_descriptors
                    if d.extension_type is _association_proxy)
     return {k: v for (k, v)

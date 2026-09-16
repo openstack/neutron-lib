@@ -132,9 +132,20 @@ class TestDeadLockDecorator(_base.BaseTestCase):
             raise exc_to_raise
         return list_arg, dict_arg
 
-    def test_stacked_retries_dont_explode_retry_count(self):
+    def _inactive_session_context(self):
         context = mock.Mock()
-        context.session.is_active = False
+        context.session.get_transaction.return_value = None
+        return context
+
+    def _active_session_context(self):
+        context = mock.Mock()
+        txn = mock.Mock()
+        txn._connections = {mock.sentinel.bind: mock.Mock()}
+        context.session.get_transaction.return_value = txn
+        return context
+
+    def test_stacked_retries_dont_explode_retry_count(self):
+        context = self._inactive_session_context()
         e = db_exc.DBConnectionError()
         mock.patch('time.sleep').start()
         with testtools.ExpectedException(db_exc.DBConnectionError):
@@ -181,8 +192,7 @@ class TestDeadLockDecorator(_base.BaseTestCase):
     def test_retry_if_session_inactive_args_not_mutated_after_retries(self):
         self.addCleanup(self._restore_max_retries, db_api.MAX_RETRIES)
         db_api.MAX_RETRIES = 1
-        context = mock.Mock()
-        context.session.is_active = False
+        context = self._inactive_session_context()
         list_arg = [1, 2, 3, 4]
         dict_arg = {1: 'a', 2: 'b'}
         la, da = self._context_function(context, list_arg, dict_arg,
@@ -195,8 +205,7 @@ class TestDeadLockDecorator(_base.BaseTestCase):
     def test_retry_if_session_inactive_kwargs_not_mutated_after_retries(self):
         self.addCleanup(self._restore_max_retries, db_api.MAX_RETRIES)
         db_api.MAX_RETRIES = 1
-        context = mock.Mock()
-        context.session.is_active = False
+        context = self._inactive_session_context()
         list_arg = [1, 2, 3, 4]
         dict_arg = {1: 'a', 2: 'b'}
         la, da = self._context_function(context, list_arg=list_arg,
@@ -209,8 +218,7 @@ class TestDeadLockDecorator(_base.BaseTestCase):
         self.assertEqual(3, len(da))
 
     def test_retry_if_session_inactive_no_retry_in_active_session(self):
-        context = mock.Mock()
-        context.session.is_active = True
+        context = self._active_session_context()
         with testtools.ExpectedException(db_exc.DBDeadlock):
             # retry decorator should have no effect in an active session
             self._context_function(context, [], {1: 2},
