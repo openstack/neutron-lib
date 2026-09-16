@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the remaining scalar attributes in the agent
+    API definition (``created_at``, ``started_at``,
+    ``heartbeat_timestamp``, and ``configurations``). Some attributes
+    already had ``is_filter``, but these four did not, which caused list
+    operations with query filters to return HTTP 400 when the
+    filter-validation extension is enabled.
