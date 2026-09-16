@@ -35,12 +35,20 @@ RESOURCE_NAME = 'auto_allocated_topology'
 COLLECTION_NAME = 'auto_allocated_topologies'
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True},
-        'tenant_id': {'allow_post': False, 'allow_put': False,
-                      'validate': {'type:uuid': None},
-                      'is_visible': True},
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_visible': True
+        },
+        'tenant_id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_visible': True
+        },
     },
     network.COLLECTION_NAME: {
         constants.IS_DEFAULT: {
@@ -51,7 +59,9 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
             'is_visible': True,
             'convert_to': converters.convert_to_boolean,
             'enforce_policy': True,
-            'required_by_policy': True}},
+            'required_by_policy': True
+        },
+    },
 }
 SUB_RESOURCE_ATTRIBUTE_MAP: SubResourceAttributeMap = {}
 ACTION_MAP: ActionMap = {}
