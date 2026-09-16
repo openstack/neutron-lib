@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the ``metainfo`` attribute in the service
+    profiles API definition. Other ``service_profiles`` attributes already
+    declared ``is_filter``, but ``metainfo`` did not, which caused list
+    operations with query filters to return HTTP 400 when the
+    filter-validation extension is enabled.
