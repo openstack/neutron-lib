@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the ``rules`` attribute in the QoS policies API
+    definition and to the ``type`` attribute in the rule types API
+    definition. Other QoS attributes already declared ``is_filter``, but
+    these two did not, which caused list operations with query filters to
+    return HTTP 400 when the filter-validation extension is enabled.
