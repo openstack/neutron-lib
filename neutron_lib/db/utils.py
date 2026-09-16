@@ -158,6 +158,8 @@ def filter_non_model_columns(data, model):
     :returns: A new dict who's keys are columns in model or are association
         proxies of the model.
     """
+    if data is None:
+        return {}
     mapper = sqlalchemy.inspect(model)
     columns = {c.name for c in mapper.columns}
     try:
