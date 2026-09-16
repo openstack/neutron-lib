@@ -622,6 +622,10 @@ def validate_ip_address(data, valid_values=None):
     :returns: None if data is an IP address, otherwise a human readable
         message indicating why data isn't an IP address.
     """
+    if data is None:
+        msg = "'None' is not a valid IP address"
+        LOG.debug(msg)
+        return _(msg)
     msg = None
     msg_data = data
     try:
