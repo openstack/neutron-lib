@@ -49,9 +49,13 @@ def convert_to_boolean_if_not_none(data):
     :returns: The 'data' returned from convert_to_boolean() if 'data' is not
         None. None is returned if data is None.
     """
-    if data is not None:
+    if data is None:
+        return None
+    try:
         return convert_to_boolean(data)
-    return None
+    except n_exc.InvalidInput as e:
+        msg = _("Failed to convert '%s' to boolean: %s") % (data, str(e))
+        raise n_exc.InvalidInput(error_message=msg) from e
 
 
 def convert_to_int(data):
