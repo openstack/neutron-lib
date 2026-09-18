@@ -120,7 +120,9 @@ def is_retriable(e):
                                obj_exc.NeutronDbObjectDuplicateEntry)):
         return True
     # looking savepoints mangled by deadlocks. see bug/1590298 for details.
-    return _is_nested_instance(e, db_exc.DBError) and '1305' in str(e)
+    if _is_nested_instance(e, db_exc.DBError):
+        return '1305' in str(e)
+    return False
 
 
 def _tag_retriables_as_unretriable(f):
