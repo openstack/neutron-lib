@@ -62,6 +62,9 @@ def convert_to_int(data):
     :returns: The int value of the data.
     :raises InvalidInput: If the value can't be converted to an int.
     """
+    if data is None:
+        msg = _("'None' is not an integer")
+        raise n_exc.InvalidInput(error_message=msg)
     try:
         return int(data)
     except (ValueError, TypeError) as e:
