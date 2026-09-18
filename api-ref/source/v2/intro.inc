@@ -98,6 +98,20 @@ A ``.json`` extension can be added to the request URI. For example, the
 
 - GET *publicURL*/networks.json
 
+URL path hyphens and underscores
+--------------------------------
+
+The Networking API v2.0 URL router treats hyphens (``-``) and underscores
+(``_``) as equivalent in resource path segments. For example, the following
+two URIs resolve to the same endpoint:
+
+- ``/v2.0/security-groups``
+- ``/v2.0/security_groups``
+
+This behavior is preserved for backward compatibility. API clients should
+prefer hyphens in URL paths (e.g., ``/v2.0/security-groups``) as this is
+the canonical form used throughout the API reference documentation.
+
 Tenant and project attributes in responses
 ------------------------------------------
 
