@@ -793,6 +793,10 @@ def validate_nameservers(data, valid_values=None):
         LOG.debug(msg, data)
         return _(msg) % data
 
+    # Handle empty list explicitly
+    if not data:
+        return None
+
     hosts = []
     for host in data:
         # This must be an IP address only
