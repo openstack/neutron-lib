@@ -231,9 +231,6 @@ def apply_filters(query, model, filters, context=None):
                     query = query.filter(sql.false())
                     return query
                 if not hasattr(column, 'in_'):
-                    # NOTE(ralonsoh): since SQLAlchemy==1.3.0, a column is an
-                    # AssociationProxyInstance and inherits in_() method from
-                    # ColumnOperators.
                     # association proxies don't support in_ so we have to
                     # do multiple equals matches
                     query = query.filter(
