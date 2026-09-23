@@ -376,6 +376,30 @@ class TestAttributeValidation(base.BaseTestCase):
         msg = validators.validate_integer(1, [2, 3, 4, 5])
         self.assertEqual("1 is not in valid_values", msg)
 
+    def test_validate_integer_or_none(self):
+        msg = validators.validate_integer_or_none(None)
+        self.assertIsNone(msg)
+        msg = validators.validate_integer_or_none(1)
+        self.assertIsNone(msg)
+        msg = validators.validate_integer_or_none("1")
+        self.assertIsNone(msg)
+        msg = validators.validate_integer_or_none(2 ** 32)
+        self.assertIsNone(msg)
+        msg = validators.validate_integer_or_none(-1)
+        self.assertIsNone(msg)
+        msg = validators.validate_integer_or_none(0.1)
+        self.assertEqual("'0.1' is not an integer", msg)
+        msg = validators.validate_integer_or_none("0.1")
+        self.assertEqual("'0.1' is not an integer", msg)
+        msg = validators.validate_integer_or_none(True)
+        self.assertEqual("'True' is not an integer:boolean", msg)
+        msg = validators.validate_integer_or_none("None")
+        self.assertEqual("'None' is not an integer", msg)
+        msg = validators.validate_integer_or_none(2, [2, 3])
+        self.assertIsNone(msg)
+        msg = validators.validate_integer_or_none(1, [2, 3])
+        self.assertEqual("1 is not in valid_values", msg)
+
     def test_validate_no_whitespace(self):
         data = 'no_white_space'
         result = validators.validate_no_whitespace(data)

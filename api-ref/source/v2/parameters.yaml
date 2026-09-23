@@ -2985,7 +2985,9 @@ direction_taf:
 directions_tap_mirror:
   description: |
     A dictionary of ``direction`` and ``tunnel_id``.
-    Direction can be ``IN``, ``OUT`` and ``BOTH``.
+    Direction can be ``IN``, ``OUT`` and ``BOTH``. For an ``lport`` mirror
+    the tunnel ID values are not used and must be ``null``, for example
+    ``{"BOTH": null}`` or ``{"IN": null, "OUT": null}``.
   in: body
   required: true
   type: object
@@ -4845,7 +4847,8 @@ mirror_port_tas:
   type: string
 mirror_type:
   description: |
-    The type of the mirroring, it can be ``gre`` or ``erspanv1``.
+    The type of the mirroring, it can be ``gre``, ``erspanv1`` or ``lport``
+    (mirror to another Neutron port).
   in: body
   required: true
   type: string
@@ -6207,9 +6210,17 @@ remote_ip_prefix-request:
 remote_ip_tap_mirror:
   description: |
     The remote IP of the Tap Mirror, this will be the remote end of the
-    GRE or ERSPAN v1 tunnel.
+    GRE or ERSPAN v1 tunnel. Required for ``gre`` and ``erspanv1`` mirrors,
+    must be omitted for ``lport`` mirrors.
   in: body
-  required: true
+  required: false
+  type: string
+remote_port_id_tap_mirror:
+  description: |
+    The ID of the Neutron port that receives the mirrored traffic. Required
+    for ``lport`` mirrors, must be omitted for the other mirror types.
+  in: body
+  required: false
   type: string
 resource:
   description: |
@@ -7388,7 +7399,9 @@ tap_mirror_port_id:
   description: |
     The Port ID of the Tap Mirror, this will be the source of the mirrored
     traffic, and this traffic will be tunneled into the GRE or ERSPAN v1
-    tunnel. The tunnel itself is not starting from this port!
+    tunnel. The tunnel itself is not starting from this port! For an
+    ``lport`` mirror the traffic is delivered to the port given by
+    ``remote_port_id`` instead.
   in: body
   required: true
   type: string

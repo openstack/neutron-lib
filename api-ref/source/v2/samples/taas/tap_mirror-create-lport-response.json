@@ -1,0 +1,16 @@
+{
+    "tap_mirror": {
+        "id": "2b7c1d4e-5f60-4a71-8b82-93a4b5c6d7e8",
+        "project_id": "57425788f1a148059926c124a6ffabe6",
+        "name": "mirror3",
+        "description": "Mirror to a collector port",
+        "port_id": "c63e4f48-da76-466c-a6f1-f4e4a4902c6a",
+        "directions": {
+            "BOTH": null
+        },
+        "remote_ip": null,
+        "remote_port_id": "8801f350-9c1e-4b7a-a2d3-5e6f7a8b9c0d",
+        "mirror_type": "lport",
+        "tenant_id": "57425788f1a148059926c124a6ffabe6"
+    }
+}

@@ -516,6 +516,19 @@ def validate_integer(data, valid_values=None):
     return None
 
 
+def validate_integer_or_none(data, valid_values=None):
+    """Validate data is an integer or None.
+
+    :param data: The data to validate.
+    :param valid_values: values to limit the 'data' to.
+    :returns: None if data is None or an integer, otherwise a human readable
+        message indicating why validation failed.
+    """
+    if data is not None:
+        return validate_integer(data, valid_values)
+    return None
+
+
 def validate_range(data, valid_values=None):
     """Check that integer value is within a range provided.
 
@@ -1475,6 +1488,7 @@ validators = {'type:dict': validate_dict,
               'type:values': validate_values,
               'type:boolean': validate_boolean,
               'type:integer': validate_integer,
+              'type:integer_or_none': validate_integer_or_none,
               'type:list_of_unique_strings': validate_list_of_unique_strings,
               'type:list_of_any_key_specs_or_none':
                   validate_any_key_specs_or_none,

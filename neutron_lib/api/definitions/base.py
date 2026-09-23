@@ -203,6 +203,7 @@ KNOWN_EXTENSIONS = (
     'taas',
     'tap-mirror',
     'tap-mirror-both-direction',
+    'tap-mirror-lport',
     'taas-vlan-filter',
 )
 

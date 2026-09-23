@@ -1,0 +1,15 @@
+---
+features:
+  - |
+    Add the ``tap-mirror-lport`` API definition for Tap-as-a-Service. It
+    introduces the ``lport`` mirror type, whose sink is another Neutron port
+    (``remote_port_id``) instead of a remote IP address, so the mirrored
+    traffic stays inside the overlay and no tunnel encapsulation is exposed to
+    the receiving port. ``remote_ip`` becomes optional for this mirror type
+    and so do the tunnel ID values of ``directions``, which ``lport`` mirrors
+    do not use and must not set. New exceptions are added to
+    ``neutron_lib.exceptions.taas`` for the per mirror type validation done
+    by the service plugin.
+  - |
+    Added the validator ``integer_or_none``, which accepts ``None`` or
+    whatever ``integer`` accepts.
