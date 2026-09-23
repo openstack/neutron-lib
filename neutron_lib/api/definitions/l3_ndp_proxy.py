@@ -66,48 +66,68 @@ DESCRIPTION = 'description'
 # The resource attribute map for the extension.
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        ID: {'allow_post': False,
-             'allow_put': False,
-             'validate': {'type:uuid': None},
-             'is_visible': True,
-             'is_sort_key': True,
-             'primary_key': True},
-        NAME: {'allow_post': True,
-               'allow_put': True,
-               'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-               'is_filter': True,
-               'is_sort_key': True,
-               'is_visible': True, 'default': ''},
-        PROJECT_ID: {'allow_post': True,
-                     'allow_put': False,
-                     'required_by_policy': True,
-                     'validate': {
-                         'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                     'is_sort_key': True,
-                     'is_visible': True},
-        ROUTER_ID: {'allow_post': True,
-                    'allow_put': False,
-                    'validate': {'type:uuid': None},
-                    'is_sort_key': True,
-                    'is_visible': True},
-        PORT_ID: {'allow_post': True,
-                  'allow_put': False,
-                  'validate': {'type:uuid': None},
-                  'is_sort_key': True,
-                  'is_visible': True},
-        IP_ADDRESS: {'allow_post': True,
-                     'allow_put': False,
-                     'default': None,
-                     'validate': {
-                         'type:ip_address_or_none': None},
-                     'is_sort_key': True,
-                     'is_visible': True},
-        DESCRIPTION: {'allow_post': True,
-                      'allow_put': True,
-                      'default': '',
-                      'validate': {'type:string':
-                                   db_const.LONG_DESCRIPTION_FIELD_SIZE},
-                      'is_visible': True}
+        ID: {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'primary_key': True
+        },
+        NAME: {
+            'allow_post': True,
+            'allow_put': True,
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True,
+            'default': ''
+        },
+        PROJECT_ID: {
+            'allow_post': True,
+            'allow_put': False,
+            'required_by_policy': True,
+            'validate': {
+                'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
+        ROUTER_ID: {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
+        PORT_ID: {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
+        IP_ADDRESS: {
+            'allow_post': True,
+            'allow_put': False,
+            'default': None,
+            'validate': {'type:ip_address_or_none': None},
+            'is_filter': True,
+            'is_sort_key': True,
+            'is_visible': True
+        },
+        DESCRIPTION: {
+            'allow_post': True,
+            'allow_put': True,
+            'default': '',
+            'validate': {'type:string':
+                         db_const.LONG_DESCRIPTION_FIELD_SIZE},
+            'is_filter': True,
+            'is_visible': True
+        }
     }
 }
 

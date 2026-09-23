@@ -1,0 +1,9 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to the remaining scalar attributes in the L3 NDP
+    proxy API definition (``id``, ``project_id``, ``router_id``, ``port_id``,
+    ``ip_address``, and ``description``). The ``name`` attribute already
+    declared ``is_filter``, but the others did not, which caused list
+    operations with query filters to return HTTP 400 when the
+    filter-validation extension is enabled.
