@@ -38,16 +38,19 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         SERVICE_ATTR: {
             'allow_post': False,
             'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         },
         'name': {
             'allow_post': False,
             'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         },
         'default': {
             'allow_post': False,
             'allow_put': False,
+            'is_filter': True,
             'is_visible': True
         }
     }

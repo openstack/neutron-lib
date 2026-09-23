@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to all scalar attributes in the service type API
+    definition (``service_type``, ``name``, and ``default``). Previously,
+    no service provider attribute was declared as filterable, which caused
+    list operations with query filters (e.g. ``?name=foo``) to return HTTP
+    400 when the filter-validation extension is enabled.
