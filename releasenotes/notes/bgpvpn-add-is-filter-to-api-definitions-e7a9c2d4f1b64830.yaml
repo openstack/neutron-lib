@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    Added ``is_filter`` to all scalar attributes in the BGPVPN API definition
+    (``id``, ``tenant_id``, ``name``, and ``type``). Previously, no BGPVPN
+    attribute was declared as filterable, which caused list operations with
+    query filters (e.g. ``?name=foo``) to return HTTP 400 when the
+    filter-validation extension is enabled.

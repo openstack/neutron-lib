@@ -82,61 +82,91 @@ ROUTER_ASSOCIATIONS = 'router_associations'
 # The resource attribute map for the extension.
 RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
     COLLECTION_NAME: {
-        'id': {'allow_post': False, 'allow_put': False,
-               'validate': {'type:uuid': None},
-               'is_visible': True,
-               'primary_key': True,
-               'enforce_policy': True},
-        'tenant_id': {'allow_post': True, 'allow_put': False,
-                      'validate': {
-                          'type:string': db_const.PROJECT_ID_FIELD_SIZE},
-                      'required_by_policy': True,
-                      'is_visible': True,
-                      'enforce_policy': True},
-        'name': {'allow_post': True, 'allow_put': True,
-                 'default': '',
-                 'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
-                 'is_visible': True,
-                 'enforce_policy': True},
-        'type': {'allow_post': True, 'allow_put': False,
-                 'default': BGPVPN_L3,
-                 'validate': {'type:values': BGPVPN_TYPES},
-                 'is_visible': True,
-                 'enforce_policy': True},
-        'route_targets': {'allow_post': True, 'allow_put': True,
-                          'default': [],
-                          'convert_to': converters.convert_to_list,
-                          'validate': {'type:list_of_regex_or_none':
-                                       RTRD_REGEX},
-                          'is_visible': True,
-                          'enforce_policy': True},
-        'import_targets': {'allow_post': True, 'allow_put': True,
-                           'default': [],
-                           'convert_to': converters.convert_to_list,
-                           'validate': {'type:list_of_regex_or_none':
-                                        RTRD_REGEX},
-                           'is_visible': True,
-                           'enforce_policy': True},
-        'export_targets': {'allow_post': True, 'allow_put': True,
-                           'default': [],
-                           'convert_to': converters.convert_to_list,
-                           'validate': {'type:list_of_regex_or_none':
-                                        RTRD_REGEX},
-                           'is_visible': True,
-                           'enforce_policy': True},
-        'route_distinguishers': {'allow_post': True, 'allow_put': True,
-                                 'default': [],
-                                 'convert_to': converters.convert_to_list,
-                                 'validate': {'type:list_of_regex_or_none':
-                                              RTRD_REGEX},
-                                 'is_visible': True,
-                                 'enforce_policy': True},
-        'networks': {'allow_post': False, 'allow_put': False,
-                     'is_visible': True,
-                     'enforce_policy': True},
-        'routers': {'allow_post': False, 'allow_put': False,
-                    'is_visible': True,
-                    'enforce_policy': True}
+        'id': {
+            'allow_post': False,
+            'allow_put': False,
+            'validate': {'type:uuid': None},
+            'is_filter': True,
+            'is_visible': True,
+            'primary_key': True,
+            'enforce_policy': True
+        },
+        'tenant_id': {
+            'allow_post': True,
+            'allow_put': False,
+            'validate': {
+                'type:string': db_const.PROJECT_ID_FIELD_SIZE},
+            'required_by_policy': True,
+            'is_filter': True,
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'name': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': '',
+            'validate': {'type:name_string': db_const.NAME_FIELD_SIZE},
+            'is_filter': True,
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'type': {
+            'allow_post': True,
+            'allow_put': False,
+            'default': BGPVPN_L3,
+            'validate': {'type:values': BGPVPN_TYPES},
+            'is_filter': True,
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'route_targets': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': [],
+            'convert_to': converters.convert_to_list,
+            'validate': {'type:list_of_regex_or_none': RTRD_REGEX},
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'import_targets': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': [],
+            'convert_to': converters.convert_to_list,
+            'validate': {'type:list_of_regex_or_none': RTRD_REGEX},
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'export_targets': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': [],
+            'convert_to': converters.convert_to_list,
+            'validate': {'type:list_of_regex_or_none': RTRD_REGEX},
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'route_distinguishers': {
+            'allow_post': True,
+            'allow_put': True,
+            'default': [],
+            'convert_to': converters.convert_to_list,
+            'validate': {'type:list_of_regex_or_none': RTRD_REGEX},
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'networks': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'enforce_policy': True
+        },
+        'routers': {
+            'allow_post': False,
+            'allow_put': False,
+            'is_visible': True,
+            'enforce_policy': True
+        }
     },
 }
 
