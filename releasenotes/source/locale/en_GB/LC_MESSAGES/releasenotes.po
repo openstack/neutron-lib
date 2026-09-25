@@ -1,15 +1,16 @@
 # Andi Chandler <andi@gowling.com>, 2018. #zanata
 # Andi Chandler <andi@gowling.com>, 2020. #zanata
 # Andi Chandler <andi@gowling.com>, 2022. #zanata
+# Andi Chandler <andi@gowling.com>, 2026. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: Neutron Library Release Notes\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-07 12:33+0000\n"
+"POT-Creation-Date: 2026-09-24 00:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-09-15 09:03+0000\n"
+"PO-Revision-Date: 2026-09-24 07:50+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>\n"
 "Language-Team: English (United Kingdom)\n"
 "Language: en_GB\n"
@@ -130,17 +131,8 @@ msgstr "2.0.0"
 msgid "2.10.2"
 msgstr "2.10.2"
 
-msgid "2.11.0"
-msgstr "2.11.0"
-
-msgid "2.12.0"
-msgstr "2.12.0"
-
-msgid "2.13.0"
-msgstr "2.13.0"
-
-msgid "2.14.0"
-msgstr "2.14.0"
+msgid "2.10.2-7"
+msgstr "2.10.2-7"
 
 msgid "2.15.0"
 msgstr "2.15.0"
@@ -148,17 +140,8 @@ msgstr "2.15.0"
 msgid "2.15.2"
 msgstr "2.15.2"
 
-msgid "2.16.0"
-msgstr "2.16.0"
-
-msgid "2.17.0"
-msgstr "2.17.0"
-
-msgid "2.18.0"
-msgstr "2.18.0"
-
-msgid "2.19.0"
-msgstr "2.19.0"
+msgid "2.15.3"
+msgstr "2.15.3"
 
 msgid "2.2.0"
 msgstr "2.2.0"
@@ -166,8 +149,8 @@ msgstr "2.2.0"
 msgid "2.20.0"
 msgstr "2.20.0"
 
-msgid "2.21.0"
-msgstr "2.21.0"
+msgid "2.20.1"
+msgstr "2.20.1"
 
 msgid "2.3.0-4"
 msgstr "2.3.0-4"
@@ -196,12 +179,88 @@ msgstr "2.9.0"
 msgid "2.9.1"
 msgstr "2.9.1"
 
-msgid "3.0.0"
-msgstr "3.0.0"
-
 msgid "3.1.0"
 msgstr "3.1.0"
 
+msgid "3.1.1"
+msgstr "3.1.1"
+
+msgid "3.11.0"
+msgstr "3.11.0"
+
+msgid "3.13.0"
+msgstr "3.13.0"
+
+msgid "3.14.0"
+msgstr "3.14.0"
+
+msgid "3.15.0"
+msgstr "3.15.0"
+
+msgid "3.16.0"
+msgstr "3.16.0"
+
+msgid "3.17.0"
+msgstr "3.17.0"
+
+msgid "3.18.2"
+msgstr "3.18.2"
+
+msgid "3.21.0"
+msgstr "3.21.0"
+
+msgid "3.23.0"
+msgstr "3.23.0"
+
+msgid "3.24.0"
+msgstr "3.24.0"
+
+msgid "3.25.0"
+msgstr "3.25.0"
+
+msgid "3.4.0"
+msgstr "3.4.0"
+
+msgid "3.4.2"
+msgstr "3.4.2"
+
+msgid "3.5.0"
+msgstr "3.5.0"
+
+msgid "3.6.0"
+msgstr "3.6.0"
+
+msgid "3.7.0"
+msgstr "3.7.0"
+
+msgid "3.8.0"
+msgstr "3.8.0"
+
+msgid "3.8.1"
+msgstr "3.8.1"
+
+msgid "4.0.0"
+msgstr "4.0.0"
+
+msgid "4.1.0"
+msgstr "4.1.0"
+
+msgid "5.0.0"
+msgstr "5.0.0"
+
+msgid "5.0.1-16"
+msgstr "5.0.1-16"
+
+msgid "5.0.1-35"
+msgstr "5.0.1-35"
+
+msgid ""
+"A OVS port type ``OVS_DPDK``) has been added. OVS_DPDK_PORT_TYPES was "
+"extended with new OVS port type."
+msgstr ""
+"A OVS port type ``OVS_DPDK``) has been added. OVS_DPDK_PORT_TYPES was "
+"extended with new OVS port type."
+
 msgid ""
 "A VIF type for Agilio OVS (``VIF_TYPE_AGILIO_OVS``) has been added to "
 "portbindings. This links the external Neutron plugin to the external OS-VIF "
@@ -245,6 +304,15 @@ msgid ""
 msgstr ""
 "A converter ``convert_ip_to_canonical_format`` has been added to neutron-lib "
 "which allows IPv6 addresses to be stored and displayed in canonical format."
+
+msgid ""
+"A definition for API extension: ``enable-default-route-bfd``. Allows BFD to "
+"be enabled or disabled for default routes inferred from subnets of router's "
+"gateway ports."
+msgstr ""
+"A definition for API extension: ``enable-default-route-bfd``. Allows BFD to "
+"be enabled or disabled for default routes inferred from subnets of router's "
+"gateway ports."
 
 msgid ""
 "A new API validation type ``type:availability_zone_hint_list`` has been "
@@ -291,6 +359,15 @@ msgstr "Yoga Series Release Notes"
 
 msgid "Zed Series Release Notes"
 msgstr "Zed Series Release Notes"
+
+msgid ""
+"``ipv4_address_scope`` and ``ipv6_address_scope`` of the ``network`` "
+"resource use ``type:string_or_none``. They are ``null`` when the network is "
+"not associated with any address scope."
+msgstr ""
+"``ipv4_address_scope`` and ``ipv6_address_scope`` of the ``network`` "
+"resource use ``type:string_or_none``. They are ``null`` when the network is "
+"not associated with any address scope."
 
 msgid ""
 "``neutron_fwaas.extensions.firewall`` -> ``neutron_lib.exceptions."
