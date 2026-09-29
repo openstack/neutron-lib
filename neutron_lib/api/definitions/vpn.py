@@ -33,6 +33,14 @@ IPSEC_POLICIES = 'ipsecpolicies'
 IKE_POLICY = 'ikepolicy'
 IKE_POLICIES = 'ikepolicies'
 
+# IKE peer/local identifiers (peer_id, local_id) are rendered verbatim into
+# line-delimited IPsec configuration files (e.g. ipsec.conf) by device
+# drivers. Restrict the accepted character set so control characters such
+# as newlines/carriage returns cannot be used to create invalid additional
+# configuration directives or stanzas (see bug 2143775).
+IPSEC_ID_REGEX = r'^[a-zA-Z0-9.@_:/-]*$'
+
+
 # Parameter constants
 ENCRYPTION_ALGORITHM = 'encryption_algorithm'
 
@@ -348,7 +356,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         'local_id': {
             'allow_post': True,
             'allow_put': True,
-            'validate': {'type:string': None},
+            'validate': {'type:regex_or_none': IPSEC_ID_REGEX},
             'default': '',
             'is_visible': True,
             'is_filter': True
@@ -363,7 +371,7 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         'peer_id': {
             'allow_post': True,
             'allow_put': True,
-            'validate': {'type:string': None},
+            'validate': {'type:regex_or_none': IPSEC_ID_REGEX},
             'is_visible': True,
             'is_filter': True
         },
