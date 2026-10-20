@@ -1,0 +1,6 @@
+---
+fixes:
+  - The ``extension_aliases`` property of ``ExtensionDriver`` in
+    ``neutron_lib.plugins.ml2.api`` now returns an empty list, rather than a
+    list containing ``None``, when the driver does not define an
+    ``extension_alias``.
