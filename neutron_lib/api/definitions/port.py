@@ -10,6 +10,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from typing import TypedDict
+
 from neutron_lib.api import converters
 from neutron_lib import constants
 from neutron_lib.db import constants as db_const
@@ -103,6 +105,22 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
                    'is_visible': True},
     }
 }
+
+
+# A typed view of a port resource, keyed by the attributes defined
+# in RESOURCE_ATTRIBUTE_MAP above.
+class Port(TypedDict, total=False):
+    id: str
+    name: str
+    network_id: str
+    admin_state_up: bool
+    mac_address: str
+    fixed_ips: list[dict[str, str]]
+    device_id: str
+    device_owner: str
+    tenant_id: str
+    status: str
+
 
 # This is a core resource so the following are not applicable.
 IS_SHIM_EXTENSION = False

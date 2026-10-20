@@ -10,6 +10,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from typing import TypedDict
+
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import subnet
 from neutron_lib import constants
@@ -79,6 +81,19 @@ RESOURCE_ATTRIBUTE_MAP: ResourceAttributeMap = {
         }
     }
 }
+
+
+# A typed view of a network resource, keyed by the attributes defined
+# in RESOURCE_ATTRIBUTE_MAP above.
+class Network(TypedDict, total=False):
+    id: str
+    name: str
+    subnets: list[str]
+    admin_state_up: bool
+    status: str
+    tenant_id: str
+    shared: bool
+
 
 # This is a core resource so the following are not applicable.
 IS_SHIM_EXTENSION = False

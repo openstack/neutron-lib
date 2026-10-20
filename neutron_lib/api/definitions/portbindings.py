@@ -13,6 +13,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from typing import Final, Literal, TypedDict
+
 from neutron_lib.api.definitions import port
 from neutron_lib import constants
 from neutron_lib.types import ActionMap, ResourceAttributeMap
@@ -137,9 +139,28 @@ VNIC_TYPES = [VNIC_NORMAL, VNIC_DIRECT, VNIC_MACVTAP, VNIC_BAREMETAL,
 
 # VIF_DETAILS_CONNECTIVITY: Indicates what kind of connectivity the network
 #                           back-end provides: L2, L3 or not specified.
-CONNECTIVITY_L2 = 'l2'
-CONNECTIVITY_L3 = 'l3'
-CONNECTIVITY_LEGACY = 'legacy'
+CONNECTIVITY = Literal['l2', 'l3', 'legacy']
+CONNECTIVITY_L2: Final[CONNECTIVITY] = 'l2'
+CONNECTIVITY_L3: Final[CONNECTIVITY] = 'l3'
+CONNECTIVITY_LEGACY: Final[CONNECTIVITY] = 'legacy'
+
+
+# The well-known keys of the VIF_DETAILS attribute. The set of items
+# returned is driver defined, so mechanism drivers that return additional
+# keys should derive their own TypedDict from this one.
+class VifDetails(TypedDict, total=False):
+    port_filter: bool
+    ovs_hybrid_plug: bool
+    vlan: str
+    macvtap_source: str
+    macvtap_mode: str
+    physical_interface: str
+    bridge_name: str
+    connectivity: CONNECTIVITY
+    bound_drivers: dict[str, str]
+    datapath_type: str
+    vhostuser_mode: str
+
 
 # The alias of the extension.
 ALIAS = 'binding'
