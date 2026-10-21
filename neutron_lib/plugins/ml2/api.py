@@ -18,6 +18,7 @@ import abc
 from collections.abc import Callable
 from collections.abc import Mapping
 from collections.abc import Sequence
+from typing import Any
 from typing import Generic
 from typing import NotRequired
 from typing import TYPE_CHECKING
@@ -494,7 +495,7 @@ class MechanismDriver(metaclass=abc.ABCMeta):
             context: Context,
             segments: list[Segment],
             candidate_hosts: set[str],
-            agent_getter: Callable) -> set[str]:
+            agent_getter: Callable[..., Any]) -> set[str]:
         """Filter hosts with access to at least one segment.
 
         :returns: a set with a subset of candidate_hosts.
@@ -1139,7 +1140,7 @@ class PortContext(metaclass=abc.ABCMeta):
         """
 
     @abc.abstractmethod
-    def host_agents(self, agent_type: str) -> list:
+    def host_agents(self, agent_type: str) -> list[Any]:
         """Get agents of the specified type on port's host.
 
         :param agent_type: Agent type identifier
