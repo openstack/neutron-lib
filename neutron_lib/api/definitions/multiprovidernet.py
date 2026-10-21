@@ -13,6 +13,11 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from collections.abc import Callable
+from collections.abc import Iterable
+from collections.abc import Mapping
+from typing import Any
+
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network
 from neutron_lib.api import validators
@@ -26,7 +31,10 @@ from neutron_lib.types import (
 )
 
 
-def check_duplicate_segments(segments, is_partial_func=None):
+def check_duplicate_segments(
+        segments: Iterable[Mapping[str, Any]],
+        is_partial_func: Callable[[Mapping[str, Any]], bool] | None = None,
+) -> None:
     """Helper function checking duplicate segments.
 
     If is_partial_funcs is specified and not None, then

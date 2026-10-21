@@ -12,6 +12,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from collections.abc import Mapping
+from typing import Any
+
 from neutron_lib.api import converters
 from neutron_lib.api.definitions import network as network_def
 from neutron_lib.api import validators
@@ -26,7 +29,7 @@ from neutron_lib.types import (
 VLANTRANSPARENT = 'vlan_transparent'
 
 
-def get_vlan_transparent(network):
+def get_vlan_transparent(network: Mapping[str, Any]) -> Any:
     """Get the value of vlan_transparent from a network if set.
 
     :param network: The network dict to retrieve the value of vlan_transparent

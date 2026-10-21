@@ -82,6 +82,7 @@ disable_error_code = "import-untyped,var-annotated"
 # the tests is listed, move these options to the global section.
 [[tool.mypy.overrides]]
 module = [
+    "neutron_lib.api.definitions.*",
     "neutron_lib.plugins.ml2.api",
 ]
 disallow_untyped_defs = true
