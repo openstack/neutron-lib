@@ -159,6 +159,7 @@ KNOWN_EXTENSIONS = (
     'rbac-subnetpool',
     'router',
     'router_availability_zone',
+    'router-availability-zone-hints-writable',
     'security-group',
     'security-groups-default-statefulness',
     'segment',

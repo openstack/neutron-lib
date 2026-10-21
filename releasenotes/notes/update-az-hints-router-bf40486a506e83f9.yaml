@@ -1,0 +1,7 @@
+---
+features:
+  - |
+    The new extension ``router-availability-zone-hints-writable``: Provides the
+    ability to update the value of the router Availability Zone Hints (AZ
+    Hints). Plugins supporting this API extension must also support
+    ``router_availability_zone`` API Extension.
