@@ -77,6 +77,15 @@ warn_unused_ignores = true
 # remove gradually as progress is made
 disable_error_code = "import-untyped,var-annotated"
 
+# Modules listed here are fully annotated; keep it that way. Add a module (or
+# package glob) once it passes, and never remove one. Once everything outside
+# the tests is listed, move these options to the global section.
+[[tool.mypy.overrides]]
+module = [
+    "neutron_lib.plugins.ml2.api",
+]
+disallow_untyped_defs = true
+
 [tool.ruff]
 line-length = 79
 
