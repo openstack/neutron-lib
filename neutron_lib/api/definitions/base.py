@@ -36,6 +36,7 @@ KNOWN_ATTRIBUTES = (
     'is_default',
     'mac_address',
     'max_prefixlen',
+    'metadata_enabled',
     'min_prefixlen',
     'name',
     'network_id',

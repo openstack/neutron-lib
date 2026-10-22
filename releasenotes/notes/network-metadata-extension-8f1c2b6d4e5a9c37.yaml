@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Added the ``network-metadata`` API extension. It adds the
+    ``metadata_enabled`` boolean attribute to the ``network`` resource,
+    allowing to enable or disable the metadata service per network. The
+    default value is ``None``, meaning that the network inherits the
+    global ``[ovn] ovn_metadata_enabled`` configuration value.

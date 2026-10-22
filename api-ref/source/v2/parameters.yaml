@@ -4693,6 +4693,26 @@ max_prefixlen:
   in: body
   required: false
   type: integer
+metadata_enabled:
+  description: |
+    Controls whether the metadata service is enabled for the network.
+    ``true`` enables the metadata service, ``false`` disables it, and
+    ``null`` means the network inherits the deployment default.
+    Available when the ``network-metadata`` extension is enabled.
+    This attribute is not available as a list filter or sort key.
+  in: body
+  required: true
+  type: boolean
+metadata_enabled-request:
+  description: |
+    Controls whether the metadata service is enabled for the network.
+    ``true`` enables the metadata service, ``false`` disables it, and
+    ``null`` means the network inherits the deployment default.
+    Available when the ``network-metadata`` extension is enabled.
+    This attribute is not available as a list filter or sort key.
+  in: body
+  required: false
+  type: boolean
 metainfo:
   description: |
     JSON-formatted meta information.

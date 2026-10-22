@@ -11,6 +11,7 @@
         "ipv4_address_scope": null,
         "ipv6_address_scope": null,
         "l2_adjacency": false,
+        "metadata_enabled": null,
         "mtu": 1500,
         "name": "private-network",
         "port_security_enabled": true,
