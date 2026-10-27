@@ -13,8 +13,10 @@
 from oslo_db.sqlalchemy import models
 from oslo_utils import uuidutils
 import sqlalchemy as sa
+from sqlalchemy import event
 from sqlalchemy import orm
 
+from neutron_lib.db import api as db_api
 from neutron_lib.db import constants as db_const
 
 
@@ -112,3 +114,10 @@ class NeutronBaseV2(_NeutronBase):
 
 class BASEV2(orm.DeclarativeBase, NeutronBaseV2):
     __mapper_args__ = {}
+
+
+# NOTE: a propagated listener only reaches classes defined after it is
+# registered, so register it with BASEV2 itself, before any model class
+# can exist. Importing the DB API above registers its Session listeners.
+event.listen(BASEV2, 'attribute_instrument', db_api._listen_for_changes,
+             propagate=True)
