@@ -33,6 +33,29 @@ The ``dns_domain`` of a network in conjunction with the ``dns_name`` attribute
 of its ports will be published in an external DNS service when Neutron is
 configured to integrate with such a service.
 
+EVPN Type-2 extension
+=====================
+
+The ``evpn-l2`` extension adds ``evpn_vni`` and ``evpn_rt`` attributes to
+networks to support EVPN Type-2 MAC/IP route advertisement.
+
+On network creation or update, set ``evpn_vni`` to ``0`` to request automatic
+allocation of a unique VNI from the configured ``evpn_vni_auto_ranges``. This
+operation is available to non-administrative users. Administrative users can
+instead request an explicit VNI between ``1`` and ``16777215``, outside the
+automatic allocation ranges. Invalid or already allocated VNIs are rejected.
+Set ``evpn_vni`` to ``null`` on update to remove the network's VNI.
+
+On network update, administrative users can set ``evpn_rt`` to a BGP route
+target used for both import and export, or to ``null`` to remove it. Supported
+formats are ``<2-byte-AS>:<4-byte-local-value>``,
+``<IPv4-address>:<2-byte-local-value>``, and
+``<4-byte-AS>:<2-byte-local-value>``. The route target cannot be set during
+network creation.
+
+Omitting either attribute leaves its configuration unchanged on update.
+The attributes appear in responses only when configured.
+
 External network
 ================
 
@@ -230,6 +253,8 @@ Response Parameters
    - availability_zones: availability_zones
    - created_at: created_at_resource
    - dns_domain: dns_domain
+   - evpn_vni: evpn_vni-network
+   - evpn_rt: evpn_rt-network
    - id: network-id
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
@@ -296,6 +321,8 @@ Request
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
    - metadata_enabled: metadata_enabled-request
+   - evpn_vni: evpn_vni-network-request
+   - evpn_rt: evpn_rt-network-request
    - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
@@ -339,6 +366,8 @@ Response Parameters
    - availability_zones: availability_zones
    - created_at: created_at_resource
    - dns_domain: dns_domain
+   - evpn_vni: evpn_vni-network
+   - evpn_rt: evpn_rt-network
    - id: network-id
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
@@ -465,6 +494,8 @@ Response Parameters
    - availability_zones: availability_zones
    - created_at: created_at_resource
    - dns_domain: dns_domain
+   - evpn_vni: evpn_vni-network
+   - evpn_rt: evpn_rt-network
    - id: network-id
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
@@ -533,6 +564,7 @@ Request
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
    - metadata_enabled: metadata_enabled-request
+   - evpn_vni: evpn_vni-network-request
    - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
@@ -580,6 +612,8 @@ Response Parameters
    - availability_zones: availability_zones
    - created_at: created_at_resource
    - dns_domain: dns_domain
+   - evpn_vni: evpn_vni-network
+   - evpn_rt: evpn_rt-network
    - id: network-id
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
@@ -650,6 +684,7 @@ Request
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
    - metadata_enabled: metadata_enabled-request
+   - evpn_vni: evpn_vni-network-request
    - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
@@ -683,6 +718,8 @@ Response Parameters
    - availability_zones: availability_zones
    - created_at: created_at_resource
    - dns_domain: dns_domain
+   - evpn_vni: evpn_vni-network
+   - evpn_rt: evpn_rt-network
    - id: network-id
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope

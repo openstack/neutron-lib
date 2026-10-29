@@ -97,6 +97,7 @@ KNOWN_EXTENSIONS = (
     'enable-default-route-ecmp',
     'enable-default-route-bfd',
     'empty-string-filtering',
+    'evpn-l2',
     'expose-l3-conntrack-helper',
     'expose-port-forwarding-in-fip',
     'ext-gw-mode',
