@@ -1,0 +1,8 @@
+---
+fixes:
+  - |
+    ``INT_BR_ALL_TABLES`` in ``neutron_lib.plugins.ml2.ovs_constants`` now
+    includes ``ARP_DVR_MAC_TO_DST_MAC`` and
+    ``ARP_DVR_MAC_TO_DST_MAC_PHYSICAL``, so the OVS agent cleans up stale
+    DVR ARP flows in the ``br-int`` tables 3 and 4 on restart. See bug
+    `2170618 <https://bugs.launchpad.net/neutron/+bug/2170618>`_.
