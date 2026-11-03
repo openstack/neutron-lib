@@ -17,7 +17,6 @@ import re
 import unicodedata
 
 import netaddr
-from os_ken.lib.packet import ether_types
 from oslo_config import cfg
 from oslo_log import log as logging
 from oslo_utils import netutils
@@ -1376,6 +1375,9 @@ def validate_ethertype(ethertype, valid_values=None):
     """
 
     if cfg.CONF.sg_filter_ethertypes:
+        # Imported here because os_ken is large and only this check needs it.
+        from os_ken.lib.packet import ether_types  # pylint: disable=C0415
+
         os_ken_ethertypes = ether_types.__dict__
         try:
             # Use the ethertype constants from os_ken with the special
