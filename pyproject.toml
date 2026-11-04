@@ -87,6 +87,12 @@ module = [
 ]
 disallow_untyped_defs = true
 
+[[tool.mypy.overrides]]
+module = [
+    "neutron_lib.plugins.ml2.api",
+]
+disallow_any_generics = true
+
 [tool.ruff]
 line-length = 79
 
