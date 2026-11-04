@@ -1,0 +1,9 @@
+---
+security:
+  - |
+    ``local_id`` and ``peer_id`` values for the VPN API are now
+    validated against a character set before being accepted, and
+    any invalid values are rejected. This allows the IPsec site
+    connection generated files to always have valid values.
+    For more information, see
+    `bug 2143775 <https://bugs.launchpad.net/neutron/+bug/2143775>`_.
