@@ -23,7 +23,6 @@ from sqlalchemy.orm import properties
 
 from neutron_lib._i18n import _
 from neutron_lib.api import attributes
-from neutron_lib.db import api as db_api
 from neutron_lib import exceptions as n_exc
 
 
@@ -228,6 +227,8 @@ def context_if_transaction(context, transaction, writer=True):
     :returns: A context manager.
     """
     if transaction:
+        # pylint: disable-next=import-outside-toplevel
+        from neutron_lib.db import api as db_api
         return (db_api.CONTEXT_WRITER.using(context) if writer else
                 db_api.CONTEXT_READER.using(context))
     return _noop_context_manager()

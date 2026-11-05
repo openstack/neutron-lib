@@ -32,7 +32,6 @@ from sqlalchemy import orm
 from sqlalchemy.orm import exc
 
 from neutron_lib._i18n import _
-from neutron_lib.db import model_base
 from neutron_lib import exceptions
 from neutron_lib.objects import exceptions as obj_exc
 
@@ -433,7 +432,7 @@ def _persistent_to_deleted(session, obj):
                 _expire_for_fk_change(obj, None, prop, colkey)
 
 
-@event.listens_for(model_base.BASEV2, "attribute_instrument", propagate=True)
+# Registered on BASEV2 by neutron_lib.db.model_base.
 def _listen_for_changes(cls, key, inst):
     mapper = sqlalchemy.inspect(cls)
     if key not in mapper.relationships:
