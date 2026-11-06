@@ -22,6 +22,7 @@
         "router:external": false,
         "provider:network_type": "vlan",
         "l2_adjacency": true,
+        "metadata_enabled": null,
         "mtu": 1500,
         "shared": false,
         "id": "4e8e5957-649f-477b-9e5b-f1f75b21c03c",

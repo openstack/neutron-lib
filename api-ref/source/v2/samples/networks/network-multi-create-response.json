@@ -13,6 +13,7 @@
         "ipv4_address_scope": null,
         "ipv6_address_scope": null,
         "l2_adjacency": true,
+        "metadata_enabled": null,
         "mtu": 1500,
         "port_security_enabled": true,
         "project_id": "9bacb3c5d39d41a79512987f338cf177",

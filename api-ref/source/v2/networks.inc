@@ -107,6 +107,16 @@ The ``network-cascade-delete`` shim extension adds to networks the optional
 boolean attribute, ``cascade``, that when defined as ``true``, removes all
 child objects of a network upon its deletion.
 
+Network metadata extension
+==========================
+
+The ``network-metadata`` extension adds the ``metadata_enabled`` boolean
+attribute to networks. This attribute controls whether the metadata service is
+enabled for ports on the network. ``true`` enables the metadata service,
+``false`` disables it, and ``null`` means the network inherits the deployment
+default metadata service configuration. The attribute is not available as a
+list filter or sort key.
+
 Port security
 =============
 
@@ -224,6 +234,7 @@ Response Parameters
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
+   - metadata_enabled: metadata_enabled
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -284,6 +295,7 @@ Request
    - network: network
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
+   - metadata_enabled: metadata_enabled-request
    - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
@@ -331,6 +343,7 @@ Response Parameters
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
+   - metadata_enabled: metadata_enabled
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -456,6 +469,7 @@ Response Parameters
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
+   - metadata_enabled: metadata_enabled
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -518,6 +532,7 @@ Request
    - network: network
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
+   - metadata_enabled: metadata_enabled-request
    - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
@@ -569,6 +584,7 @@ Response Parameters
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
+   - metadata_enabled: metadata_enabled
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
@@ -633,6 +649,7 @@ Request
    - networks: networks
    - admin_state_up: network-admin_state_up-request
    - dns_domain: dns_domain-request
+   - metadata_enabled: metadata_enabled-request
    - mtu: mtu-request
    - name: network-name-request
    - port_security_enabled: network-port_security_enabled-request
@@ -670,6 +687,7 @@ Response Parameters
    - ipv4_address_scope: ipv4_address_scope
    - ipv6_address_scope: ipv6_address_scope
    - l2_adjacency: l2_adjacency
+   - metadata_enabled: metadata_enabled
    - mtu: mtu
    - name: network-name
    - port_security_enabled: network-port_security_enabled
