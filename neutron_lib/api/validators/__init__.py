@@ -1364,6 +1364,18 @@ def validate_subnet_service_types(service_types, valid_values=None):
                     service_type=service_type)
             if not service_type.startswith(prefixes):
                 raise n_exc.InvalidSubnetServiceType(service_type=service_type)
+            # Several service types joined into one string, such as
+            # "network:floatingip, network:router_gateway", pass the prefix
+            # check but match no port. No real device owner contains a
+            # prefix after a comma: Neutron's own owners have no commas, and
+            # Nova availability zone names ("compute:<az>") cannot contain
+            # ":", although they can contain commas and spaces.
+            for part in service_type.split(',')[1:]:
+                if part.strip().startswith(prefixes):
+                    raise n_exc.InvalidInput(error_message=_(
+                        "Subnet service type '%s' contains more than one "
+                        "service type. Pass each service type as a "
+                        "separate list item.") % service_type)
 
 
 def validate_ethertype(ethertype, valid_values=None):
