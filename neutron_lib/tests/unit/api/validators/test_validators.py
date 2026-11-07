@@ -15,6 +15,7 @@ import string
 from unittest import mock
 
 import netaddr
+import webob.exc
 
 from neutron_lib._i18n import _
 from neutron_lib.api import converters
@@ -1471,6 +1472,45 @@ class TestServicePluginType(base.BaseTestCase):
             n_exc.InvalidServiceType,
             'Invalid service type',
             validators.validate_service_plugin_type, 'ntype')
+
+
+class TestSubnetServiceTypesValidation(base.BaseTestCase):
+
+    def test_empty(self):
+        self.assertIsNone(validators.validate_subnet_service_types(None))
+        self.assertIsNone(validators.validate_subnet_service_types([]))
+
+    def test_not_a_list(self):
+        self.assertRaises(webob.exc.HTTPBadRequest,
+                          validators.validate_subnet_service_types,
+                          'network:floatingip')
+
+    def test_not_a_string(self):
+        self.assertRaises(n_exc.InvalidInputSubnetServiceType,
+                          validators.validate_subnet_service_types,
+                          ['network:floatingip', 2])
+
+    def test_valid(self):
+        self.assertIsNone(validators.validate_subnet_service_types(
+            ['network:floatingip',
+             'network:router_gateway',
+             'network:floatingip_agent_gateway',
+             'neutron:LOADBALANCERV2',
+             'compute:nova',
+             'compute:my zone',
+             # Unmatched values are used to drain a subnet (bug 2024921).
+             'network:drain',
+             'compute:bogus']))
+
+    def test_invalid_prefix(self):
+        # Most of these start with a character of "compute:", which the
+        # validator used to accept as a prefix (bug 2173642).
+        for service_type in ('compute', 'compute-nova', 'test', 'ovn',
+                             'uplink', 'port', 'e', ':x', 'bogus',
+                             'foo:bar', ''):
+            self.assertRaises(n_exc.InvalidSubnetServiceType,
+                              validators.validate_subnet_service_types,
+                              ['network:floatingip', service_type])
 
 
 class TestAddressNotMulticastValidation(base.BaseTestCase):
