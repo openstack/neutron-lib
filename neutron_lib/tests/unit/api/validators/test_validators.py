@@ -12,6 +12,8 @@
 #    under the License.
 
 import string
+import subprocess
+import sys
 from unittest import mock
 
 import netaddr
@@ -1531,3 +1533,19 @@ class TestAddressNotMulticastValidation(base.BaseTestCase):
         ):
             result = validators.validate_mac_address_not_multicast(data)
             self.assertIsNotNone(result)
+
+
+class TestValidatorsImports(base.BaseTestCase):
+
+    def test_os_ken_not_imported(self):
+        # Run in a fresh interpreter: the test process may already have
+        # imported os_ken. Only validate_ethertype needs it, and only when
+        # sg_filter_ethertypes is set.
+        code = ('import sys\n'
+                'import neutron_lib.api.validators\n'
+                'print(",".join(m for m in sys.modules\n'
+                '               if m == "os_ken" or m.startswith("os_ken.")))'
+                '\n')
+        out = subprocess.check_output(  # noqa: S603
+            [sys.executable, '-c', code], text=True)
+        self.assertEqual('', out.strip())
