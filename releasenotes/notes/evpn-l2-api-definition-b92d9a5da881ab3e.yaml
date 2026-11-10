@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    Add the ``evpn-l2`` API extension definition for EVPN Type-2 route
+    advertisement. Networks support an ``evpn_vni`` attribute on creation
+    and update, with ``0`` requesting automatic VNI allocation and ``null``
+    removing the VNI. The ``evpn_rt`` attribute supports setting or removing
+    a BGP route target on network update.

@@ -3138,6 +3138,44 @@ ethertype-request:
   in: body
   required: false
   type: string
+evpn_rt-network:
+  description: |
+    The BGP route target used for both import and export of the network's
+    EVPN routes. Available when the ``evpn-l2`` extension is enabled and
+    a route target is configured.
+  in: body
+  required: false
+  type: string
+evpn_rt-network-request:
+  description: |
+    The BGP route target to set on network update. Supported formats are
+    ``<2-byte-AS>:<4-byte-local-value>``,
+    ``<IPv4-address>:<2-byte-local-value>``, and
+    ``<4-byte-AS>:<2-byte-local-value>``. Set to ``null`` to remove the route
+    target. Only administrative users can set or remove this attribute.
+    Available when the ``evpn-l2`` extension is enabled.
+  in: body
+  required: false
+  type: string
+evpn_vni-network:
+  description: |
+    The VNI assigned to the network for EVPN Type-2 route advertisement.
+    Available when the ``evpn-l2`` extension is enabled and a VNI is
+    configured.
+  in: body
+  required: false
+  type: integer
+evpn_vni-network-request:
+  description: |
+    The VNI to assign to the network. Set to ``0`` to request automatic
+    allocation from the configured ``evpn_vni_auto_ranges``. Only
+    administrative users can request an explicit VNI between ``1`` and
+    ``16777215``, outside the automatic allocation ranges. Set to ``null``
+    on update to remove the VNI. Available when the ``evpn-l2`` extension
+    is enabled.
+  in: body
+  required: false
+  type: integer
 excluded:
   description: |
     Indicates whether to count the traffic of a specific IP address with the
