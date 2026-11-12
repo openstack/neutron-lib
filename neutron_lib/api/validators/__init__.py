@@ -1354,15 +1354,14 @@ def validate_subnet_service_types(service_types, valid_values=None):
             raise exc.HTTPBadRequest(
                 _("Subnet service types must be a list."))
 
-        # Include standard prefixes
-        prefixes = list(constants.DEVICE_OWNER_PREFIXES)
-        prefixes += constants.DEVICE_OWNER_COMPUTE_PREFIX
+        prefixes = (constants.DEVICE_OWNER_PREFIXES +
+                    (constants.DEVICE_OWNER_COMPUTE_PREFIX,))
 
         for service_type in service_types:
             if not isinstance(service_type, str):
                 raise n_exc.InvalidInputSubnetServiceType(
                     service_type=service_type)
-            if not service_type.startswith(tuple(prefixes)):
+            if not service_type.startswith(prefixes):
                 raise n_exc.InvalidSubnetServiceType(service_type=service_type)
 
 

@@ -1,0 +1,12 @@
+---
+fixes:
+  - |
+    Subnet ``service_types`` entries are now checked against the full
+    ``network:``, ``neutron:`` and ``compute:`` prefixes. Previously the
+    ``compute:`` prefix was added to the list of allowed prefixes one
+    character at a time, so any value starting with ``c``, ``o``, ``m``,
+    ``p``, ``u``, ``t``, ``e`` or ``:`` was accepted, for example
+    ``compute`` without the colon. Such values never match a port's
+    ``device_owner``. Requests that set them now fail with a 400 error.
+    Values already stored are not changed. For more information, see bug
+    `2173642 <https://bugs.launchpad.net/neutron/+bug/2173642>`_.
