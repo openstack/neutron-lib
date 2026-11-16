@@ -5,7 +5,9 @@ Tap Mirrors
 ===========
 
 Tap Mirrors provide a way to mirror traffic from a Neutron port to an external
-IP in a GRE or ERSPAN v1 tunnel.
+IP in a GRE or ERSPAN v1 tunnel, or, with the ``tap-mirror-lport`` extension,
+to another Neutron port inside the overlay (``lport`` mirror type, ML2/OVN
+only).
 
 List Tap Mirrors
 =================
@@ -42,6 +44,7 @@ Response Parameters
    - port_id: tap_mirror_port_id
    - mirror_type: mirror_type
    - remote_ip: remote_ip_tap_mirror
+   - remote_port_id: remote_port_id_tap_mirror
    - directions: directions_tap_mirror
 
 Response Example
@@ -71,6 +74,7 @@ Request Parameters
    - port_id: tap_mirror_port_id
    - mirror_type: mirror_type
    - remote_ip: remote_ip_tap_mirror
+   - remote_port_id: remote_port_id_tap_mirror
    - directions: directions_tap_mirror
    - description: description
 
@@ -78,6 +82,12 @@ Request Example
 ---------------
 
 .. literalinclude:: samples/taas/tap_mirror-create-request.json
+   :language: javascript
+
+Request Example (``lport`` mirror)
+----------------------------------
+
+.. literalinclude:: samples/taas/tap_mirror-create-lport-request.json
    :language: javascript
 
 Response Parameters
@@ -92,12 +102,19 @@ Response Parameters
    - port_id: tap_mirror_port_id
    - mirror_type: mirror_type
    - remote_ip: remote_ip_tap_mirror
+   - remote_port_id: remote_port_id_tap_mirror
    - directions: directions_tap_mirror
 
 Response Example
 ----------------
 
 .. literalinclude:: samples/taas/tap_mirror-create-response.json
+   :language: javascript
+
+Response Example (``lport`` mirror)
+-----------------------------------
+
+.. literalinclude:: samples/taas/tap_mirror-create-lport-response.json
    :language: javascript
 
 Update Tap Mirror
@@ -138,6 +155,7 @@ Response Parameters
    - port_id: tap_mirror_port_id
    - mirror_type: mirror_type
    - remote_ip: remote_ip_tap_mirror
+   - remote_port_id: remote_port_id_tap_mirror
    - directions: directions_tap_mirror
 
 Response Example
@@ -203,6 +221,7 @@ Response Parameters
    - port_id: tap_mirror_port_id
    - mirror_type: mirror_type
    - remote_ip: remote_ip_tap_mirror
+   - remote_port_id: remote_port_id_tap_mirror
    - directions: directions_tap_mirror
 
 Response Example
