@@ -1,0 +1,13 @@
+---
+fixes:
+  - |
+    A subnet ``service_types`` entry that holds several service types
+    joined by commas, such as
+    ``network:floatingip, network:router_gateway``, is now rejected with a
+    400 error asking for each service type as a separate list item.
+    Previously it was stored as a single service type that matched no
+    port, while ``openstack subnet show`` displayed it the same as a
+    correct two-item list. Values already stored are not changed; check
+    existing subnets with ``openstack subnet show <subnet> -c
+    service_types -f json``. For more information, see bug
+    `2173644 <https://bugs.launchpad.net/neutron/+bug/2173644>`_.

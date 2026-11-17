@@ -1524,6 +1524,9 @@ class TestSubnetServiceTypesValidation(base.BaseTestCase):
              'neutron:LOADBALANCERV2',
              'compute:nova',
              'compute:my zone',
+             # Nova availability zone names may contain commas.
+             'compute:zone,a',
+             'compute:zone, compute',
              # Unmatched values are used to drain a subnet (bug 2024921).
              'network:drain',
              'compute:bogus']))
@@ -1537,6 +1540,20 @@ class TestSubnetServiceTypesValidation(base.BaseTestCase):
             self.assertRaises(n_exc.InvalidSubnetServiceType,
                               validators.validate_subnet_service_types,
                               ['network:floatingip', service_type])
+
+    def test_joined_service_types(self):
+        # A list joined into one string looks like the list in
+        # openstackclient's table output (bug 2173644).
+        for service_type in ('network:floatingip, network:router_gateway',
+                             'network:floatingip,network:router_gateway',
+                             'compute:nova, network:dhcp',
+                             'network:dhcp,  neutron:LOADBALANCERV2',
+                             'compute:my zone, compute:nova'):
+            self.assertRaisesRegex(
+                n_exc.InvalidInput,
+                'contains more than one service type',
+                validators.validate_subnet_service_types,
+                ['network:floatingip', service_type])
 
 
 class TestAddressNotMulticastValidation(base.BaseTestCase):
