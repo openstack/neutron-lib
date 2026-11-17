@@ -75,6 +75,19 @@ users to set the desired port types for a subnet by adding the
 DVR floating IP agent gateway ports to use the subnet to minimize public
 IP address consumption).
 
+Each service type is a port ``device_owner`` and must start with
+``network:``, ``neutron:`` or ``compute:``, for example
+``network:floatingip``, ``network:router_gateway`` or ``compute:nova``.
+Pass each service type as a separate list item; a single string that joins
+several service types with commas is rejected. When Neutron allocates an
+address for a port, it uses the subnets whose service types include the
+port's ``device_owner`` first, then the subnets with no service types. A
+subnet with service types gives no addresses to other ports, except DHCP
+ports when DHCP is enabled on the subnet, so a service type that matches no
+port, such as ``network:drain``, stops new ports from getting addresses from
+the subnet. Changing the service types does not affect addresses that are
+already allocated.
+
 Tag extension
 =============
 
