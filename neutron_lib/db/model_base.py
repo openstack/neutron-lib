@@ -10,6 +10,8 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from typing import Any
+
 from oslo_db.sqlalchemy import models
 from oslo_utils import uuidutils
 import sqlalchemy as sa
@@ -82,7 +84,12 @@ class HasStatusDescription:
 class _NeutronBase(models.ModelBase):
     """Base class for Neutron Models."""
 
-    __table_args__ = {'mysql_engine': 'InnoDB'}
+    # NOTE: SQLAlchemy accepts ``__table_args__`` as a dict of table options
+    # (as done here) or as a tuple of constraints/indexes with the table
+    # options dict as the last element. Subclasses are free to use either
+    # form, so the annotation must cover both.
+    __table_args__: dict[str, Any] | tuple[Any, ...] = {
+        'mysql_engine': 'InnoDB'}
     _i = None
 
     def __iter__(self):

@@ -10,10 +10,12 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
+from typing import Any
+
 from oslo_versionedobjects import fields as obj_fields
 
 
-STANDARD_ATTRIBUTES = {
+STANDARD_ATTRIBUTES: dict[str, obj_fields.Field[Any]] = {
     'revision_number': obj_fields.IntegerField(),
     'description': obj_fields.StringField(nullable=True),
     'created_at': obj_fields.DateTimeField(nullable=True, tzinfo_aware=False),
