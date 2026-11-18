@@ -49,7 +49,7 @@ N537 = "neutron_lib.hacking.translation_checks:no_translate_logs"
 N535 = "neutron_lib.hacking.checks:check_no_eventlet_imports"
 
 [dependency-groups]
-typing = [
+types = [
     "mypy",
     "types-PySocks", # Apache-2.0
     "types-PyYAML", # Apache-2.0
